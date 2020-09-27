@@ -19,7 +19,7 @@ protocol PloggingDisplayLogic: class {
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase)
 }
 
-class PloggingViewController: UIViewController, PloggingDisplayLogic {
+class PloggingViewController: BaseViewController, PloggingDisplayLogic {
     var interactor: PloggingBusinessLogic?
     var router: (NSObjectProtocol & PloggingRoutingLogic & PloggingDataPassing)?
     
@@ -48,6 +48,14 @@ class PloggingViewController: UIViewController, PloggingDisplayLogic {
         $0.text = "준비물을 확인해주세요."
         $0.textColor = .white
         $0.font = .systemFont(ofSize: 14)
+    }
+    
+    lazy var trashButton = UIButton().then{
+        $0.setImage(UIImage(named: "ic_trashcan")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        $0.imageView?.contentMode = .center
+        $0.backgroundColor = UIColor(red: 95/255, green: 116/255, blue: 244/255, alpha: 1)
+        $0.layer.cornerRadius = 25
+        $0.layer.masksToBounds = true
     }
     
     let mapView = MKMapView()
@@ -90,24 +98,54 @@ class PloggingViewController: UIViewController, PloggingDisplayLogic {
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase){
         //handle error with its usecase
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let layer = CAGradientLayer()
+        layer.cornerRadius = 4
+        layer.frame = bottomContainerView.bounds
+        layer.startPoint = CGPoint(x: 0.0, y: 1.0)
+        layer.endPoint = CGPoint(x: 1, y: 0)
+        layer.locations = [0.0, 1]
+        layer.colors = [Color.bottomGradientStart.cgColor,
+                        Color.bottomGradientEnd.cgColor
+        ]
+        if let count = bottomContainerView.layer.sublayers?.count{
+            if count == 4{
+                bottomContainerView.layer.replaceSublayer(bottomContainerView.layer.sublayers!.first!, with: layer)
+            }else{
+                bottomContainerView.layer.insertSublayer(layer, at: 0)
+            }
+        }
+        
+    }
 }
 extension PloggingViewController {
     private func configuration() {
-        // backgroundColor = .white
+        // backgroundColor = .whit
     }
     
     private func setupView() {
         self.view.addSubview(mapView)
+        self.view.addSubview(trashButton)
         self.view.addSubview(bottomContainerView)
         bottomContainerView.addSubview(startButton)
         bottomContainerView.addSubview(ploggerImageView)
         bottomContainerView.addSubview(bubbleView)
         bubbleView.addSubview(bubbleLabel)
+        
+        
+        
     }
     
     private func setupLayout() {
         mapView.snp.makeConstraints{
             $0.leading.trailing.top.bottom.equalToSuperview()
+        }
+        trashButton.snp.makeConstraints{
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(15)
+            $0.trailing.equalTo(-17)
+            $0.width.height.equalTo(50)
         }
         bottomContainerView.snp.makeConstraints{
             $0.leading.trailing.bottom.equalToSuperview()

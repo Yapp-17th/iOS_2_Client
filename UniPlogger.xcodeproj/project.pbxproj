@@ -23,6 +23,8 @@
 		AAB3B5032520B6D900F0311A /* PloggingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4FD2520B6D900F0311A /* PloggingModels.swift */; };
 		AAB3B5042520B6D900F0311A /* PloggingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4FE2520B6D900F0311A /* PloggingViewController.swift */; };
 		AAB3B5052520B6D900F0311A /* PloggingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4FF2520B6D900F0311A /* PloggingInteractor.swift */; };
+		AAB3B5072520D16800F0311A /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B5062520D16800F0311A /* UIColor+Extensions.swift */; };
+		AAB3B50A2520D34D00F0311A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B5092520D34D00F0311A /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		AAB3B4FD2520B6D900F0311A /* PloggingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingModels.swift; sourceTree = "<group>"; };
 		AAB3B4FE2520B6D900F0311A /* PloggingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingViewController.swift; sourceTree = "<group>"; };
 		AAB3B4FF2520B6D900F0311A /* PloggingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingInteractor.swift; sourceTree = "<group>"; };
+		AAB3B5062520D16800F0311A /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		AAB3B5092520D34D00F0311A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		E4E470A391887A23D6AF25DD /* Pods_UniPlogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UniPlogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -122,6 +126,7 @@
 		AAB3B4E62520A77200F0311A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				AAB3B5082520D34300F0311A /* ViewController */,
 				AAB3B4ED2520B2F400F0311A /* View */,
 				AAB3B4EA2520A78800F0311A /* Extension */,
 				AAB3B4E72520A77700F0311A /* TabBarController */,
@@ -142,6 +147,7 @@
 			children = (
 				AAB3B4EB2520B2B400F0311A /* UIImage+Extensions.swift */,
 				AAB3B4F02520B37100F0311A /* UIView+Extensions.swift */,
+				AAB3B5062520D16800F0311A /* UIColor+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -195,6 +201,14 @@
 			children = (
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		AAB3B5082520D34300F0311A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AAB3B5092520D34D00F0311A /* BaseViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		E2D00847CB39D6B3C3C2760D /* Pods */ = {
@@ -333,8 +347,10 @@
 				AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
 				AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */,
+				AAB3B50A2520D34D00F0311A /* BaseViewController.swift in Sources */,
 				AAB3B5022520B6D900F0311A /* PloggingRouter.swift in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
+				AAB3B5072520D16800F0311A /* UIColor+Extensions.swift in Sources */,
 				AAB3B5032520B6D900F0311A /* PloggingModels.swift in Sources */,
 				AAB3B4EC2520B2B400F0311A /* UIImage+Extensions.swift in Sources */,
 				AAB3B5042520B6D900F0311A /* PloggingViewController.swift in Sources */,
