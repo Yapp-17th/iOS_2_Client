@@ -9,7 +9,7 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
-    
+    private var shadowLayer: CAShapeLayer!
     // MARK: View
     
     // MARK: View lifecycle
@@ -41,10 +41,22 @@ extension MainTabBarController {
     }
     
     private func setupLayout() {
-        self.tabBar.barTintColor = .white
-        self.tabBar.layer.cornerRadius = 22
-        self.tabBar.layer.masksToBounds = true
-        self.tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        tabBar.backgroundImage = UIImage.from(color: .clear)
+        tabBar.shadowImage = UIImage()
+        
+        let tabbarBackgroundView = RoundShadowView(frame: tabBar.frame)
+        tabbarBackgroundView.layer.cornerRadius = 22
+        tabbarBackgroundView.backgroundColor = .white
+        tabbarBackgroundView.frame = tabBar.frame
+        view.addSubview(tabbarBackgroundView)
+        
+        let fillerView = UIView()
+        fillerView.frame = tabBar.frame
+        fillerView.roundCorners(corners: [.topLeft, .topRight], radius: 22)
+        fillerView.backgroundColor = .white
+        view.addSubview(fillerView)
+        
+        view.bringSubviewToFront(tabBar)
     }
     
     private func updateView() {

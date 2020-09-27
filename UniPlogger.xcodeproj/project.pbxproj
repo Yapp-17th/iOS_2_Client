@@ -13,6 +13,9 @@
 		AAB3B4D42520A31200F0311A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAB3B4D32520A31200F0311A /* Assets.xcassets */; };
 		AAB3B4D72520A31200F0311A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAB3B4D52520A31200F0311A /* LaunchScreen.storyboard */; };
 		AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4E82520A78300F0311A /* MainTabBarController.swift */; };
+		AAB3B4EC2520B2B400F0311A /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4EB2520B2B400F0311A /* UIImage+Extensions.swift */; };
+		AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4EE2520B30600F0311A /* RoundShadowView.swift */; };
+		AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4F02520B37100F0311A /* UIView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +28,9 @@
 		AAB3B4D62520A31200F0311A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAB3B4D82520A31200F0311A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAB3B4E82520A78300F0311A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		AAB3B4EB2520B2B400F0311A /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		AAB3B4EE2520B30600F0311A /* RoundShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundShadowView.swift; sourceTree = "<group>"; };
+		AAB3B4F02520B37100F0311A /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		E4E470A391887A23D6AF25DD /* Pods_UniPlogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UniPlogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -90,6 +96,7 @@
 		AAB3B4E62520A77200F0311A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				AAB3B4ED2520B2F400F0311A /* View */,
 				AAB3B4EA2520A78800F0311A /* Extension */,
 				AAB3B4E72520A77700F0311A /* TabBarController */,
 			);
@@ -107,8 +114,18 @@
 		AAB3B4EA2520A78800F0311A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				AAB3B4EB2520B2B400F0311A /* UIImage+Extensions.swift */,
+				AAB3B4F02520B37100F0311A /* UIView+Extensions.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		AAB3B4ED2520B2F400F0311A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AAB3B4EE2520B30600F0311A /* RoundShadowView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		E2D00847CB39D6B3C3C2760D /* Pods */ = {
@@ -242,9 +259,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
+				AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
 				AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
+				AAB3B4EC2520B2B400F0311A /* UIImage+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
