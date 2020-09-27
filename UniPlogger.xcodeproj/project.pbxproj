@@ -17,6 +17,12 @@
 		AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4EE2520B30600F0311A /* RoundShadowView.swift */; };
 		AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4F02520B37100F0311A /* UIView+Extensions.swift */; };
 		AAB3B4F92520B5B600F0311A /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4F82520B5B600F0311A /* Common.swift */; };
+		AAB3B5002520B6D900F0311A /* PloggingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4FA2520B6D900F0311A /* PloggingPresenter.swift */; };
+		AAB3B5012520B6D900F0311A /* PloggingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4FB2520B6D900F0311A /* PloggingWorker.swift */; };
+		AAB3B5022520B6D900F0311A /* PloggingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4FC2520B6D900F0311A /* PloggingRouter.swift */; };
+		AAB3B5032520B6D900F0311A /* PloggingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4FD2520B6D900F0311A /* PloggingModels.swift */; };
+		AAB3B5042520B6D900F0311A /* PloggingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4FE2520B6D900F0311A /* PloggingViewController.swift */; };
+		AAB3B5052520B6D900F0311A /* PloggingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4FF2520B6D900F0311A /* PloggingInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +39,12 @@
 		AAB3B4EE2520B30600F0311A /* RoundShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundShadowView.swift; sourceTree = "<group>"; };
 		AAB3B4F02520B37100F0311A /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		AAB3B4F82520B5B600F0311A /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		AAB3B4FA2520B6D900F0311A /* PloggingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingPresenter.swift; sourceTree = "<group>"; };
+		AAB3B4FB2520B6D900F0311A /* PloggingWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingWorker.swift; sourceTree = "<group>"; };
+		AAB3B4FC2520B6D900F0311A /* PloggingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingRouter.swift; sourceTree = "<group>"; };
+		AAB3B4FD2520B6D900F0311A /* PloggingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingModels.swift; sourceTree = "<group>"; };
+		AAB3B4FE2520B6D900F0311A /* PloggingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingViewController.swift; sourceTree = "<group>"; };
+		AAB3B4FF2520B6D900F0311A /* PloggingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingInteractor.swift; sourceTree = "<group>"; };
 		E4E470A391887A23D6AF25DD /* Pods_UniPlogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UniPlogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -97,6 +109,12 @@
 		AAB3B4E52520A76E00F0311A /* Plogging */ = {
 			isa = PBXGroup;
 			children = (
+				AAB3B4FA2520B6D900F0311A /* PloggingPresenter.swift */,
+				AAB3B4FB2520B6D900F0311A /* PloggingWorker.swift */,
+				AAB3B4FC2520B6D900F0311A /* PloggingRouter.swift */,
+				AAB3B4FD2520B6D900F0311A /* PloggingModels.swift */,
+				AAB3B4FE2520B6D900F0311A /* PloggingViewController.swift */,
+				AAB3B4FF2520B6D900F0311A /* PloggingInteractor.swift */,
 			);
 			path = Plogging;
 			sourceTree = "<group>";
@@ -311,12 +329,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
+				AAB3B5002520B6D900F0311A /* PloggingPresenter.swift in Sources */,
 				AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
 				AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */,
+				AAB3B5022520B6D900F0311A /* PloggingRouter.swift in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
+				AAB3B5032520B6D900F0311A /* PloggingModels.swift in Sources */,
 				AAB3B4EC2520B2B400F0311A /* UIImage+Extensions.swift in Sources */,
+				AAB3B5042520B6D900F0311A /* PloggingViewController.swift in Sources */,
+				AAB3B5052520B6D900F0311A /* PloggingInteractor.swift in Sources */,
 				AAB3B4F92520B5B600F0311A /* Common.swift in Sources */,
+				AAB3B5012520B6D900F0311A /* PloggingWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
