@@ -1,0 +1,43 @@
+PODS:
+  - Alamofire (5.2.2)
+  - IQKeyboardManagerSwift (6.5.6)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
+  - Moya/RxSwift (14.0.0):
+    - Moya/Core
+    - RxSwift (~> 5.0)
+  - RxSwift (5.1.1)
+  - SnapKit (5.0.1)
+  - Then (2.7.0)
+  - Toast-Swift (5.0.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.2)
+  - IQKeyboardManagerSwift
+  - Moya/RxSwift (~> 14.0)
+  - SnapKit
+  - Then
+  - Toast-Swift
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - IQKeyboardManagerSwift
+    - Moya
+    - RxSwift
+    - SnapKit
+    - Then
+    - Toast-Swift
+
+SPEC CHECKSUMS:
+  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Then: acfe0be7e98221c6204e12f8161459606d5d822d
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
+
+PODFILE CHECKSUM: 9fb30e736f68da1b7a40e97377d97a2c67c2f5c5
+
+COCOAPODS: 1.9.3
