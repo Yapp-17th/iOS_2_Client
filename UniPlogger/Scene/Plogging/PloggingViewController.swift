@@ -11,6 +11,9 @@
 //
 
 import UIKit
+import SnapKit
+import Then
+import MapKit
 
 protocol PloggingDisplayLogic: class {
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase)
@@ -20,6 +23,34 @@ class PloggingViewController: UIViewController, PloggingDisplayLogic {
     var interactor: PloggingBusinessLogic?
     var router: (NSObjectProtocol & PloggingRoutingLogic & PloggingDataPassing)?
     
+    let bottomContainerView = UIView().then{
+        $0.backgroundColor = .lightGray
+    }
+    
+    let ploggerImageView = UIImageView().then {
+        $0.image = #imageLiteral(resourceName: "ic_plogger.png")
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    let startButton = UIButton().then{
+        $0.setTitle("START PLOGGING!", for: .normal)
+        $0.backgroundColor = UIColor(red: 95/255, green: 116/255, blue: 244/255, alpha: 1)
+        $0.layer.cornerRadius = 28
+        $0.layer.masksToBounds = true
+    }
+    let bubbleView = UIView().then{
+        $0.backgroundColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1)
+        $0.layer.cornerRadius = 10
+        $0.layer.masksToBounds = true
+    }
+    
+    let bubbleLabel = UILabel().then{
+        $0.text = "준비물을 확인해주세요."
+        $0.textColor = .white
+        $0.font = .systemFont(ofSize: 14)
+    }
+    
+    let mapView = MKMapView()
     // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -47,25 +78,66 @@ class PloggingViewController: UIViewController, PloggingDisplayLogic {
         router.dataStore = interactor
     }
     
-    // MARK: Routing
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
-    }
-    
     // MARK: View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configuration()
+        setupView()
+        setupLayout()
     }
     
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase){
         //handle error with its usecase
+    }
+}
+extension PloggingViewController {
+    private func configuration() {
+        // backgroundColor = .white
+    }
+    
+    private func setupView() {
+        self.view.addSubview(mapView)
+        self.view.addSubview(bottomContainerView)
+        bottomContainerView.addSubview(startButton)
+        bottomContainerView.addSubview(ploggerImageView)
+        bottomContainerView.addSubview(bubbleView)
+        bubbleView.addSubview(bubbleLabel)
+    }
+    
+    private func setupLayout() {
+        mapView.snp.makeConstraints{
+            $0.leading.trailing.top.bottom.equalToSuperview()
+        }
+        bottomContainerView.snp.makeConstraints{
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        startButton.snp.makeConstraints{
+            $0.leading.equalTo(16)
+            $0.trailing.equalTo(-16)
+            $0.height.equalTo(56)
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-19)
+        }
+        ploggerImageView.snp.makeConstraints{
+            $0.leading.equalTo(startButton).offset(30)
+            $0.width.equalTo(48)
+            $0.height.equalTo(53)
+            $0.bottom.equalTo(startButton.snp.top)
+            $0.top.equalTo(29)
+        }
+        bubbleView.snp.makeConstraints{
+            $0.leading.equalTo(ploggerImageView.snp.trailing).offset(14)
+            $0.bottom.equalTo(startButton.snp.top).offset(-17)
+        }
+        bubbleLabel.snp.makeConstraints{
+            $0.top.equalTo(11)
+            $0.leading.equalTo(10)
+            $0.trailing.equalTo(-15)
+            $0.bottom.equalTo(-10)
+        }
+    }
+    
+    private func updateView() {
+        
     }
 }

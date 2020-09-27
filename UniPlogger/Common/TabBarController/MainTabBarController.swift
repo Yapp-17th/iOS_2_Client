@@ -79,7 +79,7 @@ extension MainTabBarController {
     
     func setupPloggingViewController(){
         let ploggingItem = UITabBarItem(title: "플로깅", image: UIImage(named: "tabbar_plogging"), tag: 2)
-        let vc = UIViewController()
+        let vc = PloggingViewController()
         vc.tabBarItem = ploggingItem
         self.addChild(vc)
     }
