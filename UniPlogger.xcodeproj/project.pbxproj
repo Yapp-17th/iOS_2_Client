@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		101A5C8A5DA8441CFEF982F0 /* Pods_UniPlogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E470A391887A23D6AF25DD /* Pods_UniPlogger.framework */; };
+		1262C3F0252307110059A5DB /* SharePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3EA252307110059A5DB /* SharePresenter.swift */; };
+		1262C3F1252307110059A5DB /* ShareWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3EB252307110059A5DB /* ShareWorker.swift */; };
+		1262C3F2252307110059A5DB /* ShareRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3EC252307110059A5DB /* ShareRouter.swift */; };
+		1262C3F3252307110059A5DB /* ShareModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3ED252307110059A5DB /* ShareModels.swift */; };
+		1262C3F4252307110059A5DB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3EE252307110059A5DB /* ShareViewController.swift */; };
+		1262C3F5252307110059A5DB /* ShareInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3EF252307110059A5DB /* ShareInteractor.swift */; };
 		AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4C72520A31100F0311A /* AppDelegate.swift */; };
 		AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4D02520A31100F0311A /* UniPlogger.xcdatamodeld */; };
 		AAB3B4D42520A31200F0311A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAB3B4D32520A31200F0311A /* Assets.xcassets */; };
@@ -21,6 +27,12 @@
 
 /* Begin PBXFileReference section */
 		12330CE7D885C1CB00C8E874 /* Pods-UniPlogger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.release.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.release.xcconfig"; sourceTree = "<group>"; };
+		1262C3EA252307110059A5DB /* SharePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePresenter.swift; sourceTree = "<group>"; };
+		1262C3EB252307110059A5DB /* ShareWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareWorker.swift; sourceTree = "<group>"; };
+		1262C3EC252307110059A5DB /* ShareRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRouter.swift; sourceTree = "<group>"; };
+		1262C3ED252307110059A5DB /* ShareModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareModels.swift; sourceTree = "<group>"; };
+		1262C3EE252307110059A5DB /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		1262C3EF252307110059A5DB /* ShareInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInteractor.swift; sourceTree = "<group>"; };
 		925E132ACB7FB812EDA3D67C /* Pods-UniPlogger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.debug.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.debug.xcconfig"; sourceTree = "<group>"; };
 		AAB3B4C42520A31100F0311A /* UniPlogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniPlogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB3B4C72520A31100F0311A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +60,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1262C3E9252306B90059A5DB /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				1262C3EA252307110059A5DB /* SharePresenter.swift */,
+				1262C3EB252307110059A5DB /* ShareWorker.swift */,
+				1262C3EC252307110059A5DB /* ShareRouter.swift */,
+				1262C3ED252307110059A5DB /* ShareModels.swift */,
+				1262C3EE252307110059A5DB /* ShareViewController.swift */,
+				1262C3EF252307110059A5DB /* ShareInteractor.swift */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
 		AAB3B4BB2520A31100F0311A = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +110,7 @@
 		AAB3B4E42520A76500F0311A /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				1262C3E9252306B90059A5DB /* Share */,
 				AAB3B4F22520B4E500F0311A /* Challenge */,
 				AAB3B4F32520B4EE00F0311A /* Quest */,
 				AAB3B4E52520A76E00F0311A /* Plogging */,
@@ -312,11 +338,17 @@
 			files = (
 				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
 				AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */,
+				1262C3F2252307110059A5DB /* ShareRouter.swift in Sources */,
+				1262C3F0252307110059A5DB /* SharePresenter.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
+				1262C3F5252307110059A5DB /* ShareInteractor.swift in Sources */,
+				1262C3F1252307110059A5DB /* ShareWorker.swift in Sources */,
+				1262C3F4252307110059A5DB /* ShareViewController.swift in Sources */,
 				AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
 				AAB3B4EC2520B2B400F0311A /* UIImage+Extensions.swift in Sources */,
 				AAB3B4F92520B5B600F0311A /* Common.swift in Sources */,
+				1262C3F3252307110059A5DB /* ShareModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
