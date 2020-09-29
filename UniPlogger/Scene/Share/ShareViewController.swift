@@ -21,6 +21,21 @@ protocol ShareDisplayLogic: class {
 class ShareViewController: UIViewController, ShareDisplayLogic {
     var interactor: ShareBusinessLogic?
     var router: (NSObjectProtocol & ShareRoutingLogic & ShareDataPassing)?
+    
+    let imageView = UIImageView().then {
+        $0.backgroundColor = .lightGray
+        $0.layer.cornerRadius = 10
+    }
+    let dismissButton = UIButton().then {
+        $0.setImage(UIImage(named: "share_dismiss"), for: .normal)
+        $0.backgroundColor = UIColor(named: "dismissColor")
+        $0.layer.cornerRadius = 20
+    }
+    let shareButton = UIButton().then {
+        $0.setImage(UIImage(named: "share_instagram"), for: .normal)
+        $0.backgroundColor = UIColor(named: "shareColor")
+        $0.layer.cornerRadius = 50
+    }
 
     // MARK: Object lifecycle
       
@@ -49,34 +64,46 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
         router.dataStore = interactor
     }
 
-    // MARK: Routing
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
-    }
-
     // MARK: View lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomething()
-    }
-
-    // MARK: Do something
-
-    //@IBOutlet weak var nameTextField: UITextField!
-
-    func doSomething() {
-        let request = Share.Something.Request()
-        interactor?.doSomething(request: request)
+        setUpView()
+        setUpLayout()
     }
 
     func displaySomething(viewModel: Share.Something.ViewModel) {
-    //nameTextField.text = viewModel.name
+        
+    }
+}
+
+extension ShareViewController {
+    private func configuration() {
+        
+    }
+    
+    private func setUpView() {
+        [imageView, dismissButton, shareButton].forEach {
+            self.view.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    
+    private func setUpLayout() {
+        imageView.snp.makeConstraints {
+            $0.width.height.equalTo(340)
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().offset(179)
+        }
+        dismissButton.snp.makeConstraints {
+            $0.width.height.equalTo(40)
+            $0.top.equalToSuperview().offset(58)
+            $0.trailing.equalToSuperview().offset(-16)
+        }
+        shareButton.snp.makeConstraints {
+            $0.width.height.equalTo(100)
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-114)
+        }
     }
 }
