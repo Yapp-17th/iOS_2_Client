@@ -38,8 +38,14 @@ class GradientView: UIView{
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        setupGradients()
+    }
+    
+    func setupGradients(){
         updatePoints()
         updateLocations()
         updateColors()
     }
+    
+    
 }
