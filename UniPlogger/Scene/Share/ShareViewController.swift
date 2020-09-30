@@ -22,7 +22,7 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
     var interactor: ShareBusinessLogic?
     var router: (NSObjectProtocol & ShareRoutingLogic & ShareDataPassing)?
     
-    let imageView = UIImageView().then {
+    let imageView = PloggingImageView().then {
         $0.backgroundColor = .lightGray
         $0.layer.cornerRadius = 10
     }
@@ -75,11 +75,24 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
     func displaySomething(viewModel: Share.Something.ViewModel) {
         
     }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let view = touches.first?.view else { return }
+        guard view == imageView else { return }
+        imageViewTapped()
+    }
+    
+    func imageViewTapped() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        picker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        self.present(picker, animated: true, completion: nil)
+    }
 }
 
 extension ShareViewController {
     private func configuration() {
-        
     }
     
     private func setUpView() {
@@ -105,5 +118,12 @@ extension ShareViewController {
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-114)
         }
+    }
+}
+
+extension ShareViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        imageView.image = info[.originalImage] as? UIImage
+        dismiss(animated: true, completion: nil)
     }
 }
