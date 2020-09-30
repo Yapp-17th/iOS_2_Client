@@ -7,3 +7,23 @@
 //
 
 import Foundation
+
+enum QuestState {
+    case todo
+    case doing
+    case done
+    case abandon
+}
+
+struct Quest {
+    var id: String
+    var title: String
+    var content: String
+    var category: Category
+    var state: QuestState
+    
+    enum Category {
+        case training
+        case routine
+    }
+}
