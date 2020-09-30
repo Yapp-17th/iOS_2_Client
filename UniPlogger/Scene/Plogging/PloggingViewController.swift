@@ -23,8 +23,10 @@ class PloggingViewController: BaseViewController, PloggingDisplayLogic {
     var interactor: PloggingBusinessLogic?
     var router: (NSObjectProtocol & PloggingRoutingLogic & PloggingDataPassing)?
     
-    let bottomContainerView = UIView().then{
-        $0.backgroundColor = .lightGray
+    let bottomContainerView = GradientView().then{
+        $0.isHorizontal = true
+        $0.colors = [.bottomGradientStart, .bottomGradientEnd]
+        $0.locations = [0.0, 1.0]
     }
     
     let ploggerImageView = UIImageView().then {
@@ -34,7 +36,7 @@ class PloggingViewController: BaseViewController, PloggingDisplayLogic {
     
     let startButton = UIButton().then{
         $0.setTitle("START PLOGGING!", for: .normal)
-        $0.backgroundColor = UIColor(red: 95/255, green: 116/255, blue: 244/255, alpha: 1)
+        $0.backgroundColor = .testColor
         $0.layer.cornerRadius = 28
         $0.layer.masksToBounds = true
     }
