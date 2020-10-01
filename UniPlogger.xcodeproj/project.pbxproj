@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		101A5C8A5DA8441CFEF982F0 /* Pods_UniPlogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E470A391887A23D6AF25DD /* Pods_UniPlogger.framework */; };
+		4C89B06F2525D2BB0007EBED /* TrainingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B06E2525D2BB0007EBED /* TrainingTableViewCell.swift */; };
+		4C89B0722525D2CB0007EBED /* RoutineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B0712525D2CB0007EBED /* RoutineTableViewCell.swift */; };
+		4CB979C42524E5BC00498E81 /* NavigationTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB979C32524E5BC00498E81 /* NavigationTabsView.swift */; };
 		4CC9C7C825231581004D873D /* QuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7C725231581004D873D /* QuestViewController.swift */; };
 		4CC9C7CB252315D7004D873D /* QuestInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7CA252315D7004D873D /* QuestInteractor.swift */; };
 		4CC9C7CE252315E0004D873D /* QuestPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7CD252315E0004D873D /* QuestPresenter.swift */; };
@@ -28,6 +31,9 @@
 
 /* Begin PBXFileReference section */
 		12330CE7D885C1CB00C8E874 /* Pods-UniPlogger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.release.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.release.xcconfig"; sourceTree = "<group>"; };
+		4C89B06E2525D2BB0007EBED /* TrainingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingTableViewCell.swift; sourceTree = "<group>"; };
+		4C89B0712525D2CB0007EBED /* RoutineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTableViewCell.swift; sourceTree = "<group>"; };
+		4CB979C32524E5BC00498E81 /* NavigationTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTabsView.swift; sourceTree = "<group>"; };
 		4CC9C7C725231581004D873D /* QuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewController.swift; sourceTree = "<group>"; };
 		4CC9C7CA252315D7004D873D /* QuestInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestInteractor.swift; sourceTree = "<group>"; };
 		4CC9C7CD252315E0004D873D /* QuestPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestPresenter.swift; sourceTree = "<group>"; };
@@ -62,6 +68,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C31BE942524A01100D47919 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4CB979C32524E5BC00498E81 /* NavigationTabsView.swift */,
+				4C89B06E2525D2BB0007EBED /* TrainingTableViewCell.swift */,
+				4C89B0712525D2CB0007EBED /* RoutineTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		4CC9C7C525231565004D873D /* Scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +89,7 @@
 		4CC9C7C625231578004D873D /* Quest */ = {
 			isa = PBXGroup;
 			children = (
+				4C31BE942524A01100D47919 /* Views */,
 				4CC9C7D3252315F3004D873D /* QuestModels.swift */,
 				4CC9C7C725231581004D873D /* QuestViewController.swift */,
 				4CC9C7CA252315D7004D873D /* QuestInteractor.swift */,
@@ -104,10 +121,9 @@
 		AAB3B4C62520A31100F0311A /* UniPlogger */ = {
 			isa = PBXGroup;
 			children = (
-				AAB3B4F72520B58000F0311A /* Network */,
 				AAB3B4F62520B55700F0311A /* Model */,
 				AAB3B4E62520A77200F0311A /* Common */,
-				AAB3B4E42520A76500F0311A /* Scene */,
+				4CC9C7C525231565004D873D /* Scene */,
 				AAB3B4C72520A31100F0311A /* AppDelegate.swift */,
 				AAB3B4D32520A31200F0311A /* Assets.xcassets */,
 				AAB3B4D52520A31200F0311A /* LaunchScreen.storyboard */,
@@ -115,25 +131,6 @@
 				AAB3B4D02520A31100F0311A /* UniPlogger.xcdatamodeld */,
 			);
 			path = UniPlogger;
-			sourceTree = "<group>";
-		};
-		AAB3B4E42520A76500F0311A /* Scene */ = {
-			isa = PBXGroup;
-			children = (
-				AAB3B4F22520B4E500F0311A /* Challenge */,
-				AAB3B4F32520B4EE00F0311A /* Quest */,
-				AAB3B4E52520A76E00F0311A /* Plogging */,
-				AAB3B4F42520B4FF00F0311A /* Log */,
-				AAB3B4F52520B52600F0311A /* My */,
-			);
-			path = Scene;
-			sourceTree = "<group>";
-		};
-		AAB3B4E52520A76E00F0311A /* Plogging */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Plogging;
 			sourceTree = "<group>";
 		};
 		AAB3B4E62520A77200F0311A /* Common */ = {
@@ -171,47 +168,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		AAB3B4F22520B4E500F0311A /* Challenge */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge;
-			sourceTree = "<group>";
-		};
-		AAB3B4F32520B4EE00F0311A /* Quest */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Quest;
-			sourceTree = "<group>";
-		};
-		AAB3B4F42520B4FF00F0311A /* Log */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Log;
-			sourceTree = "<group>";
-		};
-		AAB3B4F52520B52600F0311A /* My */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = My;
-			sourceTree = "<group>";
-		};
 		AAB3B4F62520B55700F0311A /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				AAB3B4F82520B5B600F0311A /* Common.swift */,
+				4CC9C7D925232128004D873D /* Quest.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		AAB3B4F72520B58000F0311A /* Network */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		E2D00847CB39D6B3C3C2760D /* Pods */ = {
@@ -348,7 +311,9 @@
 				4CC9C7DA25232128004D873D /* Quest.swift in Sources */,
 				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
 				AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */,
+				4CB979C42524E5BC00498E81 /* NavigationTabsView.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
+				4C89B06F2525D2BB0007EBED /* TrainingTableViewCell.swift in Sources */,
 				4CC9C7CE252315E0004D873D /* QuestPresenter.swift in Sources */,
 				4CC9C7D1252315E9004D873D /* QuestRouter.swift in Sources */,
 				AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */,
@@ -358,6 +323,7 @@
 				4CC9C7CB252315D7004D873D /* QuestInteractor.swift in Sources */,
 				4CC9C7D4252315F3004D873D /* QuestModels.swift in Sources */,
 				AAB3B4F92520B5B600F0311A /* Common.swift in Sources */,
+				4C89B0722525D2CB0007EBED /* RoutineTableViewCell.swift in Sources */,
 				4CC9C7D7252315FC004D873D /* QuestWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,7 +462,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 97C96KP84G;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = UniPlogger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
