@@ -59,17 +59,25 @@ class QuestViewController: UIViewController {
     // MARK: - Properties
     
     private var questList = [Quest]()
+    var currentQuestState: QuestState = .todo
     
     // MARK: - View Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configure()
         setupTableView()
         setupViews()
         setupLayout()
     }
     
     // MARK: - Initialize
+    
+    private func configure() {
+        navigationTabsView.tapHandler = { [weak self] state in
+            self?.currentQuestState = state
+        }
+    }
     
     private func setupTableView() {
         questTableView.register(TrainingTableViewCell.self, forCellReuseIdentifier: TrainingTableViewCell.identifire)
