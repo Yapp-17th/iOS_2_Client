@@ -39,7 +39,7 @@ class QuestViewController: UIViewController {
         $0.text = "챌린지"
     }
     
-    private var navigationTabsView = NavigationTabsView(items: ["To Do", "Doing", "Done"], color: "5F74F4".hexToColor()).then {
+    private var navigationTabsView = NavigationTabsView<QuestState>(items: [.todo, .doing, .done], color: "5F74F4".hexToColor()).then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.cornerRadius = 21
         $0.layer.masksToBounds = true
