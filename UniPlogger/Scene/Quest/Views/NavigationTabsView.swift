@@ -12,13 +12,18 @@ import SnapKit
 class NavigationTabsView<T>: UIStackView {
     
     private var items = [T]()
+    private var activeTextColor: UIColor?
+    private var defaultTextColor: UIColor?
+    
+    var tapHandler: ((T) -> Void)?
     var selectedIndex: Int? {
         didSet {
+            guard let index = selectedIndex else { return }
+            tapHandler?(items[index])
             updateButtons()
         }
     }
-    private var activeTextColor: UIColor?
-    private var defaultTextColor: UIColor?
+    
     
     init(items: [T], color: UIColor) {
         self.items = items
