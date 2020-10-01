@@ -16,6 +16,15 @@ protocol QuestDisplayLogic {
 
 class QuestViewController: UIViewController {
     
+    // MARK: - Constants
+    
+    struct Metric {
+        static let statusHeight: CGFloat = 91
+        static let viewLeading: CGFloat = 16
+        static let viewTrailing: CGFloat = -16
+        static let verticalSpacing: CGFloat = 20
+    }
+    
     // MARK: - Views
     
     private var statusView = UIView().then {
@@ -45,15 +54,6 @@ class QuestViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.separatorStyle = .none
         $0.showsVerticalScrollIndicator = false
-    }
-    
-    // MARK: - Constants
-    
-    struct Metric {
-        static let statusHeight: CGFloat = 91
-        static let viewLeading: CGFloat = 16
-        static let viewTrailing: CGFloat = -16
-        static let verticalSpacing: CGFloat = 20
     }
     
     // MARK: - Properties
