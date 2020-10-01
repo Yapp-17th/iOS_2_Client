@@ -7,15 +7,181 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 
 protocol QuestDisplayLogic {
     
 }
 
 class QuestViewController: UIViewController {
+    
+    // MARK: - Views
+    
+    private var statusView = UIView().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.layer.cornerRadius = 30
+        $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        $0.backgroundColor = UIColor(red: 0.957, green: 0.98, blue: 0.992, alpha: 1)
+    }
+    
+    private var titleLabel = UILabel().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.text = "챌린지"
+    }
+    
+    private var navigationTabsView = NavigationTabsView(items: ["To Do", "Doing", "Done"], color: "5F74F4".hexToColor()).then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.layer.cornerRadius = 21
+        $0.layer.masksToBounds = true
+        $0.spacing = 1
+        $0.axis = .horizontal
+        $0.distribution = .fillEqually
+        $0.configure(activeTextColor: .white, defaultTextColor: .lightGray)
+        $0.selectedIndex = 0
+    }
+    
+    private lazy var questTableView = UITableView().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.separatorStyle = .none
+        $0.showsVerticalScrollIndicator = false
+    }
+    
+    // MARK: - Constants
+    
+    struct Metric {
+        static let statusHeight: CGFloat = 91
+        static let viewLeading: CGFloat = 16
+        static let viewTrailing: CGFloat = -16
+        static let verticalSpacing: CGFloat = 20
+    }
+    
+    // MARK: - Properties
+    
+    private var questList = [Quest]()
+    
+    // MARK: - View Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
+        setupViews()
+        setupLayout()
+    }
+    
+    // MARK: - Initialize
+    
+    private func setupTableView() {
+        questTableView.register(TrainingTableViewCell.self, forCellReuseIdentifier: TrainingTableViewCell.identifire)
+        questTableView.dataSource = self
+        questTableView.delegate = self
+    }
+    
+    private func setupViews() {
+        view.addSubview(navigationTabsView)
+        view.addSubview(questTableView)
+    }
+    
+    private func setupLayout() {
+        title = "퀘스트"
+        let navBar = navigationController?.navigationBar
+        navBar?.clipsToBounds = true
+        navBar?.layer.cornerRadius = 30
+        navBar?.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        navBar?.layer.backgroundColor = UIColor(red: 0.957, green: 0.98, blue: 0.992, alpha: 1).cgColor
         
+        navigationTabsView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Metric.verticalSpacing)
+            $0.leading.equalTo(view.snp.leading).offset(Metric.viewLeading)
+            $0.trailing.equalTo(view.snp.trailing).offset(Metric.viewTrailing)
+            $0.height.equalTo(42)
+        }
+        
+        questTableView.snp.makeConstraints {
+            $0.top.equalTo(navigationTabsView.snp.bottom).offset(Metric.verticalSpacing)
+            $0.leading.equalTo(view.snp.leading).offset(Metric.viewLeading)
+            $0.trailing.equalTo(view.snp.trailing).offset(Metric.viewTrailing)
+            $0.bottom.equalTo(view.snp.bottom).offset(Metric.verticalSpacing)
+        }
+    }
+}
+
+extension QuestViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TrainingTableViewCell.identifire, for: indexPath) as? TrainingTableViewCell else { return UITableViewCell() }
+        
+        cell.imageBackgroundView.layer.cornerRadius = 26
+        cell.layer.cornerRadius = 22
+        return cell
+    }
+}
+
+extension QuestViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 176
+        } else {
+            return 88
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView()
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "") { (action, view, completion) in
+            completion(true)
+        }
+        
+        deleteAction.image = UIImage(named: "delete_button")
+        deleteAction.backgroundColor = .white
+        
+        return .init(actions: [deleteAction])
+    }
+}
+
+extension String {
+    func hexToColor(alpha:CGFloat = 1.0) -> UIColor {
+        var cString:String = self.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+
+        var rgbValue:UInt32 = 0
+        Scanner(string: cString).scanHexInt32(&rgbValue)
+
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: alpha
+        )
     }
 }
