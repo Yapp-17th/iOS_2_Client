@@ -15,6 +15,17 @@ enum QuestState {
     case abandon
 }
 
+extension QuestState: CustomStringConvertible {
+    var description: String {
+        switch self {
+            case .todo: return "To Do"
+            case .doing: return "Doing"
+            case .done: return "Done"
+            case .abandon: return "Abandon"
+        }
+    }
+}
+
 struct Quest {
     var id: String
     var title: String
