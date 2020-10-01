@@ -30,6 +30,7 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
         $0.setImage(UIImage(named: "share_dismiss"), for: .normal)
         $0.backgroundColor = UIColor(named: "dismissColor")
         $0.layer.cornerRadius = 20
+        $0.addTarget(self, action: #selector(touchUpDismissButton), for: .touchUpInside)
     }
     let shareButton = UIButton().then {
         $0.setImage(UIImage(named: "share_instagram"), for: .normal)
@@ -89,6 +90,28 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
         picker.sourceType = UIImagePickerController.SourceType.photoLibrary
         self.present(picker, animated: true, completion: nil)
     }
+    
+    @objc func touchUpDismissButton() {
+        guard let imageForSave = imageView.image else { return }
+        let photoManager = PhotoManager(albumName: "UniPlogger")
+        photoManager.save(imageForSave) { (success, error) in
+            if success {
+                print("saved")
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
+//        UIImageWriteToSavedPhotosAlbum(imageForSave, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+    
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            print(error.localizedDescription)
+        } else {
+            print("saved")
+        }
+    }
+    
 }
 
 extension ShareViewController {

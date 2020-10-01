@@ -15,6 +15,7 @@
 		1262C3F4252307110059A5DB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3EE252307110059A5DB /* ShareViewController.swift */; };
 		1262C3F5252307110059A5DB /* ShareInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3EF252307110059A5DB /* ShareInteractor.swift */; };
 		1262C3F925233EB90059A5DB /* PloggingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3F825233EB90059A5DB /* PloggingImageView.swift */; };
+		1262C3FE2525B0550059A5DB /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3FD2525B0550059A5DB /* PhotoManager.swift */; };
 		AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4C72520A31100F0311A /* AppDelegate.swift */; };
 		AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4D02520A31100F0311A /* UniPlogger.xcdatamodeld */; };
 		AAB3B4D42520A31200F0311A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAB3B4D32520A31200F0311A /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 		1262C3EE252307110059A5DB /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		1262C3EF252307110059A5DB /* ShareInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInteractor.swift; sourceTree = "<group>"; };
 		1262C3F825233EB90059A5DB /* PloggingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingImageView.swift; sourceTree = "<group>"; };
+		1262C3FD2525B0550059A5DB /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		925E132ACB7FB812EDA3D67C /* Pods-UniPlogger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.debug.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.debug.xcconfig"; sourceTree = "<group>"; };
 		AAB3B4C42520A31100F0311A /* UniPlogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniPlogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB3B4C72520A31100F0311A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +84,14 @@
 				1262C3F825233EB90059A5DB /* PloggingImageView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		1262C3FC2525AEF20059A5DB /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				1262C3FD2525B0550059A5DB /* PhotoManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		AAB3B4BB2520A31100F0311A = {
@@ -141,6 +151,7 @@
 		AAB3B4E62520A77200F0311A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				1262C3FC2525AEF20059A5DB /* Manager */,
 				AAB3B4ED2520B2F400F0311A /* View */,
 				AAB3B4EA2520A78800F0311A /* Extension */,
 				AAB3B4E72520A77700F0311A /* TabBarController */,
@@ -350,6 +361,7 @@
 				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
 				AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */,
 				1262C3F2252307110059A5DB /* ShareRouter.swift in Sources */,
+				1262C3FE2525B0550059A5DB /* PhotoManager.swift in Sources */,
 				1262C3F0252307110059A5DB /* SharePresenter.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
 				1262C3F5252307110059A5DB /* ShareInteractor.swift in Sources */,
