@@ -69,6 +69,7 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configuration()
         setUpView()
         setUpLayout()
     }
@@ -101,7 +102,6 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
                 print(error?.localizedDescription)
             }
         }
-//        UIImageWriteToSavedPhotosAlbum(imageForSave, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
@@ -116,6 +116,7 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
 
 extension ShareViewController {
     private func configuration() {
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainBackground")!)
     }
     
     private func setUpView() {
