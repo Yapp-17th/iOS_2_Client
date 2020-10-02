@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 protocol QuestDisplayLogic {
-    
+    func displayQuests(viewModel: QuestModels.ViewModel)
 }
 
 class QuestViewController: UIViewController {
@@ -58,25 +58,41 @@ class QuestViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var questList = [Quest]()
-    var currentQuestState: QuestState = .todo
+    private var questList = [QuestModels.ViewModel.QuestViewModel]()
+    private var interactor: QuestBusinessLogic?
+    private var currentQuestState: QuestState = .todo
+    
+    // MARK: - Methods
+    
+    private func fetchData() {
+        let request = QuestModels.Reqeust(state: currentQuestState)
+        interactor?.fetchQuest(request: request)
+    }
     
     // MARK: - View Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+        setup()
         setupTableView()
         setupViews()
         setupLayout()
+        fetchData()
     }
     
     // MARK: - Initialize
     
-    private func configure() {
+    private func setup() {
         navigationTabsView.tapHandler = { [weak self] state in
             self?.currentQuestState = state
         }
+        
+        let viewController = self
+        let interactor = QuestInteractor()
+        let presenter = QuestPresenter()
+        viewController.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
     }
     
     private func setupTableView() {
@@ -111,6 +127,13 @@ class QuestViewController: UIViewController {
             $0.trailing.equalTo(view.snp.trailing).offset(Metric.viewTrailing)
             $0.bottom.equalTo(view.snp.bottom).offset(Metric.verticalSpacing)
         }
+    }
+}
+
+extension QuestViewController: QuestDisplayLogic {
+    func displayQuests(viewModel: QuestModels.ViewModel) {
+        self.questList = viewModel.questList
+        self.questTableView.reloadData()
     }
 }
 
