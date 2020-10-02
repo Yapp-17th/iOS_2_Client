@@ -97,6 +97,7 @@ class QuestViewController: UIViewController {
     
     private func setupTableView() {
         questTableView.register(TrainingTableViewCell.self, forCellReuseIdentifier: TrainingTableViewCell.identifire)
+        questTableView.register(RoutineTableViewCell.self, forCellReuseIdentifier: RoutineTableViewCell.identifire)
         questTableView.dataSource = self
         questTableView.delegate = self
     }
@@ -148,12 +149,20 @@ extension QuestViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TrainingTableViewCell.identifire, for: indexPath) as? TrainingTableViewCell else { return UITableViewCell() }
         
-        cell.imageBackgroundView.layer.cornerRadius = 26
-        cell.layer.cornerRadius = 22
-        cell.configure(viewModel: questList[indexPath.section])
-        return cell
+        switch questList[indexPath.section].category {
+            case .training:
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: TrainingTableViewCell.identifire, for: indexPath) as? TrainingTableViewCell else { return UITableViewCell() }
+                
+                cell.configure(viewModel: questList[indexPath.section])
+                return cell
+                
+            case .routine:
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: RoutineTableViewCell.identifire, for: indexPath) as? RoutineTableViewCell else { return UITableViewCell() }
+                
+                cell.configure(viewModel: questList[indexPath.section])
+                return cell
+        }
     }
 }
 

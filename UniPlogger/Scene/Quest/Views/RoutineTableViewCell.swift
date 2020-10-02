@@ -1,5 +1,5 @@
 //
-//  TrainingTableViewCell.swift
+//  RoutineTableViewCell.swift
 //  UniPlogger
 //
 //  Created by woong on 2020/10/01.
@@ -10,11 +10,11 @@ import UIKit
 import Then
 import SnapKit
 
-class TrainingTableViewCell: UITableViewCell {
+class RoutineTableViewCell: UITableViewCell {
     
     // MARK: - Constants
     
-    static let identifire = "TrainingTableViewCell"
+    static let identifire = "RoutineTableViewCell"
     
     // MARK: - Views
     
@@ -32,7 +32,6 @@ class TrainingTableViewCell: UITableViewCell {
     
     var questLabel = UILabel().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.text = "학습퀘스트"
         $0.textColor = .white
     }
     
@@ -50,8 +49,8 @@ class TrainingTableViewCell: UITableViewCell {
         super.layoutSublayers(of: self.layer)
         let layer0 = CAGradientLayer()
         layer0.colors = [
-          UIColor(red: 0.975, green: 0.256, blue: 0.509, alpha: 1).cgColor,
-          UIColor(red: 0.924, green: 0.587, blue: 0.979, alpha: 1).cgColor
+            UIColor(red: 0.506, green: 0.769, blue: 0.945, alpha: 1).cgColor,
+            UIColor(red: 0.49, green: 0.635, blue: 0.953, alpha: 1).cgColor
         ]
         layer0.locations = [0, 1]
         layer0.startPoint = CGPoint(x: 0.25, y: 0.5)
@@ -63,7 +62,7 @@ class TrainingTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = UIColor(patternImage: UIImage(named: "space_background")!)
+        backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "space_background"))
         addSubview(imageBackgroundView)
         imageBackgroundView.addSubview(sproutImageView)
         addSubview(questLabel)
