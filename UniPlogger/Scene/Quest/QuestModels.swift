@@ -12,4 +12,22 @@ enum QuestModels {
     enum Usercase {
         
     }
+    
+    struct Reqeust {
+        var state: QuestState
+    }
+    
+    struct Response {
+        var questList: [Quest]
+    }
+    
+    struct ViewModel {
+        
+        struct QuestViewModel {
+            var title: String
+            var category: Quest.Category
+        }
+        
+        var questList: [QuestViewModel]
+    }
 }
