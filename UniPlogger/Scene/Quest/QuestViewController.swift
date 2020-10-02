@@ -117,7 +117,7 @@ class QuestViewController: UIViewController {
 extension QuestViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return questList.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -129,6 +129,7 @@ extension QuestViewController: UITableViewDataSource {
         
         cell.imageBackgroundView.layer.cornerRadius = 26
         cell.layer.cornerRadius = 22
+        cell.configure(viewModel: questList[indexPath.section])
         return cell
     }
 }

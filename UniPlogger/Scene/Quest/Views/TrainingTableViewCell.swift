@@ -36,6 +36,14 @@ class TrainingTableViewCell: UITableViewCell {
         $0.textColor = .white
     }
     
+    // MARK: - Methods
+    
+    // MARK: - Initializer
+    
+    func configure(viewModel: QuestModels.ViewModel.QuestViewModel) {
+        questLabel.text = viewModel.title
+    }
+    
     override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: self.layer)
         let layer0 = CAGradientLayer()
