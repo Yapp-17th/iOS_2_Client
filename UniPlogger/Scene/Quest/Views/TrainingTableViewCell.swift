@@ -18,7 +18,7 @@ class TrainingTableViewCell: UITableViewCell {
     
     // MARK: - Views
     
-    var imageBackgroundView = UIView().then {
+    var sproutBackgroundView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = .white
     }
@@ -42,7 +42,7 @@ class TrainingTableViewCell: UITableViewCell {
     
     func configure(viewModel: QuestModels.ViewModel.QuestViewModel) {
         questLabel.text = viewModel.title
-        imageBackgroundView.layer.cornerRadius = 26
+        sproutBackgroundView.layer.cornerRadius = 26
         layer.cornerRadius = 22
     }
     
@@ -58,17 +58,18 @@ class TrainingTableViewCell: UITableViewCell {
         layer0.endPoint = CGPoint(x: 0.75, y: 0.5)
         layer0.frame = layer.bounds
         layer0.cornerRadius = 22
+        layer0.contents = UIImage(named: "space_background")?.cgImage
         layer.insertSublayer(layer0, at: 0)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = UIColor(patternImage: UIImage(named: "space_background")!)
-        addSubview(imageBackgroundView)
-        imageBackgroundView.addSubview(sproutImageView)
+        backgroundColor = .white
+        addSubview(sproutBackgroundView)
+        sproutBackgroundView.addSubview(sproutImageView)
         addSubview(questLabel)
         
-        imageBackgroundView.snp.makeConstraints {
+        sproutBackgroundView.snp.makeConstraints {
             $0.centerY.equalTo(self.snp.centerY)
             $0.leading.equalTo(self.snp.leading).offset(18)
             $0.width.equalTo(52)
@@ -76,14 +77,14 @@ class TrainingTableViewCell: UITableViewCell {
         }
         
         sproutImageView.snp.makeConstraints {
-            $0.center.equalTo(imageBackgroundView)
+            $0.center.equalTo(sproutBackgroundView)
             $0.width.equalTo(20)
             $0.height.equalTo(20)
         }
         
         questLabel.snp.makeConstraints {
             $0.centerY.equalTo(self.snp.centerY)
-            $0.leading.equalTo(imageBackgroundView.snp.trailing).offset(18)
+            $0.leading.equalTo(sproutBackgroundView.snp.trailing).offset(18)
         }
     }
     
