@@ -25,7 +25,8 @@ class PloggingViewController: BaseViewController {
     var router: (NSObjectProtocol & PloggingRoutingLogic & PloggingDataPassing)?
     
     var state: Plogging.State = .ready
-    var counter = 0.0
+    var minutes = 0
+    var seconds = 0
     let startBottomContainerView = GradientView().then{
         $0.isHorizontal = true
         $0.colors = [.bottomGradientStart, .bottomGradientEnd]
@@ -97,7 +98,23 @@ class PloggingViewController: BaseViewController {
         $0.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
     }
     
+    lazy var stopButton = UIButton().then{
+        $0.setTitle("종료", for: .normal)
+        $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
+        $0.backgroundColor = .init(red: 244, green: 95, blue: 95)
+        $0.layer.cornerRadius = 28
+        $0.layer.masksToBounds = true
+        $0.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
+    }
     
+    lazy var resumeButton = UIButton().then{
+        $0.setTitle("이어달리기", for: .normal)
+        $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
+        $0.backgroundColor = .main
+        $0.layer.cornerRadius = 28
+        $0.layer.masksToBounds = true
+        $0.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
+    }
   
     let bubbleView = UIView().then{
         $0.backgroundColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1)
@@ -163,8 +180,12 @@ class PloggingViewController: BaseViewController {
     
     
     @objc func UpdateTimer() {
-        counter = counter + 0.1
-        timeLabel.text = String(format: "%.1f", counter)
+        seconds = seconds + 1
+        if seconds == 60{
+            minutes += 1
+            seconds = 0
+        }
+        timeLabel.text = "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
     }
 }
 
@@ -173,7 +194,7 @@ extension PloggingViewController: PloggingDisplayLogic{
         self.startBottomContainerView.isHidden = true
         self.doingPauseBottomContainerView.isHidden = false
         
-        let timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
+        let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
         
         self.router?.routeToStartCounting()
     }

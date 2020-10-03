@@ -27,6 +27,8 @@ extension PloggingViewController {
         
         
         doingPauseBottomContainerView.addSubview(pauseButton)
+        doingPauseBottomContainerView.addSubview(stopButton)
+        doingPauseBottomContainerView.addSubview(resumeButton)
         doingPauseBottomContainerView.addSubview(distanceContainer)
         doingPauseBottomContainerView.addSubview(timeContainer)
         
@@ -87,16 +89,26 @@ extension PloggingViewController {
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-19)
         }
         
+        stopButton.snp.makeConstraints{
+            $0.top.leading.bottom.equalTo(pauseButton)
+            $0.width.equalToSuperview().multipliedBy(0.5).offset(-24)
+        }
+        
+        resumeButton.snp.makeConstraints{
+            $0.top.trailing.bottom.equalTo(pauseButton)
+            $0.width.equalToSuperview().multipliedBy(0.5).offset(-24)
+        }
+        
         distanceContainer.snp.makeConstraints{
             $0.top.equalTo(32)
-            $0.leading.equalTo(48)
+            $0.centerX.equalTo(stopButton)
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-95)
             
         }
         
         timeContainer.snp.makeConstraints{
             $0.top.equalTo(32)
-            $0.trailing.equalTo(-48)
+            $0.centerX.equalTo(resumeButton)
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-95)
         }
         
@@ -130,6 +142,9 @@ extension PloggingViewController {
         }
         
         doingPauseBottomContainerView.isHidden = true
+        
+        stopButton.isHidden = true
+        resumeButton.isHidden = true
     }
     
     func updateView() {
