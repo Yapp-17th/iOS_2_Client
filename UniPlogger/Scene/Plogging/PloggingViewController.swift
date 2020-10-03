@@ -17,16 +17,61 @@ import MapKit
 
 protocol PloggingDisplayLogic: class {
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase)
+    func displayStart()
 }
 
-class PloggingViewController: BaseViewController, PloggingDisplayLogic {
+class PloggingViewController: BaseViewController {
     var interactor: PloggingBusinessLogic?
     var router: (NSObjectProtocol & PloggingRoutingLogic & PloggingDataPassing)?
     
-    let bottomContainerView = GradientView().then{
+    var state: Plogging.State = .ready
+    var counter = 0.0
+    let startBottomContainerView = GradientView().then{
         $0.isHorizontal = true
         $0.colors = [.bottomGradientStart, .bottomGradientEnd]
         $0.locations = [0.0, 1.0]
+    }
+    
+    let doingPauseBottomContainerView = GradientView().then{
+        $0.isHorizontal = true
+        $0.colors = [.bottomGradientStart, .bottomGradientEnd]
+        $0.locations = [0.0, 1.0]
+    }
+    
+    let distanceContainer = UIView().then{
+        $0.backgroundColor = .clear
+    }
+    
+    let distanceImageView = UIImageView().then{
+        $0.image = UIImage(named: "ic_plogging_distance")
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    let distanceLabel = UILabel().then{
+        $0.font = .roboto(ofSize: 30, weight: .bold)
+        $0.text = "0.00"
+        $0.textColor = .white
+    }
+    
+    let distanceUnitLabel = UILabel().then{
+        $0.font = .roboto(ofSize: 20, weight: .bold)
+        $0.text = "km"
+        $0.textColor = .white
+    }
+    
+    let timeContainer = UIView().then{
+        $0.backgroundColor = .clear
+    }
+    
+    let timeImageView = UIImageView().then{
+        $0.image = UIImage(named: "ic_plogging_time")
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    let timeLabel = UILabel().then{
+        $0.font = .roboto(ofSize: 30, weight: .bold)
+        $0.text = "00:00"
+        $0.textColor = .white
     }
     
     let ploggerImageView = UIImageView().then {
@@ -37,7 +82,16 @@ class PloggingViewController: BaseViewController, PloggingDisplayLogic {
     lazy var startButton = UIButton().then{
         $0.setTitle("START PLOGGING!", for: .normal)
         $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
-        $0.backgroundColor = .testColor
+        $0.backgroundColor = .main
+        $0.layer.cornerRadius = 28
+        $0.layer.masksToBounds = true
+        $0.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
+    }
+    
+    lazy var pauseButton = UIButton().then{
+        $0.setTitle("잠시 멈춤", for: .normal)
+        $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
+        $0.backgroundColor = .main
         $0.layer.cornerRadius = 28
         $0.layer.masksToBounds = true
         $0.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
@@ -102,71 +156,28 @@ class PloggingViewController: BaseViewController, PloggingDisplayLogic {
         setupLayout()
     }
     
-    func displayError(error: Common.CommonError, useCase: Plogging.UseCase){
-        //handle error with its usecase
+    @objc func startButtonTapped(){
+        let reqquest = Plogging.ChangeState.Request(state: self.state)
+        interactor?.changeState(request: reqquest)
     }
     
-    @objc func startButtonTapped(){
+    
+    @objc func UpdateTimer() {
+        counter = counter + 0.1
+        timeLabel.text = String(format: "%.1f", counter)
+    }
+}
+
+extension PloggingViewController: PloggingDisplayLogic{
+    func displayStart() {
+        self.startBottomContainerView.isHidden = true
+        self.doingPauseBottomContainerView.isHidden = false
+        
+        let timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
+        
         self.router?.routeToStartCounting()
     }
-    
-}
-extension PloggingViewController {
-    private func configuration() {
-        // backgroundColor = .whit
-    }
-    
-    private func setupView() {
-        self.view.addSubview(mapView)
-        self.view.addSubview(trashButton)
-        self.view.addSubview(bottomContainerView)
-        bottomContainerView.addSubview(startButton)
-        bottomContainerView.addSubview(ploggerImageView)
-        bottomContainerView.addSubview(bubbleView)
-        bubbleView.addSubview(bubbleLabel)
-        
-        
-        
-    }
-    
-    private func setupLayout() {
-        mapView.snp.makeConstraints{
-            $0.leading.trailing.top.bottom.equalToSuperview()
-        }
-        trashButton.snp.makeConstraints{
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(15)
-            $0.trailing.equalTo(-17)
-            $0.width.height.equalTo(50)
-        }
-        bottomContainerView.snp.makeConstraints{
-            $0.leading.trailing.bottom.equalToSuperview()
-        }
-        startButton.snp.makeConstraints{
-            $0.leading.equalTo(16)
-            $0.trailing.equalTo(-16)
-            $0.height.equalTo(56)
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-19)
-        }
-        ploggerImageView.snp.makeConstraints{
-            $0.leading.equalTo(startButton).offset(30)
-            $0.width.equalTo(48)
-            $0.height.equalTo(53)
-            $0.bottom.equalTo(startButton.snp.top)
-            $0.top.equalTo(29)
-        }
-        bubbleView.snp.makeConstraints{
-            $0.leading.equalTo(ploggerImageView.snp.trailing).offset(14)
-            $0.bottom.equalTo(startButton.snp.top).offset(-17)
-        }
-        bubbleLabel.snp.makeConstraints{
-            $0.top.equalTo(11)
-            $0.leading.equalTo(10)
-            $0.trailing.equalTo(-15)
-            $0.bottom.equalTo(-10)
-        }
-    }
-    
-    private func updateView() {
-        
+    func displayError(error: Common.CommonError, useCase: Plogging.UseCase){
+        //handle error with its usecase
     }
 }

@@ -13,7 +13,7 @@
 import UIKit
 
 protocol PloggingBusinessLogic {
-    
+    func changeState(request: Plogging.ChangeState.Request)
 }
 
 protocol PloggingDataStore {
@@ -24,5 +24,15 @@ class PloggingInteractor: PloggingBusinessLogic, PloggingDataStore {
     var presenter: PloggingPresentationLogic?
     var worker: PloggingWorker?
     //var name: String = ""
-    
+    func changeState(request: Plogging.ChangeState.Request){
+        switch request.state {
+        case .ready:
+            presenter?.presentDoing()
+        case .doing:
+            presenter?.presentPause()
+        case .pause:
+            //Todo 버튼 두개 중 어느걸 눌렀는지에 따라 분기
+            print("pause")
+        }
+    }
 }

@@ -13,10 +13,16 @@
 import UIKit
 
 protocol PloggingPresentationLogic {
-    
+    func presentDoing()
+    func presentPause()
 }
 
 class PloggingPresenter: PloggingPresentationLogic {
     weak var viewController: PloggingDisplayLogic?
-    
+    func presentDoing() {
+        viewController?.displayStart()
+    }
+    func presentPause() {
+        viewController?.displayStart()
+    }
 }

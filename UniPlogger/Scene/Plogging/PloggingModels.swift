@@ -18,4 +18,16 @@ enum Plogging {
     enum UseCase {
         
     }
+    
+    enum State {
+        case ready
+        case doing
+        case pause
+    }
+    
+    enum ChangeState {
+        struct Request{
+            var state: State
+        }
+    }
 }

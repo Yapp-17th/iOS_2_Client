@@ -15,7 +15,7 @@ extension Color {
     // MARK: Red
     open class var bottomGradientStart: Color { return Color(named: "bottomGradientStart")! }
     open class var bottomGradientEnd: Color { return Color(named: "bottomGradientEnd")! }
-    open class var testColor: Color { return Color(named: "Test")! }
+    open class var main: Color { return Color(named: "main")! }
     open class var tabBarBackground: Color { return Color(named: "TabBarBackground")! }
     open class var tabBarTint: Color { return Color(named: "TabBarTint")! }
     open class var tabBarUnselectedTint: Color { return Color(named: "TabBarUnselectedTint")! }

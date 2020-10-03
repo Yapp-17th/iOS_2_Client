@@ -40,6 +40,7 @@
 		AAB887AD25245F65000A9D58 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAB887A225245F65000A9D58 /* Roboto-Regular.ttf */; };
 		AAB887AF2524600A000A9D58 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAB887AE2524600A000A9D58 /* Roboto-ThinItalic.ttf */; };
 		AAB887B12524603E000A9D58 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB887B02524603E000A9D58 /* UIFont+Extensions.swift */; };
+		AAD8DE8E252821280000B017 /* PloggingViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD8DE8D252821280000B017 /* PloggingViewController+UI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		AAB887A225245F65000A9D58 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		AAB887AE2524600A000A9D58 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		AAB887B02524603E000A9D58 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
+		AAD8DE8D252821280000B017 /* PloggingViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PloggingViewController+UI.swift"; sourceTree = "<group>"; };
 		E4E470A391887A23D6AF25DD /* Pods_UniPlogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UniPlogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -149,6 +151,7 @@
 				AAB3B4FC2520B6D900F0311A /* PloggingRouter.swift */,
 				AAB3B4FD2520B6D900F0311A /* PloggingModels.swift */,
 				AAB3B4FE2520B6D900F0311A /* PloggingViewController.swift */,
+				AAD8DE8D252821280000B017 /* PloggingViewController+UI.swift */,
 				AAB3B4FF2520B6D900F0311A /* PloggingInteractor.swift */,
 				AAB887922524524C000A9D58 /* StartCountingViewController.swift */,
 			);
@@ -416,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAB887932524524C000A9D58 /* StartCountingViewController.swift in Sources */,
+				AAD8DE8E252821280000B017 /* PloggingViewController+UI.swift in Sources */,
 				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
 				AAB3B5002520B6D900F0311A /* PloggingPresenter.swift in Sources */,
 				AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */,
