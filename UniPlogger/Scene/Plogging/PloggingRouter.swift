@@ -13,7 +13,7 @@
 import UIKit
 
 @objc protocol PloggingRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToStartCounting()
 }
 
 protocol PloggingDataPassing {
@@ -24,34 +24,14 @@ class PloggingRouter: NSObject, PloggingRoutingLogic, PloggingDataPassing {
     weak var viewController: PloggingViewController?
     var dataStore: PloggingDataStore?
     
-    // MARK: Routing
+    func routeToStartCounting() {
+        let destinationVC = StartCountingViewController()
+        navigateToStartCounting(source: viewController!, destination: destinationVC)
+    }
     
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
-    //{
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    //}
-    
-    // MARK: Navigation
-    
-    //func navigateToSomewhere(source: PloggingViewController, destination: SomewhereViewController)
-    //{
-    //  source.show(destination, sender: nil)
-    //}
-    
-    // MARK: Passing data
-    
-    //func passDataToSomewhere(source: PloggingDataStore, destination: inout SomewhereDataStore)
-    //{
-    //  destination.name = source.name
-    //}
+    func navigateToStartCounting(source: PloggingViewController, destination: StartCountingViewController){
+        destination.modalTransitionStyle = .crossDissolve
+        destination.modalPresentationStyle = .overFullScreen
+        source.present(destination, animated: true)
+    }
 }

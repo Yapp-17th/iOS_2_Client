@@ -34,12 +34,17 @@ class PloggingViewController: BaseViewController, PloggingDisplayLogic {
         $0.contentMode = .scaleAspectFit
     }
     
-    let startButton = UIButton().then{
+    lazy var startButton = UIButton().then{
         $0.setTitle("START PLOGGING!", for: .normal)
+        $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
         $0.backgroundColor = .testColor
         $0.layer.cornerRadius = 28
         $0.layer.masksToBounds = true
+        $0.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
     }
+    
+    
+  
     let bubbleView = UIView().then{
         $0.backgroundColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1)
         $0.layer.cornerRadius = 10
@@ -101,26 +106,10 @@ class PloggingViewController: BaseViewController, PloggingDisplayLogic {
         //handle error with its usecase
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let layer = CAGradientLayer()
-        layer.cornerRadius = 4
-        layer.frame = bottomContainerView.bounds
-        layer.startPoint = CGPoint(x: 0.0, y: 1.0)
-        layer.endPoint = CGPoint(x: 1, y: 0)
-        layer.locations = [0.0, 1]
-        layer.colors = [Color.bottomGradientStart.cgColor,
-                        Color.bottomGradientEnd.cgColor
-        ]
-        if let count = bottomContainerView.layer.sublayers?.count{
-            if count == 4{
-                bottomContainerView.layer.replaceSublayer(bottomContainerView.layer.sublayers!.first!, with: layer)
-            }else{
-                bottomContainerView.layer.insertSublayer(layer, at: 0)
-            }
-        }
-        
+    @objc func startButtonTapped(){
+        self.router?.routeToStartCounting()
     }
+    
 }
 extension PloggingViewController {
     private func configuration() {
