@@ -53,11 +53,11 @@ public enum Roboto{
 }
 
 public protocol CustomFont {
-  static func roboto(ofSize fontSize: CGFloat, weight: Roboto) -> UIFont
+    static func roboto(ofSize fontSize: CGFloat, weight: Roboto) -> UIFont
 }
 
 extension UIFont: CustomFont {
-  public static func roboto(ofSize fontSize: CGFloat, weight: Roboto) -> UIFont {
-    return UIFont(name: weight.name, size: fontSize) ?? UIFont.systemFont(ofSize: fontSize)
-  }
+    public static func roboto(ofSize fontSize: CGFloat, weight: Roboto) -> UIFont {
+        return UIFont(name: weight.name, size: fontSize)!
+    }
 }

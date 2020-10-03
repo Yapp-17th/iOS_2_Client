@@ -47,5 +47,8 @@ class GradientView: UIView{
         updateColors()
     }
     
-    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setupGradients()
+    }
 }

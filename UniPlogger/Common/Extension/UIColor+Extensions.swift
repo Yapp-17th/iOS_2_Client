@@ -19,6 +19,9 @@ extension Color {
     open class var startCountBackground1: Color { return Color(named: "StartCountBackground1")! }
     open class var startCountBackground2: Color { return Color(named: "StartCountBackground2")! }
     open class var startCountBackground3: Color { return Color(named: "StartCountBackground3")! }
+    open class var tabBarBackground: Color { return Color(named: "TabBarBackground")! }
+    open class var tabBarTint: Color { return Color(named: "TabBarTint")! }
+    open class var tabBarUnselectedTint: Color { return Color(named: "TabBarUnselectedTint")! }
 }
 
 // MARK: - Initializers
