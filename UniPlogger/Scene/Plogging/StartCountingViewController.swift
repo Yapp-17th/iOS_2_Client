@@ -13,10 +13,21 @@ import Then
 class StartCountingViewController: UIViewController{
     var count = 3
     var timer: Timer?
-    let someView = GradientView().then {
-        $0.isHorizontal = false
-        $0.colors = [.startCountBackground1,.startCountBackground2,.startCountBackground3]
-        $0.locations = [0.0, 0.474, 1.0]
+    lazy var backgroundView = UIImageView().then {
+        if #available(iOS 12.0, *) {
+            if self.traitCollection.userInterfaceStyle == .dark {
+                // User Interface is Dark
+                $0.image = UIImage(named: "countingDarkBackground")
+            } else {
+                // User Interface is Light
+                $0.image = UIImage(named: "countingLightBackground")
+            }
+        } else {
+            // Fallback on earlier versions
+            $0.image = UIImage(named: "countingLightBackground")
+        }
+        
+        $0.contentMode = .scaleAspectFill
     }
     
     let countLabel = UILabel().then{
@@ -27,9 +38,9 @@ class StartCountingViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view = someView
+        self.view = backgroundView
         
-        someView.addSubview(countLabel)
+        backgroundView.addSubview(countLabel)
         countLabel.snp.makeConstraints{
             $0.centerX.centerY.equalToSuperview()
         }
@@ -38,10 +49,6 @@ class StartCountingViewController: UIViewController{
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
-    }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        someView.setupGradients()
     }
     
     @objc func update() {
