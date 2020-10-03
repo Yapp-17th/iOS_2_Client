@@ -18,11 +18,16 @@ class QuestViewController: UIViewController {
     
     // MARK: - Constants
     
-    struct Metric {
+    private struct Metric {
         static let statusHeight: CGFloat = 91
         static let viewLeading: CGFloat = 16
         static let viewTrailing: CGFloat = -16
         static let verticalSpacing: CGFloat = 20
+        
+        struct Cell {
+            static let trainingHeight: CGFloat = 176
+            static let routineHeight: CGFloat = 88
+        }
     }
     
     // MARK: - Views
@@ -174,15 +179,15 @@ extension QuestViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 176
+            return Metric.Cell.trainingHeight
         } else {
-            return 88
+            return Metric.Cell.routineHeight
         }
     }
     
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 20
+        return Metric.verticalSpacing
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
