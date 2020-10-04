@@ -22,17 +22,20 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
     var interactor: ShareBusinessLogic?
     var router: (NSObjectProtocol & ShareRoutingLogic & ShareDataPassing)?
     
-    let imageView = PloggingImageView().then {
+    lazy var backgroundImageView = UIImageView().then {
+        $0.image = UIImage(named: "mainBackground")
+    }
+    lazy var ploggingImageView = PloggingImageView().then {
         $0.backgroundColor = .lightGray
         $0.layer.cornerRadius = 10
     }
-    let dismissButton = UIButton().then {
+    lazy var dismissButton = UIButton().then {
         $0.setImage(UIImage(named: "share_dismiss"), for: .normal)
         $0.backgroundColor = UIColor(named: "dismissColor")
         $0.layer.cornerRadius = 20
         $0.addTarget(self, action: #selector(touchUpDismissButton), for: .touchUpInside)
     }
-    let shareButton = UIButton().then {
+    lazy var shareButton = UIButton().then {
         $0.setImage(UIImage(named: "share_instagram"), for: .normal)
         $0.backgroundColor = UIColor(named: "shareColor")
         $0.layer.cornerRadius = 50
@@ -80,7 +83,7 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let view = touches.first?.view else { return }
-        guard view == imageView else { return }
+        guard view == ploggingImageView else { return }
         imageViewTapped()
     }
     
@@ -93,7 +96,7 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
     }
     
     @objc func touchUpDismissButton() {
-        guard let imageForSave = imageView.image else { return }
+        guard let imageForSave = ploggingImageView.image else { return }
         let photoManager = PhotoManager(albumName: "UniPlogger")
         photoManager.save(imageForSave) { (success, error) in
             if success {
@@ -116,18 +119,21 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
 
 extension ShareViewController {
     private func configuration() {
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainBackground")!)
+        
     }
     
     private func setUpView() {
-        [imageView, dismissButton, shareButton].forEach {
+        [backgroundImageView, ploggingImageView, dismissButton, shareButton].forEach {
             self.view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
     }
     
     private func setUpLayout() {
-        imageView.snp.makeConstraints {
+        backgroundImageView.snp.makeConstraints {
+            $0.top.bottom.leading.trailing.equalToSuperview()
+        }
+        ploggingImageView.snp.makeConstraints {
             $0.width.height.equalTo(340)
             $0.centerX.equalToSuperview()
             $0.top.equalToSuperview().offset(179)
@@ -147,7 +153,7 @@ extension ShareViewController {
 
 extension ShareViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        imageView.image = info[.originalImage] as? UIImage
+        ploggingImageView.image = info[.originalImage] as? UIImage
         dismiss(animated: true, completion: nil)
     }
 }
