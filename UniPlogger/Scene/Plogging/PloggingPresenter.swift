@@ -15,6 +15,7 @@ import UIKit
 protocol PloggingPresentationLogic {
     func presentDoing()
     func presentPause()
+    func presentLocationService(response: Plogging.Location.Response)
 }
 
 class PloggingPresenter: PloggingPresentationLogic {
@@ -24,5 +25,20 @@ class PloggingPresenter: PloggingPresentationLogic {
     }
     func presentPause() {
         viewController?.displayPause()
+    }
+    
+    func presentLocationService(response: Plogging.Location.Response) {
+      switch response.status{
+      case .denied:
+        guard let url = LocationManager.shared.settingAppURL else { return }
+        viewController?.displaySetting(message: "설정에서 위치 권한을 허용해주세요", url: url)
+      case .notDetermined, .restricted:
+        guard let url = LocationManager.shared.settingLocationURL else { return }
+        viewController?.displaySetting(message: "설정에서 위치 권한을 허용해주세요", url: url)
+      case .authorizedWhenInUse, .authorizedAlways:
+        viewController?.displayLocation(location: LocationManager.shared.coordinate)
+      default:
+        break
+      }
     }
 }

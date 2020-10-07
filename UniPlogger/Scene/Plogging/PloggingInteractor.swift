@@ -14,6 +14,7 @@ import UIKit
 
 protocol PloggingBusinessLogic {
     func changeState(request: Plogging.ChangeState.Request)
+    func setupLocationService()
 }
 
 protocol PloggingDataStore {
@@ -34,5 +35,20 @@ class PloggingInteractor: PloggingBusinessLogic, PloggingDataStore {
             //Todo 버튼 두개 중 어느걸 눌렀는지에 따라 분기
             print("pause")
         }
+    }
+    func setupLocationService() {
+      LocationManager.shared.requestPermission()
+      if LocationManager.shared.locationServicesEnabled {
+        let response = Plogging.Location.Response(status: LocationManager.shared.authorizationStatus)
+        DispatchQueue.main.async { [weak self] in
+          self?.presenter?.presentLocationService(response: response)
+        }
+        
+      }else{
+        let response = Plogging.Location.Response(status: .notDetermined)
+        DispatchQueue.main.async { [weak self] in
+          self?.presenter?.presentLocationService(response: response)
+        }
+      }
     }
 }

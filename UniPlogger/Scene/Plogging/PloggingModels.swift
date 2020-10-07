@@ -11,7 +11,7 @@
 //
 
 import UIKit
-
+import CoreLocation
 enum Plogging {
     // MARK: Use cases
     
@@ -29,5 +29,11 @@ enum Plogging {
         struct Request{
             var state: State
         }
+    }
+    
+    enum Location{
+      struct Response{
+        var status: CLAuthorizationStatus
+      }
     }
 }

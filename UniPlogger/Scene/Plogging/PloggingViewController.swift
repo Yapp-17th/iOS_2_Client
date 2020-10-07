@@ -19,6 +19,8 @@ protocol PloggingDisplayLogic: class {
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase)
     func displayStart()
     func displayPause()
+    func displaySetting(message: String, url: URL)
+    func displayLocation(location: CLLocationCoordinate2D)
 }
 
 class PloggingViewController: BaseViewController {
@@ -174,10 +176,13 @@ class PloggingViewController: BaseViewController {
         configuration()
         setupView()
         setupLayout()
+        
+        self.interactor?.setupLocationService()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        LocationManager.shared.requestLocation()
         if let _ = self.presentedViewController as? StartCountingViewController{
             self.startPlogging()
         }
@@ -262,7 +267,18 @@ extension PloggingViewController: PloggingDisplayLogic{
         
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
     }
+    func displaySetting(message: String, url: URL){
+        let alert = UIAlertController(title: "위치 권한 필요", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "권한설정", style: .default, handler: { _ in
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel))
+        self.present(alert, animated: true)
+    }
     
+    func displayLocation(location: CLLocationCoordinate2D) {
+        self.mapView.centerCoordinate = location
+    }
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase){
         //handle error with its usecase
     }
