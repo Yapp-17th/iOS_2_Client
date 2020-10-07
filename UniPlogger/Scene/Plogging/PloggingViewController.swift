@@ -18,6 +18,7 @@ import MapKit
 protocol PloggingDisplayLogic: class {
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase)
     func displayStart()
+    func displayPause()
 }
 
 class PloggingViewController: BaseViewController {
@@ -27,6 +28,8 @@ class PloggingViewController: BaseViewController {
     var state: Plogging.State = .ready
     var minutes = 0
     var seconds = 0
+    
+    var timer: Timer?
     let startBottomContainerView = GradientView().then{
         $0.isHorizontal = true
         $0.colors = [.bottomGradientStart, .bottomGradientEnd]
@@ -44,14 +47,14 @@ class PloggingViewController: BaseViewController {
     }
     
     let distanceImageView = UIImageView().then{
-        $0.image = UIImage(named: "ic_plogging_distance")
+        $0.image = UIImage(named: "ic_plogging_distance")?.withRenderingMode(.alwaysTemplate)
         $0.contentMode = .scaleAspectFit
     }
     
     let distanceLabel = UILabel().then{
         $0.font = .roboto(ofSize: 30, weight: .bold)
         $0.text = "0.00"
-        $0.textColor = .white
+        $0.textColor = .black
     }
     
     let distanceUnitLabel = UILabel().then{
@@ -65,7 +68,7 @@ class PloggingViewController: BaseViewController {
     }
     
     let timeImageView = UIImageView().then{
-        $0.image = UIImage(named: "ic_plogging_time")
+        $0.image = UIImage(named: "ic_plogging_time")?.withRenderingMode(.alwaysTemplate)
         $0.contentMode = .scaleAspectFit
     }
     
@@ -95,7 +98,7 @@ class PloggingViewController: BaseViewController {
         $0.backgroundColor = .main
         $0.layer.cornerRadius = 28
         $0.layer.masksToBounds = true
-        $0.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(pauseButtonTapped), for: .touchUpInside)
     }
     
     lazy var stopButton = UIButton().then{
@@ -104,7 +107,7 @@ class PloggingViewController: BaseViewController {
         $0.backgroundColor = .init(red: 244, green: 95, blue: 95)
         $0.layer.cornerRadius = 28
         $0.layer.masksToBounds = true
-        $0.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(displayStop), for: .touchUpInside)
     }
     
     lazy var resumeButton = UIButton().then{
@@ -113,7 +116,7 @@ class PloggingViewController: BaseViewController {
         $0.backgroundColor = .main
         $0.layer.cornerRadius = 28
         $0.layer.masksToBounds = true
-        $0.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(displayResume), for: .touchUpInside)
     }
   
     let bubbleView = UIView().then{
@@ -173,11 +176,22 @@ class PloggingViewController: BaseViewController {
         setupLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let _ = self.presentedViewController as? StartCountingViewController{
+            self.startPlogging()
+        }
+    }
+    
     @objc func startButtonTapped(){
         let reqquest = Plogging.ChangeState.Request(state: self.state)
         interactor?.changeState(request: reqquest)
     }
     
+    @objc func pauseButtonTapped(){
+        let reqquest = Plogging.ChangeState.Request(state: self.state)
+        interactor?.changeState(request: reqquest)
+    }
     
     @objc func UpdateTimer() {
         seconds = seconds + 1
@@ -187,17 +201,68 @@ class PloggingViewController: BaseViewController {
         }
         timeLabel.text = "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
     }
+  
+    func startPlogging(){
+        self.startBottomContainerView.isHidden = true
+        self.doingPauseBottomContainerView.isHidden = false
+        self.pauseButton.isHidden = false
+        self.stopButton.isHidden = true
+        self.resumeButton.isHidden = true
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if #available(iOS 12.0, *) {
+                // User Interface is Dark
+                [distanceLabel,distanceUnitLabel,timeLabel].forEach {
+                    $0.textColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
+                }
+                [distanceImageView, timeImageView].forEach{
+                    $0.tintColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
+                }
+        } else {
+            [distanceLabel,distanceUnitLabel,timeLabel].forEach {
+                $0.textColor = .black
+            }
+            [distanceImageView, timeImageView].forEach{
+                $0.tintColor = .black
+            }
+        }
+    }
+  
 }
 
 extension PloggingViewController: PloggingDisplayLogic{
     func displayStart() {
-        self.startBottomContainerView.isHidden = true
-        self.doingPauseBottomContainerView.isHidden = false
-        
-        let timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
-        
+        self.state = .doing
         self.router?.routeToStartCounting()
     }
+    
+    func displayPause() {
+        self.pauseButton.isHidden = true
+        self.stopButton.isHidden = false
+        self.resumeButton.isHidden = false
+        self.timer?.invalidate()
+        self.timer = nil
+    }
+    
+    @objc func displayStop() {
+        self.seconds = 0
+        self.minutes = 0
+        timeLabel.text = "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
+        self.startBottomContainerView.isHidden = false
+        self.doingPauseBottomContainerView.isHidden = true
+    }
+    
+    @objc func displayResume() {
+        self.pauseButton.isHidden = false
+        self.stopButton.isHidden = true
+        self.resumeButton.isHidden = true
+        
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
+    }
+    
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase){
         //handle error with its usecase
     }

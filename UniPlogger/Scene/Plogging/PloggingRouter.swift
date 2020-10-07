@@ -31,7 +31,7 @@ class PloggingRouter: NSObject, PloggingRoutingLogic, PloggingDataPassing {
     
     func navigateToStartCounting(source: PloggingViewController, destination: StartCountingViewController){
         destination.modalTransitionStyle = .crossDissolve
-        destination.modalPresentationStyle = .overFullScreen
+        destination.modalPresentationStyle = .fullScreen
         source.present(destination, animated: true)
     }
 }

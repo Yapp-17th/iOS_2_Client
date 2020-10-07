@@ -38,6 +38,23 @@ extension PloggingViewController {
         
         timeContainer.addSubview(timeImageView)
         timeContainer.addSubview(timeLabel)
+        
+        if #available(iOS 12.0, *) {
+                // User Interface is Dark
+                [distanceLabel,distanceUnitLabel,timeLabel].forEach {
+                    $0.textColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
+                }
+                [distanceImageView, timeImageView].forEach{
+                    $0.tintColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
+                }
+        } else {
+            [distanceLabel,distanceUnitLabel,timeLabel].forEach {
+                $0.textColor = .black
+            }
+            [distanceImageView, timeImageView].forEach{
+                $0.tintColor = .black
+            }
+        }
     }
     
     func setupLayout() {

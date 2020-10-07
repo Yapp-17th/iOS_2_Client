@@ -23,6 +23,6 @@ class PloggingPresenter: PloggingPresentationLogic {
         viewController?.displayStart()
     }
     func presentPause() {
-        viewController?.displayStart()
+        viewController?.displayPause()
     }
 }
