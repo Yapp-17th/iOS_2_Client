@@ -11,7 +11,7 @@
 //
 
 import UIKit
-
+import CoreLocation
 protocol PloggingBusinessLogic {
     func changeState(request: Plogging.ChangeState.Request)
     func setupLocationService()
@@ -37,18 +37,26 @@ class PloggingInteractor: PloggingBusinessLogic, PloggingDataStore {
         }
     }
     func setupLocationService() {
-      LocationManager.shared.requestPermission()
-      if LocationManager.shared.locationServicesEnabled {
-        let response = Plogging.Location.Response(status: LocationManager.shared.authorizationStatus)
-        DispatchQueue.main.async { [weak self] in
-          self?.presenter?.presentLocationService(response: response)
-        }
-        
-      }else{
-        let response = Plogging.Location.Response(status: .notDetermined)
-        DispatchQueue.main.async { [weak self] in
-          self?.presenter?.presentLocationService(response: response)
-        }
-      }
+        LocationManager.shared.delegate = self
+        LocationManager.shared.requestPermission()
     }
+}
+
+extension PloggingInteractor: LocationManagerDelegate{
+    func didChangeAuthorization(status: CLAuthorizationStatus) {
+        if LocationManager.shared.locationServicesEnabled {
+            let response = Plogging.Location.Response(status: status)
+            DispatchQueue.main.async { [weak self] in
+                self?.presenter?.presentLocationService(response: response)
+            }
+            
+        }else{
+            let response = Plogging.Location.Response(status: .notDetermined)
+            DispatchQueue.main.async { [weak self] in
+                self?.presenter?.presentLocationService(response: response)
+            }
+        }
+    }
+    
+    
 }

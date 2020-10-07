@@ -278,6 +278,12 @@ extension PloggingViewController: PloggingDisplayLogic{
     
     func displayLocation(location: CLLocationCoordinate2D) {
         self.mapView.centerCoordinate = location
+        var region: MKCoordinateRegion = self.mapView.region
+        var span: MKCoordinateSpan = mapView.region.span
+        span.latitudeDelta *= 0.001
+        span.longitudeDelta *= 0.001
+        region.span = span
+        mapView.setRegion(region, animated: true)
     }
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase){
         //handle error with its usecase
