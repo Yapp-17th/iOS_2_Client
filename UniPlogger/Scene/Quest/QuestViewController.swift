@@ -12,6 +12,7 @@ import Then
 
 protocol QuestDisplayLogic {
     func displayQuests(viewModel: QuestModels.ViewModel)
+    
 }
 
 class QuestViewController: UIViewController {
@@ -55,7 +56,7 @@ class QuestViewController: UIViewController {
         $0.selectedIndex = 0
     }
     
-    private lazy var questTableView = UITableView().then {
+    private var questTableView = UITableView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.separatorStyle = .none
         $0.showsVerticalScrollIndicator = false
