@@ -114,11 +114,6 @@ class QuestViewController: UIViewController {
     
     private func setupLayout() {
         title = "퀘스트"
-        let navBar = navigationController?.navigationBar
-        navBar?.clipsToBounds = true
-        navBar?.layer.cornerRadius = 30
-        navBar?.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        navBar?.layer.backgroundColor = UIColor(red: 0.957, green: 0.98, blue: 0.992, alpha: 1).cgColor
         
         navigationTabsView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Metric.verticalSpacing)

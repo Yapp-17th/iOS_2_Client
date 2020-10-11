@@ -75,7 +75,7 @@ extension MainTabBarController {
     
     func setupQuestViewController(){
         let questItem = UITabBarItem(title: "퀘스트", image: UIImage(named: "tabbar_quest"), tag: 1)
-        let questNavVC = UINavigationController()
+        let questNavVC = QuestNavigationController()
         questNavVC.addChild(QuestViewController())
         let vc = questNavVC
         vc.tabBarItem = questItem
