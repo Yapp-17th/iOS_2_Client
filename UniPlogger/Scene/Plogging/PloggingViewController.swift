@@ -14,6 +14,8 @@ import UIKit
 import SnapKit
 import Then
 import MapKit
+import CoreGraphics
+
 
 protocol PloggingDisplayLogic: class {
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase)
@@ -139,9 +141,18 @@ class PloggingViewController: BaseViewController {
         $0.backgroundColor = UIColor(red: 95/255, green: 116/255, blue: 244/255, alpha: 1)
         $0.layer.cornerRadius = 25
         $0.layer.masksToBounds = true
+        $0.addTarget(self, action: #selector(trashButtonTapped), for: .touchUpInside)
     }
     
-    let mapView = MKMapView()
+    let mapView = MKMapView().then{
+        $0.showsUserLocation = true
+    }
+    
+    lazy var imagePicker = UIImagePickerController().then{
+        $0.delegate = self
+        $0.sourceType = .camera
+    }
+    
     // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -196,6 +207,11 @@ class PloggingViewController: BaseViewController {
     @objc func pauseButtonTapped(){
         let reqquest = Plogging.ChangeState.Request(state: self.state)
         interactor?.changeState(request: reqquest)
+    }
+    
+    @objc func trashButtonTapped(){
+        self.present(self.imagePicker, animated: true, completion: nil)
+
     }
     
     @objc func UpdateTimer() {
@@ -287,5 +303,27 @@ extension PloggingViewController: PloggingDisplayLogic{
     }
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase){
         //handle error with its usecase
+    }
+}
+
+extension PloggingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            // Your have pickedImage now, do your logic here
+            let newImage = CIImage(image: pickedImage)!
+            
+            let properties = newImage.properties[kCGImagePropertyGPSDictionary as String] as? [String: Any]
+            let imageData = pickedImage.jpegData(compressionQuality: 1)!
+            let options = [kCGImageSourceShouldCache as String: kCFBooleanFalse]
+            let source = CGImageSourceCreateWithData(imageData as CFData, nil)!
+            let imageProperties = CGImageSourceCopyPropertiesAtIndex(source, 0, options as CFDictionary)! as Dictionary
+            let gpsProperties = imageProperties[kCGImagePropertyGPSDictionary] as? [String : AnyObject]
+            print(gpsProperties)
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
 }
