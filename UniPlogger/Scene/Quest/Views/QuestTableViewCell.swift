@@ -1,22 +1,22 @@
 //
-//  TrainingTableViewCell.swift
+//  QuestTableViewCell.swift
 //  UniPlogger
 //
-//  Created by woong on 2020/10/01.
+//  Created by woong on 2020/10/11.
 //  Copyright © 2020 손병근. All rights reserved.
 //
 
 import UIKit
-import Then
-import SnapKit
 
-class TrainingTableViewCell: UITableViewCell {
+class QuestTableViewCell: UITableViewCell {
     
-    // MARK: - Constants
-    
-    static let identifire = "TrainingTableViewCell"
-    
+    static let identifire = "QuestTableViewCell"
+
     // MARK: - Views
+    
+    var gradientBackgroundView = UIView().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     
     var sproutBackgroundView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -31,9 +31,12 @@ class TrainingTableViewCell: UITableViewCell {
     
     var questLabel = UILabel().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.text = "학습퀘스트"
         $0.textColor = .white
     }
+    
+    // MARK: - Properties
+    
+    var gradientLayer: CAGradientLayer?
     
     // MARK: - Methods
     
@@ -41,37 +44,43 @@ class TrainingTableViewCell: UITableViewCell {
     
     func configure(viewModel: QuestModels.ViewModel.QuestViewModel) {
         questLabel.text = viewModel.title
+        gradientLayer = viewModel.gradientLayer
+        
         sproutImageView.image = viewModel.cellImageImage
         sproutBackgroundView.layer.cornerRadius = 26
-        layer.cornerRadius = 22
     }
     
     override func layoutSublayers(of layer: CALayer) {
-        super.layoutSublayers(of: self.layer)
-        let layer0 = CAGradientLayer()
-        layer0.colors = [
-          UIColor(red: 0.975, green: 0.256, blue: 0.509, alpha: 1).cgColor,
-          UIColor(red: 0.924, green: 0.587, blue: 0.979, alpha: 1).cgColor
-        ]
-        layer0.locations = [0, 1]
-        layer0.startPoint = CGPoint(x: 0.25, y: 0.5)
-        layer0.endPoint = CGPoint(x: 0.75, y: 0.5)
-        layer0.frame = layer.bounds
-        layer0.cornerRadius = 22
-        layer0.contents = UIImage(named: "space_background")?.cgImage
-        layer.insertSublayer(layer0, at: 0)
+        super.layoutSublayers(of: layer)
+        
+        if let gradientLayer = gradientLayer {
+            gradientLayer.frame = gradientBackgroundView.bounds
+            gradientBackgroundView.layer.cornerRadius = 22
+            gradientBackgroundView.layer.insertSublayer(gradientLayer, at: 0)
+            gradientBackgroundView.backgroundColor = .orange
+        }
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = .white
-        addSubview(sproutBackgroundView)
+        
+        selectionStyle = .none
+        
+        addSubview(gradientBackgroundView)
+        gradientBackgroundView.addSubview(sproutBackgroundView)
         sproutBackgroundView.addSubview(sproutImageView)
-        addSubview(questLabel)
+        gradientBackgroundView.addSubview(questLabel)
+        
+        gradientBackgroundView.snp.makeConstraints {
+            $0.top.equalTo(snp.top).offset(10)
+            $0.leading.equalTo(snp.leading)
+            $0.trailing.equalTo(snp.trailing)
+            $0.bottom.equalTo(snp.bottom).offset(-10)
+        }
         
         sproutBackgroundView.snp.makeConstraints {
-            $0.centerY.equalTo(self.snp.centerY)
-            $0.leading.equalTo(self.snp.leading).offset(18)
+            $0.centerY.equalTo(gradientBackgroundView.snp.centerY)
+            $0.leading.equalTo(gradientBackgroundView.snp.leading).offset(18)
             $0.width.equalTo(52)
             $0.height.equalTo(52)
         }
@@ -83,7 +92,7 @@ class TrainingTableViewCell: UITableViewCell {
         }
         
         questLabel.snp.makeConstraints {
-            $0.centerY.equalTo(self.snp.centerY)
+            $0.centerY.equalTo(sproutBackgroundView.snp.centerY)
             $0.leading.equalTo(sproutBackgroundView.snp.trailing).offset(18)
         }
     }

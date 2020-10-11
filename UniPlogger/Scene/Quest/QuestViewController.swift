@@ -110,8 +110,7 @@ class QuestViewController: UIViewController {
     }
     
     private func setupTableView() {
-        questTableView.register(TrainingTableViewCell.self, forCellReuseIdentifier: TrainingTableViewCell.identifire)
-        questTableView.register(RoutineTableViewCell.self, forCellReuseIdentifier: RoutineTableViewCell.identifire)
+        questTableView.register(QuestTableViewCell.self, forCellReuseIdentifier: QuestTableViewCell.identifire)
         questTableView.dataSource = self
         questTableView.delegate = self
     }
