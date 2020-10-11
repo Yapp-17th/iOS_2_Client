@@ -9,7 +9,7 @@
 import Foundation
 
 enum QuestModels {
-    enum Usercase {
+    enum UseCase {
         
     }
     
