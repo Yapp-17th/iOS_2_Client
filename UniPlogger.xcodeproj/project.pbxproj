@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		101A5C8A5DA8441CFEF982F0 /* Pods_UniPlogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E470A391887A23D6AF25DD /* Pods_UniPlogger.framework */; };
+		4C89567D2532CB3A0099934E /* QuestNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89567C2532CB3A0099934E /* QuestNavigationController.swift */; };
+		4C8956802532CD580099934E /* TrainingQuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89567F2532CD580099934E /* TrainingQuestViewController.swift */; };
+		4C8956832532D0630099934E /* QuestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8956822532D0630099934E /* QuestFactory.swift */; };
 		4C89B06F2525D2BB0007EBED /* TrainingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B06E2525D2BB0007EBED /* TrainingTableViewCell.swift */; };
 		4C89B0722525D2CB0007EBED /* RoutineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B0712525D2CB0007EBED /* RoutineTableViewCell.swift */; };
 		4CB979C42524E5BC00498E81 /* NavigationTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB979C32524E5BC00498E81 /* NavigationTabsView.swift */; };
@@ -68,6 +71,9 @@
 
 /* Begin PBXFileReference section */
 		12330CE7D885C1CB00C8E874 /* Pods-UniPlogger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.release.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.release.xcconfig"; sourceTree = "<group>"; };
+		4C89567C2532CB3A0099934E /* QuestNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestNavigationController.swift; sourceTree = "<group>"; };
+		4C89567F2532CD580099934E /* TrainingQuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingQuestViewController.swift; sourceTree = "<group>"; };
+		4C8956822532D0630099934E /* QuestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestFactory.swift; sourceTree = "<group>"; };
 		4C89B06E2525D2BB0007EBED /* TrainingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingTableViewCell.swift; sourceTree = "<group>"; };
 		4C89B0712525D2CB0007EBED /* RoutineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTableViewCell.swift; sourceTree = "<group>"; };
 		4CB979C32524E5BC00498E81 /* NavigationTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTabsView.swift; sourceTree = "<group>"; };
@@ -187,6 +193,9 @@
 				4CC9C7CD252315E0004D873D /* QuestPresenter.swift */,
 				4CC9C7D0252315E9004D873D /* QuestRouter.swift */,
 				4CC9C7D6252315FC004D873D /* QuestWorker.swift */,
+				4C89567C2532CB3A0099934E /* QuestNavigationController.swift */,
+				4C89567F2532CD580099934E /* TrainingQuestViewController.swift */,
+				4C8956822532D0630099934E /* QuestFactory.swift */,
 			);
 			path = Quest;
 			sourceTree = "<group>";
@@ -533,6 +542,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C8956832532D0630099934E /* QuestFactory.swift in Sources */,
 				AA7F54E22532C179001C4012 /* CLLocationCoordinated2D+Extensions.swift in Sources */,
 				AA7F54F12532C1A6001C4012 /* PloggingPresenter.swift in Sources */,
 				AA7F54EE2532C1A6001C4012 /* PloggingViewController+UI.swift in Sources */,
@@ -557,6 +567,7 @@
 				AA7F54EF2532C1A6001C4012 /* PloggingModels.swift in Sources */,
 				4CC9C7CE252315E0004D873D /* QuestPresenter.swift in Sources */,
 				4CC9C7D1252315E9004D873D /* QuestRouter.swift in Sources */,
+				4C89567D2532CB3A0099934E /* QuestNavigationController.swift in Sources */,
 				AA7F54F22532C1A6001C4012 /* PloggingViewController.swift in Sources */,
 				AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */,
 				AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */,
@@ -564,6 +575,7 @@
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,
 				4CC9C7C825231581004D873D /* QuestViewController.swift in Sources */,
 				AA7F5528253356BE001C4012 /* PhotoManager.swift in Sources */,
+				4C8956802532CD580099934E /* TrainingQuestViewController.swift in Sources */,
 				AAB3B4EC2520B2B400F0311A /* UIImage+Extensions.swift in Sources */,
 				4CC9C7CB252315D7004D873D /* QuestInteractor.swift in Sources */,
 				AA7F55232533568D001C4012 /* PloggingImageView.swift in Sources */,

@@ -29,8 +29,9 @@ class QuestInteractor: QuestDataStore {
 
 extension QuestInteractor: QuestBusinessLogic {
     func fetchQuest(request: QuestModels.Reqeust) {
-        let list = worker.questData(state: request.state)
-        let response = QuestModels.Response(questList: list)
+        questList = worker.questData(state: request.state)
+        let response = QuestModels.Response(state: request.state, questList: questList)
+        
         presenter.presentQuestList(response: response)
     }
 }

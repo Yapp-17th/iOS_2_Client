@@ -93,7 +93,7 @@ class QuestViewController: UIViewController {
         }
         
         let viewController = self
-        let presenter = QuestPresenter(viewController: viewController)
+        let presenter = QuestPresenter(viewController: viewController, questFactory: QuestFactory())
         let worker = QuestWorker()
         let interactor = QuestInteractor(presenter: presenter, worker: worker)
         
@@ -196,7 +196,7 @@ extension QuestViewController: UITableViewDelegate {
             completion(true)
         }
         
-        deleteAction.image = UIImage(named: "delete_button")
+        deleteAction.image = questList[indexPath.row].accessoryImage
         deleteAction.backgroundColor = .white
         
         return .init(actions: [deleteAction])

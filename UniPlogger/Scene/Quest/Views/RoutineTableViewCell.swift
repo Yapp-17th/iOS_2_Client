@@ -26,7 +26,6 @@ class RoutineTableViewCell: UITableViewCell {
     var sproutImageView = UIImageView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = .white
-        $0.image = UIImage(named: "sprout")
         $0.contentMode = .scaleAspectFit
     }
     
@@ -41,6 +40,7 @@ class RoutineTableViewCell: UITableViewCell {
     
     func configure(viewModel: QuestModels.ViewModel.QuestViewModel) {
         questLabel.text = viewModel.title
+        sproutImageView.image = viewModel.cellImageImage
         sproutBackgroundView.layer.cornerRadius = 26
         layer.cornerRadius = 22
     }

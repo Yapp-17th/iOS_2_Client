@@ -14,9 +14,11 @@ protocol QuestPresentationLogic {
 
 class QuestPresenter {
     private var viewController: QuestDisplayLogic
+    private var questFactory: QuestCellMaker
     
-    init(viewController: QuestDisplayLogic) {
+    init(viewController: QuestDisplayLogic, questFactory: QuestCellMaker) {
         self.viewController = viewController
+        self.questFactory = questFactory
     }
 }
 
@@ -25,7 +27,14 @@ extension QuestPresenter: QuestPresentationLogic {
         
         var questList = [QuestModels.ViewModel.QuestViewModel]()
         for quest in response.questList {
-            questList.append(.init(title: quest.title, category: quest.category))
+            let viewModel = QuestModels.ViewModel.QuestViewModel(
+                                title: quest.title,
+                                category: quest.category,
+                                cellImageImage: questFactory.cellImage(for: quest.state),
+                                accessoryImage: questFactory.accessoryImage(for: quest.state)
+                            )
+            
+            questList.append(viewModel)
         }
         let viewModel = QuestModels.ViewModel(questList: questList)
         viewController.displayQuests(viewModel: viewModel)

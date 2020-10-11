@@ -6,7 +6,7 @@
 //  Copyright © 2020 손병근. All rights reserved.
 //
 
-import Foundation
+import UIKit.UIImage
 
 enum QuestModels {
     enum UseCase {
@@ -18,6 +18,7 @@ enum QuestModels {
     }
     
     struct Response {
+        var state: QuestState
         var questList: [Quest]
     }
     
@@ -26,6 +27,8 @@ enum QuestModels {
         struct QuestViewModel {
             var title: String
             var category: Quest.Category
+            var cellImageImage: UIImage?
+            var accessoryImage: UIImage?
         }
         
         var questList: [QuestViewModel]
