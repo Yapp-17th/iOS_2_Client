@@ -25,8 +25,8 @@ class QuestViewController: UIViewController {
         static let verticalSpacing: CGFloat = 20
         
         struct Cell {
-            static let trainingHeight: CGFloat = 176
-            static let routineHeight: CGFloat = 88
+            static let trainingHeight: CGFloat = 176 + 20
+            static let routineHeight: CGFloat = 88 + 20
         }
     }
     
@@ -194,7 +194,8 @@ extension QuestViewController: UITableViewDelegate {
             completion(true)
         }
         
-        deleteAction.image = questList[indexPath.row].accessoryImage
+        let quest = questList?[indexPath]
+        deleteAction.image = quest?.accessoryImage
         deleteAction.backgroundColor = .white
         
         return .init(actions: [deleteAction])
