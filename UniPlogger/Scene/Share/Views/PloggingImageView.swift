@@ -9,9 +9,7 @@
 import UIKit
 
 class PloggingImageView: UIImageView {
-    lazy var ploggingInfoView = PloggingInfoView().then {
-        $0.backgroundColor = .black
-    }
+    lazy var ploggingInfoView = PloggingInfoView()
     
     init() {
         super.init(frame: .zero)
@@ -40,7 +38,7 @@ class PloggingImageView: UIImageView {
     func setUpLayout() {
         ploggingInfoView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
-            $0.height.equalTo(170)
+            $0.height.equalTo(145)
         }
     }
 

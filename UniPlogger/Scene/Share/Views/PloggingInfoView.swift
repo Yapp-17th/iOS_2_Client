@@ -11,6 +11,10 @@ import SnapKit
 import Then
 
 class PloggingInfoView: UIView {
+    lazy var gradientView = GradientView().then {
+        $0.colors = [.clear, .black]
+        $0.locations = [0.02, 1]
+    }
     lazy var characterImageView = UIImageView().then {
         $0.image = UIImage(named: "share_character")
     }
@@ -23,19 +27,20 @@ class PloggingInfoView: UIView {
     lazy var distanceLabel = UILabel().then {
         $0.textAlignment = .center
         $0.textColor = .white
-        $0.text = "10.21km"
+        $0.text = "10.21 km"
+        $0.font = .roboto(ofSize: 20, weight: .bold)
         $0.sizeToFit()
     }
     lazy var timeLabel = UILabel().then {
         $0.textAlignment = .center
         $0.textColor = .white
-        $0.text = "57:30"
+        $0.text = "57 : 30"
+        $0.font = .roboto(ofSize: 20, weight: .bold)
         $0.sizeToFit()
     }
     
     init() {
         super.init(frame: .zero)
-        self.backgroundColor = .black
         setUpView()
         setUpLayout()
     }
@@ -47,13 +52,16 @@ class PloggingInfoView: UIView {
 
 extension PloggingInfoView {
     func setUpView() {
-        [characterImageView, ploggerImageView, timerImageView, distanceLabel, timeLabel].forEach {
+        [gradientView, characterImageView, ploggerImageView, timerImageView, distanceLabel, timeLabel].forEach {
             self.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
     }
     
     func setUpLayout() {
+        gradientView.snp.makeConstraints {
+            $0.top.bottom.leading.trailing.equalToSuperview()
+        }
         characterImageView.snp.makeConstraints {
             $0.bottom.equalToSuperview()
             $0.leading.equalToSuperview().offset(28)
