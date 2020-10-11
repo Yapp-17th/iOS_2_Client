@@ -30,7 +30,6 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
     lazy var ploggingImageView = PloggingImageView().then {
         $0.backgroundColor = .lightGray
         $0.layer.cornerRadius = 10
-        $0.contentMode = .scaleAspectFit
     }
     lazy var dismissButton = UIButton().then {
         $0.setImage(UIImage(named: "share_dismiss"), for: .normal)
@@ -95,7 +94,7 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true
-        picker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        picker.sourceType = UIImagePickerController.SourceType.camera
         self.present(picker, animated: true, completion: nil)
     }
     
@@ -125,40 +124,6 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
             } else {
                 print(error?.localizedDescription ?? "")
             }
-        }
-    }
-}
-
-extension ShareViewController {
-    private func configuration() {
-        
-    }
-    
-    private func setUpView() {
-        [backgroundImageView, ploggingImageView, dismissButton, shareButton].forEach {
-            self.view.addSubview($0)
-            $0.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    
-    private func setUpLayout() {
-        backgroundImageView.snp.makeConstraints {
-            $0.top.bottom.leading.trailing.equalToSuperview()
-        }
-        ploggingImageView.snp.makeConstraints {
-            $0.width.height.equalTo(340)
-            $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(179)
-        }
-        dismissButton.snp.makeConstraints {
-            $0.width.height.equalTo(40)
-            $0.top.equalToSuperview().offset(58)
-            $0.trailing.equalToSuperview().offset(-16)
-        }
-        shareButton.snp.makeConstraints {
-            $0.width.height.equalTo(100)
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().offset(-114)
         }
     }
 }

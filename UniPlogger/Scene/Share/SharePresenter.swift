@@ -19,10 +19,10 @@ protocol SharePresentationLogic {
 class SharePresenter: SharePresentationLogic {
     weak var viewController: ShareDisplayLogic?
   
-  // MARK: Do something
+    // MARK: Do something
   
     func presentSomething(response: Share.Something.Response) {
-    let viewModel = Share.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
+        let viewModel = Share.Something.ViewModel()
+        viewController?.displaySomething(viewModel: viewModel)
     }
 }

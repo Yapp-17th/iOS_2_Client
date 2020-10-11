@@ -13,7 +13,5 @@
 import UIKit
 
 class ShareWorker {
-    func doSomeWork() {
-        
-    }
+
 }

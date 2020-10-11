@@ -23,7 +23,6 @@ protocol ShareDataStore {
 class ShareInteractor: ShareBusinessLogic, ShareDataStore {
     var presenter: SharePresentationLogic?
     var worker: ShareWorker?
-  //var name: String = ""
     
     func shareToInstagram(assetIdentifier: String) {
         guard let url = URL(string: "instagram://library?LocalIdentifier=\(assetIdentifier)") else { return }
