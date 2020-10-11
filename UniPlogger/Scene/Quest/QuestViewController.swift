@@ -65,7 +65,11 @@ class QuestViewController: UIViewController {
     
     private var questList = [QuestModels.ViewModel.QuestViewModel]()
     private var interactor: QuestBusinessLogic?
-    private var currentQuestState: QuestState = .todo
+    private var currentQuestState: QuestState = .todo {
+        didSet {
+            fetchData()
+        }
+    }
     
     // MARK: - Methods
     
@@ -82,6 +86,11 @@ class QuestViewController: UIViewController {
         setupTableView()
         setupViews()
         setupLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         fetchData()
     }
     
