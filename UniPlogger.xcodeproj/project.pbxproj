@@ -8,16 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		101A5C8A5DA8441CFEF982F0 /* Pods_UniPlogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E470A391887A23D6AF25DD /* Pods_UniPlogger.framework */; };
-		1262C3F0252307110059A5DB /* SharePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3EA252307110059A5DB /* SharePresenter.swift */; };
-		1262C3F1252307110059A5DB /* ShareWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3EB252307110059A5DB /* ShareWorker.swift */; };
-		1262C3F2252307110059A5DB /* ShareRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3EC252307110059A5DB /* ShareRouter.swift */; };
-		1262C3F3252307110059A5DB /* ShareModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3ED252307110059A5DB /* ShareModels.swift */; };
-		1262C3F4252307110059A5DB /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3EE252307110059A5DB /* ShareViewController.swift */; };
-		1262C3F5252307110059A5DB /* ShareInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3EF252307110059A5DB /* ShareInteractor.swift */; };
-		1262C3F925233EB90059A5DB /* PloggingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3F825233EB90059A5DB /* PloggingImageView.swift */; };
-		1262C3FE2525B0550059A5DB /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3FD2525B0550059A5DB /* PhotoManager.swift */; };
-		129997082532F6FB002A3C3F /* ShareViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129997072532F6FB002A3C3F /* ShareViewController+UI.swift */; };
-		1299970B25331078002A3C3F /* PloggingInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1299970A25331078002A3C3F /* PloggingInfoView.swift */; };
 		4C89B06F2525D2BB0007EBED /* TrainingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B06E2525D2BB0007EBED /* TrainingTableViewCell.swift */; };
 		4C89B0722525D2CB0007EBED /* RoutineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B0712525D2CB0007EBED /* RoutineTableViewCell.swift */; };
 		4CB979C42524E5BC00498E81 /* NavigationTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB979C32524E5BC00498E81 /* NavigationTabsView.swift */; };
@@ -55,6 +45,16 @@
 		AA7F550F2532C20C001C4012 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA7F55032532C20C001C4012 /* Roboto-Bold.ttf */; };
 		AA7F55102532C20C001C4012 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA7F55042532C20C001C4012 /* Roboto-Thin.ttf */; };
 		AA7F55112532C20C001C4012 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA7F55052532C20C001C4012 /* Roboto-Black.ttf */; };
+		AA7F551D2533568D001C4012 /* SharePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F55132533568C001C4012 /* SharePresenter.swift */; };
+		AA7F551E2533568D001C4012 /* ShareInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F55142533568C001C4012 /* ShareInteractor.swift */; };
+		AA7F551F2533568D001C4012 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F55152533568C001C4012 /* ShareViewController.swift */; };
+		AA7F55202533568D001C4012 /* ShareViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F55162533568C001C4012 /* ShareViewController+UI.swift */; };
+		AA7F55212533568D001C4012 /* ShareWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F55172533568C001C4012 /* ShareWorker.swift */; };
+		AA7F55222533568D001C4012 /* ShareRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F55182533568C001C4012 /* ShareRouter.swift */; };
+		AA7F55232533568D001C4012 /* PloggingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F551A2533568C001C4012 /* PloggingImageView.swift */; };
+		AA7F55242533568D001C4012 /* PloggingInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F551B2533568C001C4012 /* PloggingInfoView.swift */; };
+		AA7F55252533568D001C4012 /* ShareModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F551C2533568C001C4012 /* ShareModels.swift */; };
+		AA7F5528253356BE001C4012 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F5527253356BE001C4012 /* PhotoManager.swift */; };
 		AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4C72520A31100F0311A /* AppDelegate.swift */; };
 		AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4D02520A31100F0311A /* UniPlogger.xcdatamodeld */; };
 		AAB3B4D42520A31200F0311A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAB3B4D32520A31200F0311A /* Assets.xcassets */; };
@@ -68,16 +68,6 @@
 
 /* Begin PBXFileReference section */
 		12330CE7D885C1CB00C8E874 /* Pods-UniPlogger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.release.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.release.xcconfig"; sourceTree = "<group>"; };
-		1262C3EA252307110059A5DB /* SharePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePresenter.swift; sourceTree = "<group>"; };
-		1262C3EB252307110059A5DB /* ShareWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareWorker.swift; sourceTree = "<group>"; };
-		1262C3EC252307110059A5DB /* ShareRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRouter.swift; sourceTree = "<group>"; };
-		1262C3ED252307110059A5DB /* ShareModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareModels.swift; sourceTree = "<group>"; };
-		1262C3EE252307110059A5DB /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
-		1262C3EF252307110059A5DB /* ShareInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInteractor.swift; sourceTree = "<group>"; };
-		1262C3F825233EB90059A5DB /* PloggingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingImageView.swift; sourceTree = "<group>"; };
-		1262C3FD2525B0550059A5DB /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
-		129997072532F6FB002A3C3F /* ShareViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShareViewController+UI.swift"; sourceTree = "<group>"; };
-		1299970A25331078002A3C3F /* PloggingInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingInfoView.swift; sourceTree = "<group>"; };
 		4C89B06E2525D2BB0007EBED /* TrainingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingTableViewCell.swift; sourceTree = "<group>"; };
 		4C89B0712525D2CB0007EBED /* RoutineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTableViewCell.swift; sourceTree = "<group>"; };
 		4CB979C32524E5BC00498E81 /* NavigationTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTabsView.swift; sourceTree = "<group>"; };
@@ -113,6 +103,16 @@
 		AA7F55032532C20C001C4012 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		AA7F55042532C20C001C4012 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		AA7F55052532C20C001C4012 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		AA7F55132533568C001C4012 /* SharePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharePresenter.swift; sourceTree = "<group>"; };
+		AA7F55142533568C001C4012 /* ShareInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareInteractor.swift; sourceTree = "<group>"; };
+		AA7F55152533568C001C4012 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		AA7F55162533568C001C4012 /* ShareViewController+UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShareViewController+UI.swift"; sourceTree = "<group>"; };
+		AA7F55172533568C001C4012 /* ShareWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareWorker.swift; sourceTree = "<group>"; };
+		AA7F55182533568C001C4012 /* ShareRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareRouter.swift; sourceTree = "<group>"; };
+		AA7F551A2533568C001C4012 /* PloggingImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingImageView.swift; sourceTree = "<group>"; };
+		AA7F551B2533568C001C4012 /* PloggingInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingInfoView.swift; sourceTree = "<group>"; };
+		AA7F551C2533568C001C4012 /* ShareModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareModels.swift; sourceTree = "<group>"; };
+		AA7F5527253356BE001C4012 /* PhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		AAB3B4C42520A31100F0311A /* UniPlogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniPlogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB3B4C72520A31100F0311A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAB3B4D12520A31100F0311A /* UniPlogger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UniPlogger.xcdatamodel; sourceTree = "<group>"; };
@@ -157,39 +157,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1262C3E9252306B90059A5DB /* Share */ = {
-			isa = PBXGroup;
-			children = (
-				1262C3F725233E230059A5DB /* Views */,
-				1262C3EA252307110059A5DB /* SharePresenter.swift */,
-				1262C3EB252307110059A5DB /* ShareWorker.swift */,
-				1262C3EC252307110059A5DB /* ShareRouter.swift */,
-				1262C3ED252307110059A5DB /* ShareModels.swift */,
-				1262C3EE252307110059A5DB /* ShareViewController.swift */,
-				1262C3EF252307110059A5DB /* ShareInteractor.swift */,
-				129997072532F6FB002A3C3F /* ShareViewController+UI.swift */,
-			);
-			path = Share;
-			sourceTree = "<group>";
-		};
-		1262C3F725233E230059A5DB /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				1262C3F825233EB90059A5DB /* PloggingImageView.swift */,
-				1299970A25331078002A3C3F /* PloggingInfoView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		1262C3FC2525AEF20059A5DB /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				1262C3FD2525B0550059A5DB /* PhotoManager.swift */,
-			);
-			path = Manager;
-			sourceTree = "<group>";
-		};
-		AAB3B4BB2520A31100F0311A = {
 		4C31BE942524A01100D47919 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +170,7 @@
 		4CC9C7C525231565004D873D /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				AA7F55122533568C001C4012 /* Share */,
 				AA7F54E32532C1A6001C4012 /* Plogging */,
 				4CC9C7C625231578004D873D /* Quest */,
 			);
@@ -248,12 +216,6 @@
 		AA7F54DC2532C109001C4012 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1262C3E9252306B90059A5DB /* Share */,
-				AAB3B4F22520B4E500F0311A /* Challenge */,
-				AAB3B4F32520B4EE00F0311A /* Quest */,
-				AAB3B4E52520A76E00F0311A /* Plogging */,
-				AAB3B4F42520B4FF00F0311A /* Log */,
-				AAB3B4F52520B52600F0311A /* My */,
 				AA7F54DD2532C109001C4012 /* BaseViewController.swift */,
 			);
 			path = ViewController;
@@ -277,10 +239,6 @@
 		AA7F54F42532C1CF001C4012 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				1262C3FC2525AEF20059A5DB /* Manager */,
-				AAB3B4ED2520B2F400F0311A /* View */,
-				AAB3B4EA2520A78800F0311A /* Extension */,
-				AAB3B4E72520A77700F0311A /* TabBarController */,
 				AA7F54F52532C1CF001C4012 /* LocationManager.swift */,
 			);
 			path = Manager;
@@ -311,6 +269,38 @@
 				AA7F55052532C20C001C4012 /* Roboto-Black.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		AA7F55122533568C001C4012 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				AA7F55132533568C001C4012 /* SharePresenter.swift */,
+				AA7F55142533568C001C4012 /* ShareInteractor.swift */,
+				AA7F55152533568C001C4012 /* ShareViewController.swift */,
+				AA7F55162533568C001C4012 /* ShareViewController+UI.swift */,
+				AA7F55172533568C001C4012 /* ShareWorker.swift */,
+				AA7F55182533568C001C4012 /* ShareRouter.swift */,
+				AA7F55192533568C001C4012 /* Views */,
+				AA7F551C2533568C001C4012 /* ShareModels.swift */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
+		AA7F55192533568C001C4012 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA7F551A2533568C001C4012 /* PloggingImageView.swift */,
+				AA7F551B2533568C001C4012 /* PloggingInfoView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AA7F5526253356BE001C4012 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				AA7F5527253356BE001C4012 /* PhotoManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		AAB3B4BB2520A31100F0311A = {
@@ -352,6 +342,7 @@
 		AAB3B4E62520A77200F0311A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				AA7F5526253356BE001C4012 /* Manager */,
 				AA7F54DC2532C109001C4012 /* ViewController */,
 				AAB3B4ED2520B2F400F0311A /* View */,
 				AAB3B4EA2520A78800F0311A /* Extension */,
@@ -547,25 +538,22 @@
 				AA7F54EE2532C1A6001C4012 /* PloggingViewController+UI.swift in Sources */,
 				AA7F54E12532C176001C4012 /* UserDefault+Extensions.swift in Sources */,
 				4CC9C7DA25232128004D873D /* Quest.swift in Sources */,
+				AA7F551D2533568D001C4012 /* SharePresenter.swift in Sources */,
 				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
+				AA7F551F2533568D001C4012 /* ShareViewController.swift in Sources */,
 				AA7F54EC2532C1A6001C4012 /* StartCountingViewController.swift in Sources */,
+				AA7F551E2533568D001C4012 /* ShareInteractor.swift in Sources */,
 				AA7F54F62532C1CF001C4012 /* LocationManager.swift in Sources */,
 				AA7F54ED2532C1A6001C4012 /* PloggingInteractor.swift in Sources */,
 				AA7F54F32532C1A6001C4012 /* PloggingWorker.swift in Sources */,
 				AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */,
-				129997082532F6FB002A3C3F /* ShareViewController+UI.swift in Sources */,
-				1262C3F2252307110059A5DB /* ShareRouter.swift in Sources */,
-				1262C3FE2525B0550059A5DB /* PhotoManager.swift in Sources */,
-				1299970B25331078002A3C3F /* PloggingInfoView.swift in Sources */,
-				1262C3F0252307110059A5DB /* SharePresenter.swift in Sources */,
-				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
-				1262C3F5252307110059A5DB /* ShareInteractor.swift in Sources */,
-				1262C3F1252307110059A5DB /* ShareWorker.swift in Sources */,
-				1262C3F4252307110059A5DB /* ShareViewController.swift in Sources */,
+				AA7F55212533568D001C4012 /* ShareWorker.swift in Sources */,
+				AA7F55242533568D001C4012 /* PloggingInfoView.swift in Sources */,
 				4CB979C42524E5BC00498E81 /* NavigationTabsView.swift in Sources */,
 				AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
 				4C89B06F2525D2BB0007EBED /* TrainingTableViewCell.swift in Sources */,
+				AA7F55252533568D001C4012 /* ShareModels.swift in Sources */,
 				AA7F54EF2532C1A6001C4012 /* PloggingModels.swift in Sources */,
 				4CC9C7CE252315E0004D873D /* QuestPresenter.swift in Sources */,
 				4CC9C7D1252315E9004D873D /* QuestRouter.swift in Sources */,
@@ -575,16 +563,17 @@
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,
 				4CC9C7C825231581004D873D /* QuestViewController.swift in Sources */,
+				AA7F5528253356BE001C4012 /* PhotoManager.swift in Sources */,
 				AAB3B4EC2520B2B400F0311A /* UIImage+Extensions.swift in Sources */,
-				1262C3F925233EB90059A5DB /* PloggingImageView.swift in Sources */,
-				AAB3B4F92520B5B600F0311A /* Common.swift in Sources */,
-				1262C3F3252307110059A5DB /* ShareModels.swift in Sources */,
 				4CC9C7CB252315D7004D873D /* QuestInteractor.swift in Sources */,
+				AA7F55232533568D001C4012 /* PloggingImageView.swift in Sources */,
 				4CC9C7D4252315F3004D873D /* QuestModels.swift in Sources */,
 				AA7F54F02532C1A6001C4012 /* PloggingRouter.swift in Sources */,
+				AA7F55222533568D001C4012 /* ShareRouter.swift in Sources */,
 				AAB3B4F92520B5B600F0311A /* Common.swift in Sources */,
 				4C89B0722525D2CB0007EBED /* RoutineTableViewCell.swift in Sources */,
 				AA7F54E02532C16E001C4012 /* UIFont+Extensions.swift in Sources */,
+				AA7F55202533568D001C4012 /* ShareViewController+UI.swift in Sources */,
 				4CC9C7D7252315FC004D873D /* QuestWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -742,7 +731,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AFV4H7VYBU;
+				DEVELOPMENT_TEAM = 97C96KP84G;
 				INFOPLIST_FILE = UniPlogger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
