@@ -13,7 +13,11 @@ protocol QuestPresentationLogic {
 }
 
 class QuestPresenter {
-    var viewController: QuestDisplayLogic?
+    private var viewController: QuestDisplayLogic
+    
+    init(viewController: QuestDisplayLogic) {
+        self.viewController = viewController
+    }
 }
 
 extension QuestPresenter: QuestPresentationLogic {
@@ -24,6 +28,6 @@ extension QuestPresenter: QuestPresentationLogic {
             questList.append(.init(title: quest.title, category: quest.category))
         }
         let viewModel = QuestModels.ViewModel(questList: questList)
-        viewController?.displayQuests(viewModel: viewModel)
+        viewController.displayQuests(viewModel: viewModel)
     }
 }

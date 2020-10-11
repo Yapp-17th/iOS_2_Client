@@ -13,20 +13,24 @@ protocol QuestBusinessLogic {
 }
 
 protocol QuestDataStore {
-    var questList: [Quest] { get set }
+    var questList: [Quest] { get }
 }
 
 class QuestInteractor: QuestDataStore {
-    var presenter: QuestPresentationLogic?
-    var worker: QuestWorker?
-    var questList = [Quest]()
+    private var presenter: QuestPresentationLogic
+    private var worker: QuestWorker
+    private(set) var questList = [Quest]()
+    
+    init(presenter: QuestPresentationLogic, worker: QuestWorker) {
+        self.presenter = presenter
+        self.worker = worker
+    }
 }
 
 extension QuestInteractor: QuestBusinessLogic {
     func fetchQuest(request: QuestModels.Reqeust) {
-        worker = QuestWorker()
-        let list = worker?.questData(state: request.state)
-        let response = QuestModels.Response(questList: list ?? [])
-        presenter?.presentQuestList(response: response)
+        let list = worker.questData(state: request.state)
+        let response = QuestModels.Response(questList: list)
+        presenter.presentQuestList(response: response)
     }
 }

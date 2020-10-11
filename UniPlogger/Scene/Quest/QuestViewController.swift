@@ -93,11 +93,11 @@ class QuestViewController: UIViewController {
         }
         
         let viewController = self
-        let interactor = QuestInteractor()
-        let presenter = QuestPresenter()
+        let presenter = QuestPresenter(viewController: viewController)
+        let worker = QuestWorker()
+        let interactor = QuestInteractor(presenter: presenter, worker: worker)
+        
         viewController.interactor = interactor
-        interactor.presenter = presenter
-        presenter.viewController = viewController
     }
     
     private func setupTableView() {
