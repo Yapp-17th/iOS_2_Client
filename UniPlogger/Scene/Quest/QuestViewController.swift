@@ -63,7 +63,7 @@ class QuestViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var questList = [QuestModels.ViewModel.QuestViewModel]()
+    private var questList: QuestList?
     private var interactor: QuestBusinessLogic?
     private var currentQuestState: QuestState = .todo {
         didSet {
@@ -141,7 +141,7 @@ class QuestViewController: UIViewController {
 
 extension QuestViewController: QuestDisplayLogic {
     func displayQuests(viewModel: QuestModels.ViewModel) {
-        self.questList = viewModel.questList
+        self.questList = QuestList(viewModel: viewModel)
         self.questTableView.reloadData()
     }
 }
@@ -149,28 +149,24 @@ extension QuestViewController: QuestDisplayLogic {
 extension QuestViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return questList.count
+        return questList?.numberOfCategory() ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return questList?.numberOfQuestInSection(for: section) ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch questList[indexPath.section].category {
-            case .training:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: TrainingTableViewCell.identifire, for: indexPath) as? TrainingTableViewCell else { return UITableViewCell() }
-                
-                cell.configure(viewModel: questList[indexPath.section])
-                return cell
-                
-            case .routine:
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: RoutineTableViewCell.identifire, for: indexPath) as? RoutineTableViewCell else { return UITableViewCell() }
-                
-                cell.configure(viewModel: questList[indexPath.section])
-                return cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: QuestTableViewCell.identifire, for: indexPath) as? QuestTableViewCell,
+              let questViewModel = questList?[indexPath]
+        else {
+            return UITableViewCell()
         }
+        
+        cell.configure(viewModel: questViewModel)
+        return cell
+        
     }
 }
 
@@ -178,24 +174,18 @@ extension QuestViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let trainingQuestVC = TrainingQuestViewController()
+        navigationController?.pushViewController(trainingQuestVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return Metric.Cell.trainingHeight
-        } else {
-            return Metric.Cell.routineHeight
+        guard let category = questList?.category(for: indexPath.section) else { return 0 }
+        
+        switch category {
+            case .training: return Metric.Cell.trainingHeight
+            case .routine: return Metric.Cell.routineHeight
         }
-    }
-    
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return Metric.verticalSpacing
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = UIView()
-        return view
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
