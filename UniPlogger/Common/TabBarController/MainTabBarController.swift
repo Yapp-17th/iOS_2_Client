@@ -26,8 +26,9 @@ class MainTabBarController: UITabBarController {
 extension MainTabBarController {
     private func configuration() {
         self.view.backgroundColor = .white
-        self.tabBar.selectedImageTintColor = UIColor(red: 95/255, green: 116/255, blue: 244/255, alpha: 1)
-        self.tabBar.unselectedItemTintColor = UIColor(red: 206/255, green: 209/255, blue: 214/255, alpha: 1)
+        self.tabBar.barTintColor = .tabBarBackground
+        self.tabBar.selectedImageTintColor = .tabBarTint
+        self.tabBar.unselectedItemTintColor = .tabBarUnselectedTint
     }
     
     private func setupView() {
@@ -44,16 +45,18 @@ extension MainTabBarController {
         tabBar.backgroundImage = UIImage.from(color: .clear)
         tabBar.shadowImage = UIImage()
         
-        let tabbarBackgroundView = RoundShadowView(frame: tabBar.frame)
+        let tabbarBackgroundView = RoundShadowView()
         tabbarBackgroundView.layer.cornerRadius = 22
-        tabbarBackgroundView.backgroundColor = .white
-        tabbarBackgroundView.frame = tabBar.frame
+        tabbarBackgroundView.backgroundColor = .tabBarBackground
         view.addSubview(tabbarBackgroundView)
+      tabbarBackgroundView.snp.makeConstraints{
+        $0.edges.equalTo(tabBar)
+      }
         
         let fillerView = UIView()
         fillerView.frame = tabBar.frame
         fillerView.roundCorners(corners: [.topLeft, .topRight], radius: 22)
-        fillerView.backgroundColor = .white
+        fillerView.backgroundColor = .tabBarBackground
         view.addSubview(fillerView)
         
         view.bringSubviewToFront(tabBar)
@@ -72,14 +75,16 @@ extension MainTabBarController {
     
     func setupQuestViewController(){
         let questItem = UITabBarItem(title: "퀘스트", image: UIImage(named: "tabbar_quest"), tag: 1)
-        let vc = UIViewController()
+        let questNavVC = UINavigationController()
+        questNavVC.addChild(QuestViewController())
+        let vc = questNavVC
         vc.tabBarItem = questItem
         self.addChild(vc)
     }
     
     func setupPloggingViewController(){
         let ploggingItem = UITabBarItem(title: "플로깅", image: UIImage(named: "tabbar_plogging"), tag: 2)
-        let vc = UIViewController()
+        let vc = PloggingViewController()
         vc.tabBarItem = ploggingItem
         self.addChild(vc)
     }
