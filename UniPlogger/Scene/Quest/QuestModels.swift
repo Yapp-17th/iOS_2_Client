@@ -31,6 +31,7 @@ enum QuestModels {
             var accessoryImage: UIImage?
         }
         
-        var questList: [QuestViewModel]
+        var trainingQuestList: [QuestViewModel]
+        var routineQuestList: [QuestViewModel]
     }
 }
