@@ -13,7 +13,7 @@
 import UIKit
 
 protocol ShareBusinessLogic {
-    func doSomething(request: Share.Something.Request)
+    func shareToInstagram(assetIdentifier: String)
 }
 
 protocol ShareDataStore {
@@ -24,14 +24,15 @@ class ShareInteractor: ShareBusinessLogic, ShareDataStore {
     var presenter: SharePresentationLogic?
     var worker: ShareWorker?
   //var name: String = ""
-  
-  // MARK: Do something
-  
-    func doSomething(request: Share.Something.Request) {
-        worker = ShareWorker()
-        worker?.doSomeWork()
-
-        let response = Share.Something.Response()
-        presenter?.presentSomething(response: response)
+    
+    func shareToInstagram(assetIdentifier: String) {
+        guard let url = URL(string: "instagram://library?LocalIdentifier=\(assetIdentifier)") else { return }
+        DispatchQueue.main.async {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            } else {
+                print("Instagram is not installed")
+            }
+        }
     }
 }

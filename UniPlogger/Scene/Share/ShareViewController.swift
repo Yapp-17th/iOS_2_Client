@@ -11,11 +11,13 @@
 //
 
 import UIKit
+import Photos
 import SnapKit
 import Then
 
 protocol ShareDisplayLogic: class {
     func displaySomething(viewModel: Share.Something.ViewModel)
+    
 }
 
 class ShareViewController: UIViewController, ShareDisplayLogic {
@@ -28,6 +30,7 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
     lazy var ploggingImageView = PloggingImageView().then {
         $0.backgroundColor = .lightGray
         $0.layer.cornerRadius = 10
+        $0.contentMode = .scaleAspectFit
     }
     lazy var dismissButton = UIButton().then {
         $0.setImage(UIImage(named: "share_dismiss"), for: .normal)
@@ -39,6 +42,7 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
         $0.setImage(UIImage(named: "share_instagram"), for: .normal)
         $0.backgroundColor = UIColor(named: "shareColor")
         $0.layer.cornerRadius = 50
+        $0.addTarget(self, action: #selector(touchUpShareButton), for: .touchUpInside)
     }
 
     // MARK: Object lifecycle
@@ -102,19 +106,27 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
             if success {
                 print("saved")
             } else {
-                print(error?.localizedDescription)
+                print(error?.localizedDescription ?? "")
             }
         }
     }
     
-    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        if let error = error {
-            print(error.localizedDescription)
-        } else {
-            print("saved")
+    @objc func touchUpShareButton() {
+        guard let imageForShare = ploggingImageView.image else { return }
+        let photoManager = PhotoManager(albumName: "UniPlogger")
+        photoManager.save(imageForShare) { (success, error) in
+            if success {
+                let fetchOptions = PHFetchOptions()
+                fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+                let fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+                guard let lastAssetIdentifier = fetchResult.firstObject?.localIdentifier else { return }
+                print(lastAssetIdentifier)
+                self.interactor?.shareToInstagram(assetIdentifier: lastAssetIdentifier)
+            } else {
+                print(error?.localizedDescription ?? "")
+            }
         }
     }
-    
 }
 
 extension ShareViewController {
