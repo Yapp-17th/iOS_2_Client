@@ -103,9 +103,13 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
         let photoManager = PhotoManager(albumName: "UniPlogger")
         photoManager.save(imageForSave) { (success, error) in
             if success {
-                print("saved")
+                DispatchQueue.main.async {
+                    self.showAlert(title: "사진 저장", message: "사진이 저장되었습니다.")
+                }
             } else {
-                print(error?.localizedDescription ?? "")
+                DispatchQueue.main.async {
+                    self.showAlert(title: "ERROR", message: error?.localizedDescription ?? "error")
+                }
             }
         }
     }
@@ -119,12 +123,23 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
                 fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
                 let fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
                 guard let lastAssetIdentifier = fetchResult.firstObject?.localIdentifier else { return }
-                print(lastAssetIdentifier)
+                DispatchQueue.main.async {
+                    self.showAlert(title: "사진 저장", message: "사진이 저장되었습니다.")
+                }
                 self.interactor?.shareToInstagram(assetIdentifier: lastAssetIdentifier)
             } else {
-                print(error?.localizedDescription ?? "")
+                DispatchQueue.main.async {
+                    self.showAlert(title: "ERROR", message: error?.localizedDescription ?? "error")
+                }
             }
         }
+    }
+    
+    func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(confirmAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 
