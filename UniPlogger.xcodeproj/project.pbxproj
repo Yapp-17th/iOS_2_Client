@@ -17,6 +17,7 @@
 		1262C3F925233EB90059A5DB /* PloggingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3F825233EB90059A5DB /* PloggingImageView.swift */; };
 		1262C3FE2525B0550059A5DB /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1262C3FD2525B0550059A5DB /* PhotoManager.swift */; };
 		129997082532F6FB002A3C3F /* ShareViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129997072532F6FB002A3C3F /* ShareViewController+UI.swift */; };
+		1299970B25331078002A3C3F /* PloggingInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1299970A25331078002A3C3F /* PloggingInfoView.swift */; };
 		AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4C72520A31100F0311A /* AppDelegate.swift */; };
 		AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4D02520A31100F0311A /* UniPlogger.xcdatamodeld */; };
 		AAB3B4D42520A31200F0311A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAB3B4D32520A31200F0311A /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 		1262C3F825233EB90059A5DB /* PloggingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingImageView.swift; sourceTree = "<group>"; };
 		1262C3FD2525B0550059A5DB /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		129997072532F6FB002A3C3F /* ShareViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShareViewController+UI.swift"; sourceTree = "<group>"; };
+		1299970A25331078002A3C3F /* PloggingInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingInfoView.swift; sourceTree = "<group>"; };
 		925E132ACB7FB812EDA3D67C /* Pods-UniPlogger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.debug.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.debug.xcconfig"; sourceTree = "<group>"; };
 		AAB3B4C42520A31100F0311A /* UniPlogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniPlogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB3B4C72520A31100F0311A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				1262C3F825233EB90059A5DB /* PloggingImageView.swift */,
+				1299970A25331078002A3C3F /* PloggingInfoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				129997082532F6FB002A3C3F /* ShareViewController+UI.swift in Sources */,
 				1262C3F2252307110059A5DB /* ShareRouter.swift in Sources */,
 				1262C3FE2525B0550059A5DB /* PhotoManager.swift in Sources */,
+				1299970B25331078002A3C3F /* PloggingInfoView.swift in Sources */,
 				1262C3F0252307110059A5DB /* SharePresenter.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
 				1262C3F5252307110059A5DB /* ShareInteractor.swift in Sources */,

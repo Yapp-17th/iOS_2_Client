@@ -9,18 +9,39 @@
 import UIKit
 
 class PloggingImageView: UIImageView {
+    lazy var ploggingInfoView = PloggingInfoView().then {
+        $0.backgroundColor = .black
+    }
     
     init() {
         super.init(frame: .zero)
         self.isUserInteractionEnabled = true
+        setUpView()
+        setUpLayout()
     }
     
     required init?(coder: NSCoder) {
         super.init(frame: .zero)
+        setUpView()
+        setUpLayout()
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
+    }
+
+    func setUpView() {
+        [ploggingInfoView].forEach {
+            self.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    
+    func setUpLayout() {
+        ploggingInfoView.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.height.equalTo(170)
+        }
     }
 
 }
