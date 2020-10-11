@@ -130,7 +130,7 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
 
 extension ShareViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        ploggingImageView.image = info[.originalImage] as? UIImage
+        ploggingImageView.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
         dismiss(animated: true, completion: nil)
     }
 }
