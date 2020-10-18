@@ -11,6 +11,8 @@
 		AA1AC8C3252E1BBB0022ACE5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1AC8C2252E1BBB0022ACE5 /* LocationManager.swift */; };
 		AA1AC8C5252E1C120022ACE5 /* UserDefault+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1AC8C4252E1C120022ACE5 /* UserDefault+Extensions.swift */; };
 		AA1AC8C7252E1C7D0022ACE5 /* CLLocationCoordinated2D+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1AC8C6252E1C7D0022ACE5 /* CLLocationCoordinated2D+Extensions.swift */; };
+		AA2EA3AB253C234300F1413D /* TrashAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2EA3AA253C234300F1413D /* TrashAnnotationView.swift */; };
+		AA2EA3AF253C23E100F1413D /* TrashAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2EA3AE253C23E100F1413D /* TrashAnnotation.swift */; };
 		AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4C72520A31100F0311A /* AppDelegate.swift */; };
 		AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4D02520A31100F0311A /* UniPlogger.xcdatamodeld */; };
 		AAB3B4D42520A31200F0311A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAB3B4D32520A31200F0311A /* Assets.xcassets */; };
@@ -52,6 +54,8 @@
 		AA1AC8C2252E1BBB0022ACE5 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		AA1AC8C4252E1C120022ACE5 /* UserDefault+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extensions.swift"; sourceTree = "<group>"; };
 		AA1AC8C6252E1C7D0022ACE5 /* CLLocationCoordinated2D+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinated2D+Extensions.swift"; sourceTree = "<group>"; };
+		AA2EA3AA253C234300F1413D /* TrashAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashAnnotationView.swift; sourceTree = "<group>"; };
+		AA2EA3AE253C23E100F1413D /* TrashAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashAnnotation.swift; sourceTree = "<group>"; };
 		AAB3B4C42520A31100F0311A /* UniPlogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniPlogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB3B4C72520A31100F0311A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAB3B4D12520A31100F0311A /* UniPlogger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UniPlogger.xcdatamodel; sourceTree = "<group>"; };
@@ -110,6 +114,15 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		AA2EA3A9253C233200F1413D /* Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				AA2EA3AA253C234300F1413D /* TrashAnnotationView.swift */,
+				AA2EA3AE253C23E100F1413D /* TrashAnnotation.swift */,
+			);
+			path = Annotation;
+			sourceTree = "<group>";
+		};
 		AAB3B4BB2520A31100F0311A = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +174,7 @@
 		AAB3B4E52520A76E00F0311A /* Plogging */ = {
 			isa = PBXGroup;
 			children = (
+				AA2EA3A9253C233200F1413D /* Annotation */,
 				AAB3B4FA2520B6D900F0311A /* PloggingPresenter.swift */,
 				AAB3B4FB2520B6D900F0311A /* PloggingWorker.swift */,
 				AAB3B4FC2520B6D900F0311A /* PloggingRouter.swift */,
@@ -438,6 +452,7 @@
 				AA1AC8C7252E1C7D0022ACE5 /* CLLocationCoordinated2D+Extensions.swift in Sources */,
 				AA1AC8C5252E1C120022ACE5 /* UserDefault+Extensions.swift in Sources */,
 				AAB887932524524C000A9D58 /* StartCountingViewController.swift in Sources */,
+				AA2EA3AB253C234300F1413D /* TrashAnnotationView.swift in Sources */,
 				AAD8DE8E252821280000B017 /* PloggingViewController+UI.swift in Sources */,
 				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
 				AAB3B5002520B6D900F0311A /* PloggingPresenter.swift in Sources */,
@@ -455,6 +470,7 @@
 				AAB3B5042520B6D900F0311A /* PloggingViewController.swift in Sources */,
 				AAB3B5052520B6D900F0311A /* PloggingInteractor.swift in Sources */,
 				AAB3B4F92520B5B600F0311A /* Common.swift in Sources */,
+				AA2EA3AF253C23E100F1413D /* TrashAnnotation.swift in Sources */,
 				AAB887B12524603E000A9D58 /* UIFont+Extensions.swift in Sources */,
 				AAB3B5012520B6D900F0311A /* PloggingWorker.swift in Sources */,
 			);

@@ -123,10 +123,15 @@ class PloggingViewController: BaseViewController {
         $0.addTarget(self, action: #selector(displayResume), for: .touchUpInside)
     }
   
-    let bubbleView = UIView().then{
-        $0.backgroundColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1)
+    let bubbleView = UIImageView().then{
+        $0.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         $0.layer.cornerRadius = 10
-        $0.layer.masksToBounds = true
+        let cock = UIImageView(image: UIImage(named: "bubbleCock"))
+        $0.addSubview(cock)
+        cock.snp.makeConstraints{
+            $0.leading.equalToSuperview().offset(-10)
+            $0.centerY.equalToSuperview()
+        }
     }
     
     let bubbleLabel = UILabel().then{
@@ -191,7 +196,10 @@ class PloggingViewController: BaseViewController {
         configuration()
         setupView()
         setupLayout()
-        
+        mapView.register(
+        TrashAnnotationView.self,
+        forAnnotationViewWithReuseIdentifier:
+          MKMapViewDefaultAnnotationViewReuseIdentifier)
         self.interactor?.setupLocationService()
     }
     
@@ -215,7 +223,9 @@ class PloggingViewController: BaseViewController {
     
     @objc func trashButtonTapped(){
         //Todo: 핀 추가 및 이동되도록함
+        let annotation = TrashAnnotation(coordinate: mapView.centerCoordinate, title: "title", subtitle: "content")
         
+        mapView.addAnnotation(annotation)
     }
     
     @objc func myLocationButtonTapped(){
