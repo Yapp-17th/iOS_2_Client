@@ -30,6 +30,7 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
     lazy var ploggingImageView = PloggingImageView().then {
         $0.backgroundColor = .lightGray
         $0.layer.cornerRadius = 10
+        $0.clipsToBounds = true
     }
     lazy var dismissButton = UIButton().then {
         $0.setImage(UIImage(named: "share_dismiss"), for: .normal)

@@ -9,7 +9,10 @@
 import UIKit
 
 class PloggingImageView: UIImageView {
-    lazy var ploggingInfoView = PloggingInfoView()
+    lazy var ploggingInfoView = PloggingInfoView().then {
+        $0.layer.cornerRadius = 10
+        $0.clipsToBounds = true
+    }
     
     init() {
         super.init(frame: .zero)
