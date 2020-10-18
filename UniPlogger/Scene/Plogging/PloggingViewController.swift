@@ -144,15 +144,10 @@ class PloggingViewController: BaseViewController {
         $0.addTarget(self, action: #selector(trashButtonTapped), for: .touchUpInside)
     }
     
-    let mapView = MKMapView().then{
+    lazy var mapView = MKMapView().then{
         $0.showsUserLocation = true
-    }
-    
-    lazy var imagePicker = UIImagePickerController().then{
         $0.delegate = self
-        $0.sourceType = .camera
     }
-    
     // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -210,8 +205,8 @@ class PloggingViewController: BaseViewController {
     }
     
     @objc func trashButtonTapped(){
-        self.present(self.imagePicker, animated: true, completion: nil)
-
+        //Todo: 핀 추가 및 이동되도록함
+        
     }
     
     @objc func UpdateTimer() {
@@ -305,25 +300,13 @@ extension PloggingViewController: PloggingDisplayLogic{
         //handle error with its usecase
     }
 }
-
-extension PloggingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            // Your have pickedImage now, do your logic here
-            let newImage = CIImage(image: pickedImage)!
-            
-            let properties = newImage.properties[kCGImagePropertyGPSDictionary as String] as? [String: Any]
-            let imageData = pickedImage.jpegData(compressionQuality: 1)!
-            let options = [kCGImageSourceShouldCache as String: kCFBooleanFalse]
-            let source = CGImageSourceCreateWithData(imageData as CFData, nil)!
-            let imageProperties = CGImageSourceCopyPropertiesAtIndex(source, 0, options as CFDictionary)! as Dictionary
-            let gpsProperties = imageProperties[kCGImagePropertyGPSDictionary] as? [String : AnyObject]
-            print(gpsProperties)
+extension PloggingViewController: MKMapViewDelegate{
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+                let pin = mapView.view(for: annotation) as? MKPinAnnotationView ?? MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
+                pin.image = UIImage(named: "annotation_myLocation")
+                return pin
         }
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
+        return nil
     }
 }
