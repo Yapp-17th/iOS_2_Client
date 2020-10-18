@@ -18,6 +18,7 @@ extension PloggingViewController {
     func setupView() {
         self.view.addSubview(mapView)
         self.view.addSubview(trashButton)
+        self.view.addSubview(myLocationButton)
         self.view.addSubview(startBottomContainerView)
         self.view.addSubview(doingPauseBottomContainerView)
         startBottomContainerView.addSubview(startButton)
@@ -66,6 +67,13 @@ extension PloggingViewController {
             $0.trailing.equalTo(-17)
             $0.width.height.equalTo(50)
         }
+        
+        myLocationButton.snp.makeConstraints{
+            $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
+            $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
+            $0.width.height.equalTo(40)
+        }
+        
         startBottomContainerView.snp.makeConstraints{
             $0.leading.trailing.bottom.equalToSuperview()
         }
@@ -158,10 +166,13 @@ extension PloggingViewController {
             $0.bottom.equalTo(timeLabel.snp.top).offset(-3)
         }
         
+        
+        
         doingPauseBottomContainerView.isHidden = true
         
         stopButton.isHidden = true
         resumeButton.isHidden = true
+        
     }
     
     func updateView() {

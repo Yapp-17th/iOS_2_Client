@@ -144,6 +144,15 @@ class PloggingViewController: BaseViewController {
         $0.addTarget(self, action: #selector(trashButtonTapped), for: .touchUpInside)
     }
     
+    lazy var myLocationButton = UIButton().then{
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 20
+        $0.layer.masksToBounds = true
+        $0.addTarget(self, action: #selector(myLocationButtonTapped), for: .touchUpInside)
+    }
+    
+    var myLocationBottomPriority: ConstraintMakerFinalizable? = nil
+    
     lazy var mapView = MKMapView().then{
         $0.showsUserLocation = true
         $0.delegate = self
@@ -209,6 +218,10 @@ class PloggingViewController: BaseViewController {
         
     }
     
+    @objc func myLocationButtonTapped(){
+        mapView.setCenter(mapView.userLocation.coordinate, animated: true)
+    }
+    
     @objc func UpdateTimer() {
         seconds = seconds + 1
         if seconds == 60{
@@ -224,6 +237,13 @@ class PloggingViewController: BaseViewController {
         self.pauseButton.isHidden = false
         self.stopButton.isHidden = true
         self.resumeButton.isHidden = true
+        
+        self.myLocationButton.snp.remakeConstraints{
+            $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
+            $0.width.height.equalTo(40)
+            $0.bottom.equalTo(self.doingPauseBottomContainerView.snp.top).offset(-16)
+        }
+        
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
     }
     
@@ -269,6 +289,11 @@ extension PloggingViewController: PloggingDisplayLogic{
         timeLabel.text = "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
         self.startBottomContainerView.isHidden = false
         self.doingPauseBottomContainerView.isHidden = true
+        self.myLocationButton.snp.remakeConstraints{
+            $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
+            $0.width.height.equalTo(40)
+            $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
+        }
     }
     
     @objc func displayResume() {
