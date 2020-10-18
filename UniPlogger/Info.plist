@@ -7,9 +7,7 @@
 		<string>instagram</string>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>&quot;앨범에 접근하겠습니다.&quot;</string>
-	<key>NSCameraUsageDescription</key>
-	<string>&quot;카메라에 접근하겠습니다.&quot;</string>
+	<string>앨범에 접근하겠습니다.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>카메라 사용 권한 필요</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

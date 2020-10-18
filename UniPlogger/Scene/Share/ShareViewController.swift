@@ -99,7 +99,7 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
     }
     
     @objc func touchUpDismissButton() {
-        guard let imageForSave = ploggingImageView.image else { return }
+        guard let imageForSave = mergeViews() else { return }
         let photoManager = PhotoManager(albumName: "UniPlogger")
         photoManager.save(imageForSave) { (success, error) in
             if success {
@@ -115,7 +115,7 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
     }
     
     @objc func touchUpShareButton() {
-        guard let imageForShare = ploggingImageView.image else { return }
+        guard let imageForShare = mergeViews() else { return }
         let photoManager = PhotoManager(albumName: "UniPlogger")
         photoManager.save(imageForShare) { (success, error) in
             if success {
@@ -140,6 +140,13 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
         let confirmAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(confirmAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func mergeViews() -> UIImage? {
+        let outPutImageView = UIImageView()
+        let image = ploggingImageView.asImage()
+        outPutImageView.image = image
+        return outPutImageView.image
     }
 }
 
