@@ -9,40 +9,29 @@
 import Foundation
 
 struct QuestList {
-    private var questTable = [Quest.Category: [QuestModels.ViewModel.QuestViewModel]]()
-    private var sectionTable = [Int: Quest.Category]()
+    
+    typealias State = QuestState
+    
+    private var questList = [State: [Quest]]()
+    
+    init(quests: [Quest]) {
+        quests.forEach { questList[$0.state, default: []].append($0) }
+        
+    }
+    
+    func quests(for state: State) -> [Quest] {
+        return questList[state] ?? []
+    }
     
     func numberOfCategory() -> Int {
-        return questTable.count
+        return questList.count
     }
     
-    func numberOfQuestInSection(for section: Int) -> Int {
-        guard let category = sectionTable[section] else {
-            return 0
-        }
-        
-        return questTable[category]?.count ?? 0
+    mutating func append(_ quest: Quest) {
+        questList[quest.state, default: []].append(quest)
     }
     
-    func category(for section: Int) -> Quest.Category? {
-        return sectionTable[section]
-    }
-    
-    init(viewModel: QuestModels.ViewModel) {
-        questTable[.routine] = viewModel.routineQuestList
-        questTable[.training] = viewModel.trainingQuestList
-        
-        sectionTable[0] = .training
-        sectionTable[1] = .routine
-    }
-    
-    // MARK: For Subscript
-    
-    subscript(indexPath: IndexPath) -> QuestModels.ViewModel.QuestViewModel? {
-        guard let category = sectionTable[indexPath.section] else {
-            return nil
-        }
-
-        return questTable[category]?[indexPath.row] ?? nil
+    mutating func append(contentsOf quests: [Quest]) {
+        quests.forEach { questList[$0.state, default: []].append($0) }
     }
 }
