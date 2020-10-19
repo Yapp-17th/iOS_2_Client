@@ -18,12 +18,10 @@ enum QuestModels {
     }
     
     struct Response {
-        var state: QuestState
         var questList: [Quest]
     }
     
     struct ViewModel {
-        
         struct QuestViewModel {
             var title: String
             var category: Quest.Category
@@ -32,7 +30,30 @@ enum QuestModels {
             var accessoryImage: UIImage?
         }
         
-        var trainingQuestList: [QuestViewModel]
-        var routineQuestList: [QuestViewModel]
+        init() {
+            categoryOfSection[0] = .training
+            categoryOfSection[1] = .routine
+        }
+        
+        private var questList = [Quest.Category: [QuestViewModel]]()
+        private(set) var categoryOfSection = [Int: Quest.Category]()
+        
+        mutating func append(_ viewModel: QuestViewModel) {
+            questList[viewModel.category, default: []].append(viewModel)
+        }
+        
+        func numberOfSections() -> Int {
+            return categoryOfSection.count
+        }
+        
+        func numberOfQuest(in section: Int) -> Int {
+            guard 0..<categoryOfSection.count ~= section else { return 0 }
+            return questList[categoryOfSection[section]!]?.count ?? 0
+        }
+        
+        func quest(at indexPath: IndexPath) -> QuestViewModel? {
+            guard let section = categoryOfSection[indexPath.section] else { return nil }
+            return questList[section]?[indexPath.row]
+        }
     }
 }

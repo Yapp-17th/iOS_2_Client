@@ -64,7 +64,7 @@ class QuestViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var questList: QuestList?
+    private var questViewModel: QuestModels.ViewModel?
     private var interactor: QuestBusinessLogic?
     private var currentQuestState: QuestState = .todo {
         didSet {
@@ -142,25 +142,25 @@ class QuestViewController: UIViewController {
 
 extension QuestViewController: QuestDisplayLogic {
     func displayQuests(viewModel: QuestModels.ViewModel) {
-        self.questList = QuestList(viewModel: viewModel)
-        self.questTableView.reloadData()
+        questViewModel = viewModel
+        questTableView.reloadData()
     }
 }
 
 extension QuestViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return questList?.numberOfCategory() ?? 0
+        return questViewModel?.numberOfSections() ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return questList?.numberOfQuestInSection(for: section) ?? 0
+        return questViewModel?.numberOfQuest(in: section) ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: QuestTableViewCell.identifire, for: indexPath) as? QuestTableViewCell,
-              let questViewModel = questList?[indexPath]
+              let questViewModel = questViewModel?.quest(at: indexPath)
         else {
             return UITableViewCell()
         }
@@ -176,12 +176,12 @@ extension QuestViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let trainingQuestVC = TrainingQuestViewController()
-        navigationController?.pushViewController(trainingQuestVC, animated: true)
+//        let trainingQuestVC = TrainingQuestViewController()
+//        navigationController?.pushViewController(trainingQuestVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let category = questList?.category(for: indexPath.section) else { return 0 }
+        guard let category = questViewModel?.categoryOfSection[indexPath.section] else { return 0 }
         
         switch category {
             case .training: return Metric.Cell.trainingHeight
@@ -191,11 +191,14 @@ extension QuestViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let deleteAction = UIContextualAction(style: .destructive, title: "") { (action, view, completion) in
+        let deleteAction = UIContextualAction(style: .destructive, title: "") { [weak self] (action, view, completion) in
+            
             completion(true)
+            guard let self = self else { return }
+            self.interactor?.moveToNextStageAt(indexPath, state: self.currentQuestState)
         }
         
-        let quest = questList?[indexPath]
+        let quest = questViewModel?.quest(at: indexPath)
         deleteAction.image = quest?.accessoryImage
         deleteAction.backgroundColor = .white
         
