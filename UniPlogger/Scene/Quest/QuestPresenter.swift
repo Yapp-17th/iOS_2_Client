@@ -25,11 +25,10 @@ class QuestPresenter {
 extension QuestPresenter: QuestPresentationLogic {
     func presentQuestList(response: QuestModels.Response) {
         
-        var trainingQuestList = [QuestModels.ViewModel.QuestViewModel]()
-        var routineQuestList = [QuestModels.ViewModel.QuestViewModel]()
+        var viewModel = QuestModels.ViewModel()
         
         for quest in response.questList {
-            let viewModel = QuestModels.ViewModel.QuestViewModel(
+            let questVM = QuestModels.ViewModel.QuestViewModel(
                                 title: quest.title,
                                 category: quest.category,
                                 gradientLayer: questFactory.cellBackgroundLayer(for: quest.category),
@@ -38,15 +37,9 @@ extension QuestPresenter: QuestPresentationLogic {
                             )
             
             
-            switch viewModel.category {
-                case .training:
-                    trainingQuestList.append(viewModel)
-                case .routine:
-                    routineQuestList.append(viewModel)
-            }
+            viewModel.append(questVM)
         }
         
-        let viewModel = QuestModels.ViewModel(trainingQuestList: trainingQuestList, routineQuestList: routineQuestList)
         viewController.displayQuests(viewModel: viewModel)
     }
 }
