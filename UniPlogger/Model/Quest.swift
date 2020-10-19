@@ -20,3 +20,13 @@ struct Quest {
         case routine
     }
 }
+
+extension Quest: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func ==(lhs: Quest, rhs: Quest) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
