@@ -12,7 +12,7 @@ import Then
 
 protocol QuestDisplayLogic {
     func displayQuests(viewModel: QuestModels.ViewModel)
-    
+    func updateQuest(viewModel: QuestModels.ViewModel, at indexPath: IndexPath)
 }
 
 class QuestViewController: UIViewController {
@@ -68,7 +68,8 @@ class QuestViewController: UIViewController {
     private var interactor: QuestBusinessLogic?
     private var currentQuestState: QuestState = .todo {
         didSet {
-            fetchData()
+            // fetchData()
+            interactor?.change(state: currentQuestState)
         }
     }
     
@@ -140,6 +141,15 @@ class QuestViewController: UIViewController {
 }
 
 extension QuestViewController: QuestDisplayLogic {
+    func updateQuest(viewModel: QuestModels.ViewModel, at indexPath: IndexPath) {
+        
+        questViewModel = viewModel
+        
+        questTableView.beginUpdates()
+        questTableView.deleteRows(at: [indexPath], with: .fade)
+        questTableView.endUpdates()
+    }
+    
     func displayQuests(viewModel: QuestModels.ViewModel) {
         questViewModel = viewModel
         questTableView.reloadData()
