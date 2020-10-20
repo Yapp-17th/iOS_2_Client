@@ -14,8 +14,9 @@ class QuestTableViewCell: UITableViewCell {
 
     // MARK: - Views
     
-    var gradientBackgroundView = UIView().then {
+    var cellBackgroundView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.layer.cornerRadius = 22
     }
     
     var sproutBackgroundView = UIView().then {
@@ -25,8 +26,7 @@ class QuestTableViewCell: UITableViewCell {
     
     var sproutImageView = UIImageView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = .white
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleToFill
     }
     
     var questLabel = UILabel().then {
@@ -36,42 +36,30 @@ class QuestTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    var gradientLayer: CAGradientLayer?
-    
     // MARK: - Methods
     
     // MARK: - Initializer
     
     func configure(viewModel: QuestModels.ViewModel.QuestViewModel) {
         questLabel.text = viewModel.title
-        gradientLayer = viewModel.gradientLayer
-        
+
         sproutImageView.image = viewModel.cellImageImage
         sproutBackgroundView.layer.cornerRadius = 26
-    }
-    
-    override func layoutSublayers(of layer: CALayer) {
-        super.layoutSublayers(of: layer)
-        
-        if let gradientLayer = gradientLayer {
-            gradientLayer.frame = gradientBackgroundView.bounds
-            gradientBackgroundView.layer.cornerRadius = 22
-            gradientBackgroundView.layer.insertSublayer(gradientLayer, at: 0)
-            gradientBackgroundView.backgroundColor = .orange
-        }
+        cellBackgroundView.backgroundColor = UIColor(named: viewModel.backgroundColor)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         selectionStyle = .none
+        backgroundColor = .clear
         
-        addSubview(gradientBackgroundView)
-        gradientBackgroundView.addSubview(sproutBackgroundView)
+        addSubview(cellBackgroundView)
+        cellBackgroundView.addSubview(sproutBackgroundView)
         sproutBackgroundView.addSubview(sproutImageView)
-        gradientBackgroundView.addSubview(questLabel)
+        cellBackgroundView.addSubview(questLabel)
         
-        gradientBackgroundView.snp.makeConstraints {
+        cellBackgroundView.snp.makeConstraints {
             $0.top.equalTo(snp.top).offset(10)
             $0.leading.equalTo(snp.leading)
             $0.trailing.equalTo(snp.trailing)
@@ -79,8 +67,8 @@ class QuestTableViewCell: UITableViewCell {
         }
         
         sproutBackgroundView.snp.makeConstraints {
-            $0.centerY.equalTo(gradientBackgroundView.snp.centerY)
-            $0.leading.equalTo(gradientBackgroundView.snp.leading).offset(18)
+            $0.centerY.equalTo(cellBackgroundView.snp.centerY)
+            $0.leading.equalTo(cellBackgroundView.snp.leading).offset(18)
             $0.width.equalTo(52)
             $0.height.equalTo(52)
         }

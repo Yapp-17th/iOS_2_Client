@@ -12,8 +12,9 @@ import SnapKit
 class NavigationTabsView<T>: UIStackView {
     
     private var items = [T]()
-    private var activeTextColor: UIColor?
-    private var defaultTextColor: UIColor?
+    private(set) var activeTextColor: UIColor?
+    private(set) var defaultTextColor: UIColor?
+    private(set) var buttonTintColor: UIColor?
     
     var tapHandler: ((T) -> Void)?
     var selectedIndex: Int? {
@@ -25,20 +26,21 @@ class NavigationTabsView<T>: UIStackView {
     }
     
     
-    init(items: [T], color: UIColor) {
+    init(items: [T], tintColor: UIColor?) {
         self.items = items
+        self.buttonTintColor = tintColor
         super.init(frame: .zero)
         for (idx, item) in items.enumerated() {
             let button = UIButton()
             button.setTitle(String(describing: item), for: .normal)
-            button.backgroundColor = color
             addArrangedSubview(button)
             button.tag = idx
+            button.layer.cornerRadius = 21
             button.addTarget(self, action: #selector(didTapButton(_:)), for: .touchUpInside)
         }
     }
     
-    func configure(activeTextColor: UIColor, defaultTextColor: UIColor) {
+    func configure(activeTextColor: UIColor?, defaultTextColor: UIColor?) {
         self.activeTextColor = activeTextColor
         self.defaultTextColor =  defaultTextColor
     }
@@ -47,8 +49,12 @@ class NavigationTabsView<T>: UIStackView {
         subviews.compactMap { $0 as? UIButton }.enumerated().forEach { (idx, button) in
             if idx == selectedIndex {
                 button.setTitleColor(activeTextColor, for: .normal)
+                button.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
+                button.backgroundColor = buttonTintColor
             } else {
                 button.setTitleColor(defaultTextColor, for: .normal)
+                button.titleLabel?.font = .roboto(ofSize: 16, weight: .regular)
+                button.backgroundColor = .clear
             }
         }
     }

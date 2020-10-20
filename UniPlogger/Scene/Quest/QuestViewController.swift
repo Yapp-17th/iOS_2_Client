@@ -45,20 +45,20 @@ class QuestViewController: UIViewController {
         $0.text = "챌린지"
     }
     
-    private var navigationTabsView = NavigationTabsView<QuestState>(items: [.todo, .doing, .done], color: "5F74F4".hexToColor()).then {
+    private var navigationTabsView = NavigationTabsView<QuestState>(items: [.todo, .doing, .done], tintColor: UIColor(named: "questNavigationTabTint")).then {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.layer.cornerRadius = 21
         $0.layer.masksToBounds = true
         $0.spacing = 1
         $0.axis = .horizontal
         $0.distribution = .fillEqually
-        $0.configure(activeTextColor: .white, defaultTextColor: .lightGray)
+        $0.configure(activeTextColor: .white, defaultTextColor: UIColor(named: "questNavigationTabText"))
         $0.selectedIndex = 0
     }
     
     private var questTableView = UITableView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.separatorStyle = .none
+        $0.backgroundColor = .clear
         $0.showsVerticalScrollIndicator = false
     }
     
@@ -117,13 +117,12 @@ class QuestViewController: UIViewController {
     }
     
     private func setupViews() {
+        title = "퀘스트"
         view.addSubview(navigationTabsView)
         view.addSubview(questTableView)
     }
     
     private func setupLayout() {
-        title = "퀘스트"
-        
         navigationTabsView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Metric.verticalSpacing)
             $0.leading.equalTo(view.snp.leading).offset(Metric.viewLeading)

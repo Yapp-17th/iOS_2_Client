@@ -20,22 +20,20 @@ class QuestPresenter {
         self.viewController = viewController
         self.questFactory = questFactory
     }
-}
 
-extension QuestPresenter: QuestPresentationLogic {
-    func presentQuestList(response: QuestModels.Response) {
+    private func generateViewModel(for quest: Quest) -> QuestModels.ViewModel.QuestViewModel {
         
-        var viewModel = QuestModels.ViewModel()
-        
-        for quest in response.questList {
             let questVM = QuestModels.ViewModel.QuestViewModel(
                                 title: quest.title,
                                 category: quest.category,
-                                gradientLayer: questFactory.cellBackgroundLayer(for: quest.category),
                                 cellImageImage: questFactory.cellImage(for: quest.state),
-                                accessoryImage: questFactory.accessoryImage(for: quest.state)
+                            accessoryImage: questFactory.accessoryImage(for: quest.state),
+                            backgroundColor: questFactory.cellBackgroundColor(for: quest.category)
                             )
             
+        return questVM
+    }
+}
             
             viewModel.append(questVM)
         }

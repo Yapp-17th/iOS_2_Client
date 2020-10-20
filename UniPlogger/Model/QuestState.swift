@@ -18,10 +18,10 @@ enum QuestState {
 extension QuestState: CustomStringConvertible {
     var description: String {
         switch self {
-            case .todo: return "To Do"
-            case .doing: return "Doing"
-            case .done: return "Done"
-            case .abandon: return "Abandon"
+            case .todo: return "준비"
+            case .doing: return "진행"
+            case .done: return "완료"
+            case .abandon: return "포기"
         }
     }
 }

@@ -25,9 +25,9 @@ enum QuestModels {
         struct QuestViewModel {
             var title: String
             var category: Quest.Category
-            var gradientLayer: CAGradientLayer?
             var cellImageImage: UIImage?
             var accessoryImage: UIImage?
+            var backgroundColor: String
         }
         
         init() {
