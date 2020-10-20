@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "todo_seed_icon.png",
+      "filename" : "ic_todo_seed.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "todo_seed_icon@2x.png",
+      "filename" : "ic_todo_seed@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "todo_seed_icon@3x.png",
+      "filename" : "ic_todo_seed@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
