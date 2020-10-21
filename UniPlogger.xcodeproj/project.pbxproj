@@ -46,6 +46,20 @@
 		AAB887AF2524600A000A9D58 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAB887AE2524600A000A9D58 /* Roboto-ThinItalic.ttf */; };
 		AAB887B12524603E000A9D58 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB887B02524603E000A9D58 /* UIFont+Extensions.swift */; };
 		AAD8DE8E252821280000B017 /* PloggingViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD8DE8D252821280000B017 /* PloggingViewController+UI.swift */; };
+		AADAD5A52540941500EEE4A4 /* PloggingRecordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAD59F2540941500EEE4A4 /* PloggingRecordPresenter.swift */; };
+		AADAD5A62540941500EEE4A4 /* PloggingRecordWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAD5A02540941500EEE4A4 /* PloggingRecordWorker.swift */; };
+		AADAD5A72540941500EEE4A4 /* PloggingRecordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAD5A12540941500EEE4A4 /* PloggingRecordRouter.swift */; };
+		AADAD5A82540941500EEE4A4 /* PloggingRecordModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAD5A22540941500EEE4A4 /* PloggingRecordModels.swift */; };
+		AADAD5A92540941500EEE4A4 /* PloggingRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAD5A32540941500EEE4A4 /* PloggingRecordViewController.swift */; };
+		AADAD5AA2540941500EEE4A4 /* PloggingRecordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAD5A42540941500EEE4A4 /* PloggingRecordInteractor.swift */; };
+		AADAD5AD2540943200EEE4A4 /* PloggingRecordViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAD5AC2540943200EEE4A4 /* PloggingRecordViewController+UI.swift */; };
+		AADAD5B6254095DC00EEE4A4 /* NotoSansCJKkr-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = AADAD5B5254095D500EEE4A4 /* NotoSansCJKkr-Thin.otf */; };
+		AADAD5B7254095DC00EEE4A4 /* NotoSansCJKkr-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AADAD5B3254095D500EEE4A4 /* NotoSansCJKkr-Light.otf */; };
+		AADAD5B8254095DC00EEE4A4 /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AADAD5AF254095D400EEE4A4 /* NotoSansCJKkr-Medium.otf */; };
+		AADAD5B9254095DC00EEE4A4 /* NotoSansCJKkr-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = AADAD5B1254095D400EEE4A4 /* NotoSansCJKkr-Black.otf */; };
+		AADAD5BA254095DC00EEE4A4 /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AADAD5B4254095D500EEE4A4 /* NotoSansCJKkr-Regular.otf */; };
+		AADAD5BB254095DC00EEE4A4 /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AADAD5B2254095D400EEE4A4 /* NotoSansCJKkr-Bold.otf */; };
+		AADAD5BC254095DC00EEE4A4 /* NotoSansCJKkr-DemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = AADAD5B0254095D400EEE4A4 /* NotoSansCJKkr-DemiLight.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +105,20 @@
 		AAB887AE2524600A000A9D58 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		AAB887B02524603E000A9D58 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		AAD8DE8D252821280000B017 /* PloggingViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PloggingViewController+UI.swift"; sourceTree = "<group>"; };
+		AADAD59F2540941500EEE4A4 /* PloggingRecordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingRecordPresenter.swift; sourceTree = "<group>"; };
+		AADAD5A02540941500EEE4A4 /* PloggingRecordWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingRecordWorker.swift; sourceTree = "<group>"; };
+		AADAD5A12540941500EEE4A4 /* PloggingRecordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingRecordRouter.swift; sourceTree = "<group>"; };
+		AADAD5A22540941500EEE4A4 /* PloggingRecordModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingRecordModels.swift; sourceTree = "<group>"; };
+		AADAD5A32540941500EEE4A4 /* PloggingRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingRecordViewController.swift; sourceTree = "<group>"; };
+		AADAD5A42540941500EEE4A4 /* PloggingRecordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingRecordInteractor.swift; sourceTree = "<group>"; };
+		AADAD5AC2540943200EEE4A4 /* PloggingRecordViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PloggingRecordViewController+UI.swift"; sourceTree = "<group>"; };
+		AADAD5AF254095D400EEE4A4 /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
+		AADAD5B0254095D400EEE4A4 /* NotoSansCJKkr-DemiLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-DemiLight.otf"; sourceTree = "<group>"; };
+		AADAD5B1254095D400EEE4A4 /* NotoSansCJKkr-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Black.otf"; sourceTree = "<group>"; };
+		AADAD5B2254095D400EEE4A4 /* NotoSansCJKkr-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Bold.otf"; sourceTree = "<group>"; };
+		AADAD5B3254095D500EEE4A4 /* NotoSansCJKkr-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Light.otf"; sourceTree = "<group>"; };
+		AADAD5B4254095D500EEE4A4 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
+		AADAD5B5254095D500EEE4A4 /* NotoSansCJKkr-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Thin.otf"; sourceTree = "<group>"; };
 		E4E470A391887A23D6AF25DD /* Pods_UniPlogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UniPlogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -174,6 +202,7 @@
 		AAB3B4E52520A76E00F0311A /* Plogging */ = {
 			isa = PBXGroup;
 			children = (
+				AADAD59E254093FF00EEE4A4 /* Record */,
 				AA2EA3A9253C233200F1413D /* Annotation */,
 				AAB3B4FA2520B6D900F0311A /* PloggingPresenter.swift */,
 				AAB3B4FB2520B6D900F0311A /* PloggingWorker.swift */,
@@ -290,6 +319,13 @@
 		AAB8879725245F5C000A9D58 /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				AADAD5B1254095D400EEE4A4 /* NotoSansCJKkr-Black.otf */,
+				AADAD5B2254095D400EEE4A4 /* NotoSansCJKkr-Bold.otf */,
+				AADAD5B0254095D400EEE4A4 /* NotoSansCJKkr-DemiLight.otf */,
+				AADAD5B3254095D500EEE4A4 /* NotoSansCJKkr-Light.otf */,
+				AADAD5AF254095D400EEE4A4 /* NotoSansCJKkr-Medium.otf */,
+				AADAD5B4254095D500EEE4A4 /* NotoSansCJKkr-Regular.otf */,
+				AADAD5B5254095D500EEE4A4 /* NotoSansCJKkr-Thin.otf */,
 				AAB8879925245F65000A9D58 /* Roboto-Black.ttf */,
 				AAB8879E25245F65000A9D58 /* Roboto-BlackItalic.ttf */,
 				AAB8879F25245F65000A9D58 /* Roboto-Bold.ttf */,
@@ -304,6 +340,20 @@
 				AAB8879825245F65000A9D58 /* Roboto-Thin.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		AADAD59E254093FF00EEE4A4 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				AADAD59F2540941500EEE4A4 /* PloggingRecordPresenter.swift */,
+				AADAD5A02540941500EEE4A4 /* PloggingRecordWorker.swift */,
+				AADAD5A12540941500EEE4A4 /* PloggingRecordRouter.swift */,
+				AADAD5A22540941500EEE4A4 /* PloggingRecordModels.swift */,
+				AADAD5A32540941500EEE4A4 /* PloggingRecordViewController.swift */,
+				AADAD5AC2540943200EEE4A4 /* PloggingRecordViewController+UI.swift */,
+				AADAD5A42540941500EEE4A4 /* PloggingRecordInteractor.swift */,
+			);
+			path = Record;
 			sourceTree = "<group>";
 		};
 		E2D00847CB39D6B3C3C2760D /* Pods */ = {
@@ -383,18 +433,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AADAD5B6254095DC00EEE4A4 /* NotoSansCJKkr-Thin.otf in Resources */,
+				AADAD5BB254095DC00EEE4A4 /* NotoSansCJKkr-Bold.otf in Resources */,
 				AAB3B4D72520A31200F0311A /* LaunchScreen.storyboard in Resources */,
+				AADAD5B9254095DC00EEE4A4 /* NotoSansCJKkr-Black.otf in Resources */,
 				AAB887AC25245F65000A9D58 /* Roboto-Italic.ttf in Resources */,
 				AAB3B4D42520A31200F0311A /* Assets.xcassets in Resources */,
 				AAB887AA25245F65000A9D58 /* Roboto-Bold.ttf in Resources */,
 				AAB887A525245F65000A9D58 /* Roboto-LightItalic.ttf in Resources */,
 				AAB887A325245F65000A9D58 /* Roboto-Thin.ttf in Resources */,
+				AADAD5BA254095DC00EEE4A4 /* NotoSansCJKkr-Regular.otf in Resources */,
 				AAB887A925245F65000A9D58 /* Roboto-BlackItalic.ttf in Resources */,
 				AAB887A625245F65000A9D58 /* Roboto-MediumItalic.ttf in Resources */,
 				AAB887A725245F65000A9D58 /* Roboto-BoldItalic.ttf in Resources */,
 				AAB887AB25245F65000A9D58 /* Roboto-Medium.ttf in Resources */,
+				AADAD5BC254095DC00EEE4A4 /* NotoSansCJKkr-DemiLight.otf in Resources */,
 				AAB887AF2524600A000A9D58 /* Roboto-ThinItalic.ttf in Resources */,
 				AAB887AD25245F65000A9D58 /* Roboto-Regular.ttf in Resources */,
+				AADAD5B7254095DC00EEE4A4 /* NotoSansCJKkr-Light.otf in Resources */,
+				AADAD5B8254095DC00EEE4A4 /* NotoSansCJKkr-Medium.otf in Resources */,
 				AAB887A825245F65000A9D58 /* Roboto-Light.ttf in Resources */,
 				AAB887A425245F65000A9D58 /* Roboto-Black.ttf in Resources */,
 			);
@@ -450,17 +507,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA1AC8C7252E1C7D0022ACE5 /* CLLocationCoordinated2D+Extensions.swift in Sources */,
+				AADAD5A72540941500EEE4A4 /* PloggingRecordRouter.swift in Sources */,
 				AA1AC8C5252E1C120022ACE5 /* UserDefault+Extensions.swift in Sources */,
+				AADAD5A52540941500EEE4A4 /* PloggingRecordPresenter.swift in Sources */,
 				AAB887932524524C000A9D58 /* StartCountingViewController.swift in Sources */,
 				AA2EA3AB253C234300F1413D /* TrashAnnotationView.swift in Sources */,
 				AAD8DE8E252821280000B017 /* PloggingViewController+UI.swift in Sources */,
+				AADAD5A92540941500EEE4A4 /* PloggingRecordViewController.swift in Sources */,
+				AADAD5AA2540941500EEE4A4 /* PloggingRecordInteractor.swift in Sources */,
 				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
+				AADAD5AD2540943200EEE4A4 /* PloggingRecordViewController+UI.swift in Sources */,
 				AAB3B5002520B6D900F0311A /* PloggingPresenter.swift in Sources */,
 				AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
 				AAB8879525245320000A9D58 /* GradientView.swift in Sources */,
 				AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */,
 				AAB3B50A2520D34D00F0311A /* BaseViewController.swift in Sources */,
+				AADAD5A62540941500EEE4A4 /* PloggingRecordWorker.swift in Sources */,
+				AADAD5A82540941500EEE4A4 /* PloggingRecordModels.swift in Sources */,
 				AAB3B5022520B6D900F0311A /* PloggingRouter.swift in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
 				AAB3B5072520D16800F0311A /* UIColor+Extensions.swift in Sources */,
