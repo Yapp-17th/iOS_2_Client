@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		101A5C8A5DA8441CFEF982F0 /* Pods_UniPlogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E470A391887A23D6AF25DD /* Pods_UniPlogger.framework */; };
+		1215DCB6253C626800C5D9BE /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215DCB5253C626800C5D9BE /* CameraViewController.swift */; };
 		4C89B06F2525D2BB0007EBED /* TrainingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B06E2525D2BB0007EBED /* TrainingTableViewCell.swift */; };
 		4C89B0722525D2CB0007EBED /* RoutineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B0712525D2CB0007EBED /* RoutineTableViewCell.swift */; };
 		4CB979C42524E5BC00498E81 /* NavigationTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB979C32524E5BC00498E81 /* NavigationTabsView.swift */; };
@@ -67,6 +68,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1215DCB5253C626800C5D9BE /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		12330CE7D885C1CB00C8E874 /* Pods-UniPlogger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.release.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.release.xcconfig"; sourceTree = "<group>"; };
 		4C89B06E2525D2BB0007EBED /* TrainingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingTableViewCell.swift; sourceTree = "<group>"; };
 		4C89B0712525D2CB0007EBED /* RoutineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTableViewCell.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 		AA7F55122533568C001C4012 /* Share */ = {
 			isa = PBXGroup;
 			children = (
+				1215DCB5253C626800C5D9BE /* CameraViewController.swift */,
 				AA7F55132533568C001C4012 /* SharePresenter.swift */,
 				AA7F55142533568C001C4012 /* ShareInteractor.swift */,
 				AA7F55152533568C001C4012 /* ShareViewController.swift */,
@@ -539,6 +542,7 @@
 				AA7F54E12532C176001C4012 /* UserDefault+Extensions.swift in Sources */,
 				4CC9C7DA25232128004D873D /* Quest.swift in Sources */,
 				AA7F551D2533568D001C4012 /* SharePresenter.swift in Sources */,
+				1215DCB6253C626800C5D9BE /* CameraViewController.swift in Sources */,
 				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
 				AA7F551F2533568D001C4012 /* ShareViewController.swift in Sources */,
 				AA7F54EC2532C1A6001C4012 /* StartCountingViewController.swift in Sources */,

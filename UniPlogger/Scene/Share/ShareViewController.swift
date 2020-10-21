@@ -24,13 +24,14 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
     var interactor: ShareBusinessLogic?
     var router: (NSObjectProtocol & ShareRoutingLogic & ShareDataPassing)?
     
+    var imageForShare: UIImage?
+    
     lazy var backgroundImageView = UIImageView().then {
         $0.image = UIImage(named: "mainBackground")
     }
     lazy var ploggingImageView = PloggingImageView().then {
         $0.backgroundColor = .lightGray
         $0.layer.cornerRadius = 10
-        $0.clipsToBounds = true
     }
     lazy var dismissButton = UIButton().then {
         $0.setImage(UIImage(named: "share_dismiss"), for: .normal)
@@ -80,27 +81,19 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
         setUpView()
         setUpLayout()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.imageForShare = mergeViews()
+        ploggingImageView.clipsToBounds = true
+    }
 
     func displaySomething(viewModel: Share.Something.ViewModel) {
         
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let view = touches.first?.view else { return }
-        guard view == ploggingImageView else { return }
-        imageViewTapped()
-    }
-    
-    func imageViewTapped() {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.allowsEditing = true
-        picker.sourceType = UIImagePickerController.SourceType.camera
-        self.present(picker, animated: true, completion: nil)
-    }
-    
     @objc func touchUpDismissButton() {
-        guard let imageForSave = mergeViews() else { return }
+        guard let imageForSave = self.imageForShare else { return }
         let photoManager = PhotoManager(albumName: "UniPlogger")
         photoManager.save(imageForSave) { (success, error) in
             if success {
@@ -116,7 +109,7 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
     }
     
     @objc func touchUpShareButton() {
-        guard let imageForShare = mergeViews() else { return }
+        guard let imageForShare = self.imageForShare else { return }
         let photoManager = PhotoManager(albumName: "UniPlogger")
         photoManager.save(imageForShare) { (success, error) in
             if success {

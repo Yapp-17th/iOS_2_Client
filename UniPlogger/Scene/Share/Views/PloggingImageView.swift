@@ -11,7 +11,6 @@ import UIKit
 class PloggingImageView: UIImageView {
     lazy var ploggingInfoView = PloggingInfoView().then {
         $0.layer.cornerRadius = 10
-        $0.clipsToBounds = true
     }
     
     init() {
@@ -25,10 +24,6 @@ class PloggingImageView: UIImageView {
         super.init(frame: .zero)
         setUpView()
         setUpLayout()
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
     }
 
     func setUpView() {
