@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "White main background 02.png",
+      "filename" : "Dark - main log color-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,12 +12,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "Dark main background 02.png",
+      "filename" : "Dark - main log color-2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "White main background 02@2x.png",
+      "filename" : "Dark - main log color@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -28,12 +28,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "Dark main background 02@2x.png",
+      "filename" : "Dark - main log color@2x-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "White main background 02@3x.png",
+      "filename" : "Dark - main log color@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -44,7 +44,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "Dark main background 02@3x.png",
+      "filename" : "Dark - main log color@3x-1.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
