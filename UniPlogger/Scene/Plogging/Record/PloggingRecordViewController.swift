@@ -67,6 +67,7 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     }
     let titleLabel = UILabel().then{
         $0.text = "오늘 무엇을 플로깅했나요?"
+        $0.textColor = .black
         $0.font = .notoSans(ofSize: 22, weight: .bold)
         $0.textAlignment = .center
     }

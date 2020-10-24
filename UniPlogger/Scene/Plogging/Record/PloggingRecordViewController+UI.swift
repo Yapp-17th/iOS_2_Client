@@ -102,6 +102,7 @@ extension PloggingRecordViewController {
     
     titleLabel.snp.makeConstraints{
         $0.top.equalTo(recordContainer.snp.bottom).offset(44)
+        $0.height.equalTo(30)
         $0.centerX.equalToSuperview()
     }
     

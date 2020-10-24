@@ -304,6 +304,7 @@ extension PloggingViewController: PloggingDisplayLogic{
             $0.width.height.equalTo(40)
             $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
         }
+        self.router?.routeToPloggingRecord()
     }
     
     @objc func displayResume() {
