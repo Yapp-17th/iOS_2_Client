@@ -30,7 +30,41 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     }
     
     let recordContainer = UIView()
+    let distanceContainer = UIView().then{
+        $0.backgroundColor = .clear
+    }
     
+    let distanceImageView = UIImageView().then{
+        $0.image = UIImage(named: "ic_plogging_distance")?.withRenderingMode(.alwaysTemplate)
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    let distanceLabel = UILabel().then{
+        $0.font = .roboto(ofSize: 30, weight: .bold)
+        $0.text = "0.00"
+        $0.textColor = .black
+    }
+    
+    let distanceUnitLabel = UILabel().then{
+        $0.font = .roboto(ofSize: 20, weight: .bold)
+        $0.text = "km"
+        $0.textColor = .white
+    }
+    
+    let timeContainer = UIView().then{
+        $0.backgroundColor = .clear
+    }
+    
+    let timeImageView = UIImageView().then{
+        $0.image = UIImage(named: "ic_plogging_time")?.withRenderingMode(.alwaysTemplate)
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    let timeLabel = UILabel().then{
+        $0.font = .roboto(ofSize: 30, weight: .bold)
+        $0.text = "00:00"
+        $0.textColor = .white
+    }
     let titleLabel = UILabel().then{
         $0.text = "오늘 무엇을 플로깅했나요?"
         $0.font = .notoSans(ofSize: 22, weight: .bold)
@@ -38,11 +72,31 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     }
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()).then {
+        $0.backgroundColor = .clear
         $0.dataSource = self
         $0.delegate = self
+        $0.allowsMultipleSelection = true
+        $0.register(PloggingRecordCollectionViewCell.self, forCellWithReuseIdentifier: "PloggingRecordCollectionViewCell")
     }
     
+    let nextButtonView = UIView().then{
+        $0.backgroundColor = .blue
+        $0.layer.cornerRadius = 26
+        $0.layer.masksToBounds = true
+    }
+    lazy var nextButton = UIButton()
     
+    var itemList = [
+        "플라스틱",
+        "담배",
+        "캔",
+        "비닐",
+        "일반쓰레기",
+        "유리",
+        "스트로폼",
+        "빨대",
+        "종이"
+    ]
     
     // MARK: Object lifecycle
     
@@ -98,14 +152,23 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
 
 extension PloggingRecordViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9
+        return itemList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        .init()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:  "PloggingRecordCollectionViewCell", for: indexPath) as? PloggingRecordCollectionViewCell else { fatalError() }
+        let item = self.itemList[indexPath.item]
+        cell.viewModel = .init(title: item, isSelected: cell.isSelected)
+        return cell
     }
 }
 
 extension PloggingRecordViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .init(width: 96, height: 96)
+    }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 26
+    }
 }

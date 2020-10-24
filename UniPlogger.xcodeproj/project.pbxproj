@@ -60,6 +60,7 @@
 		AADAD5BA254095DC00EEE4A4 /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AADAD5B4254095D500EEE4A4 /* NotoSansCJKkr-Regular.otf */; };
 		AADAD5BB254095DC00EEE4A4 /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AADAD5B2254095D400EEE4A4 /* NotoSansCJKkr-Bold.otf */; };
 		AADAD5BC254095DC00EEE4A4 /* NotoSansCJKkr-DemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = AADAD5B0254095D400EEE4A4 /* NotoSansCJKkr-DemiLight.otf */; };
+		AADAD5C0254097CC00EEE4A4 /* PloggingRecordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADAD5BF254097CC00EEE4A4 /* PloggingRecordCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +120,7 @@
 		AADAD5B3254095D500EEE4A4 /* NotoSansCJKkr-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Light.otf"; sourceTree = "<group>"; };
 		AADAD5B4254095D500EEE4A4 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
 		AADAD5B5254095D500EEE4A4 /* NotoSansCJKkr-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Thin.otf"; sourceTree = "<group>"; };
+		AADAD5BF254097CC00EEE4A4 /* PloggingRecordCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingRecordCollectionViewCell.swift; sourceTree = "<group>"; };
 		E4E470A391887A23D6AF25DD /* Pods_UniPlogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UniPlogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -190,11 +192,7 @@
 		AAB3B4E42520A76500F0311A /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				AAB3B4F22520B4E500F0311A /* Challenge */,
-				AAB3B4F32520B4EE00F0311A /* Quest */,
 				AAB3B4E52520A76E00F0311A /* Plogging */,
-				AAB3B4F42520B4FF00F0311A /* Log */,
-				AAB3B4F52520B52600F0311A /* My */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -257,34 +255,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		AAB3B4F22520B4E500F0311A /* Challenge */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Challenge;
-			sourceTree = "<group>";
-		};
-		AAB3B4F32520B4EE00F0311A /* Quest */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Quest;
-			sourceTree = "<group>";
-		};
-		AAB3B4F42520B4FF00F0311A /* Log */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Log;
-			sourceTree = "<group>";
-		};
-		AAB3B4F52520B52600F0311A /* My */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = My;
-			sourceTree = "<group>";
-		};
 		AAB3B4F62520B55700F0311A /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +315,7 @@
 		AADAD59E254093FF00EEE4A4 /* Record */ = {
 			isa = PBXGroup;
 			children = (
+				AADAD5BE254097BE00EEE4A4 /* Views */,
 				AADAD59F2540941500EEE4A4 /* PloggingRecordPresenter.swift */,
 				AADAD5A02540941500EEE4A4 /* PloggingRecordWorker.swift */,
 				AADAD5A12540941500EEE4A4 /* PloggingRecordRouter.swift */,
@@ -354,6 +325,14 @@
 				AADAD5A42540941500EEE4A4 /* PloggingRecordInteractor.swift */,
 			);
 			path = Record;
+			sourceTree = "<group>";
+		};
+		AADAD5BE254097BE00EEE4A4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AADAD5BF254097CC00EEE4A4 /* PloggingRecordCollectionViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E2D00847CB39D6B3C3C2760D /* Pods */ = {
@@ -536,6 +515,7 @@
 				AAB3B4F92520B5B600F0311A /* Common.swift in Sources */,
 				AA2EA3AF253C23E100F1413D /* TrashAnnotation.swift in Sources */,
 				AAB887B12524603E000A9D58 /* UIFont+Extensions.swift in Sources */,
+				AADAD5C0254097CC00EEE4A4 /* PloggingRecordCollectionViewCell.swift in Sources */,
 				AAB3B5012520B6D900F0311A /* PloggingWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
