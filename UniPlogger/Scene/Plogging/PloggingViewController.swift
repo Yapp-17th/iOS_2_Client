@@ -123,10 +123,15 @@ class PloggingViewController: BaseViewController {
         $0.addTarget(self, action: #selector(displayResume), for: .touchUpInside)
     }
   
-    let bubbleView = UIView().then{
-        $0.backgroundColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1)
+    let bubbleView = UIImageView().then{
+        $0.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         $0.layer.cornerRadius = 10
-        $0.layer.masksToBounds = true
+        let cock = UIImageView(image: UIImage(named: "bubbleCock"))
+        $0.addSubview(cock)
+        cock.snp.makeConstraints{
+            $0.leading.equalToSuperview().offset(-10)
+            $0.centerY.equalToSuperview()
+        }
     }
     
     let bubbleLabel = UILabel().then{
@@ -144,15 +149,19 @@ class PloggingViewController: BaseViewController {
         $0.addTarget(self, action: #selector(trashButtonTapped), for: .touchUpInside)
     }
     
-    let mapView = MKMapView().then{
+    lazy var myLocationButton = UIButton().then{
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 20
+        $0.layer.masksToBounds = true
+        $0.addTarget(self, action: #selector(myLocationButtonTapped), for: .touchUpInside)
+    }
+    
+    var myLocationBottomPriority: ConstraintMakerFinalizable? = nil
+    
+    lazy var mapView = MKMapView().then{
         $0.showsUserLocation = true
-    }
-    
-    lazy var imagePicker = UIImagePickerController().then{
         $0.delegate = self
-        $0.sourceType = .camera
     }
-    
     // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -187,7 +196,10 @@ class PloggingViewController: BaseViewController {
         configuration()
         setupView()
         setupLayout()
-        
+        mapView.register(
+        TrashAnnotationView.self,
+        forAnnotationViewWithReuseIdentifier:
+          MKMapViewDefaultAnnotationViewReuseIdentifier)
         self.interactor?.setupLocationService()
     }
     
@@ -210,8 +222,14 @@ class PloggingViewController: BaseViewController {
     }
     
     @objc func trashButtonTapped(){
-        self.present(self.imagePicker, animated: true, completion: nil)
-
+        //Todo: 핀 추가 및 이동되도록함
+        let annotation = TrashAnnotation(coordinate: mapView.centerCoordinate, title: "title", subtitle: "content")
+        
+        mapView.addAnnotation(annotation)
+    }
+    
+    @objc func myLocationButtonTapped(){
+        mapView.setCenter(mapView.userLocation.coordinate, animated: true)
     }
     
     @objc func UpdateTimer() {
@@ -229,6 +247,13 @@ class PloggingViewController: BaseViewController {
         self.pauseButton.isHidden = false
         self.stopButton.isHidden = true
         self.resumeButton.isHidden = true
+        
+        self.myLocationButton.snp.remakeConstraints{
+            $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
+            $0.width.height.equalTo(40)
+            $0.bottom.equalTo(self.doingPauseBottomContainerView.snp.top).offset(-16)
+        }
+        
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
     }
     
@@ -274,6 +299,12 @@ extension PloggingViewController: PloggingDisplayLogic{
         timeLabel.text = "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
         self.startBottomContainerView.isHidden = false
         self.doingPauseBottomContainerView.isHidden = true
+        self.myLocationButton.snp.remakeConstraints{
+            $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
+            $0.width.height.equalTo(40)
+            $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
+        }
+        self.router?.routeToPloggingRecord()
     }
     
     @objc func displayResume() {
@@ -305,25 +336,13 @@ extension PloggingViewController: PloggingDisplayLogic{
         //handle error with its usecase
     }
 }
-
-extension PloggingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            // Your have pickedImage now, do your logic here
-            let newImage = CIImage(image: pickedImage)!
-            
-            let properties = newImage.properties[kCGImagePropertyGPSDictionary as String] as? [String: Any]
-            let imageData = pickedImage.jpegData(compressionQuality: 1)!
-            let options = [kCGImageSourceShouldCache as String: kCFBooleanFalse]
-            let source = CGImageSourceCreateWithData(imageData as CFData, nil)!
-            let imageProperties = CGImageSourceCopyPropertiesAtIndex(source, 0, options as CFDictionary)! as Dictionary
-            let gpsProperties = imageProperties[kCGImagePropertyGPSDictionary] as? [String : AnyObject]
-            print(gpsProperties)
+extension PloggingViewController: MKMapViewDelegate{
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+                let pin = mapView.view(for: annotation) as? MKPinAnnotationView ?? MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
+                pin.image = UIImage(named: "annotation_myLocation")
+                return pin
         }
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
+        return nil
     }
 }
