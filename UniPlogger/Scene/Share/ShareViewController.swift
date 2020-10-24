@@ -27,7 +27,10 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
     var imageForShare: UIImage?
     
     lazy var backgroundImageView = UIImageView().then {
-        $0.image = UIImage(named: "mainBackground")
+        let image = UIImage(named: "mainBackground")
+        $0.image = image!.resizeTopAlignedToFill(newWidth: self.view.frame.width)
+        $0.contentMode = .top
+        $0.clipsToBounds = true
     }
     lazy var ploggingImageView = PloggingImageView().then {
         $0.backgroundColor = .lightGray
