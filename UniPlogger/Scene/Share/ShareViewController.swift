@@ -42,6 +42,7 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
         $0.layer.cornerRadius = 20
         $0.addTarget(self, action: #selector(touchUpDismissButton), for: .touchUpInside)
     }
+    lazy var shareButtonView = UIView()
     lazy var shareButton = UIButton().then {
         $0.setImage(UIImage(named: "share_instagram"), for: .normal)
         $0.backgroundColor = UIColor(named: "shareColor")
