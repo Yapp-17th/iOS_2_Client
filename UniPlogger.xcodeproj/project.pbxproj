@@ -8,9 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		101A5C8A5DA8441CFEF982F0 /* Pods_UniPlogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E470A391887A23D6AF25DD /* Pods_UniPlogger.framework */; };
-		4C401EA3253DE0E600ABED84 /* QuestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EA2253DE0E600ABED84 /* QuestList.swift */; };
 		4C401EAF253DE19100ABED84 /* ShareRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EAE253DE19100ABED84 /* ShareRouter.swift */; };
 		4C401EB2253DE1F200ABED84 /* QuestState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EB1253DE1F200ABED84 /* QuestState.swift */; };
+		4C401EC4253EE6B300ABED84 /* QuestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EC3253EE6B300ABED84 /* QuestDetailViewController.swift */; };
+		4C7248A92541CDE300ACB32B /* QuestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248A82541CDE300ACB32B /* QuestList.swift */; };
+		4C7248AE2542F86200ACB32B /* VerticalRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248AD2542F86200ACB32B /* VerticalRoundButton.swift */; };
+		4C7248B12542FDA600ACB32B /* RecommandOtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248B02542FDA600ACB32B /* RecommandOtherView.swift */; };
+		4C7248B52544297D00ACB32B /* HightlightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248B42544297D00ACB32B /* HightlightButton.swift */; };
+		4C7248B925455B2C00ACB32B /* QuestBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248B825455B2C00ACB32B /* QuestBaseViewController.swift */; };
 		4C89567D2532CB3A0099934E /* QuestNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89567C2532CB3A0099934E /* QuestNavigationController.swift */; };
 		4C8956832532D0630099934E /* QuestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8956822532D0630099934E /* QuestFactory.swift */; };
 		4C8956862532E3230099934E /* QuestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8956852532E3230099934E /* QuestTableViewCell.swift */; };
@@ -71,13 +76,17 @@
 
 /* Begin PBXFileReference section */
 		12330CE7D885C1CB00C8E874 /* Pods-UniPlogger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.release.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.release.xcconfig"; sourceTree = "<group>"; };
-		4C401EA2253DE0E600ABED84 /* QuestList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestList.swift; sourceTree = "<group>"; };
 		4C401EAE253DE19100ABED84 /* ShareRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareRouter.swift; sourceTree = "<group>"; };
 		4C401EB1253DE1F200ABED84 /* QuestState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestState.swift; sourceTree = "<group>"; };
+		4C401EC3253EE6B300ABED84 /* QuestDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDetailViewController.swift; sourceTree = "<group>"; };
+		4C7248A82541CDE300ACB32B /* QuestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestList.swift; sourceTree = "<group>"; };
+		4C7248AD2542F86200ACB32B /* VerticalRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalRoundButton.swift; sourceTree = "<group>"; };
+		4C7248B02542FDA600ACB32B /* RecommandOtherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandOtherView.swift; sourceTree = "<group>"; };
+		4C7248B42544297D00ACB32B /* HightlightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HightlightButton.swift; sourceTree = "<group>"; };
+		4C7248B825455B2C00ACB32B /* QuestBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestBaseViewController.swift; sourceTree = "<group>"; };
 		4C89567C2532CB3A0099934E /* QuestNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestNavigationController.swift; sourceTree = "<group>"; };
 		4C8956822532D0630099934E /* QuestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestFactory.swift; sourceTree = "<group>"; };
 		4C8956852532E3230099934E /* QuestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestTableViewCell.swift; sourceTree = "<group>"; };
-		4C8956882532E7670099934E /* QuestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestList.swift; sourceTree = "<group>"; };
 		4CB979C32524E5BC00498E81 /* NavigationTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTabsView.swift; sourceTree = "<group>"; };
 		4CC9C7C725231581004D873D /* QuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewController.swift; sourceTree = "<group>"; };
 		4CC9C7CA252315D7004D873D /* QuestInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestInteractor.swift; sourceTree = "<group>"; };
@@ -173,6 +182,40 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		4C401EC1253EE67100ABED84 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				4C31BE942524A01100D47919 /* Views */,
+				4CC9C7C725231581004D873D /* QuestViewController.swift */,
+				4CC9C7CA252315D7004D873D /* QuestInteractor.swift */,
+				4CC9C7CD252315E0004D873D /* QuestPresenter.swift */,
+				4CC9C7D0252315E9004D873D /* QuestRouter.swift */,
+				4CC9C7D6252315FC004D873D /* QuestWorker.swift */,
+				4C8956822532D0630099934E /* QuestFactory.swift */,
+				4CC9C7D3252315F3004D873D /* QuestModels.swift */,
+				4C7248A82541CDE300ACB32B /* QuestList.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		4C401EC2253EE69500ABED84 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				4C7248AC2542F84700ACB32B /* Views */,
+				4C401EC3253EE6B300ABED84 /* QuestDetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		4C7248AC2542F84700ACB32B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4C7248AD2542F86200ACB32B /* VerticalRoundButton.swift */,
+				4C7248B02542FDA600ACB32B /* RecommandOtherView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		4CC9C7C525231565004D873D /* Scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,17 +229,10 @@
 		4CC9C7C625231578004D873D /* Quest */ = {
 			isa = PBXGroup;
 			children = (
-				4C31BE942524A01100D47919 /* Views */,
-				4CC9C7D3252315F3004D873D /* QuestModels.swift */,
-				4CC9C7C725231581004D873D /* QuestViewController.swift */,
-				4C401EA2253DE0E600ABED84 /* QuestList.swift */,
-				4CC9C7CA252315D7004D873D /* QuestInteractor.swift */,
-				4CC9C7CD252315E0004D873D /* QuestPresenter.swift */,
-				4CC9C7D0252315E9004D873D /* QuestRouter.swift */,
-				4CC9C7D6252315FC004D873D /* QuestWorker.swift */,
 				4C89567C2532CB3A0099934E /* QuestNavigationController.swift */,
-				4C8956822532D0630099934E /* QuestFactory.swift */,
-				4C8956882532E7670099934E /* QuestList.swift */,
+				4C401EC2253EE69500ABED84 /* Detail */,
+				4C401EC1253EE67100ABED84 /* Main */,
+				4C7248B825455B2C00ACB32B /* QuestBaseViewController.swift */,
 			);
 			path = Quest;
 			sourceTree = "<group>";
@@ -387,6 +423,7 @@
 			children = (
 				AAB3B4EE2520B30600F0311A /* RoundShadowView.swift */,
 				AAB8879425245320000A9D58 /* GradientView.swift */,
+				4C7248B42544297D00ACB32B /* HightlightButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -549,11 +586,14 @@
 				AA7F54E22532C179001C4012 /* CLLocationCoordinated2D+Extensions.swift in Sources */,
 				AA7F54F12532C1A6001C4012 /* PloggingPresenter.swift in Sources */,
 				AA7F54EE2532C1A6001C4012 /* PloggingViewController+UI.swift in Sources */,
+				4C7248AE2542F86200ACB32B /* VerticalRoundButton.swift in Sources */,
 				AA7F54E12532C176001C4012 /* UserDefault+Extensions.swift in Sources */,
 				4CC9C7DA25232128004D873D /* Quest.swift in Sources */,
 				AA7F551D2533568D001C4012 /* SharePresenter.swift in Sources */,
 				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
 				AA7F551F2533568D001C4012 /* ShareViewController.swift in Sources */,
+				4C7248A92541CDE300ACB32B /* QuestList.swift in Sources */,
+				4C7248B925455B2C00ACB32B /* QuestBaseViewController.swift in Sources */,
 				AA7F54EC2532C1A6001C4012 /* StartCountingViewController.swift in Sources */,
 				AA7F551E2533568D001C4012 /* ShareInteractor.swift in Sources */,
 				AA7F54F62532C1CF001C4012 /* LocationManager.swift in Sources */,
@@ -564,7 +604,6 @@
 				AA7F55212533568D001C4012 /* ShareWorker.swift in Sources */,
 				AA7F55242533568D001C4012 /* PloggingInfoView.swift in Sources */,
 				4CB979C42524E5BC00498E81 /* NavigationTabsView.swift in Sources */,
-				4C401EA3253DE0E600ABED84 /* QuestList.swift in Sources */,
 				AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
 				AA7F55252533568D001C4012 /* ShareModels.swift in Sources */,
@@ -579,10 +618,13 @@
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,
 				4CC9C7C825231581004D873D /* QuestViewController.swift in Sources */,
+				4C7248B52544297D00ACB32B /* HightlightButton.swift in Sources */,
 				AA7F5528253356BE001C4012 /* PhotoManager.swift in Sources */,
 				AAB3B4EC2520B2B400F0311A /* UIImage+Extensions.swift in Sources */,
+				4C7248B12542FDA600ACB32B /* RecommandOtherView.swift in Sources */,
 				4CC9C7CB252315D7004D873D /* QuestInteractor.swift in Sources */,
 				AA7F55232533568D001C4012 /* PloggingImageView.swift in Sources */,
+				4C401EC4253EE6B300ABED84 /* QuestDetailViewController.swift in Sources */,
 				4CC9C7D4252315F3004D873D /* QuestModels.swift in Sources */,
 				AA7F54F02532C1A6001C4012 /* PloggingRouter.swift in Sources */,
 				AAB3B4F92520B5B600F0311A /* Common.swift in Sources */,

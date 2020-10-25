@@ -25,7 +25,8 @@ enum QuestModels {
         struct QuestViewModel {
             var title: String
             var category: Quest.Category
-            var cellImageImage: UIImage?
+            var cellImage: UIImage?
+            var cellImageBackground: UIColor?
             var accessoryImage: UIImage?
             var backgroundColor: String
         }
@@ -37,10 +38,6 @@ enum QuestModels {
         
         private var questList = [Quest.Category: [QuestViewModel]]()
         private(set) var categoryOfSection = [Int: Quest.Category]()
-        
-        mutating func append(_ viewModel: QuestViewModel) {
-            questList[viewModel.category, default: []].append(viewModel)
-        }
         
         func numberOfSections() -> Int {
             return categoryOfSection.count
@@ -54,6 +51,21 @@ enum QuestModels {
         func quest(at indexPath: IndexPath) -> QuestViewModel? {
             guard let section = categoryOfSection[indexPath.section] else { return nil }
             return questList[section]?[indexPath.row]
+        }
+        
+        mutating func append(_ viewModel: QuestViewModel) {
+            questList[viewModel.category, default: []].append(viewModel)
+        }
+        
+        @discardableResult
+        mutating func remove(at indexPath: IndexPath) -> QuestViewModel? {
+            guard let category = categoryOfSection[indexPath.section] else { return nil }
+            return questList[category]?.remove(at: indexPath.row)
+        }
+        
+        subscript(indexPath: IndexPath) -> QuestViewModel? {
+            guard let category = categoryOfSection[indexPath.section] else { return nil }
+            return questList[category]?[indexPath.row]
         }
     }
 }
