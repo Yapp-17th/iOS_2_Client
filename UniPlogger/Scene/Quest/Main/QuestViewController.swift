@@ -194,7 +194,7 @@ extension QuestViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let deleteAction = UIContextualAction(style: .destructive, title: "") { [weak self] (action, view, completion) in
+        let deleteAction = UIContextualAction(style: .normal, title: "") { [weak self] (action, view, completion) in
             
             completion(true)
             guard let self = self else { return }
@@ -203,7 +203,7 @@ extension QuestViewController: UITableViewDelegate {
         
         let quest = questViewModel?.quest(at: indexPath)
         deleteAction.image = quest?.accessoryImage
-        deleteAction.backgroundColor = .white
+        deleteAction.backgroundColor = Color.questBackground
         
         return .init(actions: [deleteAction])
     }
