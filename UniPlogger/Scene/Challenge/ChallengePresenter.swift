@@ -12,20 +12,17 @@
 
 import UIKit
 
-protocol ChallengePresentationLogic
-{
-  func presentSomething(response: Challenge.Something.Response)
+protocol ChallengePresentationLogic {
+    func presentSomething(response: Challenge.Something.Response)
 }
 
-class ChallengePresenter: ChallengePresentationLogic
-{
-  weak var viewController: ChallengeDisplayLogic?
+class ChallengePresenter: ChallengePresentationLogic {
+    weak var viewController: ChallengeDisplayLogic?
   
-  // MARK: Do something
+    // MARK: Do something
   
-  func presentSomething(response: Challenge.Something.Response)
-  {
-    let viewModel = Challenge.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    func presentSomething(response: Challenge.Something.Response) {
+        let viewModel = Challenge.Something.ViewModel()
+        viewController?.displaySomething(viewModel: viewModel)
+    }
 }

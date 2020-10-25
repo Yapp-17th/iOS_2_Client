@@ -12,30 +12,15 @@
 
 import UIKit
 
-protocol ChallengeBusinessLogic
-{
-  func doSomething(request: Challenge.Something.Request)
-}
-
-protocol ChallengeDataStore
-{
-  //var name: String { get set }
-}
-
-class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore
-{
-  var presenter: ChallengePresentationLogic?
-  var worker: ChallengeWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: Challenge.Something.Request)
-  {
-    worker = ChallengeWorker()
-    worker?.doSomeWork()
+protocol ChallengeBusinessLogic {
     
-    let response = Challenge.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+}
+
+protocol ChallengeDataStore {
+ 
+}
+
+class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore {
+    var presenter: ChallengePresentationLogic?
+    var worker: ChallengeWorker?
 }

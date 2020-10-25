@@ -12,20 +12,13 @@
 
 import UIKit
 
-enum Challenge
-{
-  // MARK: Use cases
-  
-  enum Something
-  {
-    struct Request
-    {
-    }
-    struct Response
-    {
-    }
-    struct ViewModel
-    {
-    }
-  }
+enum Challenge {
+    
+    // MARK: Use cases
+    
+      enum Something {
+          struct Request { }
+          struct Response { }
+          struct ViewModel { }
+      }
 }

@@ -12,9 +12,6 @@
 
 import UIKit
 
-class ChallengeWorker
-{
-  func doSomeWork()
-  {
-  }
+class ChallengeWorker {
+
 }
