@@ -19,7 +19,7 @@ class QuestDetailViewController: QuestBaseViewController {
         static let innerInset: CGFloat = 20
         static let mainToRecommandSpacing: CGFloat = 44
         static let contentHeight: CGFloat = 700
-        static let buttonsViewHeight: CGFloat = 230
+        static let buttonsViewHeight: CGFloat = 194
         static let buttonHeight: CGFloat = 52
     }
     
@@ -160,7 +160,7 @@ class QuestDetailViewController: QuestBaseViewController {
             contentView.addSubview($0)
         }
         
-        [mainTitleLabel,  mainDescriptionLabel].forEach {
+        [mainTitleLabel, mainDescriptionLabel].forEach {
             mainView.addSubview($0)
         }
         

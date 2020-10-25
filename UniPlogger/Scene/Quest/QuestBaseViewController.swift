@@ -16,6 +16,7 @@ class QuestBaseViewController: BaseViewController {
     }
     
     func setupViews() {
+        view.backgroundColor = Color.questBackgroundTint
         view.addSubview(backgroundView)
     }
     
