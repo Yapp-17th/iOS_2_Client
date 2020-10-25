@@ -9,7 +9,7 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
-    private var shadowLayer: CAShapeLayer!
+    
     // MARK: View
     
     // MARK: View lifecycle
@@ -27,7 +27,7 @@ extension MainTabBarController {
     private func configuration() {
         self.view.backgroundColor = .white
         self.tabBar.barTintColor = .tabBarBackground
-        self.tabBar.selectedImageTintColor = .tabBarTint
+        self.tabBar.tintColor = .tabBarTint
         self.tabBar.unselectedItemTintColor = .tabBarUnselectedTint
     }
     
@@ -38,28 +38,23 @@ extension MainTabBarController {
         setupLogViewController()
         setupMyViewController()
         
-        self.selectedIndex = 2
+        self.selectedIndex = 1
     }
     
     private func setupLayout() {
         tabBar.backgroundImage = UIImage.from(color: .clear)
         tabBar.shadowImage = UIImage()
+        tabBar.backgroundColor = .tabBarBackground
+        tabBar.layer.cornerRadius = 22
         
         let tabbarBackgroundView = RoundShadowView()
         tabbarBackgroundView.layer.cornerRadius = 22
         tabbarBackgroundView.backgroundColor = .tabBarBackground
-        view.addSubview(tabbarBackgroundView)
-      tabbarBackgroundView.snp.makeConstraints{
-        $0.edges.equalTo(tabBar)
-      }
-        
-        let fillerView = UIView()
-        fillerView.frame = tabBar.frame
-        fillerView.roundCorners(corners: [.topLeft, .topRight], radius: 22)
-        fillerView.backgroundColor = .tabBarBackground
-        view.addSubview(fillerView)
-        
-        view.bringSubviewToFront(tabBar)
+        tabbarBackgroundView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        tabBar.insertSubview(tabbarBackgroundView, at: 0)
+        tabbarBackgroundView.snp.makeConstraints{
+            $0.edges.equalTo(tabBar)
+        }
     }
     
     private func updateView() {
