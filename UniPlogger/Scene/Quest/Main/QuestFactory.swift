@@ -11,6 +11,7 @@ import UIKit
 protocol QuestCellMaker {
     func cellBackgroundColor(for state: Quest.Category) -> String
     func cellImage(for state: QuestState) -> UIImage?
+    func cellImageBackgroundColor(for state: Quest.Category) -> UIColor
     func accessoryImage(for state: QuestState) -> UIImage?
 }
 
@@ -22,10 +23,17 @@ extension QuestFactory: QuestCellMaker {
     
     func cellBackgroundColor(for state: Quest.Category) -> String {
         switch state {
+            case .training, .routine:
+                return "questBackgroundTint"
+        }
+    }
+    
+    func cellImageBackgroundColor(for state: Quest.Category) -> UIColor {
+        switch state {
             case .training:
-                return "trainingCellBackground"
+                return .trainingTint
             case .routine:
-                return "routineCellBackground"
+                return .routineTint
         }
     }
     

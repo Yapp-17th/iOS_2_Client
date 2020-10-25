@@ -28,7 +28,8 @@ class QuestPresenter {
         let questVM = QuestModels.ViewModel.QuestViewModel(
                             title: quest.title,
                             category: quest.category,
-                            cellImageImage: questFactory.cellImage(for: quest.state),
+                            cellImage: questFactory.cellImage(for: quest.state),
+                            cellImageBackground: questFactory.cellImageBackgroundColor(for: quest.category),
                             accessoryImage: questFactory.accessoryImage(for: quest.state),
                             backgroundColor: questFactory.cellBackgroundColor(for: quest.category)
                         )

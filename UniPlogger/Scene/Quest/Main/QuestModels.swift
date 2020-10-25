@@ -25,7 +25,8 @@ enum QuestModels {
         struct QuestViewModel {
             var title: String
             var category: Quest.Category
-            var cellImageImage: UIImage?
+            var cellImage: UIImage?
+            var cellImageBackground: UIColor?
             var accessoryImage: UIImage?
             var backgroundColor: String
         }

@@ -21,7 +21,6 @@ class QuestTableViewCell: UITableViewCell {
     
     var sproutBackgroundView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = .white
     }
     
     var sproutImageView = UIImageView().then {
@@ -43,8 +42,9 @@ class QuestTableViewCell: UITableViewCell {
     func configure(viewModel: QuestModels.ViewModel.QuestViewModel) {
         questLabel.text = viewModel.title
 
-        sproutImageView.image = viewModel.cellImageImage
+        sproutImageView.image = viewModel.cellImage
         sproutBackgroundView.layer.cornerRadius = 26
+        sproutBackgroundView.backgroundColor = viewModel.cellImageBackground
         cellBackgroundView.backgroundColor = UIColor(named: viewModel.backgroundColor)
     }
     
