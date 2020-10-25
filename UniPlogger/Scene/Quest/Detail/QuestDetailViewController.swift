@@ -172,7 +172,7 @@ class QuestDetailViewController: QuestBaseViewController {
             let otherView = RecommandOtherView()
             otherView.titleLabel.text = "습관 1 Step"
             otherView.descripionLabel.text = "1달 동안 총 10회 이상 플로깅하기"
-            otherView.setTextColor(.white)
+            otherView.setTextColor(Color.textBlack)
             otherView.backgroundColor = Color.questBackgroundTint
             otherView.layer.cornerRadius = 15
             recommandSubStackView.addArrangedSubview(otherView)

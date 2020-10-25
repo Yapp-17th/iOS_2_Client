@@ -51,7 +51,8 @@ extension QuestFactory: QuestCellMaker {
     func accessoryImage(for state: QuestState) -> UIImage? {
         switch state {
             case .todo: return UIImage(named: "add_button")
-            case .doing, .done: return UIImage(named: "delete_button")
+            case .doing: return UIImage(named: "cancel_button")
+            case .done: return UIImage(named: "delete_button")
             case .abandon: break
         }
         

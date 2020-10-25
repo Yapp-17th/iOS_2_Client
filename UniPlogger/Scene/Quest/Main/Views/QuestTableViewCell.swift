@@ -30,7 +30,7 @@ class QuestTableViewCell: UITableViewCell {
     
     var questLabel = UILabel().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.textColor = .white
+        $0.textColor = Color.textBlack
     }
     
     // MARK: - Properties
