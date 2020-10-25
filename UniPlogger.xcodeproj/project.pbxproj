@@ -74,6 +74,7 @@
 		AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4EE2520B30600F0311A /* RoundShadowView.swift */; };
 		AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4F02520B37100F0311A /* UIView+Extensions.swift */; };
 		AAB3B4F92520B5B600F0311A /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4F82520B5B600F0311A /* Common.swift */; };
+		AAC9584F2545BC110092BA6E /* ScrollStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC9584E2545BC110092BA6E /* ScrollStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -162,6 +163,7 @@
 		AAB887A225245F65000A9D58 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		AAB887AE2524600A000A9D58 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		AAB887B02524603E000A9D58 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
+		AAC9584E2545BC110092BA6E /* ScrollStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollStackView.swift; sourceTree = "<group>"; };
 		E4E470A391887A23D6AF25DD /* Pods_UniPlogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UniPlogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -431,6 +433,7 @@
 			children = (
 				AAB3B4EE2520B30600F0311A /* RoundShadowView.swift */,
 				AAB8879425245320000A9D58 /* GradientView.swift */,
+				AAC9584E2545BC110092BA6E /* ScrollStackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
 				4C89B06F2525D2BB0007EBED /* TrainingTableViewCell.swift in Sources */,
+				AAC9584F2545BC110092BA6E /* ScrollStackView.swift in Sources */,
 				AA7F55252533568D001C4012 /* ShareModels.swift in Sources */,
 				AA7F54EF2532C1A6001C4012 /* PloggingModels.swift in Sources */,
 				4CC9C7CE252315E0004D873D /* QuestPresenter.swift in Sources */,
