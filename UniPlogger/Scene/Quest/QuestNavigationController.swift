@@ -18,8 +18,12 @@ class QuestNavigationController: UINavigationController {
     
     func setupNavigationBar() {
         navigationBar.clipsToBounds = true
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.layer.cornerRadius = 30
         navigationBar.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        navigationBar.layer.backgroundColor = UIColor(red: 0.957, green: 0.98, blue: 0.992, alpha: 1).cgColor
+        navigationBar.tintColor = Color.textBlack
+        navigationBar.backgroundColor = Color.questBackgroundTint
+        navigationBar.barTintColor = Color.questBackgroundTint
+        view.backgroundColor = Color.questBackgroundTint
     }
 }
