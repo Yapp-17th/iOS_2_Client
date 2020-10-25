@@ -66,14 +66,14 @@ extension MainTabBarController {
         
     }
     
-    func setupChallengeViewController(){
+    private func setupChallengeViewController(){
         let challengeItem = UITabBarItem(title: "챌린지", image: UIImage(named: "tabbar_challenge"), tag: 0)
         let vc = UIViewController()
         vc.tabBarItem = challengeItem
         self.addChild(vc)
     }
     
-    func setupQuestViewController(){
+    private func setupQuestViewController(){
         let questItem = UITabBarItem(title: "퀘스트", image: UIImage(named: "tabbar_quest"), tag: 1)
         let questNavVC = QuestNavigationController()
         questNavVC.addChild(QuestViewController())
@@ -82,21 +82,21 @@ extension MainTabBarController {
         self.addChild(vc)
     }
     
-    func setupPloggingViewController(){
+    private func setupPloggingViewController(){
         let ploggingItem = UITabBarItem(title: "플로깅", image: UIImage(named: "tabbar_plogging"), tag: 2)
         let vc = PloggingViewController()
         vc.tabBarItem = ploggingItem
         self.addChild(vc)
     }
     
-    func setupLogViewController(){
+    private func setupLogViewController(){
         let logItem = UITabBarItem(title: "로그", image: UIImage(named: "tabbar_log"), tag: 3)
         let vc = UIViewController()
         vc.tabBarItem = logItem
         self.addChild(vc)
     }
     
-    func setupMyViewController(){
+    private func setupMyViewController(){
         let myItem = UITabBarItem(title: "마이", image: UIImage(named: "tabbar_my"), tag: 4)
         let vc = UIViewController()
         vc.tabBarItem = myItem
