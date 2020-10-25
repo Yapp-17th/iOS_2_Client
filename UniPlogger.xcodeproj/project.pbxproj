@@ -12,7 +12,7 @@
 		4C401EB2253DE1F200ABED84 /* QuestState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EB1253DE1F200ABED84 /* QuestState.swift */; };
 		4C401EC4253EE6B300ABED84 /* QuestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EC3253EE6B300ABED84 /* QuestDetailViewController.swift */; };
 		4C7248A92541CDE300ACB32B /* QuestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248A82541CDE300ACB32B /* QuestList.swift */; };
-		4C7248AE2542F86200ACB32B /* RoundButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248AD2542F86200ACB32B /* RoundButtonView.swift */; };
+		4C7248AE2542F86200ACB32B /* VerticalRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248AD2542F86200ACB32B /* VerticalRoundButton.swift */; };
 		4C7248B12542FDA600ACB32B /* RecommandOtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248B02542FDA600ACB32B /* RecommandOtherView.swift */; };
 		4C7248B52544297D00ACB32B /* HightlightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248B42544297D00ACB32B /* HightlightButton.swift */; };
 		4C7248B925455B2C00ACB32B /* QuestBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248B825455B2C00ACB32B /* QuestBaseViewController.swift */; };
@@ -80,7 +80,7 @@
 		4C401EB1253DE1F200ABED84 /* QuestState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestState.swift; sourceTree = "<group>"; };
 		4C401EC3253EE6B300ABED84 /* QuestDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDetailViewController.swift; sourceTree = "<group>"; };
 		4C7248A82541CDE300ACB32B /* QuestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestList.swift; sourceTree = "<group>"; };
-		4C7248AD2542F86200ACB32B /* RoundButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButtonView.swift; sourceTree = "<group>"; };
+		4C7248AD2542F86200ACB32B /* VerticalRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalRoundButton.swift; sourceTree = "<group>"; };
 		4C7248B02542FDA600ACB32B /* RecommandOtherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandOtherView.swift; sourceTree = "<group>"; };
 		4C7248B42544297D00ACB32B /* HightlightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HightlightButton.swift; sourceTree = "<group>"; };
 		4C7248B825455B2C00ACB32B /* QuestBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestBaseViewController.swift; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 		4C7248AC2542F84700ACB32B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4C7248AD2542F86200ACB32B /* RoundButtonView.swift */,
+				4C7248AD2542F86200ACB32B /* VerticalRoundButton.swift */,
 				4C7248B02542FDA600ACB32B /* RecommandOtherView.swift */,
 			);
 			path = Views;
@@ -586,7 +586,7 @@
 				AA7F54E22532C179001C4012 /* CLLocationCoordinated2D+Extensions.swift in Sources */,
 				AA7F54F12532C1A6001C4012 /* PloggingPresenter.swift in Sources */,
 				AA7F54EE2532C1A6001C4012 /* PloggingViewController+UI.swift in Sources */,
-				4C7248AE2542F86200ACB32B /* RoundButtonView.swift in Sources */,
+				4C7248AE2542F86200ACB32B /* VerticalRoundButton.swift in Sources */,
 				AA7F54E12532C176001C4012 /* UserDefault+Extensions.swift in Sources */,
 				4CC9C7DA25232128004D873D /* Quest.swift in Sources */,
 				AA7F551D2533568D001C4012 /* SharePresenter.swift in Sources */,
