@@ -7,15 +7,13 @@
 //
 
 import UIKit
-import SnapKit
-import Then
 
 protocol QuestDisplayLogic {
     func displayQuests(viewModel: QuestModels.ViewModel)
     func updateQuest(viewModel: QuestModels.ViewModel, at indexPath: IndexPath)
 }
 
-class QuestViewController: UIViewController {
+class QuestViewController: QuestBaseViewController {
     
     // MARK: - Constants
     
@@ -33,19 +31,12 @@ class QuestViewController: UIViewController {
     
     // MARK: - Views
     
-    private var statusView = UIView().then {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.layer.cornerRadius = 30
-        $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        $0.backgroundColor = UIColor(red: 0.957, green: 0.98, blue: 0.992, alpha: 1)
-    }
-    
     private var titleLabel = UILabel().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.text = "챌린지"
     }
     
-    private var navigationTabsView = NavigationTabsView<QuestState>(items: [.todo, .doing, .done], tintColor: UIColor(named: "questNavigationTabTint")).then {
+    private var navigationTabsView = NavigationTabsView<QuestState>(items: [.todo, .doing, .done], tintColor: UIColor(named: "questTint")).then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.masksToBounds = true
         $0.spacing = 1
@@ -68,7 +59,6 @@ class QuestViewController: UIViewController {
     private var interactor: QuestBusinessLogic?
     private var currentQuestState: QuestState = .todo {
         didSet {
-            // fetchData()
             interactor?.change(state: currentQuestState)
         }
     }
@@ -87,7 +77,7 @@ class QuestViewController: UIViewController {
         setup()
         setupTableView()
         setupViews()
-        setupLayout()
+        setupLayouts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,25 +107,29 @@ class QuestViewController: UIViewController {
         questTableView.delegate = self
     }
     
-    private func setupViews() {
+    override func setupViews() {
+        super.setupViews()
         title = "퀘스트"
-        view.addSubview(navigationTabsView)
-        view.addSubview(questTableView)
+        
+        backgroundView.addSubview(navigationTabsView)
+        backgroundView.addSubview(questTableView)
     }
     
-    private func setupLayout() {
+    override func setupLayouts() {
+        super.setupLayouts()
+        
         navigationTabsView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Metric.verticalSpacing)
-            $0.leading.equalTo(view.snp.leading).offset(Metric.viewLeading)
-            $0.trailing.equalTo(view.snp.trailing).offset(Metric.viewTrailing)
+            $0.leading.equalTo(backgroundView.snp.leading).offset(Metric.viewLeading)
+            $0.trailing.equalTo(backgroundView.snp.trailing).offset(Metric.viewTrailing)
             $0.height.equalTo(42)
         }
         
         questTableView.snp.makeConstraints {
             $0.top.equalTo(navigationTabsView.snp.bottom).offset(Metric.verticalSpacing)
-            $0.leading.equalTo(view.snp.leading).offset(Metric.viewLeading)
-            $0.trailing.equalTo(view.snp.trailing).offset(Metric.viewTrailing)
-            $0.bottom.equalTo(view.snp.bottom).offset(Metric.verticalSpacing)
+            $0.leading.equalTo(backgroundView.snp.leading).offset(Metric.viewLeading)
+            $0.trailing.equalTo(backgroundView.snp.trailing).offset(Metric.viewTrailing)
+            $0.bottom.equalTo(backgroundView.snp.bottom).offset(Metric.verticalSpacing)
         }
     }
 }
@@ -185,8 +179,8 @@ extension QuestViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-//        let trainingQuestVC = TrainingQuestViewController()
-//        navigationController?.pushViewController(trainingQuestVC, animated: true)
+        let questDetailVC = QuestDetailViewController()
+        navigationController?.pushViewController(questDetailVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -212,29 +206,5 @@ extension QuestViewController: UITableViewDelegate {
         deleteAction.backgroundColor = .white
         
         return .init(actions: [deleteAction])
-    }
-}
-
-extension String {
-    func hexToColor(alpha:CGFloat = 1.0) -> UIColor {
-        var cString:String = self.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-
-        if (cString.hasPrefix("#")) {
-            cString.remove(at: cString.startIndex)
-        }
-
-        if ((cString.count) != 6) {
-            return UIColor.gray
-        }
-
-        var rgbValue:UInt32 = 0
-        Scanner(string: cString).scanHexInt32(&rgbValue)
-
-        return UIColor(
-            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-            alpha: alpha
-        )
     }
 }
