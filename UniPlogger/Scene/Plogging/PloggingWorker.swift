@@ -13,99 +13,78 @@
 import UIKit
 import CoreLocation
 
+protocol PloggingWorkerDelegate{
+    func updateRoute(distance: Measurement<UnitLength>, location: Location)
+}
+
 class PloggingWorker: NSObject {
-  private let locationManager = LocationManager.shared.locationManager
-  private var seconds = 0
-  private var timer: Timer?
-  private var distance = Measurement(value: 0, unit: UnitLength.meters)
-  private var locationList: [CLLocation] = []
-  
-  override init() {
-    super.init()
-    locationManager.delegate = self
-  }
-  
-  private func saveRun(){
+    private let locationManager = LocationManager.shared.locationManager
+    private var distance = Measurement(value: 0, unit: UnitLength.meters)
+    var locationList: [CLLocation] = []
+    var delegate: PloggingWorkerDelegate?
     
-    var newRun = Route(
-      title: "",
-      distance: distance.value,
-      duration: seconds,
-      timestamp: Date(),
-      locations: [])
-    
-    let runLocations = locationList.map {
-      Location(
-        latitude: $0.coordinate.latitude,
-        longitude: $0.coordinate.longitude,
-        timestamp: $0.timestamp,
-        route: newRun
-      )
+    override init() {
+        super.init()
+        locationManager.delegate = self
     }
-    newRun.locations = runLocations
     
-  }
-  
-  //MARK: - Helper
-  func resetLocationData(){
-    seconds = 0
-    distance = Measurement(value: 0, unit: UnitLength.meters)
-    locationList.removeAll()
-    timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-      self.eachSecond()
+    //MARK: - Helper
+    func resetLocationData(){
+        distance = Measurement(value: 0, unit: UnitLength.meters)
     }
-  }
-  func eachSecond() {
-    seconds += 1
-    print(seconds)
-  }
-  
-  func startRun(){
-    resetLocationData()
-    startUpdateLocation()
-  }
-  func stopRun(){
-    timer?.invalidate()
-    timer = nil
-    locationManager.stopUpdatingLocation()
-    saveRun()
-  }
-  
-  func startUpdateLocation(){
-    locationManager.delegate = self
-    locationManager.activityType = .fitness
-    locationManager.distanceFilter = 10
-    locationManager.startUpdatingLocation()
-  }
+    func startRun(){
+        resetLocationData()
+        startUpdateLocation()
+    }
+    func stopRun(){
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func startUpdateLocation(){
+        locationManager.delegate = self
+        locationManager.activityType = .fitness
+        locationManager.distanceFilter = 5
+        locationManager.startUpdatingHeading()
+        locationManager.startUpdatingLocation()
+    }
 }
 
 extension PloggingWorker: CLLocationManagerDelegate{
-  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-    switch status {
-    case .authorizedAlways, .authorizedWhenInUse:
-      //Todo: 위치권한 사용하기
-      print("authorized")
-      startUpdateLocation()
-    case .denied:
-      print("denied")
-    case .notDetermined:
-      locationManager.requestWhenInUseAuthorization()
-    default:
-      print("else")
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            //Todo: 위치권한 사용하기
+            print("authorized")
+            startUpdateLocation()
+        case .denied:
+            print("denied")
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        default:
+            print("else")
+        }
     }
-  }
-  
-  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    for newLocation in locations{
-      let howRecent = newLocation.timestamp.timeIntervalSinceNow
-      guard newLocation.horizontalAccuracy < 20 && abs(howRecent) < 10 else { continue }
-      if let lastLocation = locations.last {
-        let delta = newLocation.distance(from: lastLocation)
-        distance = distance + Measurement(value: delta, unit: UnitLength.meters)
-        self.locationList.append(newLocation)
-        print(newLocation.coordinate)
-      }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        for newLocation in locations{
+            let howRecent = newLocation.timestamp.timeIntervalSinceNow
+            print("horizontalAccuracy: \(newLocation.horizontalAccuracy)")
+            print("howRecent: \(abs(howRecent))")
+            
+            guard abs(howRecent) < 10 else { continue }
+            if let lastLocation = self.locationList.last {
+                let delta = newLocation.distance(from: lastLocation)
+                distance = distance + Measurement(value: delta, unit: UnitLength.meters)
+                let location = Location(
+                    latitude: newLocation.coordinate.latitude,
+                    longitude: newLocation.coordinate.longitude,
+                    timestamp: newLocation.timestamp)
+                
+                self.delegate?.updateRoute(distance: distance, location: location)
+            }
+            
+            locationList.append(newLocation)
+        }
     }
-  }
-  
+    
 }

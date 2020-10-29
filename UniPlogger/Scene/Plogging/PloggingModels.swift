@@ -16,7 +16,7 @@ enum Plogging {
     // MARK: Use cases
     
     enum UseCase {
-        
+        case StartPlogging
     }
     
     enum State {
@@ -24,14 +24,25 @@ enum Plogging {
         case doing
         case pause
     }
-    
+   
+    enum StartRun{
+        struct Response {
+            var distance: Measurement<UnitLength>
+            var location: Location
+        }
+        
+        struct ViewModel {
+            var distance: String
+            var location: Location
+        }
+    }
     enum ChangeState {
         struct Request{
             var state: State
         }
     }
     
-    enum Location{
+    enum LocationAuth{
       struct Response{
         var status: CLAuthorizationStatus
       }

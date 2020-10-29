@@ -12,5 +12,4 @@ struct Location{
   var latitude: Double
   var longitude: Double
   var timestamp: Date
-  var route: Route
 }
