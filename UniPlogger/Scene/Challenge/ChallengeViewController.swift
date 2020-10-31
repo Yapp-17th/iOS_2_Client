@@ -37,7 +37,7 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
     lazy var secondRankView = TopRankView()
     lazy var thirdRankView = TopRankView()
     lazy var rankTableView = UITableView().then {
-        $0.backgroundColor = .blue
+        $0.backgroundColor = .clear
     }
 
     // MARK: Object lifecycle
@@ -66,16 +66,45 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
         router.viewController = viewController
         router.dataStore = interactor
     }
+    
+    private func setUpTableView() {
+        rankTableView.delegate = self
+        rankTableView.dataSource = self
+        rankTableView.separatorStyle = .none
+        rankTableView.register(RankTableViewCell.self, forCellReuseIdentifier: "rankCell")
+    }
+    
   
     // MARK: View lifecycle
   
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
+        setUpTableView()
         setUpLayout()
     }
   
     func displaySomething(viewModel: Challenge.Something.ViewModel) {
     
+    }
+}
+
+extension ChallengeViewController: UITableViewDelegate, UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        rankTableView.deselectRow(at: indexPath, animated: true)
+//    }
+//
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 67
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = rankTableView.dequeueReusableCell(withIdentifier: "rankCell") else { return UITableViewCell() }
+        cell.selectionStyle = .none
+        return cell
     }
 }

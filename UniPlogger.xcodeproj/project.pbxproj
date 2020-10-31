@@ -22,6 +22,7 @@
 		1208B398254D400800E085D4 /* NotoSansKR-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1208B392254D400800E085D4 /* NotoSansKR-Black.otf */; };
 		1208B399254D400800E085D4 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1208B393254D400800E085D4 /* NotoSansKR-Medium.otf */; };
 		1208B39A254D400800E085D4 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1208B394254D400800E085D4 /* NotoSansKR-Regular.otf */; };
+		1208B39D254D72F400E085D4 /* RankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1208B39C254D72F400E085D4 /* RankTableViewCell.swift */; };
 		4C89B06F2525D2BB0007EBED /* TrainingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B06E2525D2BB0007EBED /* TrainingTableViewCell.swift */; };
 		4C89B0722525D2CB0007EBED /* RoutineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B0712525D2CB0007EBED /* RoutineTableViewCell.swift */; };
 		4CB979C42524E5BC00498E81 /* NavigationTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB979C32524E5BC00498E81 /* NavigationTabsView.swift */; };
@@ -95,6 +96,7 @@
 		1208B392254D400800E085D4 /* NotoSansKR-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Black.otf"; sourceTree = "<group>"; };
 		1208B393254D400800E085D4 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		1208B394254D400800E085D4 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
+		1208B39C254D72F400E085D4 /* RankTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankTableViewCell.swift; sourceTree = "<group>"; };
 		12330CE7D885C1CB00C8E874 /* Pods-UniPlogger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.release.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.release.xcconfig"; sourceTree = "<group>"; };
 		4C89B06E2525D2BB0007EBED /* TrainingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingTableViewCell.swift; sourceTree = "<group>"; };
 		4C89B0712525D2CB0007EBED /* RoutineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTableViewCell.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				1208B38C254C3A4500E085D4 /* TopRankView.swift */,
+				1208B39C254D72F400E085D4 /* RankTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 				4CC9C7DA25232128004D873D /* Quest.swift in Sources */,
 				AA7F551D2533568D001C4012 /* SharePresenter.swift in Sources */,
 				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
+				1208B39D254D72F400E085D4 /* RankTableViewCell.swift in Sources */,
 				AA7F551F2533568D001C4012 /* ShareViewController.swift in Sources */,
 				AA7F54EC2532C1A6001C4012 /* StartCountingViewController.swift in Sources */,
 				1208B37F2545CC7D00E085D4 /* ChallengeWorker.swift in Sources */,
