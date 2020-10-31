@@ -23,6 +23,7 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
     var router: (NSObjectProtocol & ChallengeRoutingLogic & ChallengeDataPassing)?
     
     lazy var weekLabel = UILabel().then {
+        $0.font = .notoSansKR(ofSize: 20, weight: .bold)
         $0.text = "10월 2주차"
         $0.textAlignment = .center
     }
