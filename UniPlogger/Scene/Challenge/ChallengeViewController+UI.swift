@@ -14,13 +14,16 @@ extension ChallengeViewController {
     }
     
     func setUpView() {
-        [weekLabel, firstRankView, secondRankView, thirdRankView, rankTableView, infoButton].forEach {
+        [backgroundImageView, weekLabel, firstRankView, secondRankView, thirdRankView, rankTableView, infoButton].forEach {
             self.view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
     }
     
     func setUpLayout() {
+        backgroundImageView.snp.makeConstraints {
+            $0.top.bottom.leading.trailing.equalToSuperview()
+        }
         weekLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(57)
             $0.centerX.equalToSuperview()

@@ -22,6 +22,9 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
     var interactor: ChallengeBusinessLogic?
     var router: (NSObjectProtocol & ChallengeRoutingLogic & ChallengeDataPassing)?
     
+    lazy var backgroundImageView = UIImageView().then {
+        $0.image = UIImage(named: "challengeBackground")
+    }
     lazy var weekLabel = UILabel().then {
         $0.font = .notoSansKR(ofSize: 20, weight: .bold)
         $0.text = "10월 2주차"
