@@ -214,6 +214,16 @@ class PloggingViewController: BaseViewController {
         forAnnotationViewWithReuseIdentifier:
           MKMapViewDefaultAnnotationViewReuseIdentifier)
         self.interactor?.setupLocationService()
+        
+        for trash in PloggingWorker.trashCanList {
+            let coordinate = CLLocationCoordinate2D(
+                latitude: trash.latitude,
+                longitude: trash.longitude
+            )
+            let annotation = TrashAnnotation(coordinate: coordinate, title: "title", subtitle: "content")
+            
+            mapView.addAnnotation(annotation)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -455,21 +465,23 @@ extension PloggingViewController: PloggingDisplayLogic{
 extension PloggingViewController: MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
-                let pin = mapView.view(for: annotation) as? MKPinAnnotationView ?? MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
-                pin.image = UIImage(named: "annotation_myLocation")
-                return pin
+            let pin = mapView.view(for: annotation) as? MKPinAnnotationView ?? MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
+            pin.image = UIImage(named: "annotation_myLocation")
+            return pin
         }
         return nil
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-      guard let polyLine = overlay as? MultiColorPolyline else {
-        return MKOverlayRenderer(overlay: overlay)
-      }
-      
-      let renderer = MKPolylineRenderer(polyline: polyLine)
-      renderer.strokeColor = polyLine.color
-      renderer.lineWidth = 3
-      return renderer
+        guard let polyLine = overlay as? MultiColorPolyline else {
+            return MKOverlayRenderer(overlay: overlay)
+        }
+        
+        let renderer = MKPolylineRenderer(polyline: polyLine)
+        renderer.strokeColor = polyLine.color
+        renderer.lineWidth = 3
+        renderer.lineJoin = .round
+        renderer.lineCap = .round
+        return renderer
     }
 }

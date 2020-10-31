@@ -18,6 +18,13 @@ protocol PloggingWorkerDelegate{
 }
 
 class PloggingWorker: NSObject {
+    static var trashCanList: [TrashCan] = [
+        .init(latitude: 37.4972632, longitude: 126.8450178, isRemoved: false),
+        .init(latitude: 37.5015682, longitude: 126.844351, isRemoved: false),
+        .init(latitude: 37.4944, longitude: 126.8423623, isRemoved: false),
+        .init(latitude: 37.4961687, longitude: 126.8426605, isRemoved: false)
+    ]
+    
     private let locationManager = LocationManager.shared.locationManager
     private var distance = Measurement(value: 0, unit: UnitLength.meters)
     var locationList: [CLLocation] = []
@@ -42,7 +49,7 @@ class PloggingWorker: NSObject {
     
     func startUpdateLocation(){
         locationManager.delegate = self
-        locationManager.activityType = .fitness
+        locationManager.activityType = .automotiveNavigation
         locationManager.distanceFilter = 5
         locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
@@ -82,7 +89,6 @@ extension PloggingWorker: CLLocationManagerDelegate{
                 
                 self.delegate?.updateRoute(distance: distance, location: location)
             }
-            
             locationList.append(newLocation)
         }
     }
