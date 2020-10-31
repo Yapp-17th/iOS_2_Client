@@ -14,6 +14,8 @@
 		1208B3812545CC7D00E085D4 /* ChallengeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1208B37B2545CC7D00E085D4 /* ChallengeModels.swift */; };
 		1208B3822545CC7D00E085D4 /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1208B37C2545CC7D00E085D4 /* ChallengeViewController.swift */; };
 		1208B3832545CC7D00E085D4 /* ChallengeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1208B37D2545CC7D00E085D4 /* ChallengeInteractor.swift */; };
+		1208B38A254C37E100E085D4 /* ChallengeViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1208B389254C37E100E085D4 /* ChallengeViewController+UI.swift */; };
+		1208B38D254C3A4500E085D4 /* TopRankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1208B38C254C3A4500E085D4 /* TopRankView.swift */; };
 		4C89B06F2525D2BB0007EBED /* TrainingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B06E2525D2BB0007EBED /* TrainingTableViewCell.swift */; };
 		4C89B0722525D2CB0007EBED /* RoutineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B0712525D2CB0007EBED /* RoutineTableViewCell.swift */; };
 		4CB979C42524E5BC00498E81 /* NavigationTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB979C32524E5BC00498E81 /* NavigationTabsView.swift */; };
@@ -79,6 +81,8 @@
 		1208B37B2545CC7D00E085D4 /* ChallengeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeModels.swift; sourceTree = "<group>"; };
 		1208B37C2545CC7D00E085D4 /* ChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewController.swift; sourceTree = "<group>"; };
 		1208B37D2545CC7D00E085D4 /* ChallengeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeInteractor.swift; sourceTree = "<group>"; };
+		1208B389254C37E100E085D4 /* ChallengeViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChallengeViewController+UI.swift"; sourceTree = "<group>"; };
+		1208B38C254C3A4500E085D4 /* TopRankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRankView.swift; sourceTree = "<group>"; };
 		12330CE7D885C1CB00C8E874 /* Pods-UniPlogger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.release.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.release.xcconfig"; sourceTree = "<group>"; };
 		4C89B06E2525D2BB0007EBED /* TrainingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingTableViewCell.swift; sourceTree = "<group>"; };
 		4C89B0712525D2CB0007EBED /* RoutineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTableViewCell.swift; sourceTree = "<group>"; };
@@ -172,14 +176,24 @@
 		1208B3772545CC5500E085D4 /* Challenge */ = {
 			isa = PBXGroup;
 			children = (
+				1208B3872545D8EA00E085D4 /* Views */,
 				1208B3782545CC7D00E085D4 /* ChallengePresenter.swift */,
 				1208B3792545CC7D00E085D4 /* ChallengeWorker.swift */,
 				1208B37A2545CC7D00E085D4 /* ChallengeRouter.swift */,
 				1208B37B2545CC7D00E085D4 /* ChallengeModels.swift */,
 				1208B37C2545CC7D00E085D4 /* ChallengeViewController.swift */,
+				1208B389254C37E100E085D4 /* ChallengeViewController+UI.swift */,
 				1208B37D2545CC7D00E085D4 /* ChallengeInteractor.swift */,
 			);
 			path = Challenge;
+			sourceTree = "<group>";
+		};
+		1208B3872545D8EA00E085D4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1208B38C254C3A4500E085D4 /* TopRankView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		4C31BE942524A01100D47919 /* Views */ = {
@@ -573,6 +587,7 @@
 				AA7F54F62532C1CF001C4012 /* LocationManager.swift in Sources */,
 				AA7F54ED2532C1A6001C4012 /* PloggingInteractor.swift in Sources */,
 				AA7F54F32532C1A6001C4012 /* PloggingWorker.swift in Sources */,
+				1208B38D254C3A4500E085D4 /* TopRankView.swift in Sources */,
 				AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */,
 				1208B3812545CC7D00E085D4 /* ChallengeModels.swift in Sources */,
 				AA7F55212533568D001C4012 /* ShareWorker.swift in Sources */,
@@ -599,6 +614,7 @@
 				AA7F55232533568D001C4012 /* PloggingImageView.swift in Sources */,
 				4CC9C7D4252315F3004D873D /* QuestModels.swift in Sources */,
 				1208B3802545CC7D00E085D4 /* ChallengeRouter.swift in Sources */,
+				1208B38A254C37E100E085D4 /* ChallengeViewController+UI.swift in Sources */,
 				AA7F54F02532C1A6001C4012 /* PloggingRouter.swift in Sources */,
 				1208B37E2545CC7D00E085D4 /* ChallengePresenter.swift in Sources */,
 				AA7F55222533568D001C4012 /* ShareRouter.swift in Sources */,

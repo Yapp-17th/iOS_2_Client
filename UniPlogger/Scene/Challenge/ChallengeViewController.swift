@@ -11,6 +11,8 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 
 protocol ChallengeDisplayLogic: class {
     func displaySomething(viewModel: Challenge.Something.ViewModel)
@@ -19,6 +21,17 @@ protocol ChallengeDisplayLogic: class {
 class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
     var interactor: ChallengeBusinessLogic?
     var router: (NSObjectProtocol & ChallengeRoutingLogic & ChallengeDataPassing)?
+    
+    lazy var weekLabel = UILabel().then {
+        $0.text = "10월 2주차"
+        $0.textAlignment = .center
+    }
+    lazy var firstRankView = TopRankView()
+    lazy var secondRankView = TopRankView()
+    lazy var thirdRankView = TopRankView()
+    lazy var rankTableView = UITableView().then {
+        $0.backgroundColor = .blue
+    }
 
     // MARK: Object lifecycle
   
@@ -47,21 +60,12 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
         router.dataStore = interactor
     }
   
-    // MARK: Routing
-  
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
-    }
-  
     // MARK: View lifecycle
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpView()
+        setUpLayout()
     }
   
     func displaySomething(viewModel: Challenge.Something.ViewModel) {
