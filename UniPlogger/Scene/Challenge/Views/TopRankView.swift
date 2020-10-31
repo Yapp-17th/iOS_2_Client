@@ -9,15 +9,54 @@
 import UIKit
 
 class TopRankView: UIView {
+    lazy var rankImageView = UIImageView().then {
+        $0.backgroundColor = .gray
+    }
+    lazy var nameLabel = UILabel().then {
+        $0.font = .roboto(ofSize: 14, weight: .bold)
+        $0.textAlignment = .center
+        $0.backgroundColor = .gray
+    }
+    lazy var scoreLabel = UILabel().then {
+        $0.font = .roboto(ofSize: 12, weight: .regular)
+        $0.textAlignment = .center
+        $0.backgroundColor = .gray
+    }
 
     init() {
         super.init(frame: .zero)
-        self.backgroundColor = .gray
+        setUpView()
+        setUpLayout()
     }
     
     required init?(coder: NSCoder) {
         super.init(frame: .zero)
-        self.backgroundColor = .gray
     }
     
+}
+
+extension TopRankView {
+    func setUpView() {
+        [rankImageView, nameLabel, scoreLabel].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            self.addSubview($0)
+        }
+    }
+    
+    func setUpLayout() {
+        rankImageView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(92)
+            $0.height.equalTo(99)
+        }
+        nameLabel.snp.makeConstraints {
+            $0.top.equalTo(rankImageView.snp.bottom).offset(4)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(16)
+        }
+        scoreLabel.snp.makeConstraints {
+            $0.bottom.leading.trailing.equalToSuperview()
+            $0.height.equalTo(18)
+        }
+    }
 }

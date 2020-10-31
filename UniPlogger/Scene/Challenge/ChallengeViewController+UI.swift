@@ -43,15 +43,15 @@ extension ChallengeViewController {
         }
         secondRankView.snp.makeConstraints {
             $0.top.equalTo(weekLabel.snp.bottom).offset(79)
-            $0.trailing.equalTo(firstRankView.snp.leading).offset(-31)
+            $0.trailing.equalTo(firstRankView.snp.leading)
             $0.width.equalTo(firstRankView.snp.width)
-            $0.height.equalTo(124)
+            $0.height.equalTo(140)
         }
         thirdRankView.snp.makeConstraints {
             $0.top.equalTo(weekLabel.snp.bottom).offset(101)
-            $0.leading.equalTo(firstRankView.snp.trailing).offset(18)
+            $0.leading.equalTo(firstRankView.snp.trailing)
             $0.width.equalTo(firstRankView.snp.width)
-            $0.height.equalTo(113)
+            $0.height.equalTo(140)
         }
         rankTableView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
