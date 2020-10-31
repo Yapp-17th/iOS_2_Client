@@ -14,7 +14,7 @@ extension ChallengeViewController {
     }
     
     func setUpView() {
-        [weekLabel, firstRankView, secondRankView, thirdRankView, rankTableView].forEach {
+        [weekLabel, firstRankView, secondRankView, thirdRankView, rankTableView, infoButton].forEach {
             self.view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -26,6 +26,11 @@ extension ChallengeViewController {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(100)
             $0.height.equalTo(24)
+        }
+        infoButton.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(54)
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.width.height.equalTo(24)
         }
         firstRankView.snp.makeConstraints {
             $0.top.equalTo(weekLabel.snp.bottom).offset(22)

@@ -26,6 +26,9 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
         $0.text = "10월 2주차"
         $0.textAlignment = .center
     }
+    lazy var infoButton = UIButton().then {
+        $0.setImage(UIImage(named: "challenge_info"), for: .normal)
+    }
     lazy var firstRankView = TopRankView()
     lazy var secondRankView = TopRankView()
     lazy var thirdRankView = TopRankView()
