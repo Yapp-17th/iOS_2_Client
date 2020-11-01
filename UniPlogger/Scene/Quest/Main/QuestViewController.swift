@@ -22,11 +22,6 @@ class QuestViewController: QuestBaseViewController {
         static let viewLeading: CGFloat = 16
         static let viewTrailing: CGFloat = -16
         static let verticalSpacing: CGFloat = 20
-        
-        struct Cell {
-            static let trainingHeight: CGFloat = 176 + 20
-            static let routineHeight: CGFloat = 88 + 20
-        }
     }
     
     private struct Images {
@@ -202,12 +197,7 @@ extension QuestViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let category = questViewModel?.categoryOfSection[indexPath.section] else { return 0 }
-        
-        switch category {
-            case .training: return Metric.Cell.trainingHeight
-            case .routine: return Metric.Cell.routineHeight
-        }
+        return questViewModel?.height(at: indexPath) ?? .zero
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
