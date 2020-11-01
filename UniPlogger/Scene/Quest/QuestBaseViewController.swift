@@ -10,6 +10,9 @@ import UIKit
 
 class QuestBaseViewController: BaseViewController {
 
+    // status bar 색이랑 탭바 색을 맞추기 위해서 추가.
+    // view: tabBar 색
+    // backgroundView: 원하는 배경색
     var backgroundView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = Color.questBackground
