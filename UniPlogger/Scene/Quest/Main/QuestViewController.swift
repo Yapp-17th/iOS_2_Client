@@ -29,6 +29,10 @@ class QuestViewController: QuestBaseViewController {
         }
     }
     
+    private struct Images {
+        static let info = "ic_info"
+    }
+    
     // MARK: - Views
     
     private var titleLabel = UILabel().then {
@@ -51,6 +55,12 @@ class QuestViewController: QuestBaseViewController {
         $0.separatorStyle = .none
         $0.backgroundColor = .clear
         $0.showsVerticalScrollIndicator = false
+    }
+    
+    private lazy var infoBoxButton = UIBarButtonItem().then {
+        $0.image = UIImage(named: Images.info)
+        $0.target = self
+        $0.action = #selector(touchedInfoButton(_:))
     }
     
     // MARK: - Properties
@@ -111,6 +121,7 @@ class QuestViewController: QuestBaseViewController {
         super.setupViews()
         title = "퀘스트"
         
+        navigationItem.rightBarButtonItem = infoBoxButton
         backgroundView.addSubview(navigationTabsView)
         backgroundView.addSubview(questTableView)
     }
@@ -131,6 +142,13 @@ class QuestViewController: QuestBaseViewController {
             $0.trailing.equalTo(backgroundView.snp.trailing).offset(Metric.viewTrailing)
             $0.bottom.equalTo(backgroundView.snp.bottom).offset(Metric.verticalSpacing)
         }
+    }
+    
+    // MARK: Selectors
+    
+    @objc
+    private func touchedInfoButton(_ sender: UIBarButtonItem) {
+        
     }
 }
 
