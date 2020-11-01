@@ -32,6 +32,7 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
     }
     lazy var infoButton = UIButton().then {
         $0.setImage(UIImage(named: "challenge_info"), for: .normal)
+        $0.addTarget(self, action: #selector(touchUpInfoButton), for: .touchUpInside)
     }
     lazy var firstRankView = TopRankView()
     lazy var secondRankView = TopRankView()
@@ -39,6 +40,7 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
     lazy var rankTableView = UITableView().then {
         $0.backgroundColor = .clear
     }
+    lazy var scoreInfoView = ScoreInfoView()
 
     // MARK: Object lifecycle
   
@@ -87,13 +89,13 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
     func displaySomething(viewModel: Challenge.Something.ViewModel) {
     
     }
+    
+    @objc func touchUpInfoButton() {
+        scoreInfoView.isHidden = false
+    }
 }
 
 extension ChallengeViewController: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        rankTableView.deselectRow(at: indexPath, animated: true)
-//    }
-//
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 67
     }
