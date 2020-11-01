@@ -48,7 +48,7 @@ extension QuestInteractor: QuestBusinessLogic {
             questList.append(quest)
         } else if state == .doing {
             questList.remove(quest: quest)
-            quest.state = .done
+            quest.state = .todo
             questList.append(quest)
         } else if state == .done {
             questList.remove(quest: quest)

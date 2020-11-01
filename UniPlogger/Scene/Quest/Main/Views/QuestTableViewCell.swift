@@ -10,55 +10,91 @@ import UIKit
 
 class QuestTableViewCell: UITableViewCell {
     
+    
+    // MARK: - Constants
+    
     static let identifire = "QuestTableViewCell"
 
     // MARK: - Views
     
-    var cellBackgroundView = UIView().then {
+    private var cellBackgroundView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.cornerRadius = 22
     }
     
-    var sproutBackgroundView = UIView().then {
+    private var sproutBackgroundView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    var sproutImageView = UIImageView().then {
+    private var sproutImageView = UIImageView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.contentMode = .scaleToFill
     }
     
-    var questLabel = UILabel().then {
+    private var questContentView = UIView().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private var questTitleLabel = UILabel().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.textColor = Color.textBlack
     }
     
-    // MARK: - Properties
+    private var questContentLabel = UILabel().then {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.textColor = Color.textBlack
+        $0.numberOfLines = 0
+    }
     
     // MARK: - Methods
     
-    // MARK: - Initializer
-    
     func configure(viewModel: QuestModels.ViewModel.QuestViewModel) {
-        questLabel.text = viewModel.title
-
+        questTitleLabel.text = viewModel.title
+        questContentLabel.text = viewModel.content
         sproutImageView.image = viewModel.cellImage
         sproutBackgroundView.layer.cornerRadius = 26
         sproutBackgroundView.backgroundColor = viewModel.cellImageBackground
         cellBackgroundView.backgroundColor = UIColor(named: viewModel.backgroundColor)
     }
     
+    // MARK: - Initializer
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        setup()
+        setupViews()
+        setupLayouts()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    private func setup() {
+        
+    }
+    
+    private func setupViews() {
         selectionStyle = .none
         backgroundColor = .clear
         
         addSubview(cellBackgroundView)
-        cellBackgroundView.addSubview(sproutBackgroundView)
-        sproutBackgroundView.addSubview(sproutImageView)
-        cellBackgroundView.addSubview(questLabel)
         
+        [sproutBackgroundView, questContentView].forEach {
+            cellBackgroundView.addSubview($0)
+        }
+        
+        [sproutImageView].forEach {
+            sproutBackgroundView.addSubview($0)
+        }
+        
+        [questTitleLabel, questContentLabel].forEach {
+            questContentView.addSubview($0)
+        }
+    }
+    
+    private func setupLayouts() {
         cellBackgroundView.snp.makeConstraints {
             $0.top.equalTo(snp.top).offset(10)
             $0.leading.equalTo(snp.leading)
@@ -79,13 +115,18 @@ class QuestTableViewCell: UITableViewCell {
             $0.height.equalTo(20)
         }
         
-        questLabel.snp.makeConstraints {
+        questContentView.snp.makeConstraints {
             $0.centerY.equalTo(sproutBackgroundView.snp.centerY)
             $0.leading.equalTo(sproutBackgroundView.snp.trailing).offset(18)
         }
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        
+        questTitleLabel.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+        }
+        
+        questContentLabel.snp.makeConstraints {
+            $0.top.equalTo(questTitleLabel.snp.bottom).inset(-7)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
     }
 }

@@ -18,8 +18,8 @@ class QuestDetailViewController: QuestBaseViewController {
         static let contentInset: UIEdgeInsets = .init(top: 30, left: 20, bottom: 50, right: -20)
         static let innerInset: CGFloat = 20
         static let mainToRecommandSpacing: CGFloat = 44
-        static let contentHeight: CGFloat = 700
-        static let buttonsViewHeight: CGFloat = 230
+        static let contentHeight: CGFloat = 680
+        static let buttonsViewHeight: CGFloat = 194
         static let buttonHeight: CGFloat = 52
     }
     
@@ -63,7 +63,6 @@ class QuestDetailViewController: QuestBaseViewController {
     
     private var recommandView = UIView().then { view in
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.isUserInteractionEnabled = false
     }
     
     private var recommandTitleLabel = UILabel().then { label in
@@ -75,9 +74,8 @@ class QuestDetailViewController: QuestBaseViewController {
     
     private var recommandSubStackView = UIStackView().then { stackView in
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.isUserInteractionEnabled = false
         stackView.axis = .vertical
-        stackView.spacing = 10
+        stackView.spacing = 21
         stackView.distribution = .fillEqually
     }
     
@@ -87,6 +85,11 @@ class QuestDetailViewController: QuestBaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = Color.questBackgroundTint
         view.layer.cornerRadius = 22
+        view.layer.shadowRadius = 10
+        view.layer.shadowColor = UIColor(red: 0.957, green: 0.961, blue: 0.98, alpha: 1).cgColor
+        view.layer.shadowOpacity = 1
+        view.layer.shadowOffset = .zero
+        
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
@@ -101,12 +104,24 @@ class QuestDetailViewController: QuestBaseViewController {
         button.setTitle("시작하기", for: .normal)
         button.backgroundColor = Color.questTint
         button.layer.cornerRadius = 21
+        button.layer.shadowColor = UIColor(red: 0, green: 0.812, blue: 0.596, alpha: 0.2).cgColor
+        button.layer.shadowOpacity = 1
+        button.layer.shadowRadius = 20
+        button.layer.shadowOffset = CGSize(width: 0, height: 10)
     }
     
     private var cancelButton = VerticalRoundButton().then { button in
         button.setTitle("포기하기", for: .normal)
         button.backgroundColor = .lightGray
         button.layer.cornerRadius = 21
+    }
+    
+    // MARK: Methods
+    
+    @objc func didTapOtherQuestView(_ gesture: UIGestureRecognizer) {
+        let questDetailVC = QuestDetailViewController()
+        navigationController?.popViewController(animated: true)
+        navigationController?.pushViewController(questDetailVC, animated: true)
     }
     
     // MARK: - View Life Cycle
@@ -142,6 +157,10 @@ class QuestDetailViewController: QuestBaseViewController {
     
     // MARK: - Initializer
     
+    func configureSelectors() {
+        
+    }
+    
     override func setupViews() {
         super.setupViews()
         title = "퀘스트"
@@ -160,7 +179,7 @@ class QuestDetailViewController: QuestBaseViewController {
             contentView.addSubview($0)
         }
         
-        [mainTitleLabel,  mainDescriptionLabel].forEach {
+        [mainTitleLabel, mainDescriptionLabel].forEach {
             mainView.addSubview($0)
         }
         
@@ -174,7 +193,14 @@ class QuestDetailViewController: QuestBaseViewController {
             otherView.descripionLabel.text = "1달 동안 총 10회 이상 플로깅하기"
             otherView.setTextColor(Color.textBlack)
             otherView.backgroundColor = Color.questBackgroundTint
-            otherView.layer.cornerRadius = 15
+            otherView.layer.cornerRadius = 18
+            otherView.layer.shadowColor = UIColor(red: 0.957, green: 0.961, blue: 0.98, alpha: 1).cgColor
+            otherView.layer.shadowOpacity = 1
+            otherView.layer.shadowRadius = 10
+            otherView.layer.shadowOffset = CGSize(width: 0, height: 4)
+            
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapOtherQuestView(_:)))
+            otherView.addGestureRecognizer(tapGesture)
             recommandSubStackView.addArrangedSubview(otherView)
         }
         

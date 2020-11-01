@@ -24,6 +24,5 @@ class QuestNavigationController: UINavigationController {
         navigationBar.tintColor = Color.textBlack
         navigationBar.backgroundColor = Color.questBackgroundTint
         navigationBar.barTintColor = Color.questBackgroundTint
-        view.backgroundColor = Color.questBackgroundTint
     }
 }
