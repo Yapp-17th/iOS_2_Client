@@ -30,3 +30,14 @@ extension Quest: Hashable {
         return lhs.id == rhs.id
     }
 }
+
+extension Quest.Category: Comparable {
+    static func >(lhs: Quest.Category, rhs: Quest.Category) -> Bool {
+        switch (lhs, rhs) {
+            case (.training, .routine):
+                return true
+            default:
+                return false
+        }
+    }
+}
