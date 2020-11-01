@@ -16,9 +16,30 @@ class ScoreInfoView: UIView {
         $0.backgroundColor = UIColor(named: "infoBackgroundColor")
         $0.layer.cornerRadius = 18
     }
+    lazy var titleView = UIView()
+    lazy var infoImageView = UIImageView().then {
+        $0.image = UIImage(named: "challenge_info")
+    }
+    lazy var headerLabel = UILabel().then {
+        $0.font = .notoSansKR(ofSize: 20, weight: .bold)
+        $0.text = "알려드려요"
+    }
+    lazy var titleLabel = UILabel().then {
+        $0.font = .notoSansKR(ofSize: 16, weight: .bold)
+        $0.text = "점수 계산 방법"
+        $0.textAlignment = .center
+    }
+    lazy var descriptionLabel = UILabel().then {
+        $0.font = .notoSansKR(ofSize: 12, weight: .regular)
+        $0.textAlignment = .center
+    }
+    lazy var characterImageView = UIImageView().then {
+        $0.image = UIImage(named: "share_character")
+    }
 
     init() {
         super.init(frame: .zero)
+        configure()
         setUpView()
         setUpLayout()
     }
@@ -31,8 +52,12 @@ class ScoreInfoView: UIView {
 }
 
 extension ScoreInfoView {
+    func configure() {
+        setDescriptionLabel()
+    }
+
     func setUpView() {
-        [backgroundView, infoView].forEach {
+        [backgroundView, infoView, titleView, infoImageView, headerLabel, titleLabel, descriptionLabel, characterImageView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview($0)
         }
@@ -47,5 +72,42 @@ extension ScoreInfoView {
             $0.centerX.centerY.equalToSuperview()
             $0.height.equalTo(infoView.snp.width)
         }
+        titleView.snp.makeConstraints {
+            $0.top.equalTo(infoView).offset(19)
+            $0.centerX.equalTo(infoView)
+            $0.width.equalTo(127)
+            $0.height.equalTo(30)
+        }
+        infoImageView.snp.makeConstraints {
+            $0.leading.centerY.equalTo(titleView)
+            $0.width.height.equalTo(24)
+        }
+        headerLabel.snp.makeConstraints {
+            $0.top.bottom.trailing.centerY.equalTo(titleView)
+            $0.width.equalTo(93)
+        }
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(titleView.snp.bottom).offset(14)
+            $0.centerX.width.equalTo(infoView)
+            $0.height.equalTo(24)
+        }
+        descriptionLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(3)
+            $0.centerX.width.equalTo(infoView)
+            $0.height.equalTo(34)
+        }
+        characterImageView.snp.makeConstraints {
+            $0.width.equalTo(100)
+            $0.height.equalTo(107.95)
+            $0.bottom.centerX.equalTo(infoView)
+        }
+    }
+    
+    private func setDescriptionLabel() {
+        let string = "같은 점수는 가나다 이름순으로 배치됩니다.\n"
+        let attributedString = NSMutableAttributedString(string: string)
+        attributedString.addAttribute(.font, value: UIFont.notoSansKR(ofSize: 12, weight: .regular), range: (string as NSString).range(of: "같은 점수는 가나다 이름순으로 배치됩니다.\n"))
+        attributedString.addAttribute(.font, value: UIFont.notoSansKR(ofSize: 12, weight: .bold), range: (string as NSString).range(of: "가나다 이름순"))
+        descriptionLabel.attributedText = attributedString
     }
 }
