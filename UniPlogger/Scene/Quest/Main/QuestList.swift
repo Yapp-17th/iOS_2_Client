@@ -34,7 +34,11 @@ struct QuestList {
     // MARK: Getter
     
     func quests(for state: State) -> [Quest] {
+        guard state == .done else {
+            return questList[state]?.sorted(by: { $0.category > $1.category }) ?? []
+        }
         return questList[state] ?? []
+        
     }
     
     func quest(at indexPath: IndexPath, in state: State) -> Quest? {
