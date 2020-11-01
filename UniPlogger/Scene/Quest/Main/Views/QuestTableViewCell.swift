@@ -10,20 +10,23 @@ import UIKit
 
 class QuestTableViewCell: UITableViewCell {
     
+    
+    // MARK: - Constants
+    
     static let identifire = "QuestTableViewCell"
 
     // MARK: - Views
     
-    var cellBackgroundView = UIView().then {
+    private var cellBackgroundView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.cornerRadius = 22
     }
     
-    var sproutBackgroundView = UIView().then {
+    private var sproutBackgroundView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    var sproutImageView = UIImageView().then {
+    private var sproutImageView = UIImageView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.contentMode = .scaleToFill
     }
