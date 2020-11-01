@@ -14,6 +14,7 @@ import UIKit
 
 @objc protocol PloggingRoutingLogic {
     func routeToStartCounting()
+    func routeToPloggingRecord()
 }
 
 protocol PloggingDataPassing {
@@ -28,8 +29,18 @@ class PloggingRouter: NSObject, PloggingRoutingLogic, PloggingDataPassing {
         let destinationVC = StartCountingViewController()
         navigateToStartCounting(source: viewController!, destination: destinationVC)
     }
+    func routeToPloggingRecord() {
+        let destinationVC = PloggingRecordViewController()
+        navigateToPloggingRecord(source: viewController!, destination: destinationVC)
+    }
     
     func navigateToStartCounting(source: PloggingViewController, destination: StartCountingViewController){
+        destination.modalTransitionStyle = .crossDissolve
+        destination.modalPresentationStyle = .fullScreen
+        source.present(destination, animated: true)
+    }
+    
+    func navigateToPloggingRecord(source: PloggingViewController, destination: PloggingRecordViewController){
         destination.modalTransitionStyle = .crossDissolve
         destination.modalPresentationStyle = .fullScreen
         source.present(destination, animated: true)
