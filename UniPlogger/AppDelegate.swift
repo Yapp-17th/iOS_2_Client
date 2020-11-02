@@ -17,12 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = ShareViewController()
+        window?.rootViewController = MainTabBarController()
         window?.backgroundColor = .white
         
         window?.makeKeyAndVisible()
         return true
     }
     
+    func applicationWillTerminate(_ application: UIApplication) {
+        do{
+            try CoreDataStore.shared.mainManagedObjectContext.save()
+        } catch {
+            print(#function, "coredata save error")
+        }
+    }
 }
 

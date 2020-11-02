@@ -29,6 +29,7 @@
 		AA2CAE082543EAD600105748 /* PloggingRecordWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CADFE2543EAD500105748 /* PloggingRecordWorker.swift */; };
 		AA2CAE092543EAD600105748 /* PloggingRecordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CADFF2543EAD500105748 /* PloggingRecordInteractor.swift */; };
 		AA2CAE0A2543EAD600105748 /* PloggingRecordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CAE002543EAD500105748 /* PloggingRecordRouter.swift */; };
+		AA35BC77254FEEFA00AE32A7 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35BC76254FEEFA00AE32A7 /* CoreDataStore.swift */; };
 		AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54DD2532C109001C4012 /* BaseViewController.swift */; };
 		AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B5062520D16800F0311A /* UIColor+Extensions.swift */; };
 		AA7F54E02532C16E001C4012 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB887B02524603E000A9D58 /* UIFont+Extensions.swift */; };
@@ -115,6 +116,7 @@
 		AA2CADFE2543EAD500105748 /* PloggingRecordWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingRecordWorker.swift; sourceTree = "<group>"; };
 		AA2CADFF2543EAD500105748 /* PloggingRecordInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingRecordInteractor.swift; sourceTree = "<group>"; };
 		AA2CAE002543EAD500105748 /* PloggingRecordRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingRecordRouter.swift; sourceTree = "<group>"; };
+		AA35BC76254FEEFA00AE32A7 /* CoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
 		AA7F54DD2532C109001C4012 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		AA7F54E42532C1A6001C4012 /* StartCountingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartCountingViewController.swift; sourceTree = "<group>"; };
 		AA7F54E52532C1A6001C4012 /* PloggingInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingInteractor.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				AA7F54F52532C1CF001C4012 /* LocationManager.swift */,
+				AA35BC76254FEEFA00AE32A7 /* CoreDataStore.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -665,6 +668,7 @@
 				AA7F55242533568D001C4012 /* PloggingInfoView.swift in Sources */,
 				4CB979C42524E5BC00498E81 /* NavigationTabsView.swift in Sources */,
 				AA2CAE092543EAD600105748 /* PloggingRecordInteractor.swift in Sources */,
+				AA35BC77254FEEFA00AE32A7 /* CoreDataStore.swift in Sources */,
 				AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
 				4C89B06F2525D2BB0007EBED /* TrainingTableViewCell.swift in Sources */,
