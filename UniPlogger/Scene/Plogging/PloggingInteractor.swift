@@ -14,6 +14,7 @@ import UIKit
 import CoreLocation
 protocol PloggingBusinessLogic {
     func changeState(request: Plogging.ChangeState.Request)
+    func startRun()
     func setupLocationService()
 }
 
@@ -21,9 +22,9 @@ protocol PloggingDataStore {
     //var name: String { get set }
 }
 
-class PloggingInteractor: PloggingBusinessLogic, PloggingDataStore {
+class PloggingInteractor: NSObject, PloggingBusinessLogic, PloggingDataStore {
     var presenter: PloggingPresentationLogic?
-    var worker: PloggingWorker?
+    var worker = PloggingWorker()
     //var name: String = ""
     func changeState(request: Plogging.ChangeState.Request){
         switch request.state {
@@ -36,6 +37,10 @@ class PloggingInteractor: PloggingBusinessLogic, PloggingDataStore {
             print("pause")
         }
     }
+    func startRun() {
+        worker.delegate = self
+        worker.startRun()
+    }
     func setupLocationService() {
         LocationManager.shared.delegate = self
         LocationManager.shared.requestPermission()
@@ -45,13 +50,13 @@ class PloggingInteractor: PloggingBusinessLogic, PloggingDataStore {
 extension PloggingInteractor: LocationManagerDelegate{
     func didChangeAuthorization(status: CLAuthorizationStatus) {
         if LocationManager.shared.locationServicesEnabled {
-            let response = Plogging.Location.Response(status: status)
+            let response = Plogging.LocationAuth.Response(status: status)
             DispatchQueue.main.async { [weak self] in
                 self?.presenter?.presentLocationService(response: response)
             }
             
         }else{
-            let response = Plogging.Location.Response(status: .notDetermined)
+            let response = Plogging.LocationAuth.Response(status: .notDetermined)
             DispatchQueue.main.async { [weak self] in
                 self?.presenter?.presentLocationService(response: response)
             }
@@ -59,4 +64,17 @@ extension PloggingInteractor: LocationManagerDelegate{
     }
     
     
+}
+extension PloggingInteractor: PloggingWorkerDelegate{
+    func updateRoute(distance: Measurement<UnitLength>, location: Location) {
+        let response = Plogging.StartRun.Response(
+            distance: distance,
+            location: location
+        )
+        
+        self.presenter?.presentStartRun(response: response)
+    }
+    
+
+  
 }

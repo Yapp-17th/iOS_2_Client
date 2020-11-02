@@ -23,6 +23,8 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     
     
     // MARK: - Views
+    var scrollView = ScrollStackView()
+    
     lazy var skipButton = UIButton().then{
         $0.setTitle("SKIP", for: .normal)
         $0.titleLabel?.font = .roboto(ofSize: 15, weight: .bold)
@@ -81,10 +83,22 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     }
     
     let nextButtonView = UIView().then{
-        $0.backgroundColor = .blue
+        $0.backgroundColor = .main
         $0.layer.cornerRadius = 26
         $0.layer.masksToBounds = true
     }
+    
+    let nextLabel = UILabel().then{
+        $0.text = "NEXT"
+        $0.textColor = .white
+        $0.font = .roboto(ofSize: 15, weight: .bold)
+    }
+    
+    let nextImageView = UIImageView().then{
+        $0.contentMode = .center
+        $0.image = UIImage(named: "ic_BtnNextRight")
+    }
+    
     lazy var nextButton = UIButton()
     
     var itemList = [
@@ -166,10 +180,17 @@ extension PloggingRecordViewController: UICollectionViewDataSource{
 
 extension PloggingRecordViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: 96, height: 96)
+        return .init(width: 80, height: 80)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 26
+        return 20
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        let screenWidth = UIScreen.main.bounds.size.width
+        let collectionViewWidth = screenWidth - 52
+        let cellWidth:CGFloat = 80 * 3
+        return (collectionViewWidth - cellWidth) / 2
     }
 }

@@ -18,7 +18,7 @@ class LocationManager: NSObject {
     
     weak var delegate: LocationManagerDelegate?
     static let shared = LocationManager()
-    private let locationManager = CLLocationManager()
+    let locationManager = CLLocationManager()
     var location: CLLocation?
     var authorizationStatus: CLAuthorizationStatus = .notDetermined
     
