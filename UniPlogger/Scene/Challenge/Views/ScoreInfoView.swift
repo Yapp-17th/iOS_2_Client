@@ -107,8 +107,7 @@ extension ScoreInfoView {
             $0.height.equalTo(34)
         }
         secondCircleView.snp.makeConstraints {
-//            $0.top.equalTo(descriptionLabel.snp.bottom).offset(10)
-            $0.centerY.equalTo(infoView).offset(10)
+            $0.centerY.equalTo(infoView).offset(infoView.frame.width * 6.5 / 335)
             $0.centerX.equalTo(infoView)
             $0.width.height.equalTo(80)
         }

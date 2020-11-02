@@ -34,6 +34,7 @@ class RankTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configure()
         setUpView()
         setUpLayout()
     }
@@ -44,6 +45,9 @@ class RankTableViewCell: UITableViewCell {
 }
 
 extension RankTableViewCell {
+    func configure() {
+        self.backgroundColor = .clear
+    }
     func setUpView() {
         [background, rankLabel, userImageView, nameLabel, scoreLabel].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
