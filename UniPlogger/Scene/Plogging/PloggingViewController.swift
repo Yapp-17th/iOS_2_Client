@@ -15,7 +15,7 @@ import SnapKit
 import Then
 import MapKit
 import CoreGraphics
-
+import Toast_Swift
 
 protocol PloggingDisplayLogic: class {
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase)
@@ -24,6 +24,7 @@ protocol PloggingDisplayLogic: class {
     func displaySetting(message: String, url: URL)
     func displayLocation(location: CLLocationCoordinate2D)
     func displayRun(viewModel: Plogging.StartRun.ViewModel)
+    func displayLocationToast()
 }
 
 class PloggingViewController: BaseViewController {
@@ -449,18 +450,21 @@ extension PloggingViewController: PloggingDisplayLogic{
     }
     
     func displayLocation(location: CLLocationCoordinate2D) {
-        self.mapView.centerCoordinate = location
-        var region: MKCoordinateRegion = self.mapView.region
-        var span: MKCoordinateSpan = mapView.region.span
-        span.latitudeDelta *= 0.001
-        span.longitudeDelta *= 0.001
-        region.span = span
+        let region: MKCoordinateRegion = .init(
+            center: location,
+            latitudinalMeters: 100,
+            longitudinalMeters: 100)
         mapView.setRegion(region, animated: true)
     }
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase){
         //handle error with its usecase
     }
     
+    func displayLocationToast(){
+        DispatchQueue.main.async {
+            self.view.makeToast("iPhone의 '설정 > 개인 정보 보호 > 위치 서비스'에 위치 서비스 항목을 허용해주시고 다시 시도해주세요")
+        }
+    }
 }
 extension PloggingViewController: MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

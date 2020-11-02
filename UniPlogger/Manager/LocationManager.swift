@@ -12,6 +12,7 @@ import CoreLocation
 
 protocol LocationManagerDelegate: class {
     func didChangeAuthorization(status: CLAuthorizationStatus)
+    func didUpdateLocation(locations: [CLLocation])
 }
 
 class LocationManager: NSObject {
@@ -51,7 +52,6 @@ class LocationManager: NSObject {
     
     func requestLocation() {
         locationManager.startUpdatingLocation()
-        //locationManager.requestLocation()
     }
 }
 
@@ -63,11 +63,7 @@ extension LocationManager: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //위치가 업데이트될때마다
-        if let location = manager.location {
-            self.location = location
-            UserDefaults.standard.set(location.coordinate.asDictionary, forDefines: .location)
-        }
+        delegate?.didUpdateLocation(locations: locations)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

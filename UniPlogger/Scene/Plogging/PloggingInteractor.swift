@@ -42,30 +42,18 @@ class PloggingInteractor: NSObject, PloggingBusinessLogic, PloggingDataStore {
         worker.startRun()
     }
     func setupLocationService() {
-        LocationManager.shared.delegate = self
+        worker.delegate = self
         LocationManager.shared.requestPermission()
     }
 }
 
-extension PloggingInteractor: LocationManagerDelegate{
-    func didChangeAuthorization(status: CLAuthorizationStatus) {
-        if LocationManager.shared.locationServicesEnabled {
-            let response = Plogging.LocationAuth.Response(status: status)
-            DispatchQueue.main.async { [weak self] in
-                self?.presenter?.presentLocationService(response: response)
-            }
-            
-        }else{
-            let response = Plogging.LocationAuth.Response(status: .notDetermined)
-            DispatchQueue.main.async { [weak self] in
-                self?.presenter?.presentLocationService(response: response)
-            }
-        }
-    }
-    
-    
-}
 extension PloggingInteractor: PloggingWorkerDelegate{
+    func didChangeAuthorization(status: CLAuthorizationStatus) {
+      let response = Plogging.LocationAuth.Response(status: status, isLocationServiceEnabled: LocationManager.shared.locationServicesEnabled)
+      DispatchQueue.main.async { [weak self] in
+        self?.presenter?.presentLocationService(response: response)
+      }
+    }
     func updateRoute(distance: Measurement<UnitLength>, location: Location) {
         let response = Plogging.StartRun.Response(
             distance: distance,
@@ -74,7 +62,4 @@ extension PloggingInteractor: PloggingWorkerDelegate{
         
         self.presenter?.presentStartRun(response: response)
     }
-    
-
-  
 }

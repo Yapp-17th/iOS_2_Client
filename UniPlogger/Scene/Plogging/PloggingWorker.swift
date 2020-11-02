@@ -15,6 +15,7 @@ import CoreLocation
 
 protocol PloggingWorkerDelegate{
     func updateRoute(distance: Measurement<UnitLength>, location: Location)
+    func didChangeAuthorization(status: CLAuthorizationStatus)
 }
 
 class PloggingWorker: NSObject {
@@ -25,7 +26,7 @@ class PloggingWorker: NSObject {
         .init(latitude: 37.4961687, longitude: 126.8426605, isRemoved: false)
     ]
     
-    private let locationManager = LocationManager.shared.locationManager
+    private let locationManager = LocationManager.shared
     private var distance = Measurement(value: 0, unit: UnitLength.meters)
     var locationList: [CLLocation] = []
     var delegate: PloggingWorkerDelegate?
@@ -44,35 +45,16 @@ class PloggingWorker: NSObject {
         startUpdateLocation()
     }
     func stopRun(){
-        locationManager.stopUpdatingLocation()
+        locationManager.locationManager.stopUpdatingLocation()
     }
     
     func startUpdateLocation(){
         locationManager.delegate = self
-        locationManager.activityType = .automotiveNavigation
-        locationManager.distanceFilter = 5
-        locationManager.startUpdatingHeading()
-        locationManager.startUpdatingLocation()
     }
 }
 
-extension PloggingWorker: CLLocationManagerDelegate{
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .authorizedAlways, .authorizedWhenInUse:
-            //Todo: 위치권한 사용하기
-            print("authorized")
-            startUpdateLocation()
-        case .denied:
-            print("denied")
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-        default:
-            print("else")
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+extension PloggingWorker: LocationManagerDelegate{
+    func didUpdateLocation(locations: [CLLocation]) {
         for newLocation in locations{
             let howRecent = newLocation.timestamp.timeIntervalSinceNow
             print("horizontalAccuracy: \(newLocation.horizontalAccuracy)")
@@ -93,4 +75,7 @@ extension PloggingWorker: CLLocationManagerDelegate{
         }
     }
     
+    func didChangeAuthorization(status: CLAuthorizationStatus) {
+        self.delegate?.didChangeAuthorization(status: status)
+    }
 }
