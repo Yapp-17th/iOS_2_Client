@@ -60,6 +60,6 @@ extension PloggingInteractor: PloggingWorkerDelegate{
             location: location
         )
         
-//        self.presenter?.presentStartRun(response: response)
+        self.presenter?.presentStartRun(response: response)
     }
 }

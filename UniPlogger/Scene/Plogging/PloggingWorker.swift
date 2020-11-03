@@ -54,6 +54,9 @@ class PloggingWorker: NSObject {
     
     func startUpdateLocation(){
         locationManager.delegate = self
+        locationManager.activityType = .fitness
+        locationManager.distanceFilter = 5
+        locationManager.startUpdatingLocation()
     }
 }
 
@@ -63,8 +66,6 @@ extension PloggingWorker: CLLocationManagerDelegate{
         if let newLocation = locations.last{
             UserDefaults.standard.set(newLocation.coordinate.asDictionary, forDefines: .location)
             let howRecent = newLocation.timestamp.timeIntervalSinceNow
-            print("horizontalAccuracy: \(newLocation.horizontalAccuracy)")
-            print("howRecent: \(abs(howRecent))")
             
             guard abs(howRecent) < 10 else { return }
             if let lastLocation = self.locationList.last {

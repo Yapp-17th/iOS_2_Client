@@ -35,21 +35,20 @@ extension PloggingViewController {
         
         distanceContainer.addSubview(distanceImageView)
         distanceContainer.addSubview(distanceLabel)
-        distanceContainer.addSubview(distanceUnitLabel)
         
         timeContainer.addSubview(timeImageView)
         timeContainer.addSubview(timeLabel)
         
         if #available(iOS 12.0, *) {
                 // User Interface is Dark
-                [distanceLabel,distanceUnitLabel,timeLabel].forEach {
+                [distanceLabel,timeLabel].forEach {
                     $0.textColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
                 }
                 [distanceImageView, timeImageView].forEach{
                     $0.tintColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
                 }
         } else {
-            [distanceLabel,distanceUnitLabel,timeLabel].forEach {
+            [distanceLabel,timeLabel].forEach {
                 $0.textColor = .black
             }
             [distanceImageView, timeImageView].forEach{
@@ -138,12 +137,7 @@ extension PloggingViewController {
         }
         
         distanceLabel.snp.makeConstraints{
-            $0.leading.bottom.equalToSuperview()
-        }
-        
-        distanceUnitLabel.snp.makeConstraints{
-            $0.leading.equalTo(distanceLabel.snp.trailing).offset(10)
-            $0.trailing.bottom.equalToSuperview()
+            $0.centerX.bottom.equalToSuperview()
         }
         
         distanceImageView.snp.makeConstraints{
