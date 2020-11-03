@@ -37,8 +37,6 @@ class PloggingViewController: BaseViewController {
     
     var timer: Timer?
     
-    var locations: [Location] = []
-    
     let startBottomContainerView = GradientView().then{
         $0.isHorizontal = true
         $0.colors = [.bottomGradientStart, .bottomGradientEnd]
@@ -168,14 +166,6 @@ class PloggingViewController: BaseViewController {
         $0.delegate = self
     }
     
-    // MARK: Plogging Record Variable
-    var speeds: [Double] = []
-    var minSpeed = Double.greatestFiniteMagnitude
-    var maxSpeed = 0.0
-    
-    var midSpeed: Double {
-        return speeds.reduce(0, +) / Double(speeds.count)
-    }
     // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -248,6 +238,11 @@ class PloggingViewController: BaseViewController {
         let annotation = TrashAnnotation(coordinate: mapView.centerCoordinate, title: "title", subtitle: "content")
         
         mapView.addAnnotation(annotation)
+        if let av = mapView.view(for: annotation) as? TrashAnnotationView{
+            av.longPressClosure = {
+                self.mapView.removeAnnotation(annotation)
+            }
+        }
     }
     
     @objc func myLocationButtonTapped(){
@@ -300,109 +295,16 @@ class PloggingViewController: BaseViewController {
         }
     }
     
-    func getPolyLine(first: Location, second: Location) -> MultiColorPolyline{
-        let start = CLLocation(latitude: first.latitude, longitude: first.longitude)
-        let end = CLLocation(latitude: second.latitude, longitude: second.longitude)
-        
-        let distance = end.distance(from: start)
-        let time = second.timestamp.timeIntervalSince(first.timestamp)
-        let speed = time > 0 ? distance / time : 0
-        
-        self.speeds.append(speed)
-        minSpeed = min(minSpeed, speed)
-        maxSpeed = max(maxSpeed, speed)
-        
-        let coords = [start.coordinate, end.coordinate]
-        let segment = MultiColorPolyline(coordinates: coords, count: 2)
-        segment.color = segmentColor(
-            speed: speed,
-            midSpeed: midSpeed,
-            slowestSpeed: minSpeed,
-            fastestSpeed: maxSpeed
-        )
-        
-        return segment
-    }
-    
-    private func segmentColor(speed: Double, midSpeed: Double, slowestSpeed: Double, fastestSpeed: Double) -> UIColor {
-      enum BaseColors {
-        static let r_red: CGFloat = 1
-        static let r_green: CGFloat = 20 / 255
-        static let r_blue: CGFloat = 44 / 255
-        
-        static let y_red: CGFloat = 1
-        static let y_green: CGFloat = 215 / 255
-        static let y_blue: CGFloat = 0
-        
-        static let g_red: CGFloat = 0
-        static let g_green: CGFloat = 146 / 255
-        static let g_blue: CGFloat = 78 / 255
-      }
-      
-      let red, green, blue: CGFloat
-      
-      if speed < midSpeed {
-        let ratio = CGFloat((speed - slowestSpeed) / (midSpeed - slowestSpeed))
-        red = BaseColors.r_red + ratio * (BaseColors.y_red - BaseColors.r_red)
-        green = BaseColors.r_green + ratio * (BaseColors.y_green - BaseColors.r_green)
-        blue = BaseColors.r_blue + ratio * (BaseColors.y_blue - BaseColors.r_blue)
-      } else {
-        let ratio = CGFloat((speed - midSpeed) / (fastestSpeed - midSpeed))
-        red = BaseColors.y_red + ratio * (BaseColors.g_red - BaseColors.y_red)
-        green = BaseColors.y_green + ratio * (BaseColors.g_green - BaseColors.y_green)
-        blue = BaseColors.y_blue + ratio * (BaseColors.g_blue - BaseColors.y_blue)
-      }
-      
-      return UIColor(red: red, green: green, blue: blue, alpha: 1)
-    }
-    
-    private func mapRegion() -> MKCoordinateRegion? {
-      guard
-        self.locations.count > 0
-      else {
-        return nil
-      }
-        
-      let latitudes = locations.map { location -> Double in
-        let location = location
-        return location.latitude
-      }
-        
-      let longitudes = locations.map { location -> Double in
-        let location = location
-        return location.longitude
-      }
-        
-      let maxLat = latitudes.max()!
-      let minLat = latitudes.min()!
-      let maxLong = longitudes.max()!
-      let minLong = longitudes.min()!
-        
-      let center = CLLocationCoordinate2D(latitude: (minLat + maxLat) / 2,
-                                          longitude: (minLong + maxLong) / 2)
-      let span = MKCoordinateSpan(latitudeDelta: (maxLat - minLat) * 1.3,
-                                  longitudeDelta: (maxLong - minLong) * 1.3)
-      return MKCoordinateRegion(center: center, span: span)
-    }
 
 }
 
 extension PloggingViewController: PloggingDisplayLogic{
     func displayRun(viewModel: Plogging.StartRun.ViewModel) {
-        if let first = self.locations.last{
-            let second = viewModel.location
-            self.locations.append(second)
-            let polyLine = getPolyLine(first: first, second: second)
-            if let region = mapRegion(){
-                mapView.setRegion(region, animated: true)
-                mapView.addOverlay(polyLine)
-                
-                self.distanceLabel.text = viewModel.distance
-            }
-            
-        }else{
-            self.locations.append(viewModel.location)
-        }
+        
+        mapView.setRegion(viewModel.region, animated: true)
+        mapView.addOverlay(viewModel.polyLine)
+        
+        self.distanceLabel.text = viewModel.distance
     }
     func displayStart() {
         self.state = .doing
@@ -450,8 +352,8 @@ extension PloggingViewController: PloggingDisplayLogic{
     func displayLocation(location: CLLocationCoordinate2D) {
         let region: MKCoordinateRegion = .init(
             center: location,
-            latitudinalMeters: 100,
-            longitudinalMeters: 100)
+            latitudinalMeters: 0.01,
+            longitudinalMeters: 0.01)
         mapView.setRegion(region, animated: true)
     }
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase){

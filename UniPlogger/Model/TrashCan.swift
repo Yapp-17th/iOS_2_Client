@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import CoreData
 struct TrashCan: Codable{
     var latitude: Double
     var longitude: Double

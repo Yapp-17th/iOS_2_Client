@@ -12,6 +12,7 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 enum Plogging {
     // MARK: Use cases
     
@@ -33,7 +34,8 @@ enum Plogging {
         
         struct ViewModel {
             var distance: String
-            var location: Location
+            var region: MKCoordinateRegion
+            var polyLine: MultiColorPolyline
         }
     }
     enum ChangeState {
