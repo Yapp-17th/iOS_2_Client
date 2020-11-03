@@ -222,14 +222,12 @@ class PloggingViewController: BaseViewController {
                 longitude: trash.longitude
             )
             let annotation = TrashAnnotation(coordinate: coordinate, title: "title", subtitle: "content")
-            
             mapView.addAnnotation(annotation)
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        LocationManager.shared.requestLocation()
         if let _ = self.presentedViewController as? StartCountingViewController{
             self.startPlogging()
         }

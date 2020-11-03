@@ -11,7 +11,7 @@
 //
 
 import UIKit
-
+import CoreLocation
 protocol PloggingPresentationLogic {
     func presentDoing()
     func presentPause()
@@ -28,23 +28,24 @@ class PloggingPresenter: PloggingPresentationLogic {
         viewController?.displayPause()
     }
     
+    var coordinate: CLLocationCoordinate2D {
+        return UserDefaults.standard.location
+    }
+    
     func presentLocationService(response: Plogging.LocationAuth.Response) {
-      if response.isLocationServiceEnabled{
+      
         switch response.status{
         case .denied:
-          guard let url = LocationManager.shared.settingAppURL else { return }
-          viewController?.displaySetting(message: "설정에서 위치 권한을 허용해주세요", url: url)
+            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+            viewController?.displaySetting(message: "설정에서 위치 권한을 허용해주세요", url: url)    
         case .notDetermined, .restricted:
-          guard let url = LocationManager.shared.settingLocationURL else { return }
-          viewController?.displaySetting(message: "설정에서 위치 권한을 허용해주세요", url: url)
+            guard let url = URL(string: "App-Prefs:root=Privacy&path=LOCATION") else { return }
+            viewController?.displaySetting(message: "설정에서 위치 권한을 허용해주세요", url: url)
         case .authorizedWhenInUse, .authorizedAlways:
-          viewController?.displayLocation(location: LocationManager.shared.coordinate)
+            viewController?.displayLocation(location: coordinate)
         default:
           break
         }
-      }else{
-        viewController?.displayLocationToast()
-      }
       
     }
     func presentStartRun(response: Plogging.StartRun.Response) {

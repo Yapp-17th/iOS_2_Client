@@ -30,9 +30,10 @@
 		AA2CAE092543EAD600105748 /* PloggingRecordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CADFF2543EAD500105748 /* PloggingRecordInteractor.swift */; };
 		AA2CAE0A2543EAD600105748 /* PloggingRecordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CAE002543EAD500105748 /* PloggingRecordRouter.swift */; };
 		AA35BC77254FEEFA00AE32A7 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35BC76254FEEFA00AE32A7 /* CoreDataStore.swift */; };
-		AA35BC7C254FFC2B00AE32A7 /* TrashCanStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35BC7B254FFC2B00AE32A7 /* TrashCanStore.swift */; };
+		AA35BC7C254FFC2B00AE32A7 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35BC7B254FFC2B00AE32A7 /* Storage.swift */; };
 		AA35BC85254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35BC83254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift */; };
 		AA35BC86254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35BC84254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift */; };
+		AA6CE4F32551780E00C83D28 /* TrashCanStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */; };
 		AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54DD2532C109001C4012 /* BaseViewController.swift */; };
 		AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B5062520D16800F0311A /* UIColor+Extensions.swift */; };
 		AA7F54E02532C16E001C4012 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB887B02524603E000A9D58 /* UIFont+Extensions.swift */; };
@@ -46,7 +47,6 @@
 		AA7F54F12532C1A6001C4012 /* PloggingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54E92532C1A6001C4012 /* PloggingPresenter.swift */; };
 		AA7F54F22532C1A6001C4012 /* PloggingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54EA2532C1A6001C4012 /* PloggingViewController.swift */; };
 		AA7F54F32532C1A6001C4012 /* PloggingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54EB2532C1A6001C4012 /* PloggingWorker.swift */; };
-		AA7F54F62532C1CF001C4012 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54F52532C1CF001C4012 /* LocationManager.swift */; };
 		AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8879425245320000A9D58 /* GradientView.swift */; };
 		AA7F55062532C20C001C4012 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA7F54FA2532C20C001C4012 /* Roboto-Medium.ttf */; };
 		AA7F55072532C20C001C4012 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA7F54FB2532C20C001C4012 /* Roboto-Light.ttf */; };
@@ -120,9 +120,10 @@
 		AA2CADFF2543EAD500105748 /* PloggingRecordInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingRecordInteractor.swift; sourceTree = "<group>"; };
 		AA2CAE002543EAD500105748 /* PloggingRecordRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingRecordRouter.swift; sourceTree = "<group>"; };
 		AA35BC76254FEEFA00AE32A7 /* CoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
-		AA35BC7B254FFC2B00AE32A7 /* TrashCanStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashCanStore.swift; sourceTree = "<group>"; };
+		AA35BC7B254FFC2B00AE32A7 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		AA35BC83254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedTrashCan+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AA35BC84254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedTrashCan+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashCanStorage.swift; sourceTree = "<group>"; };
 		AA7F54DD2532C109001C4012 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		AA7F54E42532C1A6001C4012 /* StartCountingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartCountingViewController.swift; sourceTree = "<group>"; };
 		AA7F54E52532C1A6001C4012 /* PloggingInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingInteractor.swift; sourceTree = "<group>"; };
@@ -132,7 +133,6 @@
 		AA7F54E92532C1A6001C4012 /* PloggingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingPresenter.swift; sourceTree = "<group>"; };
 		AA7F54EA2532C1A6001C4012 /* PloggingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingViewController.swift; sourceTree = "<group>"; };
 		AA7F54EB2532C1A6001C4012 /* PloggingWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingWorker.swift; sourceTree = "<group>"; };
-		AA7F54F52532C1CF001C4012 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		AA7F54FA2532C20C001C4012 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		AA7F54FB2532C20C001C4012 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		AA7F54FC2532C20C001C4012 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -327,9 +327,9 @@
 		AA7F54F42532C1CF001C4012 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				AA7F54F52532C1CF001C4012 /* LocationManager.swift */,
 				AA35BC76254FEEFA00AE32A7 /* CoreDataStore.swift */,
-				AA35BC7B254FFC2B00AE32A7 /* TrashCanStore.swift */,
+				AA35BC7B254FFC2B00AE32A7 /* Storage.swift */,
+				AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -668,12 +668,12 @@
 				AAB559392549BB26000BB903 /* FormatDisplay.swift in Sources */,
 				AAB559312549B846000BB903 /* Location.swift in Sources */,
 				AA7F551E2533568D001C4012 /* ShareInteractor.swift in Sources */,
-				AA7F54F62532C1CF001C4012 /* LocationManager.swift in Sources */,
 				AA7F54ED2532C1A6001C4012 /* PloggingInteractor.swift in Sources */,
 				AA35BC85254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift in Sources */,
 				AA2CAE062543EAD600105748 /* PloggingRecordViewController+UI.swift in Sources */,
 				AA7F54F32532C1A6001C4012 /* PloggingWorker.swift in Sources */,
 				AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */,
+				AA6CE4F32551780E00C83D28 /* TrashCanStorage.swift in Sources */,
 				AA7F55212533568D001C4012 /* ShareWorker.swift in Sources */,
 				AA7F55242533568D001C4012 /* PloggingInfoView.swift in Sources */,
 				4CB979C42524E5BC00498E81 /* NavigationTabsView.swift in Sources */,
@@ -694,7 +694,7 @@
 				AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */,
 				AA2CAE072543EAD600105748 /* PloggingRecordCollectionViewCell.swift in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
-				AA35BC7C254FFC2B00AE32A7 /* TrashCanStore.swift in Sources */,
+				AA35BC7C254FFC2B00AE32A7 /* Storage.swift in Sources */,
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,
 				4CC9C7C825231581004D873D /* QuestViewController.swift in Sources */,
 				AA7F5528253356BE001C4012 /* PhotoManager.swift in Sources */,

@@ -15,7 +15,6 @@ import CoreLocation
 
 protocol PloggingWorkerDelegate{
     func updateRoute(distance: Measurement<UnitLength>, location: Location)
-    func didChangeAuthorization(status: CLAuthorizationStatus)
 }
 
 class PloggingWorker: NSObject {
@@ -26,17 +25,22 @@ class PloggingWorker: NSObject {
         .init(latitude: 37.4961687, longitude: 126.8426605, isRemoved: false)
     ]
     
-    private let locationManager = LocationManager.shared
+    private let locationManager = CLLocationManager()
     private var distance = Measurement(value: 0, unit: UnitLength.meters)
     var locationList: [CLLocation] = []
     var delegate: PloggingWorkerDelegate?
-    
+    var updateAuthorization: ((CLAuthorizationStatus) -> Void)?
     override init() {
         super.init()
         locationManager.delegate = self
+        locationManager.startUpdatingLocation()
     }
     
     //MARK: - Helper
+    func requestPermission(){
+        locationManager.requestWhenInUseAuthorization()
+    }
+    
     func resetLocationData(){
         distance = Measurement(value: 0, unit: UnitLength.meters)
     }
@@ -45,7 +49,7 @@ class PloggingWorker: NSObject {
         startUpdateLocation()
     }
     func stopRun(){
-        locationManager.locationManager.stopUpdatingLocation()
+        locationManager.stopUpdatingLocation()
     }
     
     func startUpdateLocation(){
@@ -53,14 +57,16 @@ class PloggingWorker: NSObject {
     }
 }
 
-extension PloggingWorker: LocationManagerDelegate{
-    func didUpdateLocation(locations: [CLLocation]) {
-        for newLocation in locations{
+extension PloggingWorker: CLLocationManagerDelegate{
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let newLocation = locations.last{
+            UserDefaults.standard.set(newLocation.coordinate.asDictionary, forDefines: .location)
             let howRecent = newLocation.timestamp.timeIntervalSinceNow
             print("horizontalAccuracy: \(newLocation.horizontalAccuracy)")
             print("howRecent: \(abs(howRecent))")
             
-            guard abs(howRecent) < 10 else { continue }
+            guard abs(howRecent) < 10 else { return }
             if let lastLocation = self.locationList.last {
                 let delta = newLocation.distance(from: lastLocation)
                 distance = distance + Measurement(value: delta, unit: UnitLength.meters)
@@ -74,8 +80,7 @@ extension PloggingWorker: LocationManagerDelegate{
             locationList.append(newLocation)
         }
     }
-    
-    func didChangeAuthorization(status: CLAuthorizationStatus) {
-        self.delegate?.didChangeAuthorization(status: status)
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        self.updateAuthorization?(status)
     }
 }
