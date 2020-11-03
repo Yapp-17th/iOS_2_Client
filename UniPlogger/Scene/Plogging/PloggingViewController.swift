@@ -37,6 +37,8 @@ class PloggingViewController: BaseViewController {
     
     var timer: Timer?
     
+    var annotations: [TrashAnnotation] = []
+    
     let startBottomContainerView = GradientView().then{
         $0.isHorizontal = true
         $0.colors = [.bottomGradientStart, .bottomGradientEnd]
@@ -60,16 +62,9 @@ class PloggingViewController: BaseViewController {
     
     let distanceLabel = UILabel().then{
         $0.font = .roboto(ofSize: 30, weight: .bold)
-        $0.text = "0.00"
+        $0.text = "0.00 km"
         $0.textColor = .black
     }
-    
-    let distanceUnitLabel = UILabel().then{
-        $0.font = .roboto(ofSize: 20, weight: .bold)
-        $0.text = "km"
-        $0.textColor = .white
-    }
-    
     let timeContainer = UIView().then{
         $0.backgroundColor = .clear
     }
@@ -236,12 +231,10 @@ class PloggingViewController: BaseViewController {
     @objc func trashButtonTapped(){
         //Todo: 핀 추가 및 이동되도록함
         let annotation = TrashAnnotation(coordinate: mapView.centerCoordinate, title: "title", subtitle: "content")
-        
+        self.annotations.append(annotation)
         mapView.addAnnotation(annotation)
-        if let av = mapView.view(for: annotation) as? TrashAnnotationView{
-            av.longPressClosure = {
-                self.mapView.removeAnnotation(annotation)
-            }
+        if let av = mapView.view(for: annotation){
+            print(av)
         }
     }
     
@@ -279,14 +272,14 @@ class PloggingViewController: BaseViewController {
         super.traitCollectionDidChange(previousTraitCollection)
         if #available(iOS 12.0, *) {
                 // User Interface is Dark
-                [distanceLabel,distanceUnitLabel,timeLabel].forEach {
+                [distanceLabel,timeLabel].forEach {
                     $0.textColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
                 }
                 [distanceImageView, timeImageView].forEach{
                     $0.tintColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
                 }
         } else {
-            [distanceLabel,distanceUnitLabel,timeLabel].forEach {
+            [distanceLabel,timeLabel].forEach {
                 $0.textColor = .black
             }
             [distanceImageView, timeImageView].forEach{
@@ -295,6 +288,14 @@ class PloggingViewController: BaseViewController {
         }
     }
     
+    func removeTrashCan(annotation: TrashAnnotation){
+        let alert = UIAlertController(title: "경고", message: "해당 쓰레기통을 제거하시겠습니까?", preferredStyle: .alert)
+        alert.addAction(.init(title: "네", style: .default, handler: { _ in
+            self.mapView.removeAnnotation(annotation)
+        }))
+        alert.addAction(.init(title: "아니오", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 
 }
 
@@ -371,6 +372,12 @@ extension PloggingViewController: MKMapViewDelegate{
         if annotation is MKUserLocation {
             let pin = mapView.view(for: annotation) as? MKPinAnnotationView ?? MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
             pin.image = UIImage(named: "annotation_myLocation")
+            return pin
+        }else if annotation is TrashAnnotation {
+            let pin = TrashAnnotationView(annotation: annotation, reuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+            pin.longPressClosure = { [weak self] in
+                self?.removeTrashCan(annotation: annotation as! TrashAnnotation)
+            }
             return pin
         }
         return nil
