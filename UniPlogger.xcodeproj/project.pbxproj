@@ -33,6 +33,7 @@
 		AA35BC7C254FFC2B00AE32A7 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35BC7B254FFC2B00AE32A7 /* Storage.swift */; };
 		AA35BC85254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35BC83254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift */; };
 		AA35BC86254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35BC84254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift */; };
+		AA5EFBB82552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */; };
 		AA6CE4F32551780E00C83D28 /* TrashCanStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */; };
 		AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54DD2532C109001C4012 /* BaseViewController.swift */; };
 		AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B5062520D16800F0311A /* UIColor+Extensions.swift */; };
@@ -123,6 +124,7 @@
 		AA35BC7B254FFC2B00AE32A7 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		AA35BC83254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedTrashCan+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AA35BC84254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedTrashCan+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingRecordCollectionViewLayout.swift; sourceTree = "<group>"; };
 		AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashCanStorage.swift; sourceTree = "<group>"; };
 		AA7F54DD2532C109001C4012 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		AA7F54E42532C1A6001C4012 /* StartCountingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartCountingViewController.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				AA2CADFD2543EAD500105748 /* PloggingRecordCollectionViewCell.swift */,
+				AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -687,6 +690,7 @@
 				AA7F55252533568D001C4012 /* ShareModels.swift in Sources */,
 				AA7F54EF2532C1A6001C4012 /* PloggingModels.swift in Sources */,
 				4CC9C7CE252315E0004D873D /* QuestPresenter.swift in Sources */,
+				AA5EFBB82552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift in Sources */,
 				4CC9C7D1252315E9004D873D /* QuestRouter.swift in Sources */,
 				AA7F54F22532C1A6001C4012 /* PloggingViewController.swift in Sources */,
 				AA2CAE042543EAD600105748 /* PloggingRecordPresenter.swift in Sources */,

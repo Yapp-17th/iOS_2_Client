@@ -74,7 +74,7 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         $0.textAlignment = .center
     }
     
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()).then {
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: PloggingRecordCollectionViewLayout()).then {
         $0.backgroundColor = .clear
         $0.dataSource = self
         $0.delegate = self
@@ -112,6 +112,8 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         "빨대",
         "종이"
     ]
+    
+    var selectedItems: [Int] = []
     
     // MARK: Object lifecycle
     
@@ -173,24 +175,19 @@ extension PloggingRecordViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:  "PloggingRecordCollectionViewCell", for: indexPath) as? PloggingRecordCollectionViewCell else { fatalError() }
         let item = self.itemList[indexPath.item]
-        cell.viewModel = .init(title: item, isSelected: cell.isSelected)
+        let isSelected = self.selectedItems.contains(indexPath.item)
+        cell.viewModel = .init(title: item, isSelected: isSelected)
         return cell
     }
 }
 
-extension PloggingRecordViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: 80, height: 80)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        let screenWidth = UIScreen.main.bounds.size.width
-        let collectionViewWidth = screenWidth - 52
-        let cellWidth:CGFloat = 80 * 3
-        return (collectionViewWidth - cellWidth) / 2
+extension PloggingRecordViewController: UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if selectedItems.contains(indexPath.item), let index = selectedItems.firstIndex(of: indexPath.item){
+            selectedItems.remove(at: index)
+        }else{
+            selectedItems.append(indexPath.item)
+        }
+        self.collectionView.reloadData()
     }
 }
