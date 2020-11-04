@@ -23,7 +23,7 @@ class PloggingRecordCollectionViewCell: UICollectionViewCell{
     }
     
     let titleLabel = UILabel().then{
-        $0.font = .notoSans(ofSize: 18, weight: .bold)
+        $0.font = .dynamicNotosans(fontSize: 18, weight: .bold)
     }
     
     override init(frame: CGRect) {
