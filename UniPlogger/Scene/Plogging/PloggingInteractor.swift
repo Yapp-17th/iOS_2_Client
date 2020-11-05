@@ -16,6 +16,9 @@ protocol PloggingBusinessLogic {
     func changeState(request: Plogging.ChangeState.Request)
     func startRun()
     func setupLocationService()
+    func fetchTrashCan()
+    func addTrashCan(request: Plogging.AddTrashCan.Request)
+    func removeTrashCan(request: Plogging.RemoveTrashCan.Request)
 }
 
 protocol PloggingDataStore {
@@ -49,6 +52,19 @@ class PloggingInteractor: NSObject, PloggingBusinessLogic, PloggingDataStore {
             }
         }
         
+    }
+    func fetchTrashCan() {
+        self.worker.fetchTrashCan { [weak self] (list) in
+            let response = Plogging.FetchTrashCan.Response(list: list)
+            self?.presenter?.presentFetchTrashCan(response: response)
+        }
+    }
+    func addTrashCan(request: Plogging.AddTrashCan.Request) {
+        self.worker.addTrashCan(request: request)
+    }
+    
+    func removeTrashCan(request: Plogging.RemoveTrashCan.Request) {
+        self.worker.deleteTrashCan(request: request)
     }
 }
 

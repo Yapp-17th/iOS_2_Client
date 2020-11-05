@@ -19,6 +19,7 @@ protocol PloggingPresentationLogic {
     func presentPause()
     func presentLocationService(response: Plogging.LocationAuth.Response)
     func presentStartRun(response: Plogging.StartRun.Response)
+    func presentFetchTrashCan(response: Plogging.FetchTrashCan.Response)
 }
 
 class PloggingPresenter: PloggingPresentationLogic {
@@ -76,6 +77,11 @@ class PloggingPresenter: PloggingPresentationLogic {
         }else{
             self.locations.append(response.location)
         }
+    }
+    
+    func presentFetchTrashCan(response: Plogging.FetchTrashCan.Response) {
+        let viewModel = Plogging.FetchTrashCan.ViewModel(list: response.list)
+        viewController?.displayFetchTrashCan(viewModel: viewModel)
     }
     
     //MARK: - Helper

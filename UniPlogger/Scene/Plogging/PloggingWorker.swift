@@ -18,11 +18,13 @@ protocol PloggingWorkerDelegate{
 }
 
 class PloggingWorker: NSObject {
+    let storage = Storage()
+    
     static var trashCanList: [TrashCan] = [
-        .init(latitude: 37.4972632, longitude: 126.8450178, isRemoved: false),
-        .init(latitude: 37.5015682, longitude: 126.844351, isRemoved: false),
-        .init(latitude: 37.4944, longitude: 126.8423623, isRemoved: false),
-        .init(latitude: 37.4961687, longitude: 126.8426605, isRemoved: false)
+        .init(latitude: 37.4972632, longitude: 126.8450178),
+        .init(latitude: 37.5015682, longitude: 126.844351),
+        .init(latitude: 37.4944, longitude: 126.8423623),
+        .init(latitude: 37.4961687, longitude: 126.8426605)
     ]
     
     private let locationManager = CLLocationManager()
@@ -57,6 +59,42 @@ class PloggingWorker: NSObject {
         locationManager.activityType = .fitness
         locationManager.distanceFilter = 5
         locationManager.startUpdatingLocation()
+    }
+}
+
+//MARK: - TrashCan CRUD
+extension PloggingWorker{
+    func fetchTrashCan(completion: @escaping ([TrashCan]) -> Void){
+        storage.fetchTrashCanList { (result) in
+            switch result{
+            case .success(let list):
+                completion(list)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func addTrashCan(request: Plogging.AddTrashCan.Request){
+        storage.createTrashCan(request.trashCan) { (result) in
+            switch result{
+            case .success(let trashCan):
+                print("add Success: \(trashCan)")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func deleteTrashCan(request: Plogging.RemoveTrashCan.Request){
+        storage.deleteTrashCan(latitude: request.latitude, longitude: request.longitude) { (result) in
+            switch result{
+            case .success():
+                print("지우기 성공")
+            case .failure(let error):
+                print("지우기 실패: \(error.localizedDescription)")
+            }
+        }
     }
 }
 

@@ -30,4 +30,16 @@ struct TrashCan: Codable{
         longitude = try container.decodeIfPresent(Double.self, forKey: .longitude) ?? 0
         isRemoved = try container.decodeIfPresent(Bool.self, forKey: .isRemoved) ?? false
     }
+    
+    public init(
+        latitude: Double,
+        longitude: Double,
+        isRemoved: Bool = false,
+        objectIDString: String? = nil
+    ){
+        self.latitude = latitude
+        self.longitude = longitude
+        self.isRemoved = isRemoved
+        self.objectIDString = objectIDString
+    }
 }

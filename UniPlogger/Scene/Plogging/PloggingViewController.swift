@@ -19,6 +19,7 @@ import Toast_Swift
 
 protocol PloggingDisplayLogic: class {
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase)
+    func displayFetchTrashCan(viewModel: Plogging.FetchTrashCan.ViewModel)
     func displayStart()
     func displayPause()
     func displaySetting(message: String, url: URL)
@@ -200,15 +201,7 @@ class PloggingViewController: BaseViewController {
         forAnnotationViewWithReuseIdentifier:
           MKMapViewDefaultAnnotationViewReuseIdentifier)
         self.interactor?.setupLocationService()
-        
-        for trash in PloggingWorker.trashCanList {
-            let coordinate = CLLocationCoordinate2D(
-                latitude: trash.latitude,
-                longitude: trash.longitude
-            )
-            let annotation = TrashAnnotation(coordinate: coordinate, title: "title", subtitle: "content")
-            mapView.addAnnotation(annotation)
-        }
+        self.interactor?.fetchTrashCan()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -230,12 +223,14 @@ class PloggingViewController: BaseViewController {
     
     @objc func trashButtonTapped(){
         //Todo: 핀 추가 및 이동되도록함
-        let annotation = TrashAnnotation(coordinate: mapView.centerCoordinate, title: "title", subtitle: "content")
+        let coordinate = mapView.centerCoordinate
+        let annotation = TrashAnnotation(coordinate: coordinate, title: "title", subtitle: "content")
         self.annotations.append(annotation)
         mapView.addAnnotation(annotation)
-        if let av = mapView.view(for: annotation){
-            print(av)
-        }
+        
+        let request = Plogging.AddTrashCan.Request(trashCan: .init(latitude: coordinate.latitude, longitude: coordinate.longitude))
+        
+        self.interactor?.addTrashCan(request: request)
     }
     
     @objc func myLocationButtonTapped(){
@@ -291,7 +286,14 @@ class PloggingViewController: BaseViewController {
     func removeTrashCan(annotation: TrashAnnotation){
         let alert = UIAlertController(title: "경고", message: "해당 쓰레기통을 제거하시겠습니까?", preferredStyle: .alert)
         alert.addAction(.init(title: "네", style: .default, handler: { _ in
+            let latitude = annotation.coordinate.latitude
+            let longitude = annotation.coordinate.longitude
+            
+            let request = Plogging.RemoveTrashCan.Request(latitude: latitude, longitude: longitude)
+            self.interactor?.removeTrashCan(request: request)
+            
             self.mapView.removeAnnotation(annotation)
+            
         }))
         alert.addAction(.init(title: "아니오", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -300,6 +302,16 @@ class PloggingViewController: BaseViewController {
 }
 
 extension PloggingViewController: PloggingDisplayLogic{
+    func displayFetchTrashCan(viewModel: Plogging.FetchTrashCan.ViewModel) {
+        for trash in viewModel.list {
+            let coordinate = CLLocationCoordinate2D(
+                latitude: trash.latitude,
+                longitude: trash.longitude
+            )
+            let annotation = TrashAnnotation(coordinate: coordinate, title: "title", subtitle: "content")
+            mapView.addAnnotation(annotation)
+        }
+    }
     func displayRun(viewModel: Plogging.StartRun.ViewModel) {
         
         mapView.setRegion(viewModel.region, animated: true)

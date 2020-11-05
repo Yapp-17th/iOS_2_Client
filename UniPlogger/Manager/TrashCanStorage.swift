@@ -36,7 +36,7 @@ protocol TrashCanStorageType{
     )
     
     func deleteTrashCan(
-        trashCanObjectId: NSManagedObjectID,
+        objectIdString: String,
         completion: @escaping (Result<Void,Error>) -> Void
     )
 }
@@ -102,8 +102,8 @@ extension Storage: TrashCanStorageType{
         }
     }
     
-    func deleteTrashCan(trashCanObjectId: NSManagedObjectID, completion: @escaping (Result<Void, Error>) -> Void) {
-        guard let managedTrashCan = self.context.object(with: trashCanObjectId) as? ManagedTrashCan else {
+    func deleteTrashCan(objectIdString: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let trashCanObjectId = stringToObjectId(objectIdString), let managedTrashCan = self.context.object(with: trashCanObjectId) as? ManagedTrashCan else {
             completion(.failure(StorageError.read("ObjectId 오류")))
             return
         }
@@ -116,5 +116,28 @@ extension Storage: TrashCanStorageType{
         }
     }
     
-    
+    func deleteTrashCan(latitude: Double, longitude: Double, completion: @escaping (Result<Void, Error>) -> Void) {
+        let fetchRequest = NSFetchRequest<ManagedTrashCan>(entityName: "ManagedTrashCan")
+        let latitudePredicate = NSPredicate(format: "latitude == %lf", latitude)
+        let longitudePredicate = NSPredicate(format: "longitude == %lf", longitude)
+        let andPredicate = NSCompoundPredicate(type: .and, subpredicates: [latitudePredicate, longitudePredicate])
+        fetchRequest.predicate = andPredicate
+        do {
+            if let managedTrashCan = try self.context.fetch(fetchRequest).first {
+                self.context.delete(managedTrashCan)
+                do{
+                    try self.context.save()
+                    completion(.success(()))
+                }catch let error{
+                    completion(.failure(StorageError.delete(error.localizedDescription)))
+                }
+            }else{
+                completion(.failure(StorageError.delete("해당 쓰레기통이 존재하지 않음")))
+            }
+        } catch let error {
+            completion(.failure(StorageError.read(error.localizedDescription)))
+        }
+        
+        
+    }
 }

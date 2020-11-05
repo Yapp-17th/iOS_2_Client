@@ -49,4 +49,29 @@ enum Plogging {
         var status: CLAuthorizationStatus
       }
     }
+    
+    enum AddTrashCan{
+        struct Request {
+            var trashCan: TrashCan
+        }
+    }
+    
+    enum FetchTrashCan{
+        struct Response {
+            var list: [TrashCan]
+        }
+        
+        struct ViewModel {
+            var list: [TrashCan]
+        }
+    }
+    
+    enum RemoveTrashCan{
+        struct Request{
+            var latitude: Double
+            var longitude: Double
+        }
+    }
+    
+    
 }
