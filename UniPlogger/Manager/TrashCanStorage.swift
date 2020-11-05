@@ -25,12 +25,12 @@ protocol TrashCanStorageType{
     )
     
     func fetchTrashCan(
-        trashCanObjectId: NSManagedObjectID,
+        objectIdString: String,
         completion: @escaping (Result<TrashCan, Error>) -> Void
     )
     
     func updateTrashCan(
-        trashCanObjectId: NSManagedObjectID,
+        objectIdString: String,
         toUpdate: TrashCan,
         completion: @escaping (Result<TrashCan, Error>) -> Void
     )
@@ -79,17 +79,17 @@ extension Storage: TrashCanStorageType{
         }
     }
     
-    func fetchTrashCan(trashCanObjectId: NSManagedObjectID, completion: @escaping (Result<TrashCan, Error>) -> Void) {
-        guard let managedTrashCan = self.context.object(with: trashCanObjectId) as? ManagedTrashCan else {
+    func fetchTrashCan(objectIdString: String, completion: @escaping (Result<TrashCan, Error>) -> Void) {
+        guard let trashCanObjectId = stringToObjectId(objectIdString), let managedTrashCan = self.context.object(with: trashCanObjectId) as? ManagedTrashCan else {
             completion(.failure(StorageError.read("ObjectId 오류")))
             return
         }
         completion(.success(managedTrashCan.toTrashCan()))
     }
     
-    func updateTrashCan(trashCanObjectId: NSManagedObjectID, toUpdate: TrashCan, completion: @escaping (Result<TrashCan, Error>) -> Void) {
-        guard let managedTrashCan = self.context.object(with: trashCanObjectId) as? ManagedTrashCan else {
-             completion(.failure(StorageError.read("ObjectId 오류")))
+    func updateTrashCan(objectIdString: String, toUpdate: TrashCan, completion: @escaping (Result<TrashCan, Error>) -> Void) {
+        guard let trashCanObjectId = stringToObjectId(objectIdString), let managedTrashCan = self.context.object(with: trashCanObjectId) as? ManagedTrashCan else {
+            completion(.failure(StorageError.read("ObjectId 오류")))
             return
         }
         managedTrashCan.fromTrashCan(toUpdate)

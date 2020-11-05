@@ -16,4 +16,15 @@ enum StorageError: Error{
 }
 class Storage{
     let context = CoreDataStore.shared.mainManagedObjectContext
+    
+    //helper
+    func stringToObjectId(_ objectIDString: String) -> NSManagedObjectID? {
+        guard let objectIDURL = URL(string: objectIDString),
+              let coordinator: NSPersistentStoreCoordinator = self.context.persistentStoreCoordinator
+        else {
+            return nil
+        }
+        
+        return coordinator.managedObjectID(forURIRepresentation: objectIDURL)
+    }
 }
