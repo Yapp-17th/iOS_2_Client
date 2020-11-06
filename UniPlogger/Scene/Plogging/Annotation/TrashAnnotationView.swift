@@ -13,14 +13,32 @@ class TrashAnnotationView: MKAnnotationView{
     
     var longPressClosure: (()->Void)?
     
-    let containerView = UIView().then{
-        $0.backgroundColor = .white
+    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
+        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        configuration()
     }
     
-    let contentsView = UIView().then{
-        $0.backgroundColor = .yellow
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
+    func configuration(){
+        self.image = UIImage(named: "ic_pinTrashCan")
+        self.isDraggable = false
+        self.isEnabled = false
+        self.isUserInteractionEnabled = true
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
+        gesture.minimumPressDuration = 1.0
+        self.addGestureRecognizer(gesture)
+    }
+    
+    @objc func longPressed(){
+        self.longPressClosure?()
+    }
+    
+}
+
+class TempTrashAnnotationView: MKAnnotationView{
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         configuration()
@@ -33,15 +51,6 @@ class TrashAnnotationView: MKAnnotationView{
     func configuration(){
         self.image = UIImage(named: "ic_pinTrashCan")
         self.isDraggable = true
-        self.isUserInteractionEnabled = true
-        self.isEnabled = false
-        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
-        gesture.minimumPressDuration = 1.0
-        self.addGestureRecognizer(gesture)
-    }
-    
-    @objc func longPressed(){
-        self.longPressClosure?()
     }
     
 }

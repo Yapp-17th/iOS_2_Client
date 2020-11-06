@@ -28,6 +28,7 @@ protocol PloggingDisplayLogic: class {
     func displayLocationToast()
     
     func displayAddTrashCan(viewModel: Plogging.AddTrashCan.ViewModel)
+    func displayAddTrashCanCancel()
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase)
 }
 
@@ -43,6 +44,8 @@ class PloggingViewController: BaseViewController {
         "+를 눌러 휴지통을 추가해요!",
         "핀을 눌러 휴지통을 없애요"
     ]
+    
+    var tempAnnotation: TempTrashAnnotation?
     var state: Plogging.State = .ready
     var minutes = 0
     var seconds = 0
@@ -148,6 +151,8 @@ class PloggingViewController: BaseViewController {
     
     lazy var trashButton = UIButton().then{
         $0.setImage(UIImage(named: "ic_trashcan")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        $0.setImage(UIImage(named: "ic_trashcanCancel")?.withRenderingMode(.alwaysOriginal), for: .selected)
+        
         $0.imageView?.contentMode = .center
         $0.backgroundColor = .main
         $0.layer.cornerRadius = 30
@@ -229,6 +234,13 @@ class PloggingViewController: BaseViewController {
         TrashAnnotationView.self,
         forAnnotationViewWithReuseIdentifier:
           MKMapViewDefaultAnnotationViewReuseIdentifier)
+        
+        mapView.register(
+        TempTrashAnnotationView.self,
+        forAnnotationViewWithReuseIdentifier:
+          "TempTrashAnnotationView")
+        
+        
         self.interactor?.setupLocationService()
         self.interactor?.fetchTrashCan()
     }
@@ -251,14 +263,20 @@ class PloggingViewController: BaseViewController {
     }
     
     @objc func trashButtonTapped(){
-        //Todo: 핀 추가 및 이동되도록함
-        let coordinate = mapView.centerCoordinate
-        let annotation = TrashAnnotation(coordinate: coordinate, title: "title", subtitle: "content")
-        self.annotations.append(annotation)
-        mapView.addAnnotation(annotation)
+        if trashButton.isSelected{
+            // cancelLogic
+            displayAddTrashCanCancel()
+        }else{
+            let coordinate = mapView.centerCoordinate
+            let annotation = TempTrashAnnotation(coordinate: coordinate, title: "title", subtitle: "content")
+            self.tempAnnotation = annotation
+            mapView.addAnnotation(annotation)
+            
+            let request = Plogging.AddTrashCan.Request(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            self.interactor?.addTrashCan(request: request)
+        }
         
-        let request = Plogging.AddTrashCan.Request(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        self.interactor?.addTrashCan(request: request)
+        //Todo: 핀 추가 및 이동되도록함
     }
     
     @objc func myLocationButtonTapped(){
@@ -402,8 +420,18 @@ extension PloggingViewController: PloggingDisplayLogic{
     }
     
     func displayAddTrashCan(viewModel: Plogging.AddTrashCan.ViewModel) {
+        self.trashButton.isSelected = true
         self.trashInfoContainer.isHidden = false
         self.trashInfoAddressLabel.text = viewModel.address
+    }
+    
+    func displayAddTrashCanCancel() {
+        self.trashButton.isSelected = false
+        self.trashInfoContainer.isHidden = true
+        if let annotation = self.tempAnnotation {
+            self.mapView.removeAnnotation(annotation)
+            tempAnnotation = nil
+        }
     }
     
     func displayLocationToast(){
@@ -424,7 +452,11 @@ extension PloggingViewController: MKMapViewDelegate{
                 self?.removeTrashCan(annotation: annotation as! TrashAnnotation)
             }
             return pin
+        }else if annotation is TempTrashAnnotation {
+            let pin = TempTrashAnnotationView(annotation: annotation, reuseIdentifier: "TempTrashAnnotationView")
+            return pin
         }
+        
         return nil
     }
     
@@ -439,5 +471,14 @@ extension PloggingViewController: MKMapViewDelegate{
         renderer.lineJoin = .round
         renderer.lineCap = .round
         return renderer
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationView.DragState, fromOldState oldState: MKAnnotationView.DragState) {
+        if newState == .ending, let annotation = view.annotation{
+            let latitude = annotation.coordinate.latitude
+            let longitude = annotation.coordinate.longitude
+            let request = Plogging.AddTrashCan.Request(latitude: latitude, longitude: longitude)
+            self.interactor?.addTrashCan(request: request)
+        }
     }
 }
