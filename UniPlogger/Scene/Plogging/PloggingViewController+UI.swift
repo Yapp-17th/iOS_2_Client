@@ -43,7 +43,7 @@ extension PloggingViewController {
         trashInfoContainer.addSubview(trashInfoTitleLabel)
         trashInfoContainer.addSubview(trashInfoAddressLabel)
         trashInfoContainer.addSubview(trashInfoDescriptionLabel)
-        
+        trashInfoContainer.addSubview(addTrashCanConfirmButton)
         if #available(iOS 12.0, *) {
                 // User Interface is Dark
                 [distanceLabel,timeLabel].forEach {
@@ -166,7 +166,8 @@ extension PloggingViewController {
         }
         
         trashInfoContainer.snp.makeConstraints{
-            $0.edges.equalTo(startBottomContainerView)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
         
         trashInfoTitleLabel.snp.makeConstraints{
@@ -185,6 +186,14 @@ extension PloggingViewController {
             $0.top.equalTo(trashInfoAddressLabel.snp.bottom).offset(8)
             $0.leading.equalTo(12)
             $0.trailing.equalTo(-12)
+        }
+        
+        addTrashCanConfirmButton.snp.makeConstraints{
+            $0.top.equalTo(trashInfoDescriptionLabel.snp.bottom).offset(16)
+            $0.leading.equalTo(16)
+            $0.trailing.equalTo(-16)
+            $0.height.equalTo(56)
+            $0.bottom.equalTo(-19)
         }
         
         doingPauseBottomContainerView.isHidden = true

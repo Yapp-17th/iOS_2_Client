@@ -65,6 +65,23 @@ enum Plogging {
         }
     }
     
+    enum AddConfirmTrashCan{
+        struct Request {
+            var latitude: Double
+            var longitude: Double
+        }
+        
+        struct Response {
+            var latitude: Double
+            var longitude: Double
+        }
+        
+        struct ViewModel {
+            var latitude: Double
+            var longitude: Double
+        }
+    }
+    
     enum FetchTrashCan{
         struct Response {
             var list: [TrashCan]

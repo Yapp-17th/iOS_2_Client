@@ -28,6 +28,7 @@ protocol PloggingDisplayLogic: class {
     func displayLocationToast()
     
     func displayAddTrashCan(viewModel: Plogging.AddTrashCan.ViewModel)
+    func displayAddConfirmTrashCan(viewModel: Plogging.AddConfirmTrashCan.ViewModel)
     func displayAddTrashCanCancel()
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase)
 }
@@ -192,6 +193,15 @@ class PloggingViewController: BaseViewController {
         $0.font = .notoSans(ofSize: 12, weight: .regular)
     }
     
+    lazy var addTrashCanConfirmButton = UIButton().then{
+        $0.setTitle("확인", for: .normal)
+        $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
+        $0.backgroundColor = .main
+        $0.layer.cornerRadius = 28
+        $0.layer.applySketchShadow(color: .main, alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
+        $0.addTarget(self, action: #selector(addTrashCanConfirmButtonTapped), for: .touchUpInside)
+    }
+    
     // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -274,9 +284,24 @@ class PloggingViewController: BaseViewController {
             
             let request = Plogging.AddTrashCan.Request(latitude: coordinate.latitude, longitude: coordinate.longitude)
             self.interactor?.addTrashCan(request: request)
+            
+            self.trashButton.snp.remakeConstraints{
+                $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
+                $0.width.height.equalTo(60)
+                $0.bottom.equalTo(self.trashInfoContainer.snp.top).offset(-16)
+            }
         }
         
         //Todo: 핀 추가 및 이동되도록함
+    }
+    
+    @objc func addTrashCanConfirmButtonTapped(){
+        if let tempAnnotation = self.tempAnnotation{
+            let latitude = tempAnnotation.coordinate.latitude
+            let longitude = tempAnnotation.coordinate.longitude
+            let request = Plogging.AddConfirmTrashCan.Request(latitude: latitude, longitude: longitude)
+            self.interactor?.addConfirmTrashCan(request: request)
+        }
     }
     
     @objc func myLocationButtonTapped(){
@@ -425,12 +450,36 @@ extension PloggingViewController: PloggingDisplayLogic{
         self.trashInfoAddressLabel.text = viewModel.address
     }
     
+    func displayAddConfirmTrashCan(viewModel: Plogging.AddConfirmTrashCan.ViewModel) {
+        if let tempAnnotation = self.tempAnnotation{
+            self.mapView.removeAnnotation(tempAnnotation)
+            self.trashButton.isSelected = false
+            self.trashInfoContainer.isHidden = true
+        }
+        
+        let annotation = TrashAnnotation(coordinate: .init(latitude: viewModel.latitude, longitude: viewModel.longitude), title: "title", subtitle: "content")
+        
+        self.annotations.append(annotation)
+        self.mapView.addAnnotation(annotation)
+        
+        self.trashButton.snp.remakeConstraints{
+            $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
+            $0.width.height.equalTo(60)
+            $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
+        }
+    }
     func displayAddTrashCanCancel() {
         self.trashButton.isSelected = false
         self.trashInfoContainer.isHidden = true
         if let annotation = self.tempAnnotation {
             self.mapView.removeAnnotation(annotation)
             tempAnnotation = nil
+        }
+        
+        self.trashButton.snp.remakeConstraints{
+            $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
+            $0.width.height.equalTo(60)
+            $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
         }
     }
     

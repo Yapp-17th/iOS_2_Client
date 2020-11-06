@@ -22,6 +22,7 @@ protocol PloggingPresentationLogic {
     
     //TrashCan
     func presentAddTrashCan(response: Plogging.AddTrashCan.Response)
+    func presentAddConfirmTrashCan(response: Plogging.AddConfirmTrashCan.Response)
     func presentFetchTrashCan(response: Plogging.FetchTrashCan.Response)
 }
 
@@ -88,6 +89,11 @@ class PloggingPresenter: PloggingPresentationLogic {
             let viewModel = Plogging.AddTrashCan.ViewModel(address: address)
             self.viewController?.displayAddTrashCan(viewModel: viewModel)
         }
+    }
+    
+    func presentAddConfirmTrashCan(response: Plogging.AddConfirmTrashCan.Response) {
+        let viewModel = Plogging.AddConfirmTrashCan.ViewModel(latitude: response.latitude, longitude: response.longitude)
+        self.viewController?.displayAddConfirmTrashCan(viewModel: viewModel)
     }
     func presentFetchTrashCan(response: Plogging.FetchTrashCan.Response) {
         let viewModel = Plogging.FetchTrashCan.ViewModel(list: response.list)
