@@ -38,7 +38,7 @@ extension MainTabBarController {
         setupLogViewController()
         setupMyViewController()
         
-        self.selectedIndex = 1
+        self.selectedIndex = 2
     }
     
     private func setupLayout() {

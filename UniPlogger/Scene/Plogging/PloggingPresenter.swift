@@ -15,7 +15,8 @@ import UIKit
 protocol PloggingPresentationLogic {
     func presentDoing()
     func presentPause()
-    func presentLocationService(response: Plogging.Location.Response)
+    func presentLocationService(response: Plogging.LocationAuth.Response)
+    func presentStartRun(response: Plogging.StartRun.Response)
 }
 
 class PloggingPresenter: PloggingPresentationLogic {
@@ -27,7 +28,7 @@ class PloggingPresenter: PloggingPresentationLogic {
         viewController?.displayPause()
     }
     
-    func presentLocationService(response: Plogging.Location.Response) {
+    func presentLocationService(response: Plogging.LocationAuth.Response) {
       switch response.status{
       case .denied:
         guard let url = LocationManager.shared.settingAppURL else { return }
@@ -41,4 +42,14 @@ class PloggingPresenter: PloggingPresentationLogic {
         break
       }
     }
+    func presentStartRun(response: Plogging.StartRun.Response) {
+        let viewModel = Plogging.StartRun.ViewModel(
+            distance: FormatDisplay.distance(response.distance),
+            location: response.location
+        )
+        
+        viewController?.displayRun(viewModel: viewModel)
+    }
+    
+    
 }
