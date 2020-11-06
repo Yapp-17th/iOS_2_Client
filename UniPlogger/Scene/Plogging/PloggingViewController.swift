@@ -18,7 +18,7 @@ import CoreGraphics
 import Toast_Swift
 
 protocol PloggingDisplayLogic: class {
-    func displayError(error: Common.CommonError, useCase: Plogging.UseCase)
+    
     func displayFetchTrashCan(viewModel: Plogging.FetchTrashCan.ViewModel)
     func displayStart()
     func displayPause()
@@ -26,6 +26,7 @@ protocol PloggingDisplayLogic: class {
     func displayLocation(location: CLLocationCoordinate2D)
     func displayRun(viewModel: Plogging.StartRun.ViewModel)
     func displayLocationToast()
+    func displayError(error: Common.CommonError, useCase: Plogging.UseCase)
 }
 
 class PloggingViewController: BaseViewController {
@@ -40,16 +41,12 @@ class PloggingViewController: BaseViewController {
     
     var annotations: [TrashAnnotation] = []
     
-    let startBottomContainerView = GradientView().then{
-        $0.isHorizontal = true
-        $0.colors = [.bottomGradientStart, .bottomGradientEnd]
-        $0.locations = [0.0, 1.0]
+    let startBottomContainerView = UIView().then{
+        $0.backgroundColor = .mainBackgroundColor
     }
     
-    let doingPauseBottomContainerView = GradientView().then{
-        $0.isHorizontal = true
-        $0.colors = [.bottomGradientStart, .bottomGradientEnd]
-        $0.locations = [0.0, 1.0]
+    let doingPauseBottomContainerView = UIView().then{
+        $0.backgroundColor = .mainBackgroundColor
     }
     
     let distanceContainer = UIView().then{
@@ -91,7 +88,7 @@ class PloggingViewController: BaseViewController {
         $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
         $0.backgroundColor = .main
         $0.layer.cornerRadius = 28
-        $0.layer.masksToBounds = true
+        $0.layer.applySketchShadow(color: .main, alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
         $0.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
     }
     
@@ -100,7 +97,7 @@ class PloggingViewController: BaseViewController {
         $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
         $0.backgroundColor = .main
         $0.layer.cornerRadius = 28
-        $0.layer.masksToBounds = true
+        $0.layer.applySketchShadow(color: .main, alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
         $0.addTarget(self, action: #selector(pauseButtonTapped), for: .touchUpInside)
     }
     

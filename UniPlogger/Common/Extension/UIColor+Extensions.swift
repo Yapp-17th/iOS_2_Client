@@ -13,8 +13,7 @@ public typealias Color = UIColor
 extension Color {
     
     // MARK: Red
-    open class var bottomGradientStart: Color { return Color(named: "bottomGradientStart")! }
-    open class var bottomGradientEnd: Color { return Color(named: "bottomGradientEnd")! }
+    open class var mainBackgroundColor: Color { return Color(named: "mainBackgroundColor")! }
     open class var main: Color { return Color(named: "main")! }
     open class var tabBarBackground: Color { return Color(named: "TabBarBackground")! }
     open class var tabBarTint: Color { return Color(named: "TabBarTint")! }
