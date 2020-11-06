@@ -8,9 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		101A5C8A5DA8441CFEF982F0 /* Pods_UniPlogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E470A391887A23D6AF25DD /* Pods_UniPlogger.framework */; };
-		4C89B06F2525D2BB0007EBED /* TrainingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B06E2525D2BB0007EBED /* TrainingTableViewCell.swift */; };
-		4C89B0722525D2CB0007EBED /* RoutineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B0712525D2CB0007EBED /* RoutineTableViewCell.swift */; };
+		4C401EAF253DE19100ABED84 /* ShareRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EAE253DE19100ABED84 /* ShareRouter.swift */; };
+		4C401EB2253DE1F200ABED84 /* QuestState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EB1253DE1F200ABED84 /* QuestState.swift */; };
+		4C401EC4253EE6B300ABED84 /* QuestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EC3253EE6B300ABED84 /* QuestDetailViewController.swift */; };
+		4C7248A92541CDE300ACB32B /* QuestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248A82541CDE300ACB32B /* QuestList.swift */; };
+		4C7248AE2542F86200ACB32B /* VerticalRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248AD2542F86200ACB32B /* VerticalRoundButton.swift */; };
+		4C7248B12542FDA600ACB32B /* RecommandOtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248B02542FDA600ACB32B /* RecommandOtherView.swift */; };
+		4C7248B52544297D00ACB32B /* HightlightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248B42544297D00ACB32B /* HightlightButton.swift */; };
+		4C7248B925455B2C00ACB32B /* QuestBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248B825455B2C00ACB32B /* QuestBaseViewController.swift */; };
+		4C89567D2532CB3A0099934E /* QuestNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89567C2532CB3A0099934E /* QuestNavigationController.swift */; };
+		4C8956832532D0630099934E /* QuestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8956822532D0630099934E /* QuestFactory.swift */; };
+		4C8956862532E3230099934E /* QuestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8956852532E3230099934E /* QuestTableViewCell.swift */; };
 		4CB979C42524E5BC00498E81 /* NavigationTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB979C32524E5BC00498E81 /* NavigationTabsView.swift */; };
+		4CBA217B254EB1AF002BDCC3 /* QuestModels+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA217A254EB1AF002BDCC3 /* QuestModels+ViewModel.swift */; };
 		4CC9C7C825231581004D873D /* QuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7C725231581004D873D /* QuestViewController.swift */; };
 		4CC9C7CB252315D7004D873D /* QuestInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7CA252315D7004D873D /* QuestInteractor.swift */; };
 		4CC9C7CE252315E0004D873D /* QuestPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7CD252315E0004D873D /* QuestPresenter.swift */; };
@@ -62,7 +72,6 @@
 		AA7F551F2533568D001C4012 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F55152533568C001C4012 /* ShareViewController.swift */; };
 		AA7F55202533568D001C4012 /* ShareViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F55162533568C001C4012 /* ShareViewController+UI.swift */; };
 		AA7F55212533568D001C4012 /* ShareWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F55172533568C001C4012 /* ShareWorker.swift */; };
-		AA7F55222533568D001C4012 /* ShareRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F55182533568C001C4012 /* ShareRouter.swift */; };
 		AA7F55232533568D001C4012 /* PloggingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F551A2533568C001C4012 /* PloggingImageView.swift */; };
 		AA7F55242533568D001C4012 /* PloggingInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F551B2533568C001C4012 /* PloggingInfoView.swift */; };
 		AA7F55252533568D001C4012 /* ShareModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F551C2533568C001C4012 /* ShareModels.swift */; };
@@ -92,9 +101,19 @@
 
 /* Begin PBXFileReference section */
 		12330CE7D885C1CB00C8E874 /* Pods-UniPlogger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.release.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.release.xcconfig"; sourceTree = "<group>"; };
-		4C89B06E2525D2BB0007EBED /* TrainingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingTableViewCell.swift; sourceTree = "<group>"; };
-		4C89B0712525D2CB0007EBED /* RoutineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTableViewCell.swift; sourceTree = "<group>"; };
+		4C401EAE253DE19100ABED84 /* ShareRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareRouter.swift; sourceTree = "<group>"; };
+		4C401EB1253DE1F200ABED84 /* QuestState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestState.swift; sourceTree = "<group>"; };
+		4C401EC3253EE6B300ABED84 /* QuestDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDetailViewController.swift; sourceTree = "<group>"; };
+		4C7248A82541CDE300ACB32B /* QuestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestList.swift; sourceTree = "<group>"; };
+		4C7248AD2542F86200ACB32B /* VerticalRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalRoundButton.swift; sourceTree = "<group>"; };
+		4C7248B02542FDA600ACB32B /* RecommandOtherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandOtherView.swift; sourceTree = "<group>"; };
+		4C7248B42544297D00ACB32B /* HightlightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HightlightButton.swift; sourceTree = "<group>"; };
+		4C7248B825455B2C00ACB32B /* QuestBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestBaseViewController.swift; sourceTree = "<group>"; };
+		4C89567C2532CB3A0099934E /* QuestNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestNavigationController.swift; sourceTree = "<group>"; };
+		4C8956822532D0630099934E /* QuestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestFactory.swift; sourceTree = "<group>"; };
+		4C8956852532E3230099934E /* QuestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestTableViewCell.swift; sourceTree = "<group>"; };
 		4CB979C32524E5BC00498E81 /* NavigationTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTabsView.swift; sourceTree = "<group>"; };
+		4CBA217A254EB1AF002BDCC3 /* QuestModels+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuestModels+ViewModel.swift"; sourceTree = "<group>"; };
 		4CC9C7C725231581004D873D /* QuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestViewController.swift; sourceTree = "<group>"; };
 		4CC9C7CA252315D7004D873D /* QuestInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestInteractor.swift; sourceTree = "<group>"; };
 		4CC9C7CD252315E0004D873D /* QuestPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestPresenter.swift; sourceTree = "<group>"; };
@@ -144,7 +163,6 @@
 		AA7F55152533568C001C4012 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		AA7F55162533568C001C4012 /* ShareViewController+UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ShareViewController+UI.swift"; sourceTree = "<group>"; };
 		AA7F55172533568C001C4012 /* ShareWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareWorker.swift; sourceTree = "<group>"; };
-		AA7F55182533568C001C4012 /* ShareRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareRouter.swift; sourceTree = "<group>"; };
 		AA7F551A2533568C001C4012 /* PloggingImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingImageView.swift; sourceTree = "<group>"; };
 		AA7F551B2533568C001C4012 /* PloggingInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingInfoView.swift; sourceTree = "<group>"; };
 		AA7F551C2533568C001C4012 /* ShareModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareModels.swift; sourceTree = "<group>"; };
@@ -209,8 +227,42 @@
 			isa = PBXGroup;
 			children = (
 				4CB979C32524E5BC00498E81 /* NavigationTabsView.swift */,
-				4C89B06E2525D2BB0007EBED /* TrainingTableViewCell.swift */,
-				4C89B0712525D2CB0007EBED /* RoutineTableViewCell.swift */,
+				4C8956852532E3230099934E /* QuestTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4C401EC1253EE67100ABED84 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				4C31BE942524A01100D47919 /* Views */,
+				4CC9C7C725231581004D873D /* QuestViewController.swift */,
+				4CC9C7CA252315D7004D873D /* QuestInteractor.swift */,
+				4CC9C7CD252315E0004D873D /* QuestPresenter.swift */,
+				4CC9C7D0252315E9004D873D /* QuestRouter.swift */,
+				4CC9C7D6252315FC004D873D /* QuestWorker.swift */,
+				4C8956822532D0630099934E /* QuestFactory.swift */,
+				4CC9C7D3252315F3004D873D /* QuestModels.swift */,
+				4CBA217A254EB1AF002BDCC3 /* QuestModels+ViewModel.swift */,
+				4C7248A82541CDE300ACB32B /* QuestList.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		4C401EC2253EE69500ABED84 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				4C7248AC2542F84700ACB32B /* Views */,
+				4C401EC3253EE6B300ABED84 /* QuestDetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		4C7248AC2542F84700ACB32B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4C7248AD2542F86200ACB32B /* VerticalRoundButton.swift */,
+				4C7248B02542FDA600ACB32B /* RecommandOtherView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -228,13 +280,10 @@
 		4CC9C7C625231578004D873D /* Quest */ = {
 			isa = PBXGroup;
 			children = (
-				4C31BE942524A01100D47919 /* Views */,
-				4CC9C7D3252315F3004D873D /* QuestModels.swift */,
-				4CC9C7C725231581004D873D /* QuestViewController.swift */,
-				4CC9C7CA252315D7004D873D /* QuestInteractor.swift */,
-				4CC9C7CD252315E0004D873D /* QuestPresenter.swift */,
-				4CC9C7D0252315E9004D873D /* QuestRouter.swift */,
-				4CC9C7D6252315FC004D873D /* QuestWorker.swift */,
+				4C7248B825455B2C00ACB32B /* QuestBaseViewController.swift */,
+				4C89567C2532CB3A0099934E /* QuestNavigationController.swift */,
+				4C401EC2253EE69500ABED84 /* Detail */,
+				4C401EC1253EE67100ABED84 /* Main */,
 			);
 			path = Quest;
 			sourceTree = "<group>";
@@ -369,9 +418,9 @@
 				AA7F55152533568C001C4012 /* ShareViewController.swift */,
 				AA7F55162533568C001C4012 /* ShareViewController+UI.swift */,
 				AA7F55172533568C001C4012 /* ShareWorker.swift */,
-				AA7F55182533568C001C4012 /* ShareRouter.swift */,
 				AA7F55192533568C001C4012 /* Views */,
 				AA7F551C2533568C001C4012 /* ShareModels.swift */,
+				4C401EAE253DE19100ABED84 /* ShareRouter.swift */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -468,6 +517,7 @@
 				AAB3B4EE2520B30600F0311A /* RoundShadowView.swift */,
 				AAB8879425245320000A9D58 /* GradientView.swift */,
 				AAC9584E2545BC110092BA6E /* ScrollStackView.swift */,
+				4C7248B42544297D00ACB32B /* HightlightButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -478,6 +528,7 @@
 				AAB559332549B9D6000BB903 /* Location */,
 				AAB3B4F82520B5B600F0311A /* Common.swift */,
 				4CC9C7D925232128004D873D /* Quest.swift */,
+				4C401EB1253DE1F200ABED84 /* QuestState.swift */,
 				AA217514254CF5ED0076BAD5 /* TrashCan.swift */,
 			);
 			path = Model;
@@ -644,18 +695,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C401EAF253DE19100ABED84 /* ShareRouter.swift in Sources */,
+				4C8956832532D0630099934E /* QuestFactory.swift in Sources */,
 				AA7F54E22532C179001C4012 /* CLLocationCoordinated2D+Extensions.swift in Sources */,
 				AA7F54F12532C1A6001C4012 /* PloggingPresenter.swift in Sources */,
 				AA7F54EE2532C1A6001C4012 /* PloggingViewController+UI.swift in Sources */,
+				4C7248AE2542F86200ACB32B /* VerticalRoundButton.swift in Sources */,
 				AA7F54E12532C176001C4012 /* UserDefault+Extensions.swift in Sources */,
 				AA2CAE0A2543EAD600105748 /* PloggingRecordRouter.swift in Sources */,
 				4CC9C7DA25232128004D873D /* Quest.swift in Sources */,
 				AA7F551D2533568D001C4012 /* SharePresenter.swift in Sources */,
 				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
 				AA7F551F2533568D001C4012 /* ShareViewController.swift in Sources */,
+				4C7248A92541CDE300ACB32B /* QuestList.swift in Sources */,
+				4C7248B925455B2C00ACB32B /* QuestBaseViewController.swift in Sources */,
 				AA2CAE012543EAD500105748 /* TrashAnnotationView.swift in Sources */,
 				AA2CAE052543EAD600105748 /* PloggingRecordModels.swift in Sources */,
 				AA7F54EC2532C1A6001C4012 /* StartCountingViewController.swift in Sources */,
+				4CBA217B254EB1AF002BDCC3 /* QuestModels+ViewModel.swift in Sources */,
 				AAB559392549BB26000BB903 /* FormatDisplay.swift in Sources */,
 				AAB559312549B846000BB903 /* Location.swift in Sources */,
 				AA7F551E2533568D001C4012 /* ShareInteractor.swift in Sources */,
@@ -663,6 +720,7 @@
 				AA7F54ED2532C1A6001C4012 /* PloggingInteractor.swift in Sources */,
 				AA2CAE062543EAD600105748 /* PloggingRecordViewController+UI.swift in Sources */,
 				AA7F54F32532C1A6001C4012 /* PloggingWorker.swift in Sources */,
+				4C401EB2253DE1F200ABED84 /* QuestState.swift in Sources */,
 				AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */,
 				AA7F55212533568D001C4012 /* ShareWorker.swift in Sources */,
 				AA7F55242533568D001C4012 /* PloggingInfoView.swift in Sources */,
@@ -677,6 +735,8 @@
 				AA7F54EF2532C1A6001C4012 /* PloggingModels.swift in Sources */,
 				4CC9C7CE252315E0004D873D /* QuestPresenter.swift in Sources */,
 				4CC9C7D1252315E9004D873D /* QuestRouter.swift in Sources */,
+				4C89567D2532CB3A0099934E /* QuestNavigationController.swift in Sources */,
+				4C8956862532E3230099934E /* QuestTableViewCell.swift in Sources */,
 				AA7F54F22532C1A6001C4012 /* PloggingViewController.swift in Sources */,
 				AA2CAE042543EAD600105748 /* PloggingRecordPresenter.swift in Sources */,
 				AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */,
@@ -685,20 +745,22 @@
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,
 				4CC9C7C825231581004D873D /* QuestViewController.swift in Sources */,
+				4C7248B52544297D00ACB32B /* HightlightButton.swift in Sources */,
 				AA7F5528253356BE001C4012 /* PhotoManager.swift in Sources */,
 				AA217515254CF5ED0076BAD5 /* TrashCan.swift in Sources */,
 				AAB3B4EC2520B2B400F0311A /* UIImage+Extensions.swift in Sources */,
+				4C7248B12542FDA600ACB32B /* RecommandOtherView.swift in Sources */,
 				AA2CAE082543EAD600105748 /* PloggingRecordWorker.swift in Sources */,
 				4CC9C7CB252315D7004D873D /* QuestInteractor.swift in Sources */,
 				AA2CAE032543EAD600105748 /* PloggingRecordViewController.swift in Sources */,
 				AA7F55232533568D001C4012 /* PloggingImageView.swift in Sources */,
+				4C401EC4253EE6B300ABED84 /* QuestDetailViewController.swift in Sources */,
 				4CC9C7D4252315F3004D873D /* QuestModels.swift in Sources */,
 				AAB5592E2549B790000BB903 /* Route.swift in Sources */,
 				AA7F54F02532C1A6001C4012 /* PloggingRouter.swift in Sources */,
 				AA7F55222533568D001C4012 /* ShareRouter.swift in Sources */,
 				AAB559352549BA2D000BB903 /* MultiColorPolyline.swift in Sources */,
 				AAB3B4F92520B5B600F0311A /* Common.swift in Sources */,
-				4C89B0722525D2CB0007EBED /* RoutineTableViewCell.swift in Sources */,
 				AA7F54E02532C16E001C4012 /* UIFont+Extensions.swift in Sources */,
 				AA2CAE022543EAD600105748 /* TrashAnnotation.swift in Sources */,
 				AA7F55202533568D001C4012 /* ShareViewController+UI.swift in Sources */,
@@ -840,7 +902,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 97C96KP84G;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = UniPlogger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

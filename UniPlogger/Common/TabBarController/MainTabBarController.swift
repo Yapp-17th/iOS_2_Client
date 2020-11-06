@@ -9,7 +9,7 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
-    private var shadowLayer: CAShapeLayer!
+    
     // MARK: View
     
     // MARK: View lifecycle
@@ -27,7 +27,7 @@ extension MainTabBarController {
     private func configuration() {
         self.view.backgroundColor = .white
         self.tabBar.barTintColor = .tabBarBackground
-        self.tabBar.selectedImageTintColor = .tabBarTint
+        self.tabBar.tintColor = .tabBarTint
         self.tabBar.unselectedItemTintColor = .tabBarUnselectedTint
     }
     
@@ -44,59 +44,54 @@ extension MainTabBarController {
     private func setupLayout() {
         tabBar.backgroundImage = UIImage.from(color: .clear)
         tabBar.shadowImage = UIImage()
+        tabBar.backgroundColor = .tabBarBackground
+        tabBar.layer.cornerRadius = 22
         
         let tabbarBackgroundView = RoundShadowView()
         tabbarBackgroundView.layer.cornerRadius = 22
         tabbarBackgroundView.backgroundColor = .tabBarBackground
-        view.addSubview(tabbarBackgroundView)
-      tabbarBackgroundView.snp.makeConstraints{
-        $0.edges.equalTo(tabBar)
-      }
-        
-        let fillerView = UIView()
-        fillerView.frame = tabBar.frame
-        fillerView.roundCorners(corners: [.topLeft, .topRight], radius: 22)
-        fillerView.backgroundColor = .tabBarBackground
-        view.addSubview(fillerView)
-        
-        view.bringSubviewToFront(tabBar)
+        tabbarBackgroundView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        tabBar.insertSubview(tabbarBackgroundView, at: 0)
+        tabbarBackgroundView.snp.makeConstraints{
+            $0.edges.equalTo(tabBar)
+        }
     }
     
     private func updateView() {
         
     }
     
-    func setupChallengeViewController(){
+    private func setupChallengeViewController(){
         let challengeItem = UITabBarItem(title: "챌린지", image: UIImage(named: "tabbar_challenge"), tag: 0)
         let vc = UIViewController()
         vc.tabBarItem = challengeItem
         self.addChild(vc)
     }
     
-    func setupQuestViewController(){
+    private func setupQuestViewController(){
         let questItem = UITabBarItem(title: "퀘스트", image: UIImage(named: "tabbar_quest"), tag: 1)
-        let questNavVC = UINavigationController()
+        let questNavVC = QuestNavigationController()
         questNavVC.addChild(QuestViewController())
         let vc = questNavVC
         vc.tabBarItem = questItem
         self.addChild(vc)
     }
     
-    func setupPloggingViewController(){
+    private func setupPloggingViewController(){
         let ploggingItem = UITabBarItem(title: "플로깅", image: UIImage(named: "tabbar_plogging"), tag: 2)
         let vc = PloggingViewController()
         vc.tabBarItem = ploggingItem
         self.addChild(vc)
     }
     
-    func setupLogViewController(){
+    private func setupLogViewController(){
         let logItem = UITabBarItem(title: "로그", image: UIImage(named: "tabbar_log"), tag: 3)
         let vc = UIViewController()
         vc.tabBarItem = logItem
         self.addChild(vc)
     }
     
-    func setupMyViewController(){
+    private func setupMyViewController(){
         let myItem = UITabBarItem(title: "마이", image: UIImage(named: "tabbar_my"), tag: 4)
         let vc = UIViewController()
         vc.tabBarItem = myItem
