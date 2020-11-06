@@ -31,7 +31,7 @@ class TrashAnnotationView: MKAnnotationView{
     }
     
     func configuration(){
-        self.image = UIImage(named: "temp_pin")
+        self.image = UIImage(named: "ic_pinTrashCan")
         self.isDraggable = true
         self.isUserInteractionEnabled = true
         self.isEnabled = false
