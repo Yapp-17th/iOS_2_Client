@@ -10,7 +10,6 @@
 		101A5C8A5DA8441CFEF982F0 /* Pods_UniPlogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E470A391887A23D6AF25DD /* Pods_UniPlogger.framework */; };
 		4C401EAF253DE19100ABED84 /* ShareRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EAE253DE19100ABED84 /* ShareRouter.swift */; };
 		4C401EB2253DE1F200ABED84 /* QuestState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EB1253DE1F200ABED84 /* QuestState.swift */; };
-		4C401EC4253EE6B300ABED84 /* QuestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EC3253EE6B300ABED84 /* QuestDetailViewController.swift */; };
 		4C7248A92541CDE300ACB32B /* QuestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248A82541CDE300ACB32B /* QuestList.swift */; };
 		4C7248AE2542F86200ACB32B /* VerticalRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248AD2542F86200ACB32B /* VerticalRoundButton.swift */; };
 		4C7248B12542FDA600ACB32B /* RecommandOtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248B02542FDA600ACB32B /* RecommandOtherView.swift */; };
@@ -40,6 +39,11 @@
 		AA2CAE092543EAD600105748 /* PloggingRecordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CADFF2543EAD500105748 /* PloggingRecordInteractor.swift */; };
 		AA2CAE0A2543EAD600105748 /* PloggingRecordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CAE002543EAD500105748 /* PloggingRecordRouter.swift */; };
 		AA35BC77254FEEFA00AE32A7 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35BC76254FEEFA00AE32A7 /* CoreDataStore.swift */; };
+		AA35BC7C254FFC2B00AE32A7 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35BC7B254FFC2B00AE32A7 /* Storage.swift */; };
+		AA35BC85254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35BC83254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift */; };
+		AA35BC86254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35BC84254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift */; };
+		AA5EFBB82552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */; };
+		AA6CE4F32551780E00C83D28 /* TrashCanStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */; };
 		AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54DD2532C109001C4012 /* BaseViewController.swift */; };
 		AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B5062520D16800F0311A /* UIColor+Extensions.swift */; };
 		AA7F54E02532C16E001C4012 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB887B02524603E000A9D58 /* UIFont+Extensions.swift */; };
@@ -53,7 +57,6 @@
 		AA7F54F12532C1A6001C4012 /* PloggingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54E92532C1A6001C4012 /* PloggingPresenter.swift */; };
 		AA7F54F22532C1A6001C4012 /* PloggingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54EA2532C1A6001C4012 /* PloggingViewController.swift */; };
 		AA7F54F32532C1A6001C4012 /* PloggingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54EB2532C1A6001C4012 /* PloggingWorker.swift */; };
-		AA7F54F62532C1CF001C4012 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54F52532C1CF001C4012 /* LocationManager.swift */; };
 		AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB8879425245320000A9D58 /* GradientView.swift */; };
 		AA7F55062532C20C001C4012 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA7F54FA2532C20C001C4012 /* Roboto-Medium.ttf */; };
 		AA7F55072532C20C001C4012 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA7F54FB2532C20C001C4012 /* Roboto-Light.ttf */; };
@@ -76,6 +79,9 @@
 		AA7F55242533568D001C4012 /* PloggingInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F551B2533568C001C4012 /* PloggingInfoView.swift */; };
 		AA7F55252533568D001C4012 /* ShareModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F551C2533568C001C4012 /* ShareModels.swift */; };
 		AA7F5528253356BE001C4012 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F5527253356BE001C4012 /* PhotoManager.swift */; };
+		AAAD68F525556A7600895265 /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAD68F425556A7600895265 /* CALayer+Extensions.swift */; };
+		AAAD68F82555738300895265 /* CLLocation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAD68F72555738300895265 /* CLLocation+Extensions.swift */; };
+		AAAD68FF2555A52B00895265 /* QuestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EC3253EE6B300ABED84 /* QuestDetailViewController.swift */; };
 		AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4C72520A31100F0311A /* AppDelegate.swift */; };
 		AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4D02520A31100F0311A /* UniPlogger.xcdatamodeld */; };
 		AAB3B4D42520A31200F0311A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAB3B4D32520A31200F0311A /* Assets.xcassets */; };
@@ -136,6 +142,11 @@
 		AA2CADFF2543EAD500105748 /* PloggingRecordInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingRecordInteractor.swift; sourceTree = "<group>"; };
 		AA2CAE002543EAD500105748 /* PloggingRecordRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingRecordRouter.swift; sourceTree = "<group>"; };
 		AA35BC76254FEEFA00AE32A7 /* CoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
+		AA35BC7B254FFC2B00AE32A7 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		AA35BC83254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedTrashCan+CoreDataClass.swift"; sourceTree = "<group>"; };
+		AA35BC84254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedTrashCan+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingRecordCollectionViewLayout.swift; sourceTree = "<group>"; };
+		AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashCanStorage.swift; sourceTree = "<group>"; };
 		AA7F54DD2532C109001C4012 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		AA7F54E42532C1A6001C4012 /* StartCountingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartCountingViewController.swift; sourceTree = "<group>"; };
 		AA7F54E52532C1A6001C4012 /* PloggingInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingInteractor.swift; sourceTree = "<group>"; };
@@ -145,7 +156,6 @@
 		AA7F54E92532C1A6001C4012 /* PloggingPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingPresenter.swift; sourceTree = "<group>"; };
 		AA7F54EA2532C1A6001C4012 /* PloggingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingViewController.swift; sourceTree = "<group>"; };
 		AA7F54EB2532C1A6001C4012 /* PloggingWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingWorker.swift; sourceTree = "<group>"; };
-		AA7F54F52532C1CF001C4012 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		AA7F54FA2532C20C001C4012 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		AA7F54FB2532C20C001C4012 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		AA7F54FC2532C20C001C4012 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -167,6 +177,8 @@
 		AA7F551B2533568C001C4012 /* PloggingInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingInfoView.swift; sourceTree = "<group>"; };
 		AA7F551C2533568C001C4012 /* ShareModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareModels.swift; sourceTree = "<group>"; };
 		AA7F5527253356BE001C4012 /* PhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
+		AAAD68F425556A7600895265 /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
+		AAAD68F72555738300895265 /* CLLocation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extensions.swift"; sourceTree = "<group>"; };
 		AAB3B4C42520A31100F0311A /* UniPlogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniPlogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB3B4C72520A31100F0311A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAB3B4D12520A31100F0311A /* UniPlogger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UniPlogger.xcdatamodel; sourceTree = "<group>"; };
@@ -316,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				AA2CADFD2543EAD500105748 /* PloggingRecordCollectionViewCell.swift */,
+				AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -370,8 +383,9 @@
 		AA7F54F42532C1CF001C4012 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				AA7F54F52532C1CF001C4012 /* LocationManager.swift */,
 				AA35BC76254FEEFA00AE32A7 /* CoreDataStore.swift */,
+				AA35BC7B254FFC2B00AE32A7 /* Storage.swift */,
+				AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -507,6 +521,8 @@
 				AAB887B02524603E000A9D58 /* UIFont+Extensions.swift */,
 				AA1AC8C4252E1C120022ACE5 /* UserDefault+Extensions.swift */,
 				AA1AC8C6252E1C7D0022ACE5 /* CLLocationCoordinated2D+Extensions.swift */,
+				AAAD68F425556A7600895265 /* CALayer+Extensions.swift */,
+				AAAD68F72555738300895265 /* CLLocation+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -525,6 +541,8 @@
 		AAB3B4F62520B55700F0311A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AA35BC83254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift */,
+				AA35BC84254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift */,
 				AAB559332549B9D6000BB903 /* Location */,
 				AAB3B4F82520B5B600F0311A /* Common.swift */,
 				4CC9C7D925232128004D873D /* Quest.swift */,
@@ -716,12 +734,14 @@
 				AAB559392549BB26000BB903 /* FormatDisplay.swift in Sources */,
 				AAB559312549B846000BB903 /* Location.swift in Sources */,
 				AA7F551E2533568D001C4012 /* ShareInteractor.swift in Sources */,
-				AA7F54F62532C1CF001C4012 /* LocationManager.swift in Sources */,
+				AAAD68F525556A7600895265 /* CALayer+Extensions.swift in Sources */,
 				AA7F54ED2532C1A6001C4012 /* PloggingInteractor.swift in Sources */,
+				AA35BC85254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift in Sources */,
 				AA2CAE062543EAD600105748 /* PloggingRecordViewController+UI.swift in Sources */,
 				AA7F54F32532C1A6001C4012 /* PloggingWorker.swift in Sources */,
 				4C401EB2253DE1F200ABED84 /* QuestState.swift in Sources */,
 				AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */,
+				AA6CE4F32551780E00C83D28 /* TrashCanStorage.swift in Sources */,
 				AA7F55212533568D001C4012 /* ShareWorker.swift in Sources */,
 				AA7F55242533568D001C4012 /* PloggingInfoView.swift in Sources */,
 				4CB979C42524E5BC00498E81 /* NavigationTabsView.swift in Sources */,
@@ -729,11 +749,12 @@
 				AA35BC77254FEEFA00AE32A7 /* CoreDataStore.swift in Sources */,
 				AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
-				4C89B06F2525D2BB0007EBED /* TrainingTableViewCell.swift in Sources */,
+				AA35BC86254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift in Sources */,
 				AAC9584F2545BC110092BA6E /* ScrollStackView.swift in Sources */,
 				AA7F55252533568D001C4012 /* ShareModels.swift in Sources */,
 				AA7F54EF2532C1A6001C4012 /* PloggingModels.swift in Sources */,
 				4CC9C7CE252315E0004D873D /* QuestPresenter.swift in Sources */,
+				AA5EFBB82552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift in Sources */,
 				4CC9C7D1252315E9004D873D /* QuestRouter.swift in Sources */,
 				4C89567D2532CB3A0099934E /* QuestNavigationController.swift in Sources */,
 				4C8956862532E3230099934E /* QuestTableViewCell.swift in Sources */,
@@ -743,6 +764,7 @@
 				AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */,
 				AA2CAE072543EAD600105748 /* PloggingRecordCollectionViewCell.swift in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
+				AA35BC7C254FFC2B00AE32A7 /* Storage.swift in Sources */,
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,
 				4CC9C7C825231581004D873D /* QuestViewController.swift in Sources */,
 				4C7248B52544297D00ACB32B /* HightlightButton.swift in Sources */,
@@ -754,11 +776,11 @@
 				4CC9C7CB252315D7004D873D /* QuestInteractor.swift in Sources */,
 				AA2CAE032543EAD600105748 /* PloggingRecordViewController.swift in Sources */,
 				AA7F55232533568D001C4012 /* PloggingImageView.swift in Sources */,
-				4C401EC4253EE6B300ABED84 /* QuestDetailViewController.swift in Sources */,
+				AAAD68F82555738300895265 /* CLLocation+Extensions.swift in Sources */,
+				AAAD68FF2555A52B00895265 /* QuestDetailViewController.swift in Sources */,
 				4CC9C7D4252315F3004D873D /* QuestModels.swift in Sources */,
 				AAB5592E2549B790000BB903 /* Route.swift in Sources */,
 				AA7F54F02532C1A6001C4012 /* PloggingRouter.swift in Sources */,
-				AA7F55222533568D001C4012 /* ShareRouter.swift in Sources */,
 				AAB559352549BA2D000BB903 /* MultiColorPolyline.swift in Sources */,
 				AAB3B4F92520B5B600F0311A /* Common.swift in Sources */,
 				AA7F54E02532C16E001C4012 /* UIFont+Extensions.swift in Sources */,
@@ -902,7 +924,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 97C96KP84G;
 				INFOPLIST_FILE = UniPlogger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -17,7 +17,7 @@ protocol PloggingRecordBusinessLogic {
 }
 
 protocol PloggingRecordDataStore {
-  //var name: String { get set }
+  
 }
 
 class PloggingRecordInteractor: PloggingRecordBusinessLogic, PloggingRecordDataStore {

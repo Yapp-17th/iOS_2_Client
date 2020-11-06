@@ -21,14 +21,9 @@ class PloggingRecordCollectionViewCell: UICollectionViewCell{
             updateView()
         }
     }
-    let circleView = UIView().then{
-        $0.backgroundColor = .init(red: 220, green: 226, blue: 233)
-        $0.layer.cornerRadius = 48
-        $0.layer.masksToBounds = true
-    }
     
     let titleLabel = UILabel().then{
-        $0.font = .notoSans(ofSize: 18, weight: .bold)
+        $0.font = .dynamicNotosans(fontSize: 18, weight: .bold)
     }
     
     override init(frame: CGRect) {
@@ -45,24 +40,26 @@ class PloggingRecordCollectionViewCell: UICollectionViewCell{
     override func prepareForReuse() {
         super.prepareForReuse()
         self.titleLabel.text = nil
-        self.circleView.backgroundColor = .init(red: 220, green: 226, blue: 233)
+        self.contentView.backgroundColor = .recordCellBackgroundColor
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.contentView.layer.cornerRadius = self.contentView.bounds.size.width / 2
+        self.contentView.layer.masksToBounds = true
     }
 }
 extension PloggingRecordCollectionViewCell {
     private func configuration() {
-        // backgroundColor = .white
+        self.contentView.backgroundColor = .recordCellBackgroundColor
     }
     
     private func setupView() {
-        self.contentView.addSubview(circleView)
-        circleView.addSubview(titleLabel)
+        self.contentView.addSubview(titleLabel)
     }
     
     private func setupLayout() {
-        circleView.snp.makeConstraints{
-            $0.edges.equalToSuperview()
-        }
-        
         titleLabel.snp.makeConstraints{
             $0.centerX.centerY.equalToSuperview()
         }
@@ -72,7 +69,7 @@ extension PloggingRecordCollectionViewCell {
         guard let vm = self.viewModel else { return }
         self.titleLabel.text = vm.title
         if vm.isSelected{
-            self.circleView.backgroundColor = .init(red: 0, green: 207, blue: 152)
+            self.contentView.backgroundColor = .init(red: 0, green: 207, blue: 152)
         }
     }
 }

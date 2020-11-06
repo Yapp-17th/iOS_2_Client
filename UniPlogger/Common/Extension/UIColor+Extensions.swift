@@ -15,12 +15,12 @@ extension Color {
     class var textBlack: Color { return Color(named: "text")! }
     
     // MARK: Red
-    open class var bottomGradientStart: Color { return Color(named: "bottomGradientStart")! }
-    open class var bottomGradientEnd: Color { return Color(named: "bottomGradientEnd")! }
+    open class var mainBackgroundColor: Color { return Color(named: "mainBackgroundColor")! }
     open class var main: Color { return Color(named: "main")! }
     open class var tabBarBackground: Color { return Color(named: "TabBarBackground")! }
     open class var tabBarTint: Color { return Color(named: "TabBarTint")! }
     open class var tabBarUnselectedTint: Color { return Color(named: "TabBarUnselectedTint")! }
+    open class var recordCellBackgroundColor: Color { return Color(named: "recordCellBackgroundColor")! }
     
     // MARK: Quest
     class var questBackground: Color { return Color(named: "questBackground")! }
