@@ -76,7 +76,9 @@ extension PloggingWorker{
     }
     
     func addTrashCan(request: Plogging.AddTrashCan.Request){
-        storage.createTrashCan(request.trashCan) { (result) in
+        let trashCan = TrashCan(latitude: request.latitude, longitude: request.longitude)
+        
+        storage.createTrashCan(trashCan) { (result) in
             switch result{
             case .success(let trashCan):
                 print("add Success: \(trashCan)")

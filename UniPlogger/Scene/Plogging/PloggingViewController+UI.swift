@@ -21,6 +21,7 @@ extension PloggingViewController {
         self.view.addSubview(myLocationButton)
         self.view.addSubview(startBottomContainerView)
         self.view.addSubview(doingPauseBottomContainerView)
+        self.view.addSubview(trashInfoContainer)
         startBottomContainerView.addSubview(startButton)
         startBottomContainerView.addSubview(ploggerImageView)
         startBottomContainerView.addSubview(bubbleView)
@@ -38,6 +39,10 @@ extension PloggingViewController {
         
         timeContainer.addSubview(timeImageView)
         timeContainer.addSubview(timeLabel)
+        
+        trashInfoContainer.addSubview(trashInfoTitleLabel)
+        trashInfoContainer.addSubview(trashInfoAddressLabel)
+        trashInfoContainer.addSubview(trashInfoDescriptionLabel)
         
         if #available(iOS 12.0, *) {
                 // User Interface is Dark
@@ -61,16 +66,16 @@ extension PloggingViewController {
         mapView.snp.makeConstraints{
             $0.leading.trailing.top.bottom.equalToSuperview()
         }
-        trashButton.snp.makeConstraints{
+        myLocationButton.snp.makeConstraints{
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(15)
             $0.trailing.equalTo(-17)
-            $0.width.height.equalTo(50)
+            $0.width.height.equalTo(40)
         }
         
-        myLocationButton.snp.makeConstraints{
+        trashButton.snp.makeConstraints{
             $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
             $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
-            $0.width.height.equalTo(40)
+            $0.width.height.equalTo(60)
         }
         
         startBottomContainerView.snp.makeConstraints{
@@ -160,13 +165,33 @@ extension PloggingViewController {
             $0.bottom.equalTo(timeLabel.snp.top).offset(-3)
         }
         
+        trashInfoContainer.snp.makeConstraints{
+            $0.edges.equalTo(startBottomContainerView)
+        }
         
+        trashInfoTitleLabel.snp.makeConstraints{
+            $0.top.equalTo(16)
+            $0.leading.equalTo(12)
+            $0.trailing.equalTo(-12)
+        }
+        
+        trashInfoAddressLabel.snp.makeConstraints{
+            $0.top.equalTo(trashInfoTitleLabel.snp.bottom).offset(8)
+            $0.leading.equalTo(12)
+            $0.trailing.equalTo(-12)
+        }
+        
+        trashInfoDescriptionLabel.snp.makeConstraints{
+            $0.top.equalTo(trashInfoAddressLabel.snp.bottom).offset(8)
+            $0.leading.equalTo(12)
+            $0.trailing.equalTo(-12)
+        }
         
         doingPauseBottomContainerView.isHidden = true
         
         stopButton.isHidden = true
         resumeButton.isHidden = true
-        
+        trashInfoContainer.isHidden = true
     }
     
     func updateView() {

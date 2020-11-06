@@ -26,6 +26,8 @@ protocol PloggingDisplayLogic: class {
     func displayLocation(location: CLLocationCoordinate2D)
     func displayRun(viewModel: Plogging.StartRun.ViewModel)
     func displayLocationToast()
+    
+    func displayAddTrashCan(viewModel: Plogging.AddTrashCan.ViewModel)
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase)
 }
 
@@ -167,6 +169,24 @@ class PloggingViewController: BaseViewController {
         $0.delegate = self
     }
     
+    var trashInfoContainer = UIView().then{
+        $0.backgroundColor = .mainBackgroundColor
+    }
+    
+    var trashInfoTitleLabel = UILabel().then{
+        $0.text = "이 위치에 쓰레기통을 추가 하시겠습니까?"
+        $0.font = .notoSans(ofSize: 16, weight: .bold)
+    }
+    
+    var trashInfoAddressLabel = UILabel().then{
+        $0.font = .notoSans(ofSize: 12, weight: .regular)
+    }
+    
+    var trashInfoDescriptionLabel = UILabel().then{
+        $0.text = "핀을 움직여서 위치 수정을 할 수 있습니다."
+        $0.font = .notoSans(ofSize: 12, weight: .regular)
+    }
+    
     // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -237,8 +257,7 @@ class PloggingViewController: BaseViewController {
         self.annotations.append(annotation)
         mapView.addAnnotation(annotation)
         
-        let request = Plogging.AddTrashCan.Request(trashCan: .init(latitude: coordinate.latitude, longitude: coordinate.longitude))
-        
+        let request = Plogging.AddTrashCan.Request(latitude: coordinate.latitude, longitude: coordinate.longitude)
         self.interactor?.addTrashCan(request: request)
     }
     
@@ -380,6 +399,11 @@ extension PloggingViewController: PloggingDisplayLogic{
     }
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase){
         //handle error with its usecase
+    }
+    
+    func displayAddTrashCan(viewModel: Plogging.AddTrashCan.ViewModel) {
+        self.trashInfoContainer.isHidden = false
+        self.trashInfoAddressLabel.text = viewModel.address
     }
     
     func displayLocationToast(){

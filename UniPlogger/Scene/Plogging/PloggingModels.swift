@@ -52,7 +52,16 @@ enum Plogging {
     
     enum AddTrashCan{
         struct Request {
-            var trashCan: TrashCan
+            var latitude: Double
+            var longitude: Double
+        }
+        struct Response {
+            var latitude: Double
+            var longitude: Double
+        }
+        
+        struct ViewModel {
+            var address: String
         }
     }
     

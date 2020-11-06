@@ -72,6 +72,7 @@
 		AA7F55252533568D001C4012 /* ShareModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F551C2533568C001C4012 /* ShareModels.swift */; };
 		AA7F5528253356BE001C4012 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F5527253356BE001C4012 /* PhotoManager.swift */; };
 		AAAD68F525556A7600895265 /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAD68F425556A7600895265 /* CALayer+Extensions.swift */; };
+		AAAD68F82555738300895265 /* CLLocation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAD68F72555738300895265 /* CLLocation+Extensions.swift */; };
 		AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4C72520A31100F0311A /* AppDelegate.swift */; };
 		AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B4D02520A31100F0311A /* UniPlogger.xcdatamodeld */; };
 		AAB3B4D42520A31200F0311A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAB3B4D32520A31200F0311A /* Assets.xcassets */; };
@@ -159,6 +160,7 @@
 		AA7F551C2533568C001C4012 /* ShareModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareModels.swift; sourceTree = "<group>"; };
 		AA7F5527253356BE001C4012 /* PhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		AAAD68F425556A7600895265 /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
+		AAAD68F72555738300895265 /* CLLocation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extensions.swift"; sourceTree = "<group>"; };
 		AAB3B4C42520A31100F0311A /* UniPlogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniPlogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB3B4C72520A31100F0311A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAB3B4D12520A31100F0311A /* UniPlogger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UniPlogger.xcdatamodel; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 				AA1AC8C4252E1C120022ACE5 /* UserDefault+Extensions.swift */,
 				AA1AC8C6252E1C7D0022ACE5 /* CLLocationCoordinated2D+Extensions.swift */,
 				AAAD68F425556A7600895265 /* CALayer+Extensions.swift */,
+				AAAD68F72555738300895265 /* CLLocation+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -712,6 +715,7 @@
 				4CC9C7CB252315D7004D873D /* QuestInteractor.swift in Sources */,
 				AA2CAE032543EAD600105748 /* PloggingRecordViewController.swift in Sources */,
 				AA7F55232533568D001C4012 /* PloggingImageView.swift in Sources */,
+				AAAD68F82555738300895265 /* CLLocation+Extensions.swift in Sources */,
 				4CC9C7D4252315F3004D873D /* QuestModels.swift in Sources */,
 				AAB5592E2549B790000BB903 /* Route.swift in Sources */,
 				AA7F54F02532C1A6001C4012 /* PloggingRouter.swift in Sources */,

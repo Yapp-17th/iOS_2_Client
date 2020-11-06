@@ -17,7 +17,10 @@ protocol PloggingBusinessLogic {
     func startRun()
     func setupLocationService()
     func fetchTrashCan()
+    
+    //TrashCan
     func addTrashCan(request: Plogging.AddTrashCan.Request)
+    func addConfirmTrashCan()
     func removeTrashCan(request: Plogging.RemoveTrashCan.Request)
 }
 
@@ -60,11 +63,15 @@ class PloggingInteractor: NSObject, PloggingBusinessLogic, PloggingDataStore {
         }
     }
     func addTrashCan(request: Plogging.AddTrashCan.Request) {
-        self.worker.addTrashCan(request: request)
+        let response = Plogging.AddTrashCan.Response(latitude: request.latitude, longitude: request.longitude)
+        self.presenter?.presentAddTrashCan(response: response)
     }
     
     func removeTrashCan(request: Plogging.RemoveTrashCan.Request) {
         self.worker.deleteTrashCan(request: request)
+    }
+    
+    func addConfirmTrashCan() {
     }
 }
 

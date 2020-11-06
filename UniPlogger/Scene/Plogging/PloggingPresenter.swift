@@ -19,6 +19,9 @@ protocol PloggingPresentationLogic {
     func presentPause()
     func presentLocationService(response: Plogging.LocationAuth.Response)
     func presentStartRun(response: Plogging.StartRun.Response)
+    
+    //TrashCan
+    func presentAddTrashCan(response: Plogging.AddTrashCan.Response)
     func presentFetchTrashCan(response: Plogging.FetchTrashCan.Response)
 }
 
@@ -79,6 +82,13 @@ class PloggingPresenter: PloggingPresentationLogic {
         }
     }
     
+    func presentAddTrashCan(response: Plogging.AddTrashCan.Response) {
+        let location = CLLocation(latitude: response.latitude, longitude: response.longitude)
+        location.addressToPlace { (address) in
+            let viewModel = Plogging.AddTrashCan.ViewModel(address: address)
+            self.viewController?.displayAddTrashCan(viewModel: viewModel)
+        }
+    }
     func presentFetchTrashCan(response: Plogging.FetchTrashCan.Response) {
         let viewModel = Plogging.FetchTrashCan.ViewModel(list: response.list)
         viewController?.displayFetchTrashCan(viewModel: viewModel)
@@ -168,6 +178,4 @@ class PloggingPresenter: PloggingPresentationLogic {
       
       return UIColor(red: red, green: green, blue: blue, alpha: 1)
     }
-    
-    
 }
