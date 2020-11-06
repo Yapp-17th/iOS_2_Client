@@ -33,6 +33,14 @@ class PloggingViewController: BaseViewController {
     var interactor: PloggingBusinessLogic?
     var router: (NSObjectProtocol & PloggingRoutingLogic & PloggingDataPassing)?
     
+    var infoList: [String] = [
+        "준비물을 확인해주세요",
+        "퀘스트는 확인하셨나요?",
+        "오늘 챌린지는 몇등이에요?",
+        "환경을 지키며 운동도 한다",
+        "+를 눌러 휴지통을 추가해요!",
+        "핀을 눌러 휴지통을 없애요"
+    ]
     var state: Plogging.State = .ready
     var minutes = 0
     var seconds = 0
@@ -139,8 +147,8 @@ class PloggingViewController: BaseViewController {
     lazy var trashButton = UIButton().then{
         $0.setImage(UIImage(named: "ic_trashcan")?.withRenderingMode(.alwaysOriginal), for: .normal)
         $0.imageView?.contentMode = .center
-        $0.backgroundColor = UIColor(red: 95/255, green: 116/255, blue: 244/255, alpha: 1)
-        $0.layer.cornerRadius = 25
+        $0.backgroundColor = .main
+        $0.layer.cornerRadius = 30
         $0.layer.masksToBounds = true
         $0.addTarget(self, action: #selector(trashButtonTapped), for: .touchUpInside)
     }
@@ -193,6 +201,10 @@ class PloggingViewController: BaseViewController {
         configuration()
         setupView()
         setupLayout()
+        let randomIndex = Int(arc4random() % 6)
+        let infoText = infoList[randomIndex]
+        self.bubbleLabel.text = infoText
+        
         mapView.register(
         TrashAnnotationView.self,
         forAnnotationViewWithReuseIdentifier:
@@ -250,9 +262,9 @@ class PloggingViewController: BaseViewController {
         self.stopButton.isHidden = true
         self.resumeButton.isHidden = true
         
-        self.myLocationButton.snp.remakeConstraints{
+        self.trashButton.snp.remakeConstraints{
             $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
-            $0.width.height.equalTo(40)
+            $0.width.height.equalTo(60)
             $0.bottom.equalTo(self.doingPauseBottomContainerView.snp.top).offset(-16)
         }
         
@@ -335,9 +347,9 @@ extension PloggingViewController: PloggingDisplayLogic{
         timeLabel.text = "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
         self.startBottomContainerView.isHidden = false
         self.doingPauseBottomContainerView.isHidden = true
-        self.myLocationButton.snp.remakeConstraints{
+        self.trashButton.snp.remakeConstraints{
             $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
-            $0.width.height.equalTo(40)
+            $0.width.height.equalTo(60)
             $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
         }
         self.router?.routeToPloggingRecord()
