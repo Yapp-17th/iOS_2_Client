@@ -6,10 +6,10 @@
 //  Copyright © 2020 손병근. All rights reserved.
 //
 
-import Foundation
+import UIKit.UIImage
 
 enum QuestModels {
-    enum Usercase {
+    enum UseCase {
         
     }
     
@@ -19,15 +19,5 @@ enum QuestModels {
     
     struct Response {
         var questList: [Quest]
-    }
-    
-    struct ViewModel {
-        
-        struct QuestViewModel {
-            var title: String
-            var category: Quest.Category
-        }
-        
-        var questList: [QuestViewModel]
     }
 }
