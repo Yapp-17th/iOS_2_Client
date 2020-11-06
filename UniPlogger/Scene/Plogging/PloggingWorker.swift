@@ -50,6 +50,15 @@ class PloggingWorker: NSObject {
         resetLocationData()
         startUpdateLocation()
     }
+    
+    func pauseRun(){
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func resumeRun(){
+        startUpdateLocation()
+    }
+    
     func stopRun(){
         locationManager.stopUpdatingLocation()
     }

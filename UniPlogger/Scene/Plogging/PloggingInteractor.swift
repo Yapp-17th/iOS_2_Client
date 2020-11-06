@@ -13,8 +13,10 @@
 import UIKit
 import CoreLocation
 protocol PloggingBusinessLogic {
-    func changeState(request: Plogging.ChangeState.Request)
-    func startRun()
+    func startPlogging()
+    func pausePlogging()
+    func resumePlogging()
+    func stopPlogging()
     func setupLocationService()
     func fetchTrashCan()
     
@@ -32,21 +34,30 @@ class PloggingInteractor: NSObject, PloggingBusinessLogic, PloggingDataStore {
     var presenter: PloggingPresentationLogic?
     var worker = PloggingWorker()
     //var name: String = ""
-    func changeState(request: Plogging.ChangeState.Request){
-        switch request.state {
-        case .ready:
-            presenter?.presentDoing()
-        case .doing:
-            presenter?.presentPause()
-        case .pause:
-            //Todo 버튼 두개 중 어느걸 눌렀는지에 따라 분기
-            print("pause")
-        }
-    }
-    func startRun() {
+    func startPlogging() {
         worker.delegate = self
         worker.startRun()
+        self.presenter?.presentStartPlogging()
     }
+    
+    func pausePlogging() {
+        worker.delegate = nil
+        worker.pauseRun()
+        self.presenter?.presentPausePlogging()
+    }
+    
+    func resumePlogging() {
+        worker.delegate = self
+        worker.resumeRun()
+        self.presenter?.presentResumePlogging()
+    }
+    
+    func stopPlogging() {
+        worker.delegate = nil
+        worker.stopRun()
+        self.presenter?.presentStopPlogging()
+    }
+    
     func setupLocationService() {
         worker.updateAuthorization = { status in
             let response = Plogging.LocationAuth.Response(status: status)
@@ -81,11 +92,11 @@ class PloggingInteractor: NSObject, PloggingBusinessLogic, PloggingDataStore {
 extension PloggingInteractor: PloggingWorkerDelegate{
     
     func updateRoute(distance: Measurement<UnitLength>, location: Location) {
-        let response = Plogging.StartRun.Response(
+        let response = Plogging.UpdatePloggingLocation.Response(
             distance: distance,
             location: location
         )
         
-        self.presenter?.presentStartRun(response: response)
+        self.presenter?.presentUpdatePloggingLocation(response: response)
     }
 }

@@ -20,13 +20,7 @@ enum Plogging {
         case StartPlogging
     }
     
-    enum State {
-        case ready
-        case doing
-        case pause
-    }
-   
-    enum StartRun{
+    enum UpdatePloggingLocation{
         struct Response {
             var distance: Measurement<UnitLength>
             var location: Location
@@ -36,11 +30,6 @@ enum Plogging {
             var distance: String
             var region: MKCoordinateRegion
             var polyLine: MultiColorPolyline
-        }
-    }
-    enum ChangeState {
-        struct Request{
-            var state: State
         }
     }
     

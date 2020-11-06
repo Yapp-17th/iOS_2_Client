@@ -15,10 +15,13 @@ import CoreLocation
 import MapKit
 
 protocol PloggingPresentationLogic {
-    func presentDoing()
-    func presentPause()
+    func presentStartPlogging()
+    func presentPausePlogging()
+    func presentResumePlogging()
+    func presentStopPlogging()
+
     func presentLocationService(response: Plogging.LocationAuth.Response)
-    func presentStartRun(response: Plogging.StartRun.Response)
+    func presentUpdatePloggingLocation(response: Plogging.UpdatePloggingLocation.Response)
     
     //TrashCan
     func presentAddTrashCan(response: Plogging.AddTrashCan.Response)
@@ -37,12 +40,20 @@ class PloggingPresenter: PloggingPresentationLogic {
     var midSpeed: Double {
         return speeds.reduce(0, +) / Double(speeds.count)
     }
-    
-    func presentDoing() {
-        viewController?.displayStart()
+    func presentStartPlogging() {
+        self.viewController?.displayStartPlogging()
     }
-    func presentPause() {
-        viewController?.displayPause()
+    
+    func presentPausePlogging() {
+        self.viewController?.displayPausePlogging()
+    }
+    
+    func presentResumePlogging() {
+        self.viewController?.displayResumePlogging()
+    }
+    
+    func presentStopPlogging() {
+        self.viewController?.displayStopPlogging()
     }
     
     var coordinate: CLLocationCoordinate2D {
@@ -65,18 +76,20 @@ class PloggingPresenter: PloggingPresentationLogic {
         }
       
     }
-    func presentStartRun(response: Plogging.StartRun.Response) {
+    
+    
+    func presentUpdatePloggingLocation(response: Plogging.UpdatePloggingLocation.Response) {
         if let first = self.locations.last{
             let second = response.location
             self.locations.append(second)
             let polyLine = getPolyLine(first: first, second: second)
             if let region = mapRegion(){
-                let viewModel = Plogging.StartRun.ViewModel(
+                let viewModel = Plogging.UpdatePloggingLocation.ViewModel(
                     distance: FormatDisplay.distance(response.distance),
                     region: region,
                     polyLine: polyLine
                 )
-                viewController?.displayRun(viewModel: viewModel)
+                viewController?.displayUpdatePloggingLocation(viewModel: viewModel)
             }
         }else{
             self.locations.append(response.location)

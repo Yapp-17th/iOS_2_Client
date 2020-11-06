@@ -19,14 +19,18 @@ import Toast_Swift
 
 protocol PloggingDisplayLogic: class {
     
-    func displayFetchTrashCan(viewModel: Plogging.FetchTrashCan.ViewModel)
-    func displayStart()
-    func displayPause()
+    
+    func displayStartPlogging()
+    func displayPausePlogging()
+    func displayResumePlogging()
+    func displayStopPlogging()
+    
     func displaySetting(message: String, url: URL)
     func displayLocation(location: CLLocationCoordinate2D)
-    func displayRun(viewModel: Plogging.StartRun.ViewModel)
+    func displayUpdatePloggingLocation(viewModel: Plogging.UpdatePloggingLocation.ViewModel)
     func displayLocationToast()
     
+    func displayFetchTrashCan(viewModel: Plogging.FetchTrashCan.ViewModel)
     func displayAddTrashCan(viewModel: Plogging.AddTrashCan.ViewModel)
     func displayAddConfirmTrashCan(viewModel: Plogging.AddConfirmTrashCan.ViewModel)
     func displayAddTrashCanCancel()
@@ -47,7 +51,6 @@ class PloggingViewController: BaseViewController {
     ]
     
     var tempAnnotation: TempTrashAnnotation?
-    var state: Plogging.State = .ready
     var minutes = 0
     var seconds = 0
     
@@ -121,7 +124,7 @@ class PloggingViewController: BaseViewController {
         $0.backgroundColor = .init(red: 244, green: 95, blue: 95)
         $0.layer.cornerRadius = 28
         $0.layer.masksToBounds = true
-        $0.addTarget(self, action: #selector(displayStop), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(stopButtonTapped), for: .touchUpInside)
     }
     
     lazy var resumeButton = UIButton().then{
@@ -130,7 +133,7 @@ class PloggingViewController: BaseViewController {
         $0.backgroundColor = .main
         $0.layer.cornerRadius = 28
         $0.layer.masksToBounds = true
-        $0.addTarget(self, action: #selector(displayResume), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(resumeButtonTapped), for: .touchUpInside)
     }
   
     let bubbleView = UIImageView().then{
@@ -258,18 +261,24 @@ class PloggingViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let _ = self.presentedViewController as? StartCountingViewController{
-            self.startPlogging()
+            self.interactor?.startPlogging()
         }
     }
     
     @objc func startButtonTapped(){
-        let reqquest = Plogging.ChangeState.Request(state: self.state)
-        interactor?.changeState(request: reqquest)
+        self.router?.routeToStartCounting()
     }
     
     @objc func pauseButtonTapped(){
-        let reqquest = Plogging.ChangeState.Request(state: self.state)
-        interactor?.changeState(request: reqquest)
+        interactor?.pausePlogging()
+    }
+    
+    @objc func resumeButtonTapped(){
+        interactor?.resumePlogging()
+    }
+    
+    @objc func stopButtonTapped(){
+        interactor?.stopPlogging()
     }
     
     @objc func trashButtonTapped(){
@@ -315,23 +324,6 @@ class PloggingViewController: BaseViewController {
             seconds = 0
         }
         timeLabel.text = "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
-    }
-  
-    func startPlogging(){
-        self.startBottomContainerView.isHidden = true
-        self.doingPauseBottomContainerView.isHidden = false
-        self.pauseButton.isHidden = false
-        self.stopButton.isHidden = true
-        self.resumeButton.isHidden = true
-        
-        self.trashButton.snp.remakeConstraints{
-            $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
-            $0.width.height.equalTo(60)
-            $0.bottom.equalTo(self.doingPauseBottomContainerView.snp.top).offset(-16)
-        }
-        
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
-        self.interactor?.startRun()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -383,19 +375,31 @@ extension PloggingViewController: PloggingDisplayLogic{
             mapView.addAnnotation(annotation)
         }
     }
-    func displayRun(viewModel: Plogging.StartRun.ViewModel) {
+    
+    func displayUpdatePloggingLocation(viewModel: Plogging.UpdatePloggingLocation.ViewModel) {
         
         mapView.setRegion(viewModel.region, animated: true)
         mapView.addOverlay(viewModel.polyLine)
         
         self.distanceLabel.text = viewModel.distance
     }
-    func displayStart() {
-        self.state = .doing
-        self.router?.routeToStartCounting()
+    func displayStartPlogging() {
+        self.startBottomContainerView.isHidden = true
+        self.doingPauseBottomContainerView.isHidden = false
+        self.pauseButton.isHidden = false
+        self.stopButton.isHidden = true
+        self.resumeButton.isHidden = true
+        
+        self.trashButton.snp.remakeConstraints{
+            $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
+            $0.width.height.equalTo(60)
+            $0.bottom.equalTo(self.doingPauseBottomContainerView.snp.top).offset(-16)
+        }
+        
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
     }
     
-    func displayPause() {
+    func displayPausePlogging() {
         self.pauseButton.isHidden = true
         self.stopButton.isHidden = false
         self.resumeButton.isHidden = false
@@ -403,7 +407,13 @@ extension PloggingViewController: PloggingDisplayLogic{
         self.timer = nil
     }
     
-    @objc func displayStop() {
+    func displayResumePlogging() {
+        self.pauseButton.isHidden = false
+        self.stopButton.isHidden = true
+        self.resumeButton.isHidden = true
+    }
+
+    @objc func displayStopPlogging() {
         self.seconds = 0
         self.minutes = 0
         timeLabel.text = "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
