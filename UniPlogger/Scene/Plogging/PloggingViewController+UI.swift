@@ -46,16 +46,10 @@ extension PloggingViewController {
         trashInfoContainer.addSubview(addTrashCanConfirmButton)
         if #available(iOS 12.0, *) {
                 // User Interface is Dark
-                [distanceLabel,timeLabel].forEach {
-                    $0.textColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
-                }
                 [distanceImageView, timeImageView].forEach{
                     $0.tintColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
                 }
         } else {
-            [distanceLabel,timeLabel].forEach {
-                $0.textColor = .black
-            }
             [distanceImageView, timeImageView].forEach{
                 $0.tintColor = .black
             }

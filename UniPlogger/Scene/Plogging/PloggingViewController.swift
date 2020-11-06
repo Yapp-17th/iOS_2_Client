@@ -78,7 +78,6 @@ class PloggingViewController: BaseViewController {
     let distanceLabel = UILabel().then{
         $0.font = .roboto(ofSize: 30, weight: .bold)
         $0.text = "0.00 km"
-        $0.textColor = .black
     }
     let timeContainer = UIView().then{
         $0.backgroundColor = .clear
@@ -92,7 +91,6 @@ class PloggingViewController: BaseViewController {
     let timeLabel = UILabel().then{
         $0.font = .roboto(ofSize: 30, weight: .bold)
         $0.text = "00:00"
-        $0.textColor = .white
     }
     
     let ploggerImageView = UIImageView().then {
@@ -123,7 +121,7 @@ class PloggingViewController: BaseViewController {
         $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
         $0.backgroundColor = .init(red: 244, green: 95, blue: 95)
         $0.layer.cornerRadius = 28
-        $0.layer.masksToBounds = true
+        $0.layer.applySketchShadow(color: .init(red: 244, green: 95, blue: 95), alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
         $0.addTarget(self, action: #selector(stopButtonTapped), for: .touchUpInside)
     }
     
@@ -132,7 +130,7 @@ class PloggingViewController: BaseViewController {
         $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
         $0.backgroundColor = .main
         $0.layer.cornerRadius = 28
-        $0.layer.masksToBounds = true
+        $0.layer.applySketchShadow(color: .main, alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
         $0.addTarget(self, action: #selector(resumeButtonTapped), for: .touchUpInside)
     }
   
@@ -330,16 +328,10 @@ class PloggingViewController: BaseViewController {
         super.traitCollectionDidChange(previousTraitCollection)
         if #available(iOS 12.0, *) {
                 // User Interface is Dark
-                [distanceLabel,timeLabel].forEach {
-                    $0.textColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
-                }
                 [distanceImageView, timeImageView].forEach{
                     $0.tintColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
                 }
         } else {
-            [distanceLabel,timeLabel].forEach {
-                $0.textColor = .black
-            }
             [distanceImageView, timeImageView].forEach{
                 $0.tintColor = .black
             }
@@ -414,9 +406,6 @@ extension PloggingViewController: PloggingDisplayLogic{
     }
 
     @objc func displayStopPlogging() {
-        self.seconds = 0
-        self.minutes = 0
-        timeLabel.text = "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
         self.startBottomContainerView.isHidden = false
         self.doingPauseBottomContainerView.isHidden = true
         self.trashButton.snp.remakeConstraints{

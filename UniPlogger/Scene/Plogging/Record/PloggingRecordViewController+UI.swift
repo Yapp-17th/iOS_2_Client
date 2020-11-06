@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 extension PloggingRecordViewController {
     func configuration() {
-        // backgroundColor = .white
+        self.view.backgroundColor = .mainBackgroundColor
     }
     
     func setupView() {

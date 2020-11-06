@@ -40,7 +40,8 @@ class PloggingRecordCollectionViewCell: UICollectionViewCell{
     override func prepareForReuse() {
         super.prepareForReuse()
         self.titleLabel.text = nil
-        self.contentView.backgroundColor = .init(red: 220, green: 226, blue: 233)
+        self.contentView.backgroundColor = .recordCellBackgroundColor
+        
     }
     
     override func layoutSubviews() {
@@ -51,7 +52,7 @@ class PloggingRecordCollectionViewCell: UICollectionViewCell{
 }
 extension PloggingRecordCollectionViewCell {
     private func configuration() {
-        self.contentView.backgroundColor = .init(red: 220, green: 226, blue: 233)
+        self.contentView.backgroundColor = .recordCellBackgroundColor
     }
     
     private func setupView() {

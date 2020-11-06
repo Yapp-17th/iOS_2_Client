@@ -18,6 +18,7 @@ extension Color {
     open class var tabBarBackground: Color { return Color(named: "TabBarBackground")! }
     open class var tabBarTint: Color { return Color(named: "TabBarTint")! }
     open class var tabBarUnselectedTint: Color { return Color(named: "TabBarUnselectedTint")! }
+    open class var recordCellBackgroundColor: Color { return Color(named: "recordCellBackgroundColor")! }
 }
 
 // MARK: - Initializers
