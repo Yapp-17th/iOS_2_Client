@@ -11,6 +11,17 @@ import SnapKit
 import Then
 
 class PloggingInfoView: UIView {
+    struct ViewModel{
+        var distance: String
+        var time: String
+    }
+    
+    var viewModel: ViewModel?{
+        didSet{
+            updateView()
+        }
+    }
+    
     lazy var characterImageView = UIImageView().then {
         $0.image = UIImage(named: "share_character")
     }
@@ -79,5 +90,11 @@ extension PloggingInfoView {
             $0.top.equalTo(timerImageView.snp.bottom).offset(2.38)
             $0.centerX.equalTo(timerImageView.snp.centerX)
         }
+    }
+    
+    func updateView(){
+        guard let vm = self.viewModel else { return }
+        self.distanceLabel.text = vm.distance
+        self.timeLabel.text = vm.time
     }
 }

@@ -14,6 +14,7 @@ import UIKit
 import Then
 
 protocol PloggingRecordDisplayLogic: class {
+    func displayFetchRecord(viewModel: PloggingRecord.FetchRecord.ViewModel)
     func displayError(error: Common.CommonError, useCase: PloggingRecord.UseCase)
 }
 
@@ -29,6 +30,7 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         $0.setTitle("SKIP", for: .normal)
         $0.titleLabel?.font = .roboto(ofSize: 15, weight: .bold)
         $0.setTitleColor(.init(red: 196, green: 196, blue: 196), for: .normal)
+        $0.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
     }
     
     let recordContainer = UIView()
@@ -46,13 +48,6 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         $0.text = "0.00"
         $0.textColor = .black
     }
-    
-    let distanceUnitLabel = UILabel().then{
-        $0.font = .roboto(ofSize: 20, weight: .bold)
-        $0.text = "km"
-        $0.textColor = .white
-    }
-    
     let timeContainer = UIView().then{
         $0.backgroundColor = .clear
     }
@@ -73,7 +68,7 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         $0.textAlignment = .center
     }
     
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: PloggingRecordCollectionViewLayout()).then {
+    lazy var collectionView = IntrinsicSizeCollectionView(frame: .zero, collectionViewLayout: PloggingRecordCollectionViewLayout()).then {
         $0.backgroundColor = .clear
         $0.dataSource = self
         $0.delegate = self
@@ -98,7 +93,10 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         $0.image = UIImage(named: "ic_BtnNextRight")
     }
     
-    lazy var nextButton = UIButton()
+    lazy var nextButton = UIButton().then{
+        $0.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside
+        )
+    }
     
     var itemList = [
         "플라스틱",
@@ -159,10 +157,25 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         self.configuration()
         self.setupView()
         self.setupLayout()
+        
+        self.interactor?.fetchRecord()
+    }
+    
+    func displayFetchRecord(viewModel: PloggingRecord.FetchRecord.ViewModel) {
+        self.distanceLabel.text = viewModel.distance
+        self.timeLabel.text = viewModel.time
     }
     
     func displayError(error: Common.CommonError, useCase: PloggingRecord.UseCase){
         //handle error with its usecase
+    }
+    
+    @objc func skipButtonTapped(){
+        self.router?.routeToShare()
+    }
+    
+    @objc func nextButtonTapped(){
+        self.router?.routeToShare()
     }
 }
 

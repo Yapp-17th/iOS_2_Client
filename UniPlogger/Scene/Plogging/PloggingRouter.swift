@@ -25,15 +25,21 @@ class PloggingRouter: NSObject, PloggingRoutingLogic, PloggingDataPassing {
     weak var viewController: PloggingViewController?
     var dataStore: PloggingDataStore?
     
+    
+    //MARK: - Routing Logic
     func routeToStartCounting() {
         let destinationVC = StartCountingViewController()
         navigateToStartCounting(source: viewController!, destination: destinationVC)
     }
     func routeToPloggingRecord() {
         let destinationVC = PloggingRecordViewController()
+        var destinationDs = destinationVC.router!.dataStore!
+        passDataToPloggingRecord(source: dataStore!, destination: &destinationDs)
         navigateToPloggingRecord(source: viewController!, destination: destinationVC)
     }
     
+    
+    //MARK: - Navigation Logic
     func navigateToStartCounting(source: PloggingViewController, destination: StartCountingViewController){
         destination.modalTransitionStyle = .crossDissolve
         destination.modalPresentationStyle = .fullScreen
@@ -41,8 +47,17 @@ class PloggingRouter: NSObject, PloggingRoutingLogic, PloggingDataPassing {
     }
     
     func navigateToPloggingRecord(source: PloggingViewController, destination: PloggingRecordViewController){
-        destination.modalTransitionStyle = .crossDissolve
-        destination.modalPresentationStyle = .fullScreen
-        source.present(destination, animated: true)
+        let nvc = UINavigationController(rootViewController: destination)
+        nvc.navigationBar.isHidden = true
+        nvc.modalTransitionStyle = .crossDissolve
+        nvc.modalPresentationStyle = .fullScreen
+        source.present(nvc, animated: true)
+    }
+    
+    //MARK: - Data Passing Logic
+    func passDataToPloggingRecord(source: PloggingDataStore, destination: inout PloggingRecordDataStore){
+        destination.distance = source.distance
+        destination.seconds = source.seconds
+        destination.minutes = source.minutes
     }
 }

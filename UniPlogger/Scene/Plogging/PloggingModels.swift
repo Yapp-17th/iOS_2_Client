@@ -33,6 +33,13 @@ enum Plogging {
         }
     }
     
+    enum StopPlogging{
+        struct Request{
+            var seconds: Int
+            var minutes: Int
+        }
+    }
+    
     enum LocationAuth{
       struct Response{
         var status: CLAuthorizationStatus

@@ -13,7 +13,7 @@
 import UIKit
 
 @objc protocol PloggingRecordRoutingLogic {
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+  func routeToShare()
 }
 
 protocol PloggingRecordDataPassing {
@@ -25,33 +25,20 @@ class PloggingRecordRouter: NSObject, PloggingRecordRoutingLogic, PloggingRecord
   var dataStore: PloggingRecordDataStore?
   
   // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
-
-  // MARK: Navigation
-  
-  //func navigateToSomewhere(source: PloggingRecordViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
-  
-  // MARK: Passing data
-  
-  //func passDataToSomewhere(source: PloggingRecordDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+    func routeToShare() {
+        let destinationVC = ShareViewController()
+        var destinationDS = destinationVC.router!.dataStore!
+        passDataToShare(source: dataStore!, destination: &destinationDS)
+        navigateToShare(source: viewController!, destination: destinationVC)
+    }
+    
+    func navigateToShare(source: PloggingRecordViewController, destination: ShareViewController){
+        source.navigationController?.pushViewController(destination, animated: true)
+    }
+    
+    func passDataToShare(source: PloggingRecordDataStore, destination: inout ShareDataStore){
+        destination.distance = source.distance
+        destination.seconds = source.seconds
+        destination.minutes = source.minutes
+    }
 }

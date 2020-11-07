@@ -16,14 +16,14 @@ extension PloggingRecordViewController {
     func setupView() {
         if #available(iOS 12.0, *) {
             // User Interface is Dark
-            [distanceLabel,distanceUnitLabel,timeLabel].forEach {
+            [distanceLabel,timeLabel].forEach {
                 $0.textColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
             }
             [distanceImageView, timeImageView].forEach{
                 $0.tintColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
             }
         } else {
-            [distanceLabel,distanceUnitLabel,timeLabel].forEach {
+            [distanceLabel,timeLabel].forEach {
                 $0.textColor = .black
             }
             [distanceImageView, timeImageView].forEach{
@@ -73,7 +73,6 @@ extension PloggingRecordViewController {
         recordContainer.addSubview(timeContainer)
         distanceContainer.addSubview(distanceImageView)
         distanceContainer.addSubview(distanceLabel)
-        distanceContainer.addSubview(distanceUnitLabel)
         
         timeContainer.addSubview(timeImageView)
         timeContainer.addSubview(timeLabel)
@@ -96,14 +95,9 @@ extension PloggingRecordViewController {
         }
         
         distanceLabel.snp.makeConstraints{
-            $0.leading.bottom.equalToSuperview()
+            $0.leading.trailing.bottom.equalToSuperview()
         }
         
-        distanceUnitLabel.snp.makeConstraints{
-            $0.leading.equalTo(distanceLabel.snp.trailing).offset(10)
-            $0.trailing.equalToSuperview()
-            $0.bottom.equalTo(distanceLabel).offset(-2)
-        }
         
         distanceImageView.snp.makeConstraints{
             $0.top.equalToSuperview()
@@ -146,7 +140,6 @@ extension PloggingRecordViewController {
             $0.leading.equalTo(26)
             $0.trailing.equalTo(-26)
             $0.top.bottom.equalToSuperview()
-            $0.height.equalTo(340)
         }
     }
     

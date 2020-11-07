@@ -15,6 +15,7 @@ extension Color {
     class var textBlack: Color { return Color(named: "text")! }
     
     // MARK: Red
+    open class var bubbleBackgroudColor: Color { return Color(named: "bubbleBackgroudColor")! }
     open class var mainBackgroundColor: Color { return Color(named: "mainBackgroundColor")! }
     open class var main: Color { return Color(named: "main")! }
     open class var tabBarBackground: Color { return Color(named: "TabBarBackground")! }
