@@ -11,7 +11,126 @@
 //
 
 import UIKit
+import CoreLocation
 
-class PloggingWorker {
+protocol PloggingWorkerDelegate{
+    func updateRoute(distance: Measurement<UnitLength>, location: Location)
+}
+
+class PloggingWorker: NSObject {
+    let storage = Storage()
     
+    static var trashCanList: [TrashCan] = [
+        .init(latitude: 37.4972632, longitude: 126.8450178),
+        .init(latitude: 37.5015682, longitude: 126.844351),
+        .init(latitude: 37.4944, longitude: 126.8423623),
+        .init(latitude: 37.4961687, longitude: 126.8426605)
+    ]
+    
+    private let locationManager = CLLocationManager()
+    private var distance = Measurement(value: 0, unit: UnitLength.meters)
+    var locationList: [CLLocation] = []
+    var delegate: PloggingWorkerDelegate?
+    var updateAuthorization: ((CLAuthorizationStatus) -> Void)?
+    override init() {
+        super.init()
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+    }
+    
+    //MARK: - Helper
+    func requestPermission(){
+        locationManager.requestWhenInUseAuthorization()
+    }
+    
+    func resetLocationData(){
+        distance = Measurement(value: 0, unit: UnitLength.meters)
+    }
+    func startRun(){
+        resetLocationData()
+        startUpdateLocation()
+    }
+    
+    func pauseRun(){
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func resumeRun(){
+        startUpdateLocation()
+    }
+    
+    func stopRun(){
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func startUpdateLocation(){
+        locationManager.delegate = self
+        locationManager.activityType = .fitness
+        locationManager.distanceFilter = 5
+        locationManager.startUpdatingLocation()
+    }
+}
+
+//MARK: - TrashCan CRUD
+extension PloggingWorker{
+    func fetchTrashCan(completion: @escaping ([TrashCan]) -> Void){
+        storage.fetchTrashCanList { (result) in
+            switch result{
+            case .success(let list):
+                completion(list)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func addTrashCan(request: Plogging.AddConfirmTrashCan.Request){
+        let trashCan = TrashCan(latitude: request.latitude, longitude: request.longitude)
+        
+        storage.createTrashCan(trashCan) { (result) in
+            switch result{
+            case .success(let trashCan):
+                print("add Success: \(trashCan)")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func deleteTrashCan(request: Plogging.RemoveTrashCan.Request){
+        storage.deleteTrashCan(latitude: request.latitude, longitude: request.longitude) { (result) in
+            switch result{
+            case .success():
+                print("지우기 성공")
+            case .failure(let error):
+                print("지우기 실패: \(error.localizedDescription)")
+            }
+        }
+    }
+}
+
+extension PloggingWorker: CLLocationManagerDelegate{
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let newLocation = locations.last{
+            UserDefaults.standard.set(newLocation.coordinate.asDictionary, forDefines: .location)
+            let howRecent = newLocation.timestamp.timeIntervalSinceNow
+            
+            guard abs(howRecent) < 10 else { return }
+            if let lastLocation = self.locationList.last {
+                let delta = newLocation.distance(from: lastLocation)
+                distance = distance + Measurement(value: delta, unit: UnitLength.meters)
+                let location = Location(
+                    latitude: newLocation.coordinate.latitude,
+                    longitude: newLocation.coordinate.longitude,
+                    timestamp: newLocation.timestamp)
+                
+                self.delegate?.updateRoute(distance: distance, location: location)
+            }
+            locationList.append(newLocation)
+        }
+    }
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        self.updateAuthorization?(status)
+    }
 }

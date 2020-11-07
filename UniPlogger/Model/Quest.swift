@@ -8,24 +8,6 @@
 
 import Foundation
 
-enum QuestState {
-    case todo
-    case doing
-    case done
-    case abandon
-}
-
-extension QuestState: CustomStringConvertible {
-    var description: String {
-        switch self {
-            case .todo: return "To Do"
-            case .doing: return "Doing"
-            case .done: return "Done"
-            case .abandon: return "Abandon"
-        }
-    }
-}
-
 struct Quest {
     var id: String
     var title: String
@@ -36,5 +18,26 @@ struct Quest {
     enum Category {
         case training
         case routine
+    }
+}
+
+extension Quest: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func ==(lhs: Quest, rhs: Quest) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
+extension Quest.Category: Comparable {
+    static func >(lhs: Quest.Category, rhs: Quest.Category) -> Bool {
+        switch (lhs, rhs) {
+            case (.training, .routine):
+                return true
+            default:
+                return false
+        }
     }
 }

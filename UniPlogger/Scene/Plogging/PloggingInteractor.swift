@@ -13,50 +13,90 @@
 import UIKit
 import CoreLocation
 protocol PloggingBusinessLogic {
-    func changeState(request: Plogging.ChangeState.Request)
+    func startPlogging()
+    func pausePlogging()
+    func resumePlogging()
+    func stopPlogging()
     func setupLocationService()
+    func fetchTrashCan()
+    
+    //TrashCan
+    func addTrashCan(request: Plogging.AddTrashCan.Request)
+    func addConfirmTrashCan(request: Plogging.AddConfirmTrashCan.Request)
+    func removeTrashCan(request: Plogging.RemoveTrashCan.Request)
 }
 
 protocol PloggingDataStore {
     //var name: String { get set }
 }
 
-class PloggingInteractor: PloggingBusinessLogic, PloggingDataStore {
+class PloggingInteractor: NSObject, PloggingBusinessLogic, PloggingDataStore {
     var presenter: PloggingPresentationLogic?
-    var worker: PloggingWorker?
+    var worker = PloggingWorker()
     //var name: String = ""
-    func changeState(request: Plogging.ChangeState.Request){
-        switch request.state {
-        case .ready:
-            presenter?.presentDoing()
-        case .doing:
-            presenter?.presentPause()
-        case .pause:
-            //Todo 버튼 두개 중 어느걸 눌렀는지에 따라 분기
-            print("pause")
+    func startPlogging() {
+        worker.delegate = self
+        worker.startRun()
+        self.presenter?.presentStartPlogging()
+    }
+    
+    func pausePlogging() {
+        worker.delegate = nil
+        worker.pauseRun()
+        self.presenter?.presentPausePlogging()
+    }
+    
+    func resumePlogging() {
+        worker.delegate = self
+        worker.resumeRun()
+        self.presenter?.presentResumePlogging()
+    }
+    
+    func stopPlogging() {
+        worker.delegate = nil
+        worker.stopRun()
+        self.presenter?.presentStopPlogging()
+    }
+    
+    func setupLocationService() {
+        worker.updateAuthorization = { status in
+            let response = Plogging.LocationAuth.Response(status: status)
+            DispatchQueue.main.async { [weak self] in
+              self?.presenter?.presentLocationService(response: response)
+            }
+        }
+        
+    }
+    func fetchTrashCan() {
+        self.worker.fetchTrashCan { [weak self] (list) in
+            let response = Plogging.FetchTrashCan.Response(list: list)
+            self?.presenter?.presentFetchTrashCan(response: response)
         }
     }
-    func setupLocationService() {
-        LocationManager.shared.delegate = self
-        LocationManager.shared.requestPermission()
+    func addTrashCan(request: Plogging.AddTrashCan.Request) {
+        let response = Plogging.AddTrashCan.Response(latitude: request.latitude, longitude: request.longitude)
+        self.presenter?.presentAddTrashCan(response: response)
+    }
+    
+    func removeTrashCan(request: Plogging.RemoveTrashCan.Request) {
+        self.worker.deleteTrashCan(request: request)
+    }
+    
+    func addConfirmTrashCan(request: Plogging.AddConfirmTrashCan.Request) {
+        self.worker.addTrashCan(request: request)
+        let response = Plogging.AddConfirmTrashCan.Response(latitude: request.latitude, longitude: request.longitude)
+        self.presenter?.presentAddConfirmTrashCan(response: response)
     }
 }
 
-extension PloggingInteractor: LocationManagerDelegate{
-    func didChangeAuthorization(status: CLAuthorizationStatus) {
-        if LocationManager.shared.locationServicesEnabled {
-            let response = Plogging.Location.Response(status: status)
-            DispatchQueue.main.async { [weak self] in
-                self?.presenter?.presentLocationService(response: response)
-            }
-            
-        }else{
-            let response = Plogging.Location.Response(status: .notDetermined)
-            DispatchQueue.main.async { [weak self] in
-                self?.presenter?.presentLocationService(response: response)
-            }
-        }
+extension PloggingInteractor: PloggingWorkerDelegate{
+    
+    func updateRoute(distance: Measurement<UnitLength>, location: Location) {
+        let response = Plogging.UpdatePloggingLocation.Response(
+            distance: distance,
+            location: location
+        )
+        
+        self.presenter?.presentUpdatePloggingLocation(response: response)
     }
-    
-    
 }

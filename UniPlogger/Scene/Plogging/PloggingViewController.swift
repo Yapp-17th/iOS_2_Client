@@ -15,35 +15,55 @@ import SnapKit
 import Then
 import MapKit
 import CoreGraphics
-
+import Toast_Swift
 
 protocol PloggingDisplayLogic: class {
-    func displayError(error: Common.CommonError, useCase: Plogging.UseCase)
-    func displayStart()
-    func displayPause()
+    
+    
+    func displayStartPlogging()
+    func displayPausePlogging()
+    func displayResumePlogging()
+    func displayStopPlogging()
+    
     func displaySetting(message: String, url: URL)
     func displayLocation(location: CLLocationCoordinate2D)
+    func displayUpdatePloggingLocation(viewModel: Plogging.UpdatePloggingLocation.ViewModel)
+    func displayLocationToast()
+    
+    func displayFetchTrashCan(viewModel: Plogging.FetchTrashCan.ViewModel)
+    func displayAddTrashCan(viewModel: Plogging.AddTrashCan.ViewModel)
+    func displayAddConfirmTrashCan(viewModel: Plogging.AddConfirmTrashCan.ViewModel)
+    func displayAddTrashCanCancel()
+    func displayError(error: Common.CommonError, useCase: Plogging.UseCase)
 }
 
 class PloggingViewController: BaseViewController {
     var interactor: PloggingBusinessLogic?
     var router: (NSObjectProtocol & PloggingRoutingLogic & PloggingDataPassing)?
     
-    var state: Plogging.State = .ready
+    var infoList: [String] = [
+        "준비물을 확인해주세요",
+        "퀘스트는 확인하셨나요?",
+        "오늘 챌린지는 몇등이에요?",
+        "환경을 지키며 운동도 한다",
+        "+를 눌러 휴지통을 추가해요!",
+        "핀을 눌러 휴지통을 없애요"
+    ]
+    
+    var tempAnnotation: TempTrashAnnotation?
     var minutes = 0
     var seconds = 0
     
     var timer: Timer?
-    let startBottomContainerView = GradientView().then{
-        $0.isHorizontal = true
-        $0.colors = [.bottomGradientStart, .bottomGradientEnd]
-        $0.locations = [0.0, 1.0]
+    
+    var annotations: [TrashAnnotation] = []
+    
+    let startBottomContainerView = UIView().then{
+        $0.backgroundColor = .mainBackgroundColor
     }
     
-    let doingPauseBottomContainerView = GradientView().then{
-        $0.isHorizontal = true
-        $0.colors = [.bottomGradientStart, .bottomGradientEnd]
-        $0.locations = [0.0, 1.0]
+    let doingPauseBottomContainerView = UIView().then{
+        $0.backgroundColor = .mainBackgroundColor
     }
     
     let distanceContainer = UIView().then{
@@ -57,16 +77,8 @@ class PloggingViewController: BaseViewController {
     
     let distanceLabel = UILabel().then{
         $0.font = .roboto(ofSize: 30, weight: .bold)
-        $0.text = "0.00"
-        $0.textColor = .black
+        $0.text = "0.00 km"
     }
-    
-    let distanceUnitLabel = UILabel().then{
-        $0.font = .roboto(ofSize: 20, weight: .bold)
-        $0.text = "km"
-        $0.textColor = .white
-    }
-    
     let timeContainer = UIView().then{
         $0.backgroundColor = .clear
     }
@@ -79,7 +91,6 @@ class PloggingViewController: BaseViewController {
     let timeLabel = UILabel().then{
         $0.font = .roboto(ofSize: 30, weight: .bold)
         $0.text = "00:00"
-        $0.textColor = .white
     }
     
     let ploggerImageView = UIImageView().then {
@@ -92,7 +103,7 @@ class PloggingViewController: BaseViewController {
         $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
         $0.backgroundColor = .main
         $0.layer.cornerRadius = 28
-        $0.layer.masksToBounds = true
+        $0.layer.applySketchShadow(color: .main, alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
         $0.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
     }
     
@@ -101,7 +112,7 @@ class PloggingViewController: BaseViewController {
         $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
         $0.backgroundColor = .main
         $0.layer.cornerRadius = 28
-        $0.layer.masksToBounds = true
+        $0.layer.applySketchShadow(color: .main, alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
         $0.addTarget(self, action: #selector(pauseButtonTapped), for: .touchUpInside)
     }
     
@@ -110,8 +121,8 @@ class PloggingViewController: BaseViewController {
         $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
         $0.backgroundColor = .init(red: 244, green: 95, blue: 95)
         $0.layer.cornerRadius = 28
-        $0.layer.masksToBounds = true
-        $0.addTarget(self, action: #selector(displayStop), for: .touchUpInside)
+        $0.layer.applySketchShadow(color: .init(red: 244, green: 95, blue: 95), alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
+        $0.addTarget(self, action: #selector(stopButtonTapped), for: .touchUpInside)
     }
     
     lazy var resumeButton = UIButton().then{
@@ -119,14 +130,19 @@ class PloggingViewController: BaseViewController {
         $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
         $0.backgroundColor = .main
         $0.layer.cornerRadius = 28
-        $0.layer.masksToBounds = true
-        $0.addTarget(self, action: #selector(displayResume), for: .touchUpInside)
+        $0.layer.applySketchShadow(color: .main, alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
+        $0.addTarget(self, action: #selector(resumeButtonTapped), for: .touchUpInside)
     }
   
-    let bubbleView = UIView().then{
-        $0.backgroundColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 1)
+    let bubbleView = UIImageView().then{
+        $0.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         $0.layer.cornerRadius = 10
-        $0.layer.masksToBounds = true
+        let cock = UIImageView(image: UIImage(named: "bubbleCock"))
+        $0.addSubview(cock)
+        cock.snp.makeConstraints{
+            $0.leading.equalToSuperview().offset(-10)
+            $0.centerY.equalToSuperview()
+        }
     }
     
     let bubbleLabel = UILabel().then{
@@ -137,20 +153,54 @@ class PloggingViewController: BaseViewController {
     
     lazy var trashButton = UIButton().then{
         $0.setImage(UIImage(named: "ic_trashcan")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        $0.setImage(UIImage(named: "ic_trashcanCancel")?.withRenderingMode(.alwaysOriginal), for: .selected)
+        
         $0.imageView?.contentMode = .center
-        $0.backgroundColor = UIColor(red: 95/255, green: 116/255, blue: 244/255, alpha: 1)
-        $0.layer.cornerRadius = 25
+        $0.backgroundColor = .main
+        $0.layer.cornerRadius = 30
         $0.layer.masksToBounds = true
         $0.addTarget(self, action: #selector(trashButtonTapped), for: .touchUpInside)
     }
     
-    let mapView = MKMapView().then{
-        $0.showsUserLocation = true
+    lazy var myLocationButton = UIButton().then{
+        $0.backgroundColor = .white
+        $0.layer.cornerRadius = 20
+        $0.layer.masksToBounds = true
+        $0.addTarget(self, action: #selector(myLocationButtonTapped), for: .touchUpInside)
     }
     
-    lazy var imagePicker = UIImagePickerController().then{
+    var myLocationBottomPriority: ConstraintMakerFinalizable? = nil
+    
+    lazy var mapView = MKMapView().then{
+        $0.showsUserLocation = true
         $0.delegate = self
-        $0.sourceType = .camera
+    }
+    
+    var trashInfoContainer = UIView().then{
+        $0.backgroundColor = .mainBackgroundColor
+    }
+    
+    var trashInfoTitleLabel = UILabel().then{
+        $0.text = "이 위치에 쓰레기통을 추가 하시겠습니까?"
+        $0.font = .notoSans(ofSize: 16, weight: .bold)
+    }
+    
+    var trashInfoAddressLabel = UILabel().then{
+        $0.font = .notoSans(ofSize: 12, weight: .regular)
+    }
+    
+    var trashInfoDescriptionLabel = UILabel().then{
+        $0.text = "핀을 움직여서 위치 수정을 할 수 있습니다."
+        $0.font = .notoSans(ofSize: 12, weight: .regular)
+    }
+    
+    lazy var addTrashCanConfirmButton = UIButton().then{
+        $0.setTitle("확인", for: .normal)
+        $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
+        $0.backgroundColor = .main
+        $0.layer.cornerRadius = 28
+        $0.layer.applySketchShadow(color: .main, alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
+        $0.addTarget(self, action: #selector(addTrashCanConfirmButtonTapped), for: .touchUpInside)
     }
     
     // MARK: Object lifecycle
@@ -187,31 +237,82 @@ class PloggingViewController: BaseViewController {
         configuration()
         setupView()
         setupLayout()
+        let randomIndex = Int(arc4random() % 6)
+        let infoText = infoList[randomIndex]
+        self.bubbleLabel.text = infoText
+        
+        mapView.register(
+        TrashAnnotationView.self,
+        forAnnotationViewWithReuseIdentifier:
+          MKMapViewDefaultAnnotationViewReuseIdentifier)
+        
+        mapView.register(
+        TempTrashAnnotationView.self,
+        forAnnotationViewWithReuseIdentifier:
+          "TempTrashAnnotationView")
+        
         
         self.interactor?.setupLocationService()
+        self.interactor?.fetchTrashCan()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        LocationManager.shared.requestLocation()
         if let _ = self.presentedViewController as? StartCountingViewController{
-            self.startPlogging()
+            self.interactor?.startPlogging()
         }
     }
     
     @objc func startButtonTapped(){
-        let reqquest = Plogging.ChangeState.Request(state: self.state)
-        interactor?.changeState(request: reqquest)
+        self.router?.routeToStartCounting()
     }
     
     @objc func pauseButtonTapped(){
-        let reqquest = Plogging.ChangeState.Request(state: self.state)
-        interactor?.changeState(request: reqquest)
+        interactor?.pausePlogging()
+    }
+    
+    @objc func resumeButtonTapped(){
+        interactor?.resumePlogging()
+    }
+    
+    @objc func stopButtonTapped(){
+        interactor?.stopPlogging()
     }
     
     @objc func trashButtonTapped(){
-        self.present(self.imagePicker, animated: true, completion: nil)
-
+        if trashButton.isSelected{
+            // cancelLogic
+            displayAddTrashCanCancel()
+        }else{
+            let coordinate = mapView.centerCoordinate
+            let annotation = TempTrashAnnotation(coordinate: coordinate, title: "title", subtitle: "content")
+            self.tempAnnotation = annotation
+            mapView.addAnnotation(annotation)
+            
+            let request = Plogging.AddTrashCan.Request(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            self.interactor?.addTrashCan(request: request)
+            
+            self.trashButton.snp.remakeConstraints{
+                $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
+                $0.width.height.equalTo(60)
+                $0.bottom.equalTo(self.trashInfoContainer.snp.top).offset(-16)
+            }
+        }
+        
+        //Todo: 핀 추가 및 이동되도록함
+    }
+    
+    @objc func addTrashCanConfirmButtonTapped(){
+        if let tempAnnotation = self.tempAnnotation{
+            let latitude = tempAnnotation.coordinate.latitude
+            let longitude = tempAnnotation.coordinate.longitude
+            let request = Plogging.AddConfirmTrashCan.Request(latitude: latitude, longitude: longitude)
+            self.interactor?.addConfirmTrashCan(request: request)
+        }
+    }
+    
+    @objc func myLocationButtonTapped(){
+        mapView.setCenter(mapView.userLocation.coordinate, animated: true)
     }
     
     @objc func UpdateTimer() {
@@ -222,45 +323,75 @@ class PloggingViewController: BaseViewController {
         }
         timeLabel.text = "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
     }
-  
-    func startPlogging(){
-        self.startBottomContainerView.isHidden = true
-        self.doingPauseBottomContainerView.isHidden = false
-        self.pauseButton.isHidden = false
-        self.stopButton.isHidden = true
-        self.resumeButton.isHidden = true
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
-    }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if #available(iOS 12.0, *) {
                 // User Interface is Dark
-                [distanceLabel,distanceUnitLabel,timeLabel].forEach {
-                    $0.textColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
-                }
                 [distanceImageView, timeImageView].forEach{
                     $0.tintColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
                 }
         } else {
-            [distanceLabel,distanceUnitLabel,timeLabel].forEach {
-                $0.textColor = .black
-            }
             [distanceImageView, timeImageView].forEach{
                 $0.tintColor = .black
             }
         }
     }
-  
+    
+    func removeTrashCan(annotation: TrashAnnotation){
+        let alert = UIAlertController(title: "경고", message: "해당 쓰레기통을 제거하시겠습니까?", preferredStyle: .alert)
+        alert.addAction(.init(title: "네", style: .default, handler: { _ in
+            let latitude = annotation.coordinate.latitude
+            let longitude = annotation.coordinate.longitude
+            
+            let request = Plogging.RemoveTrashCan.Request(latitude: latitude, longitude: longitude)
+            self.interactor?.removeTrashCan(request: request)
+            
+            self.mapView.removeAnnotation(annotation)
+            
+        }))
+        alert.addAction(.init(title: "아니오", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
 }
 
 extension PloggingViewController: PloggingDisplayLogic{
-    func displayStart() {
-        self.state = .doing
-        self.router?.routeToStartCounting()
+    func displayFetchTrashCan(viewModel: Plogging.FetchTrashCan.ViewModel) {
+        for trash in viewModel.list {
+            let coordinate = CLLocationCoordinate2D(
+                latitude: trash.latitude,
+                longitude: trash.longitude
+            )
+            let annotation = TrashAnnotation(coordinate: coordinate, title: "title", subtitle: "content")
+            mapView.addAnnotation(annotation)
+        }
     }
     
-    func displayPause() {
+    func displayUpdatePloggingLocation(viewModel: Plogging.UpdatePloggingLocation.ViewModel) {
+        
+        mapView.setRegion(viewModel.region, animated: true)
+        mapView.addOverlay(viewModel.polyLine)
+        
+        self.distanceLabel.text = viewModel.distance
+    }
+    func displayStartPlogging() {
+        self.startBottomContainerView.isHidden = true
+        self.doingPauseBottomContainerView.isHidden = false
+        self.pauseButton.isHidden = false
+        self.stopButton.isHidden = true
+        self.resumeButton.isHidden = true
+        
+        self.trashButton.snp.remakeConstraints{
+            $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
+            $0.width.height.equalTo(60)
+            $0.bottom.equalTo(self.doingPauseBottomContainerView.snp.top).offset(-16)
+        }
+        
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
+    }
+    
+    func displayPausePlogging() {
         self.pauseButton.isHidden = true
         self.stopButton.isHidden = false
         self.resumeButton.isHidden = false
@@ -268,12 +399,21 @@ extension PloggingViewController: PloggingDisplayLogic{
         self.timer = nil
     }
     
-    @objc func displayStop() {
-        self.seconds = 0
-        self.minutes = 0
-        timeLabel.text = "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
+    func displayResumePlogging() {
+        self.pauseButton.isHidden = false
+        self.stopButton.isHidden = true
+        self.resumeButton.isHidden = true
+    }
+
+    @objc func displayStopPlogging() {
         self.startBottomContainerView.isHidden = false
         self.doingPauseBottomContainerView.isHidden = true
+        self.trashButton.snp.remakeConstraints{
+            $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
+            $0.width.height.equalTo(60)
+            $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
+        }
+        self.router?.routeToPloggingRecord()
     }
     
     @objc func displayResume() {
@@ -293,37 +433,100 @@ extension PloggingViewController: PloggingDisplayLogic{
     }
     
     func displayLocation(location: CLLocationCoordinate2D) {
-        self.mapView.centerCoordinate = location
-        var region: MKCoordinateRegion = self.mapView.region
-        var span: MKCoordinateSpan = mapView.region.span
-        span.latitudeDelta *= 0.001
-        span.longitudeDelta *= 0.001
-        region.span = span
+        let region: MKCoordinateRegion = .init(
+            center: location,
+            latitudinalMeters: 0.01,
+            longitudinalMeters: 0.01)
         mapView.setRegion(region, animated: true)
     }
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase){
         //handle error with its usecase
     }
-}
-
-extension PloggingViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            // Your have pickedImage now, do your logic here
-            let newImage = CIImage(image: pickedImage)!
-            
-            let properties = newImage.properties[kCGImagePropertyGPSDictionary as String] as? [String: Any]
-            let imageData = pickedImage.jpegData(compressionQuality: 1)!
-            let options = [kCGImageSourceShouldCache as String: kCFBooleanFalse]
-            let source = CGImageSourceCreateWithData(imageData as CFData, nil)!
-            let imageProperties = CGImageSourceCopyPropertiesAtIndex(source, 0, options as CFDictionary)! as Dictionary
-            let gpsProperties = imageProperties[kCGImagePropertyGPSDictionary] as? [String : AnyObject]
-            print(gpsProperties)
-        }
-        picker.dismiss(animated: true, completion: nil)
+    
+    func displayAddTrashCan(viewModel: Plogging.AddTrashCan.ViewModel) {
+        self.trashButton.isSelected = true
+        self.trashInfoContainer.isHidden = false
+        self.trashInfoAddressLabel.text = viewModel.address
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
+    func displayAddConfirmTrashCan(viewModel: Plogging.AddConfirmTrashCan.ViewModel) {
+        if let tempAnnotation = self.tempAnnotation{
+            self.mapView.removeAnnotation(tempAnnotation)
+            self.trashButton.isSelected = false
+            self.trashInfoContainer.isHidden = true
+        }
+        
+        let annotation = TrashAnnotation(coordinate: .init(latitude: viewModel.latitude, longitude: viewModel.longitude), title: "title", subtitle: "content")
+        
+        self.annotations.append(annotation)
+        self.mapView.addAnnotation(annotation)
+        
+        self.trashButton.snp.remakeConstraints{
+            $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
+            $0.width.height.equalTo(60)
+            $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
+        }
+    }
+    func displayAddTrashCanCancel() {
+        self.trashButton.isSelected = false
+        self.trashInfoContainer.isHidden = true
+        if let annotation = self.tempAnnotation {
+            self.mapView.removeAnnotation(annotation)
+            tempAnnotation = nil
+        }
+        
+        self.trashButton.snp.remakeConstraints{
+            $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
+            $0.width.height.equalTo(60)
+            $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
+        }
+    }
+    
+    func displayLocationToast(){
+        DispatchQueue.main.async {
+            self.view.makeToast("iPhone의 '설정 > 개인 정보 보호 > 위치 서비스'에 위치 서비스 항목을 허용해주시고 다시 시도해주세요")
+        }
+    }
+}
+extension PloggingViewController: MKMapViewDelegate{
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            let pin = mapView.view(for: annotation) as? MKPinAnnotationView ?? MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
+            pin.image = UIImage(named: "annotation_myLocation")
+            return pin
+        }else if annotation is TrashAnnotation {
+            let pin = TrashAnnotationView(annotation: annotation, reuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+            pin.longPressClosure = { [weak self] in
+                self?.removeTrashCan(annotation: annotation as! TrashAnnotation)
+            }
+            return pin
+        }else if annotation is TempTrashAnnotation {
+            let pin = TempTrashAnnotationView(annotation: annotation, reuseIdentifier: "TempTrashAnnotationView")
+            return pin
+        }
+        
+        return nil
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        guard let polyLine = overlay as? MultiColorPolyline else {
+            return MKOverlayRenderer(overlay: overlay)
+        }
+        
+        let renderer = MKPolylineRenderer(polyline: polyLine)
+        renderer.strokeColor = polyLine.color
+        renderer.lineWidth = 3
+        renderer.lineJoin = .round
+        renderer.lineCap = .round
+        return renderer
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationView.DragState, fromOldState oldState: MKAnnotationView.DragState) {
+        if newState == .ending, let annotation = view.annotation{
+            let latitude = annotation.coordinate.latitude
+            let longitude = annotation.coordinate.longitude
+            let request = Plogging.AddTrashCan.Request(latitude: latitude, longitude: longitude)
+            self.interactor?.addTrashCan(request: request)
+        }
     }
 }

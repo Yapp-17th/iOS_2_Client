@@ -12,28 +12,81 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 enum Plogging {
     // MARK: Use cases
     
     enum UseCase {
+        case StartPlogging
+    }
+    
+    enum UpdatePloggingLocation{
+        struct Response {
+            var distance: Measurement<UnitLength>
+            var location: Location
+        }
         
-    }
-    
-    enum State {
-        case ready
-        case doing
-        case pause
-    }
-    
-    enum ChangeState {
-        struct Request{
-            var state: State
+        struct ViewModel {
+            var distance: String
+            var region: MKCoordinateRegion
+            var polyLine: MultiColorPolyline
         }
     }
     
-    enum Location{
+    enum LocationAuth{
       struct Response{
         var status: CLAuthorizationStatus
       }
     }
+    
+    enum AddTrashCan{
+        struct Request {
+            var latitude: Double
+            var longitude: Double
+        }
+        struct Response {
+            var latitude: Double
+            var longitude: Double
+        }
+        
+        struct ViewModel {
+            var address: String
+        }
+    }
+    
+    enum AddConfirmTrashCan{
+        struct Request {
+            var latitude: Double
+            var longitude: Double
+        }
+        
+        struct Response {
+            var latitude: Double
+            var longitude: Double
+        }
+        
+        struct ViewModel {
+            var latitude: Double
+            var longitude: Double
+        }
+    }
+    
+    enum FetchTrashCan{
+        struct Response {
+            var list: [TrashCan]
+        }
+        
+        struct ViewModel {
+            var list: [TrashCan]
+        }
+    }
+    
+    enum RemoveTrashCan{
+        struct Request{
+            var latitude: Double
+            var longitude: Double
+        }
+    }
+    
+    
 }
