@@ -13,7 +13,7 @@
 import UIKit
 
 @objc protocol ChallengeRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToScoreInfo()
 }
 
 protocol ChallengeDataPassing {
@@ -23,4 +23,16 @@ protocol ChallengeDataPassing {
 class ChallengeRouter: NSObject, ChallengeRoutingLogic, ChallengeDataPassing {
     weak var viewController: ChallengeViewController?
     var dataStore: ChallengeDataStore?
+    
+    func routeToScoreInfo() {
+        let destinationVC = ScoreInfoViewController()
+        navigateToScoreInfo(source: viewController!, destination: destinationVC)
+    }
+    
+    func navigateToScoreInfo(source: ChallengeViewController, destination: ScoreInfoViewController) {
+        destination.modalTransitionStyle = .crossDissolve
+        destination.modalPresentationStyle = .overFullScreen
+        source.present(destination, animated: true)
+    }
+
 }

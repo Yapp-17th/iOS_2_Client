@@ -24,6 +24,7 @@
 		1208B39A254D400800E085D4 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1208B394254D400800E085D4 /* NotoSansKR-Regular.otf */; };
 		1208B39D254D72F400E085D4 /* RankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1208B39C254D72F400E085D4 /* RankTableViewCell.swift */; };
 		1216B2D8254ED12000F7E91C /* ScoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1216B2D7254ED12000F7E91C /* ScoreInfoView.swift */; };
+		12438B342556830F00388DC6 /* ScoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12438B332556830F00388DC6 /* ScoreInfoViewController.swift */; };
 		12754F5B25506A1D00B42C3E /* CircleInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12754F5A25506A1D00B42C3E /* CircleInfoView.swift */; };
 		4C89B06F2525D2BB0007EBED /* TrainingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B06E2525D2BB0007EBED /* TrainingTableViewCell.swift */; };
 		4C89B0722525D2CB0007EBED /* RoutineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C89B0712525D2CB0007EBED /* RoutineTableViewCell.swift */; };
@@ -101,6 +102,7 @@
 		1208B39C254D72F400E085D4 /* RankTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankTableViewCell.swift; sourceTree = "<group>"; };
 		1216B2D7254ED12000F7E91C /* ScoreInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreInfoView.swift; sourceTree = "<group>"; };
 		12330CE7D885C1CB00C8E874 /* Pods-UniPlogger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.release.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.release.xcconfig"; sourceTree = "<group>"; };
+		12438B332556830F00388DC6 /* ScoreInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreInfoViewController.swift; sourceTree = "<group>"; };
 		12754F5A25506A1D00B42C3E /* CircleInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleInfoView.swift; sourceTree = "<group>"; };
 		4C89B06E2525D2BB0007EBED /* TrainingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingTableViewCell.swift; sourceTree = "<group>"; };
 		4C89B0712525D2CB0007EBED /* RoutineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTableViewCell.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 		1208B3772545CC5500E085D4 /* Challenge */ = {
 			isa = PBXGroup;
 			children = (
+				12438B362556832000388DC6 /* ScoreInfo */,
 				1208B3872545D8EA00E085D4 /* Views */,
 				1208B3782545CC7D00E085D4 /* ChallengePresenter.swift */,
 				1208B3792545CC7D00E085D4 /* ChallengeWorker.swift */,
@@ -211,6 +214,22 @@
 			children = (
 				1208B38C254C3A4500E085D4 /* TopRankView.swift */,
 				1208B39C254D72F400E085D4 /* RankTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		12438B362556832000388DC6 /* ScoreInfo */ = {
+			isa = PBXGroup;
+			children = (
+				12438B372556832E00388DC6 /* Views */,
+				12438B332556830F00388DC6 /* ScoreInfoViewController.swift */,
+			);
+			path = ScoreInfo;
+			sourceTree = "<group>";
+		};
+		12438B372556832E00388DC6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
 				1216B2D7254ED12000F7E91C /* ScoreInfoView.swift */,
 				12754F5A25506A1D00B42C3E /* CircleInfoView.swift */,
 			);
@@ -639,6 +658,7 @@
 				AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
 				12754F5B25506A1D00B42C3E /* CircleInfoView.swift in Sources */,
+				12438B342556830F00388DC6 /* ScoreInfoViewController.swift in Sources */,
 				1208B3822545CC7D00E085D4 /* ChallengeViewController.swift in Sources */,
 				1216B2D8254ED12000F7E91C /* ScoreInfoView.swift in Sources */,
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,

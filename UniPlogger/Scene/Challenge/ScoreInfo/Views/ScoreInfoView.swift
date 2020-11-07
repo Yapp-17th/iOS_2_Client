@@ -8,14 +8,13 @@
 
 import UIKit
 
+protocol DismissDelegate: class {
+    func dismiss()
+}
+
 class ScoreInfoView: UIView {
-    lazy var backgroundView = UIView().then {
-        $0.backgroundColor = UIColor(named: "tempBackgroundColor")
-    }
-    lazy var infoView = UIView().then {
-        $0.backgroundColor = UIColor(named: "infoBackgroundColor")
-        $0.layer.cornerRadius = 18
-    }
+    weak var delegate: DismissDelegate?
+    
     lazy var titleView = UIView()
     lazy var infoImageView = UIImageView().then {
         $0.image = UIImage(named: "challenge_info")
@@ -42,8 +41,15 @@ class ScoreInfoView: UIView {
     lazy var thirdCircleView = CircleInfoView().then {
         $0.infoLabel.text = "1분\n1점"
     }
-    lazy var characterImageView = UIImageView().then {
-        $0.image = UIImage(named: "share_character")
+    lazy var dismissButton = UIButton().then {
+        $0.backgroundColor = UIColor(named: "rankColor")
+        $0.addTarget(self, action: #selector(touchUpDismissButton), for: .touchUpInside)
+    }
+    lazy var dismissLabel = UILabel().then {
+        $0.font = .notoSansKR(ofSize: 15, weight: .bold)
+        $0.text = "닫기"
+        $0.textAlignment = .center
+        $0.textColor = .white
     }
 
     init() {
@@ -57,7 +63,9 @@ class ScoreInfoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-
+    @objc func touchUpDismissButton() {
+        delegate?.dismiss()
+    }
 }
 
 extension ScoreInfoView {
@@ -67,24 +75,16 @@ extension ScoreInfoView {
     }
 
     func setUpView() {
-        [backgroundView, infoView, titleView, infoImageView, headerLabel, titleLabel, descriptionLabel, firstCircleView, secondCircleView, thirdCircleView, characterImageView].forEach {
+        [titleView, infoImageView, headerLabel, titleLabel, descriptionLabel, firstCircleView, secondCircleView, thirdCircleView, dismissButton, dismissLabel].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview($0)
         }
     }
+    
     func setUpLayout() {
-        backgroundView.snp.makeConstraints {
-            $0.top.bottom.leading.trailing.equalToSuperview()
-        }
-        infoView.snp.makeConstraints {
-            $0.leading.equalTo(20)
-            $0.trailing.equalTo(-20)
-            $0.centerX.centerY.equalToSuperview()
-            $0.height.equalTo(infoView.snp.width)
-        }
         titleView.snp.makeConstraints {
-            $0.top.equalTo(infoView).offset(19)
-            $0.centerX.equalTo(infoView)
+            $0.top.equalToSuperview().offset(19)
+            $0.centerX.equalToSuperview()
             $0.width.equalTo(127)
             $0.height.equalTo(30)
         }
@@ -98,17 +98,17 @@ extension ScoreInfoView {
         }
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(titleView.snp.bottom).offset(14)
-            $0.centerX.width.equalTo(infoView)
+            $0.centerX.width.equalToSuperview()
             $0.height.equalTo(24)
         }
         descriptionLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(3)
-            $0.centerX.width.equalTo(infoView)
+            $0.centerX.width.equalToSuperview()
             $0.height.equalTo(34)
         }
         secondCircleView.snp.makeConstraints {
-            $0.centerY.equalTo(infoView).offset(infoView.frame.width * 6.5 / 335)
-            $0.centerX.equalTo(infoView)
+            $0.centerY.equalToSuperview()
+            $0.centerX.equalToSuperview()
             $0.width.height.equalTo(80)
         }
         firstCircleView.snp.makeConstraints {
@@ -119,10 +119,12 @@ extension ScoreInfoView {
             $0.top.width.height.equalTo(secondCircleView)
             $0.leading.equalTo(secondCircleView.snp.trailing).offset(28)
         }
-        characterImageView.snp.makeConstraints {
-            $0.width.equalTo(100)
-            $0.height.equalTo(107.95)
-            $0.bottom.centerX.equalTo(infoView)
+        dismissButton.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.height.equalTo(52)
+        }
+        dismissLabel.snp.makeConstraints {
+            $0.leading.trailing.top.bottom.equalTo(dismissButton)
         }
     }
     

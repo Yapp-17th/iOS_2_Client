@@ -91,7 +91,7 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
     }
     
     @objc func touchUpInfoButton() {
-        scoreInfoView.isHidden = false
+        router?.routeToScoreInfo()
     }
 }
 
