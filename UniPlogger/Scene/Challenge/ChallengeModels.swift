@@ -16,9 +16,20 @@ enum Challenge {
     
     // MARK: Use cases
     
-      enum Something {
-          struct Request { }
-          struct Response { }
-          struct ViewModel { }
-      }
+    enum Something {
+        struct Request { }
+        struct Response { }
+        struct ViewModel { }
+    }
+    
+    struct User {
+        var id: String
+        var name: String
+        var score: Int
+    }
+    
+    struct ViewModel {
+        var memebers: [User]
+    }
+
 }
