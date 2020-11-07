@@ -37,11 +37,14 @@ class QuestTableViewCell: UITableViewCell {
     
     private var questTitleLabel = UILabel().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.font = UIFont.notoSans(ofSize: 14, weight: .regular)
         $0.textColor = Color.textBlack
+        $0.setContentCompressionResistancePriority(.init(rawValue: 900), for: .vertical)
     }
     
     private var questContentLabel = UILabel().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.font = UIFont.notoSans(ofSize: 16, weight: .bold)
         $0.textColor = Color.textBlack
         $0.numberOfLines = 0
     }
@@ -118,6 +121,8 @@ class QuestTableViewCell: UITableViewCell {
         questContentView.snp.makeConstraints {
             $0.centerY.equalTo(sproutBackgroundView.snp.centerY)
             $0.leading.equalTo(sproutBackgroundView.snp.trailing).offset(18)
+            $0.trailing.equalTo(cellBackgroundView.snp.trailing).offset(-18)
+            $0.top.greaterThanOrEqualToSuperview().offset(10)
         }
         
         questTitleLabel.snp.makeConstraints {
@@ -125,7 +130,7 @@ class QuestTableViewCell: UITableViewCell {
         }
         
         questContentLabel.snp.makeConstraints {
-            $0.top.equalTo(questTitleLabel.snp.bottom).inset(-7)
+            $0.top.equalTo(questTitleLabel.snp.bottom).inset(-5)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
