@@ -16,6 +16,18 @@ enum Share
 {
   // MARK: Use cases
   
+    enum FetchRecord{
+        struct Response{
+            var distance: Measurement<UnitLength>
+            var seconds: Int
+            var minutes: Int
+        }
+        
+        struct ViewModel{
+            var distance: String
+            var time: String
+        }
+    }
     enum Something {
         struct Request { }
         struct Response { }

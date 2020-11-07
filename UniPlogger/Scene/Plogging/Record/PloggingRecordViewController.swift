@@ -30,6 +30,7 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         $0.setTitle("SKIP", for: .normal)
         $0.titleLabel?.font = .roboto(ofSize: 15, weight: .bold)
         $0.setTitleColor(.init(red: 196, green: 196, blue: 196), for: .normal)
+        $0.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
     }
     
     let recordContainer = UIView()
@@ -92,7 +93,10 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         $0.image = UIImage(named: "ic_BtnNextRight")
     }
     
-    lazy var nextButton = UIButton()
+    lazy var nextButton = UIButton().then{
+        $0.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside
+        )
+    }
     
     var itemList = [
         "플라스틱",
@@ -164,6 +168,14 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     
     func displayError(error: Common.CommonError, useCase: PloggingRecord.UseCase){
         //handle error with its usecase
+    }
+    
+    @objc func skipButtonTapped(){
+        self.router?.routeToShare()
+    }
+    
+    @objc func nextButtonTapped(){
+        self.router?.routeToShare()
     }
 }
 

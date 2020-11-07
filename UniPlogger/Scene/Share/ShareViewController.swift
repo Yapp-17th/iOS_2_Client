@@ -16,6 +16,7 @@ import SnapKit
 import Then
 
 protocol ShareDisplayLogic: class {
+    func displayFetchRecord(viewModel: Share.FetchRecord.ViewModel)
     func displaySomething(viewModel: Share.Something.ViewModel)
     
 }
@@ -78,6 +79,12 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
         configuration()
         setUpView()
         setUpLayout()
+        
+        self.interactor?.fetchRecord()
+    }
+    
+    func displayFetchRecord(viewModel: Share.FetchRecord.ViewModel) {
+        self.ploggingImageView.ploggingInfoView.viewModel = .init(distance: viewModel.distance, time: viewModel.time)
     }
 
     func displaySomething(viewModel: Share.Something.ViewModel) {

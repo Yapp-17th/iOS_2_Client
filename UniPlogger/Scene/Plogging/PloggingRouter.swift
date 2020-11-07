@@ -47,9 +47,11 @@ class PloggingRouter: NSObject, PloggingRoutingLogic, PloggingDataPassing {
     }
     
     func navigateToPloggingRecord(source: PloggingViewController, destination: PloggingRecordViewController){
-        destination.modalTransitionStyle = .crossDissolve
-        destination.modalPresentationStyle = .fullScreen
-        source.present(destination, animated: true)
+        let nvc = UINavigationController(rootViewController: destination)
+        nvc.navigationBar.isHidden = true
+        nvc.modalTransitionStyle = .crossDissolve
+        nvc.modalPresentationStyle = .fullScreen
+        source.present(nvc, animated: true)
     }
     
     //MARK: - Data Passing Logic

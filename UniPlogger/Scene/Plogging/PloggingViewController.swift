@@ -135,9 +135,10 @@ class PloggingViewController: BaseViewController {
     }
   
     let bubbleView = UIImageView().then{
-        $0.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        $0.backgroundColor = .bubbleBackgroudColor
         $0.layer.cornerRadius = 10
-        let cock = UIImageView(image: UIImage(named: "bubbleCock"))
+        let cock = UIImageView(image: UIImage(named: "bubbleCock")?.withRenderingMode(.alwaysTemplate))
+        cock.tintColor = .bubbleBackgroudColor
         $0.addSubview(cock)
         cock.snp.makeConstraints{
             $0.leading.equalToSuperview().offset(-10)
@@ -491,11 +492,13 @@ extension PloggingViewController: PloggingDisplayLogic{
 }
 extension PloggingViewController: MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation {
-            let pin = mapView.view(for: annotation) as? MKPinAnnotationView ?? MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
+        guard !annotation.isKind(of: MKUserLocation.self) else {
+            let pin = MKAnnotationView(annotation: annotation, reuseIdentifier: "userLocation")
             pin.image = UIImage(named: "annotation_myLocation")
             return pin
-        }else if annotation is TrashAnnotation {
+        }
+        
+        if annotation is TrashAnnotation {
             let pin = TrashAnnotationView(annotation: annotation, reuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
             pin.longPressClosure = { [weak self] in
                 self?.removeTrashCan(annotation: annotation as! TrashAnnotation)

@@ -13,16 +13,31 @@
 import UIKit
 
 protocol ShareBusinessLogic {
+    func fetchRecord()
     func shareToInstagram(assetIdentifier: String)
 }
 
 protocol ShareDataStore {
-  //var name: String { get set }
+    var distance: Measurement<UnitLength>? { get set }
+    var seconds: Int? { get set }
+    var minutes: Int? { get set }
 }
 
 class ShareInteractor: ShareBusinessLogic, ShareDataStore {
+    var distance: Measurement<UnitLength>?
+    var seconds: Int?
+    var minutes: Int?
+    
     var presenter: SharePresentationLogic?
     var worker: ShareWorker?
+    
+    func fetchRecord() {
+        guard let distance = self.distance,
+              let seconds = self.seconds,
+              let minutes = self.minutes
+        else { return }
+        
+    }
     
     func shareToInstagram(assetIdentifier: String) {
         guard let url = URL(string: "instagram://library?LocalIdentifier=\(assetIdentifier)") else { return }
