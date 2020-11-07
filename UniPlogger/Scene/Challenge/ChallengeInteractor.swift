@@ -13,7 +13,7 @@
 import UIKit
 
 protocol ChallengeBusinessLogic {
-    
+    func getRandomName(num: Int) -> [String]
 }
 
 protocol ChallengeDataStore {
@@ -23,4 +23,18 @@ protocol ChallengeDataStore {
 class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore {
     var presenter: ChallengePresentationLogic?
     var worker: ChallengeWorker?
+    
+    let names = [["천", "송", "이", "이", "최", "손", "고"],
+                 ["승", "윤", "주", "서", "철", "병", "세"],
+                 ["연", "서", "형", "영", "웅", "근", "림"]]
+    
+    func getRandomName(num: Int) -> [String] {
+        var list = [String]()
+        for _ in (0..<num) {
+            var name = ""
+            for index in (0...2) { name += names[index][Int.random(in: (0...6))] }
+            list.append(name)
+        }
+        return list
+    }
 }
