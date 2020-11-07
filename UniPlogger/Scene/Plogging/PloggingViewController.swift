@@ -276,7 +276,8 @@ class PloggingViewController: BaseViewController {
     }
     
     @objc func stopButtonTapped(){
-        interactor?.stopPlogging()
+        let request = Plogging.StopPlogging.Request(seconds: self.seconds, minutes: self.minutes)
+        interactor?.stopPlogging(request: request)
     }
     
     @objc func trashButtonTapped(){

@@ -41,6 +41,10 @@ class PloggingPresenter: PloggingPresentationLogic {
         return speeds.reduce(0, +) / Double(speeds.count)
     }
     func presentStartPlogging() {
+        locations = []
+        speeds = []
+        minSpeed = Double.greatestFiniteMagnitude
+        maxSpeed = 0.0
         self.viewController?.displayStartPlogging()
     }
     

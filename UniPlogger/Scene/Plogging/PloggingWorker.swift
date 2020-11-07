@@ -59,8 +59,9 @@ class PloggingWorker: NSObject {
         startUpdateLocation()
     }
     
-    func stopRun(){
+    func stopRun(completion: @escaping (Measurement<UnitLength>) -> Void){
         locationManager.stopUpdatingLocation()
+        completion(distance)
     }
     
     func startUpdateLocation(){
