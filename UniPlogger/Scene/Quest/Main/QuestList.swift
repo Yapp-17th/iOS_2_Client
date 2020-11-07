@@ -11,16 +11,10 @@ import Foundation
 struct QuestList {
     
     typealias State = QuestState
-    
     private var questList = [State: [Quest]]()
-    private var sectionTable: [Int: Quest.Category] = [
-        0: .training,
-        1: .routine
-    ]
     
     init(quests: [Quest]) {
         quests.forEach { questList[$0.state, default: []].append($0) }
-        
     }
     
     // MARK: - Methods
@@ -38,13 +32,10 @@ struct QuestList {
             return questList[state]?.sorted(by: { $0.category > $1.category }) ?? []
         }
         return questList[state] ?? []
-        
     }
     
     func quest(at indexPath: IndexPath, in state: State) -> Quest? {
-        guard
-            let category = sectionTable[indexPath.section],
-            let quests = questList[state]?.filter({ $0.category == category }),
+        guard let quests = questList[state],
             0..<quests.count ~= indexPath.row
         else {
             return nil
