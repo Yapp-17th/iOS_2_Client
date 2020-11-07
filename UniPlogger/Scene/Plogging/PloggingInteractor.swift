@@ -75,7 +75,6 @@ class PloggingInteractor: NSObject, PloggingBusinessLogic, PloggingDataStore {
               self?.presenter?.presentLocationService(response: response)
             }
         }
-        
     }
     func fetchTrashCan() {
         self.worker.fetchTrashCan { [weak self] (list) in

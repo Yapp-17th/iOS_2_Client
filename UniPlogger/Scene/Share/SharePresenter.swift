@@ -26,10 +26,11 @@ class SharePresenter: SharePresentationLogic {
         let distance = FormatDisplay.distance(response.distance)
         let time = "\(String(format: "%02d", response.minutes)):\(String(format: "%02d", response.seconds))"
         
-        let viewModel = Share.FetchRecord.ViewModel(distance: distance, time: time)
+        let viewModel = Share.FetchRecord.ViewModel(distance: distance, time: time, image: response.image)
         
         self.viewController?.displayFetchRecord(viewModel: viewModel)
     }
+    
     func presentSomething(response: Share.Something.Response) {
         let viewModel = Share.Something.ViewModel()
         viewController?.displaySomething(viewModel: viewModel)

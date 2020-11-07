@@ -21,12 +21,14 @@ protocol ShareDataStore {
     var distance: Measurement<UnitLength>? { get set }
     var seconds: Int? { get set }
     var minutes: Int? { get set }
+    var image: UIImage? { get set }
 }
 
 class ShareInteractor: ShareBusinessLogic, ShareDataStore {
     var distance: Measurement<UnitLength>?
     var seconds: Int?
     var minutes: Int?
+    var image: UIImage?
     
     var presenter: SharePresentationLogic?
     var worker: ShareWorker?
@@ -34,9 +36,10 @@ class ShareInteractor: ShareBusinessLogic, ShareDataStore {
     func fetchRecord() {
         guard let distance = self.distance,
               let seconds = self.seconds,
-              let minutes = self.minutes
+              let minutes = self.minutes,
+              let image = self.image
         else { return }
-        let response = Share.FetchRecord.Response(distance: distance, seconds: seconds, minutes: minutes)
+        let response = Share.FetchRecord.Response(distance: distance, seconds: seconds, minutes: minutes, image: image)
         presenter?.presentFetchRecord(response: response)
     }
     

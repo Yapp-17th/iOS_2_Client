@@ -21,13 +21,16 @@ enum Share
             var distance: Measurement<UnitLength>
             var seconds: Int
             var minutes: Int
+            var image: UIImage
         }
         
         struct ViewModel{
             var distance: String
             var time: String
+            var image: UIImage
         }
     }
+    
     enum Something {
         struct Request { }
         struct Response { }

@@ -13,7 +13,8 @@
 import UIKit
 
 @objc protocol PloggingRecordRoutingLogic {
-  func routeToShare()
+    func routeToShare()
+    func routeToCamera()
 }
 
 protocol PloggingRecordDataPassing {
@@ -32,7 +33,16 @@ class PloggingRecordRouter: NSObject, PloggingRecordRoutingLogic, PloggingRecord
         navigateToShare(source: viewController!, destination: destinationVC)
     }
     
+    func routeToCamera() {
+        let destinationVC = CameraViewController()
+        navigateToCamera(source: viewController!, destination: destinationVC)
+    }
+    
     func navigateToShare(source: PloggingRecordViewController, destination: ShareViewController){
+        source.navigationController?.pushViewController(destination, animated: true)
+    }
+    
+    func navigateToCamera(source: PloggingRecordViewController, destination: CameraViewController){
         source.navigationController?.pushViewController(destination, animated: true)
     }
     
@@ -40,5 +50,6 @@ class PloggingRecordRouter: NSObject, PloggingRecordRoutingLogic, PloggingRecord
         destination.distance = source.distance
         destination.seconds = source.seconds
         destination.minutes = source.minutes
+        destination.image = viewController?.capturedImage
     }
 }

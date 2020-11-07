@@ -91,6 +91,7 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
     
     func displayFetchRecord(viewModel: Share.FetchRecord.ViewModel) {
         self.ploggingImageView.ploggingInfoView.viewModel = .init(distance: viewModel.distance, time: viewModel.time)
+        self.ploggingImageView.image = viewModel.image
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -142,7 +143,9 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
     
     func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let confirmAction = UIAlertAction(title: "OK", style: .default, handler: { _ in 
+            self.dismiss(animated: true, completion: nil)
+        })
         alertController.addAction(confirmAction)
         self.present(alertController, animated: true, completion: nil)
     }

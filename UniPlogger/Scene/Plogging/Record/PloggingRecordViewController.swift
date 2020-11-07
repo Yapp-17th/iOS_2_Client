@@ -22,6 +22,7 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     var interactor: PloggingRecordBusinessLogic?
     var router: (NSObjectProtocol & PloggingRecordRoutingLogic & PloggingRecordDataPassing)?
     
+    var capturedImage: UIImage?
     
     // MARK: - Views
     var scrollView = ScrollStackView()
@@ -175,7 +176,11 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     }
     
     @objc func nextButtonTapped(){
-        self.router?.routeToShare()
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        picker.sourceType = UIImagePickerController.SourceType.camera
+        self.present(picker, animated: true, completion: nil)
     }
 }
 
@@ -203,3 +208,13 @@ extension PloggingRecordViewController: UICollectionViewDelegate{
         self.collectionView.reloadData()
     }
 }
+
+extension PloggingRecordViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        dismiss(animated: true) {
+            self.capturedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+            self.router?.routeToShare()
+        }
+    }
+}
+

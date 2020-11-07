@@ -29,10 +29,10 @@ protocol PloggingPresentationLogic {
     func presentFetchTrashCan(response: Plogging.FetchTrashCan.Response)
 }
 
-class PloggingPresenter: PloggingPresentationLogic {
+class PloggingPresenter: NSObject, PloggingPresentationLogic {
     weak var viewController: PloggingDisplayLogic?
     var locations: [Location] = []
-    
+    let locationManager = CLLocationManager()
     var speeds: [Double] = []
     var minSpeed = Double.greatestFiniteMagnitude
     var maxSpeed = 0.0
@@ -71,8 +71,8 @@ class PloggingPresenter: PloggingPresentationLogic {
             guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
             viewController?.displaySetting(message: "설정에서 위치 권한을 허용해주세요", url: url)    
         case .notDetermined, .restricted:
-            guard let url = URL(string: "App-Prefs:root=Privacy&path=LOCATION") else { return }
-            viewController?.displaySetting(message: "설정에서 위치 권한을 허용해주세요", url: url)
+            locationManager.delegate = self
+            locationManager.requestWhenInUseAuthorization()
         case .authorizedWhenInUse, .authorizedAlways:
             viewController?.displayLocation(location: coordinate)
         default:
@@ -200,5 +200,29 @@ class PloggingPresenter: PloggingPresentationLogic {
       }
       
       return UIColor(red: red, green: green, blue: blue, alpha: 1)
+    }
+}
+extension PloggingPresenter: CLLocationManagerDelegate{
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status{
+        case .denied:
+            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+            viewController?.displaySetting(message: "설정에서 위치 권한을 허용해주세요", url: url)
+        case .notDetermined, .restricted:
+            locationManager.delegate = self
+            locationManager.startUpdatingLocation()
+        case .authorizedWhenInUse, .authorizedAlways:
+            viewController?.displayLocation(location: coordinate)
+        default:
+          break
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let newLocation = locations.last{
+            UserDefaults.standard.set(newLocation.coordinate.asDictionary, forDefines: .location)
+            locationManager.delegate = nil
+            self.viewController?.displayLocation(location: newLocation.coordinate)
+        }
     }
 }
