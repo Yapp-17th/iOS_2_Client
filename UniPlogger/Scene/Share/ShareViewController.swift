@@ -25,8 +25,13 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
     var interactor: ShareBusinessLogic?
     var router: (NSObjectProtocol & ShareRoutingLogic & ShareDataPassing)?
     
+    var imageForShare: UIImage?
+    
     lazy var backgroundImageView = UIImageView().then {
-        $0.image = UIImage(named: "mainBackground")
+        let image = UIImage(named: "mainBackground")
+        $0.image = image!.resizeTopAlignedToFill(newWidth: self.view.frame.width)
+        $0.contentMode = .top
+        $0.clipsToBounds = true
     }
     lazy var ploggingImageView = PloggingImageView().then {
         $0.backgroundColor = .lightGray
@@ -38,6 +43,7 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
         $0.layer.cornerRadius = 20
         $0.addTarget(self, action: #selector(touchUpDismissButton), for: .touchUpInside)
     }
+    lazy var shareButtonView = UIView()
     lazy var shareButton = UIButton().then {
         $0.setImage(UIImage(named: "share_instagram"), for: .normal)
         $0.backgroundColor = UIColor(named: "shareColor")
@@ -86,27 +92,19 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
     func displayFetchRecord(viewModel: Share.FetchRecord.ViewModel) {
         self.ploggingImageView.ploggingInfoView.viewModel = .init(distance: viewModel.distance, time: viewModel.time)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.imageForShare = mergeViews()
+        ploggingImageView.clipsToBounds = true
+    }
 
     func displaySomething(viewModel: Share.Something.ViewModel) {
         
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let view = touches.first?.view else { return }
-        guard view == ploggingImageView else { return }
-        imageViewTapped()
-    }
-    
-    func imageViewTapped() {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.allowsEditing = true
-        picker.sourceType = UIImagePickerController.SourceType.camera
-        self.present(picker, animated: true, completion: nil)
-    }
-    
     @objc func touchUpDismissButton() {
-        guard let imageForSave = ploggingImageView.image else { return }
+        guard let imageForSave = self.imageForShare else { return }
         let photoManager = PhotoManager(albumName: "UniPlogger")
         photoManager.save(imageForSave) { (success, error) in
             if success {
@@ -122,7 +120,7 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
     }
     
     @objc func touchUpShareButton() {
-        guard let imageForShare = ploggingImageView.image else { return }
+        guard let imageForShare = self.imageForShare else { return }
         let photoManager = PhotoManager(albumName: "UniPlogger")
         photoManager.save(imageForShare) { (success, error) in
             if success {
@@ -147,6 +145,13 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
         let confirmAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(confirmAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func mergeViews() -> UIImage? {
+        let outPutImageView = UIImageView()
+        let image = ploggingImageView.asImage()
+        outPutImageView.image = image
+        return outPutImageView.image
     }
 }
 

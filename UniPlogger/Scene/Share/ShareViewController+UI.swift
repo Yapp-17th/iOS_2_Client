@@ -14,7 +14,7 @@ extension ShareViewController {
     }
     
     func setUpView() {
-        [backgroundImageView, ploggingImageView, dismissButton, shareButton].forEach {
+        [backgroundImageView, ploggingImageView, dismissButton, shareButtonView, shareButton].forEach {
             self.view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -34,10 +34,13 @@ extension ShareViewController {
             $0.top.equalToSuperview().offset(58)
             $0.trailing.equalToSuperview().offset(-16)
         }
+        shareButtonView.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalTo(ploggingImageView.snp.bottom)
+        }
         shareButton.snp.makeConstraints {
             $0.width.height.equalTo(100)
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().offset(-114)
+            $0.centerX.centerY.equalTo(shareButtonView)
         }
     }
 }
