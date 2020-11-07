@@ -15,10 +15,10 @@ protocol QuestPresentationLogic {
 
 class QuestPresenter {
     private var viewController: QuestDisplayLogic
-    private var questFactory: QuestCellMaker
+    private var questFactory: QuestCellMakable
     private var viewModel: QuestModels.ViewModel?
     
-    init(viewController: QuestDisplayLogic, questFactory: QuestCellMaker) {
+    init(viewController: QuestDisplayLogic, questFactory: QuestCellMakable) {
         self.viewController = viewController
         self.questFactory = questFactory
     }
