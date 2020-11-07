@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol QuestCellMaker {
+protocol QuestCellMakable {
     func cellBackgroundColor(for state: Quest.Category) -> String
     func cellImage(for state: QuestState) -> UIImage?
     func cellImageBackgroundColor(for state: Quest.Category) -> UIColor
@@ -19,7 +19,7 @@ struct QuestFactory {
     
 }
 
-extension QuestFactory: QuestCellMaker {
+extension QuestFactory: QuestCellMakable {
     
     func cellBackgroundColor(for state: Quest.Category) -> String {
         switch state {

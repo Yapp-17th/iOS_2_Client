@@ -10,6 +10,10 @@ import UIKit
 //import SnapKit
 //import Then
 
+protocol QuestDetailDisplayLogic {
+    
+}
+
 class QuestDetailViewController: QuestBaseViewController {
     
     // MARK: - Constants
@@ -22,6 +26,10 @@ class QuestDetailViewController: QuestBaseViewController {
         static let buttonsViewHeight: CGFloat = 194
         static let buttonHeight: CGFloat = 52
     }
+    
+    // MARK: - Properties
+    
+    private var quest: Quest!
     
     // MARK: - Views
     
@@ -119,9 +127,11 @@ class QuestDetailViewController: QuestBaseViewController {
     // MARK: Methods
     
     @objc func didTapOtherQuestView(_ gesture: UIGestureRecognizer) {
-        let questDetailVC = QuestDetailViewController()
-        navigationController?.popViewController(animated: true)
-        navigationController?.pushViewController(questDetailVC, animated: true)
+        // FIXME: OtherQuest 전환 로직
+        
+//        let questDetailVC = QuestDetailViewController()
+//        navigationController?.popViewController(animated: true)
+//        navigationController?.pushViewController(questDetailVC, animated: true)
     }
     
     // MARK: - View Life Cycle
@@ -157,13 +167,21 @@ class QuestDetailViewController: QuestBaseViewController {
     
     // MARK: - Initializer
     
-    func configureSelectors() {
+    func configure(quest: Quest) {
+        self.quest = quest
+        
+        // FIXME: In Presenter
+        let maker = QuestFactory()
+        mainView.backgroundColor = maker.cellImageBackgroundColor(for: quest.category)
+    }
+    
+    private func setup() {
         
     }
     
     override func setupViews() {
         super.setupViews()
-        title = "퀘스트"
+        title = quest.category == .training ? "학습 퀘스트" : "목표달성형 퀘스트"
         
         backgroundView.backgroundColor = Color.questBackground
         

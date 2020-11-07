@@ -62,6 +62,7 @@ class QuestViewController: QuestBaseViewController {
     
     private var questViewModel: QuestModels.ViewModel?
     private var interactor: QuestBusinessLogic?
+    private var router: (QuestDataPassing & QuestRoutingLogic)?
     private var currentQuestState: QuestState = .todo {
         didSet {
             interactor?.change(state: currentQuestState)
@@ -98,12 +99,12 @@ class QuestViewController: QuestBaseViewController {
             self?.currentQuestState = state
         }
         
-        let viewController = self
-        let presenter = QuestPresenter(viewController: viewController, questFactory: QuestFactory())
+        let presenter = QuestPresenter(viewController: self, questFactory: QuestFactory())
         let worker = QuestWorker()
         let interactor = QuestInteractor(presenter: presenter, worker: worker)
         
-        viewController.interactor = interactor
+        self.interactor = interactor
+        self.router = QuestRouter(viewController: self, dataStore: interactor)
     }
     
     private func setupTableView() {
@@ -192,8 +193,8 @@ extension QuestViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let questDetailVC = QuestDetailViewController()
-        navigationController?.pushViewController(questDetailVC, animated: true)
+        router?.routeToDetail(at: indexPath, in: currentQuestState)
+        // navigationController?.pushViewController(QuestDetailViewController(), animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
