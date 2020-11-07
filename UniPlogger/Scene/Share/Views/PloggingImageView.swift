@@ -10,7 +10,7 @@ import UIKit
 
 class PloggingImageView: UIImageView {
     lazy var ploggingInfoView = PloggingInfoView().then {
-        $0.backgroundColor = .black
+        $0.layer.cornerRadius = 10
     }
     
     init() {
@@ -25,10 +25,6 @@ class PloggingImageView: UIImageView {
         setUpView()
         setUpLayout()
     }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-    }
 
     func setUpView() {
         [ploggingInfoView].forEach {
@@ -40,7 +36,7 @@ class PloggingImageView: UIImageView {
     func setUpLayout() {
         ploggingInfoView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
-            $0.height.equalTo(170)
+            $0.height.equalTo(145)
         }
     }
 
