@@ -11,6 +11,15 @@ import SnapKit
 import Then
 
 class PloggingInfoView: UIView {
+    struct ViewModel{
+        var distance: String
+        var time: String
+    }
+    var viewModel: ViewModel?{
+        didSet{
+            updateView()
+        }
+    }
     lazy var gradientView = GradientView().then {
         $0.colors = [.clear, .black]
         $0.locations = [0.02, 1]

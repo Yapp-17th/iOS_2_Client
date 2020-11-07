@@ -36,7 +36,8 @@ class ShareInteractor: ShareBusinessLogic, ShareDataStore {
               let seconds = self.seconds,
               let minutes = self.minutes
         else { return }
-        
+        let response = Share.FetchRecord.Response(distance: distance, seconds: seconds, minutes: minutes)
+        presenter?.presentFetchRecord(response: response)
     }
     
     func shareToInstagram(assetIdentifier: String) {
