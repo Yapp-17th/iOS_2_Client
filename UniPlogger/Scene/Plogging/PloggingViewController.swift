@@ -405,11 +405,13 @@ extension PloggingViewController: PloggingDisplayLogic{
         self.pauseButton.isHidden = false
         self.stopButton.isHidden = true
         self.resumeButton.isHidden = true
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
     }
 
     @objc func displayStopPlogging() {
         self.startBottomContainerView.isHidden = false
         self.doingPauseBottomContainerView.isHidden = true
+        mapView.removeOverlays(mapView.overlays)
         self.trashButton.snp.remakeConstraints{
             $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
             $0.width.height.equalTo(60)
