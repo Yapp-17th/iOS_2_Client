@@ -57,6 +57,7 @@ class PloggingWorker: NSObject {
     
     func resumeRun(){
         startUpdateLocation()
+        
     }
     
     func stopRun(completion: @escaping (Measurement<UnitLength>) -> Void){
@@ -68,6 +69,7 @@ class PloggingWorker: NSObject {
         locationManager.delegate = self
         locationManager.activityType = .fitness
         locationManager.distanceFilter = 5
+        locationManager.allowsBackgroundLocationUpdates = true
         locationManager.startUpdatingLocation()
     }
 }
