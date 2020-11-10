@@ -21,17 +21,14 @@ class ScoreInfoView: UIView {
     }
     lazy var headerLabel = UILabel().then {
         $0.font = .notoSansKR(ofSize: 20, weight: .bold)
-        $0.text = "알려드려요"
-    }
-    lazy var titleLabel = UILabel().then {
-        $0.font = .notoSansKR(ofSize: 16, weight: .bold)
         $0.text = "점수 계산 방법"
-        $0.textAlignment = .center
     }
     lazy var descriptionLabel = UILabel().then {
         $0.font = .notoSansKR(ofSize: 12, weight: .regular)
         $0.textAlignment = .center
+        $0.numberOfLines = 0
     }
+    lazy var circleBackgroundView = UIView()
     lazy var firstCircleView = CircleInfoView().then {
         $0.infoLabel.text = "1회\n1000점"
     }
@@ -75,7 +72,7 @@ extension ScoreInfoView {
     }
 
     func setUpView() {
-        [titleView, infoImageView, headerLabel, titleLabel, descriptionLabel, firstCircleView, secondCircleView, thirdCircleView, dismissButton, dismissLabel].forEach {
+        [titleView, infoImageView, headerLabel, descriptionLabel, circleBackgroundView, firstCircleView, secondCircleView, thirdCircleView, dismissButton, dismissLabel].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview($0)
         }
@@ -83,9 +80,9 @@ extension ScoreInfoView {
     
     func setUpLayout() {
         titleView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(19)
+            $0.top.equalToSuperview().offset(20)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(127)
+            $0.width.equalTo(154)
             $0.height.equalTo(30)
         }
         infoImageView.snp.makeConstraints {
@@ -93,21 +90,28 @@ extension ScoreInfoView {
             $0.width.height.equalTo(24)
         }
         headerLabel.snp.makeConstraints {
-            $0.top.bottom.trailing.centerY.equalTo(titleView)
-            $0.width.equalTo(93)
-        }
-        titleLabel.snp.makeConstraints {
-            $0.top.equalTo(titleView.snp.bottom).offset(14)
-            $0.centerX.width.equalToSuperview()
-            $0.height.equalTo(24)
+            $0.top.bottom.trailing.equalTo(titleView)
+            $0.leading.equalTo(infoImageView.snp.trailing).offset(10)
+            $0.width.equalTo(120)
         }
         descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(3)
+            $0.top.equalTo(headerLabel.snp.bottom).offset(13)
             $0.centerX.width.equalToSuperview()
-            $0.height.equalTo(34)
+        }
+        dismissButton.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.height.equalToSuperview().multipliedBy(0.155)
+        }
+        dismissLabel.snp.makeConstraints {
+            $0.leading.trailing.top.bottom.equalTo(dismissButton)
+        }
+        circleBackgroundView.snp.makeConstraints {
+            $0.top.equalTo(descriptionLabel.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(dismissButton.snp.top)
         }
         secondCircleView.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
+            $0.centerY.equalTo(circleBackgroundView)
             $0.centerX.equalToSuperview()
             $0.width.height.equalTo(80)
         }
@@ -119,20 +123,13 @@ extension ScoreInfoView {
             $0.top.width.height.equalTo(secondCircleView)
             $0.leading.equalTo(secondCircleView.snp.trailing).offset(28)
         }
-        dismissButton.snp.makeConstraints {
-            $0.leading.trailing.bottom.equalToSuperview()
-            $0.height.equalTo(52)
-        }
-        dismissLabel.snp.makeConstraints {
-            $0.leading.trailing.top.bottom.equalTo(dismissButton)
-        }
     }
     
     private func setDescriptionLabel() {
-        let string = "같은 점수는 가나다 이름순으로 배치됩니다.\n"
+        let string = "점수에 대한 가중치는 다음과 같이 계산됩니다.\n동점 유저는 영어 - 한국어 - 숫자 순으로 배치됩니다."
         let attributedString = NSMutableAttributedString(string: string)
-        attributedString.addAttribute(.font, value: UIFont.notoSansKR(ofSize: 12, weight: .regular), range: (string as NSString).range(of: "같은 점수는 가나다 이름순으로 배치됩니다.\n"))
-        attributedString.addAttribute(.font, value: UIFont.notoSansKR(ofSize: 12, weight: .bold), range: (string as NSString).range(of: "가나다 이름순"))
+        attributedString.addAttribute(.font, value: UIFont.notoSansKR(ofSize: 12, weight: .regular), range: (string as NSString).range(of: "점수에 대한 가중치는 다음과 같이 계산됩니다.\n동점 유저는 영어 - 한국어 - 숫자 순으로 배치됩니다."))
+        attributedString.addAttribute(.font, value: UIFont.notoSansKR(ofSize: 12, weight: .bold), range: (string as NSString).range(of: "영어 - 한국어 - 숫자"))
         descriptionLabel.attributedText = attributedString
     }
     
