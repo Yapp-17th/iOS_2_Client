@@ -13,7 +13,8 @@
 import UIKit
 
 protocol ChallengeBusinessLogic {
-    func getRandomName(num: Int) -> [String]
+    func setRank(members: [Challenge.User]) -> [Int]
+    func setFullMembers(members: [Challenge.User]) -> [Challenge.User]
 }
 
 protocol ChallengeDataStore {
@@ -27,16 +28,6 @@ class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore {
     let names = [["천", "송", "이", "이", "최", "손", "고"],
                  ["승", "윤", "주", "서", "철", "병", "세"],
                  ["연", "서", "형", "영", "웅", "근", "림"]]
-    
-    func getRandomName(num: Int) -> [String] {
-        var list = [String]()
-        for _ in (0..<num) {
-            var name = ""
-            for index in (0...2) { name += names[index][Int.random(in: (0...6))] }
-            list.append(name)
-        }
-        return list
-    }
     
     func setRank(members: [Challenge.User]) -> [Int] {
         var rankList = [Int]()
@@ -52,5 +43,21 @@ class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore {
             }
         }
         return rankList
+    }
+    
+    func setFullMembers(members: [Challenge.User]) -> [Challenge.User] {
+        guard members.count != 10 else { return members }
+        var newMembers = members
+        while newMembers.count != 10 {
+            let newUser = Challenge.User(id: "", name: getRandomName(), score: 0)
+            newMembers.append(newUser)
+        }
+        return newMembers
+    }
+    
+    private func getRandomName() -> String {
+        var name = ""
+        for index in (0...2) { name += names[index][Int.random(in: (0...6))] }
+        return name
     }
 }
