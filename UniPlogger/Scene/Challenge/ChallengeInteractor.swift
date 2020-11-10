@@ -37,4 +37,20 @@ class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore {
         }
         return list
     }
+    
+    func setRank(members: [Challenge.User]) -> [Int] {
+        var rankList = [Int]()
+        var currentScore = 0
+        var currentRank = -1
+        members.forEach { (user) in
+            if user.score == currentScore {
+                rankList.append(currentRank)
+            } else {
+                rankList.append(currentRank + 1)
+                currentScore = user.score
+                currentRank += 1
+            }
+        }
+        return rankList
+    }
 }
