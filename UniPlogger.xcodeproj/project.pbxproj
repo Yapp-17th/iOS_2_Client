@@ -84,6 +84,8 @@
 		AAA1CBEC255D5F9C00EDB18A /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */; };
 		AAA1CBEF255D611B00EDB18A /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBEE255D611B00EDB18A /* BaseResponse.swift */; };
 		AAA1CBF2255D620100EDB18A /* BaseTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBF1255D620100EDB18A /* BaseTarget.swift */; };
+		AAA1CBF8255D62FD00EDB18A /* VerbosePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBF7255D62FD00EDB18A /* VerbosePlugin.swift */; };
+		AAA1CBFB255D633600EDB18A /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBFA255D633600EDB18A /* Data+Extensions.swift */; };
 		AAAD68F525556A7600895265 /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAD68F425556A7600895265 /* CALayer+Extensions.swift */; };
 		AAAD68F82555738300895265 /* CLLocation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAD68F72555738300895265 /* CLLocation+Extensions.swift */; };
 		AAAD68FF2555A52B00895265 /* QuestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EC3253EE6B300ABED84 /* QuestDetailViewController.swift */; };
@@ -190,6 +192,8 @@
 		AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		AAA1CBEE255D611B00EDB18A /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		AAA1CBF1255D620100EDB18A /* BaseTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTarget.swift; sourceTree = "<group>"; };
+		AAA1CBF7255D62FD00EDB18A /* VerbosePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerbosePlugin.swift; sourceTree = "<group>"; };
+		AAA1CBFA255D633600EDB18A /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
 		AAAD68F425556A7600895265 /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
 		AAAD68F72555738300895265 /* CLLocation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extensions.swift"; sourceTree = "<group>"; };
 		AAAD690125562CB900895265 /* IntrinsicSizeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntrinsicSizeCollectionView.swift; sourceTree = "<group>"; };
@@ -401,10 +405,6 @@
 				AA35BC76254FEEFA00AE32A7 /* CoreDataStore.swift */,
 				AA35BC7B254FFC2B00AE32A7 /* Storage.swift */,
 				AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */,
-				AAA1CBE8255D5E9100EDB18A /* SessionManager.swift */,
-				AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */,
-				AAA1CBEE255D611B00EDB18A /* BaseResponse.swift */,
-				AAA1CBF1255D620100EDB18A /* BaseTarget.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -476,6 +476,27 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		AAA1CBF4255D62A900EDB18A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				AAA1CBF6255D62D500EDB18A /* Plugin */,
+				AAA1CBE8255D5E9100EDB18A /* SessionManager.swift */,
+				AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */,
+				AAA1CBEE255D611B00EDB18A /* BaseResponse.swift */,
+				AAA1CBF1255D620100EDB18A /* BaseTarget.swift */,
+			);
+			name = Network;
+			path = Resources/Network;
+			sourceTree = "<group>";
+		};
+		AAA1CBF6255D62D500EDB18A /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				AAA1CBF7255D62FD00EDB18A /* VerbosePlugin.swift */,
+			);
+			path = Plugin;
+			sourceTree = "<group>";
+		};
 		AAB3B4BB2520A31100F0311A = {
 			isa = PBXGroup;
 			children = (
@@ -498,6 +519,7 @@
 		AAB3B4C62520A31100F0311A /* UniPlogger */ = {
 			isa = PBXGroup;
 			children = (
+				AAA1CBF4255D62A900EDB18A /* Network */,
 				AA7F54F82532C20C001C4012 /* Resources */,
 				AA7F54F42532C1CF001C4012 /* Manager */,
 				AAB3B4F62520B55700F0311A /* Model */,
@@ -543,6 +565,7 @@
 				AA1AC8C6252E1C7D0022ACE5 /* CLLocationCoordinated2D+Extensions.swift */,
 				AAAD68F425556A7600895265 /* CALayer+Extensions.swift */,
 				AAAD68F72555738300895265 /* CLLocation+Extensions.swift */,
+				AAA1CBFA255D633600EDB18A /* Data+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -739,6 +762,7 @@
 				AA7F54E22532C179001C4012 /* CLLocationCoordinated2D+Extensions.swift in Sources */,
 				AA7F54F12532C1A6001C4012 /* PloggingPresenter.swift in Sources */,
 				AA7F54EE2532C1A6001C4012 /* PloggingViewController+UI.swift in Sources */,
+				AAA1CBF8255D62FD00EDB18A /* VerbosePlugin.swift in Sources */,
 				4C7248AE2542F86200ACB32B /* VerticalRoundButton.swift in Sources */,
 				AA7F54E12532C176001C4012 /* UserDefault+Extensions.swift in Sources */,
 				AA2CAE0A2543EAD600105748 /* PloggingRecordRouter.swift in Sources */,
@@ -781,6 +805,7 @@
 				AA7F54EF2532C1A6001C4012 /* PloggingModels.swift in Sources */,
 				4CC9C7CE252315E0004D873D /* QuestPresenter.swift in Sources */,
 				AA5EFBB82552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift in Sources */,
+				AAA1CBFB255D633600EDB18A /* Data+Extensions.swift in Sources */,
 				4C89567D2532CB3A0099934E /* QuestNavigationController.swift in Sources */,
 				4C8956862532E3230099934E /* QuestTableViewCell.swift in Sources */,
 				AA7F54F22532C1A6001C4012 /* PloggingViewController.swift in Sources */,
