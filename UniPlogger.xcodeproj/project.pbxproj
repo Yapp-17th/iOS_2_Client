@@ -37,6 +37,7 @@
 		4CC9C7D7252315FC004D873D /* QuestWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7D6252315FC004D873D /* QuestWorker.swift */; };
 		4CC9C7DA25232128004D873D /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7D925232128004D873D /* Quest.swift */; };
 		83309D05255D7F88001A6A0E /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83309D04255D7F88001A6A0E /* StartViewController.swift */; };
+		83309D08255D8D69001A6A0E /* StartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83309D07255D8D69001A6A0E /* StartRouter.swift */; };
 		AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54DD2532C109001C4012 /* BaseViewController.swift */; };
 		AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B5062520D16800F0311A /* UIColor+Extensions.swift */; };
 		AA7F54E02532C16E001C4012 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB887B02524603E000A9D58 /* UIFont+Extensions.swift */; };
@@ -116,6 +117,7 @@
 		4CC9C7D6252315FC004D873D /* QuestWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestWorker.swift; sourceTree = "<group>"; };
 		4CC9C7D925232128004D873D /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		83309D04255D7F88001A6A0E /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		83309D07255D8D69001A6A0E /* StartRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRouter.swift; sourceTree = "<group>"; };
 		925E132ACB7FB812EDA3D67C /* Pods-UniPlogger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.debug.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.debug.xcconfig"; sourceTree = "<group>"; };
 		AA1AC8C4252E1C120022ACE5 /* UserDefault+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extensions.swift"; sourceTree = "<group>"; };
 		AA1AC8C6252E1C7D0022ACE5 /* CLLocationCoordinated2D+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinated2D+Extensions.swift"; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				83309D04255D7F88001A6A0E /* StartViewController.swift */,
+				83309D07255D8D69001A6A0E /* StartRouter.swift */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -687,6 +690,7 @@
 				1208B37E2545CC7D00E085D4 /* ChallengePresenter.swift in Sources */,
 				AA7F55222533568D001C4012 /* ShareRouter.swift in Sources */,
 				AAB3B4F92520B5B600F0311A /* Common.swift in Sources */,
+				83309D08255D8D69001A6A0E /* StartRouter.swift in Sources */,
 				4C89B0722525D2CB0007EBED /* RoutineTableViewCell.swift in Sources */,
 				AA7F54E02532C16E001C4012 /* UIFont+Extensions.swift in Sources */,
 				AA7F55202533568D001C4012 /* ShareViewController+UI.swift in Sources */,

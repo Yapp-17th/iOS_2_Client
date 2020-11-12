@@ -41,6 +41,9 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
         $0.backgroundColor = .clear
     }
     lazy var scoreInfoView = ScoreInfoView()
+    lazy var dimView = UIView().then {
+        $0.backgroundColor = UIColor(named: "dimColor")
+    }
 
     // MARK: Object lifecycle
   
@@ -84,6 +87,11 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
         setUpView()
         setUpTableView()
         setUpLayout()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        dimView.isHidden = true
     }
   
     func displaySomething(viewModel: Challenge.Something.ViewModel) {

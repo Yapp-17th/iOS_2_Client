@@ -9,7 +9,7 @@
 import UIKit
 
 class StartViewController: UIViewController {
-    var router: (NSObjectProtocol & ChallengeRoutingLogic & ChallengeDataPassing)?
+    var router: (NSObjectProtocol & StartRoutingLogic)?
     
     lazy var backgroundView = UIImageView().then {
         let image = UIImage(named: "startBackground")
@@ -18,7 +18,6 @@ class StartViewController: UIViewController {
         $0.clipsToBounds = true
 
     }
-
     lazy var characterImageView = UIImageView().then {
         $0.image = UIImage(named: "character")
     }
@@ -34,23 +33,29 @@ class StartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        configure()
         setUpViews()
         setUpLayout()
     }
     
     private func setup() {
         let viewController = self
-        let router = ChallengeRouter()
+        let router = StartRouter()
         viewController.router = router
+        router.viewController = viewController
     }
     
     @objc func touchUpStartButton() {
-        
+        router?.routeToChallenge()
     }
 
 }
 
 extension StartViewController {
+    func configure() {
+
+    }
+    
     func setUpViews() {
         [backgroundView, characterImageView, startButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
