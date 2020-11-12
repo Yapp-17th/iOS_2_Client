@@ -80,6 +80,10 @@
 		AA7F55242533568D001C4012 /* PloggingInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F551B2533568C001C4012 /* PloggingInfoView.swift */; };
 		AA7F55252533568D001C4012 /* ShareModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F551C2533568C001C4012 /* ShareModels.swift */; };
 		AA7F5528253356BE001C4012 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F5527253356BE001C4012 /* PhotoManager.swift */; };
+		AAA1CBE9255D5E9100EDB18A /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBE8255D5E9100EDB18A /* SessionManager.swift */; };
+		AAA1CBEC255D5F9C00EDB18A /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */; };
+		AAA1CBEF255D611B00EDB18A /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBEE255D611B00EDB18A /* BaseResponse.swift */; };
+		AAA1CBF2255D620100EDB18A /* BaseTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBF1255D620100EDB18A /* BaseTarget.swift */; };
 		AAAD68F525556A7600895265 /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAD68F425556A7600895265 /* CALayer+Extensions.swift */; };
 		AAAD68F82555738300895265 /* CLLocation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAD68F72555738300895265 /* CLLocation+Extensions.swift */; };
 		AAAD68FF2555A52B00895265 /* QuestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EC3253EE6B300ABED84 /* QuestDetailViewController.swift */; };
@@ -182,6 +186,10 @@
 		AA7F551B2533568C001C4012 /* PloggingInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingInfoView.swift; sourceTree = "<group>"; };
 		AA7F551C2533568C001C4012 /* ShareModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareModels.swift; sourceTree = "<group>"; };
 		AA7F5527253356BE001C4012 /* PhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
+		AAA1CBE8255D5E9100EDB18A /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
+		AAA1CBEE255D611B00EDB18A /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
+		AAA1CBF1255D620100EDB18A /* BaseTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTarget.swift; sourceTree = "<group>"; };
 		AAAD68F425556A7600895265 /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
 		AAAD68F72555738300895265 /* CLLocation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extensions.swift"; sourceTree = "<group>"; };
 		AAAD690125562CB900895265 /* IntrinsicSizeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntrinsicSizeCollectionView.swift; sourceTree = "<group>"; };
@@ -393,6 +401,10 @@
 				AA35BC76254FEEFA00AE32A7 /* CoreDataStore.swift */,
 				AA35BC7B254FFC2B00AE32A7 /* Storage.swift */,
 				AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */,
+				AAA1CBE8255D5E9100EDB18A /* SessionManager.swift */,
+				AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */,
+				AAA1CBEE255D611B00EDB18A /* BaseResponse.swift */,
+				AAA1CBF1255D620100EDB18A /* BaseTarget.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -740,6 +752,7 @@
 				AA2CAE052543EAD600105748 /* PloggingRecordModels.swift in Sources */,
 				AA7F54EC2532C1A6001C4012 /* StartCountingViewController.swift in Sources */,
 				AAAD690225562CB900895265 /* IntrinsicSizeCollectionView.swift in Sources */,
+				AAA1CBF2255D620100EDB18A /* BaseTarget.swift in Sources */,
 				4CBA217B254EB1AF002BDCC3 /* QuestModels+ViewModel.swift in Sources */,
 				AAB559392549BB26000BB903 /* FormatDisplay.swift in Sources */,
 				AAB559312549B846000BB903 /* Location.swift in Sources */,
@@ -747,6 +760,7 @@
 				AAAD68F525556A7600895265 /* CALayer+Extensions.swift in Sources */,
 				AA7F54ED2532C1A6001C4012 /* PloggingInteractor.swift in Sources */,
 				AA35BC85254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift in Sources */,
+				AAA1CBEC255D5F9C00EDB18A /* APIConfiguration.swift in Sources */,
 				AA2CAE062543EAD600105748 /* PloggingRecordViewController+UI.swift in Sources */,
 				AA7F54F32532C1A6001C4012 /* PloggingWorker.swift in Sources */,
 				4C401EB2253DE1F200ABED84 /* QuestState.swift in Sources */,
@@ -760,13 +774,13 @@
 				AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
 				AA35BC86254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift in Sources */,
+				AAA1CBE9255D5E9100EDB18A /* SessionManager.swift in Sources */,
 				4C2D059B2556459400FA787F /* QuestDetailPresenter.swift in Sources */,
 				AAC9584F2545BC110092BA6E /* ScrollStackView.swift in Sources */,
 				AA7F55252533568D001C4012 /* ShareModels.swift in Sources */,
 				AA7F54EF2532C1A6001C4012 /* PloggingModels.swift in Sources */,
 				4CC9C7CE252315E0004D873D /* QuestPresenter.swift in Sources */,
 				AA5EFBB82552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift in Sources */,
-				4CC9C7D1252315E9004D873D /* QuestRouter.swift in Sources */,
 				4C89567D2532CB3A0099934E /* QuestNavigationController.swift in Sources */,
 				4C8956862532E3230099934E /* QuestTableViewCell.swift in Sources */,
 				AA7F54F22532C1A6001C4012 /* PloggingViewController.swift in Sources */,
@@ -776,6 +790,7 @@
 				AA2CAE072543EAD600105748 /* PloggingRecordCollectionViewCell.swift in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
 				AA35BC7C254FFC2B00AE32A7 /* Storage.swift in Sources */,
+				AAA1CBEF255D611B00EDB18A /* BaseResponse.swift in Sources */,
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,
 				4CC9C7C825231581004D873D /* QuestViewController.swift in Sources */,
 				4C7248B52544297D00ACB32B /* HightlightButton.swift in Sources */,
