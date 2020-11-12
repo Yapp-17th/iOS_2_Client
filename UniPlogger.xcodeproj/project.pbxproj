@@ -86,6 +86,8 @@
 		AAA1CBF2255D620100EDB18A /* BaseTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBF1255D620100EDB18A /* BaseTarget.swift */; };
 		AAA1CBF8255D62FD00EDB18A /* VerbosePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBF7255D62FD00EDB18A /* VerbosePlugin.swift */; };
 		AAA1CBFB255D633600EDB18A /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBFA255D633600EDB18A /* Data+Extensions.swift */; };
+		AAA1CBFE255D640C00EDB18A /* PloggingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBFD255D640C00EDB18A /* PloggingAPI.swift */; };
+		AAA1CC03255D647100EDB18A /* PloggingAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CC02255D647100EDB18A /* PloggingAPITarget.swift */; };
 		AAAD68F525556A7600895265 /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAD68F425556A7600895265 /* CALayer+Extensions.swift */; };
 		AAAD68F82555738300895265 /* CLLocation+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAD68F72555738300895265 /* CLLocation+Extensions.swift */; };
 		AAAD68FF2555A52B00895265 /* QuestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EC3253EE6B300ABED84 /* QuestDetailViewController.swift */; };
@@ -194,6 +196,8 @@
 		AAA1CBF1255D620100EDB18A /* BaseTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTarget.swift; sourceTree = "<group>"; };
 		AAA1CBF7255D62FD00EDB18A /* VerbosePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerbosePlugin.swift; sourceTree = "<group>"; };
 		AAA1CBFA255D633600EDB18A /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
+		AAA1CBFD255D640C00EDB18A /* PloggingAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingAPI.swift; sourceTree = "<group>"; };
+		AAA1CC02255D647100EDB18A /* PloggingAPITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingAPITarget.swift; sourceTree = "<group>"; };
 		AAAD68F425556A7600895265 /* CALayer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extensions.swift"; sourceTree = "<group>"; };
 		AAAD68F72555738300895265 /* CLLocation+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+Extensions.swift"; sourceTree = "<group>"; };
 		AAAD690125562CB900895265 /* IntrinsicSizeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntrinsicSizeCollectionView.swift; sourceTree = "<group>"; };
@@ -484,6 +488,7 @@
 				AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */,
 				AAA1CBEE255D611B00EDB18A /* BaseResponse.swift */,
 				AAA1CBF1255D620100EDB18A /* BaseTarget.swift */,
+				AAA1CC00255D645D00EDB18A /* Plogging */,
 			);
 			name = Network;
 			path = Resources/Network;
@@ -495,6 +500,15 @@
 				AAA1CBF7255D62FD00EDB18A /* VerbosePlugin.swift */,
 			);
 			path = Plugin;
+			sourceTree = "<group>";
+		};
+		AAA1CC00255D645D00EDB18A /* Plogging */ = {
+			isa = PBXGroup;
+			children = (
+				AAA1CBFD255D640C00EDB18A /* PloggingAPI.swift */,
+				AAA1CC02255D647100EDB18A /* PloggingAPITarget.swift */,
+			);
+			path = Plogging;
 			sourceTree = "<group>";
 		};
 		AAB3B4BB2520A31100F0311A = {
@@ -758,6 +772,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C401EAF253DE19100ABED84 /* ShareRouter.swift in Sources */,
+				AAA1CBFE255D640C00EDB18A /* PloggingAPI.swift in Sources */,
 				4C8956832532D0630099934E /* QuestFactory.swift in Sources */,
 				AA7F54E22532C179001C4012 /* CLLocationCoordinated2D+Extensions.swift in Sources */,
 				AA7F54F12532C1A6001C4012 /* PloggingPresenter.swift in Sources */,
@@ -799,6 +814,7 @@
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
 				AA35BC86254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift in Sources */,
 				AAA1CBE9255D5E9100EDB18A /* SessionManager.swift in Sources */,
+				AAA1CC03255D647100EDB18A /* PloggingAPITarget.swift in Sources */,
 				4C2D059B2556459400FA787F /* QuestDetailPresenter.swift in Sources */,
 				AAC9584F2545BC110092BA6E /* ScrollStackView.swift in Sources */,
 				AA7F55252533568D001C4012 /* ShareModels.swift in Sources */,
