@@ -16,8 +16,8 @@ class StartViewController: UIViewController {
         $0.image = image!.resizeTopAlignedToFill(newWidth: self.view.frame.width)
         $0.contentMode = .top
         $0.clipsToBounds = true
-
     }
+    
     lazy var characterImageView = UIImageView().then {
         $0.image = UIImage(named: "character")
     }
@@ -80,17 +80,5 @@ extension StartViewController {
             $0.width.equalTo(self.view.frame.width * 0.283)
             $0.height.equalTo(characterImageView.snp.width).multipliedBy(1.67)
         }
-    }
-}
-
-extension UIImage {
-    func resizeTopAlignedToFill(newWidth: CGFloat) -> UIImage? {
-        let newHeight = size.height * newWidth / size.width
-        let newSize = CGSize(width: newWidth, height: newHeight)
-        UIGraphicsBeginImageContextWithOptions(newSize, false, UIScreen.main.scale)
-        draw(in: CGRect(origin: .zero, size: newSize))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage
     }
 }

@@ -23,7 +23,10 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
     var router: (NSObjectProtocol & ChallengeRoutingLogic & ChallengeDataPassing)?
     
     lazy var backgroundImageView = UIImageView().then {
-        $0.image = UIImage(named: "challengeBackground")
+        let image = UIImage(named: "challengeBackground")
+        $0.image = image!.resizeTopAlignedToFill(newWidth: self.view.frame.width)
+        $0.contentMode = .top
+        $0.clipsToBounds = true
     }
     lazy var weekLabel = UILabel().then {
         $0.font = .notoSansKR(ofSize: 20, weight: .bold)
