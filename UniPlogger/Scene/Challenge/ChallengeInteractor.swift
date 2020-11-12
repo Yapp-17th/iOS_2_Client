@@ -15,6 +15,7 @@ import UIKit
 protocol ChallengeBusinessLogic {
     func setRank(members: [Challenge.User]) -> [Int]
     func setFullMembers(members: [Challenge.User]) -> [Challenge.User]
+    func setDate() -> String
 }
 
 protocol ChallengeDataStore {
@@ -53,6 +54,13 @@ class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore {
             newMembers.append(newUser)
         }
         return newMembers
+    }
+    
+    func setDate() -> String {
+        let calender = Calendar.current
+        let month = calender.component(.month, from: Date())
+        let week = calender.component(.weekOfMonth, from: Date())
+        return "\(month)월 \(week)주차"
     }
     
     private func getRandomName() -> String {
