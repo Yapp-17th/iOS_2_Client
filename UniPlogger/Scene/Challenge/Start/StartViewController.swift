@@ -8,8 +8,13 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
+
 class StartViewController: UIViewController {
     var router: (NSObjectProtocol & StartRoutingLogic)?
+    
+    var disposeBag = DisposeBag()
     
     lazy var backgroundView = UIImageView().then {
         let image = UIImage(named: "startBackground")
@@ -17,7 +22,9 @@ class StartViewController: UIViewController {
         $0.contentMode = .top
         $0.clipsToBounds = true
     }
-    
+    lazy var spaceshipImageView = UIImageView().then {
+        $0.image = UIImage(named: "spaceship")
+    }
     lazy var characterImageView = UIImageView().then {
         $0.image = UIImage(named: "character")
     }
@@ -27,7 +34,9 @@ class StartViewController: UIViewController {
         $0.backgroundColor = UIColor(named: "rankColor")
         $0.layer.cornerRadius = 28
         $0.layer.masksToBounds = true
-        $0.addTarget(self, action: #selector(touchUpStartButton), for: .touchUpInside)
+        $0.rx.tap
+            .bind(onNext: touchUpStartButton)
+            .disposed(by: disposeBag)
     }
     
     override func viewDidLoad() {
@@ -45,7 +54,7 @@ class StartViewController: UIViewController {
         router.viewController = viewController
     }
     
-    @objc func touchUpStartButton() {
+    func touchUpStartButton() {
         router?.routeToChallenge()
     }
 
@@ -57,7 +66,7 @@ extension StartViewController {
     }
     
     func setUpViews() {
-        [backgroundView, characterImageView, startButton].forEach {
+        [backgroundView, spaceshipImageView, characterImageView, startButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview($0)
         }
@@ -67,6 +76,12 @@ extension StartViewController {
         backgroundView.snp.makeConstraints {
             $0.leading.trailing.top.bottom.equalToSuperview()
         }
+        spaceshipImageView.snp.makeConstraints {
+            $0.top.equalTo(self.view.frame.height * 0.166)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(self.view.frame.width * 0.842)
+            $0.height.equalTo(spaceshipImageView.snp.width).multipliedBy(1.633)
+        }
         startButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(-self.view.frame.height * 0.147)
@@ -75,8 +90,7 @@ extension StartViewController {
         }
         characterImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(self.view.frame.height * 0.484 - 10)
-//            $0.bottom.equalTo(startButton.snp.top).offset(-self.view.frame.height * 0.08)
+            $0.bottom.equalTo(startButton.snp.top).offset(-self.view.frame.height * 0.08)
             $0.width.equalTo(self.view.frame.width * 0.283)
             $0.height.equalTo(characterImageView.snp.width).multipliedBy(1.67)
         }
