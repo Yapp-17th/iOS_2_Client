@@ -92,12 +92,11 @@ class QuestDetailViewController: QuestBaseViewController {
     private var buttonsBackgroundView = UIView().then { view in
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = Color.questBackgroundTint
+        view.shadow(radius: 10,
+                    color: UIColor(named: "questBackground"),
+                    offset: .zero,
+                    opacity: 1)
         view.layer.cornerRadius = 22
-        view.layer.shadowRadius = 10
-        view.layer.shadowColor = UIColor(red: 0.957, green: 0.961, blue: 0.98, alpha: 1).cgColor
-        view.layer.shadowOpacity = 1
-        view.layer.shadowOffset = .zero
-        
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
     
@@ -111,11 +110,10 @@ class QuestDetailViewController: QuestBaseViewController {
     private var startButton = VerticalRoundButton().then { button in
         button.setTitle("시작하기", for: .normal)
         button.backgroundColor = Color.questTint
-        button.layer.cornerRadius = 21
-        button.layer.shadowColor = UIColor(red: 0, green: 0.812, blue: 0.596, alpha: 0.2).cgColor
-        button.layer.shadowOpacity = 1
-        button.layer.shadowRadius = 20
-        button.layer.shadowOffset = CGSize(width: 0, height: 10)
+        button.shadow(radius: 21,
+                      color: UIColor(red: 0, green: 0.812, blue: 0.596, alpha: 0.2),
+                      offset: .init(width: 0, height: 10),
+                      opacity: 1)
     }
     
     private var cancelButton = VerticalRoundButton().then { button in
@@ -165,6 +163,16 @@ class QuestDetailViewController: QuestBaseViewController {
         tabBarController?.tabBar.isHidden = false
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        
+        recommandSubStackView.subviews.forEach {
+            $0.layer.shadowColor = UIColor(named: "questBackground")?.cgColor
+        }
+        buttonsBackgroundView.layer.shadowColor = UIColor(named: "questBackground")?.cgColor
+    }
+    
     // MARK: - Initializer
     
     func configure(quest: Quest) {
@@ -211,12 +219,11 @@ class QuestDetailViewController: QuestBaseViewController {
             otherView.descripionLabel.text = "1달 동안 총 10회 이상 플로깅하기"
             otherView.setTextColor(Color.textBlack)
             otherView.backgroundColor = Color.questBackgroundTint
+            otherView.shadow(radius: 10,
+                             color: UIColor(named: "questBackground"),
+                             offset: .init(width: 0, height: 4),
+                             opacity: 1)
             otherView.layer.cornerRadius = 18
-            otherView.layer.shadowColor = UIColor(red: 0.957, green: 0.961, blue: 0.98, alpha: 1).cgColor
-            otherView.layer.shadowOpacity = 1
-            otherView.layer.shadowRadius = 10
-            otherView.layer.shadowOffset = CGSize(width: 0, height: 4)
-            
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapOtherQuestView(_:)))
             otherView.addGestureRecognizer(tapGesture)
             recommandSubStackView.addArrangedSubview(otherView)
