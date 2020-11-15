@@ -21,7 +21,7 @@ protocol QuestDataStore {
 class QuestInteractor: QuestDataStore {
     private var presenter: QuestPresentationLogic
     private var worker: QuestWorker
-    private(set) var questList = QuestList(quests: [])
+    private(set) var questList = QuestList(questManager: QuestManager(), quests: [])
     
     init(presenter: QuestPresentationLogic, worker: QuestWorker) {
         self.presenter = presenter
@@ -57,7 +57,7 @@ extension QuestInteractor: QuestBusinessLogic {
     
     
     func fetchQuest(request: QuestModels.Reqeust) {
-        questList = QuestList(quests: worker.fetchData())
+        questList = QuestList(questManager: QuestManager(), quests: worker.fetchData())
         
         let response = QuestModels.Response(questList: questList.quests(for: request.state))
         
