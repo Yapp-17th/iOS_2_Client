@@ -12,8 +12,10 @@ struct QuestList {
     
     typealias State = QuestState
     private var questList = [State: [Quest]]()
+    private var questManager: QuestManageable?
     
-    init(quests: [Quest]) {
+    init(questManager: QuestManageable, quests: [Quest]) {
+        self.questManager = questManager
         quests.forEach { questList[$0.state, default: []].append($0) }
     }
     
