@@ -31,17 +31,13 @@ class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore {
                  ["연", "서", "형", "영", "웅", "근", "림"]]
     
     func setRank(members: [Challenge.User]) -> [Int] {
-        var rankList = [Int]()
-        var currentScore = 0
-        var currentRank = -1
-        members.forEach { (user) in
-            if user.score == currentScore {
-                rankList.append(currentRank)
-            } else {
-                rankList.append(currentRank + 1)
-                currentScore = user.score
-                currentRank += 1
+        var rankList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        var prevIndex = 9
+        (0...8).reversed().forEach { (index) in
+            if members[index].score == members[prevIndex].score {
+                rankList[index] = rankList[prevIndex]
             }
+            prevIndex = index
         }
         return rankList
     }
