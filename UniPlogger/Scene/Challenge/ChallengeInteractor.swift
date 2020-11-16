@@ -46,6 +46,26 @@ class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore {
         return rankList
     }
     
+    func setTopImages(with rank: [Int]) -> [UIImage] {
+        var baseImageList = [UIImage(named: "rank_first_small")!, UIImage(named: "rank_second_small")!, UIImage(named: "rank_third_small")!]
+        let topRankList = [rank[0], rank[1], rank[2]]
+        switch topRankList {
+        case [1, 2, 3]:
+            baseImageList[0] = UIImage(named: "rank_first_large")!
+            baseImageList[1] = UIImage(named: "rank_second_medium")!
+            return baseImageList
+        case [2, 2, 3]:
+            baseImageList[0] = UIImage(named: "rank_first_medium")!
+            baseImageList[1] = UIImage(named: "rank_second_medium")!
+            return baseImageList
+        case [1, 3, 3]:
+            baseImageList[0] = UIImage(named: "rank_first_large")!
+            return baseImageList
+        default:
+            return baseImageList
+        }
+    }
+    
     func setFullMembers(members: [Challenge.User]) -> [Challenge.User] {
         guard members.count != 10 else { return members }
         var newMembers = members
