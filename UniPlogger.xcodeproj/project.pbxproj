@@ -211,17 +211,10 @@
 			isa = PBXGroup;
 			children = (
 				83309D03255D7F5F001A6A0E /* Start */,
+				83DE065E256430040085AC72 /* Challenge */,
 				12438B362556832000388DC6 /* ScoreInfo */,
 				83DE06452563FB7E0085AC72 /* UserLog */,
 				83DE06402563FA990085AC72 /* UserDetail */,
-				1208B3872545D8EA00E085D4 /* Views */,
-				1208B3782545CC7D00E085D4 /* ChallengePresenter.swift */,
-				1208B3792545CC7D00E085D4 /* ChallengeWorker.swift */,
-				1208B37A2545CC7D00E085D4 /* ChallengeRouter.swift */,
-				1208B37B2545CC7D00E085D4 /* ChallengeModels.swift */,
-				1208B37C2545CC7D00E085D4 /* ChallengeViewController.swift */,
-				1208B389254C37E100E085D4 /* ChallengeViewController+UI.swift */,
-				1208B37D2545CC7D00E085D4 /* ChallengeInteractor.swift */,
 			);
 			path = Challenge;
 			sourceTree = "<group>";
@@ -314,6 +307,21 @@
 				83DE0653256408B60085AC72 /* UserLogRouter.swift */,
 			);
 			path = UserLog;
+			sourceTree = "<group>";
+		};
+		83DE065E256430040085AC72 /* Challenge */ = {
+			isa = PBXGroup;
+			children = (
+				1208B3872545D8EA00E085D4 /* Views */,
+				1208B3782545CC7D00E085D4 /* ChallengePresenter.swift */,
+				1208B3792545CC7D00E085D4 /* ChallengeWorker.swift */,
+				1208B37A2545CC7D00E085D4 /* ChallengeRouter.swift */,
+				1208B37B2545CC7D00E085D4 /* ChallengeModels.swift */,
+				1208B37C2545CC7D00E085D4 /* ChallengeViewController.swift */,
+				1208B389254C37E100E085D4 /* ChallengeViewController+UI.swift */,
+				1208B37D2545CC7D00E085D4 /* ChallengeInteractor.swift */,
+			);
+			path = Challenge;
 			sourceTree = "<group>";
 		};
 		AA7F54DB2532C0E5001C4012 /* Recovered References */ = {
