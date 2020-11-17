@@ -92,9 +92,19 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
         setUpLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         dimView.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.isNavigationBarHidden = false
     }
   
     func displaySomething(viewModel: Challenge.Something.ViewModel) {
@@ -119,5 +129,9 @@ extension ChallengeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = rankTableView.dequeueReusableCell(withIdentifier: "rankCell") else { return UITableViewCell() }
         cell.selectionStyle = .none
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        router?.routeToUserLog()
     }
 }

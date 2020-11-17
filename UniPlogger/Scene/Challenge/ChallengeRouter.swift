@@ -14,6 +14,7 @@ import UIKit
 
 @objc protocol ChallengeRoutingLogic {
     func routeToScoreInfo()
+    func routeToUserLog()
 }
 
 protocol ChallengeDataPassing {
@@ -33,6 +34,15 @@ class ChallengeRouter: NSObject, ChallengeRoutingLogic, ChallengeDataPassing {
         destination.modalTransitionStyle = .crossDissolve
         destination.modalPresentationStyle = .overFullScreen
         source.present(destination, animated: true)
+    }
+    
+    func routeToUserLog() {
+        let destinationVC = UserLogViewController()
+        navigateToUserLog(source: viewController!, destination: destinationVC)
+    }
+    
+    func navigateToUserLog(source: ChallengeViewController, destination: UserLogViewController) {
+        source.navigationController?.pushViewController(destination, animated: false)
     }
 
 }

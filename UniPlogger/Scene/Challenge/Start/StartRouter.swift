@@ -6,7 +6,7 @@
 //  Copyright © 2020 손병근. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 @objc protocol StartRoutingLogic {
     func routeToChallenge()
@@ -16,11 +16,11 @@ class StartRouter: NSObject, StartRoutingLogic {
     weak var viewController: StartViewController?
     
     func routeToChallenge() {
-        let destinationVC = ChallengeViewController()
+        let destinationVC = UINavigationController(rootViewController: ChallengeViewController())
         navigateToChallenge(source: viewController!, destination: destinationVC)
     }
     
-    private func navigateToChallenge(source: StartViewController, destination: ChallengeViewController) {
+    private func navigateToChallenge(source: StartViewController, destination: UINavigationController) {
         destination.modalTransitionStyle = .crossDissolve
         destination.modalPresentationStyle = .fullScreen
         source.present(destination, animated: true)
