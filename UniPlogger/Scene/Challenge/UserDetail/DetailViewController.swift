@@ -20,6 +20,7 @@ class DetailViewController: UIViewController {
         $0.backgroundColor = .lightGray
         $0.layer.cornerRadius = 10
     }
+    lazy var reportButton = UIBarButtonItem(image: UIImage(named: "report"), style: .plain, target: self, action: #selector(touchUpReportButton))
 
     // MARK: Object lifecycle
       
@@ -53,6 +54,10 @@ class DetailViewController: UIViewController {
         let date = "20.10.17"
         navigationItem.title = "\(date)"
         navigationController?.navigationBar.backItem?.title = "로그"
+        self.navigationItem.rightBarButtonItem = reportButton
     }
     
+    @objc func touchUpReportButton() {
+        print("report")
+    }
 }
