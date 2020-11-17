@@ -40,6 +40,9 @@
 		83309D08255D8D69001A6A0E /* StartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83309D07255D8D69001A6A0E /* StartRouter.swift */; };
 		83DE06422563FAB60085AC72 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE06412563FAB60085AC72 /* DetailViewController.swift */; };
 		83DE06482563FBAD0085AC72 /* UserLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE06472563FBAD0085AC72 /* UserLogViewController.swift */; };
+		83DE0651256407200085AC72 /* UserLogViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE0650256407200085AC72 /* UserLogViewController+UI.swift */; };
+		83DE0654256408B60085AC72 /* UserLogRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE0653256408B60085AC72 /* UserLogRouter.swift */; };
+		83DE065725640C000085AC72 /* DetailViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE065625640C000085AC72 /* DetailViewController+UI.swift */; };
 		AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54DD2532C109001C4012 /* BaseViewController.swift */; };
 		AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B5062520D16800F0311A /* UIColor+Extensions.swift */; };
 		AA7F54E02532C16E001C4012 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB887B02524603E000A9D58 /* UIFont+Extensions.swift */; };
@@ -122,6 +125,9 @@
 		83309D07255D8D69001A6A0E /* StartRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRouter.swift; sourceTree = "<group>"; };
 		83DE06412563FAB60085AC72 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		83DE06472563FBAD0085AC72 /* UserLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogViewController.swift; sourceTree = "<group>"; };
+		83DE0650256407200085AC72 /* UserLogViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserLogViewController+UI.swift"; sourceTree = "<group>"; };
+		83DE0653256408B60085AC72 /* UserLogRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogRouter.swift; sourceTree = "<group>"; };
+		83DE065625640C000085AC72 /* DetailViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailViewController+UI.swift"; sourceTree = "<group>"; };
 		925E132ACB7FB812EDA3D67C /* Pods-UniPlogger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.debug.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.debug.xcconfig"; sourceTree = "<group>"; };
 		AA1AC8C4252E1C120022ACE5 /* UserDefault+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extensions.swift"; sourceTree = "<group>"; };
 		AA1AC8C6252E1C7D0022ACE5 /* CLLocationCoordinated2D+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinated2D+Extensions.swift"; sourceTree = "<group>"; };
@@ -295,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				83DE06412563FAB60085AC72 /* DetailViewController.swift */,
+				83DE065625640C000085AC72 /* DetailViewController+UI.swift */,
 			);
 			path = UserDetail;
 			sourceTree = "<group>";
@@ -303,6 +310,8 @@
 			isa = PBXGroup;
 			children = (
 				83DE06472563FBAD0085AC72 /* UserLogViewController.swift */,
+				83DE0650256407200085AC72 /* UserLogViewController+UI.swift */,
+				83DE0653256408B60085AC72 /* UserLogRouter.swift */,
 			);
 			path = UserLog;
 			sourceTree = "<group>";
@@ -694,6 +703,7 @@
 				AA7F54F22532C1A6001C4012 /* PloggingViewController.swift in Sources */,
 				AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */,
 				AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */,
+				83DE065725640C000085AC72 /* DetailViewController+UI.swift in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
 				12754F5B25506A1D00B42C3E /* CircleInfoView.swift in Sources */,
 				12438B342556830F00388DC6 /* ScoreInfoViewController.swift in Sources */,
@@ -701,9 +711,11 @@
 				1216B2D8254ED12000F7E91C /* ScoreInfoView.swift in Sources */,
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,
 				4CC9C7C825231581004D873D /* QuestViewController.swift in Sources */,
+				83DE0651256407200085AC72 /* UserLogViewController+UI.swift in Sources */,
 				AA7F5528253356BE001C4012 /* PhotoManager.swift in Sources */,
 				1208B3832545CC7D00E085D4 /* ChallengeInteractor.swift in Sources */,
 				AAB3B4EC2520B2B400F0311A /* UIImage+Extensions.swift in Sources */,
+				83DE0654256408B60085AC72 /* UserLogRouter.swift in Sources */,
 				4CC9C7CB252315D7004D873D /* QuestInteractor.swift in Sources */,
 				AA7F55232533568D001C4012 /* PloggingImageView.swift in Sources */,
 				4CC9C7D4252315F3004D873D /* QuestModels.swift in Sources */,

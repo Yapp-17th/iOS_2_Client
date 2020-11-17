@@ -9,11 +9,28 @@
 import UIKit
 
 class UserLogViewController: UIViewController {
-
+    var router:  (NSObjectProtocol & UserLogRoutingLogic)?
+    
+    lazy var nextButton = UIButton().then {
+        $0.setTitle("next", for: .normal)
+        $0.backgroundColor = .lightGray
+        $0.addTarget(self, action: #selector(touchUpNextButton), for: .touchUpInside)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         setNavigationItem()
+        configure()
+        setUpViews()
+        setUpLayout()
+    }
+    
+    private func configure() {
+        let viewController = self
+        let router = UserLogRouter()
+        viewController.router = router
+        router.viewController = viewController
     }
     
     private func setNavigationItem() {
@@ -22,5 +39,8 @@ class UserLogViewController: UIViewController {
         navigationController?.navigationBar.topItem?.title = "챌린지"
     }
   
+    @objc func touchUpNextButton() {
+        router?.routeToDetail()
+    }
 
 }

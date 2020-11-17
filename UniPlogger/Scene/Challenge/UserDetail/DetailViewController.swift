@@ -9,12 +9,50 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    lazy var backgroundImageView = UIImageView().then {
+        let image = UIImage(named: "mainBackground")
+        $0.image = image!.resizeTopAlignedToFill(newWidth: self.view.frame.width)
+        $0.contentMode = .top
+        $0.clipsToBounds = true
+    }
+    lazy var ploggingImageView = PloggingImageView().then {
+        $0.backgroundColor = .lightGray
+        $0.layer.cornerRadius = 10
+    }
+
+    // MARK: Object lifecycle
+      
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+
+    // MARK: Setup
+
+    private func setup() {
+        
+    }
+
+    // MARK: View lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = .white
+        setNavigationItem()
+        setUpViews()
+        setUpLayout()
     }
 
-
+    private func setNavigationItem() {
+        let date = "20.10.17"
+        navigationItem.title = "\(date)"
+        navigationController?.navigationBar.backItem?.title = "로그"
+    }
+    
 }
