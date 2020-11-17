@@ -10,7 +10,7 @@ import Moya
 
 enum PloggingAPITarget{
     //쓰레기통 CRUD
-    case createTrash(latitude: Double, longitude: Double)
+  case createTrash(latitude: Double, longitude: Double, address: String)
     case fetchTrashList
 }
 
@@ -18,9 +18,9 @@ extension PloggingAPITarget: BaseTarget{
     var path: String{
         switch self{
         case .createTrash:
-            return "trash"
+            return "trashcans/"
         case .fetchTrashList:
-            return "trash"
+            return "trashcans/"
         }
     }
     
@@ -35,8 +35,13 @@ extension PloggingAPITarget: BaseTarget{
     
     var parameters: [String : Any]{
         switch self{
-        case let .createTrash(latitude, longitude):
-            return ["latitude": latitude, "longitude": longitude]
+        case let .createTrash(latitude, longitude, address):
+            return [
+              "latitude": latitude,
+              "longitude": longitude,
+              "address": address,
+              "state": "C"
+            ]
         case .fetchTrashList:
             return [:]
         }

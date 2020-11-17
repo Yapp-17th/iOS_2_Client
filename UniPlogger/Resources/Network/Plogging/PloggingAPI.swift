@@ -20,8 +20,8 @@ final class PloggingAPI{
         plugins: [VerbosePlugin(verbose: true)]
     )
     
-    func createTrashCan(latitude: Double, longitude: Double, completionHandler: @escaping (Result<BaseResponse<Bool>, Error>) -> Void){
-        provider.rx.request(.createTrash(latitude: latitude, longitude: longitude))
+  func createTrashCan(latitude: Double, longitude: Double, address: String, completionHandler: @escaping (Result<BaseResponse<Bool>, Error>) -> Void){
+    provider.rx.request(.createTrash(latitude: latitude, longitude: longitude, address: address))
           .filterSuccessfulStatusCodes()
           .map(BaseResponse<Bool>.self)
           .subscribe(onSuccess: {
