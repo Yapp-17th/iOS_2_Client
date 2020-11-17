@@ -9,8 +9,7 @@
 import Moya
 
 enum NetworkEnvironment: String{
-    case distribution = "distribution url"
-    case development = "development url"
+    case development = "http://49.50.174.68/"
 }
 
 class SessionManager: Session{
