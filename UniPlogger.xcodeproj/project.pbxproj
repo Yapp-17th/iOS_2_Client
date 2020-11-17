@@ -43,6 +43,8 @@
 		83DE0651256407200085AC72 /* UserLogViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE0650256407200085AC72 /* UserLogViewController+UI.swift */; };
 		83DE0654256408B60085AC72 /* UserLogRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE0653256408B60085AC72 /* UserLogRouter.swift */; };
 		83DE065725640C000085AC72 /* DetailViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE065625640C000085AC72 /* DetailViewController+UI.swift */; };
+		83DE06612564316E0085AC72 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE06602564316E0085AC72 /* ReportViewController.swift */; };
+		83DE0664256432440085AC72 /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE0663256432440085AC72 /* DetailRouter.swift */; };
 		AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54DD2532C109001C4012 /* BaseViewController.swift */; };
 		AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B5062520D16800F0311A /* UIColor+Extensions.swift */; };
 		AA7F54E02532C16E001C4012 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB887B02524603E000A9D58 /* UIFont+Extensions.swift */; };
@@ -128,6 +130,8 @@
 		83DE0650256407200085AC72 /* UserLogViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserLogViewController+UI.swift"; sourceTree = "<group>"; };
 		83DE0653256408B60085AC72 /* UserLogRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogRouter.swift; sourceTree = "<group>"; };
 		83DE065625640C000085AC72 /* DetailViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailViewController+UI.swift"; sourceTree = "<group>"; };
+		83DE06602564316E0085AC72 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		83DE0663256432440085AC72 /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
 		925E132ACB7FB812EDA3D67C /* Pods-UniPlogger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.debug.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.debug.xcconfig"; sourceTree = "<group>"; };
 		AA1AC8C4252E1C120022ACE5 /* UserDefault+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extensions.swift"; sourceTree = "<group>"; };
 		AA1AC8C6252E1C7D0022ACE5 /* CLLocationCoordinated2D+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinated2D+Extensions.swift"; sourceTree = "<group>"; };
@@ -210,6 +214,7 @@
 		1208B3772545CC5500E085D4 /* Challenge */ = {
 			isa = PBXGroup;
 			children = (
+				83DE065F2564312D0085AC72 /* Report */,
 				83309D03255D7F5F001A6A0E /* Start */,
 				83DE065E256430040085AC72 /* Challenge */,
 				12438B362556832000388DC6 /* ScoreInfo */,
@@ -295,6 +300,7 @@
 			children = (
 				83DE06412563FAB60085AC72 /* DetailViewController.swift */,
 				83DE065625640C000085AC72 /* DetailViewController+UI.swift */,
+				83DE0663256432440085AC72 /* DetailRouter.swift */,
 			);
 			path = UserDetail;
 			sourceTree = "<group>";
@@ -322,6 +328,14 @@
 				1208B37D2545CC7D00E085D4 /* ChallengeInteractor.swift */,
 			);
 			path = Challenge;
+			sourceTree = "<group>";
+		};
+		83DE065F2564312D0085AC72 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				83DE06602564316E0085AC72 /* ReportViewController.swift */,
+			);
+			path = Report;
 			sourceTree = "<group>";
 		};
 		AA7F54DB2532C0E5001C4012 /* Recovered References */ = {
@@ -710,6 +724,8 @@
 				4CC9C7D1252315E9004D873D /* QuestRouter.swift in Sources */,
 				AA7F54F22532C1A6001C4012 /* PloggingViewController.swift in Sources */,
 				AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */,
+				83DE06612564316E0085AC72 /* ReportViewController.swift in Sources */,
+				83DE0664256432440085AC72 /* DetailRouter.swift in Sources */,
 				AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */,
 				83DE065725640C000085AC72 /* DetailViewController+UI.swift in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,

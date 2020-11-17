@@ -9,6 +9,7 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    var router: (NSObjectProtocol & DetailRoutingLogic)?
     
     lazy var backgroundImageView = UIImageView().then {
         let image = UIImage(named: "mainBackground")
@@ -45,11 +46,19 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        configure()
         setNavigationItem()
         setUpViews()
         setUpLayout()
     }
 
+    private func configure() {
+        let viewController = self
+        let router = DetailRouter()
+        viewController.router = router
+        router.viewController = viewController
+    }
+    
     private func setNavigationItem() {
         let date = "20.10.17"
         navigationItem.title = "\(date)"
@@ -58,6 +67,6 @@ class DetailViewController: UIViewController {
     }
     
     @objc func touchUpReportButton() {
-        print("report")
+        router?.routeToReport()
     }
 }
