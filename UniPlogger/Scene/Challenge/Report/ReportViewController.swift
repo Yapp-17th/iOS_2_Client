@@ -10,10 +10,25 @@ import UIKit
 
 class ReportViewController: UIViewController {
 
+    lazy var reportView = ReportView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(named: "reportDimColor")
+        setUpViews()
+        setUpLayout()
     }
 
+}
 
+extension ReportViewController {
+    
+    func setUpViews() {
+        
+    }
+    
+    func setUpLayout() {
+        
+    }
+    
 }
