@@ -63,7 +63,7 @@ extension MainTabBarController {
     
     private func setupChallengeViewController(){
         let challengeItem = UITabBarItem(title: "챌린지", image: UIImage(named: "tabbar_challenge"), tag: 0)
-        let vc = UIViewController()
+        let vc = hasPlanet() ? UINavigationController(rootViewController: ChallengeViewController()) : StartViewController()
         vc.tabBarItem = challengeItem
         self.addChild(vc)
     }
@@ -96,5 +96,10 @@ extension MainTabBarController {
         let vc = UIViewController()
         vc.tabBarItem = myItem
         self.addChild(vc)
+    }
+    
+    private func hasPlanet() -> Bool {
+        // user의 planet이 nil이면 return false 
+        return false
     }
 }

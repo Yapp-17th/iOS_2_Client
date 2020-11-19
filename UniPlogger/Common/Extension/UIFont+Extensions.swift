@@ -80,9 +80,36 @@ public enum NotoSans {
   }
 }
 
+public enum NotoSansKR {
+    case black
+    case bold
+    case light
+    case medium
+    case regular
+    case thin
+    
+    var name: String {
+        switch self{
+        case .black:
+            return "NotoSansKR-Black"
+        case .bold:
+            return "NotoSansKR-Bold"
+        case .light:
+            return "NotoSansKR-Light"
+        case .regular:
+            return "NotoSansKR-Regular"
+        case .medium:
+            return "NotoSansKR-Medium"
+        case .thin:
+            return "NotoSansKR-Thin"
+        }
+    }
+}
+
 public protocol CustomFont {
     static func roboto(ofSize fontSize: CGFloat, weight: Roboto) -> UIFont
     static func notoSans(ofSize fontSize: CGFloat, weight: NotoSans) -> UIFont
+    static func notoSansKR(ofSize fontSize: CGFloat, weight: NotoSansKR) -> UIFont
 }
 
 extension UIFont: CustomFont {
@@ -124,5 +151,8 @@ extension UIFont: CustomFont {
       default:
         return .roboto(ofSize: size, weight: weight)
       }
+    }
+    public static func notoSansKR(ofSize fontSize: CGFloat, weight: NotoSansKR) -> UIFont {
+        return UIFont(name: weight.name, size: fontSize)!
     }
 }

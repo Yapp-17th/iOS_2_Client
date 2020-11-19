@@ -12,4 +12,6 @@ target 'UniPlogger' do
   pod 'Moya/RxSwift', '~> 14.0'
   pod 'Toast-Swift'
   pod 'IQKeyboardManagerSwift'
+  pod 'RxSwift', '~> 5.0'
+  pod 'RxCocoa', '~> 5.0'
 end

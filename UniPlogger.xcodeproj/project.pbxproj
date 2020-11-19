@@ -28,6 +28,28 @@
 		4CC9C7D4252315F3004D873D /* QuestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7D3252315F3004D873D /* QuestModels.swift */; };
 		4CC9C7D7252315FC004D873D /* QuestWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7D6252315FC004D873D /* QuestWorker.swift */; };
 		4CC9C7DA25232128004D873D /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7D925232128004D873D /* Quest.swift */; };
+		83DE07702566AD050085AC72 /* ScoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07522566AD050085AC72 /* ScoreInfoViewController.swift */; };
+		83DE07712566AD050085AC72 /* CircleInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07542566AD050085AC72 /* CircleInfoView.swift */; };
+		83DE07722566AD050085AC72 /* ScoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07552566AD050085AC72 /* ScoreInfoView.swift */; };
+		83DE07732566AD050085AC72 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07572566AD050085AC72 /* StartViewController.swift */; };
+		83DE07742566AD050085AC72 /* StartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07582566AD050085AC72 /* StartRouter.swift */; };
+		83DE07752566AD050085AC72 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE075A2566AD050085AC72 /* DetailViewController.swift */; };
+		83DE07762566AD050085AC72 /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE075B2566AD050085AC72 /* DetailRouter.swift */; };
+		83DE07772566AD050085AC72 /* DetailViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE075C2566AD050085AC72 /* DetailViewController+UI.swift */; };
+		83DE07782566AD050085AC72 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE075E2566AD050085AC72 /* ReportViewController.swift */; };
+		83DE07792566AD050085AC72 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07602566AD050085AC72 /* ReportView.swift */; };
+		83DE077A2566AD050085AC72 /* UserLogRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07622566AD050085AC72 /* UserLogRouter.swift */; };
+		83DE077B2566AD050085AC72 /* UserLogViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07632566AD050085AC72 /* UserLogViewController+UI.swift */; };
+		83DE077C2566AD050085AC72 /* UserLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07642566AD050085AC72 /* UserLogViewController.swift */; };
+		83DE077D2566AD050085AC72 /* ChallengeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07662566AD050085AC72 /* ChallengeModels.swift */; };
+		83DE077E2566AD050085AC72 /* ChallengeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07672566AD050085AC72 /* ChallengeWorker.swift */; };
+		83DE077F2566AD050085AC72 /* ChallengeViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07682566AD050085AC72 /* ChallengeViewController+UI.swift */; };
+		83DE07802566AD050085AC72 /* ChallengeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07692566AD050085AC72 /* ChallengeRouter.swift */; };
+		83DE07812566AD050085AC72 /* ChallengePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE076A2566AD050085AC72 /* ChallengePresenter.swift */; };
+		83DE07822566AD050085AC72 /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE076B2566AD050085AC72 /* ChallengeViewController.swift */; };
+		83DE07832566AD050085AC72 /* TopRankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE076D2566AD050085AC72 /* TopRankView.swift */; };
+		83DE07842566AD050085AC72 /* RankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE076E2566AD050085AC72 /* RankTableViewCell.swift */; };
+		83DE07852566AD050085AC72 /* ChallengeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE076F2566AD050085AC72 /* ChallengeInteractor.swift */; };
 		AA217515254CF5ED0076BAD5 /* TrashCan.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA217514254CF5ED0076BAD5 /* TrashCan.swift */; };
 		AA2CAE012543EAD500105748 /* TrashAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CADF52543EAD500105748 /* TrashAnnotationView.swift */; };
 		AA2CAE022543EAD600105748 /* TrashAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2CADF62543EAD500105748 /* TrashAnnotation.swift */; };
@@ -132,6 +154,28 @@
 		4CC9C7D3252315F3004D873D /* QuestModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestModels.swift; sourceTree = "<group>"; };
 		4CC9C7D6252315FC004D873D /* QuestWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestWorker.swift; sourceTree = "<group>"; };
 		4CC9C7D925232128004D873D /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
+		83DE07522566AD050085AC72 /* ScoreInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreInfoViewController.swift; sourceTree = "<group>"; };
+		83DE07542566AD050085AC72 /* CircleInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleInfoView.swift; sourceTree = "<group>"; };
+		83DE07552566AD050085AC72 /* ScoreInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreInfoView.swift; sourceTree = "<group>"; };
+		83DE07572566AD050085AC72 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		83DE07582566AD050085AC72 /* StartRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartRouter.swift; sourceTree = "<group>"; };
+		83DE075A2566AD050085AC72 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		83DE075B2566AD050085AC72 /* DetailRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
+		83DE075C2566AD050085AC72 /* DetailViewController+UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DetailViewController+UI.swift"; sourceTree = "<group>"; };
+		83DE075E2566AD050085AC72 /* ReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		83DE07602566AD050085AC72 /* ReportView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
+		83DE07622566AD050085AC72 /* UserLogRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLogRouter.swift; sourceTree = "<group>"; };
+		83DE07632566AD050085AC72 /* UserLogViewController+UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserLogViewController+UI.swift"; sourceTree = "<group>"; };
+		83DE07642566AD050085AC72 /* UserLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLogViewController.swift; sourceTree = "<group>"; };
+		83DE07662566AD050085AC72 /* ChallengeModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeModels.swift; sourceTree = "<group>"; };
+		83DE07672566AD050085AC72 /* ChallengeWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeWorker.swift; sourceTree = "<group>"; };
+		83DE07682566AD050085AC72 /* ChallengeViewController+UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChallengeViewController+UI.swift"; sourceTree = "<group>"; };
+		83DE07692566AD050085AC72 /* ChallengeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeRouter.swift; sourceTree = "<group>"; };
+		83DE076A2566AD050085AC72 /* ChallengePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengePresenter.swift; sourceTree = "<group>"; };
+		83DE076B2566AD050085AC72 /* ChallengeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeViewController.swift; sourceTree = "<group>"; };
+		83DE076D2566AD050085AC72 /* TopRankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopRankView.swift; sourceTree = "<group>"; };
+		83DE076E2566AD050085AC72 /* RankTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankTableViewCell.swift; sourceTree = "<group>"; };
+		83DE076F2566AD050085AC72 /* ChallengeInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeInteractor.swift; sourceTree = "<group>"; };
 		925E132ACB7FB812EDA3D67C /* Pods-UniPlogger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.debug.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.debug.xcconfig"; sourceTree = "<group>"; };
 		AA1AC8C4252E1C120022ACE5 /* UserDefault+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Extensions.swift"; sourceTree = "<group>"; };
 		AA1AC8C6252E1C7D0022ACE5 /* CLLocationCoordinated2D+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinated2D+Extensions.swift"; sourceTree = "<group>"; };
@@ -287,6 +331,7 @@
 		4CC9C7C525231565004D873D /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				83DE07502566AD050085AC72 /* Challenge */,
 				AA7F55122533568C001C4012 /* Share */,
 				AA7F54E32532C1A6001C4012 /* Plogging */,
 				4CC9C7C625231578004D873D /* Quest */,
@@ -305,6 +350,107 @@
 				4C401EC1253EE67100ABED84 /* Main */,
 			);
 			path = Quest;
+			sourceTree = "<group>";
+		};
+		83DE07502566AD050085AC72 /* Challenge */ = {
+			isa = PBXGroup;
+			children = (
+				83DE07512566AD050085AC72 /* ScoreInfo */,
+				83DE07562566AD050085AC72 /* Start */,
+				83DE07592566AD050085AC72 /* UserDetail */,
+				83DE075D2566AD050085AC72 /* Report */,
+				83DE07612566AD050085AC72 /* UserLog */,
+				83DE07652566AD050085AC72 /* Challenge */,
+			);
+			path = Challenge;
+			sourceTree = "<group>";
+		};
+		83DE07512566AD050085AC72 /* ScoreInfo */ = {
+			isa = PBXGroup;
+			children = (
+				83DE07522566AD050085AC72 /* ScoreInfoViewController.swift */,
+				83DE07532566AD050085AC72 /* Views */,
+			);
+			path = ScoreInfo;
+			sourceTree = "<group>";
+		};
+		83DE07532566AD050085AC72 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				83DE07542566AD050085AC72 /* CircleInfoView.swift */,
+				83DE07552566AD050085AC72 /* ScoreInfoView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		83DE07562566AD050085AC72 /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				83DE07572566AD050085AC72 /* StartViewController.swift */,
+				83DE07582566AD050085AC72 /* StartRouter.swift */,
+			);
+			path = Start;
+			sourceTree = "<group>";
+		};
+		83DE07592566AD050085AC72 /* UserDetail */ = {
+			isa = PBXGroup;
+			children = (
+				83DE075A2566AD050085AC72 /* DetailViewController.swift */,
+				83DE075B2566AD050085AC72 /* DetailRouter.swift */,
+				83DE075C2566AD050085AC72 /* DetailViewController+UI.swift */,
+			);
+			path = UserDetail;
+			sourceTree = "<group>";
+		};
+		83DE075D2566AD050085AC72 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				83DE075E2566AD050085AC72 /* ReportViewController.swift */,
+				83DE075F2566AD050085AC72 /* Views */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		83DE075F2566AD050085AC72 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				83DE07602566AD050085AC72 /* ReportView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		83DE07612566AD050085AC72 /* UserLog */ = {
+			isa = PBXGroup;
+			children = (
+				83DE07622566AD050085AC72 /* UserLogRouter.swift */,
+				83DE07632566AD050085AC72 /* UserLogViewController+UI.swift */,
+				83DE07642566AD050085AC72 /* UserLogViewController.swift */,
+			);
+			path = UserLog;
+			sourceTree = "<group>";
+		};
+		83DE07652566AD050085AC72 /* Challenge */ = {
+			isa = PBXGroup;
+			children = (
+				83DE07662566AD050085AC72 /* ChallengeModels.swift */,
+				83DE07672566AD050085AC72 /* ChallengeWorker.swift */,
+				83DE07682566AD050085AC72 /* ChallengeViewController+UI.swift */,
+				83DE07692566AD050085AC72 /* ChallengeRouter.swift */,
+				83DE076A2566AD050085AC72 /* ChallengePresenter.swift */,
+				83DE076B2566AD050085AC72 /* ChallengeViewController.swift */,
+				83DE076C2566AD050085AC72 /* Views */,
+				83DE076F2566AD050085AC72 /* ChallengeInteractor.swift */,
+			);
+			path = Challenge;
+			sourceTree = "<group>";
+		};
+		83DE076C2566AD050085AC72 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				83DE076D2566AD050085AC72 /* TopRankView.swift */,
+				83DE076E2566AD050085AC72 /* RankTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		AA2CADF42543EAD500105748 /* Annotation */ = {
@@ -722,18 +868,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83DE077A2566AD050085AC72 /* UserLogRouter.swift in Sources */,
 				4C401EAF253DE19100ABED84 /* ShareRouter.swift in Sources */,
 				4C8956832532D0630099934E /* QuestFactory.swift in Sources */,
 				AA7F54E22532C179001C4012 /* CLLocationCoordinated2D+Extensions.swift in Sources */,
 				AA7F54F12532C1A6001C4012 /* PloggingPresenter.swift in Sources */,
 				AA7F54EE2532C1A6001C4012 /* PloggingViewController+UI.swift in Sources */,
+				83DE07812566AD050085AC72 /* ChallengePresenter.swift in Sources */,
 				4C7248AE2542F86200ACB32B /* VerticalRoundButton.swift in Sources */,
 				AA7F54E12532C176001C4012 /* UserDefault+Extensions.swift in Sources */,
 				AA2CAE0A2543EAD600105748 /* PloggingRecordRouter.swift in Sources */,
+				83DE07712566AD050085AC72 /* CircleInfoView.swift in Sources */,
 				4CC9C7DA25232128004D873D /* Quest.swift in Sources */,
 				AA7F551D2533568D001C4012 /* SharePresenter.swift in Sources */,
+				83DE07792566AD050085AC72 /* ReportView.swift in Sources */,
+				83DE07752566AD050085AC72 /* DetailViewController.swift in Sources */,
 				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
 				AA7F551F2533568D001C4012 /* ShareViewController.swift in Sources */,
+				83DE07842566AD050085AC72 /* RankTableViewCell.swift in Sources */,
 				4C7248A92541CDE300ACB32B /* QuestList.swift in Sources */,
 				4C7248B925455B2C00ACB32B /* QuestBaseViewController.swift in Sources */,
 				AA2CAE012543EAD500105748 /* TrashAnnotationView.swift in Sources */,
@@ -753,12 +905,15 @@
 				AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */,
 				AA6CE4F32551780E00C83D28 /* TrashCanStorage.swift in Sources */,
 				AA7F55212533568D001C4012 /* ShareWorker.swift in Sources */,
+				83DE07762566AD050085AC72 /* DetailRouter.swift in Sources */,
 				AA7F55242533568D001C4012 /* PloggingInfoView.swift in Sources */,
 				4CB979C42524E5BC00498E81 /* NavigationTabsView.swift in Sources */,
 				AA2CAE092543EAD600105748 /* PloggingRecordInteractor.swift in Sources */,
 				AA35BC77254FEEFA00AE32A7 /* CoreDataStore.swift in Sources */,
 				AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
+				83DE07772566AD050085AC72 /* DetailViewController+UI.swift in Sources */,
+				83DE077B2566AD050085AC72 /* UserLogViewController+UI.swift in Sources */,
 				AA35BC86254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift in Sources */,
 				4C2D059B2556459400FA787F /* QuestDetailPresenter.swift in Sources */,
 				AAC9584F2545BC110092BA6E /* ScrollStackView.swift in Sources */,
@@ -766,12 +921,13 @@
 				AA7F54EF2532C1A6001C4012 /* PloggingModels.swift in Sources */,
 				4CC9C7CE252315E0004D873D /* QuestPresenter.swift in Sources */,
 				AA5EFBB82552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift in Sources */,
-				4CC9C7D1252315E9004D873D /* QuestRouter.swift in Sources */,
 				4C89567D2532CB3A0099934E /* QuestNavigationController.swift in Sources */,
+				83DE077F2566AD050085AC72 /* ChallengeViewController+UI.swift in Sources */,
 				4C8956862532E3230099934E /* QuestTableViewCell.swift in Sources */,
 				AA7F54F22532C1A6001C4012 /* PloggingViewController.swift in Sources */,
 				AA2CAE042543EAD600105748 /* PloggingRecordPresenter.swift in Sources */,
 				AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */,
+				83DE07822566AD050085AC72 /* ChallengeViewController.swift in Sources */,
 				AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */,
 				AA2CAE072543EAD600105748 /* PloggingRecordCollectionViewCell.swift in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
@@ -780,20 +936,31 @@
 				4CC9C7C825231581004D873D /* QuestViewController.swift in Sources */,
 				4C7248B52544297D00ACB32B /* HightlightButton.swift in Sources */,
 				AA7F5528253356BE001C4012 /* PhotoManager.swift in Sources */,
+				83DE077C2566AD050085AC72 /* UserLogViewController.swift in Sources */,
 				AA217515254CF5ED0076BAD5 /* TrashCan.swift in Sources */,
+				83DE07732566AD050085AC72 /* StartViewController.swift in Sources */,
 				AAB3B4EC2520B2B400F0311A /* UIImage+Extensions.swift in Sources */,
 				4C7248B12542FDA600ACB32B /* RecommandOtherView.swift in Sources */,
 				AA2CAE082543EAD600105748 /* PloggingRecordWorker.swift in Sources */,
+				83DE07742566AD050085AC72 /* StartRouter.swift in Sources */,
+				83DE07702566AD050085AC72 /* ScoreInfoViewController.swift in Sources */,
 				4CC9C7CB252315D7004D873D /* QuestInteractor.swift in Sources */,
 				AA2CAE032543EAD600105748 /* PloggingRecordViewController.swift in Sources */,
+				83DE07722566AD050085AC72 /* ScoreInfoView.swift in Sources */,
+				83DE07802566AD050085AC72 /* ChallengeRouter.swift in Sources */,
 				AA7F55232533568D001C4012 /* PloggingImageView.swift in Sources */,
 				AAAD68F82555738300895265 /* CLLocation+Extensions.swift in Sources */,
+				83DE07852566AD050085AC72 /* ChallengeInteractor.swift in Sources */,
 				AAAD68FF2555A52B00895265 /* QuestDetailViewController.swift in Sources */,
+				83DE07782566AD050085AC72 /* ReportViewController.swift in Sources */,
+				83DE07832566AD050085AC72 /* TopRankView.swift in Sources */,
 				4CC9C7D4252315F3004D873D /* QuestModels.swift in Sources */,
 				AAB5592E2549B790000BB903 /* Route.swift in Sources */,
+				83DE077D2566AD050085AC72 /* ChallengeModels.swift in Sources */,
 				AA7F54F02532C1A6001C4012 /* PloggingRouter.swift in Sources */,
 				AAB559352549BA2D000BB903 /* MultiColorPolyline.swift in Sources */,
 				AAB3B4F92520B5B600F0311A /* Common.swift in Sources */,
+				83DE077E2566AD050085AC72 /* ChallengeWorker.swift in Sources */,
 				AA7F54E02532C16E001C4012 /* UIFont+Extensions.swift in Sources */,
 				AA2CAE022543EAD600105748 /* TrashAnnotation.swift in Sources */,
 				AAAD691025566B1400895265 /* CameraViewController.swift in Sources */,
