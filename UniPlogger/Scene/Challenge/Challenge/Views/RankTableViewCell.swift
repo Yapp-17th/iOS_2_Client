@@ -23,11 +23,11 @@ class RankTableViewCell: UITableViewCell {
         $0.image = UIImage(named: "rank_other")
     }
     lazy var nameLabel = UILabel().then {
-        $0.font = .notoSansKR(ofSize: 12, weight: .regular)
+        $0.font = .notoSans(ofSize: 12, weight: .regular)
         $0.text = "땡숙이"
     }
     lazy var scoreLabel = UILabel().then {
-        $0.font = .notoSansKR(ofSize: 12, weight: .regular)
+        $0.font = .notoSans(ofSize: 12, weight: .regular)
         $0.text = "10000점"
         $0.textAlignment = .right
     }

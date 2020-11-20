@@ -10,7 +10,7 @@ import UIKit
 
 class CircleInfoView: UIView {
     lazy var infoLabel = UILabel().then {
-        $0.font = .notoSansKR(ofSize: 14, weight: .bold)
+        $0.font = .notoSans(ofSize: 14, weight: .bold)
         $0.textAlignment = .center
         $0.numberOfLines = 0
     }

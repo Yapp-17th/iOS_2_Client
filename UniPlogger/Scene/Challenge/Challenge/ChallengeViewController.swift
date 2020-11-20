@@ -29,7 +29,7 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
         $0.clipsToBounds = true
     }
     lazy var weekLabel = UILabel().then {
-        $0.font = .notoSansKR(ofSize: 20, weight: .bold)
+        $0.font = .notoSans(ofSize: 20, weight: .bold)
         $0.text = interactor?.setDate()
         $0.textAlignment = .center
     }

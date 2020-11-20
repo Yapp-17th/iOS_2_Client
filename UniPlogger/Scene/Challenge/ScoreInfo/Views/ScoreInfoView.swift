@@ -20,11 +20,11 @@ class ScoreInfoView: UIView {
         $0.image = UIImage(named: "challenge_info")
     }
     lazy var headerLabel = UILabel().then {
-        $0.font = .notoSansKR(ofSize: 20, weight: .bold)
+        $0.font = .notoSans(ofSize: 20, weight: .bold)
         $0.text = "점수 계산 방법"
     }
     lazy var descriptionLabel = UILabel().then {
-        $0.font = .notoSansKR(ofSize: 12, weight: .regular)
+        $0.font = .notoSans(ofSize: 12, weight: .regular)
         $0.textAlignment = .center
         $0.numberOfLines = 0
     }
@@ -43,7 +43,7 @@ class ScoreInfoView: UIView {
         $0.addTarget(self, action: #selector(touchUpDismissButton), for: .touchUpInside)
     }
     lazy var dismissLabel = UILabel().then {
-        $0.font = .notoSansKR(ofSize: 15, weight: .bold)
+        $0.font = .notoSans(ofSize: 15, weight: .bold)
         $0.text = "닫기"
         $0.textAlignment = .center
         $0.textColor = .white
@@ -128,15 +128,15 @@ extension ScoreInfoView {
     private func setDescriptionLabel() {
         let string = "점수에 대한 가중치는 다음과 같이 계산됩니다.\n동점 유저는 영어 - 한국어 - 숫자 순으로 배치됩니다."
         let attributedString = NSMutableAttributedString(string: string)
-        attributedString.addAttribute(.font, value: UIFont.notoSansKR(ofSize: 12, weight: .regular), range: (string as NSString).range(of: "점수에 대한 가중치는 다음과 같이 계산됩니다.\n동점 유저는 영어 - 한국어 - 숫자 순으로 배치됩니다."))
-        attributedString.addAttribute(.font, value: UIFont.notoSansKR(ofSize: 12, weight: .bold), range: (string as NSString).range(of: "영어 - 한국어 - 숫자"))
+        attributedString.addAttribute(.font, value: UIFont.notoSans(ofSize: 12, weight: .regular), range: (string as NSString).range(of: "점수에 대한 가중치는 다음과 같이 계산됩니다.\n동점 유저는 영어 - 한국어 - 숫자 순으로 배치됩니다."))
+        attributedString.addAttribute(.font, value: UIFont.notoSans(ofSize: 12, weight: .bold), range: (string as NSString).range(of: "영어 - 한국어 - 숫자"))
         descriptionLabel.attributedText = attributedString
     }
     
     private func setSecondCircleView() {
         let string = "0.01km\n1점\n(1km - 100점)"
         let attributedString = NSMutableAttributedString(string: string)
-        attributedString.addAttribute(.font, value: UIFont.notoSansKR(ofSize: 10, weight: .regular), range: (string as NSString).range(of: "(1km - 100점)"))
+        attributedString.addAttribute(.font, value: UIFont.notoSans(ofSize: 10, weight: .regular), range: (string as NSString).range(of: "(1km - 100점)"))
         secondCircleView.infoLabel.attributedText = attributedString
     }
 }
