@@ -77,7 +77,7 @@ class PloggingInteractor: NSObject, PloggingBusinessLogic, PloggingDataStore {
         }
     }
     func fetchTrashCan() {
-        self.worker.fetchTrashCan { [weak self] (list) in
+        self.worker.getTrashCanList { [weak self] (list) in
             let response = Plogging.FetchTrashCan.Response(list: list)
             self?.presenter?.presentFetchTrashCan(response: response)
         }
