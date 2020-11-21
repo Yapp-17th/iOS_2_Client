@@ -13,6 +13,7 @@ struct Quest {
     var title: String
     var content: String
     var category: Category
+    var step: Int?
     var state: QuestState
     
     enum Category {

@@ -11,7 +11,7 @@ import Foundation
 protocol QuestBusinessLogic {
     func fetchQuest(request: QuestModels.Reqeust)
     func change(state: QuestState)
-    func moveToNextStageAt(_ indexPath: IndexPath, state: QuestState)
+    func touchedQuestAccessoryAt(_ indexPath: IndexPath, state: QuestState)
 }
 
 protocol QuestDataStore {
@@ -21,7 +21,7 @@ protocol QuestDataStore {
 class QuestInteractor: QuestDataStore {
     private var presenter: QuestPresentationLogic
     private var worker: QuestWorker
-    private(set) var questList = QuestList(quests: [])
+    private(set) var questList = QuestList(questManager: QuestManager(), quests: [])
     
     init(presenter: QuestPresentationLogic, worker: QuestWorker) {
         self.presenter = presenter
@@ -35,7 +35,7 @@ extension QuestInteractor: QuestBusinessLogic {
         presenter.presentQuestList(response: .init(questList: quests))
     }
     
-    func moveToNextStageAt(_ indexPath: IndexPath, state: QuestState) {
+    func touchedQuestAccessoryAt(_ indexPath: IndexPath, state: QuestState) {
         guard var quest = questList.quest(at: indexPath, in: state) else { return }
         
         if state == .todo {
@@ -57,7 +57,7 @@ extension QuestInteractor: QuestBusinessLogic {
     
     
     func fetchQuest(request: QuestModels.Reqeust) {
-        questList = QuestList(quests: worker.fetchData())
+        questList = QuestList(questManager: QuestManager(), quests: worker.fetchData())
         
         let response = QuestModels.Response(questList: questList.quests(for: request.state))
         

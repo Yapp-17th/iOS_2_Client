@@ -10,6 +10,8 @@
 		101A5C8A5DA8441CFEF982F0 /* Pods_UniPlogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E470A391887A23D6AF25DD /* Pods_UniPlogger.framework */; };
 		4C2D058C25562E4F00FA787F /* QuestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D058B25562E4F00FA787F /* QuestRouter.swift */; };
 		4C2D059B2556459400FA787F /* QuestDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D059A2556459400FA787F /* QuestDetailPresenter.swift */; };
+		4C3F54A4256123CE006D7C9F /* QuestListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3F54A3256123CE006D7C9F /* QuestListTests.swift */; };
+		4C3F54BC25612818006D7C9F /* QuestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3F54BB25612818006D7C9F /* QuestManager.swift */; };
 		4C401EAF253DE19100ABED84 /* ShareRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EAE253DE19100ABED84 /* ShareRouter.swift */; };
 		4C401EB2253DE1F200ABED84 /* QuestState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EB1253DE1F200ABED84 /* QuestState.swift */; };
 		4C7248A92541CDE300ACB32B /* QuestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248A82541CDE300ACB32B /* QuestList.swift */; };
@@ -137,11 +139,25 @@
 		AAE05CE92568E3D400547501 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBFA255D633600EDB18A /* Data+Extensions.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4C3F54A6256123CE006D7C9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAB3B4BC2520A31100F0311A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AAB3B4C32520A31100F0311A;
+			remoteInfo = UniPlogger;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1215DCB5253C626800C5D9BE /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		12330CE7D885C1CB00C8E874 /* Pods-UniPlogger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.release.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.release.xcconfig"; sourceTree = "<group>"; };
 		4C2D058B25562E4F00FA787F /* QuestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestRouter.swift; sourceTree = "<group>"; };
 		4C2D059A2556459400FA787F /* QuestDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDetailPresenter.swift; sourceTree = "<group>"; };
+		4C3F54A1256123CE006D7C9F /* QuestListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuestListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C3F54A3256123CE006D7C9F /* QuestListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestListTests.swift; sourceTree = "<group>"; };
+		4C3F54A5256123CE006D7C9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C3F54BB25612818006D7C9F /* QuestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestManager.swift; sourceTree = "<group>"; };
 		4C401EAE253DE19100ABED84 /* ShareRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareRouter.swift; sourceTree = "<group>"; };
 		4C401EB1253DE1F200ABED84 /* QuestState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestState.swift; sourceTree = "<group>"; };
 		4C401EC3253EE6B300ABED84 /* QuestDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDetailViewController.swift; sourceTree = "<group>"; };
@@ -288,6 +304,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4C3F549E256123CE006D7C9F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AAB3B4C12520A31100F0311A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -306,6 +329,15 @@
 				4C8956852532E3230099934E /* QuestTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		4C3F54A2256123CE006D7C9F /* QuestListTests */ = {
+			isa = PBXGroup;
+			children = (
+				4C3F54A3256123CE006D7C9F /* QuestListTests.swift */,
+				4C3F54A5256123CE006D7C9F /* Info.plist */,
+			);
+			path = QuestListTests;
 			sourceTree = "<group>";
 		};
 		4C401EC1253EE67100ABED84 /* Main */ = {
@@ -360,6 +392,7 @@
 				4C89567C2532CB3A0099934E /* QuestNavigationController.swift */,
 				4C2D058B25562E4F00FA787F /* QuestRouter.swift */,
 				4C8956822532D0630099934E /* QuestFactory.swift */,
+				4C3F54BB25612818006D7C9F /* QuestManager.swift */,
 				4C401EC2253EE69500ABED84 /* Detail */,
 				4C401EC1253EE67100ABED84 /* Main */,
 			);
@@ -658,6 +691,7 @@
 			isa = PBXGroup;
 			children = (
 				AAB3B4C62520A31100F0311A /* UniPlogger */,
+				4C3F54A2256123CE006D7C9F /* QuestListTests */,
 				AAB3B4C52520A31100F0311A /* Products */,
 				E2D00847CB39D6B3C3C2760D /* Pods */,
 				F844166FBCB5428380F0D12E /* Frameworks */,
@@ -669,6 +703,7 @@
 			isa = PBXGroup;
 			children = (
 				AAB3B4C42520A31100F0311A /* UniPlogger.app */,
+				4C3F54A1256123CE006D7C9F /* QuestListTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -784,6 +819,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4C3F54A0256123CE006D7C9F /* QuestListTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C3F54A8256123CE006D7C9F /* Build configuration list for PBXNativeTarget "QuestListTests" */;
+			buildPhases = (
+				4C3F549D256123CE006D7C9F /* Sources */,
+				4C3F549E256123CE006D7C9F /* Frameworks */,
+				4C3F549F256123CE006D7C9F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4C3F54A7256123CE006D7C9F /* PBXTargetDependency */,
+			);
+			name = QuestListTests;
+			productName = QuestListTests;
+			productReference = 4C3F54A1256123CE006D7C9F /* QuestListTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AAB3B4C32520A31100F0311A /* UniPlogger */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AAB3B4DB2520A31200F0311A /* Build configuration list for PBXNativeTarget "UniPlogger" */;
@@ -809,10 +862,14 @@
 		AAB3B4BC2520A31100F0311A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1150;
+				LastSwiftUpdateCheck = 1210;
 				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = "손병근";
 				TargetAttributes = {
+					4C3F54A0256123CE006D7C9F = {
+						CreatedOnToolsVersion = 12.1;
+						TestTargetID = AAB3B4C32520A31100F0311A;
+					};
 					AAB3B4C32520A31100F0311A = {
 						CreatedOnToolsVersion = 11.5;
 					};
@@ -832,11 +889,19 @@
 			projectRoot = "";
 			targets = (
 				AAB3B4C32520A31100F0311A /* UniPlogger */,
+				4C3F54A0256123CE006D7C9F /* QuestListTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4C3F549F256123CE006D7C9F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AAB3B4C22520A31100F0311A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -910,6 +975,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4C3F549D256123CE006D7C9F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C3F54A4256123CE006D7C9F /* QuestListTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AAB3B4C02520A31100F0311A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -984,6 +1057,7 @@
 				AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */,
 				AA2CAE072543EAD600105748 /* PloggingRecordCollectionViewCell.swift in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
+				4C3F54BC25612818006D7C9F /* QuestManager.swift in Sources */,
 				AA35BC7C254FFC2B00AE32A7 /* Storage.swift in Sources */,
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,
 				4CC9C7C825231581004D873D /* QuestViewController.swift in Sources */,
@@ -1025,6 +1099,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		4C3F54A7256123CE006D7C9F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AAB3B4C32520A31100F0311A /* UniPlogger */;
+			targetProxy = 4C3F54A6256123CE006D7C9F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		AAB3B4D52520A31200F0311A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -1037,6 +1119,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4C3F54A9256123CE006D7C9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = QuestListTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.woong.QuestListTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UniPlogger.app/UniPlogger";
+			};
+			name = Debug;
+		};
+		4C3F54AA256123CE006D7C9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = QuestListTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.woong.QuestListTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UniPlogger.app/UniPlogger";
+			};
+			name = Release;
+		};
 		AAB3B4D92520A31200F0311A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1157,7 +1281,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 97C96KP84G;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = UniPlogger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1192,6 +1316,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4C3F54A8256123CE006D7C9F /* Build configuration list for PBXNativeTarget "QuestListTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C3F54A9256123CE006D7C9F /* Debug */,
+				4C3F54AA256123CE006D7C9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AAB3B4BF2520A31100F0311A /* Build configuration list for PBXProject "UniPlogger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

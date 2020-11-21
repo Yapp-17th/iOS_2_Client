@@ -207,7 +207,7 @@ extension QuestViewController: UITableViewDelegate {
             
             completion(true)
             guard let self = self else { return }
-            self.interactor?.moveToNextStageAt(indexPath, state: self.currentQuestState)
+            self.interactor?.touchedQuestAccessoryAt(indexPath, state: self.currentQuestState)
         }
         
         let quest = questViewModel?.quest(at: indexPath)
