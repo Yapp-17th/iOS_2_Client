@@ -135,6 +135,12 @@
 		AAC9585E2545BF130092BA6E /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AAC958572545BF120092BA6E /* NotoSansCJKkr-Medium.otf */; };
 		AAE05CE72568E3C100547501 /* VerbosePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBF7255D62FD00EDB18A /* VerbosePlugin.swift */; };
 		AAE05CE92568E3D400547501 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBFA255D633600EDB18A /* Data+Extensions.swift */; };
+		AAE05CF62568E75900547501 /* LogPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE05CF02568E75900547501 /* LogPresenter.swift */; };
+		AAE05CF72568E75900547501 /* LogWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE05CF12568E75900547501 /* LogWorker.swift */; };
+		AAE05CF82568E75900547501 /* LogRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE05CF22568E75900547501 /* LogRouter.swift */; };
+		AAE05CF92568E75900547501 /* LogModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE05CF32568E75900547501 /* LogModels.swift */; };
+		AAE05CFA2568E75900547501 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE05CF42568E75900547501 /* LogViewController.swift */; };
+		AAE05CFB2568E75900547501 /* LogInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE05CF52568E75900547501 /* LogInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -284,6 +290,12 @@
 		AAC958552545BF120092BA6E /* NotoSansCJKkr-DemiLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-DemiLight.otf"; sourceTree = "<group>"; };
 		AAC958562545BF120092BA6E /* NotoSansCJKkr-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Light.otf"; sourceTree = "<group>"; };
 		AAC958572545BF120092BA6E /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
+		AAE05CF02568E75900547501 /* LogPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogPresenter.swift; sourceTree = "<group>"; };
+		AAE05CF12568E75900547501 /* LogWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogWorker.swift; sourceTree = "<group>"; };
+		AAE05CF22568E75900547501 /* LogRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogRouter.swift; sourceTree = "<group>"; };
+		AAE05CF32568E75900547501 /* LogModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogModels.swift; sourceTree = "<group>"; };
+		AAE05CF42568E75900547501 /* LogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewController.swift; sourceTree = "<group>"; };
+		AAE05CF52568E75900547501 /* LogInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInteractor.swift; sourceTree = "<group>"; };
 		E4E470A391887A23D6AF25DD /* Pods_UniPlogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UniPlogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -345,6 +357,7 @@
 		4CC9C7C525231565004D873D /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				AAE05CEF2568E6E000547501 /* Log */,
 				83DE07502566AD050085AC72 /* Challenge */,
 				AA7F55122533568C001C4012 /* Share */,
 				AA7F54E32532C1A6001C4012 /* Plogging */,
@@ -764,6 +777,19 @@
 			path = Location;
 			sourceTree = "<group>";
 		};
+		AAE05CEF2568E6E000547501 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				AAE05CF02568E75900547501 /* LogPresenter.swift */,
+				AAE05CF12568E75900547501 /* LogWorker.swift */,
+				AAE05CF22568E75900547501 /* LogRouter.swift */,
+				AAE05CF32568E75900547501 /* LogModels.swift */,
+				AAE05CF42568E75900547501 /* LogViewController.swift */,
+				AAE05CF52568E75900547501 /* LogInteractor.swift */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
 		E2D00847CB39D6B3C3C2760D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -941,6 +967,7 @@
 				AAAD690225562CB900895265 /* IntrinsicSizeCollectionView.swift in Sources */,
 				AAA1CBF2255D620100EDB18A /* BaseTarget.swift in Sources */,
 				4CBA217B254EB1AF002BDCC3 /* QuestModels+ViewModel.swift in Sources */,
+				AAE05CFB2568E75900547501 /* LogInteractor.swift in Sources */,
 				AAB559392549BB26000BB903 /* FormatDisplay.swift in Sources */,
 				AAB559312549B846000BB903 /* Location.swift in Sources */,
 				AA7F551E2533568D001C4012 /* ShareInteractor.swift in Sources */,
@@ -963,6 +990,7 @@
 				AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
 				83DE07772566AD050085AC72 /* DetailViewController+UI.swift in Sources */,
+				AAE05CF82568E75900547501 /* LogRouter.swift in Sources */,
 				83DE077B2566AD050085AC72 /* UserLogViewController+UI.swift in Sources */,
 				AA35BC86254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift in Sources */,
 				AAA1CBE9255D5E9100EDB18A /* SessionManager.swift in Sources */,
@@ -1006,6 +1034,7 @@
 				83DE07852566AD050085AC72 /* ChallengeInteractor.swift in Sources */,
 				AAAD68FF2555A52B00895265 /* QuestDetailViewController.swift in Sources */,
 				83DE07782566AD050085AC72 /* ReportViewController.swift in Sources */,
+				AAE05CFA2568E75900547501 /* LogViewController.swift in Sources */,
 				83DE07832566AD050085AC72 /* TopRankView.swift in Sources */,
 				4CC9C7D4252315F3004D873D /* QuestModels.swift in Sources */,
 				AAB5592E2549B790000BB903 /* Route.swift in Sources */,
@@ -1016,9 +1045,12 @@
 				83DE077E2566AD050085AC72 /* ChallengeWorker.swift in Sources */,
 				AA7F54E02532C16E001C4012 /* UIFont+Extensions.swift in Sources */,
 				AA2CAE022543EAD600105748 /* TrashAnnotation.swift in Sources */,
+				AAE05CF62568E75900547501 /* LogPresenter.swift in Sources */,
+				AAE05CF92568E75900547501 /* LogModels.swift in Sources */,
 				AAAD691025566B1400895265 /* CameraViewController.swift in Sources */,
 				AA7F55202533568D001C4012 /* ShareViewController+UI.swift in Sources */,
 				4CC9C7D7252315FC004D873D /* QuestWorker.swift in Sources */,
+				AAE05CF72568E75900547501 /* LogWorker.swift in Sources */,
 				4C2D058C25562E4F00FA787F /* QuestRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

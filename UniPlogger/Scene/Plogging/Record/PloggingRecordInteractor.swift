@@ -29,7 +29,7 @@ class PloggingRecordInteractor: PloggingRecordBusinessLogic, PloggingRecordDataS
     
     var presenter: PloggingRecordPresentationLogic?
     var worker: PloggingRecordWorker?
-  
+    
     func fetchRecord() {
         guard let distance = self.distance,
               let seconds = self.seconds,
