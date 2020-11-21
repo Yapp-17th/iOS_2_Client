@@ -45,6 +45,27 @@ class ReportViewController: UIViewController {
             stackView.addArrangedSubview(reportItemLabel)
         }
     }
+    lazy var cancelButton = UIButton().then {
+        $0.backgroundColor = UIColor(named: "cancelButtonColor")
+        $0.layer.cornerRadius = self.view.frame.height * 0.035
+    }
+    lazy var cancelLabel = UILabel().then {
+        $0.text = "취소"
+        $0.textAlignment = .center
+        $0.textColor = .white
+        $0.font = .notoSans(ofSize: 18, weight: .bold)
+    }
+    lazy var reportButton = UIButton().then {
+        $0.backgroundColor = UIColor(named: "reportButtonColor")
+        $0.layer.cornerRadius = self.view.frame.height * 0.035
+    }
+    lazy var reportLabel = UILabel().then {
+        $0.text = "신고"
+        $0.textAlignment = .center
+        $0.textColor = .white 
+        $0.font = .notoSans(ofSize: 18, weight: .bold)
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +79,7 @@ class ReportViewController: UIViewController {
 extension ReportViewController {
     
     func setUpViews() {
-        [reportView, textStackView, firstItemStackView, secondItemStackView].forEach {
+        [reportView, textStackView, firstItemStackView, secondItemStackView, cancelButton, reportButton, cancelLabel, reportLabel].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview($0)
         }
@@ -82,6 +103,22 @@ extension ReportViewController {
             $0.leading.equalTo(textStackView)
 //            $0.centerX.equalToSuperview()
             $0.top.equalTo(firstItemStackView.snp.bottom).offset(10)
+        }
+        cancelButton.snp.makeConstraints {
+            $0.leading.equalTo(20)
+            $0.top.equalTo(secondItemStackView.snp.bottom).offset(14)
+            $0.width.equalTo(self.view.frame.width * 0.42)
+            $0.height.equalTo(self.view.frame.height * 0.07)
+        }
+        reportButton.snp.makeConstraints {
+            $0.trailing.equalTo(-20)
+            $0.bottom.width.height.equalTo(cancelButton)
+        }
+        cancelLabel.snp.makeConstraints {
+            $0.center.equalTo(cancelButton)
+        }
+        reportLabel.snp.makeConstraints {
+            $0.center.equalTo(reportButton)
         }
     }
     
