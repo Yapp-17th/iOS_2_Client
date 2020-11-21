@@ -63,7 +63,10 @@ extension MainTabBarController {
     
     private func setupChallengeViewController(){
         let challengeItem = UITabBarItem(title: "챌린지", image: UIImage(named: "tabbar_challenge"), tag: 0)
-        let vc = hasPlanet() ? UINavigationController(rootViewController: ChallengeViewController()) : StartViewController()
+//        let vc = UINavigationController(rootViewController: ChallengeViewController())
+        let vc = UINavigationController(rootViewController: hasPlanet() ?  ChallengeViewController() : StartViewController())
+        vc.isNavigationBarHidden = true 
+//        let vc = hasPlanet() ? UINavigationController(rootViewController: ChallengeViewController()) : StartViewController()
         vc.tabBarItem = challengeItem
         self.addChild(vc)
     }

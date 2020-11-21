@@ -16,14 +16,15 @@ class StartRouter: NSObject, StartRoutingLogic {
     weak var viewController: StartViewController?
     
     func routeToChallenge() {
-        let destinationVC = UINavigationController(rootViewController: ChallengeViewController())
+        let destinationVC = ChallengeViewController()
         navigateToChallenge(source: viewController!, destination: destinationVC)
     }
     
-    private func navigateToChallenge(source: StartViewController, destination: UINavigationController) {
-        destination.modalTransitionStyle = .crossDissolve
-        destination.modalPresentationStyle = .fullScreen
-        source.present(destination, animated: true)
+    private func navigateToChallenge(source: StartViewController, destination: ChallengeViewController) {
+//        destination.modalTransitionStyle = .crossDissolve
+//        destination.modalPresentationStyle = .fullScreen
+        source.navigationController?.setViewControllers([destination], animated: true)
+//        source.present(destination, animated: true)
     }
 
 }
