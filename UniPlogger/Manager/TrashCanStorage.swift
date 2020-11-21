@@ -14,6 +14,11 @@ protocol TrashCanStorageType{
         completion: @escaping (Result<TrashCan, Error>) -> Void
     )
     
+    func createTrashCanList(
+        _ list: [TrashCan],
+        completion: @escaping ((Result<[TrashCan], Error>) -> Void)
+    )
+    
     func fetchTrashCanList(
         completion: @escaping (Result<[TrashCan], Error>) -> Void
     )
@@ -49,6 +54,16 @@ extension Storage: TrashCanStorageType{
             try self.context.save()
             completion(.success(managedTrashCan.toTrashCan()))
         }catch let error{
+            completion(.failure(StorageError.create(error.localizedDescription)))
+        }
+    }
+    
+    func createTrashCanList(_ list: [TrashCan], completion: @escaping ((Result<[TrashCan], Error>) -> Void)) {
+        let managedList = list.map { ManagedTrashCan(context: self.context).fromTrashCan($0)}
+        do{
+            try self.context.save()
+            completion(.success(list))
+        }catch {
             completion(.failure(StorageError.create(error.localizedDescription)))
         }
     }
