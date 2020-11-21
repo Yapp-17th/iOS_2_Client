@@ -28,6 +28,9 @@
 		4CC9C7D4252315F3004D873D /* QuestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7D3252315F3004D873D /* QuestModels.swift */; };
 		4CC9C7D7252315FC004D873D /* QuestWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7D6252315FC004D873D /* QuestWorker.swift */; };
 		4CC9C7DA25232128004D873D /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7D925232128004D873D /* Quest.swift */; };
+		8353A3732568FE9400F9AA4F /* ReportItemLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A3722568FE9400F9AA4F /* ReportItemLabel.swift */; };
+		8353A377256911F900F9AA4F /* ReportItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A376256911F900F9AA4F /* ReportItem.swift */; };
+		8353A37A2569213600F9AA4F /* ReportItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A3792569213600F9AA4F /* ReportItemCell.swift */; };
 		83DE07702566AD050085AC72 /* ScoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07522566AD050085AC72 /* ScoreInfoViewController.swift */; };
 		83DE07712566AD050085AC72 /* CircleInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07542566AD050085AC72 /* CircleInfoView.swift */; };
 		83DE07722566AD050085AC72 /* ScoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07552566AD050085AC72 /* ScoreInfoView.swift */; };
@@ -37,7 +40,6 @@
 		83DE07762566AD050085AC72 /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE075B2566AD050085AC72 /* DetailRouter.swift */; };
 		83DE07772566AD050085AC72 /* DetailViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE075C2566AD050085AC72 /* DetailViewController+UI.swift */; };
 		83DE07782566AD050085AC72 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE075E2566AD050085AC72 /* ReportViewController.swift */; };
-		83DE07792566AD050085AC72 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07602566AD050085AC72 /* ReportView.swift */; };
 		83DE077A2566AD050085AC72 /* UserLogRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07622566AD050085AC72 /* UserLogRouter.swift */; };
 		83DE077B2566AD050085AC72 /* UserLogViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07632566AD050085AC72 /* UserLogViewController+UI.swift */; };
 		83DE077C2566AD050085AC72 /* UserLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07642566AD050085AC72 /* UserLogViewController.swift */; };
@@ -154,6 +156,9 @@
 		4CC9C7D3252315F3004D873D /* QuestModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestModels.swift; sourceTree = "<group>"; };
 		4CC9C7D6252315FC004D873D /* QuestWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestWorker.swift; sourceTree = "<group>"; };
 		4CC9C7D925232128004D873D /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
+		8353A3722568FE9400F9AA4F /* ReportItemLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportItemLabel.swift; sourceTree = "<group>"; };
+		8353A376256911F900F9AA4F /* ReportItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportItem.swift; sourceTree = "<group>"; };
+		8353A3792569213600F9AA4F /* ReportItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportItemCell.swift; sourceTree = "<group>"; };
 		83DE07522566AD050085AC72 /* ScoreInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreInfoViewController.swift; sourceTree = "<group>"; };
 		83DE07542566AD050085AC72 /* CircleInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleInfoView.swift; sourceTree = "<group>"; };
 		83DE07552566AD050085AC72 /* ScoreInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreInfoView.swift; sourceTree = "<group>"; };
@@ -163,7 +168,6 @@
 		83DE075B2566AD050085AC72 /* DetailRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
 		83DE075C2566AD050085AC72 /* DetailViewController+UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DetailViewController+UI.swift"; sourceTree = "<group>"; };
 		83DE075E2566AD050085AC72 /* ReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
-		83DE07602566AD050085AC72 /* ReportView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		83DE07622566AD050085AC72 /* UserLogRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLogRouter.swift; sourceTree = "<group>"; };
 		83DE07632566AD050085AC72 /* UserLogViewController+UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserLogViewController+UI.swift"; sourceTree = "<group>"; };
 		83DE07642566AD050085AC72 /* UserLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLogViewController.swift; sourceTree = "<group>"; };
@@ -352,6 +356,15 @@
 			path = Quest;
 			sourceTree = "<group>";
 		};
+		8353A3712568FE2E00F9AA4F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8353A3722568FE9400F9AA4F /* ReportItemLabel.swift */,
+				8353A3792569213600F9AA4F /* ReportItemCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		83DE07502566AD050085AC72 /* Challenge */ = {
 			isa = PBXGroup;
 			children = (
@@ -405,18 +418,11 @@
 		83DE075D2566AD050085AC72 /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				8353A376256911F900F9AA4F /* ReportItem.swift */,
+				8353A3712568FE2E00F9AA4F /* Views */,
 				83DE075E2566AD050085AC72 /* ReportViewController.swift */,
-				83DE075F2566AD050085AC72 /* Views */,
 			);
 			path = Report;
-			sourceTree = "<group>";
-		};
-		83DE075F2566AD050085AC72 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				83DE07602566AD050085AC72 /* ReportView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		83DE07612566AD050085AC72 /* UserLog */ = {
@@ -881,7 +887,6 @@
 				83DE07712566AD050085AC72 /* CircleInfoView.swift in Sources */,
 				4CC9C7DA25232128004D873D /* Quest.swift in Sources */,
 				AA7F551D2533568D001C4012 /* SharePresenter.swift in Sources */,
-				83DE07792566AD050085AC72 /* ReportView.swift in Sources */,
 				83DE07752566AD050085AC72 /* DetailViewController.swift in Sources */,
 				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
 				AA7F551F2533568D001C4012 /* ShareViewController.swift in Sources */,
@@ -893,6 +898,7 @@
 				AA7F54EC2532C1A6001C4012 /* StartCountingViewController.swift in Sources */,
 				AAAD690225562CB900895265 /* IntrinsicSizeCollectionView.swift in Sources */,
 				4CBA217B254EB1AF002BDCC3 /* QuestModels+ViewModel.swift in Sources */,
+				8353A37A2569213600F9AA4F /* ReportItemCell.swift in Sources */,
 				AAB559392549BB26000BB903 /* FormatDisplay.swift in Sources */,
 				AAB559312549B846000BB903 /* Location.swift in Sources */,
 				AA7F551E2533568D001C4012 /* ShareInteractor.swift in Sources */,
@@ -931,6 +937,7 @@
 				AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */,
 				AA2CAE072543EAD600105748 /* PloggingRecordCollectionViewCell.swift in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
+				8353A377256911F900F9AA4F /* ReportItem.swift in Sources */,
 				AA35BC7C254FFC2B00AE32A7 /* Storage.swift in Sources */,
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,
 				4CC9C7C825231581004D873D /* QuestViewController.swift in Sources */,
@@ -950,6 +957,7 @@
 				83DE07802566AD050085AC72 /* ChallengeRouter.swift in Sources */,
 				AA7F55232533568D001C4012 /* PloggingImageView.swift in Sources */,
 				AAAD68F82555738300895265 /* CLLocation+Extensions.swift in Sources */,
+				8353A3732568FE9400F9AA4F /* ReportItemLabel.swift in Sources */,
 				83DE07852566AD050085AC72 /* ChallengeInteractor.swift in Sources */,
 				AAAD68FF2555A52B00895265 /* QuestDetailViewController.swift in Sources */,
 				83DE07782566AD050085AC72 /* ReportViewController.swift in Sources */,
