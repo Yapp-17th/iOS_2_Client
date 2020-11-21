@@ -82,7 +82,6 @@
 		AA7F5528253356BE001C4012 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F5527253356BE001C4012 /* PhotoManager.swift */; };
 		AAA1CBE9255D5E9100EDB18A /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBE8255D5E9100EDB18A /* SessionManager.swift */; };
 		AAA1CBEC255D5F9C00EDB18A /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */; };
-		AAA1CBEF255D611B00EDB18A /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBEE255D611B00EDB18A /* BaseResponse.swift */; };
 		AAA1CBF2255D620100EDB18A /* BaseTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBF1255D620100EDB18A /* BaseTarget.swift */; };
 		AAA1CBF8255D62FD00EDB18A /* VerbosePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBF7255D62FD00EDB18A /* VerbosePlugin.swift */; };
 		AAA1CBFB255D633600EDB18A /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBFA255D633600EDB18A /* Data+Extensions.swift */; };
@@ -192,7 +191,6 @@
 		AA7F5527253356BE001C4012 /* PhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		AAA1CBE8255D5E9100EDB18A /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
-		AAA1CBEE255D611B00EDB18A /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		AAA1CBF1255D620100EDB18A /* BaseTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTarget.swift; sourceTree = "<group>"; };
 		AAA1CBF7255D62FD00EDB18A /* VerbosePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerbosePlugin.swift; sourceTree = "<group>"; };
 		AAA1CBFA255D633600EDB18A /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
@@ -486,7 +484,6 @@
 				AAA1CBF6255D62D500EDB18A /* Plugin */,
 				AAA1CBE8255D5E9100EDB18A /* SessionManager.swift */,
 				AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */,
-				AAA1CBEE255D611B00EDB18A /* BaseResponse.swift */,
 				AAA1CBF1255D620100EDB18A /* BaseTarget.swift */,
 				AAA1CC00255D645D00EDB18A /* Plogging */,
 			);
@@ -831,7 +828,6 @@
 				AA2CAE072543EAD600105748 /* PloggingRecordCollectionViewCell.swift in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
 				AA35BC7C254FFC2B00AE32A7 /* Storage.swift in Sources */,
-				AAA1CBEF255D611B00EDB18A /* BaseResponse.swift in Sources */,
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,
 				4CC9C7C825231581004D873D /* QuestViewController.swift in Sources */,
 				4C7248B52544297D00ACB32B /* HightlightButton.swift in Sources */,

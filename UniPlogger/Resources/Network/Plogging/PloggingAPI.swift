@@ -10,7 +10,7 @@ import Moya
 import RxSwift
 
 final class PloggingAPI{
-    typealias Response<T: Codable> = BaseResponse<T>
+    typealias Response<T: Codable> = T
     
     let disposeBag = DisposeBag()
     
@@ -20,20 +20,20 @@ final class PloggingAPI{
         plugins: [VerbosePlugin(verbose: true)]
     )
     
-  func createTrashCan(latitude: Double, longitude: Double, address: String, completionHandler: @escaping (Result<BaseResponse<Bool>, Error>) -> Void){
+  func createTrashCan(latitude: Double, longitude: Double, address: String, completionHandler: @escaping (Result<Bool, Error>) -> Void){
     provider.rx.request(.createTrash(latitude: latitude, longitude: longitude, address: address))
           .filterSuccessfulStatusCodes()
-          .map(BaseResponse<Bool>.self)
+        .map(Bool.self)
           .subscribe(onSuccess: {
             completionHandler(.success($0))
           }, onError: { completionHandler(.failure($0)) })
           .disposed(by: disposeBag)
     }
     
-    func fetchTrashList(completionHandler: @escaping (Result<BaseResponse<[TrashCan]>, Error>)-> Void){
+    func fetchTrashList(completionHandler: @escaping (Result<[TrashCan]?, Error>)-> Void){
         provider.rx.request(.fetchTrashList)
           .filterSuccessfulStatusCodes()
-          .map(BaseResponse<[TrashCan]>.self)
+            .map([TrashCan]?.self)
           .subscribe(onSuccess: {
             completionHandler(.success($0))
           }, onError: { completionHandler(.failure($0)) })

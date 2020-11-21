@@ -79,7 +79,7 @@ extension PloggingWorker{
             switch response{
             case .success(let value):
                 self.fetchTrashCan { list in
-                    if let trashCanList = value.object{
+                    if let trashCanList = value{
                         if list.isEmpty{
                             // Toto add list
                             self.addTrashCanList(list: trashCanList, completion: completion)
@@ -90,7 +90,10 @@ extension PloggingWorker{
                                     createList.append(item)
                                 }
                             }
-                            self.addTrashCanList(list: createList, completion: completion)
+                            self.addTrashCanList(list: createList){ _ in
+                                createList.append(contentsOf: createList)
+                                completion(createList)
+                            }
                         }
                     }
                 }
