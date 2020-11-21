@@ -42,10 +42,9 @@ struct QuestList {
                         guard isNotDoingTraining else { return false }
                         
                         return quest.step == (questManager?.currentTrainingStep ?? 0) + 1
-                    }
-                    .sorted(by: { $0.category > $1.category }) ?? []
+                    } ?? []
             case .doing:
-                return questList[state]?.sorted(by: { $0.category > $1.category }) ?? []
+                return questList[state] ?? []
             case .done:
                 return questList[state] ?? []
             default: return []
@@ -71,6 +70,18 @@ struct QuestList {
     // MARK: Mutating
     
     mutating func append(_ quest: Quest) {
+        guard quest.category != .training else {
+            switch quest.state {
+                case .todo, .doing:
+                    questList[quest.state]?.insert(quest, at: 0)
+                case .done:
+                    questList[quest.state, default: []].append(quest)
+                default:
+                    break
+            }
+            return
+        }
+        
         questList[quest.state, default: []].append(quest)
     }
     
