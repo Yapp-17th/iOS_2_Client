@@ -57,6 +57,7 @@ class PloggingWorker: NSObject {
     
     func resumeRun(){
         startUpdateLocation()
+        
     }
     
     func stopRun(completion: @escaping (Measurement<UnitLength>) -> Void){
@@ -68,12 +69,47 @@ class PloggingWorker: NSObject {
         locationManager.delegate = self
         locationManager.activityType = .fitness
         locationManager.distanceFilter = 5
+        locationManager.allowsBackgroundLocationUpdates = true
         locationManager.startUpdatingLocation()
+    }
+}
+
+//MARK: - API
+extension PloggingWorker{
+    func getTrashCanList(completion: @escaping ([TrashCan]) -> Void){
+        PloggingAPI.shared.fetchTrashList { (response) in
+            switch response{
+            case .success(let value):
+                self.fetchTrashCan { list in
+                    if let trashCanList = value{
+                        if list.isEmpty{
+                            // Toto add list
+                            self.addTrashCanList(list: trashCanList, completion: completion)
+                        }else{
+                            var createList: [TrashCan] = []
+                            trashCanList.forEach { item in
+                                if (list.filter { $0.latitude != item.latitude && $0.longitude == item.longitude}.count == 0){
+                                    createList.append(item)
+                                }
+                            }
+                            self.addTrashCanList(list: createList){ _ in
+                                createList.append(contentsOf: createList)
+                                completion(createList)
+                            }
+                        }
+                    }
+                }
+            case .failure(let error):
+                let error = Common.CommonError.error(error)
+                completion([])
+            }
+        }
     }
 }
 
 //MARK: - TrashCan CRUD
 extension PloggingWorker{
+    
     func fetchTrashCan(completion: @escaping ([TrashCan]) -> Void){
         storage.fetchTrashCanList { (result) in
             switch result{
@@ -84,7 +120,17 @@ extension PloggingWorker{
             }
         }
     }
-    
+    func addTrashCanList(list: [TrashCan], completion: @escaping ([TrashCan]) -> Void){
+        storage.createTrashCanList(list) { (result) in
+            switch result{
+            case .success(let lis):
+                completion(lis)
+            case .failure(let error):
+                print(error.localizedDescription)
+                completion([])
+            }
+        }
+    }
     func addTrashCan(request: Plogging.AddConfirmTrashCan.Request){
         let trashCan = TrashCan(latitude: request.latitude, longitude: request.longitude)
         
@@ -92,6 +138,17 @@ extension PloggingWorker{
             switch result{
             case .success(let trashCan):
                 print("add Success: \(trashCan)")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func addTrashCan(trashCan: TrashCan, completion: @escaping (TrashCan) -> Void){
+        storage.createTrashCan(trashCan) { (result) in
+            switch result{
+            case .success(let trashCan):
+                completion(trashCan)
             case .failure(let error):
                 print(error.localizedDescription)
             }
