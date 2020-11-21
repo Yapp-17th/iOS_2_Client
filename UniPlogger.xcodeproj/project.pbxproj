@@ -105,8 +105,6 @@
 		AAA1CBE9255D5E9100EDB18A /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBE8255D5E9100EDB18A /* SessionManager.swift */; };
 		AAA1CBEC255D5F9C00EDB18A /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */; };
 		AAA1CBF2255D620100EDB18A /* BaseTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBF1255D620100EDB18A /* BaseTarget.swift */; };
-		AAA1CBF8255D62FD00EDB18A /* VerbosePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBF7255D62FD00EDB18A /* VerbosePlugin.swift */; };
-		AAA1CBFB255D633600EDB18A /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBFA255D633600EDB18A /* Data+Extensions.swift */; };
 		AAA1CBFE255D640C00EDB18A /* PloggingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBFD255D640C00EDB18A /* PloggingAPI.swift */; };
 		AAA1CC03255D647100EDB18A /* PloggingAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CC02255D647100EDB18A /* PloggingAPITarget.swift */; };
 		AAAD68F525556A7600895265 /* CALayer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAD68F425556A7600895265 /* CALayer+Extensions.swift */; };
@@ -135,6 +133,8 @@
 		AAC9585C2545BF130092BA6E /* NotoSansCJKkr-DemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = AAC958552545BF120092BA6E /* NotoSansCJKkr-DemiLight.otf */; };
 		AAC9585D2545BF130092BA6E /* NotoSansCJKkr-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AAC958562545BF120092BA6E /* NotoSansCJKkr-Light.otf */; };
 		AAC9585E2545BF130092BA6E /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AAC958572545BF120092BA6E /* NotoSansCJKkr-Medium.otf */; };
+		AAE05CE72568E3C100547501 /* VerbosePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBF7255D62FD00EDB18A /* VerbosePlugin.swift */; };
+		AAE05CE92568E3D400547501 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBFA255D633600EDB18A /* Data+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -953,6 +953,7 @@
 				4C401EB2253DE1F200ABED84 /* QuestState.swift in Sources */,
 				AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */,
 				AA6CE4F32551780E00C83D28 /* TrashCanStorage.swift in Sources */,
+				AAE05CE72568E3C100547501 /* VerbosePlugin.swift in Sources */,
 				AA7F55212533568D001C4012 /* ShareWorker.swift in Sources */,
 				83DE07762566AD050085AC72 /* DetailRouter.swift in Sources */,
 				AA7F55242533568D001C4012 /* PloggingInfoView.swift in Sources */,
@@ -974,6 +975,7 @@
 				AA5EFBB82552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift in Sources */,
 				4C89567D2532CB3A0099934E /* QuestNavigationController.swift in Sources */,
 				83DE077F2566AD050085AC72 /* ChallengeViewController+UI.swift in Sources */,
+				AAE05CE92568E3D400547501 /* Data+Extensions.swift in Sources */,
 				4C8956862532E3230099934E /* QuestTableViewCell.swift in Sources */,
 				AA7F54F22532C1A6001C4012 /* PloggingViewController.swift in Sources */,
 				AA2CAE042543EAD600105748 /* PloggingRecordPresenter.swift in Sources */,
