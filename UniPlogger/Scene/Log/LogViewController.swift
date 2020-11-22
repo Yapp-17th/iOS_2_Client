@@ -13,59 +13,116 @@
 import UIKit
 
 protocol LogDisplayLogic: class {
-  func displayError(error: Common.CommonError, useCase: Log.UseCase)
+    func displayError(error: Common.CommonError, useCase: Log.UseCase)
 }
 
 class LogViewController: UIViewController, LogDisplayLogic {
-  var interactor: LogBusinessLogic?
-  var router: (NSObjectProtocol & LogRoutingLogic & LogDataPassing)?
-
-  // MARK: Object lifecycle
-  
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-    setup()
-  }
-  
-  // MARK: Setup
-  
-  private func setup() {
-    let viewController = self
-    let interactor = LogInteractor()
-    let presenter = LogPresenter()
-    let router = LogRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = viewController
-    router.viewController = viewController
-    router.dataStore = interactor
-  }
-  
-  // MARK: Routing
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if let scene = segue.identifier {
-      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
-        router.perform(selector, with: segue)
-      }
+    var interactor: LogBusinessLogic?
+    var router: (NSObjectProtocol & LogRoutingLogic & LogDataPassing)?
+    
+    lazy var backgroundView = GradientView().then {
+        $0.colors = [
+            .init(red: 59, green: 221, blue: 228),
+            .init(red: 127, green: 169, blue: 240),
+            .init(red: 182, green: 131, blue: 248)
+        ]
+        $0.locations = [0, 0.5, 1]
+        $0.isDiagonal = false
+        $0.isHorizontal = false
     }
-  }
-  
-  // MARK: View lifecycle
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-  }
-  
-  func displayError(error: Common.CommonError, useCase: Log.UseCase){
-    //handle error with its usecase
-  }
+    var scrollView = ScrollStackView()
+    let ploggerContainer = UIView().then{
+        $0.backgroundColor = .clear
+    }
+    
+    let nicknameLabel = UILabel().then{
+        $0.text = "우주최강 플로거"
+        $0.font = .notoSans(ofSize: 18, weight: .medium)
+        $0.textColor = .white
+        $0.textAlignment = .center
+    }
+    
+    let ploggerImageView = UIImageView().then{
+        $0.image = UIImage(named: "ic_logPlogger")?.withRenderingMode(.alwaysOriginal)
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    let yellowStarImageView = UIImageView().then{
+        $0.image = UIImage(named: "ic_logStarYellow")?.withRenderingMode(.alwaysOriginal)
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    let levelTitleLabel = UILabel().then{
+        $0.text = "레벨"
+        $0.font = .notoSans(ofSize: 14, weight: .regular)
+    }
+    let levelLabel = UILabel().then{
+        $0.text = "2"
+        $0.font = .notoSans(ofSize: 20, weight: .bold)
+    }
+    
+    let rankTItleLabel = UILabel().then{
+        $0.text = "상위"
+        $0.font = .notoSans(ofSize: 14, weight: .regular)
+    }
+    let rankLabel = UILabel().then{
+        $0.text = "5%"
+        $0.font = .notoSans(ofSize: 20, weight: .bold)
+    }
+    
+    let pinkStarImageView = UIImageView().then{
+        $0.image = UIImage(named: "ic_logStarPink")?.withRenderingMode(.alwaysOriginal)
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    // MARK: Object lifecycle
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    // MARK: Setup
+    
+    private func setup() {
+        let viewController = self
+        let interactor = LogInteractor()
+        let presenter = LogPresenter()
+        let router = LogRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
+    }
+    
+    // MARK: Routing
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let scene = segue.identifier {
+            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
+            if let router = router, router.responds(to: selector) {
+                router.perform(selector, with: segue)
+            }
+        }
+    }
+    
+    // MARK: View lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configuration()
+        setupView()
+        setupLayout()
+    }
+    
+    func displayError(error: Common.CommonError, useCase: Log.UseCase){
+        //handle error with its usecase
+    }
 }
