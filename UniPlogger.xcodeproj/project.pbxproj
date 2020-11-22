@@ -103,6 +103,8 @@
 		AA7F55252533568D001C4012 /* ShareModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F551C2533568C001C4012 /* ShareModels.swift */; };
 		AA7F5528253356BE001C4012 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F5527253356BE001C4012 /* PhotoManager.swift */; };
 		AA885342256AA73E00A07D99 /* LogViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA885341256AA73E00A07D99 /* LogViewController+UI.swift */; };
+		AA885346256AAC9E00A07D99 /* LogCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA885345256AAC9E00A07D99 /* LogCollectionViewLayout.swift */; };
+		AA88534A256AAD1B00A07D99 /* LogCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA885349256AAD1B00A07D99 /* LogCollectionViewCell.swift */; };
 		AAA1CBE9255D5E9100EDB18A /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBE8255D5E9100EDB18A /* SessionManager.swift */; };
 		AAA1CBEC255D5F9C00EDB18A /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */; };
 		AAA1CBF2255D620100EDB18A /* BaseTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBF1255D620100EDB18A /* BaseTarget.swift */; };
@@ -241,6 +243,8 @@
 		AA7F551C2533568C001C4012 /* ShareModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareModels.swift; sourceTree = "<group>"; };
 		AA7F5527253356BE001C4012 /* PhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		AA885341256AA73E00A07D99 /* LogViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LogViewController+UI.swift"; sourceTree = "<group>"; };
+		AA885345256AAC9E00A07D99 /* LogCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogCollectionViewLayout.swift; sourceTree = "<group>"; };
+		AA885349256AAD1B00A07D99 /* LogCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogCollectionViewCell.swift; sourceTree = "<group>"; };
 		AAA1CBE8255D5E9100EDB18A /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		AAA1CBF1255D620100EDB18A /* BaseTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTarget.swift; sourceTree = "<group>"; };
@@ -639,6 +643,15 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		AA885344256AAC8E00A07D99 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AA885345256AAC9E00A07D99 /* LogCollectionViewLayout.swift */,
+				AA885349256AAD1B00A07D99 /* LogCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		AAA1CBF4255D62A900EDB18A /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -782,6 +795,7 @@
 		AAE05CEF2568E6E000547501 /* Log */ = {
 			isa = PBXGroup;
 			children = (
+				AA885344256AAC8E00A07D99 /* View */,
 				AAE05CF02568E75900547501 /* LogPresenter.swift */,
 				AAE05CF12568E75900547501 /* LogWorker.swift */,
 				AAE05CF22568E75900547501 /* LogRouter.swift */,
@@ -1006,6 +1020,7 @@
 				4CC9C7CE252315E0004D873D /* QuestPresenter.swift in Sources */,
 				AA5EFBB82552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift in Sources */,
 				4C89567D2532CB3A0099934E /* QuestNavigationController.swift in Sources */,
+				AA885346256AAC9E00A07D99 /* LogCollectionViewLayout.swift in Sources */,
 				83DE077F2566AD050085AC72 /* ChallengeViewController+UI.swift in Sources */,
 				AAE05CE92568E3D400547501 /* Data+Extensions.swift in Sources */,
 				4C8956862532E3230099934E /* QuestTableViewCell.swift in Sources */,
@@ -1035,6 +1050,7 @@
 				83DE07802566AD050085AC72 /* ChallengeRouter.swift in Sources */,
 				AA7F55232533568D001C4012 /* PloggingImageView.swift in Sources */,
 				AAAD68F82555738300895265 /* CLLocation+Extensions.swift in Sources */,
+				AA88534A256AAD1B00A07D99 /* LogCollectionViewCell.swift in Sources */,
 				83DE07852566AD050085AC72 /* ChallengeInteractor.swift in Sources */,
 				AAAD68FF2555A52B00895265 /* QuestDetailViewController.swift in Sources */,
 				83DE07782566AD050085AC72 /* ReportViewController.swift in Sources */,

@@ -75,6 +75,19 @@ class LogViewController: UIViewController, LogDisplayLogic {
         $0.contentMode = .scaleAspectFit
     }
     
+    let footholdImageView = UIImageView().then{
+        $0.contentMode = .scaleAspectFill
+        $0.image = UIImage(named: "ic_logFoothold")?.withRenderingMode(.alwaysOriginal)
+    }
+    
+    
+    lazy var collectionView = IntrinsicSizeCollectionView(frame: .zero, collectionViewLayout: LogCollectionViewLayout()).then {
+        $0.backgroundColor = .clear
+        $0.dataSource = self
+        $0.delegate = self
+        $0.register(LogCollectionViewCell.self, forCellWithReuseIdentifier: "LogCollectionViewCell")
+    }
+    
     // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -124,5 +137,17 @@ class LogViewController: UIViewController, LogDisplayLogic {
     
     func displayError(error: Common.CommonError, useCase: Log.UseCase){
         //handle error with its usecase
+    }
+}
+
+extension LogViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 11
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LogCollectionViewCell", for: indexPath) as? LogCollectionViewCell else { fatalError() }
+        cell.viewModel = .init(image: "img_logSample\(indexPath.item + 1)")
+        return cell
     }
 }

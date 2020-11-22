@@ -21,6 +21,7 @@ extension LogViewController {
         setupScrollView()
         //PloggerContainer
         scrollView.addArrangedSubview(ploggerContainer)
+        ploggerContainer.addSubview(footholdImageView)
         ploggerContainer.addSubview(nicknameLabel)
         ploggerContainer.addSubview(ploggerImageView)
         ploggerContainer.addSubview(yellowStarImageView)
@@ -30,6 +31,9 @@ extension LogViewController {
         pinkStarImageView.addSubview(rankTItleLabel)
         pinkStarImageView.addSubview(rankLabel)
         
+        
+        //CollectionView
+        scrollView.addArrangedSubview(collectionView)
     }
     
     func setupLayout() {
@@ -95,6 +99,12 @@ extension LogViewController {
             $0.top.equalTo(rankTItleLabel.snp.bottom).offset(-2)
             $0.centerX.equalToSuperview()
         }
+        footholdImageView.snp.makeConstraints{
+            $0.centerY.equalTo(ploggerContainer.snp.bottom).offset(8)
+            $0.centerX.equalToSuperview()
+        }
     }
-    
+    func setupCollectionView(){
+        
+    }
 }
