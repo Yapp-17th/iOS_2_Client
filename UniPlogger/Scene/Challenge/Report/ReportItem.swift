@@ -8,8 +8,8 @@
 
 import Foundation
 
-enum ReportItem: CaseIterable {
-    case sexualDispleasure, unrelated, duplicated, disgusting, spam
+enum ReportItem: Int, CaseIterable {
+    case sexualDispleasure = 0, unrelated, duplicated, disgusting, spam
     
     var description: String {
         switch self {

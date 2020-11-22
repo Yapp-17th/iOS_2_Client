@@ -8,15 +8,25 @@
 
 import UIKit
 
+protocol ReportDelegate: class {
+    func selectItem(_ item: ReportItem)
+}
+
 class ReportItemLabel: UILabel {
     
-    init(text: String) {
+    let item: ReportItem
+    var isSelected = false
+    var delegate: ReportDelegate?
+    
+    init(item: ReportItem) {
+        self.item = item
         super.init(frame: .zero)
-        self.text = text
+        self.text = item.description
         setUpLabel()
     }
     
     required init?(coder: NSCoder) {
+        self.item = .sexualDispleasure
         super.init(frame: .zero)
     }
     
@@ -25,6 +35,8 @@ class ReportItemLabel: UILabel {
         layer.cornerRadius = 20
         layer.borderWidth = 1
         layer.borderColor = UIColor(red: 0.769, green: 0.769, blue: 0.769, alpha: 0.5).cgColor
+        self.isUserInteractionEnabled = true
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapReportLabel)))
     }
 
     override func drawText(in rect: CGRect) {
@@ -37,4 +49,9 @@ class ReportItemLabel: UILabel {
         return CGSize(width: size.width + 20, height: size.height + 20)
     }
     
+    @objc private func tapReportLabel() {
+        isSelected = !isSelected
+        self.layer.backgroundColor = isSelected ? UIColor(named: "rankColor")!.cgColor : UIColor(named: "reportColor")!.cgColor
+        delegate?.selectItem(item)
+    }
 }

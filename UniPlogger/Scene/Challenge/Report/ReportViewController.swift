@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ReportViewController: UIViewController {
+class ReportViewController: UIViewController, ReportDelegate {
+    
+    var selectedItems = [ReportItem]()
 
     lazy var reportView = UIView().then {
         $0.backgroundColor = UIColor(named: "reportColor")
@@ -32,7 +34,8 @@ class ReportViewController: UIViewController {
 //        stackView.spacing = self.view.frame.width * 0.06
         stackView.spacing = 15
         (0..<3).forEach { index in
-            let reportItemLabel = ReportItemLabel(text: ReportItem.allCases[index].description)
+            let reportItemLabel = ReportItemLabel(item: ReportItem.allCases[index])
+            reportItemLabel.delegate = self
             stackView.addArrangedSubview(reportItemLabel)
         }
     }
@@ -41,13 +44,15 @@ class ReportViewController: UIViewController {
 //        stackView.spacing = self.view.frame.width * 0.06
         stackView.spacing = 15
         (3..<5).forEach { index in
-            let reportItemLabel = ReportItemLabel(text: ReportItem.allCases[index].description)
+            let reportItemLabel = ReportItemLabel(item: ReportItem.allCases[index])
+            reportItemLabel.delegate = self 
             stackView.addArrangedSubview(reportItemLabel)
         }
     }
     lazy var cancelButton = UIButton().then {
         $0.backgroundColor = UIColor(named: "cancelButtonColor")
         $0.layer.cornerRadius = self.view.frame.height * 0.035
+        $0.addTarget(self, action: #selector(touchUpCancelButton), for: .touchUpInside)
     }
     lazy var cancelLabel = UILabel().then {
         $0.text = "취소"
@@ -58,6 +63,7 @@ class ReportViewController: UIViewController {
     lazy var reportButton = UIButton().then {
         $0.backgroundColor = UIColor(named: "reportButtonColor")
         $0.layer.cornerRadius = self.view.frame.height * 0.035
+        $0.addTarget(self, action: #selector(touchUpReportButton), for: .touchUpInside)
     }
     lazy var reportLabel = UILabel().then {
         $0.text = "신고"
@@ -73,53 +79,27 @@ class ReportViewController: UIViewController {
         setUpViews()
         setUpLayout()
     }
-
-}
-
-extension ReportViewController {
     
-    func setUpViews() {
-        [reportView, textStackView, firstItemStackView, secondItemStackView, cancelButton, reportButton, cancelLabel, reportLabel].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            self.view.addSubview($0)
-        }
+    @objc private func touchUpCancelButton() {
+        self.dismiss(animated: true, completion: nil)
     }
     
-    func setUpLayout() {
-        reportView.snp.makeConstraints {
-            $0.leading.trailing.bottom.equalToSuperview()
-            $0.height.equalToSuperview().multipliedBy(0.4)
-        }
-        textStackView.snp.makeConstraints {
-            $0.leading.equalTo(20)
-            $0.top.equalTo(self.view.frame.height * 0.66)
-        }
-        firstItemStackView.snp.makeConstraints {
-            $0.leading.equalTo(textStackView)
-//            $0.centerX.equalToSuperview()
-            $0.top.equalTo(textStackView.snp.bottom).offset(12)
-        }
-        secondItemStackView.snp.makeConstraints {
-            $0.leading.equalTo(textStackView)
-//            $0.centerX.equalToSuperview()
-            $0.top.equalTo(firstItemStackView.snp.bottom).offset(10)
-        }
-        cancelButton.snp.makeConstraints {
-            $0.leading.equalTo(20)
-            $0.top.equalTo(secondItemStackView.snp.bottom).offset(14)
-            $0.width.equalTo(self.view.frame.width * 0.42)
-            $0.height.equalTo(self.view.frame.height * 0.07)
-        }
-        reportButton.snp.makeConstraints {
-            $0.trailing.equalTo(-20)
-            $0.bottom.width.height.equalTo(cancelButton)
-        }
-        cancelLabel.snp.makeConstraints {
-            $0.center.equalTo(cancelButton)
-        }
-        reportLabel.snp.makeConstraints {
-            $0.center.equalTo(reportButton)
-        }
+    @objc private func touchUpReportButton() {
+        guard !selectedItems.isEmpty else { return }
+        let alertController = UIAlertController(title: "신고가 완료되었습니다.", message: "3번 신고 시 사진이 삭제됩니다.", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "확인", style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        })
+        alertController.addAction(confirmAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
+    func selectItem(_ item: ReportItem) {
+        if selectedItems.contains(item) {
+            selectedItems = selectedItems.filter { $0 != item }
+        } else {
+            selectedItems.append(item)
+        }
+    }
+
 }
