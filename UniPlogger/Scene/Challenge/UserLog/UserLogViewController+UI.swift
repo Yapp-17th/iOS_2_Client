@@ -11,6 +11,7 @@ import Foundation
 extension UserLogViewController {
     
     func setUpViews() {
+        super.setupViews()
         [nextButton].forEach {
             self.view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -18,6 +19,7 @@ extension UserLogViewController {
     }
     
     func setUpLayout() {
+        super.setupLayouts()
         nextButton.snp.makeConstraints {
             $0.width.height.equalTo(40)
             $0.centerX.centerY.equalToSuperview()

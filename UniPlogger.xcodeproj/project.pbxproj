@@ -31,6 +31,8 @@
 		8353A3732568FE9400F9AA4F /* ReportItemLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A3722568FE9400F9AA4F /* ReportItemLabel.swift */; };
 		8353A377256911F900F9AA4F /* ReportItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A376256911F900F9AA4F /* ReportItem.swift */; };
 		8353A37E256947D000F9AA4F /* ReportViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A37D256947D000F9AA4F /* ReportViewController+UI.swift */; };
+		8353A381256A617100F9AA4F /* ChallengeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A380256A617100F9AA4F /* ChallengeNavigationController.swift */; };
+		8353A385256A638700F9AA4F /* ChallengeBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A384256A638700F9AA4F /* ChallengeBaseViewController.swift */; };
 		83DE07702566AD050085AC72 /* ScoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07522566AD050085AC72 /* ScoreInfoViewController.swift */; };
 		83DE07712566AD050085AC72 /* CircleInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07542566AD050085AC72 /* CircleInfoView.swift */; };
 		83DE07722566AD050085AC72 /* ScoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07552566AD050085AC72 /* ScoreInfoView.swift */; };
@@ -159,6 +161,8 @@
 		8353A3722568FE9400F9AA4F /* ReportItemLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportItemLabel.swift; sourceTree = "<group>"; };
 		8353A376256911F900F9AA4F /* ReportItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportItem.swift; sourceTree = "<group>"; };
 		8353A37D256947D000F9AA4F /* ReportViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReportViewController+UI.swift"; sourceTree = "<group>"; };
+		8353A380256A617100F9AA4F /* ChallengeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeNavigationController.swift; sourceTree = "<group>"; };
+		8353A384256A638700F9AA4F /* ChallengeBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeBaseViewController.swift; sourceTree = "<group>"; };
 		83DE07522566AD050085AC72 /* ScoreInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreInfoViewController.swift; sourceTree = "<group>"; };
 		83DE07542566AD050085AC72 /* CircleInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleInfoView.swift; sourceTree = "<group>"; };
 		83DE07552566AD050085AC72 /* ScoreInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreInfoView.swift; sourceTree = "<group>"; };
@@ -367,6 +371,8 @@
 		83DE07502566AD050085AC72 /* Challenge */ = {
 			isa = PBXGroup;
 			children = (
+				8353A384256A638700F9AA4F /* ChallengeBaseViewController.swift */,
+				8353A380256A617100F9AA4F /* ChallengeNavigationController.swift */,
 				83DE07512566AD050085AC72 /* ScoreInfo */,
 				83DE07562566AD050085AC72 /* Start */,
 				83DE07592566AD050085AC72 /* UserDetail */,
@@ -949,6 +955,7 @@
 				AAB3B4EC2520B2B400F0311A /* UIImage+Extensions.swift in Sources */,
 				4C7248B12542FDA600ACB32B /* RecommandOtherView.swift in Sources */,
 				AA2CAE082543EAD600105748 /* PloggingRecordWorker.swift in Sources */,
+				8353A381256A617100F9AA4F /* ChallengeNavigationController.swift in Sources */,
 				83DE07742566AD050085AC72 /* StartRouter.swift in Sources */,
 				83DE07702566AD050085AC72 /* ScoreInfoViewController.swift in Sources */,
 				4CC9C7CB252315D7004D873D /* QuestInteractor.swift in Sources */,
@@ -970,6 +977,7 @@
 				AAB3B4F92520B5B600F0311A /* Common.swift in Sources */,
 				83DE077E2566AD050085AC72 /* ChallengeWorker.swift in Sources */,
 				AA7F54E02532C16E001C4012 /* UIFont+Extensions.swift in Sources */,
+				8353A385256A638700F9AA4F /* ChallengeBaseViewController.swift in Sources */,
 				AA2CAE022543EAD600105748 /* TrashAnnotation.swift in Sources */,
 				AAAD691025566B1400895265 /* CameraViewController.swift in Sources */,
 				AA7F55202533568D001C4012 /* ShareViewController+UI.swift in Sources */,
