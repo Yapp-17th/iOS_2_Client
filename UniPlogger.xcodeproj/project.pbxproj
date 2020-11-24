@@ -35,6 +35,7 @@
 		8353A437256D3FAD00F9AA4F /* MyPageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A436256D3FAD00F9AA4F /* MyPageRouter.swift */; };
 		8353A43B256D3FBB00F9AA4F /* MyPageModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A43A256D3FBB00F9AA4F /* MyPageModels.swift */; };
 		8353A43F256D3FC500F9AA4F /* MyPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A43E256D3FC500F9AA4F /* MyPagePresenter.swift */; };
+		8353A451256D431D00F9AA4F /* MyPageViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A450256D431D00F9AA4F /* MyPageViewController+UI.swift */; };
 		83DE07702566AD050085AC72 /* ScoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07522566AD050085AC72 /* ScoreInfoViewController.swift */; };
 		83DE07712566AD050085AC72 /* CircleInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07542566AD050085AC72 /* CircleInfoView.swift */; };
 		83DE07722566AD050085AC72 /* ScoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07552566AD050085AC72 /* ScoreInfoView.swift */; };
@@ -187,6 +188,7 @@
 		8353A436256D3FAD00F9AA4F /* MyPageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageRouter.swift; sourceTree = "<group>"; };
 		8353A43A256D3FBB00F9AA4F /* MyPageModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModels.swift; sourceTree = "<group>"; };
 		8353A43E256D3FC500F9AA4F /* MyPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePresenter.swift; sourceTree = "<group>"; };
+		8353A450256D431D00F9AA4F /* MyPageViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UI.swift"; sourceTree = "<group>"; };
 		83DE07522566AD050085AC72 /* ScoreInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreInfoViewController.swift; sourceTree = "<group>"; };
 		83DE07542566AD050085AC72 /* CircleInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleInfoView.swift; sourceTree = "<group>"; };
 		83DE07552566AD050085AC72 /* ScoreInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreInfoView.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 			children = (
 				8353A43A256D3FBB00F9AA4F /* MyPageModels.swift */,
 				8353A42E256D3F9000F9AA4F /* MyPageViewController.swift */,
+				8353A450256D431D00F9AA4F /* MyPageViewController+UI.swift */,
 				8353A432256D3FA100F9AA4F /* MyPageInteractor.swift */,
 				8353A436256D3FAD00F9AA4F /* MyPageRouter.swift */,
 				8353A43E256D3FC500F9AA4F /* MyPagePresenter.swift */,
@@ -1057,6 +1060,7 @@
 				83DE07762566AD050085AC72 /* DetailRouter.swift in Sources */,
 				AA7F55242533568D001C4012 /* PloggingInfoView.swift in Sources */,
 				4CB979C42524E5BC00498E81 /* NavigationTabsView.swift in Sources */,
+				8353A451256D431D00F9AA4F /* MyPageViewController+UI.swift in Sources */,
 				AA2CAE092543EAD600105748 /* PloggingRecordInteractor.swift in Sources */,
 				AA35BC77254FEEFA00AE32A7 /* CoreDataStore.swift in Sources */,
 				AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */,

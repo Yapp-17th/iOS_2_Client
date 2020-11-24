@@ -9,11 +9,15 @@
 import UIKit
 
 class MyPageViewController: UIViewController {
+    
+    lazy var userInfoView = UIView().then {
+        $0.backgroundColor = .black
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupViews()
+        setupLayout()
     }
     
 }
