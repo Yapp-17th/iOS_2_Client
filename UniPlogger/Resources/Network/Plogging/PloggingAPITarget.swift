@@ -10,7 +10,7 @@ import Moya
 
 enum PloggingAPITarget{
     //쓰레기통 CRUD
-  case createTrash(latitude: Double, longitude: Double, address: String)
+    case createTrash(latitude: Double, longitude: Double, address: String)
     case fetchTrashList
 }
 

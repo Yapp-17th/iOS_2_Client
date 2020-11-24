@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 extension LogViewController {
     func configuration() {
-        // backgroundColor = .white
+        title = "로그"
     }
     
     func setupView() {

@@ -105,6 +105,16 @@
 		AA885342256AA73E00A07D99 /* LogViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA885341256AA73E00A07D99 /* LogViewController+UI.swift */; };
 		AA885346256AAC9E00A07D99 /* LogCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA885345256AAC9E00A07D99 /* LogCollectionViewLayout.swift */; };
 		AA88534A256AAD1B00A07D99 /* LogCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA885349256AAD1B00A07D99 /* LogCollectionViewCell.swift */; };
+		AA88534D256AB57A00A07D99 /* LogNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88534C256AB57A00A07D99 /* LogNavigationController.swift */; };
+		AA88E0E2256D325E00EBB835 /* AuthAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88E0E1256D325E00EBB835 /* AuthAPITarget.swift */; };
+		AA88E0ED256D339E00EBB835 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88E0E7256D339E00EBB835 /* SplashPresenter.swift */; };
+		AA88E0EE256D339E00EBB835 /* SplashWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88E0E8256D339E00EBB835 /* SplashWorker.swift */; };
+		AA88E0EF256D339E00EBB835 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88E0E9256D339E00EBB835 /* SplashRouter.swift */; };
+		AA88E0F0256D339E00EBB835 /* SplashModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88E0EA256D339E00EBB835 /* SplashModels.swift */; };
+		AA88E0F1256D339E00EBB835 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88E0EB256D339E00EBB835 /* SplashViewController.swift */; };
+		AA88E0F2256D339E00EBB835 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88E0EC256D339E00EBB835 /* SplashInteractor.swift */; };
+		AA88E0F7256D35B100EBB835 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88E0F6256D35B100EBB835 /* AuthManager.swift */; };
+		AA88E0FA256D367900EBB835 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88E0F9256D367900EBB835 /* User.swift */; };
 		AAA1CBE9255D5E9100EDB18A /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBE8255D5E9100EDB18A /* SessionManager.swift */; };
 		AAA1CBEC255D5F9C00EDB18A /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */; };
 		AAA1CBF2255D620100EDB18A /* BaseTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBF1255D620100EDB18A /* BaseTarget.swift */; };
@@ -245,6 +255,16 @@
 		AA885341256AA73E00A07D99 /* LogViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LogViewController+UI.swift"; sourceTree = "<group>"; };
 		AA885345256AAC9E00A07D99 /* LogCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogCollectionViewLayout.swift; sourceTree = "<group>"; };
 		AA885349256AAD1B00A07D99 /* LogCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogCollectionViewCell.swift; sourceTree = "<group>"; };
+		AA88534C256AB57A00A07D99 /* LogNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogNavigationController.swift; sourceTree = "<group>"; };
+		AA88E0E1256D325E00EBB835 /* AuthAPITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPITarget.swift; sourceTree = "<group>"; };
+		AA88E0E7256D339E00EBB835 /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
+		AA88E0E8256D339E00EBB835 /* SplashWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashWorker.swift; sourceTree = "<group>"; };
+		AA88E0E9256D339E00EBB835 /* SplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
+		AA88E0EA256D339E00EBB835 /* SplashModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashModels.swift; sourceTree = "<group>"; };
+		AA88E0EB256D339E00EBB835 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		AA88E0EC256D339E00EBB835 /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
+		AA88E0F6256D35B100EBB835 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		AA88E0F9256D367900EBB835 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AAA1CBE8255D5E9100EDB18A /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		AAA1CBF1255D620100EDB18A /* BaseTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTarget.swift; sourceTree = "<group>"; };
@@ -363,6 +383,7 @@
 		4CC9C7C525231565004D873D /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				AA88E0E6256D338F00EBB835 /* Splash */,
 				AAE05CEF2568E6E000547501 /* Log */,
 				83DE07502566AD050085AC72 /* Challenge */,
 				AA7F55122533568C001C4012 /* Share */,
@@ -572,6 +593,7 @@
 				AA35BC76254FEEFA00AE32A7 /* CoreDataStore.swift */,
 				AA35BC7B254FFC2B00AE32A7 /* Storage.swift */,
 				AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */,
+				AA88E0F6256D35B100EBB835 /* AuthManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -652,6 +674,27 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		AA88E0E0256D324B00EBB835 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				AA88E0E1256D325E00EBB835 /* AuthAPITarget.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		AA88E0E6256D338F00EBB835 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				AA88E0E7256D339E00EBB835 /* SplashPresenter.swift */,
+				AA88E0E8256D339E00EBB835 /* SplashWorker.swift */,
+				AA88E0E9256D339E00EBB835 /* SplashRouter.swift */,
+				AA88E0EA256D339E00EBB835 /* SplashModels.swift */,
+				AA88E0EB256D339E00EBB835 /* SplashViewController.swift */,
+				AA88E0EC256D339E00EBB835 /* SplashInteractor.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 		AAA1CBF4255D62A900EDB18A /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -660,6 +703,7 @@
 				AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */,
 				AAA1CBF1255D620100EDB18A /* BaseTarget.swift */,
 				AAA1CC00255D645D00EDB18A /* Plogging */,
+				AA88E0E0256D324B00EBB835 /* Auth */,
 			);
 			name = Network;
 			path = Resources/Network;
@@ -777,6 +821,7 @@
 				4CC9C7D925232128004D873D /* Quest.swift */,
 				4C401EB1253DE1F200ABED84 /* QuestState.swift */,
 				AA217514254CF5ED0076BAD5 /* TrashCan.swift */,
+				AA88E0F9256D367900EBB835 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -803,6 +848,7 @@
 				AAE05CF42568E75900547501 /* LogViewController.swift */,
 				AAE05CF52568E75900547501 /* LogInteractor.swift */,
 				AA885341256AA73E00A07D99 /* LogViewController+UI.swift */,
+				AA88534C256AB57A00A07D99 /* LogNavigationController.swift */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -963,6 +1009,7 @@
 				AA885342256AA73E00A07D99 /* LogViewController+UI.swift in Sources */,
 				4C8956832532D0630099934E /* QuestFactory.swift in Sources */,
 				AA7F54E22532C179001C4012 /* CLLocationCoordinated2D+Extensions.swift in Sources */,
+				AA88E0E2256D325E00EBB835 /* AuthAPITarget.swift in Sources */,
 				AA7F54F12532C1A6001C4012 /* PloggingPresenter.swift in Sources */,
 				AA7F54EE2532C1A6001C4012 /* PloggingViewController+UI.swift in Sources */,
 				83DE07812566AD050085AC72 /* ChallengePresenter.swift in Sources */,
@@ -971,6 +1018,7 @@
 				AA2CAE0A2543EAD600105748 /* PloggingRecordRouter.swift in Sources */,
 				83DE07712566AD050085AC72 /* CircleInfoView.swift in Sources */,
 				4CC9C7DA25232128004D873D /* Quest.swift in Sources */,
+				AA88534D256AB57A00A07D99 /* LogNavigationController.swift in Sources */,
 				AA7F551D2533568D001C4012 /* SharePresenter.swift in Sources */,
 				83DE07792566AD050085AC72 /* ReportView.swift in Sources */,
 				83DE07752566AD050085AC72 /* DetailViewController.swift in Sources */,
@@ -978,14 +1026,17 @@
 				AA7F551F2533568D001C4012 /* ShareViewController.swift in Sources */,
 				83DE07842566AD050085AC72 /* RankTableViewCell.swift in Sources */,
 				4C7248A92541CDE300ACB32B /* QuestList.swift in Sources */,
+				AA88E0F1256D339E00EBB835 /* SplashViewController.swift in Sources */,
 				4C7248B925455B2C00ACB32B /* QuestBaseViewController.swift in Sources */,
 				AA2CAE012543EAD500105748 /* TrashAnnotationView.swift in Sources */,
+				AA88E0EF256D339E00EBB835 /* SplashRouter.swift in Sources */,
 				AA2CAE052543EAD600105748 /* PloggingRecordModels.swift in Sources */,
 				AA7F54EC2532C1A6001C4012 /* StartCountingViewController.swift in Sources */,
 				AAAD690225562CB900895265 /* IntrinsicSizeCollectionView.swift in Sources */,
 				AAA1CBF2255D620100EDB18A /* BaseTarget.swift in Sources */,
 				4CBA217B254EB1AF002BDCC3 /* QuestModels+ViewModel.swift in Sources */,
 				AAE05CFB2568E75900547501 /* LogInteractor.swift in Sources */,
+				AA88E0ED256D339E00EBB835 /* SplashPresenter.swift in Sources */,
 				AAB559392549BB26000BB903 /* FormatDisplay.swift in Sources */,
 				AAB559312549B846000BB903 /* Location.swift in Sources */,
 				AA7F551E2533568D001C4012 /* ShareInteractor.swift in Sources */,
@@ -998,6 +1049,7 @@
 				4C401EB2253DE1F200ABED84 /* QuestState.swift in Sources */,
 				AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */,
 				AA6CE4F32551780E00C83D28 /* TrashCanStorage.swift in Sources */,
+				AA88E0EE256D339E00EBB835 /* SplashWorker.swift in Sources */,
 				AAE05CE72568E3C100547501 /* VerbosePlugin.swift in Sources */,
 				AA7F55212533568D001C4012 /* ShareWorker.swift in Sources */,
 				83DE07762566AD050085AC72 /* DetailRouter.swift in Sources */,
@@ -1024,14 +1076,17 @@
 				83DE077F2566AD050085AC72 /* ChallengeViewController+UI.swift in Sources */,
 				AAE05CE92568E3D400547501 /* Data+Extensions.swift in Sources */,
 				4C8956862532E3230099934E /* QuestTableViewCell.swift in Sources */,
+				AA88E0F7256D35B100EBB835 /* AuthManager.swift in Sources */,
 				AA7F54F22532C1A6001C4012 /* PloggingViewController.swift in Sources */,
 				AA2CAE042543EAD600105748 /* PloggingRecordPresenter.swift in Sources */,
 				AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */,
 				83DE07822566AD050085AC72 /* ChallengeViewController.swift in Sources */,
+				AA88E0FA256D367900EBB835 /* User.swift in Sources */,
 				AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */,
 				AA2CAE072543EAD600105748 /* PloggingRecordCollectionViewCell.swift in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
 				AA35BC7C254FFC2B00AE32A7 /* Storage.swift in Sources */,
+				AA88E0F0256D339E00EBB835 /* SplashModels.swift in Sources */,
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,
 				4CC9C7C825231581004D873D /* QuestViewController.swift in Sources */,
 				4C7248B52544297D00ACB32B /* HightlightButton.swift in Sources */,
@@ -1047,6 +1102,7 @@
 				4CC9C7CB252315D7004D873D /* QuestInteractor.swift in Sources */,
 				AA2CAE032543EAD600105748 /* PloggingRecordViewController.swift in Sources */,
 				83DE07722566AD050085AC72 /* ScoreInfoView.swift in Sources */,
+				AA88E0F2256D339E00EBB835 /* SplashInteractor.swift in Sources */,
 				83DE07802566AD050085AC72 /* ChallengeRouter.swift in Sources */,
 				AA7F55232533568D001C4012 /* PloggingImageView.swift in Sources */,
 				AAAD68F82555738300895265 /* CLLocation+Extensions.swift in Sources */,
