@@ -115,6 +115,8 @@
 		AA88E0F2256D339E00EBB835 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88E0EC256D339E00EBB835 /* SplashInteractor.swift */; };
 		AA88E0F7256D35B100EBB835 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88E0F6256D35B100EBB835 /* AuthManager.swift */; };
 		AA88E0FA256D367900EBB835 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88E0F9256D367900EBB835 /* User.swift */; };
+		AA88E0FD256D3A9300EBB835 /* AuthAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88E0FC256D3A9300EBB835 /* AuthAPIResponse.swift */; };
+		AA88E100256D3B6700EBB835 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88E0FF256D3B6700EBB835 /* AuthAPI.swift */; };
 		AAA1CBE9255D5E9100EDB18A /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBE8255D5E9100EDB18A /* SessionManager.swift */; };
 		AAA1CBEC255D5F9C00EDB18A /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */; };
 		AAA1CBF2255D620100EDB18A /* BaseTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA1CBF1255D620100EDB18A /* BaseTarget.swift */; };
@@ -265,6 +267,8 @@
 		AA88E0EC256D339E00EBB835 /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
 		AA88E0F6256D35B100EBB835 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		AA88E0F9256D367900EBB835 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AA88E0FC256D3A9300EBB835 /* AuthAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPIResponse.swift; sourceTree = "<group>"; };
+		AA88E0FF256D3B6700EBB835 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		AAA1CBE8255D5E9100EDB18A /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		AAA1CBF1255D620100EDB18A /* BaseTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTarget.swift; sourceTree = "<group>"; };
@@ -678,6 +682,8 @@
 			isa = PBXGroup;
 			children = (
 				AA88E0E1256D325E00EBB835 /* AuthAPITarget.swift */,
+				AA88E0FC256D3A9300EBB835 /* AuthAPIResponse.swift */,
+				AA88E0FF256D3B6700EBB835 /* AuthAPI.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1026,6 +1032,7 @@
 				AA7F551F2533568D001C4012 /* ShareViewController.swift in Sources */,
 				83DE07842566AD050085AC72 /* RankTableViewCell.swift in Sources */,
 				4C7248A92541CDE300ACB32B /* QuestList.swift in Sources */,
+				AA88E100256D3B6700EBB835 /* AuthAPI.swift in Sources */,
 				AA88E0F1256D339E00EBB835 /* SplashViewController.swift in Sources */,
 				4C7248B925455B2C00ACB32B /* QuestBaseViewController.swift in Sources */,
 				AA2CAE012543EAD500105748 /* TrashAnnotationView.swift in Sources */,
@@ -1128,6 +1135,7 @@
 				4CC9C7D7252315FC004D873D /* QuestWorker.swift in Sources */,
 				AAE05CF72568E75900547501 /* LogWorker.swift in Sources */,
 				4C2D058C25562E4F00FA787F /* QuestRouter.swift in Sources */,
+				AA88E0FD256D3A9300EBB835 /* AuthAPIResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

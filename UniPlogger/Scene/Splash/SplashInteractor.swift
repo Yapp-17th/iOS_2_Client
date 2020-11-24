@@ -29,7 +29,16 @@ class SplashInteractor: SplashBusinessLogic, SplashDataStore {
         if let userToken = AuthManager.shared.userToken {
             //Todo Login with userToken
         } else {
-            
+            AuthAPI.shared.login(email: "steve2@mergepoint.co.kr", password: "steve1234") { (response) in
+                switch response{
+                case .success(let value):
+                    if let userToken = value.token{
+                        
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
 }
