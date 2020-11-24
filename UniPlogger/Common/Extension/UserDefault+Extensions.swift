@@ -10,8 +10,9 @@ import UIKit
 import CoreLocation
 
 enum UPUserDefaulKey: String {
-    case appID = "co.kr.mergepoint.dev"
+    case appID = "kr.co.yapp17.iOS2.UniPlogger"
     case location = "UPUSERDEFAULT_KEY_LOCATION"
+    case userToken = "USERDEFAULT_KEY_USERTOKEN"
 }
 
 // MARK: - MPUserDefaultProtocol
