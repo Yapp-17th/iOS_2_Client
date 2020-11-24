@@ -19,27 +19,10 @@ protocol LogDisplayLogic: class {
 class LogViewController: UIViewController, LogDisplayLogic {
     var interactor: LogBusinessLogic?
     var router: (NSObjectProtocol & LogRoutingLogic & LogDataPassing)?
-    
-    lazy var backgroundView = GradientView().then {
-        $0.colors = [
-            .init(red: 59, green: 221, blue: 228),
-            .init(red: 127, green: 169, blue: 240),
-            .init(red: 182, green: 131, blue: 248)
-        ]
-        $0.locations = [0, 0.5, 1]
-        $0.isDiagonal = false
-        $0.isHorizontal = false
-    }
     var scrollView = ScrollStackView()
-    let ploggerContainer = UIView().then{
-        $0.backgroundColor = .clear
-    }
-    
-    let nicknameLabel = UILabel().then{
-        $0.text = "우주최강 플로거"
-        $0.font = .notoSans(ofSize: 18, weight: .medium)
-        $0.textColor = .white
-        $0.textAlignment = .center
+    let ploggerContainer = UIImageView().then{
+        $0.image = UIImage(named: "bg_logPloggerContainer")?.withRenderingMode(.alwaysOriginal)
+        $0.contentMode = .scaleAspectFit
     }
     
     let ploggerImageView = UIImageView().then{
@@ -75,11 +58,35 @@ class LogViewController: UIViewController, LogDisplayLogic {
         $0.contentMode = .scaleAspectFit
     }
     
-    let footholdImageView = UIImageView().then{
-        $0.contentMode = .scaleAspectFill
-        $0.image = UIImage(named: "ic_logFoothold")?.withRenderingMode(.alwaysOriginal)
+    let statContainer = UIView().then {
+        $0.backgroundColor = .clear
     }
     
+    let statTitleLabel = UILabel().then {
+        $0.text = "통계"
+        $0.font = .notoSans(ofSize: 18, weight: .medium)
+    }
+    
+    let statInnerContainer = UIView().then {
+        $0.backgroundColor = .clear
+    }
+    
+    let weeklyTitleLabel = UILabel().then {
+        $0.text = "주간"
+        $0.font = .notoSans(ofSize: 14, weight: .regular)
+    }
+    let weeklyCircleView = UIView().then {
+        $0.backgroundColor = .recordCellBackgroundColor
+        $0.layer.cornerRadius = 41
+    }
+    let monthlyTitleLabel = UILabel().then {
+        $0.text = "월간"
+        $0.font = .notoSans(ofSize: 14, weight: .regular)
+    }
+    let monthlyCircleView = UIView().then {
+        $0.backgroundColor = .recordCellBackgroundColor
+        $0.layer.cornerRadius = 41
+    }
     
     lazy var collectionView = IntrinsicSizeCollectionView(frame: .zero, collectionViewLayout: LogCollectionViewLayout()).then {
         $0.backgroundColor = .clear

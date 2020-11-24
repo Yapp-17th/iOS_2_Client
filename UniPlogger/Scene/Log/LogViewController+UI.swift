@@ -10,19 +10,13 @@ import UIKit
 import SnapKit
 extension LogViewController {
     func configuration() {
-        title = "로그"
+        title = "플로거짱 로그"
     }
     
     func setupView() {
-        self.view.addSubview(backgroundView)
-        backgroundView.snp.makeConstraints{
-            $0.edges.equalToSuperview()
-        }
         setupScrollView()
         //PloggerContainer
         scrollView.addArrangedSubview(ploggerContainer)
-        ploggerContainer.addSubview(footholdImageView)
-        ploggerContainer.addSubview(nicknameLabel)
         ploggerContainer.addSubview(ploggerImageView)
         ploggerContainer.addSubview(yellowStarImageView)
         ploggerContainer.addSubview(pinkStarImageView)
@@ -31,6 +25,13 @@ extension LogViewController {
         pinkStarImageView.addSubview(rankTItleLabel)
         pinkStarImageView.addSubview(rankLabel)
         
+        //StatContainer
+        scrollView.addArrangedSubview(statContainer)
+        statContainer.addSubview(statTitleLabel)
+        statContainer.addSubview(weeklyTitleLabel)
+        statContainer.addSubview(weeklyCircleView)
+        statContainer.addSubview(monthlyTitleLabel)
+        statContainer.addSubview(monthlyCircleView)
         
         //CollectionView
         scrollView.addArrangedSubview(collectionView)
@@ -38,6 +39,7 @@ extension LogViewController {
     
     func setupLayout() {
         setupPloggerContainer()
+        setupStatContainer()
     }
     
     func updateView() {
@@ -51,22 +53,16 @@ extension LogViewController {
         }
         
         scrollView.snp.makeConstraints{
-            $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            $0.bottom.equalTo(view.snp.bottom)
+            $0.edges.equalToSuperview()
         }
     }
     
     func setupPloggerContainer(){
         ploggerContainer.snp.makeConstraints{
-            $0.height.equalTo(222)
-        }
-        nicknameLabel.snp.makeConstraints{
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(20)
+            $0.top.equalToSuperview().offset(-88)
+            $0.height.equalTo(320.16)
         }
         ploggerImageView.snp.makeConstraints{
-            $0.top.equalTo(nicknameLabel.snp.bottom).offset(19)
             $0.bottom.equalTo(-28)
             $0.centerX.equalToSuperview()
         }
@@ -99,11 +95,41 @@ extension LogViewController {
             $0.top.equalTo(rankTItleLabel.snp.bottom).offset(-2)
             $0.centerX.equalToSuperview()
         }
-        footholdImageView.snp.makeConstraints{
-            $0.centerY.equalTo(ploggerContainer.snp.bottom).offset(8)
+    }
+    
+    func setupStatContainer(){
+        statContainer.snp.makeConstraints{
+            $0.height.equalTo(182)
+        }
+        
+        statTitleLabel.snp.makeConstraints{
+            $0.top.equalTo(14)
             $0.centerX.equalToSuperview()
         }
+        
+        weeklyCircleView.snp.makeConstraints{
+            $0.bottom.equalTo(-20)
+            $0.trailing.equalTo(statTitleLabel.snp.leading).offset(-32)
+            $0.width.height.equalTo(82)
+        }
+        
+        weeklyTitleLabel.snp.makeConstraints{
+            $0.centerX.equalTo(weeklyCircleView)
+            $0.bottom.equalTo(weeklyCircleView.snp.top).offset(-10)
+        }
+        
+        monthlyCircleView.snp.makeConstraints{
+            $0.bottom.equalTo(-20)
+            $0.leading.equalTo(statTitleLabel.snp.trailing).offset(32)
+            $0.width.height.equalTo(82)
+        }
+        
+        monthlyTitleLabel.snp.makeConstraints{
+            $0.centerX.equalTo(monthlyCircleView)
+            $0.bottom.equalTo(monthlyCircleView.snp.top).offset(-10)
+        }
     }
+    
     func setupCollectionView(){
         
     }
