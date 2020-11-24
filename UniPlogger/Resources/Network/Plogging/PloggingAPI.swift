@@ -20,23 +20,23 @@ final class PloggingAPI{
         plugins: [VerbosePlugin(verbose: true)]
     )
     
-  func createTrashCan(latitude: Double, longitude: Double, address: String, completionHandler: @escaping (Result<Bool, Error>) -> Void){
-    provider.rx.request(.createTrash(latitude: latitude, longitude: longitude, address: address))
-          .filterSuccessfulStatusCodes()
-        .map(Bool.self)
-          .subscribe(onSuccess: {
-            completionHandler(.success($0))
-          }, onError: { completionHandler(.failure($0)) })
-          .disposed(by: disposeBag)
+    func createTrashCan(latitude: Double, longitude: Double, address: String, completionHandler: @escaping (Result<Bool, Error>) -> Void){
+        provider.rx.request(.createTrash(latitude: latitude, longitude: longitude, address: address))
+            .filterSuccessfulStatusCodes()
+            .map(Bool.self)
+            .subscribe(onSuccess: {
+                completionHandler(.success($0))
+            }, onError: { completionHandler(.failure($0)) })
+            .disposed(by: disposeBag)
     }
     
     func fetchTrashList(completionHandler: @escaping (Result<[TrashCan]?, Error>)-> Void){
         provider.rx.request(.fetchTrashList)
-          .filterSuccessfulStatusCodes()
+            .filterSuccessfulStatusCodes()
             .map([TrashCan]?.self)
-          .subscribe(onSuccess: {
-            completionHandler(.success($0))
-          }, onError: { completionHandler(.failure($0)) })
-          .disposed(by: disposeBag)
+            .subscribe(onSuccess: {
+                completionHandler(.success($0))
+            }, onError: { completionHandler(.failure($0)) })
+            .disposed(by: disposeBag)
     }
 }

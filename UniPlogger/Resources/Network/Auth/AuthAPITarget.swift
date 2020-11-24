@@ -17,7 +17,7 @@ extension AuthAPITarget: BaseTarget{
     var path: String{
         switch self{
         case .login:
-            return "users/login"
+            return "users/login/"
         }
     }
     

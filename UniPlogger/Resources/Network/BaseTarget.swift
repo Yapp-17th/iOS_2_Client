@@ -27,7 +27,7 @@ extension BaseTarget {
     var encoding: ParameterEncoding {
         switch method {
         case .post:
-            return URLEncoding.default
+            return JSONEncoding.default
         default:
             return URLEncoding.default
         }

@@ -14,10 +14,12 @@ import UIKit
 import Then
 
 protocol SplashDisplayLogic: class {
+    func displayLogined()
+    func displayNotLogined()
     func displayError(error: Common.CommonError, useCase: Splash.UseCase)
 }
 
-class SplashViewController: UIViewController, SplashDisplayLogic {
+class SplashViewController: UIViewController {
     var interactor: SplashBusinessLogic?
     var router: (NSObjectProtocol & SplashRoutingLogic & SplashDataPassing)?
     
@@ -72,6 +74,18 @@ class SplashViewController: UIViewController, SplashDisplayLogic {
         splashImageView.snp.makeConstraints{
             $0.edges.equalToSuperview()
         }
+        
+        self.interactor?.checkLogin()
+    }
+}
+
+extension SplashViewController: SplashDisplayLogic{
+    func displayLogined() {
+        self.router?.routeToMain()
+    }
+    
+    func displayNotLogined() {
+        //Todo Login 화면으로 보내기
     }
     
     func displayError(error: Common.CommonError, useCase: Splash.UseCase){

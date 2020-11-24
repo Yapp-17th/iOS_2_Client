@@ -13,10 +13,16 @@
 import UIKit
 
 protocol SplashPresentationLogic {
-    
+    func presentCheckLogin(response: Splash.CheckLogin.Response)
 }
 
 class SplashPresenter: SplashPresentationLogic {
     weak var viewController: SplashDisplayLogic?
-    
+    func presentCheckLogin(response: Splash.CheckLogin.Response) {
+        if response.isLogined{
+            self.viewController?.displayLogined()
+        } else {
+            self.viewController?.displayNotLogined()
+        }
+    }
 }

@@ -18,4 +18,10 @@ enum Splash {
     enum UseCase {
         
     }
+    
+    enum CheckLogin{
+        struct Response{
+            var isLogined: Bool
+        }
+    }
 }

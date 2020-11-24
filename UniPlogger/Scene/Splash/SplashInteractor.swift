@@ -13,7 +13,7 @@
 import UIKit
 
 protocol SplashBusinessLogic {
-    
+    func checkLogin()
 }
 
 protocol SplashDataStore {
@@ -25,18 +25,28 @@ class SplashInteractor: SplashBusinessLogic, SplashDataStore {
     var worker: SplashWorker?
     //var name: String = ""
     
-    func login(){
+    func checkLogin(){
         if let userToken = AuthManager.shared.userToken {
             //Todo Login with userToken
+            let response = Splash.CheckLogin.Response(isLogined: true)
+            self.presenter?.presentCheckLogin(response: response)
         } else {
             AuthAPI.shared.login(email: "steve2@mergepoint.co.kr", password: "steve1234") { (response) in
                 switch response{
                 case .success(let value):
-                    if let userToken = value.token{
-                        
+                    if let userToken = value.token, let user = value.user{
+                        UserDefaults.standard.set(userToken, forDefines: .userToken)
+                        UserDefaults.standard.set(object: user, forKey: .user)
+                        let response = Splash.CheckLogin.Response(isLogined: true)
+                        self.presenter?.presentCheckLogin(response: response)
+                    } else {
+                        let response = Splash.CheckLogin.Response(isLogined: false)
+                        self.presenter?.presentCheckLogin(response: response)
                     }
                 case .failure(let error):
                     print(error.localizedDescription)
+                    let response = Splash.CheckLogin.Response(isLogined: false)
+                    self.presenter?.presentCheckLogin(response: response)
                 }
             }
         }
