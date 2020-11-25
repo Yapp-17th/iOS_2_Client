@@ -93,7 +93,8 @@ extension MainTabBarController {
     
     private func setupMyViewController(){
         let myItem = UITabBarItem(title: "마이", image: UIImage(named: "tabbar_my"), tag: 4)
-        let vc = MyPageViewController()
+        let vc = MyPageNavigationController()
+        vc.addChild(MyPageViewController())
         vc.tabBarItem = myItem
         self.addChild(vc)
     }

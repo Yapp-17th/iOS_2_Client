@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyPageViewController: UIViewController {
+class MyPageViewController: MyPageBaseViewController {
     
     lazy var userInfoView = UserInfoView().then {
         $0.backgroundColor = .black
@@ -27,10 +27,14 @@ class MyPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.questBackground
-        setupViews()
-        setupLayout()
+        setNavigationItem()
+        setUpViews()
+        setUpLayout()
     }
     
+    private func setNavigationItem() {
+        navigationItem.title = "마이페이지"
+    }
 }
 
 extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {

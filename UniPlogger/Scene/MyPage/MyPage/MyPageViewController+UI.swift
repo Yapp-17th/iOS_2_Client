@@ -10,16 +10,19 @@ import Foundation
 
 extension MyPageViewController {
     
-    func setupViews() {
+    func setUpViews() {
+        super.setupViews()
         [userInfoView, infoView, itemTableView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview($0)
         }
     }
     
-    func setupLayout() {
+    func setUpLayout() {
+        super.setupLayouts()
         userInfoView.snp.makeConstraints { (make) in
-            make.top.leading.trailing.equalToSuperview()
+            make.top.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(self.view.frame.height * 0.36)
         }
         infoView.snp.makeConstraints { (make) in
