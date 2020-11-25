@@ -8,23 +8,6 @@
 
 import UIKit
 
-enum InfoItemType: Int, CaseIterable {
-    case signUpInfo = 0, setting, logout, policy
-    
-    var description: String {
-        switch self {
-        case .signUpInfo:
-            return "가입정보"
-        case .setting:
-            return "환경설정"
-        case .logout:
-            return "로그아웃/탈퇴"
-        case .policy:
-            return "개인정보처리 방침"
-        }
-    }
-}
-
 class InfoTableViewCell: UITableViewCell {
     
     static let ID = "infoCell"
@@ -53,6 +36,7 @@ class InfoTableViewCell: UITableViewCell {
     }
     
     func setupViews() {
+        self.backgroundColor = .clear
         [itemLabel, nextImageView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview($0)

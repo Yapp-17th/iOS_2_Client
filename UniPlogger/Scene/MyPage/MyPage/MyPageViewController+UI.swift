@@ -11,22 +11,37 @@ import Foundation
 extension MyPageViewController {
     
     func setUpViews() {
-        super.setupViews()
-        [userInfoView, infoView, itemTableView].forEach {
+        [backgroundImageView, characterImageView, leftStarImageView, rightStarImageView, infoView, itemTableView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview($0)
         }
     }
     
     func setUpLayout() {
-        super.setupLayouts()
-        userInfoView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view.safeAreaLayoutGuide).offset(-20)
+        backgroundImageView.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(self.view.frame.height * 0.36)
         }
+        characterImageView.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(backgroundImageView).offset(-self.view.frame.height * 0.047)
+            make.width.equalTo(self.view.frame.width * 0.21)
+            make.height.equalTo(characterImageView.snp.width).multipliedBy(1.67)
+        }
+        leftStarImageView.snp.makeConstraints { (make) in
+            make.bottom.equalTo(backgroundImageView).offset(-self.view.frame.height * 0.093)
+            make.trailing.equalTo(characterImageView.snp.leading).offset(-self.view.frame.width * 0.08)
+//            make.width.equalTo(self.view.frame.width * 0.213)
+//            make.height.equalTo(leftStarImageView.snp.width)
+        }
+        rightStarImageView.snp.makeConstraints { (make) in
+            make.top.equalTo(leftStarImageView.snp.top)
+            make.leading.equalTo(characterImageView.snp.trailing).offset(self.view.frame.width * 0.08)
+//            make.width.height.equalTo(leftStarImageView)
+        }
         infoView.snp.makeConstraints { (make) in
-            make.top.equalTo(userInfoView.snp.bottom)
+            make.top.equalTo(backgroundImageView.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
         itemTableView.snp.makeConstraints { (make) in

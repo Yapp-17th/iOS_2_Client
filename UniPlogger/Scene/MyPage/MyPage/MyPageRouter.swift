@@ -7,3 +7,23 @@
 //
 
 import Foundation
+
+protocol MyPageRoutingLogic {
+    func routeToNextVC(infoItem: InfoItemType)
+}
+
+
+class MyPageRouter: NSObject, MyPageRoutingLogic {
+    weak var viewController: MyPageViewController?
+    
+    func routeToNextVC(infoItem: InfoItemType) {
+        let destinationVC = infoItem.nextScene
+        destinationVC.infoItem = infoItem
+        navigateToSetting(source: viewController!, destination: destinationVC)
+    }
+    
+    func navigateToSetting(source: MyPageViewController, destination: InfoBaseViewController) {
+        source.navigationController?.pushViewController(destination, animated: false)
+    }
+    
+}

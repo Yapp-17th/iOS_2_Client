@@ -8,10 +8,21 @@
 
 import UIKit
 
-class MyPageViewController: MyPageBaseViewController {
+class MyPageViewController: UIViewController {
     
-    lazy var userInfoView = UserInfoView().then {
-        $0.backgroundColor = .black
+    var router: (NSObjectProtocol & MyPageRoutingLogic)?
+    
+    lazy var backgroundImageView = UIImageView().then {
+        $0.image = UIImage(named: "mypage_background")?.withRenderingMode(.alwaysOriginal)
+    }
+    lazy var characterImageView = UIImageView().then {
+        $0.image = UIImage(named: "character")
+    }
+    lazy var leftStarImageView = UIImageView().then {
+        $0.image = UIImage(named: "star_yellow")
+    }
+    lazy var rightStarImageView = UIImageView().then {
+        $0.image = UIImage(named: "star_pink")
     }
     lazy var infoView = UIView().then {
         $0.backgroundColor = .clear
@@ -30,10 +41,18 @@ class MyPageViewController: MyPageBaseViewController {
         setNavigationItem()
         setUpViews()
         setUpLayout()
+        configure()
     }
     
     private func setNavigationItem() {
         navigationItem.title = "마이페이지"
+    }
+    
+    private func configure() {
+        let viewController = self
+        let router = MyPageRouter()
+        viewController.router = router
+        router.viewController = viewController
     }
 }
 
@@ -55,6 +74,7 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        router?.routeToNextVC(infoItem: InfoItemType(rawValue: indexPath.row) ?? .signUpInfo)
     }
     
 }
