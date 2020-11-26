@@ -24,6 +24,30 @@ class MyPageViewController: UIViewController {
     lazy var rightStarImageView = UIImageView().then {
         $0.image = UIImage(named: "star_pink")
     }
+    lazy var levelTitleLabel = UILabel().then {
+        $0.text = "레벨"
+        $0.textColor = .black
+        $0.textAlignment = .center
+        $0.font = .notoSans(ofSize: 14, weight: .regular)
+    }
+    lazy var rankTitleLabel = UILabel().then {
+        $0.text = "상위"
+        $0.textColor = .black
+        $0.textAlignment = .center
+        $0.font = .notoSans(ofSize: 14, weight: .regular)
+    }
+    lazy var levelLabel = UILabel().then {
+        $0.text = "2"
+        $0.textColor = .black
+        $0.textAlignment = .center
+        $0.font = .notoSans(ofSize: 20, weight: .bold)
+    }
+    lazy var rankLabel = UILabel().then {
+        $0.text = "5%"
+        $0.textColor = .black
+        $0.textAlignment = .center
+        $0.font = .notoSans(ofSize: 20, weight: .bold)
+    }
     lazy var infoView = UIView().then {
         $0.backgroundColor = .clear
     }

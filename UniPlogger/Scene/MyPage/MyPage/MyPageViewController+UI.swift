@@ -11,7 +11,7 @@ import Foundation
 extension MyPageViewController {
     
     func setUpViews() {
-        [backgroundImageView, characterImageView, leftStarImageView, rightStarImageView, infoView, itemTableView].forEach {
+        [backgroundImageView, characterImageView, leftStarImageView, rightStarImageView, levelTitleLabel, levelLabel, rankTitleLabel, rankLabel, infoView, itemTableView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview($0)
         }
@@ -39,6 +39,22 @@ extension MyPageViewController {
             make.top.equalTo(leftStarImageView.snp.top)
             make.leading.equalTo(characterImageView.snp.trailing).offset(self.view.frame.width * 0.08)
 //            make.width.height.equalTo(leftStarImageView)
+        }
+        levelTitleLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(leftStarImageView)
+            make.centerY.equalTo(leftStarImageView).offset(-7)
+        }
+        rankTitleLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(rightStarImageView)
+            make.centerY.equalTo(rightStarImageView).offset(-7)
+        }
+        levelLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(levelTitleLabel.snp.bottom).offset(-7)
+            make.centerX.equalTo(levelTitleLabel)
+        }
+        rankLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(rankTitleLabel.snp.bottom).offset(-7)
+            make.centerX.equalTo(rankTitleLabel)
         }
         infoView.snp.makeConstraints { (make) in
             make.top.equalTo(backgroundImageView.snp.bottom)
