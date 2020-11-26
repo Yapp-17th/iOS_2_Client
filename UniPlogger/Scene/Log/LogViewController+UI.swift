@@ -45,6 +45,21 @@ extension LogViewController {
     func updateView() {
         
     }
+  
+    func setupNavigtationBar(){
+        if let navBar = self.navigationController?.navigationBar {
+            navBar.barTintColor = .white
+            navBar.barStyle = .black
+            navBar.layer.cornerRadius = 30
+            navBar.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+            navBar.layer.masksToBounds = true
+            
+            
+            
+            
+            
+        }
+    }
     
     func setupScrollView() {
         self.view.addSubview(scrollView)

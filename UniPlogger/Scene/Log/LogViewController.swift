@@ -141,6 +141,10 @@ class LogViewController: UIViewController, LogDisplayLogic {
         setupView()
         setupLayout()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
     
     func displayError(error: Common.CommonError, useCase: Log.UseCase){
         //handle error with its usecase
