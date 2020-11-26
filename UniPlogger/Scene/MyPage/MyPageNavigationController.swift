@@ -12,6 +12,7 @@ class MyPageNavigationController: UINavigationController {
     lazy var navigationView = UIView().then {
         $0.backgroundColor = UIColor(named: "navigationBarColor")
         $0.layer.cornerRadius = 30
+        $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         $0.layer.masksToBounds = true
     }
     
