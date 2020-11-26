@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+enum MyPage {
+    
+    enum User {
+        struct UserInfo {
+            var level: Int
+            var rank: Int
+        }
+        
+    }
+    
+}

@@ -8,8 +8,13 @@
 
 import UIKit
 
-class MyPageViewController: UIViewController {
+protocol MyPageDisplayLogic: class {
+    func displayUserInfo(level: Int, rank: String)
+}
+
+class MyPageViewController: UIViewController, MyPageDisplayLogic {
     
+    var interactor: MyPageBusinessLogic?
     var router: (NSObjectProtocol & MyPageRoutingLogic)?
     
     lazy var backgroundImageView = UIImageView().then {
@@ -66,6 +71,8 @@ class MyPageViewController: UIViewController {
         setUpViews()
         setUpLayout()
         configure()
+        
+        self.interactor?.getUserInfo()
     }
     
     private func setNavigationItem() {
@@ -74,10 +81,23 @@ class MyPageViewController: UIViewController {
     
     private func configure() {
         let viewController = self
+        let interactor = MyPageInteractor()
+        let presenter = MyPagePresenter()
         let router = MyPageRouter()
         viewController.router = router
+        viewController.interactor = interactor
+        router.viewController = viewController
+        interactor.presenter = presenter
+        presenter.viewController = viewController
         router.viewController = viewController
     }
+    
+    func displayUserInfo(level: Int, rank: String) {
+        print(level, rank)
+        self.levelLabel.text = "\(level)"
+        self.rankLabel.text = rank
+    }
+    
 }
 
 extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
