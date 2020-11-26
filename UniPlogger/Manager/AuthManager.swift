@@ -12,7 +12,22 @@ class AuthManager{
     static let shared: AuthManager = AuthManager()
     
     var userToken: String? {
-        guard let userToken = UserDefaults.standard.string(forDefines: .userToken) else { return nil }
-        return userToken
+        get{
+            guard let userToken = UserDefaults.standard.string(forDefines: .userToken) else { return nil }
+            return userToken
+        }
+        set{
+            UserDefaults.standard.set(newValue, forDefines: .userToken)
+        }
+    }
+    
+    var user: User?{
+        get{
+            guard let user = UserDefaults.standard.object(User.self, with: .user) else { return nil }
+            return user
+        }
+        set{
+            UserDefaults.standard.set(object: newValue, forKey: .user)
+        }
     }
 }

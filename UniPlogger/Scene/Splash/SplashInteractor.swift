@@ -26,8 +26,21 @@ class SplashInteractor: SplashBusinessLogic, SplashDataStore {
     //var name: String = ""
     
     func checkLogin(){
-        if let userToken = AuthManager.shared.userToken {
+        if AuthManager.shared.userToken != nil,
+           let user = AuthManager.shared.user{
             //Todo Login with userToken
+            AuthAPI.shared.getUser(uid: user.id) { (response) in
+                switch response{
+                case .success(let user):
+                    AuthManager.shared.user = user
+                    let response = Splash.CheckLogin.Response(isLogined: true)
+                    self.presenter?.presentCheckLogin(response: response)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    let response = Splash.CheckLogin.Response(isLogined: false)
+                    self.presenter?.presentCheckLogin(response: response)
+                }
+            }
             let response = Splash.CheckLogin.Response(isLogined: true)
             self.presenter?.presentCheckLogin(response: response)
         } else {
@@ -35,8 +48,8 @@ class SplashInteractor: SplashBusinessLogic, SplashDataStore {
                 switch response{
                 case .success(let value):
                     if let userToken = value.token, let user = value.user{
-                        UserDefaults.standard.set(userToken, forDefines: .userToken)
-                        UserDefaults.standard.set(object: user, forKey: .user)
+                        AuthManager.shared.userToken = userToken
+                        AuthManager.shared.user = user
                         let response = Splash.CheckLogin.Response(isLogined: true)
                         self.presenter?.presentCheckLogin(response: response)
                     } else {

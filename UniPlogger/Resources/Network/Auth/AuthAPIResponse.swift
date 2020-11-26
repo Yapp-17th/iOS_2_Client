@@ -12,3 +12,7 @@ struct LoginResponse: Codable{
     var token: String?
     var user: User?
 }
+
+struct GetUserResponse: Codable{
+    var user: User?
+}

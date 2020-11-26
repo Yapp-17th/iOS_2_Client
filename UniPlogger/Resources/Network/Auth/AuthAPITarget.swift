@@ -11,6 +11,7 @@ import Moya
 enum AuthAPITarget{
     //쓰레기통 CRUD
     case login(email: String, password: String)
+    case getUser(uid: Int)
 }
 
 extension AuthAPITarget: BaseTarget{
@@ -18,6 +19,8 @@ extension AuthAPITarget: BaseTarget{
         switch self{
         case .login:
             return "users/login/"
+        case let .getUser(uid):
+            return "users/\(uid)/"
         }
     }
     
@@ -25,6 +28,8 @@ extension AuthAPITarget: BaseTarget{
         switch self{
         case .login:
             return .post
+        case .getUser:
+            return .get
         }
     }
     
@@ -35,6 +40,8 @@ extension AuthAPITarget: BaseTarget{
               "email": email,
               "password": password
             ]
+        case .getUser:
+            return [:]
         }
     }
     
@@ -42,6 +49,8 @@ extension AuthAPITarget: BaseTarget{
         switch self{
         case .login:
             return .requestParameters(parameters: parameters, encoding: encoding)
+        case .getUser:
+            return .requestPlain
         }
     }
     

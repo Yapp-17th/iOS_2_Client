@@ -29,4 +29,15 @@ final class AuthAPI{
                 completionHandler(.failure($0))
             }.disposed(by: disposeBag)
     }
+    
+    func getUser(uid: Int, completionHandler: @escaping (Result<User, Error>) -> Void){
+        provider.rx.request(.getUser(uid: uid))
+            .filterSuccessfulStatusCodes()
+            .map(User.self)
+            .subscribe {
+                completionHandler(.success($0))
+            } onError: {
+                completionHandler(.failure($0))
+            }.disposed(by: disposeBag)
+    }
 }
