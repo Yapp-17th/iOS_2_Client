@@ -37,19 +37,23 @@ class LogViewController: UIViewController, LogDisplayLogic {
     
     let levelTitleLabel = UILabel().then{
         $0.text = "레벨"
+        $0.textColor = .black
         $0.font = .notoSans(ofSize: 14, weight: .regular)
     }
     let levelLabel = UILabel().then{
         $0.text = "2"
+        $0.textColor = .black
         $0.font = .notoSans(ofSize: 20, weight: .bold)
     }
     
     let rankTItleLabel = UILabel().then{
         $0.text = "상위"
+        $0.textColor = .black
         $0.font = .notoSans(ofSize: 14, weight: .regular)
     }
     let rankLabel = UILabel().then{
         $0.text = "5%"
+        $0.textColor = .black
         $0.font = .notoSans(ofSize: 20, weight: .bold)
     }
     
@@ -59,7 +63,7 @@ class LogViewController: UIViewController, LogDisplayLogic {
     }
     
     let statContainer = UIView().then {
-        $0.backgroundColor = .clear
+        $0.backgroundColor = UIColor(named: "color_logBackground")
     }
     
     let statTitleLabel = UILabel().then {
@@ -79,6 +83,12 @@ class LogViewController: UIViewController, LogDisplayLogic {
         $0.backgroundColor = .recordCellBackgroundColor
         $0.layer.cornerRadius = 41
     }
+    let weeklyContentLabel = UILabel().then{
+        $0.text = "매주\n월"
+        $0.textAlignment = .center
+        $0.numberOfLines = 2
+        $0.font = .notoSans(ofSize: 16, weight: .regular)
+    }
     let monthlyTitleLabel = UILabel().then {
         $0.text = "월간"
         $0.font = .notoSans(ofSize: 14, weight: .regular)
@@ -87,9 +97,15 @@ class LogViewController: UIViewController, LogDisplayLogic {
         $0.backgroundColor = .recordCellBackgroundColor
         $0.layer.cornerRadius = 41
     }
+    let monthlyContentLabel = UILabel().then{
+        $0.text = "평균\n10회"
+        $0.textAlignment = .center
+        $0.numberOfLines = 2
+        $0.font = .notoSans(ofSize: 16, weight: .regular)
+    }
     
     lazy var collectionView = IntrinsicSizeCollectionView(frame: .zero, collectionViewLayout: LogCollectionViewLayout()).then {
-        $0.backgroundColor = .clear
+        $0.backgroundColor = UIColor(named: "color_logBackground")
         $0.dataSource = self
         $0.delegate = self
         $0.register(LogCollectionViewCell.self, forCellWithReuseIdentifier: "LogCollectionViewCell")

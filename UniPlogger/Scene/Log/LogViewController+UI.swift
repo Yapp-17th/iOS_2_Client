@@ -10,7 +10,8 @@ import UIKit
 import SnapKit
 extension LogViewController {
     func configuration() {
-        title = "플로거짱 로그"
+        self.navigationItem.title = "플로거짱 로그"
+        self.view.backgroundColor = UIColor(named: "color_logBackground")
     }
     
     func setupView() {
@@ -30,9 +31,10 @@ extension LogViewController {
         statContainer.addSubview(statTitleLabel)
         statContainer.addSubview(weeklyTitleLabel)
         statContainer.addSubview(weeklyCircleView)
+        weeklyCircleView.addSubview(weeklyContentLabel)
         statContainer.addSubview(monthlyTitleLabel)
         statContainer.addSubview(monthlyCircleView)
-        
+        monthlyCircleView.addSubview(monthlyContentLabel)
         //CollectionView
         scrollView.addArrangedSubview(collectionView)
     }
@@ -53,11 +55,6 @@ extension LogViewController {
             navBar.layer.cornerRadius = 30
             navBar.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
             navBar.layer.masksToBounds = true
-            
-            
-            
-            
-            
         }
     }
     
@@ -128,6 +125,10 @@ extension LogViewController {
             $0.width.height.equalTo(82)
         }
         
+        weeklyContentLabel.snp.makeConstraints{
+            $0.centerX.centerY.equalToSuperview()
+        }
+        
         weeklyTitleLabel.snp.makeConstraints{
             $0.centerX.equalTo(weeklyCircleView)
             $0.bottom.equalTo(weeklyCircleView.snp.top).offset(-10)
@@ -137,6 +138,10 @@ extension LogViewController {
             $0.bottom.equalTo(-20)
             $0.leading.equalTo(statTitleLabel.snp.trailing).offset(32)
             $0.width.height.equalTo(82)
+        }
+        
+        monthlyContentLabel.snp.makeConstraints{
+            $0.centerX.centerY.equalToSuperview()
         }
         
         monthlyTitleLabel.snp.makeConstraints{

@@ -9,7 +9,7 @@
 import UIKit
 class LogNavigationController: UINavigationController {
     let navView = UIView().then{
-        $0.backgroundColor = Color.white.withAlphaComponent(0.6)
+        $0.backgroundColor = Color(named: "color_logNaviBar")
         $0.layer.cornerRadius = 30
         $0.layer.masksToBounds = true
     }
