@@ -22,7 +22,7 @@ class LogViewController: UIViewController, LogDisplayLogic {
     var scrollView = ScrollStackView()
     let ploggerContainer = UIImageView().then{
         $0.image = UIImage(named: "bg_logPloggerContainer")?.withRenderingMode(.alwaysOriginal)
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
     }
     
     let ploggerImageView = UIImageView().then{
@@ -153,6 +153,7 @@ class LogViewController: UIViewController, LogDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(uploadRecord))
         configuration()
         setupView()
         setupLayout()
@@ -164,6 +165,10 @@ class LogViewController: UIViewController, LogDisplayLogic {
     
     func displayError(error: Common.CommonError, useCase: Log.UseCase){
         //handle error with its usecase
+    }
+    
+    @objc func uploadRecord(){
+        self.interactor?.uploadRecord()
     }
 }
 

@@ -13,5 +13,20 @@
 import UIKit
 
 class LogWorker {
-  
+    //title
+    //distance xx.xx
+    //time int
+    //uid
+    //image
+    func uploadRecord(){
+        guard let uid = AuthManager.shared.user?.id else { return }
+        let title = "testFeed"
+        let distance = 10.15
+        let time = 1000
+        let image = UIImage(named: "img_logSample1")!
+        
+        PloggingAPI.shared.uploadRecord(uid: uid, title: title, distance: distance, time: time, image: image) { (result) in
+            print(result)
+        }
+    }
 }

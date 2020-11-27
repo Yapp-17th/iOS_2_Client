@@ -11,6 +11,7 @@ class LogNavigationController: UINavigationController {
     let navView = UIView().then{
         $0.backgroundColor = Color(named: "color_logNaviBar")
         $0.layer.cornerRadius = 30
+        $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         $0.layer.masksToBounds = true
     }
     override func viewDidLoad() {
@@ -30,8 +31,7 @@ class LogNavigationController: UINavigationController {
         navigationBar.shadowImage = UIImage()
         navigationBar.isTranslucent = true
         navigationBar.layer.masksToBounds = true
-        navigationBar.layer.cornerRadius = 30
-        navigationBar.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        
         navigationBar.tintColor = Color.textBlack
     }
 }

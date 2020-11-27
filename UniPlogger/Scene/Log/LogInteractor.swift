@@ -13,7 +13,7 @@
 import UIKit
 
 protocol LogBusinessLogic {
-  
+    func uploadRecord()
 }
 
 protocol LogDataStore {
@@ -24,5 +24,8 @@ class LogInteractor: LogBusinessLogic, LogDataStore {
   var presenter: LogPresentationLogic?
   var worker: LogWorker?
   //var name: String = ""
-  
+    func uploadRecord() {
+        worker = LogWorker()
+        worker?.uploadRecord()
+    }
 }
