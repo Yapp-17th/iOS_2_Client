@@ -20,8 +20,9 @@ class PloggingRecordPresenter: PloggingRecordPresentationLogic {
     weak var viewController: PloggingRecordDisplayLogic?
     
     func presentFetchRecord(response: PloggingRecord.FetchRecord.Response) {
-        let distance = FormatDisplay.distance(response.distance)
-        let time = "\(String(format: "%02d", response.minutes)):\(String(format: "%02d", response.seconds))"
+        let distance = FormatDisplay.distance(response.ploggingData.distance)
+        let timeSet = response.ploggingData.timeSet()
+        let time = "\(String(format: "%02d", timeSet.minutes)):\(String(format: "%02d", timeSet.seconds))"
         
         let viewModel = PloggingRecord.FetchRecord.ViewModel(distance: distance, time: time)
         
