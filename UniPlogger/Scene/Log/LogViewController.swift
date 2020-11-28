@@ -13,12 +13,16 @@
 import UIKit
 
 protocol LogDisplayLogic: class {
+    func displayGetFeed(viewModel: Log.GetFeed.ViewModel)
     func displayError(error: Common.CommonError, useCase: Log.UseCase)
 }
 
-class LogViewController: UIViewController, LogDisplayLogic {
+class LogViewController: UIViewController {
     var interactor: LogBusinessLogic?
     var router: (NSObjectProtocol & LogRoutingLogic & LogDataPassing)?
+    
+    var feedList: [Feed] = []
+    
     var scrollView = ScrollStackView()
     let ploggerContainer = UIImageView().then{
         $0.image = UIImage(named: "bg_logPloggerContainer")?.withRenderingMode(.alwaysOriginal)
@@ -153,28 +157,38 @@ class LogViewController: UIViewController, LogDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(uploadRecord))
         configuration()
         setupView()
         setupLayout()
+        getFeed()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
     }
     
+    
+    
+    func getFeed(){
+        self.interactor?.getFeed()
+    }
+}
+
+extension LogViewController: LogDisplayLogic{
+    func displayGetFeed(viewModel: Log.GetFeed.ViewModel) {
+        self.feedList = viewModel.feedList
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
     func displayError(error: Common.CommonError, useCase: Log.UseCase){
         //handle error with its usecase
-    }
-    
-    @objc func uploadRecord(){
-        self.interactor?.uploadRecord()
     }
 }
 
 extension LogViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 11
+        return self.feedList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

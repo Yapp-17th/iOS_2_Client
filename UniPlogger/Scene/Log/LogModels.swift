@@ -13,9 +13,21 @@
 import UIKit
 
 enum Log {
-  // MARK: Use cases
-  
-  enum UseCase {
+    // MARK: Use cases
     
-  }
+    enum UseCase {
+        case GetFeed
+    }
+    
+    enum GetFeed{
+        struct Response{
+            var feedList: [Feed]?
+            var error: Common.CommonError?
+        }
+        
+        struct ViewModel{
+            var feedList: [Feed]
+        }
+    }
+    
 }
