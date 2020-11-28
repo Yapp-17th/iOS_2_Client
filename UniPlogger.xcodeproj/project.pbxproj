@@ -70,6 +70,8 @@
 		835248692572285100C9F495 /* LogModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352485F2572285100C9F495 /* LogModels.swift */; };
 		8352489725727BFE00C9F495 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352489625727BFE00C9F495 /* Planet.swift */; };
 		8352489B25727CE900C9F495 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352489A25727CE900C9F495 /* Player.swift */; };
+		835248A02572C9BF00C9F495 /* ChallengeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352489F2572C9BF00C9F495 /* ChallengeAPI.swift */; };
+		835248A62572CA0000C9F495 /* ChallengeAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835248A52572CA0000C9F495 /* ChallengeAPITarget.swift */; };
 		8353A3732568FE9400F9AA4F /* ReportItemLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A3722568FE9400F9AA4F /* ReportItemLabel.swift */; };
 		8353A377256911F900F9AA4F /* ReportItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A376256911F900F9AA4F /* ReportItem.swift */; };
 		8353A37E256947D000F9AA4F /* ReportViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A37D256947D000F9AA4F /* ReportViewController+UI.swift */; };
@@ -261,6 +263,8 @@
 		8352485F2572285100C9F495 /* LogModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogModels.swift; sourceTree = "<group>"; };
 		8352489625727BFE00C9F495 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
 		8352489A25727CE900C9F495 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		8352489F2572C9BF00C9F495 /* ChallengeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeAPI.swift; sourceTree = "<group>"; };
+		835248A52572CA0000C9F495 /* ChallengeAPITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeAPITarget.swift; sourceTree = "<group>"; };
 		8353A3722568FE9400F9AA4F /* ReportItemLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportItemLabel.swift; sourceTree = "<group>"; };
 		8353A376256911F900F9AA4F /* ReportItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportItem.swift; sourceTree = "<group>"; };
 		8353A37D256947D000F9AA4F /* ReportViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReportViewController+UI.swift"; sourceTree = "<group>"; };
@@ -600,6 +604,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		8352489E2572C9A200C9F495 /* Challenge */ = {
+			isa = PBXGroup;
+			children = (
+				8352489F2572C9BF00C9F495 /* ChallengeAPI.swift */,
+				835248A52572CA0000C9F495 /* ChallengeAPITarget.swift */,
+			);
+			path = Challenge;
+			sourceTree = "<group>";
+		};
 		8353A3712568FE2E00F9AA4F /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -872,6 +885,7 @@
 				AAA1CBEB255D5F9C00EDB18A /* APIConfiguration.swift */,
 				AAA1CBF1255D620100EDB18A /* BaseTarget.swift */,
 				AAA1CC00255D645D00EDB18A /* Plogging */,
+				8352489E2572C9A200C9F495 /* Challenge */,
 			);
 			name = Network;
 			path = Resources/Network;
@@ -1217,6 +1231,7 @@
 				835248682572285100C9F495 /* LogWorker.swift in Sources */,
 				4CC9C7DA25232128004D873D /* Quest.swift in Sources */,
 				835248632572285100C9F495 /* LogCollectionViewLayout.swift in Sources */,
+				835248A02572C9BF00C9F495 /* ChallengeAPI.swift in Sources */,
 				AA7F551D2533568D001C4012 /* SharePresenter.swift in Sources */,
 				83DE07752566AD050085AC72 /* DetailViewController.swift in Sources */,
 				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
@@ -1276,6 +1291,7 @@
 				AA7F55252533568D001C4012 /* ShareModels.swift in Sources */,
 				AA7F54EF2532C1A6001C4012 /* PloggingModels.swift in Sources */,
 				835248502572283C00C9F495 /* UserInfoView.swift in Sources */,
+				835248A62572CA0000C9F495 /* ChallengeAPITarget.swift in Sources */,
 				4CC9C7CE252315E0004D873D /* QuestPresenter.swift in Sources */,
 				AA5EFBB82552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift in Sources */,
 				8352484F2572283C00C9F495 /* InfoTableViewCell.swift in Sources */,

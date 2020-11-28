@@ -90,6 +90,8 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
         setUpView()
         setUpTableView()
         setUpLayout()
+        interactor?.startChallenge()
+        interactor?.getPlanet()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,8 +128,10 @@ extension ChallengeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = rankTableView.dequeueReusableCell(withIdentifier: "rankCell") else { return UITableViewCell() }
+        guard let cell = rankTableView.dequeueReusableCell(withIdentifier: "rankCell") as? RankTableViewCell else { return UITableViewCell() }
+        let viewModel = Challenge.RankCellViewModel(email: "asdf@naver.com", rank: 4, nickname: "띵숙이", score: 1234)
         cell.selectionStyle = .none
+        cell.configure(viewModel: viewModel)
         return cell
     }
     

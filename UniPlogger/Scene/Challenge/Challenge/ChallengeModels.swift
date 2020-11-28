@@ -23,13 +23,21 @@ enum Challenge {
     }
     
     struct User {
-        var id: String
-        var name: String
+        var id: Int
+        var email: String
+        var nickname: String
         var score: Int
     }
     
     struct ViewModel {
         var memebers: [User]
+    }
+    
+    struct RankCellViewModel {
+        var email: String
+        var rank: Int
+        var nickname: String
+        var score: Int
     }
 
 }

@@ -16,6 +16,8 @@ protocol ChallengeBusinessLogic {
     func setRank(members: [Challenge.User]) -> [Int]
     func setFullMembers(members: [Challenge.User]) -> [Challenge.User]
     func setDate() -> String
+    func startChallenge()
+    func getPlanet()
 }
 
 protocol ChallengeDataStore {
@@ -24,7 +26,7 @@ protocol ChallengeDataStore {
 
 class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore {
     var presenter: ChallengePresentationLogic?
-    var worker: ChallengeWorker?
+    var worker = ChallengeWorker()
     
     let names = [["천", "송", "이", "이", "최", "손", "고"],
                  ["승", "윤", "주", "서", "철", "병", "세"],
@@ -66,7 +68,7 @@ class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore {
         guard members.count != 10 else { return members }
         var newMembers = members
         while newMembers.count != 10 {
-            let newUser = Challenge.User(id: "", name: getRandomName(), score: 0)
+            let newUser = Challenge.User(id: 123, email: "aasd@naver.com", nickname: getRandomName(), score: 123)
             newMembers.append(newUser)
         }
         return newMembers
@@ -84,4 +86,20 @@ class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore {
         for index in (0...2) { name += names[index][Int.random(in: (0...6))] }
         return name
     }
+    
+    func startChallenge() {
+        worker.startChallenge { (result) in
+            print("post~")
+            print("result: \(result)")
+        }
+    }
+    
+    func getPlanet() {
+        worker.getPlanet { (response) in
+            print("getPlanet")
+            print(response)
+        
+        }
+    }
+    
 }

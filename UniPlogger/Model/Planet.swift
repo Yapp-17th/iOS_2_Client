@@ -8,17 +8,19 @@
 
 import Foundation
 
-struct Planet {
-    var id: String
+struct Planet: Codable {
+    var id: Int
     var startDate: String
     var endDate: String
     var userCount: Int
     var players: [Player]
     
     private enum CodingKeys: String, CodingKey {
+        case id
         case startDate = "start_date"
         case endDate = "end_date"
-        case userCount = "user_count"
+        case userCount = "user_cnt"
+        case players
     }
 }
 

@@ -8,13 +8,16 @@
 
 import Foundation
 
-struct Player {
-    var id: String
+struct Player: Codable {
+    var id: Int
     var email: String
     var nickname: String
     var planetScore: Double
     
     private enum CodingKeys: String, CodingKey {
+        case id
+        case email
+        case nickname
         case planetScore = "planet_score"
     }
 }
