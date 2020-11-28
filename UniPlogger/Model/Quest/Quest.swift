@@ -9,17 +9,25 @@
 import Foundation
 
 struct Quest {
+    
+    /// Notification userInfo key
+    static let infoKey = "QuestInfo"
+    
     var id: Int
     var title: String
     var content: String
     var category: Category
     var step: Int?
-    var state: QuestState
+    var state: QuestState! = .todo
     
-    enum Category {
-        case training
-        case routine
+    enum Category: String, Codable {
+        case training = "T"
+        case routine = "R"
     }
+}
+
+extension Quest: Codable {
+    
 }
 
 extension Quest: Hashable {
@@ -33,9 +41,9 @@ extension Quest: Hashable {
 }
 
 extension Quest.Category: Comparable {
-    static func >(lhs: Quest.Category, rhs: Quest.Category) -> Bool {
+    static func < (lhs: Quest.Category, rhs: Quest.Category) -> Bool {
         switch (lhs, rhs) {
-            case (.training, .routine):
+            case (.routine, .training):
                 return true
             default:
                 return false
