@@ -11,6 +11,7 @@ import UIKit
 protocol QuestDisplayLogic {
     func displayQuests(viewModel: QuestModels.ViewModel)
     func updateQuest(viewModel: QuestModels.ViewModel, at indexPath: IndexPath)
+    func displayDetail(quest: Quest, recommads: [Quest])
 }
 
 class QuestViewController: QuestBaseViewController {
@@ -49,6 +50,7 @@ class QuestViewController: QuestBaseViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.separatorStyle = .none
         $0.backgroundColor = .clear
+        $0.contentInset = .init(top: 0, left: 0, bottom: Metric.verticalSpacing, right: 0)
         $0.showsVerticalScrollIndicator = false
     }
     
@@ -101,7 +103,7 @@ class QuestViewController: QuestBaseViewController {
         
         let presenter = QuestPresenter(viewController: self, questFactory: QuestFactory())
         let worker = QuestWorker()
-        let interactor = QuestInteractor(presenter: presenter, worker: worker)
+        let interactor = QuestInteractor(presenter: presenter, worker: worker, questManager: QuestManager(questChecker: QuestChecker()))
         
         self.interactor = interactor
         self.router = QuestRouter(viewController: self, dataStore: interactor)
@@ -136,7 +138,7 @@ class QuestViewController: QuestBaseViewController {
             $0.top.equalTo(navigationTabsView.snp.bottom).offset(Metric.verticalSpacing)
             $0.leading.equalTo(backgroundView.snp.leading).offset(Metric.viewLeading)
             $0.trailing.equalTo(backgroundView.snp.trailing).offset(Metric.viewTrailing)
-            $0.bottom.equalTo(backgroundView.snp.bottom).offset(Metric.verticalSpacing)
+            $0.bottom.equalTo(backgroundView.snp.bottom)
         }
     }
     
@@ -148,7 +150,13 @@ class QuestViewController: QuestBaseViewController {
     }
 }
 
+// MARK:  - Quest Display Logic
+
 extension QuestViewController: QuestDisplayLogic {
+    func displayDetail(quest: Quest, recommads: [Quest]) {
+        router?.routeToDetail(quest: quest, recommands: recommads)
+    }
+    
     func updateQuest(viewModel: QuestModels.ViewModel, at indexPath: IndexPath) {
         
         questViewModel = viewModel
@@ -175,7 +183,6 @@ extension QuestViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: QuestTableViewCell.identifire, for: indexPath) as? QuestTableViewCell,
               let questViewModel = questViewModel?.quest(at: indexPath)
         else {
@@ -193,11 +200,11 @@ extension QuestViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        router?.routeToDetail(at: indexPath, in: currentQuestState)
-        // navigationController?.pushViewController(QuestDetailViewController(), animated: true)
+        interactor?.showDetail(at: indexPath, state: currentQuestState)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         return questViewModel?.height(at: indexPath) ?? .zero
     }
     
@@ -207,7 +214,7 @@ extension QuestViewController: UITableViewDelegate {
             
             completion(true)
             guard let self = self else { return }
-            self.interactor?.touchedQuestAccessoryAt(indexPath, state: self.currentQuestState)
+            self.interactor?.touchedQuestAccessory(at: indexPath, state: self.currentQuestState)
         }
         
         let quest = questViewModel?.quest(at: indexPath)

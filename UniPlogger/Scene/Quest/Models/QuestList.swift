@@ -12,10 +12,8 @@ struct QuestList {
     
     typealias State = QuestState
     private var questList = [State: [Quest]]()
-    private var questManager: QuestManageable?
     
-    init(questManager: QuestManageable, quests: [Quest]) {
-        self.questManager = questManager
+    init(quests: [Quest]) {
         quests.forEach { questList[$0.state, default: []].append($0) }
     }
     
@@ -28,27 +26,9 @@ struct QuestList {
     }
     
     // MARK: Getter
-    
-    
-    /// 현재 state의 quest 리스트
-    /// - Parameter state: QuestState
-    /// - Returns: state가 done이 아닐 땐 training이 상단에 위치
+ 
     func quests(for state: State) -> [Quest] {
-        switch state {
-            case .todo:
-                let isNotDoingTraining = !(questList[.doing]?.contains(where: { $0.category == .training }) ?? false)
-                return questList[state]?.filter { quest in
-                        guard quest.category == .training else { return true }
-                        guard isNotDoingTraining else { return false }
-                        
-                        return quest.step == (questManager?.currentTrainingStep ?? 0) + 1
-                    } ?? []
-            case .doing:
-                return questList[state] ?? []
-            case .done:
-                return questList[state] ?? []
-            default: return []
-        }
+        return questList[state] ?? []
     }
     
     func quest(at indexPath: IndexPath, in state: State) -> Quest? {
@@ -70,10 +50,10 @@ struct QuestList {
     // MARK: Mutating
     
     mutating func append(_ quest: Quest) {
-        guard quest.category != .training else {
+        guard quest.category == .routine else {
             switch quest.state {
                 case .todo, .doing:
-                    questList[quest.state]?.insert(quest, at: 0)
+                    questList[quest.state, default: []].insert(quest, at: 0)
                 case .done:
                     questList[quest.state, default: []].append(quest)
                 default:
@@ -83,6 +63,10 @@ struct QuestList {
         }
         
         questList[quest.state, default: []].append(quest)
+        
+        if quest.state == .todo {
+            questList[quest.state]?.sort(by: { $0.id < $1.id })
+        }
     }
     
     mutating func append(contentsOf quests: [Quest]) {

@@ -10,6 +10,7 @@ import Foundation
 
 protocol QuestPresentationLogic {
     func presentQuestList(response: QuestModels.Response)
+    func presentDetail(quest: Quest, recommands: [Quest])
     func remove(quest: Quest, at indexPath: IndexPath)
 }
 
@@ -42,6 +43,10 @@ class QuestPresenter {
 // MARK: - Quest PresentationLogic
 
 extension QuestPresenter: QuestPresentationLogic {
+    func presentDetail(quest: Quest, recommands: [Quest]) {
+        viewController.displayDetail(quest: quest, recommads: recommands)
+    }
+    
     func remove(quest: Quest, at indexPath: IndexPath) {
         viewModel?.remove(at: indexPath)
         guard let viewModel = viewModel else { return }
@@ -49,7 +54,6 @@ extension QuestPresenter: QuestPresentationLogic {
     }
     
     func presentQuestList(response: QuestModels.Response) {
-        
         var viewModel = QuestModels.ViewModel()
         
         for quest in response.questList {

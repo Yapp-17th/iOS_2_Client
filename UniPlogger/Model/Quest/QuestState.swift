@@ -8,11 +8,11 @@
 
 import Foundation
 
-enum QuestState {
-    case todo
-    case doing
-    case done
-    case abandon
+enum QuestState: String, Codable {
+    case todo = "TODO"
+    case doing = "DOING"
+    case done = "DONE"
+    case abandon = "ABANDON"
 }
 
 extension QuestState: CustomStringConvertible {
