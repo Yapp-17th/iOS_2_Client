@@ -22,7 +22,7 @@ struct User: Codable{
     /// 유저 상태
     var state: UserState = .normal
     /// 행성
-    
+    var planet: Planet?
     ///경험치
     var experiements: Double = 0.0
     
