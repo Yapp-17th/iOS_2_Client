@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: ChallengeBaseViewController {
     var router: (NSObjectProtocol & DetailRoutingLogic)?
     
     lazy var backgroundImageView = UIImageView().then {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserLogViewController: UIViewController {
+class UserLogViewController: ChallengeBaseViewController {
     var router:  (NSObjectProtocol & UserLogRoutingLogic)?
     
     lazy var nextButton = UIButton().then {

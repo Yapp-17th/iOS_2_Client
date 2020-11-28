@@ -34,7 +34,7 @@ class CoreDataStore{
         do{
             try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
         }catch{
-            fatalError("Error migrating store: \(error)")
+//            fatalError("Error migrating store: \(error)")
         }
         privateManagedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         privateManagedObjectContext.parent = mainManagedObjectContext

@@ -26,6 +26,7 @@ extension BaseTarget {
             headers["Authorization"] = "JWT \(token)"
         }
         return headers
+
     }
     
     var encoding: ParameterEncoding {
