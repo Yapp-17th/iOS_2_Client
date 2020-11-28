@@ -46,7 +46,7 @@ class PloggingRecordCollectionViewCell: UICollectionViewCell{
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.contentView.layer.cornerRadius = self.contentView.bounds.size.width / 2
+        self.contentView.layer.cornerRadius = 10
         self.contentView.layer.masksToBounds = true
     }
 }

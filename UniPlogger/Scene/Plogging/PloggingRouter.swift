@@ -56,8 +56,6 @@ class PloggingRouter: NSObject, PloggingRoutingLogic, PloggingDataPassing {
     
     //MARK: - Data Passing Logic
     func passDataToPloggingRecord(source: PloggingDataStore, destination: inout PloggingRecordDataStore){
-        destination.distance = source.distance
-        destination.seconds = source.seconds
-        destination.minutes = source.minutes
+        destination.ploggingData = source.ploggingData
     }
 }

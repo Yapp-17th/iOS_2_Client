@@ -10,8 +10,10 @@ import UIKit
 import CoreLocation
 
 enum UPUserDefaulKey: String {
-    case appID = "co.kr.mergepoint.dev"
+    case appID = "kr.co.yapp17.iOS2.UniPlogger"
     case location = "UPUSERDEFAULT_KEY_LOCATION"
+    case userToken = "USERDEFAULT_KEY_USERTOKEN"
+    case user = "USERDEFAULT_KEY_USER"
 }
 
 // MARK: - MPUserDefaultProtocol
@@ -80,6 +82,15 @@ extension UserDefaults: MPUserDefaultProtocol {
     
     func object(forDefines: UPUserDefaulKey) -> Any? {
         return object(forKey: forDefines.rawValue)
+    }
+    func object<T: Codable>(_ type: T.Type, with key: UPUserDefaulKey, usingDecoder decoder: JSONDecoder = JSONDecoder()) -> T? {
+      guard let data = value(forKey: key.rawValue) as? Data else { return nil }
+      return try? decoder.decode(type.self, from: data)
+    }
+    
+    func set<T: Codable>(object: T, forKey key: UPUserDefaulKey, usingEncoder encoder: JSONEncoder = JSONEncoder()) {
+      let data = try? encoder.encode(object)
+      set(data, forKey: key.rawValue)
     }
     
     func array(forDefines: UPUserDefaulKey) -> [Any]? {
