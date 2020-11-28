@@ -30,6 +30,8 @@
 		4CC9C7D4252315F3004D873D /* QuestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7D3252315F3004D873D /* QuestModels.swift */; };
 		4CC9C7D7252315FC004D873D /* QuestWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7D6252315FC004D873D /* QuestWorker.swift */; };
 		4CC9C7DA25232128004D873D /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7D925232128004D873D /* Quest.swift */; };
+		8352488B25726F8500C9F495 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352488A25726F8500C9F495 /* SettingTableViewCell.swift */; };
+		8352488F2572703200C9F495 /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352488E2572703200C9F495 /* SettingType.swift */; };
 		8353A42F256D3F9000F9AA4F /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A42E256D3F9000F9AA4F /* MyPageViewController.swift */; };
 		8353A433256D3FA100F9AA4F /* MyPageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A432256D3FA100F9AA4F /* MyPageInteractor.swift */; };
 		8353A437256D3FAD00F9AA4F /* MyPageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A436256D3FAD00F9AA4F /* MyPageRouter.swift */; };
@@ -215,6 +217,8 @@
 		4CC9C7D3252315F3004D873D /* QuestModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestModels.swift; sourceTree = "<group>"; };
 		4CC9C7D6252315FC004D873D /* QuestWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestWorker.swift; sourceTree = "<group>"; };
 		4CC9C7D925232128004D873D /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
+		8352488A25726F8500C9F495 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		8352488E2572703200C9F495 /* SettingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingType.swift; sourceTree = "<group>"; };
 		8353A42E256D3F9000F9AA4F /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		8353A432256D3FA100F9AA4F /* MyPageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInteractor.swift; sourceTree = "<group>"; };
 		8353A436256D3FAD00F9AA4F /* MyPageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageRouter.swift; sourceTree = "<group>"; };
@@ -515,7 +519,9 @@
 		8384917C256E882700C9C0D6 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				8352488E2572703200C9F495 /* SettingType.swift */,
 				8384918D256E8DE400C9C0D6 /* SettingViewController.swift */,
+				8352488A25726F8500C9F495 /* SettingTableViewCell.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1277,6 +1283,7 @@
 				83849199256E924800C9C0D6 /* LogOutViewController.swift in Sources */,
 				4C3F54BC25612818006D7C9F /* QuestManager.swift in Sources */,
 				83849188256E8AEF00C9C0D6 /* MyPageNavigationController.swift in Sources */,
+				8352488B25726F8500C9F495 /* SettingTableViewCell.swift in Sources */,
 				AA35BC7C254FFC2B00AE32A7 /* Storage.swift in Sources */,
 				AA88E0F0256D339E00EBB835 /* SplashModels.swift in Sources */,
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,
@@ -1292,6 +1299,7 @@
 				AA2CAE082543EAD600105748 /* PloggingRecordWorker.swift in Sources */,
 				838491A8256E93EA00C9C0D6 /* InfoBaseViewController.swift in Sources */,
 				83DE07742566AD050085AC72 /* StartRouter.swift in Sources */,
+				8352488F2572703200C9F495 /* SettingType.swift in Sources */,
 				83DE07702566AD050085AC72 /* ScoreInfoViewController.swift in Sources */,
 				4CC9C7CB252315D7004D873D /* QuestInteractor.swift in Sources */,
 				AA2CAE032543EAD600105748 /* PloggingRecordViewController.swift in Sources */,
