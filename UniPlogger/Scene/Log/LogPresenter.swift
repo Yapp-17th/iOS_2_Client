@@ -13,10 +13,20 @@
 import UIKit
 
 protocol LogPresentationLogic {
-  
+    func presentGetFeed(response: Log.GetFeed.Response)
 }
 
 class LogPresenter: LogPresentationLogic {
-  weak var viewController: LogDisplayLogic?
-  
+    weak var viewController: LogDisplayLogic?
+    
+    func presentGetFeed(response: Log.GetFeed.Response) {
+        guard let list = response.feedList, response.error == nil else {
+            viewController?.displayError(error: response.error!, useCase: .GetFeed)
+            return
+        }
+        let viewModel = Log.GetFeed.ViewModel(feedList: list)
+        self.viewController?.displayGetFeed(viewModel: viewModel)
+        
+    }
+    
 }
