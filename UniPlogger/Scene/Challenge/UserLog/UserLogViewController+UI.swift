@@ -11,26 +11,31 @@ import Foundation
 extension UserLogViewController {
     
     func setUpViews() {
-        [backgroundImageView, characterImageView, leftStarImageView, rightStarImageView, levelTitleLabel, levelLabel, rankTitleLabel, rankLabel].forEach {
+        [userInfoContainer, characterImageView, leftStarImageView, rightStarImageView, levelTitleLabel, levelLabel, rankTitleLabel, rankLabel, collectionView].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
-            self.view.addSubview($0)
+            scrollView.addSubview($0)
         }
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(scrollView)
     }
     
     func setUpLayout() {
-        backgroundImageView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
+        scrollView.snp.makeConstraints { (make) in
+            make.top.bottom.leading.trailing.equalToSuperview()
+        }
+        userInfoContainer.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(-88)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(self.view.frame.height * 0.36)
         }
         characterImageView.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(backgroundImageView).offset(-self.view.frame.height * 0.047)
+            make.bottom.equalTo(userInfoContainer).offset(-self.view.frame.height * 0.047)
             make.width.equalTo(self.view.frame.width * 0.21)
             make.height.equalTo(characterImageView.snp.width).multipliedBy(1.67)
         }
         leftStarImageView.snp.makeConstraints { (make) in
-            make.bottom.equalTo(backgroundImageView).offset(-self.view.frame.height * 0.093)
+            make.bottom.equalTo(userInfoContainer).offset(-self.view.frame.height * 0.093)
             make.trailing.equalTo(characterImageView.snp.leading).offset(-self.view.frame.width * 0.08)
 
         }
@@ -53,6 +58,10 @@ extension UserLogViewController {
         rankLabel.snp.makeConstraints { (make) in
             make.top.equalTo(rankTitleLabel.snp.bottom).offset(-7)
             make.centerX.equalTo(rankTitleLabel)
+        }
+        collectionView.snp.makeConstraints { (make) in
+            make.top.equalTo(userInfoContainer.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
         }
     }
     

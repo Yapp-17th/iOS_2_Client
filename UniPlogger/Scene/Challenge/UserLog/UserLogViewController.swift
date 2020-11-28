@@ -11,8 +11,10 @@ import UIKit
 class UserLogViewController: UIViewController {
     var router:  (NSObjectProtocol & UserLogRoutingLogic)?
     
-    lazy var backgroundImageView = UIImageView().then {
+    lazy var scrollView = UIScrollView()
+    lazy var userInfoContainer = UIImageView().then {
         $0.image = UIImage(named: "bg_logPloggerContainer")?.withRenderingMode(.alwaysOriginal)
+        $0.contentMode = .scaleAspectFill
     }
     lazy var characterImageView = UIImageView().then {
         $0.image = UIImage(named: "character")
@@ -53,6 +55,12 @@ class UserLogViewController: UIViewController {
         $0.backgroundColor = .lightGray
         $0.addTarget(self, action: #selector(touchUpNextButton), for: .touchUpInside)
     }
+    lazy var collectionView = IntrinsicSizeCollectionView(frame: .zero, collectionViewLayout: LogCollectionViewLayout()).then {
+        $0.backgroundColor = UIColor(named: "color_logBackground")
+        $0.dataSource = self
+        $0.delegate = self
+        $0.register(LogCollectionViewCell.self, forCellWithReuseIdentifier: "LogCollectionViewCell")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,4 +88,17 @@ class UserLogViewController: UIViewController {
         router?.routeToDetail()
     }
 
+}
+
+extension UserLogViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 11
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LogCollectionViewCell", for: indexPath) as? LogCollectionViewCell else { fatalError() }
+        cell.viewModel = .init(image: "img_logSample\(indexPath.item + 1)")
+        cell.backgroundColor = .lightGray
+        return cell
+    }
 }
