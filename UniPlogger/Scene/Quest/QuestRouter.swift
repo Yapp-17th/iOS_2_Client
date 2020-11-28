@@ -9,7 +9,7 @@
 import Foundation
 
 protocol QuestRoutingLogic {
-    func routeToDetail(at indexPath: IndexPath, in state: QuestState)
+    func routeToDetail(quest: Quest, recommands: [Quest])
 }
 
 protocol QuestDataPassing {
@@ -27,15 +27,11 @@ class QuestRouter: QuestDataPassing {
 }
 
 extension QuestRouter: QuestRoutingLogic {
-    func routeToDetail(at indexPath: IndexPath, in state: QuestState) {
-        guard let quest = dataStore.questList.quest(at: indexPath, in: state),
-              let source = viewController
-        else {
-            return
-        }
+    func routeToDetail(quest: Quest, recommands: [Quest]) {
+        guard let source = viewController else { return }
         
         let questDetailVC = QuestDetailViewController()
-        questDetailVC.configure(quest: quest)
+        questDetailVC.configure(quest: quest, recommands: recommands, router: self)
         navigateToDetail(source: source, destination: questDetailVC)
     }
     
