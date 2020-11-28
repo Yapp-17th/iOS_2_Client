@@ -30,6 +30,21 @@
 		4CC9C7D4252315F3004D873D /* QuestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7D3252315F3004D873D /* QuestModels.swift */; };
 		4CC9C7D7252315FC004D873D /* QuestWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7D6252315FC004D873D /* QuestWorker.swift */; };
 		4CC9C7DA25232128004D873D /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7D925232128004D873D /* Quest.swift */; };
+		8353A42F256D3F9000F9AA4F /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A42E256D3F9000F9AA4F /* MyPageViewController.swift */; };
+		8353A433256D3FA100F9AA4F /* MyPageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A432256D3FA100F9AA4F /* MyPageInteractor.swift */; };
+		8353A437256D3FAD00F9AA4F /* MyPageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A436256D3FAD00F9AA4F /* MyPageRouter.swift */; };
+		8353A43B256D3FBB00F9AA4F /* MyPageModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A43A256D3FBB00F9AA4F /* MyPageModels.swift */; };
+		8353A43F256D3FC500F9AA4F /* MyPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A43E256D3FC500F9AA4F /* MyPagePresenter.swift */; };
+		8353A451256D431D00F9AA4F /* MyPageViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A450256D431D00F9AA4F /* MyPageViewController+UI.swift */; };
+		8353A468256D47BA00F9AA4F /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A467256D47BA00F9AA4F /* UserInfoView.swift */; };
+		8353A470256D553A00F9AA4F /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A46F256D553A00F9AA4F /* InfoTableViewCell.swift */; };
+		83849188256E8AEF00C9C0D6 /* MyPageNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83849187256E8AEF00C9C0D6 /* MyPageNavigationController.swift */; };
+		8384918E256E8DE400C9C0D6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8384918D256E8DE400C9C0D6 /* SettingViewController.swift */; };
+		83849193256E923500C9C0D6 /* SignUpInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83849192256E923500C9C0D6 /* SignUpInfoViewController.swift */; };
+		83849199256E924800C9C0D6 /* LogOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83849198256E924800C9C0D6 /* LogOutViewController.swift */; };
+		8384919D256E925600C9C0D6 /* PolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8384919C256E925600C9C0D6 /* PolicyViewController.swift */; };
+		838491A4256E936100C9C0D6 /* InfoItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838491A3256E936100C9C0D6 /* InfoItemType.swift */; };
+		838491A8256E93EA00C9C0D6 /* InfoBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838491A7256E93EA00C9C0D6 /* InfoBaseViewController.swift */; };
 		83DE07702566AD050085AC72 /* ScoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07522566AD050085AC72 /* ScoreInfoViewController.swift */; };
 		83DE07712566AD050085AC72 /* CircleInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07542566AD050085AC72 /* CircleInfoView.swift */; };
 		83DE07722566AD050085AC72 /* ScoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07552566AD050085AC72 /* ScoreInfoView.swift */; };
@@ -200,6 +215,21 @@
 		4CC9C7D3252315F3004D873D /* QuestModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestModels.swift; sourceTree = "<group>"; };
 		4CC9C7D6252315FC004D873D /* QuestWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestWorker.swift; sourceTree = "<group>"; };
 		4CC9C7D925232128004D873D /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
+		8353A42E256D3F9000F9AA4F /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		8353A432256D3FA100F9AA4F /* MyPageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInteractor.swift; sourceTree = "<group>"; };
+		8353A436256D3FAD00F9AA4F /* MyPageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageRouter.swift; sourceTree = "<group>"; };
+		8353A43A256D3FBB00F9AA4F /* MyPageModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageModels.swift; sourceTree = "<group>"; };
+		8353A43E256D3FC500F9AA4F /* MyPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePresenter.swift; sourceTree = "<group>"; };
+		8353A450256D431D00F9AA4F /* MyPageViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyPageViewController+UI.swift"; sourceTree = "<group>"; };
+		8353A467256D47BA00F9AA4F /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
+		8353A46F256D553A00F9AA4F /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		83849187256E8AEF00C9C0D6 /* MyPageNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageNavigationController.swift; sourceTree = "<group>"; };
+		8384918D256E8DE400C9C0D6 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		83849192256E923500C9C0D6 /* SignUpInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInfoViewController.swift; sourceTree = "<group>"; };
+		83849198256E924800C9C0D6 /* LogOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutViewController.swift; sourceTree = "<group>"; };
+		8384919C256E925600C9C0D6 /* PolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyViewController.swift; sourceTree = "<group>"; };
+		838491A3256E936100C9C0D6 /* InfoItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoItemType.swift; sourceTree = "<group>"; };
+		838491A7256E93EA00C9C0D6 /* InfoBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBaseViewController.swift; sourceTree = "<group>"; };
 		83DE07522566AD050085AC72 /* ScoreInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreInfoViewController.swift; sourceTree = "<group>"; };
 		83DE07542566AD050085AC72 /* CircleInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleInfoView.swift; sourceTree = "<group>"; };
 		83DE07552566AD050085AC72 /* ScoreInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreInfoView.swift; sourceTree = "<group>"; };
@@ -423,6 +453,7 @@
 		4CC9C7C525231565004D873D /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				8353A42D256D3EA700F9AA4F /* MyPage */,
 				AA88E0E6256D338F00EBB835 /* Splash */,
 				AAE05CEF2568E6E000547501 /* Log */,
 				83DE07502566AD050085AC72 /* Challenge */,
@@ -445,6 +476,68 @@
 				4C401EC1253EE67100ABED84 /* Main */,
 			);
 			path = Quest;
+			sourceTree = "<group>";
+		};
+		8353A42D256D3EA700F9AA4F /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				838491A3256E936100C9C0D6 /* InfoItemType.swift */,
+				83849187256E8AEF00C9C0D6 /* MyPageNavigationController.swift */,
+				8384917B256E881D00C9C0D6 /* MyPage */,
+				83849191256E921C00C9C0D6 /* InfoVC */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		8353A466256D47AB00F9AA4F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8353A467256D47BA00F9AA4F /* UserInfoView.swift */,
+				8353A46F256D553A00F9AA4F /* InfoTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8384917B256E881D00C9C0D6 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				8353A466256D47AB00F9AA4F /* Views */,
+				8353A43A256D3FBB00F9AA4F /* MyPageModels.swift */,
+				8353A42E256D3F9000F9AA4F /* MyPageViewController.swift */,
+				8353A450256D431D00F9AA4F /* MyPageViewController+UI.swift */,
+				8353A432256D3FA100F9AA4F /* MyPageInteractor.swift */,
+				8353A436256D3FAD00F9AA4F /* MyPageRouter.swift */,
+				8353A43E256D3FC500F9AA4F /* MyPagePresenter.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		8384917C256E882700C9C0D6 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				8384918D256E8DE400C9C0D6 /* SettingViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		83849191256E921C00C9C0D6 /* InfoVC */ = {
+			isa = PBXGroup;
+			children = (
+				838491A7256E93EA00C9C0D6 /* InfoBaseViewController.swift */,
+				838491A0256E926800C9C0D6 /* LogOut */,
+				8384917C256E882700C9C0D6 /* Setting */,
+				83849192256E923500C9C0D6 /* SignUpInfoViewController.swift */,
+				8384919C256E925600C9C0D6 /* PolicyViewController.swift */,
+			);
+			path = InfoVC;
+			sourceTree = "<group>";
+		};
+		838491A0256E926800C9C0D6 /* LogOut */ = {
+			isa = PBXGroup;
+			children = (
+				83849198256E924800C9C0D6 /* LogOutViewController.swift */,
+			);
+			path = LogOut;
 			sourceTree = "<group>";
 		};
 		83DE07502566AD050085AC72 /* Challenge */ = {
@@ -1104,6 +1197,7 @@
 				AA2CAE0A2543EAD600105748 /* PloggingRecordRouter.swift in Sources */,
 				83DE07712566AD050085AC72 /* CircleInfoView.swift in Sources */,
 				4CC9C7DA25232128004D873D /* Quest.swift in Sources */,
+				8353A433256D3FA100F9AA4F /* MyPageInteractor.swift in Sources */,
 				AA88534D256AB57A00A07D99 /* LogNavigationController.swift in Sources */,
 				AA7F551D2533568D001C4012 /* SharePresenter.swift in Sources */,
 				83DE07792566AD050085AC72 /* ReportView.swift in Sources */,
@@ -1134,16 +1228,21 @@
 				AAA1CBEC255D5F9C00EDB18A /* APIConfiguration.swift in Sources */,
 				AA2CAE062543EAD600105748 /* PloggingRecordViewController+UI.swift in Sources */,
 				AA7F54F32532C1A6001C4012 /* PloggingWorker.swift in Sources */,
+				8353A43B256D3FBB00F9AA4F /* MyPageModels.swift in Sources */,
 				4C401EB2253DE1F200ABED84 /* QuestState.swift in Sources */,
 				AAB3B4EF2520B30600F0311A /* RoundShadowView.swift in Sources */,
 				AA6CE4F32551780E00C83D28 /* TrashCanStorage.swift in Sources */,
+				8353A470256D553A00F9AA4F /* InfoTableViewCell.swift in Sources */,
 				AA88E0EE256D339E00EBB835 /* SplashWorker.swift in Sources */,
 				AAE05CE72568E3C100547501 /* VerbosePlugin.swift in Sources */,
 				AA7F55212533568D001C4012 /* ShareWorker.swift in Sources */,
+				8353A43F256D3FC500F9AA4F /* MyPagePresenter.swift in Sources */,
 				83DE07762566AD050085AC72 /* DetailRouter.swift in Sources */,
 				AA7F55242533568D001C4012 /* PloggingInfoView.swift in Sources */,
 				4CB979C42524E5BC00498E81 /* NavigationTabsView.swift in Sources */,
+				8353A451256D431D00F9AA4F /* MyPageViewController+UI.swift in Sources */,
 				AA2CAE092543EAD600105748 /* PloggingRecordInteractor.swift in Sources */,
+				8384919D256E925600C9C0D6 /* PolicyViewController.swift in Sources */,
 				AA35BC77254FEEFA00AE32A7 /* CoreDataStore.swift in Sources */,
 				AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
@@ -1153,6 +1252,7 @@
 				AA35BC86254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift in Sources */,
 				AAA1CBE9255D5E9100EDB18A /* SessionManager.swift in Sources */,
 				AAA1CC03255D647100EDB18A /* PloggingAPITarget.swift in Sources */,
+				8384918E256E8DE400C9C0D6 /* SettingViewController.swift in Sources */,
 				4C2D059B2556459400FA787F /* QuestDetailPresenter.swift in Sources */,
 				AAC9584F2545BC110092BA6E /* ScrollStackView.swift in Sources */,
 				AA7F55252533568D001C4012 /* ShareModels.swift in Sources */,
@@ -1163,6 +1263,7 @@
 				AA885346256AAC9E00A07D99 /* LogCollectionViewLayout.swift in Sources */,
 				83DE077F2566AD050085AC72 /* ChallengeViewController+UI.swift in Sources */,
 				AAE05CE92568E3D400547501 /* Data+Extensions.swift in Sources */,
+				8353A437256D3FAD00F9AA4F /* MyPageRouter.swift in Sources */,
 				4C8956862532E3230099934E /* QuestTableViewCell.swift in Sources */,
 				AA88E0F7256D35B100EBB835 /* AuthManager.swift in Sources */,
 				AA7F54F22532C1A6001C4012 /* PloggingViewController.swift in Sources */,
@@ -1173,7 +1274,9 @@
 				AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */,
 				AA2CAE072543EAD600105748 /* PloggingRecordCollectionViewCell.swift in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
+				83849199256E924800C9C0D6 /* LogOutViewController.swift in Sources */,
 				4C3F54BC25612818006D7C9F /* QuestManager.swift in Sources */,
+				83849188256E8AEF00C9C0D6 /* MyPageNavigationController.swift in Sources */,
 				AA35BC7C254FFC2B00AE32A7 /* Storage.swift in Sources */,
 				AA88E0F0256D339E00EBB835 /* SplashModels.swift in Sources */,
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,
@@ -1181,11 +1284,13 @@
 				4C7248B52544297D00ACB32B /* HightlightButton.swift in Sources */,
 				AA7F5528253356BE001C4012 /* PhotoManager.swift in Sources */,
 				83DE077C2566AD050085AC72 /* UserLogViewController.swift in Sources */,
+				83849193256E923500C9C0D6 /* SignUpInfoViewController.swift in Sources */,
 				AA217515254CF5ED0076BAD5 /* TrashCan.swift in Sources */,
 				83DE07732566AD050085AC72 /* StartViewController.swift in Sources */,
 				AAB3B4EC2520B2B400F0311A /* UIImage+Extensions.swift in Sources */,
 				4C7248B12542FDA600ACB32B /* RecommandOtherView.swift in Sources */,
 				AA2CAE082543EAD600105748 /* PloggingRecordWorker.swift in Sources */,
+				838491A8256E93EA00C9C0D6 /* InfoBaseViewController.swift in Sources */,
 				83DE07742566AD050085AC72 /* StartRouter.swift in Sources */,
 				83DE07702566AD050085AC72 /* ScoreInfoViewController.swift in Sources */,
 				4CC9C7CB252315D7004D873D /* QuestInteractor.swift in Sources */,
@@ -1193,10 +1298,12 @@
 				83DE07722566AD050085AC72 /* ScoreInfoView.swift in Sources */,
 				AA88E0F2256D339E00EBB835 /* SplashInteractor.swift in Sources */,
 				83DE07802566AD050085AC72 /* ChallengeRouter.swift in Sources */,
+				8353A468256D47BA00F9AA4F /* UserInfoView.swift in Sources */,
 				AA7F55232533568D001C4012 /* PloggingImageView.swift in Sources */,
 				AAAD68F82555738300895265 /* CLLocation+Extensions.swift in Sources */,
 				AA88534A256AAD1B00A07D99 /* LogCollectionViewCell.swift in Sources */,
 				83DE07852566AD050085AC72 /* ChallengeInteractor.swift in Sources */,
+				8353A42F256D3F9000F9AA4F /* MyPageViewController.swift in Sources */,
 				AAAD68FF2555A52B00895265 /* QuestDetailViewController.swift in Sources */,
 				83DE07782566AD050085AC72 /* ReportViewController.swift in Sources */,
 				AAE05CFA2568E75900547501 /* LogViewController.swift in Sources */,
@@ -1215,6 +1322,7 @@
 				AAAD691025566B1400895265 /* CameraViewController.swift in Sources */,
 				AA7F55202533568D001C4012 /* ShareViewController+UI.swift in Sources */,
 				4CC9C7D7252315FC004D873D /* QuestWorker.swift in Sources */,
+				838491A4256E936100C9C0D6 /* InfoItemType.swift in Sources */,
 				AAE05CF72568E75900547501 /* LogWorker.swift in Sources */,
 				4C2D058C25562E4F00FA787F /* QuestRouter.swift in Sources */,
 				AA88E0FD256D3A9300EBB835 /* AuthAPIResponse.swift in Sources */,
