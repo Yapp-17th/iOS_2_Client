@@ -17,25 +17,18 @@ protocol PloggingRecordBusinessLogic {
 }
 
 protocol PloggingRecordDataStore {
-    var distance: Measurement<UnitLength>? { get set }
-    var seconds: Int? { get set }
-    var minutes: Int? { get set }
+    var ploggingData: PloggingData? { get set }
 }
 
 class PloggingRecordInteractor: PloggingRecordBusinessLogic, PloggingRecordDataStore {
-    var distance: Measurement<UnitLength>?
-    var seconds: Int?
-    var minutes: Int?
+    var ploggingData: PloggingData?
     
     var presenter: PloggingRecordPresentationLogic?
     var worker: PloggingRecordWorker?
     
     func fetchRecord() {
-        guard let distance = self.distance,
-              let seconds = self.seconds,
-              let minutes = self.minutes
-        else { return }
-        let response = PloggingRecord.FetchRecord.Response(distance: distance, seconds: seconds, minutes: minutes)
+        guard let ploggingData = self.ploggingData else { return }
+        let response = PloggingRecord.FetchRecord.Response(ploggingData: ploggingData)
         self.presenter?.presentFetchRecord(response: response)
     }
 }

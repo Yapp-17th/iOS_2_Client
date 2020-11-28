@@ -21,9 +21,7 @@ enum PloggingRecord {
     
     enum FetchRecord{
         struct Response{
-            var distance: Measurement<UnitLength>
-            var seconds: Int
-            var minutes: Int
+            var ploggingData: PloggingData
         }
         
         struct ViewModel{

@@ -23,8 +23,10 @@ class SharePresenter: SharePresentationLogic {
     // MARK: Do something
   
     func presentFetchRecord(response: Share.FetchRecord.Response) {
-        let distance = FormatDisplay.distance(response.distance)
-        let time = "\(String(format: "%02d", response.minutes)):\(String(format: "%02d", response.seconds))"
+        let data = response.ploggingData
+        let timeSet = data.timeSet()
+        let distance = FormatDisplay.distance(data.distance)
+        let time = "\(String(format: "%02d", timeSet.minutes)):\(String(format: "%02d", timeSet.seconds))"
         
         let viewModel = Share.FetchRecord.ViewModel(distance: distance, time: time, image: response.image)
         

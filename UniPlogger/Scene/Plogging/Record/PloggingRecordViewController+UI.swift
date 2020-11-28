@@ -14,28 +14,12 @@ extension PloggingRecordViewController {
     }
     
     func setupView() {
-        if #available(iOS 12.0, *) {
-            // User Interface is Dark
-            [distanceLabel,timeLabel].forEach {
-                $0.textColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
-            }
-            [distanceImageView, timeImageView].forEach{
-                $0.tintColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
-            }
-        } else {
-            [distanceLabel,timeLabel].forEach {
-                $0.textColor = .black
-            }
-            [distanceImageView, timeImageView].forEach{
-                $0.tintColor = .black
-            }
-        }
+        
     }
     
     func setupLayout() {
         setupScrollView()
         setupSkipButton()
-        setupRecordContainer()
         setupTitleLabel()
         setupCollectionView()
         setupNextButton()
@@ -61,62 +45,7 @@ extension PloggingRecordViewController {
         skipButton.snp.makeConstraints{
             $0.top.equalTo(28)
             $0.trailing.equalTo(-27)
-            $0.bottom.equalTo(-33)
-        }
-    }
-    
-    func setupRecordContainer(){
-        let v = UIView()
-        v.addSubview(recordContainer)
-        scrollView.addArrangedSubview(v)
-        recordContainer.addSubview(distanceContainer)
-        recordContainer.addSubview(timeContainer)
-        distanceContainer.addSubview(distanceImageView)
-        distanceContainer.addSubview(distanceLabel)
-        
-        timeContainer.addSubview(timeImageView)
-        timeContainer.addSubview(timeLabel)
-        
-        recordContainer.snp.makeConstraints{
-            $0.top.bottom.equalToSuperview()
-            $0.leading.equalTo(48)
-            $0.trailing.equalTo(-48)
-        }
-        
-        distanceContainer.snp.makeConstraints{
-            $0.top.bottom.equalToSuperview()
-            $0.leading.equalToSuperview()
-            
-        }
-        
-        timeContainer.snp.makeConstraints{
-            $0.top.bottom.equalToSuperview()
-            $0.trailing.equalToSuperview()
-        }
-        
-        distanceLabel.snp.makeConstraints{
-            $0.leading.trailing.bottom.equalToSuperview()
-        }
-        
-        
-        distanceImageView.snp.makeConstraints{
-            $0.top.equalToSuperview()
-            $0.width.equalTo(26)
-            $0.height.equalTo(25.67)
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(distanceLabel.snp.top).offset(-3)
-        }
-        
-        timeLabel.snp.makeConstraints{
-            $0.leading.trailing.bottom.equalToSuperview()
-        }
-        
-        timeImageView.snp.makeConstraints{
-            $0.top.equalToSuperview()
-            $0.width.equalTo(22)
-            $0.height.equalTo(25.62)
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(timeLabel.snp.top).offset(-3)
+            $0.bottom.equalTo(-4)
         }
     }
     
@@ -125,10 +54,9 @@ extension PloggingRecordViewController {
         v.addSubview(titleLabel)
         scrollView.addArrangedSubview(v)
         titleLabel.snp.makeConstraints{
-            $0.top.equalTo(44)
+            $0.top.equalTo(4)
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(30)
-            $0.bottom.equalTo(-37)
+            $0.bottom.equalTo(-28)
         }
     }
     
