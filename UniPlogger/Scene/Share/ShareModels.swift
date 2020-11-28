@@ -18,9 +18,7 @@ enum Share
   
     enum FetchRecord{
         struct Response{
-            var distance: Measurement<UnitLength>
-            var seconds: Int
-            var minutes: Int
+            var ploggingData: PloggingData
             var image: UIImage
         }
         
@@ -31,9 +29,6 @@ enum Share
         }
     }
     
-    enum Something {
-        struct Request { }
-        struct Response { }
-        struct ViewModel { }
+    enum UploadRecord{
     }
 }

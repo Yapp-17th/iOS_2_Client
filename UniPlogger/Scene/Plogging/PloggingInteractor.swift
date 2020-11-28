@@ -27,15 +27,11 @@ protocol PloggingBusinessLogic {
 }
 
 protocol PloggingDataStore {
-    var distance: Measurement<UnitLength>? { get set }
-    var seconds: Int? { get set }
-    var minutes: Int? { get set }
+    var ploggingData: PloggingData? { get set }
 }
 
 class PloggingInteractor: NSObject, PloggingBusinessLogic, PloggingDataStore {
-    var distance: Measurement<UnitLength>?
-    var seconds: Int?
-    var minutes: Int?
+    var ploggingData: PloggingData?
     
     var presenter: PloggingPresentationLogic?
     var worker = PloggingWorker()
@@ -61,9 +57,8 @@ class PloggingInteractor: NSObject, PloggingBusinessLogic, PloggingDataStore {
     func stopPlogging(request: Plogging.StopPlogging.Request) {
         worker.delegate = nil
         worker.stopRun { [weak self] distance in
-            self?.seconds = request.seconds
-            self?.minutes = request.minutes
-            self?.distance = distance
+            let ploggingData = PloggingData(distance: distance, time: request.minutes * 60 + request.seconds, items: [])
+            self?.ploggingData = ploggingData
             self?.presenter?.presentStopPlogging()
         }
     }

@@ -18,28 +18,25 @@ protocol ShareBusinessLogic {
 }
 
 protocol ShareDataStore {
-    var distance: Measurement<UnitLength>? { get set }
-    var seconds: Int? { get set }
-    var minutes: Int? { get set }
+    var ploggingData: PloggingData? { get set }
     var image: UIImage? { get set }
 }
 
 class ShareInteractor: ShareBusinessLogic, ShareDataStore {
-    var distance: Measurement<UnitLength>?
-    var seconds: Int?
-    var minutes: Int?
+    var ploggingData: PloggingData?
     var image: UIImage?
     
     var presenter: SharePresentationLogic?
-    var worker: ShareWorker?
+    var worker: ShareWorker = ShareWorker()
     
     func fetchRecord() {
-        guard let distance = self.distance,
-              let seconds = self.seconds,
-              let minutes = self.minutes,
+        guard let ploggingData = self.ploggingData,
               let image = self.image
         else { return }
-        let response = Share.FetchRecord.Response(distance: distance, seconds: seconds, minutes: minutes, image: image)
+        
+        worker.uploadPloggingRecord(data: ploggingData, image: image)
+        
+        let response = Share.FetchRecord.Response(ploggingData: ploggingData, image: image)
         presenter?.presentFetchRecord(response: response)
     }
     

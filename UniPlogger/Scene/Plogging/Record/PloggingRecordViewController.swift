@@ -33,39 +33,10 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         $0.setTitleColor(.init(red: 196, green: 196, blue: 196), for: .normal)
         $0.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
     }
-    
-    let recordContainer = UIView()
-    let distanceContainer = UIView().then{
-        $0.backgroundColor = .clear
-    }
-    
-    let distanceImageView = UIImageView().then{
-        $0.image = UIImage(named: "ic_plogging_distance")?.withRenderingMode(.alwaysTemplate)
-        $0.contentMode = .scaleAspectFit
-    }
-    
-    let distanceLabel = UILabel().then{
-        $0.font = .roboto(ofSize: 30, weight: .bold)
-        $0.text = "0.00"
-        $0.textColor = .black
-    }
-    let timeContainer = UIView().then{
-        $0.backgroundColor = .clear
-    }
-    
-    let timeImageView = UIImageView().then{
-        $0.image = UIImage(named: "ic_plogging_time")?.withRenderingMode(.alwaysTemplate)
-        $0.contentMode = .scaleAspectFit
-    }
-    
-    let timeLabel = UILabel().then{
-        $0.font = .roboto(ofSize: 30, weight: .bold)
-        $0.text = "00:00"
-        $0.textColor = .white
-    }
     let titleLabel = UILabel().then{
-        $0.text = "오늘 무엇을 플로깅했나요?"
-        $0.font = .notoSans(ofSize: 22, weight: .bold)
+        $0.text = "오늘 어떤 쓰레기를\n주우셨나요?"
+        $0.numberOfLines = 2
+        $0.font = .notoSans(ofSize: 14, weight: .regular)
         $0.textAlignment = .center
     }
     
@@ -100,15 +71,14 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     }
     
     var itemList = [
+        "종이",
+        "종이팩",
         "플라스틱",
-        "담배",
-        "캔",
-        "비닐",
-        "일반쓰레기",
+        "페트",
+        "비닐류",
         "유리",
-        "스트로폼",
-        "빨대",
-        "종이"
+        "캔류",
+        "일반쓰레기"
     ]
     
     var selectedItems: [Int] = []
@@ -163,8 +133,8 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     }
     
     func displayFetchRecord(viewModel: PloggingRecord.FetchRecord.ViewModel) {
-        self.distanceLabel.text = viewModel.distance
-        self.timeLabel.text = viewModel.time
+//        self.distanceLabel.text = viewModel.distance
+//        self.timeLabel.text = viewModel.time
     }
     
     func displayError(error: Common.CommonError, useCase: PloggingRecord.UseCase){
