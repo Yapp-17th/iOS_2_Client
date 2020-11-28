@@ -11,6 +11,7 @@ import UIKit
 protocol QuestDisplayLogic {
     func displayQuests(viewModel: QuestModels.ViewModel)
     func updateQuest(viewModel: QuestModels.ViewModel, at indexPath: IndexPath)
+    func displayDetail(quest: Quest, recommads: [Quest])
 }
 
 class QuestViewController: QuestBaseViewController {
@@ -149,7 +150,13 @@ class QuestViewController: QuestBaseViewController {
     }
 }
 
+// MARK:  - Quest Display Logic
+
 extension QuestViewController: QuestDisplayLogic {
+    func displayDetail(quest: Quest, recommads: [Quest]) {
+        router?.routeToDetail(quest: quest, recommands: recommads)
+    }
+    
     func updateQuest(viewModel: QuestModels.ViewModel, at indexPath: IndexPath) {
         
         questViewModel = viewModel
@@ -176,7 +183,6 @@ extension QuestViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: QuestTableViewCell.identifire, for: indexPath) as? QuestTableViewCell,
               let questViewModel = questViewModel?.quest(at: indexPath)
         else {
@@ -194,8 +200,7 @@ extension QuestViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        router?.routeToDetail(at: indexPath, in: currentQuestState)
-        // navigationController?.pushViewController(QuestDetailViewController(), animated: true)
+        interactor?.showDetail(at: indexPath, state: currentQuestState)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -209,7 +214,7 @@ extension QuestViewController: UITableViewDelegate {
             
             completion(true)
             guard let self = self else { return }
-            self.interactor?.touchedQuestAccessoryAt(indexPath, state: self.currentQuestState)
+            self.interactor?.touchedQuestAccessory(at: indexPath, state: self.currentQuestState)
         }
         
         let quest = questViewModel?.quest(at: indexPath)

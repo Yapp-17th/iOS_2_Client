@@ -10,13 +10,15 @@ import Foundation
 
 protocol QuestBusinessLogic {
     func fetchQuest(request: QuestModels.Reqeust)
+    func showDetail(at indexPath: IndexPath, state: QuestState)
     func change(state: QuestState)
-    func touchedQuestAccessoryAt(_ indexPath: IndexPath, state: QuestState)
+    func touchedQuestAccessory(at indexPath: IndexPath, state: QuestState)
 }
 
 protocol QuestDataStore {
     var questList: QuestList { get }
     var questManager: QuestManageable { get }
+    
 }
 
 class QuestInteractor: QuestDataStore {
@@ -38,23 +40,34 @@ class QuestInteractor: QuestDataStore {
 }
 
 extension QuestInteractor: QuestBusinessLogic {
+    
     func change(state: QuestState) {
-        let quests = questList.quests(for: state, currentTrainingStep: questManager.currentTrainingStep)
+        let quests = questList.quests(for: state)
         presenter.presentQuestList(response: .init(questList: quests))
     }
     
-    func touchedQuestAccessoryAt(_ indexPath: IndexPath, state: QuestState) {
+    func showDetail(at indexPath: IndexPath, state: QuestState) {
+        guard let quest = questList.quest(at: indexPath, in: state) else { return }
+        worker.detail(for: quest, completionHandler: { [weak self] quest, more in
+            self?.presenter.presentDetail(quest: quest, recommands: more)
+        })
+    }
+    
+    func touchedQuestAccessory(at indexPath: IndexPath, state: QuestState) {
         guard var quest = questList.quest(at: indexPath, in: state) else { return }
         
         if state == .todo {
+            worker.start(quest: quest)
             questList.remove(quest: quest)
             quest.state = .doing
             questList.append(quest)
         } else if state == .doing {
+            worker.abandon(quest: quest)
             questList.remove(quest: quest)
             quest.state = .todo
             questList.append(quest)
         } else if state == .done {
+            worker.delete(quest: quest)
             questList.remove(quest: quest)
         } else {
             return
@@ -65,10 +78,11 @@ extension QuestInteractor: QuestBusinessLogic {
     
     
     func fetchQuest(request: QuestModels.Reqeust) {
-        questList = QuestList(quests: worker.fetchData())
-        
-        let response = QuestModels.Response(questList: questList.quests(for: request.state, currentTrainingStep: questManager.currentTrainingStep))
-        
-        presenter.presentQuestList(response: response)
+        worker.fetchData { [weak self] (quests) in
+            guard let self = self else { return }
+            self.questList = QuestList(quests: quests)
+            let response = QuestModels.Response(questList: self.questList.quests(for: request.state))
+            self.presenter.presentQuestList(response: response)
+        }
     }
 }
