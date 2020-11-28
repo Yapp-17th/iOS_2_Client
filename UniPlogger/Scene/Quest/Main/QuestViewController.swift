@@ -49,6 +49,7 @@ class QuestViewController: QuestBaseViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.separatorStyle = .none
         $0.backgroundColor = .clear
+        $0.contentInset = .init(top: 0, left: 0, bottom: Metric.verticalSpacing, right: 0)
         $0.showsVerticalScrollIndicator = false
     }
     
@@ -136,7 +137,7 @@ class QuestViewController: QuestBaseViewController {
             $0.top.equalTo(navigationTabsView.snp.bottom).offset(Metric.verticalSpacing)
             $0.leading.equalTo(backgroundView.snp.leading).offset(Metric.viewLeading)
             $0.trailing.equalTo(backgroundView.snp.trailing).offset(Metric.viewTrailing)
-            $0.bottom.equalTo(backgroundView.snp.bottom).offset(Metric.verticalSpacing)
+            $0.bottom.equalTo(backgroundView.snp.bottom)
         }
     }
     
@@ -198,6 +199,7 @@ extension QuestViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         return questViewModel?.height(at: indexPath) ?? .zero
     }
     
