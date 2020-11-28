@@ -193,7 +193,9 @@ extension LogViewController: UICollectionViewDataSource, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LogCollectionViewCell", for: indexPath) as? LogCollectionViewCell else { fatalError() }
-        cell.viewModel = .init(image: "img_logSample\(indexPath.item + 1)")
+        let feed = feedList[indexPath.item]
+        
+        cell.viewModel = .init(image: feed.photo)
         return cell
     }
 }

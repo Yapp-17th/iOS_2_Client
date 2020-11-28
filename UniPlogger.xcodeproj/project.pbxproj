@@ -71,6 +71,7 @@
 		AA4AD524257207F70087E060 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD523257207F70087E060 /* Feed.swift */; };
 		AA4AD538257210250087E060 /* LogAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD537257210250087E060 /* LogAPITarget.swift */; };
 		AA4AD53C2572108F0087E060 /* LogAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD53B2572108F0087E060 /* LogAPI.swift */; };
+		AA4AD54425721D8B0087E060 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD54325721D8B0087E060 /* ImageDownloadManager.swift */; };
 		AA5EFBB82552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */; };
 		AA6CE4F32551780E00C83D28 /* TrashCanStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */; };
 		AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54DD2532C109001C4012 /* BaseViewController.swift */; };
@@ -246,6 +247,7 @@
 		AA4AD523257207F70087E060 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		AA4AD537257210250087E060 /* LogAPITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogAPITarget.swift; sourceTree = "<group>"; };
 		AA4AD53B2572108F0087E060 /* LogAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogAPI.swift; sourceTree = "<group>"; };
+		AA4AD54325721D8B0087E060 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
 		AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingRecordCollectionViewLayout.swift; sourceTree = "<group>"; };
 		AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashCanStorage.swift; sourceTree = "<group>"; };
 		AA7F54DD2532C109001C4012 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -715,6 +717,7 @@
 			isa = PBXGroup;
 			children = (
 				AA7F5527253356BE001C4012 /* PhotoManager.swift */,
+				AA4AD54325721D8B0087E060 /* ImageDownloadManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1227,6 +1230,7 @@
 				AA2CAE022543EAD600105748 /* TrashAnnotation.swift in Sources */,
 				AAE05CF62568E75900547501 /* LogPresenter.swift in Sources */,
 				AAE05CF92568E75900547501 /* LogModels.swift in Sources */,
+				AA4AD54425721D8B0087E060 /* ImageDownloadManager.swift in Sources */,
 				AAAD691025566B1400895265 /* CameraViewController.swift in Sources */,
 				AA4AD538257210250087E060 /* LogAPITarget.swift in Sources */,
 				AA7F55202533568D001C4012 /* ShareViewController+UI.swift in Sources */,
