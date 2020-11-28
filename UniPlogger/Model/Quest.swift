@@ -9,7 +9,7 @@
 import Foundation
 
 struct Quest {
-    var id: String
+    var id: Int
     var title: String
     var content: String
     var category: Category
