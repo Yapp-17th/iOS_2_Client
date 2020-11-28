@@ -12,10 +12,8 @@ struct QuestList {
     
     typealias State = QuestState
     private var questList = [State: [Quest]]()
-    private var questManager: QuestManageable?
     
-    init(questManager: QuestManageable, quests: [Quest]) {
-        self.questManager = questManager
+    init(quests: [Quest]) {
         quests.forEach { questList[$0.state, default: []].append($0) }
     }
     
@@ -29,11 +27,10 @@ struct QuestList {
     
     // MARK: Getter
     
-    
     /// 현재 state의 quest 리스트
     /// - Parameter state: QuestState
     /// - Returns: state가 done이 아닐 땐 training이 상단에 위치
-    func quests(for state: State) -> [Quest] {
+    func quests(for state: State, currentTrainingStep: Int) -> [Quest] {
         switch state {
             case .todo:
                 let isNotDoingTraining = !(questList[.doing]?.contains(where: { $0.category == .training }) ?? false)
@@ -41,7 +38,7 @@ struct QuestList {
                         guard quest.category == .training else { return true }
                         guard isNotDoingTraining else { return false }
                         
-                        return quest.step == (questManager?.currentTrainingStep ?? 0) + 1
+                        return quest.step == currentTrainingStep + 1
                     } ?? []
             case .doing:
                 return questList[state] ?? []

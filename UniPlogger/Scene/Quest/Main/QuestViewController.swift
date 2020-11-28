@@ -101,7 +101,7 @@ class QuestViewController: QuestBaseViewController {
         
         let presenter = QuestPresenter(viewController: self, questFactory: QuestFactory())
         let worker = QuestWorker()
-        let interactor = QuestInteractor(presenter: presenter, worker: worker)
+        let interactor = QuestInteractor(presenter: presenter, worker: worker, questManager: QuestManager(questChecker: QuestChecker()))
         
         self.interactor = interactor
         self.router = QuestRouter(viewController: self, dataStore: interactor)

@@ -16,22 +16,30 @@ protocol QuestBusinessLogic {
 
 protocol QuestDataStore {
     var questList: QuestList { get }
+    var questManager: QuestManageable { get }
 }
 
 class QuestInteractor: QuestDataStore {
     private var presenter: QuestPresentationLogic
     private var worker: QuestWorker
-    private(set) var questList = QuestList(questManager: QuestManager(), quests: [])
+    private(set) var questManager: QuestManageable
+    private(set) var questList: QuestList
     
-    init(presenter: QuestPresentationLogic, worker: QuestWorker) {
+    init(presenter: QuestPresentationLogic,
+         worker: QuestWorker,
+         questManager: QuestManageable,
+         questList: QuestList = QuestList(quests: [])) {
+        
         self.presenter = presenter
         self.worker = worker
+        self.questManager = questManager
+        self.questList = questList
     }
 }
 
 extension QuestInteractor: QuestBusinessLogic {
     func change(state: QuestState) {
-        let quests = questList.quests(for: state)
+        let quests = questList.quests(for: state, currentTrainingStep: questManager.currentTrainingStep)
         presenter.presentQuestList(response: .init(questList: quests))
     }
     
@@ -57,9 +65,9 @@ extension QuestInteractor: QuestBusinessLogic {
     
     
     func fetchQuest(request: QuestModels.Reqeust) {
-        questList = QuestList(questManager: QuestManager(), quests: worker.fetchData())
+        questList = QuestList(quests: worker.fetchData())
         
-        let response = QuestModels.Response(questList: questList.quests(for: request.state))
+        let response = QuestModels.Response(questList: questList.quests(for: request.state, currentTrainingStep: questManager.currentTrainingStep))
         
         presenter.presentQuestList(response: response)
     }
