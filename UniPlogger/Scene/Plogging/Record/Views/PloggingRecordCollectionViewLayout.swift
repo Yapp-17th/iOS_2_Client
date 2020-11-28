@@ -18,8 +18,8 @@ class PloggingRecordCollectionViewLayout: UICollectionViewFlowLayout {
         fatalError("init(coder:) has not been implemented")
     }
     
-    fileprivate var numberOfColumns = 3
-    fileprivate var cellPadding: CGFloat = 8
+    fileprivate var numberOfColumns = 2
+    fileprivate var cellPadding: CGFloat = 10
     
     fileprivate var cache = [UICollectionViewLayoutAttributes]()
     

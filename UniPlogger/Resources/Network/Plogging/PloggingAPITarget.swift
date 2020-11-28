@@ -10,8 +10,9 @@ import Moya
 
 enum PloggingAPITarget{
     //쓰레기통 CRUD
-  case createTrash(latitude: Double, longitude: Double, address: String)
+    case createTrash(latitude: Double, longitude: Double, address: String)
     case fetchTrashList
+    case uploadRecord(uid: Int, title: String, distance: Double, time: Int, image: UIImage)
 }
 
 extension PloggingAPITarget: BaseTarget{
@@ -21,6 +22,8 @@ extension PloggingAPITarget: BaseTarget{
             return "trashcans/"
         case .fetchTrashList:
             return "trashcans/"
+        case .uploadRecord:
+            return "users/feed/"
         }
     }
     
@@ -30,6 +33,8 @@ extension PloggingAPITarget: BaseTarget{
             return .post
         case .fetchTrashList:
             return .get
+        case .uploadRecord:
+            return .post
         }
     }
     
@@ -44,6 +49,8 @@ extension PloggingAPITarget: BaseTarget{
             ]
         case .fetchTrashList:
             return [:]
+        case .uploadRecord:
+            return [:]
         }
     }
     
@@ -53,6 +60,16 @@ extension PloggingAPITarget: BaseTarget{
             return .requestParameters(parameters: parameters, encoding: encoding)
         case .fetchTrashList:
             return .requestPlain
+        case let .uploadRecord(uid, title, distance, time, image):
+            let compImg = image.jpegData(compressionQuality: 1.0)!
+            let uidData = MultipartFormData(provider: .data("\(uid)".data(using: .utf8)!), name: "uid")
+            let titleData = MultipartFormData(provider: .data(title.data(using: .utf8)!), name: "title")
+            let distanceData = MultipartFormData(provider: .data("\(distance)".data(using: .utf8)!), name: "distance")
+            let timeData = MultipartFormData(provider: .data("\(time)".data(using: .utf8)!), name: "time")
+            var imageData = MultipartFormData(provider: .data(compImg), name: "photo", fileName: "photo.jpg", mimeType: "image/jpeg")
+            //uidMultipartformData, titleMultipartformData, distnceMultipartformData, timeMultipartformData,
+            return .uploadMultipart([uidData, titleData, distanceData, timeData, imageData])
+                
         }
     }
     
