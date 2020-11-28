@@ -14,7 +14,6 @@ import UIKit
 
 protocol SharePresentationLogic {
     func presentFetchRecord(response: Share.FetchRecord.Response)
-    func presentSomething(response: Share.Something.Response)
 }
 
 class SharePresenter: SharePresentationLogic {
@@ -31,10 +30,5 @@ class SharePresenter: SharePresentationLogic {
         let viewModel = Share.FetchRecord.ViewModel(distance: distance, time: time, image: response.image)
         
         self.viewController?.displayFetchRecord(viewModel: viewModel)
-    }
-    
-    func presentSomething(response: Share.Something.Response) {
-        let viewModel = Share.Something.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
     }
 }
