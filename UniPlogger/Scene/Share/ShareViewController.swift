@@ -17,11 +17,10 @@ import Then
 
 protocol ShareDisplayLogic: class {
     func displayFetchRecord(viewModel: Share.FetchRecord.ViewModel)
-    func displaySomething(viewModel: Share.Something.ViewModel)
-    
+    func displayUpload()
 }
 
-class ShareViewController: UIViewController, ShareDisplayLogic {
+class ShareViewController: UIViewController {
     var interactor: ShareBusinessLogic?
     var router: (NSObjectProtocol & ShareRoutingLogic & ShareDataPassing)?
     
@@ -89,19 +88,12 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
         self.interactor?.fetchRecord()
     }
     
-    func displayFetchRecord(viewModel: Share.FetchRecord.ViewModel) {
-        self.ploggingImageView.ploggingInfoView.viewModel = .init(distance: viewModel.distance, time: viewModel.time)
-        self.ploggingImageView.image = viewModel.image
-    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         self.imageForShare = mergeViews()
         ploggingImageView.clipsToBounds = true
-    }
-
-    func displaySomething(viewModel: Share.Something.ViewModel) {
-        
     }
     
     @objc func touchUpDismissButton() {
@@ -155,6 +147,17 @@ class ShareViewController: UIViewController, ShareDisplayLogic {
         let image = ploggingImageView.asImage()
         outPutImageView.image = image
         return outPutImageView.image
+    }
+}
+
+extension ShareViewController: ShareDisplayLogic{
+    func displayFetchRecord(viewModel: Share.FetchRecord.ViewModel) {
+        self.ploggingImageView.ploggingInfoView.viewModel = .init(distance: viewModel.distance, time: viewModel.time)
+        self.ploggingImageView.image = viewModel.image
+    }
+    func displayUpload() {
+        guard let image = self.ploggingImageView.image else { return }
+        
     }
 }
 

@@ -40,14 +40,15 @@ final class PloggingAPI{
             .disposed(by: disposeBag)
     }
     
-    func uploadRecord(uid: Int, title: String, distance: Double, time: Int, image: UIImage, completionHandler: @escaping(Bool) -> Void) {
+    func uploadRecord(uid: Int, title: String, distance: Double, time: Int, image: UIImage, completionHandler: @escaping(Result<Feed, Error>) -> Void) {
         provider.rx.request(.uploadRecord(uid: uid, title: title, distance: distance, time: time, image: image))
             .filterSuccessfulStatusCodes()
-            .map(Bool.self)
+            .map(Feed.self)
             .subscribe {
-                completionHandler($0)
+                completionHandler(.success($0))
             } onError: {
                 print($0.localizedDescription)
+                completionHandler(.failure($0))
             }.disposed(by: self.disposeBag)
     }
 }

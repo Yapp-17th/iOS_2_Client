@@ -68,6 +68,7 @@
 		AA35BC85254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35BC83254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift */; };
 		AA35BC86254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35BC84254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift */; };
 		AA4AD5172571F9700087E060 /* PloggingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD5162571F9700087E060 /* PloggingData.swift */; };
+		AA4AD524257207F70087E060 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD523257207F70087E060 /* Feed.swift */; };
 		AA5EFBB82552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */; };
 		AA6CE4F32551780E00C83D28 /* TrashCanStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */; };
 		AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54DD2532C109001C4012 /* BaseViewController.swift */; };
@@ -240,6 +241,7 @@
 		AA35BC83254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedTrashCan+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AA35BC84254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedTrashCan+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		AA4AD5162571F9700087E060 /* PloggingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingData.swift; sourceTree = "<group>"; };
+		AA4AD523257207F70087E060 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingRecordCollectionViewLayout.swift; sourceTree = "<group>"; };
 		AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashCanStorage.swift; sourceTree = "<group>"; };
 		AA7F54DD2532C109001C4012 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -866,6 +868,7 @@
 				4C401EB1253DE1F200ABED84 /* QuestState.swift */,
 				AA217514254CF5ED0076BAD5 /* TrashCan.swift */,
 				AA88E0F9256D367900EBB835 /* User.swift */,
+				AA4AD523257207F70087E060 /* Feed.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1086,6 +1089,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83DE077A2566AD050085AC72 /* UserLogRouter.swift in Sources */,
+				AA4AD524257207F70087E060 /* Feed.swift in Sources */,
 				4C401EAF253DE19100ABED84 /* ShareRouter.swift in Sources */,
 				AAA1CBFE255D640C00EDB18A /* PloggingAPI.swift in Sources */,
 				AA885342256AA73E00A07D99 /* LogViewController+UI.swift in Sources */,
@@ -1401,7 +1405,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 97C96KP84G;
 				INFOPLIST_FILE = UniPlogger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

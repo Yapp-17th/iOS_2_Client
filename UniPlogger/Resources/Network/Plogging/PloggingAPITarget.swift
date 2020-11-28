@@ -66,7 +66,7 @@ extension PloggingAPITarget: BaseTarget{
             let titleData = MultipartFormData(provider: .data(title.data(using: .utf8)!), name: "title")
             let distanceData = MultipartFormData(provider: .data("\(distance)".data(using: .utf8)!), name: "distance")
             let timeData = MultipartFormData(provider: .data("\(time)".data(using: .utf8)!), name: "time")
-            var imageData = MultipartFormData(provider: .data(compImg), name: "photo", fileName: "photo.jpg", mimeType: "image/jpeg")
+            let imageData = MultipartFormData(provider: .data(compImg), name: "photo", fileName: "\(title).jpg", mimeType: "image/jpeg")
             //uidMultipartformData, titleMultipartformData, distnceMultipartformData, timeMultipartformData,
             return .uploadMultipart([uidData, titleData, distanceData, timeData, imageData])
                 

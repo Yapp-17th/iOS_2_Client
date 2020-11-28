@@ -27,12 +27,15 @@ class ShareInteractor: ShareBusinessLogic, ShareDataStore {
     var image: UIImage?
     
     var presenter: SharePresentationLogic?
-    var worker: ShareWorker?
+    var worker: ShareWorker = ShareWorker()
     
     func fetchRecord() {
         guard let ploggingData = self.ploggingData,
               let image = self.image
         else { return }
+        
+        worker.uploadPloggingRecord(data: ploggingData, image: image)
+        
         let response = Share.FetchRecord.Response(ploggingData: ploggingData, image: image)
         presenter?.presentFetchRecord(response: response)
     }
