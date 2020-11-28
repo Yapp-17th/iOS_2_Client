@@ -9,8 +9,6 @@
 import Foundation
 
 protocol QuestManageable {
-    var currentTrainingStep: Int { get }
-    func nextStage()
     func start(quest: Quest)
     func finish(plogging: PloggingData)
     func postCompleteIfSuccess(completed proceedingQuest: ProceedingQuest) -> Bool
@@ -24,44 +22,30 @@ class QuestManager: QuestManageable {
         self.questChecker = questChecker
     }
     
-    func nextStage() {
-        let nextStage = currentTrainingStep + 1
-        guard nextStage <= 10 else { return }
-        UserDefaults.standard.setValue(nextStage, forKey: trainingStepKey)
-    }
-    
     func start(quest: Quest) {
-        proceedingQuests.append(ProceedingQuest(id: quest.id))
+        proceedingQuests.append(ProceedingQuest(quest: quest))
     }
     
     func finish(plogging: PloggingData) {
         let completed = questChecker.finish(plogging: plogging)
         completed.forEach {
-            if postCompleteIfSuccess(completed: $0), $0.id <= 10 {
-                nextStage()
-            }
+            postCompleteIfSuccess(completed: $0)
         }
     }
     
     @discardableResult
     func postCompleteIfSuccess(completed proceedingQuest: ProceedingQuest) -> Bool {
-        guard proceedingQuest.id != 6,
-              proceedingQuest.id != 8,
-              proceedingQuest.id != 10
+        guard proceedingQuest.quest.id != 6,
+              proceedingQuest.quest.id != 8,
+              proceedingQuest.quest.id != 10
         else {
             if proceedingQuest.completeCount >= 3 {
-                // TODO: post
+                NotificationCenter.default.post(name: .QuestDidComplete, object: nil, userInfo: [Quest.infoKey: proceedingQuest.quest])
                 return true
             }
             return false
         }
-        // TODO: post
+        NotificationCenter.default.post(name: .QuestDidComplete, object: nil, userInfo: [Quest.infoKey: proceedingQuest.quest])
         return true
-    }
-    
-    private let trainingStepKey = "trainingStep"
-    
-    var currentTrainingStep: Int {
-        return UserDefaults.standard.integer(forKey: trainingStepKey)
     }
 }

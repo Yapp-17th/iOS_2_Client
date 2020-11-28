@@ -32,7 +32,7 @@ import Foundation
 //    20 누적 6 Step. 플로깅 총 거리 100km, 20시간 이상 달성하기
 
 protocol QuestCheckable {
-    func isComplete(quest: ProceedingQuest) -> Bool
+    func isComplete(proceddingQuest: ProceedingQuest) -> Bool
     func finish(plogging: PloggingData) -> [ProceedingQuest]
 }
 
@@ -51,7 +51,7 @@ class QuestChecker: QuestCheckable {
         proceedingQuests.forEach { proceedingQuest in
             proceedingQuest.append(plogging)
             
-            if isComplete(quest: proceedingQuest) {
+            if isComplete(proceddingQuest: proceedingQuest) {
                 proceedingQuest.completeCount += 1
                 completed.append(proceedingQuest)
             }
@@ -59,79 +59,79 @@ class QuestChecker: QuestCheckable {
         return completed
     }
     
-    func isComplete(quest: ProceedingQuest) -> Bool {
-        switch quest.id {
+    func isComplete(proceddingQuest: ProceedingQuest) -> Bool {
+        switch proceddingQuest.quest.id {
             
             // 학습 퀘스트
             case 1:
-                return (quest.distance >= 100 || quest.time >= 60 * 15) &&
-                      quest.pickedUpTrashs.count >= 1
+                return (proceddingQuest.distance >= 100 || proceddingQuest.time >= 60 * 15) &&
+                      proceddingQuest.pickedUpTrashs.count >= 1
             case 2:
-                return (quest.distance >= 100 || quest.time >= 60 * 15) &&
-                      quest.pickedUpTrashs.count >= 2
+                return (proceddingQuest.distance >= 100 || proceddingQuest.time >= 60 * 15) &&
+                      proceddingQuest.pickedUpTrashs.count >= 2
             case 3:
-                return (quest.distance >= 150 || quest.time >= 60 * 30) &&
-                      quest.pickedUpTrashs.count >= 2
+                return (proceddingQuest.distance >= 150 || proceddingQuest.time >= 60 * 30) &&
+                      proceddingQuest.pickedUpTrashs.count >= 2
             case 4:
-                return (quest.distance >= 150 || quest.time >= 60 * 30) &&
-                      quest.pickedUpTrashs.count >= 3
+                return (proceddingQuest.distance >= 150 || proceddingQuest.time >= 60 * 30) &&
+                      proceddingQuest.pickedUpTrashs.count >= 3
             case 5:
-                return (quest.distance >= 200 || quest.time >= 60 * 45) &&
-                      quest.pickedUpTrashs.count >= 3
+                return (proceddingQuest.distance >= 200 || proceddingQuest.time >= 60 * 45) &&
+                      proceddingQuest.pickedUpTrashs.count >= 3
             case 6:
-                return (quest.distance >= 200 || quest.time >= 60 * 45) &&
-                      quest.pickedUpTrashs.count >= 3
+                return (proceddingQuest.distance >= 200 || proceddingQuest.time >= 60 * 45) &&
+                      proceddingQuest.pickedUpTrashs.count >= 3
             case 7:
-                return (quest.distance >= 250 || quest.time >= 60 * 60) &&
-                      quest.pickedUpTrashs.count >= 4
+                return (proceddingQuest.distance >= 250 || proceddingQuest.time >= 60 * 60) &&
+                      proceddingQuest.pickedUpTrashs.count >= 4
             case 8:
-                return (quest.distance >= 250 || quest.time >= 60 * 60) &&
-                      quest.pickedUpTrashs.count >= 4
+                return (proceddingQuest.distance >= 250 || proceddingQuest.time >= 60 * 60) &&
+                      proceddingQuest.pickedUpTrashs.count >= 4
             case 9:
-                return (quest.distance >= 300 || quest.time >= 60 * 90) &&
-                      quest.pickedUpTrashs.count >= 5
+                return (proceddingQuest.distance >= 300 || proceddingQuest.time >= 60 * 90) &&
+                      proceddingQuest.pickedUpTrashs.count >= 5
             case 10:
-                return (quest.distance >= 300 || quest.time >= 60 * 90) &&
-                      quest.pickedUpTrashs.count >= 5
+                return (proceddingQuest.distance >= 300 || proceddingQuest.time >= 60 * 90) &&
+                      proceddingQuest.pickedUpTrashs.count >= 5
                 
             // 상시 퀘스트
             case 11:
                 let intervals = Calendar.current.intervalsOfWeek(from: 4)
                 return intervals
                     .filter { interval in
-                        quest.finishDates.contains(where: { interval.contains($0) })
+                        proceddingQuest.finishDates.contains(where: { interval.contains($0) })
                     }
                     .count > intervals.count
             case 12:
                 let beforeOneMonth = Date().midnight.addingTimeInterval(-60*60*24*30)
                 let range = beforeOneMonth...Date()
-                return quest.finishDates.filter { range.contains($0) }.count > 10
+                return proceddingQuest.finishDates.filter { range.contains($0) }.count > 10
             case 13:
                 let intervals = Calendar.current.intervalsOfWeek(from: 4 * 3)
                 return intervals
                     .filter { interval in
-                        quest.finishDates.filter({ date in interval.contains(date) }).count >= 2
+                        proceddingQuest.finishDates.filter({ date in interval.contains(date) }).count >= 2
                     }
                     .count > intervals.count
             case 14:
                 let beforeOneMonth = Date().midnight.addingTimeInterval(-60*60*24*30)
                 let range = beforeOneMonth...Date()
-                return quest.finishDates.filter { range.contains($0) }.count > 30
+                return proceddingQuest.finishDates.filter { range.contains($0) }.count > 30
             case 15:
-                return quest.finishCount >= 25
+                return proceddingQuest.finishCount >= 25
             case 16:
-                return quest.finishCount >= 25 &&
-                      quest.time >= 60 * 60 * 5
+                return proceddingQuest.finishCount >= 25 &&
+                      proceddingQuest.time >= 60 * 60 * 5
             case 17:
-                return quest.finishCount >= 50
+                return proceddingQuest.finishCount >= 50
             case 18:
-                return quest.finishCount >= 50 &&
-                      quest.time >= 60 * 60 * 10
+                return proceddingQuest.finishCount >= 50 &&
+                      proceddingQuest.time >= 60 * 60 * 10
             case 19:
-                return quest.finishCount >= 100
+                return proceddingQuest.finishCount >= 100
             case 20:
-                return quest.finishCount >= 100 &&
-                      quest.time >= 60 * 60 * 20
+                return proceddingQuest.finishCount >= 100 &&
+                      proceddingQuest.time >= 60 * 60 * 20
             default:
                 return false
         }

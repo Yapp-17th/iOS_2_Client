@@ -9,7 +9,7 @@
 import Foundation
 
 class ProceedingQuest {
-    private(set) var id: Int
+    private(set) var quest: Quest
     /// time 1 = 1초
     private(set) var time: Int
     /// distance 1 = 10m
@@ -22,7 +22,7 @@ class ProceedingQuest {
     /// 미션 달성 횟수
     var completeCount: Int
     
-    init(id: Int,
+    init(quest: Quest,
          time: Int = 0,
          distance: Double = 0,
          pickedUpTrashs: [PloggingItemType: Int] = [:],
@@ -30,7 +30,7 @@ class ProceedingQuest {
          completeCount: Int = 0,
          finishCount: Int = 0) {
         
-        self.id = id
+        self.quest = quest
         self.time = time
         self.distance = distance
         self.pickedUpTrashs = pickedUpTrashs
@@ -41,6 +41,7 @@ class ProceedingQuest {
     
     func append(_ ploggingData: PloggingData) {
         time += ploggingData.time
+        #warning("거리 수정바람")
         // distance += ploggingData.distance
         
         finishDates.append(Date())
