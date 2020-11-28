@@ -11,6 +11,7 @@ import Foundation
 extension DetailViewController {
     
     func setUpViews() {
+        super.setupViews()
         [backgroundImageView, ploggingImageView].forEach {
             self.view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -18,8 +19,10 @@ extension DetailViewController {
     }
     
     func setUpLayout() {
+        super.setupLayouts()
         backgroundImageView.snp.makeConstraints {
-            $0.top.bottom.leading.trailing.equalToSuperview()
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(-30)
+            $0.bottom.leading.trailing.equalToSuperview()
         }
         ploggingImageView.snp.makeConstraints {
             $0.width.height.equalTo(340)

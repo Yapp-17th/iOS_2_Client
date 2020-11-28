@@ -13,6 +13,8 @@ enum PloggingAPITarget{
     case createTrash(latitude: Double, longitude: Double, address: String)
     case fetchTrashList
     case uploadRecord(uid: Int, title: String, distance: Double, time: Int, image: UIImage)
+  case createTrash(latitude: Double, longitude: Double, address: String)
+    case fetchTrashList
 }
 
 extension PloggingAPITarget: BaseTarget{

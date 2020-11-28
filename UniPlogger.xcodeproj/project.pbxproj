@@ -45,6 +45,11 @@
 		8384919D256E925600C9C0D6 /* PolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8384919C256E925600C9C0D6 /* PolicyViewController.swift */; };
 		838491A4256E936100C9C0D6 /* InfoItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838491A3256E936100C9C0D6 /* InfoItemType.swift */; };
 		838491A8256E93EA00C9C0D6 /* InfoBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838491A7256E93EA00C9C0D6 /* InfoBaseViewController.swift */; };
+		8353A3732568FE9400F9AA4F /* ReportItemLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A3722568FE9400F9AA4F /* ReportItemLabel.swift */; };
+		8353A377256911F900F9AA4F /* ReportItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A376256911F900F9AA4F /* ReportItem.swift */; };
+		8353A37E256947D000F9AA4F /* ReportViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A37D256947D000F9AA4F /* ReportViewController+UI.swift */; };
+		8353A381256A617100F9AA4F /* ChallengeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A380256A617100F9AA4F /* ChallengeNavigationController.swift */; };
+		8353A385256A638700F9AA4F /* ChallengeBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A384256A638700F9AA4F /* ChallengeBaseViewController.swift */; };
 		83DE07702566AD050085AC72 /* ScoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07522566AD050085AC72 /* ScoreInfoViewController.swift */; };
 		83DE07712566AD050085AC72 /* CircleInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07542566AD050085AC72 /* CircleInfoView.swift */; };
 		83DE07722566AD050085AC72 /* ScoreInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07552566AD050085AC72 /* ScoreInfoView.swift */; };
@@ -54,7 +59,6 @@
 		83DE07762566AD050085AC72 /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE075B2566AD050085AC72 /* DetailRouter.swift */; };
 		83DE07772566AD050085AC72 /* DetailViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE075C2566AD050085AC72 /* DetailViewController+UI.swift */; };
 		83DE07782566AD050085AC72 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE075E2566AD050085AC72 /* ReportViewController.swift */; };
-		83DE07792566AD050085AC72 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07602566AD050085AC72 /* ReportView.swift */; };
 		83DE077A2566AD050085AC72 /* UserLogRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07622566AD050085AC72 /* UserLogRouter.swift */; };
 		83DE077B2566AD050085AC72 /* UserLogViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07632566AD050085AC72 /* UserLogViewController+UI.swift */; };
 		83DE077C2566AD050085AC72 /* UserLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE07642566AD050085AC72 /* UserLogViewController.swift */; };
@@ -175,6 +179,7 @@
 		AAE05CF92568E75900547501 /* LogModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE05CF32568E75900547501 /* LogModels.swift */; };
 		AAE05CFA2568E75900547501 /* LogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE05CF42568E75900547501 /* LogViewController.swift */; };
 		AAE05CFB2568E75900547501 /* LogInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE05CF52568E75900547501 /* LogInteractor.swift */; };
+        
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -230,6 +235,11 @@
 		8384919C256E925600C9C0D6 /* PolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyViewController.swift; sourceTree = "<group>"; };
 		838491A3256E936100C9C0D6 /* InfoItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoItemType.swift; sourceTree = "<group>"; };
 		838491A7256E93EA00C9C0D6 /* InfoBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBaseViewController.swift; sourceTree = "<group>"; };
+		8353A3722568FE9400F9AA4F /* ReportItemLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportItemLabel.swift; sourceTree = "<group>"; };
+		8353A376256911F900F9AA4F /* ReportItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportItem.swift; sourceTree = "<group>"; };
+		8353A37D256947D000F9AA4F /* ReportViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReportViewController+UI.swift"; sourceTree = "<group>"; };
+		8353A380256A617100F9AA4F /* ChallengeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeNavigationController.swift; sourceTree = "<group>"; };
+		8353A384256A638700F9AA4F /* ChallengeBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeBaseViewController.swift; sourceTree = "<group>"; };
 		83DE07522566AD050085AC72 /* ScoreInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreInfoViewController.swift; sourceTree = "<group>"; };
 		83DE07542566AD050085AC72 /* CircleInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleInfoView.swift; sourceTree = "<group>"; };
 		83DE07552566AD050085AC72 /* ScoreInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreInfoView.swift; sourceTree = "<group>"; };
@@ -239,7 +249,6 @@
 		83DE075B2566AD050085AC72 /* DetailRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
 		83DE075C2566AD050085AC72 /* DetailViewController+UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DetailViewController+UI.swift"; sourceTree = "<group>"; };
 		83DE075E2566AD050085AC72 /* ReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
-		83DE07602566AD050085AC72 /* ReportView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		83DE07622566AD050085AC72 /* UserLogRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLogRouter.swift; sourceTree = "<group>"; };
 		83DE07632566AD050085AC72 /* UserLogViewController+UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserLogViewController+UI.swift"; sourceTree = "<group>"; };
 		83DE07642566AD050085AC72 /* UserLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLogViewController.swift; sourceTree = "<group>"; };
@@ -494,6 +503,10 @@
 			children = (
 				8353A467256D47BA00F9AA4F /* UserInfoView.swift */,
 				8353A46F256D553A00F9AA4F /* InfoTableViewCell.swift */,
+		8353A3712568FE2E00F9AA4F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8353A3722568FE9400F9AA4F /* ReportItemLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -543,6 +556,8 @@
 		83DE07502566AD050085AC72 /* Challenge */ = {
 			isa = PBXGroup;
 			children = (
+				8353A384256A638700F9AA4F /* ChallengeBaseViewController.swift */,
+				8353A380256A617100F9AA4F /* ChallengeNavigationController.swift */,
 				83DE07512566AD050085AC72 /* ScoreInfo */,
 				83DE07562566AD050085AC72 /* Start */,
 				83DE07592566AD050085AC72 /* UserDetail */,
@@ -593,18 +608,12 @@
 		83DE075D2566AD050085AC72 /* Report */ = {
 			isa = PBXGroup;
 			children = (
+				8353A376256911F900F9AA4F /* ReportItem.swift */,
+				8353A3712568FE2E00F9AA4F /* Views */,
 				83DE075E2566AD050085AC72 /* ReportViewController.swift */,
-				83DE075F2566AD050085AC72 /* Views */,
+				8353A37D256947D000F9AA4F /* ReportViewController+UI.swift */,
 			);
 			path = Report;
-			sourceTree = "<group>";
-		};
-		83DE075F2566AD050085AC72 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				83DE07602566AD050085AC72 /* ReportView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		83DE07612566AD050085AC72 /* UserLog */ = {
@@ -1192,6 +1201,7 @@
 				AA7F54F12532C1A6001C4012 /* PloggingPresenter.swift in Sources */,
 				AA7F54EE2532C1A6001C4012 /* PloggingViewController+UI.swift in Sources */,
 				83DE07812566AD050085AC72 /* ChallengePresenter.swift in Sources */,
+				AAA1CBF8255D62FD00EDB18A /* VerbosePlugin.swift in Sources */,
 				4C7248AE2542F86200ACB32B /* VerticalRoundButton.swift in Sources */,
 				AA7F54E12532C176001C4012 /* UserDefault+Extensions.swift in Sources */,
 				AA2CAE0A2543EAD600105748 /* PloggingRecordRouter.swift in Sources */,
@@ -1200,7 +1210,6 @@
 				8353A433256D3FA100F9AA4F /* MyPageInteractor.swift in Sources */,
 				AA88534D256AB57A00A07D99 /* LogNavigationController.swift in Sources */,
 				AA7F551D2533568D001C4012 /* SharePresenter.swift in Sources */,
-				83DE07792566AD050085AC72 /* ReportView.swift in Sources */,
 				83DE07752566AD050085AC72 /* DetailViewController.swift in Sources */,
 				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
 				AA7F551F2533568D001C4012 /* ShareViewController.swift in Sources */,
@@ -1259,6 +1268,7 @@
 				AA7F54EF2532C1A6001C4012 /* PloggingModels.swift in Sources */,
 				4CC9C7CE252315E0004D873D /* QuestPresenter.swift in Sources */,
 				AA5EFBB82552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift in Sources */,
+				AAA1CBFB255D633600EDB18A /* Data+Extensions.swift in Sources */,
 				4C89567D2532CB3A0099934E /* QuestNavigationController.swift in Sources */,
 				AA885346256AAC9E00A07D99 /* LogCollectionViewLayout.swift in Sources */,
 				83DE077F2566AD050085AC72 /* ChallengeViewController+UI.swift in Sources */,
@@ -1269,6 +1279,7 @@
 				AA7F54F22532C1A6001C4012 /* PloggingViewController.swift in Sources */,
 				AA2CAE042543EAD600105748 /* PloggingRecordPresenter.swift in Sources */,
 				AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */,
+				8353A37E256947D000F9AA4F /* ReportViewController+UI.swift in Sources */,
 				83DE07822566AD050085AC72 /* ChallengeViewController.swift in Sources */,
 				AA88E0FA256D367900EBB835 /* User.swift in Sources */,
 				AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */,
@@ -1277,6 +1288,8 @@
 				83849199256E924800C9C0D6 /* LogOutViewController.swift in Sources */,
 				4C3F54BC25612818006D7C9F /* QuestManager.swift in Sources */,
 				83849188256E8AEF00C9C0D6 /* MyPageNavigationController.swift in Sources */,
+				8353A377256911F900F9AA4F /* ReportItem.swift in Sources */,
+				4C3F54BC25612818006D7C9F /* QuestManager.swift in Sources */,
 				AA35BC7C254FFC2B00AE32A7 /* Storage.swift in Sources */,
 				AA88E0F0256D339E00EBB835 /* SplashModels.swift in Sources */,
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,
@@ -1291,6 +1304,7 @@
 				4C7248B12542FDA600ACB32B /* RecommandOtherView.swift in Sources */,
 				AA2CAE082543EAD600105748 /* PloggingRecordWorker.swift in Sources */,
 				838491A8256E93EA00C9C0D6 /* InfoBaseViewController.swift in Sources */,
+				8353A381256A617100F9AA4F /* ChallengeNavigationController.swift in Sources */,
 				83DE07742566AD050085AC72 /* StartRouter.swift in Sources */,
 				83DE07702566AD050085AC72 /* ScoreInfoViewController.swift in Sources */,
 				4CC9C7CB252315D7004D873D /* QuestInteractor.swift in Sources */,
@@ -1302,6 +1316,7 @@
 				AA7F55232533568D001C4012 /* PloggingImageView.swift in Sources */,
 				AAAD68F82555738300895265 /* CLLocation+Extensions.swift in Sources */,
 				AA88534A256AAD1B00A07D99 /* LogCollectionViewCell.swift in Sources */,
+				8353A3732568FE9400F9AA4F /* ReportItemLabel.swift in Sources */,
 				83DE07852566AD050085AC72 /* ChallengeInteractor.swift in Sources */,
 				8353A42F256D3F9000F9AA4F /* MyPageViewController.swift in Sources */,
 				AAAD68FF2555A52B00895265 /* QuestDetailViewController.swift in Sources */,
@@ -1316,6 +1331,7 @@
 				AAB3B4F92520B5B600F0311A /* Common.swift in Sources */,
 				83DE077E2566AD050085AC72 /* ChallengeWorker.swift in Sources */,
 				AA7F54E02532C16E001C4012 /* UIFont+Extensions.swift in Sources */,
+				8353A385256A638700F9AA4F /* ChallengeBaseViewController.swift in Sources */,
 				AA2CAE022543EAD600105748 /* TrashAnnotation.swift in Sources */,
 				AAE05CF62568E75900547501 /* LogPresenter.swift in Sources */,
 				AAE05CF92568E75900547501 /* LogModels.swift in Sources */,
@@ -1513,7 +1529,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 97C96KP84G;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = UniPlogger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
