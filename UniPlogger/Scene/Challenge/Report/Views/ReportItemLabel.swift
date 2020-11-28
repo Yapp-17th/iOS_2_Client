@@ -40,13 +40,13 @@ class ReportItemLabel: UILabel {
     }
 
     override func drawText(in rect: CGRect) {
-        let insets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        let insets = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16)
         super.drawText(in: rect.inset(by: insets))
     }
 
     override var intrinsicContentSize: CGSize {
         let size = super.intrinsicContentSize
-        return CGSize(width: size.width + 20, height: size.height + 20)
+        return CGSize(width: size.width + 32, height: size.height + 20)
     }
     
     @objc private func tapReportLabel() {
