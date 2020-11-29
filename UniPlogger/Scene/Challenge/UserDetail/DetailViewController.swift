@@ -9,7 +9,8 @@
 import UIKit
 
 class DetailViewController: ChallengeBaseViewController {
-    var router: (NSObjectProtocol & DetailRoutingLogic)?
+    var router: (NSObjectProtocol & DetailRoutingLogic & DetailDataPassing)?
+    var interactor: DetailBusinessLogic?
     
     lazy var backgroundImageView = UIImageView().then {
         let image = UIImage(named: "mainBackground")
@@ -38,7 +39,16 @@ class DetailViewController: ChallengeBaseViewController {
     // MARK: Setup
 
     private func setup() {
-        
+        let viewController = self
+        let interactor = DetailInteractor()
+        let presenter = DetailPresenter()
+        let router = DetailRouter()
+        viewController.router = router
+        viewController.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
     }
 
     // MARK: View lifecycle
