@@ -20,10 +20,11 @@ protocol ChallengeBusinessLogic {
 }
 
 protocol ChallengeDataStore {
- 
+//    var playerId: [Int]? { get set }
 }
 
 class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore {
+//    var playerData: [Challenge.RankCellViewModel]?
     var presenter: ChallengePresentationLogic?
     var worker = ChallengeWorker()
     

@@ -8,8 +8,13 @@
 
 import UIKit
 
-class UserLogViewController: UIViewController {
-    var router:  (NSObjectProtocol & UserLogRoutingLogic)?
+protocol UserLogDisplayLogic: class {
+    
+}
+
+class UserLogViewController: UIViewController, UserLogDisplayLogic {
+    var interactor: UserLogBusinessLogic?
+    var router:  (NSObjectProtocol & UserLogRoutingLogic & UserLogDataPassing)?
     
     lazy var scrollView = UIScrollView()
     lazy var userInfoContainer = UIImageView().then {
@@ -62,20 +67,37 @@ class UserLogViewController: UIViewController {
         $0.register(LogCollectionViewCell.self, forCellWithReuseIdentifier: "LogCollectionViewCell")
     }
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        configure()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        configure()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         setNavigationItem()
-        configure()
         setUpViews()
         setUpLayout()
+        interactor?.printId()
     }
     
     private func configure() {
         let viewController = self
+        let interactor = UserLogInteractor()
+        let presenter = UserLogPresenter()
         let router = UserLogRouter()
+        viewController.interactor = interactor
         viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
         router.viewController = viewController
+        router.dataStore = interactor
     }
     
     private func setNavigationItem() {

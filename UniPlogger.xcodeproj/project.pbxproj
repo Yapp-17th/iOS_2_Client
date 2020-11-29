@@ -72,6 +72,9 @@
 		8352489B25727CE900C9F495 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352489A25727CE900C9F495 /* Player.swift */; };
 		835248A02572C9BF00C9F495 /* ChallengeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352489F2572C9BF00C9F495 /* ChallengeAPI.swift */; };
 		835248A62572CA0000C9F495 /* ChallengeAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835248A52572CA0000C9F495 /* ChallengeAPITarget.swift */; };
+		835248AC25743C7200C9F495 /* UserLogInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835248AB25743C7200C9F495 /* UserLogInteractor.swift */; };
+		835248B025743FD700C9F495 /* UserLogPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835248AF25743FD700C9F495 /* UserLogPresenter.swift */; };
+		835248B42574417000C9F495 /* UserLogWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835248B32574417000C9F495 /* UserLogWorker.swift */; };
 		8353A3732568FE9400F9AA4F /* ReportItemLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A3722568FE9400F9AA4F /* ReportItemLabel.swift */; };
 		8353A377256911F900F9AA4F /* ReportItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A376256911F900F9AA4F /* ReportItem.swift */; };
 		8353A37E256947D000F9AA4F /* ReportViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A37D256947D000F9AA4F /* ReportViewController+UI.swift */; };
@@ -265,6 +268,9 @@
 		8352489A25727CE900C9F495 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		8352489F2572C9BF00C9F495 /* ChallengeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeAPI.swift; sourceTree = "<group>"; };
 		835248A52572CA0000C9F495 /* ChallengeAPITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeAPITarget.swift; sourceTree = "<group>"; };
+		835248AB25743C7200C9F495 /* UserLogInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogInteractor.swift; sourceTree = "<group>"; };
+		835248AF25743FD700C9F495 /* UserLogPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogPresenter.swift; sourceTree = "<group>"; };
+		835248B32574417000C9F495 /* UserLogWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogWorker.swift; sourceTree = "<group>"; };
 		8353A3722568FE9400F9AA4F /* ReportItemLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportItemLabel.swift; sourceTree = "<group>"; };
 		8353A376256911F900F9AA4F /* ReportItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportItem.swift; sourceTree = "<group>"; };
 		8353A37D256947D000F9AA4F /* ReportViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReportViewController+UI.swift"; sourceTree = "<group>"; };
@@ -690,6 +696,9 @@
 				83DE07622566AD050085AC72 /* UserLogRouter.swift */,
 				83DE07632566AD050085AC72 /* UserLogViewController+UI.swift */,
 				83DE07642566AD050085AC72 /* UserLogViewController.swift */,
+				835248AB25743C7200C9F495 /* UserLogInteractor.swift */,
+				835248AF25743FD700C9F495 /* UserLogPresenter.swift */,
+				835248B32574417000C9F495 /* UserLogWorker.swift */,
 			);
 			path = UserLog;
 			sourceTree = "<group>";
@@ -1252,6 +1261,7 @@
 				AAA1CBF2255D620100EDB18A /* BaseTarget.swift in Sources */,
 				4CBA217B254EB1AF002BDCC3 /* QuestModels+ViewModel.swift in Sources */,
 				AAB559392549BB26000BB903 /* FormatDisplay.swift in Sources */,
+				835248B025743FD700C9F495 /* UserLogPresenter.swift in Sources */,
 				AAB559312549B846000BB903 /* Location.swift in Sources */,
 				8352481B257227BA00C9F495 /* SplashWorker.swift in Sources */,
 				AA7F551E2533568D001C4012 /* ShareInteractor.swift in Sources */,
@@ -1277,6 +1287,7 @@
 				AA35BC77254FEEFA00AE32A7 /* CoreDataStore.swift in Sources */,
 				835248482572283C00C9F495 /* SettingViewController.swift in Sources */,
 				AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */,
+				835248B42574417000C9F495 /* UserLogWorker.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
 				83DE07772566AD050085AC72 /* DetailViewController+UI.swift in Sources */,
 				835248652572285100C9F495 /* LogPresenter.swift in Sources */,
@@ -1355,6 +1366,7 @@
 				8352484C2572283C00C9F495 /* MyPageModels.swift in Sources */,
 				AAB559352549BA2D000BB903 /* MultiColorPolyline.swift in Sources */,
 				AAB3B4F92520B5B600F0311A /* Common.swift in Sources */,
+				835248AC25743C7200C9F495 /* UserLogInteractor.swift in Sources */,
 				83DE077E2566AD050085AC72 /* ChallengeWorker.swift in Sources */,
 				835248602572285100C9F495 /* LogNavigationController.swift in Sources */,
 				AA7F54E02532C16E001C4012 /* UIFont+Extensions.swift in Sources */,

@@ -124,12 +124,10 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
     
     func displayPlayers(viewModel: [Challenge.RankCellViewModel]) {
         self.viewModels = viewModel
-        firstRankView.nameLabel.text = viewModel[0].nickname
-        firstRankView.scoreLabel.text = "\(viewModel[0].score)점"
-        secondRankView.nameLabel.text = viewModel[1].nickname
-        secondRankView.scoreLabel.text = "\(viewModel[1].score)점"
-        thirdRankView.nameLabel.text = viewModel[2].nickname
-        thirdRankView.scoreLabel.text = "\(viewModel[2].score)점"
+        guard let viewModels = viewModels else { return }
+        firstRankView.configure(viewModel: viewModels[0])
+        secondRankView.configure(viewModel: viewModels[1])
+        thirdRankView.configure(viewModel: viewModels[2])
         rankTableView.reloadData()
     }
     
@@ -144,8 +142,9 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
     }
     
     @objc func touchUpTopRankView(_ recognizer: UIGestureRecognizer) {
-//        guard let tag = recognizer.view?.tag else { return }
-        router?.routeToUserLog()
+        guard let tag = recognizer.view?.tag else { return }
+        guard let id = viewModels?[tag].id else { return }
+        router?.routeToUserLog(playerId: id)
     }
 }
 
@@ -172,7 +171,8 @@ extension ChallengeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? RankTableViewCell else { return }
-        if cell.viewModel?.id == -1 { return }
-        router?.routeToUserLog()
+        guard let viewModel = cell.viewModel else { return }
+        if viewModel.id == -1 { return }
+        router?.routeToUserLog(playerId: viewModel.id)
     }
 }

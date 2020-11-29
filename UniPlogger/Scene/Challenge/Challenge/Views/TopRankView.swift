@@ -9,6 +9,8 @@
 import UIKit
 
 class TopRankView: UIView {
+    var viewModel: Challenge.RankCellViewModel?
+    
     lazy var rankImageView = UIImageView().then {
         $0.contentMode = .center
     }
@@ -29,6 +31,12 @@ class TopRankView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(frame: .zero)
+    }
+    
+    func configure(viewModel: Challenge.RankCellViewModel) {
+        self.viewModel = viewModel
+        nameLabel.text = viewModel.nickname
+        scoreLabel.text = "\(viewModel.score)점"
     }
     
 }

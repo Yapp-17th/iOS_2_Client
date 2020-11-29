@@ -12,8 +12,14 @@ import Foundation
     func routeToDetail()
 }
 
-class UserLogRouter: NSObject, UserLogRoutingLogic {
+protocol UserLogDataPassing {
+    var dataStore: UserLogDataStore? { get set }
+}
+
+class UserLogRouter: NSObject, UserLogRoutingLogic, UserLogDataPassing {
+    
     weak var viewController: UserLogViewController?
+    var dataStore: UserLogDataStore?
     
     func routeToDetail() {
         let destinationVC = DetailViewController()
