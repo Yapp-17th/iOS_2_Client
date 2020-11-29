@@ -9,7 +9,7 @@
 import Foundation
 
 protocol UserLogBusinessLogic {
-    func printId()
+    func getFeed()
 }
 
 protocol UserLogDataStore {
@@ -21,10 +21,14 @@ class UserLogInteractor: UserLogBusinessLogic, UserLogDataStore {
     var playerId: Int?
     var presenter: UserLogPresentationLogic?
     var worker: UserLogWorker?
-    
-    func printId() {
-        print("id:!!!@#!@#")
-        print(playerId)
+
+    func getFeed() {
+        guard let playerId = playerId else { return }
+        worker = UserLogWorker()
+        worker?.getFeed(uid: playerId) { [weak self] response in
+            print(response)
+            self?.presenter?.presentGetFeed(response: response)
+        }
     }
     
 }

@@ -9,12 +9,14 @@
 import UIKit
 
 protocol UserLogDisplayLogic: class {
-    
+    func displayGetFeed(viewModel: Log.GetFeed.ViewModel)
 }
 
 class UserLogViewController: UIViewController, UserLogDisplayLogic {
     var interactor: UserLogBusinessLogic?
     var router:  (NSObjectProtocol & UserLogRoutingLogic & UserLogDataPassing)?
+    
+    var feedList = [Feed]()
     
     lazy var scrollView = UIScrollView()
     lazy var userInfoContainer = UIImageView().then {
@@ -84,7 +86,7 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
         setNavigationItem()
         setUpViews()
         setUpLayout()
-        interactor?.printId()
+        interactor?.getFeed()
     }
     
     private func configure() {
@@ -109,18 +111,26 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
     @objc func touchUpNextButton() {
         router?.routeToDetail()
     }
+    
+    func displayGetFeed(viewModel: Log.GetFeed.ViewModel) {
+        self.feedList = viewModel.feedList
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
 
 }
 
 extension UserLogViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 11
+        return self.feedList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LogCollectionViewCell", for: indexPath) as? LogCollectionViewCell else { fatalError() }
-        cell.viewModel = .init(image: "img_logSample\(indexPath.item + 1)")
-        cell.backgroundColor = .lightGray
+        let feed = feedList[indexPath.item]
+        
+        cell.viewModel = .init(image: feed.photo)
         return cell
     }
 }

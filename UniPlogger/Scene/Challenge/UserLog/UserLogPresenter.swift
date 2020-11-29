@@ -9,11 +9,20 @@
 import Foundation
 
 protocol UserLogPresentationLogic {
-
+    func presentGetFeed(response: Log.GetFeed.Response) 
 }
 
 class UserLogPresenter: UserLogPresentationLogic {
     weak var viewController: UserLogDisplayLogic?
     
-
+    func presentGetFeed(response: Log.GetFeed.Response) {
+        guard let list = response.feedList, response.error == nil else {
+            print(response.error)
+            return
+        }
+        let viewModel = Log.GetFeed.ViewModel(feedList: list)
+        self.viewController?.displayGetFeed(viewModel: viewModel)
+        
+    }
+    
 }
