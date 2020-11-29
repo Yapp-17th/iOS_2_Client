@@ -10,6 +10,26 @@ import UIKit
 
 class RecommandOtherView: UIView {
     
+    var recommand: Quest? {
+        didSet {
+            titleLabel.text = recommand?.title
+            descripionLabel.text = recommand?.content
+            setTextColor(Color.textBlack)
+            backgroundColor = Color.questBackgroundTint
+            shadow(radius: 10,
+                             color: UIColor(named: "questBackground"),
+                             offset: .init(width: 0, height: 4),
+                             opacity: 1)
+            layer.cornerRadius = 18
+        }
+    }
+    
+    var tapHandler: ((Quest?) -> Void)?
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        tapHandler?(recommand)
+    }
+    
     private struct Metrix {
         static let edges: UIEdgeInsets = .init(top: 20, left: 20, bottom: 20, right: 20)
         static let spacing: CGFloat = 6
@@ -25,6 +45,7 @@ class RecommandOtherView: UIView {
 
     let descripionLabel = UILabel().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.numberOfLines = 0
     }
     
     func setTextColor(_ color: UIColor) {

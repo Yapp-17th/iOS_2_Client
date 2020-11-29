@@ -70,16 +70,16 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         )
     }
     
-    var itemList = [
-        "종이",
-        "종이팩",
-        "플라스틱",
-        "페트",
-        "비닐류",
-        "유리",
-        "캔류",
-        "일반쓰레기"
-    ]
+//    var itemList = [
+//        "종이",
+//        "종이팩",
+//        "플라스틱",
+//        "페트",
+//        "비닐류",
+//        "유리",
+//        "캔류",
+//        "일반쓰레기"
+//    ]
     
     var selectedItems: [Int] = []
     
@@ -156,14 +156,15 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
 
 extension PloggingRecordViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return itemList.count
+        
+        return PloggingItemType.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier:  "PloggingRecordCollectionViewCell", for: indexPath) as? PloggingRecordCollectionViewCell else { fatalError() }
-        let item = self.itemList[indexPath.item]
+        let item = PloggingItemType.allCases[indexPath.item]
         let isSelected = self.selectedItems.contains(indexPath.item)
-        cell.viewModel = .init(title: item, isSelected: isSelected)
+        cell.viewModel = .init(title: item.description, isSelected: isSelected)
         return cell
     }
 }

@@ -13,7 +13,7 @@
 import UIKit
 
 protocol LogBusinessLogic {
-    func uploadRecord()
+    func getFeed()
 }
 
 protocol LogDataStore {
@@ -24,8 +24,10 @@ class LogInteractor: LogBusinessLogic, LogDataStore {
   var presenter: LogPresentationLogic?
   var worker: LogWorker?
   //var name: String = ""
-    func uploadRecord() {
+    func getFeed() {
         worker = LogWorker()
-        worker?.uploadRecord()
+        worker?.getFeed { [weak self] response in
+            self?.presenter?.presentGetFeed(response: response)
+        }
     }
 }

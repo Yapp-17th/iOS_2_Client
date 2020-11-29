@@ -8,8 +8,13 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
-    var router: (NSObjectProtocol & DetailRoutingLogic)?
+protocol DetailDisplayLogic: class {
+    func displayGetFeed(viewModel: Detail.GetFeed.ViewModel)
+}
+
+class DetailViewController: ChallengeBaseViewController {
+    var router: (NSObjectProtocol & DetailRoutingLogic & DetailDataPassing)?
+    var interactor: DetailBusinessLogic?
     
     lazy var backgroundImageView = UIImageView().then {
         let image = UIImage(named: "mainBackground")
@@ -38,7 +43,16 @@ class DetailViewController: UIViewController {
     // MARK: Setup
 
     private func setup() {
-        
+        let viewController = self
+        let interactor = DetailInteractor()
+        let presenter = DetailPresenter()
+        let router = DetailRouter()
+        viewController.router = router
+        viewController.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
     }
 
     // MARK: View lifecycle
@@ -50,6 +64,7 @@ class DetailViewController: UIViewController {
         setNavigationItem()
         setUpViews()
         setUpLayout()
+        self.interactor?.getFeed()
     }
 
     private func configure() {
@@ -68,5 +83,15 @@ class DetailViewController: UIViewController {
     
     @objc func touchUpReportButton() {
         router?.routeToReport()
+    }
+}
+
+extension DetailViewController: DetailDisplayLogic {
+    func displayGetFeed(viewModel: Detail.GetFeed.ViewModel) {
+        ploggingImageView.ploggingInfoView.viewModel = .init(distance: viewModel.distance, time: viewModel.time)
+        self.navigationItem.title = viewModel.title
+        ImageDownloadManager.shared.downloadImage(url: viewModel.photo) { (image) in
+            self.ploggingImageView.image = image
+        }
     }
 }

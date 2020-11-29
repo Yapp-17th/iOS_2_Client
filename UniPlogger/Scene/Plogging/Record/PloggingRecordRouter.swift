@@ -47,9 +47,9 @@ class PloggingRecordRouter: NSObject, PloggingRecordRoutingLogic, PloggingRecord
     }
     
     func passDataToShare(source: PloggingRecordDataStore, destination: inout ShareDataStore){
-        let selectedItems = viewController!.selectedItems
-        let selectPloggingItems = selectedItems.map { PloggingItem(name: viewController!.itemList[$0] )}
-        
+        let selectedItems = viewController!.collectionView.indexPathsForSelectedItems ?? []
+        let selectPloggingItems = selectedItems.map { PloggingItemType.allCases[$0.item] }
+
         destination.ploggingData = source.ploggingData
         destination.ploggingData?.items = selectPloggingItems
         destination.image = viewController?.capturedImage
