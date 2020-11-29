@@ -39,9 +39,21 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
         $0.setImage(UIImage(named: "challenge_info"), for: .normal)
         $0.addTarget(self, action: #selector(touchUpInfoButton), for: .touchUpInside)
     }
-    lazy var firstRankView = TopRankView()
-    lazy var secondRankView = TopRankView()
-    lazy var thirdRankView = TopRankView()
+    lazy var firstRankView = TopRankView().then {
+        $0.isUserInteractionEnabled = true
+        $0.tag = 0
+        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(touchUpTopRankView(_:))))
+    }
+    lazy var secondRankView = TopRankView().then {
+        $0.isUserInteractionEnabled = true
+        $0.tag = 1
+        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(touchUpTopRankView(_:))))
+    }
+    lazy var thirdRankView = TopRankView().then {
+        $0.isUserInteractionEnabled = true
+        $0.tag = 2
+        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(touchUpTopRankView(_:))))
+    }
     lazy var rankTableView = UITableView().then {
         $0.backgroundColor = .clear
     }
@@ -130,6 +142,11 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
     @objc func touchUpInfoButton() {
         router?.routeToScoreInfo()
     }
+    
+    @objc func touchUpTopRankView(_ recognizer: UIGestureRecognizer) {
+//        guard let tag = recognizer.view?.tag else { return }
+        router?.routeToUserLog()
+    }
 }
 
 extension ChallengeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -154,6 +171,8 @@ extension ChallengeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? RankTableViewCell else { return }
+        if cell.viewModel?.id == -1 { return }
         router?.routeToUserLog()
     }
 }

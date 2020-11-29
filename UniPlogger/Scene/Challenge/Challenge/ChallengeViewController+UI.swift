@@ -56,7 +56,7 @@ extension ChallengeViewController {
         }
         rankTableView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
-            $0.top.equalTo(self.view.frame.height * 0.394)
+            $0.top.equalTo(firstRankView.snp.bottom).offset(80)
         }
         scoreInfoView.snp.makeConstraints {
             $0.top.bottom.leading.trailing.equalToSuperview()
