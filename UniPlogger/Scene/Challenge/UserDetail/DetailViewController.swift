@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol DetailDisplayLogic: class {
+    func displayGetFeed(viewModel: Detail.GetFeed.ViewModel)
+}
+
 class DetailViewController: ChallengeBaseViewController {
     var router: (NSObjectProtocol & DetailRoutingLogic & DetailDataPassing)?
     var interactor: DetailBusinessLogic?
@@ -60,6 +64,7 @@ class DetailViewController: ChallengeBaseViewController {
         setNavigationItem()
         setUpViews()
         setUpLayout()
+        self.interactor?.getFeed()
     }
 
     private func configure() {
@@ -78,5 +83,15 @@ class DetailViewController: ChallengeBaseViewController {
     
     @objc func touchUpReportButton() {
         router?.routeToReport()
+    }
+}
+
+extension DetailViewController: DetailDisplayLogic {
+    func displayGetFeed(viewModel: Detail.GetFeed.ViewModel) {
+        ploggingImageView.ploggingInfoView.viewModel = .init(distance: viewModel.distance, time: viewModel.time)
+        self.navigationItem.title = viewModel.title
+        ImageDownloadManager.shared.downloadImage(url: viewModel.photo) { (image) in
+            self.ploggingImageView.image = image
+        }
     }
 }

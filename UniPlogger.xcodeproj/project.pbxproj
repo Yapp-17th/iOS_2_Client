@@ -115,6 +115,7 @@
 		AA4AD571257265460087E060 /* DetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD570257265460087E060 /* DetailInteractor.swift */; };
 		AA4AD575257265BF0087E060 /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD574257265BF0087E060 /* DetailPresenter.swift */; };
 		AA4AD579257265FF0087E060 /* DetailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD578257265FF0087E060 /* DetailWorker.swift */; };
+		AA4AD58C2573F95B0087E060 /* DetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD58B2573F95B0087E060 /* DetailModels.swift */; };
 		AA5EFBB82552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */; };
 		AA6CE4F32551780E00C83D28 /* TrashCanStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */; };
 		AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54DD2532C109001C4012 /* BaseViewController.swift */; };
@@ -313,6 +314,7 @@
 		AA4AD570257265460087E060 /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
 		AA4AD574257265BF0087E060 /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		AA4AD578257265FF0087E060 /* DetailWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWorker.swift; sourceTree = "<group>"; };
+		AA4AD58B2573F95B0087E060 /* DetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModels.swift; sourceTree = "<group>"; };
 		AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingRecordCollectionViewLayout.swift; sourceTree = "<group>"; };
 		AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashCanStorage.swift; sourceTree = "<group>"; };
 		AA7F54DD2532C109001C4012 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -667,6 +669,7 @@
 				AA4AD570257265460087E060 /* DetailInteractor.swift */,
 				AA4AD574257265BF0087E060 /* DetailPresenter.swift */,
 				AA4AD578257265FF0087E060 /* DetailWorker.swift */,
+				AA4AD58B2573F95B0087E060 /* DetailModels.swift */,
 			);
 			path = UserDetail;
 			sourceTree = "<group>";
@@ -1359,6 +1362,7 @@
 				835248492572283C00C9F495 /* MyPagePresenter.swift in Sources */,
 				83DE077D2566AD050085AC72 /* ChallengeModels.swift in Sources */,
 				8352481E257227BA00C9F495 /* SplashModels.swift in Sources */,
+				AA4AD58C2573F95B0087E060 /* DetailModels.swift in Sources */,
 				AA7F54F02532C1A6001C4012 /* PloggingRouter.swift in Sources */,
 				8352484C2572283C00C9F495 /* MyPageModels.swift in Sources */,
 				AAB559352549BA2D000BB903 /* MultiColorPolyline.swift in Sources */,

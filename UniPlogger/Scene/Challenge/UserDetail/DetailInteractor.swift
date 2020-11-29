@@ -23,7 +23,9 @@ class DetailInteractor: DetailBusinessLogic, DetailDataStore{
     var feed: Feed?
     
     func getFeed() {
-        
+        guard let feed = self.feed else { return }
+        let response = Detail.GetFeed.Response(feed: feed)
+        self.presenter?.presentGetFeed(response: response)
     }
     
     

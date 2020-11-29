@@ -12,6 +12,7 @@ import Then
 
 class PloggingInfoView: UIView {
     struct ViewModel{
+        var feed: Feed?
         var distance: String
         var time: String
     }
@@ -104,5 +105,10 @@ extension PloggingInfoView {
         guard let vm = self.viewModel else { return }
         self.distanceLabel.text = vm.distance
         self.timeLabel.text = vm.time
+        
+        if let feed = vm.feed{
+            self.distanceLabel.text = "\(feed.distance)"
+            self.timeLabel.text = "\(feed.time)"
+        }
     }
 }

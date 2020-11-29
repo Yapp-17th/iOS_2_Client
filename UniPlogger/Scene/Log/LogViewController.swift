@@ -200,6 +200,6 @@ extension LogViewController: UICollectionViewDataSource, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        self.router?.routeToDetail()
     }
 }
