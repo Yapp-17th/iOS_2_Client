@@ -23,8 +23,8 @@ class ChallengeAPI {
         plugins: [VerbosePlugin(verbose: true)]
     )
     
-    func startChallenge(startDate: String, endDate: String, userCount: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
-        provider.rx.request(.startChallenge(startDate: startDate, endDate: endDate, userCount: userCount))
+    func startChallenge(completion: @escaping (Result<Bool, Error>) -> Void) {
+        provider.rx.request(.startChallenge)
             .filterSuccessfulStatusCodes()
             .map(Bool.self)
             .subscribe(onSuccess: {

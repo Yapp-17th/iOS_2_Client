@@ -11,7 +11,7 @@ import Foundation
 import Moya
 
 enum ChallengeAPITarget {
-    case startChallenge(startDate: String, endDate: String, userCount: Int)
+    case startChallenge
     case fetchPlanet
 }
 
@@ -37,12 +37,8 @@ extension ChallengeAPITarget: BaseTarget {
     
     var parameters: [String : Any]{
         switch self{
-        case let .startChallenge(startDate, endDate, userCount):
-            return [
-                "start_date": startDate,
-                "end_date": endDate,
-                "user_cnt": userCount
-            ]
+        case .startChallenge:
+            return [:]
         case .fetchPlanet:
             return [:]
         }
@@ -51,7 +47,7 @@ extension ChallengeAPITarget: BaseTarget {
     var task: Task {
         switch self {
         case .startChallenge:
-            return .requestParameters(parameters: parameters, encoding: encoding)
+            return .requestPlain
         case .fetchPlanet:
             return .requestPlain
         }

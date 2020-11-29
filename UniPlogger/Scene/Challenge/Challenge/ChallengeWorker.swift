@@ -13,44 +13,9 @@
 import UIKit
 
 class ChallengeWorker {
-    
-    let storage = Storage()
-    
-//    func fetchTrashCan(completion: @escaping ([TrashCan]) -> Void){
-//        storage.fetchTrashCanList { (result) in
-//            switch result{
-//            case .success(let list):
-//                completion(list)
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
-//    }
-//    
-//    func fetchPlanet(completion: @escaping ([Planet]) -> Void){
-//        storage.fetch { (result) in
-//            switch result{
-//            case .success(let list):
-//                completion(list)
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
-    
-    func addTrashCanList(list: [TrashCan], completion: @escaping ([TrashCan]) -> Void){
-        storage.createTrashCanList(list) { (result) in
-            switch result{
-            case .success(let lis):
-                completion(lis)
-            case .failure(let error):
-                print(error.localizedDescription)
-                completion([])
-            }
-        }
-    }
-    
+  
     func startChallenge(completion: @escaping ([Planet]) -> Void) {
-        ChallengeAPI.shared.startChallenge(startDate: "2020-11-26", endDate: "2020-11-30", userCount: 1) { (result) in
+        ChallengeAPI.shared.startChallenge { (result) in
             switch result {
             case .success(let data):
                 print(data)
@@ -66,43 +31,16 @@ class ChallengeWorker {
         ChallengeAPI.shared.fetchPlanet { (response) in
             switch response {
             case .success(let data):
-                print(data)
-                AuthManager.shared.user?.planet = data
-                completion(data!)
+                guard let data = data else { return }
+                var user = AuthManager.shared.user
+                user?.planet = data
+                AuthManager.shared.user = user
+                completion(data)
             case .failure(let error):
-                print("error~~~~~~!")
                 let error = Common.CommonError.error(error)
                 print(error)
             }
         }
     }
-//    func getTrashCanList(completion: @escaping ([TrashCan]) -> Void){
-//        PloggingAPI.shared.fetchTrashList { (response) in
-//            switch response{
-//            case .success(let value):
-//                self.fetchTrashCan { list in
-//                    if let trashCanList = value{
-//                        if list.isEmpty{
-//                            // Toto add list
-//                            self.addTrashCanList(list: trashCanList, completion: completion)
-//                        }else{
-//                            var createList: [TrashCan] = []
-//                            trashCanList.forEach { item in
-//                                if (list.filter { $0.latitude != item.latitude && $0.longitude == item.longitude}.count == 0){
-//                                    createList.append(item)
-//                                }
-//                            }
-//                            self.addTrashCanList(list: createList){ _ in
-//                                createList.append(contentsOf: createList)
-//                                completion(createList)
-//                            }
-//                        }
-//                    }
-//                }
-//            case .failure(let error):
-//                let error = Common.CommonError.error(error)
-//                completion([])
-//            }
-//        }
-//    }
+
 }

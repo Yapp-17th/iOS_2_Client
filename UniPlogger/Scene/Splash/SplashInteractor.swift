@@ -33,6 +33,8 @@ class SplashInteractor: SplashBusinessLogic, SplashDataStore {
                 switch response{
                 case .success(let user):
                     AuthManager.shared.user = user
+                    print("splash")
+                    print(user)
                     let response = Splash.CheckLogin.Response(isLogined: true)
                     self.presenter?.presentCheckLogin(response: response)
                 case .failure(let error):
