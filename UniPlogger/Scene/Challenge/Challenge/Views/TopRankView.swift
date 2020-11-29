@@ -10,7 +10,7 @@ import UIKit
 
 class TopRankView: UIView {
     lazy var rankImageView = UIImageView().then {
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .center
     }
     lazy var nameLabel = UILabel().then {
         $0.font = .roboto(ofSize: 14, weight: .bold)
@@ -44,8 +44,8 @@ extension TopRankView {
     func setUpLayout() {
         rankImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(92)
-            $0.height.equalTo(99)
+            $0.width.equalToSuperview().multipliedBy(0.73)
+            $0.height.equalTo(rankImageView.snp.width)
         }
         nameLabel.snp.makeConstraints {
             $0.top.equalTo(rankImageView.snp.bottom).offset(4)
@@ -53,7 +53,8 @@ extension TopRankView {
             $0.height.equalTo(16)
         }
         scoreLabel.snp.makeConstraints {
-            $0.bottom.leading.trailing.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(nameLabel.snp.bottom).offset(1)
             $0.height.equalTo(18)
         }
     }
