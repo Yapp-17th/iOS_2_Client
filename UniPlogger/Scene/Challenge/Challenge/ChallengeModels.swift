@@ -30,10 +30,11 @@ enum Challenge {
     }
     
     struct ViewModel {
-        var memebers: [User]
+        var members: [Player]
     }
     
     struct RankCellViewModel {
+        var id: Int
         var email: String
         var rank: Int
         var nickname: String

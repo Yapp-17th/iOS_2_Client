@@ -701,10 +701,10 @@
 				83DE07672566AD050085AC72 /* ChallengeWorker.swift */,
 				83DE07682566AD050085AC72 /* ChallengeViewController+UI.swift */,
 				83DE07692566AD050085AC72 /* ChallengeRouter.swift */,
+				83DE076F2566AD050085AC72 /* ChallengeInteractor.swift */,
 				83DE076A2566AD050085AC72 /* ChallengePresenter.swift */,
 				83DE076B2566AD050085AC72 /* ChallengeViewController.swift */,
 				83DE076C2566AD050085AC72 /* Views */,
-				83DE076F2566AD050085AC72 /* ChallengeInteractor.swift */,
 			);
 			path = Challenge;
 			sourceTree = "<group>";

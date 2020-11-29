@@ -15,12 +15,14 @@ import SnapKit
 import Then
 
 protocol ChallengeDisplayLogic: class {
-    func displaySomething(viewModel: Challenge.Something.ViewModel)
+    func displayPlayers(viewModel: [Challenge.RankCellViewModel])
+    func displayTopImages(images: [UIImage])
 }
 
 class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
     var interactor: ChallengeBusinessLogic?
     var router: (NSObjectProtocol & ChallengeRoutingLogic & ChallengeDataPassing)?
+    var viewModels: [Challenge.RankCellViewModel]?
     
     lazy var backgroundImageView = UIImageView().then {
         let image = UIImage(named: "challengeBackground")
@@ -87,11 +89,10 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        interactor?.getPlanet()
         setUpView()
         setUpTableView()
         setUpLayout()
-        interactor?.startChallenge()
-        interactor?.getPlanet()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -108,9 +109,22 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
         super.viewWillDisappear(animated)
         navigationController?.isNavigationBarHidden = false
     }
-  
-    func displaySomething(viewModel: Challenge.Something.ViewModel) {
     
+    func displayPlayers(viewModel: [Challenge.RankCellViewModel]) {
+        self.viewModels = viewModel
+        firstRankView.nameLabel.text = viewModel[0].nickname
+        firstRankView.scoreLabel.text = "\(viewModel[0].score)점"
+        secondRankView.nameLabel.text = viewModel[1].nickname
+        secondRankView.scoreLabel.text = "\(viewModel[1].score)점"
+        thirdRankView.nameLabel.text = viewModel[2].nickname
+        thirdRankView.scoreLabel.text = "\(viewModel[2].score)점"
+        rankTableView.reloadData()
+    }
+    
+    func displayTopImages(images: [UIImage]) {
+        firstRankView.rankImageView.image = images[0]
+        secondRankView.rankImageView.image = images[1]
+        thirdRankView.rankImageView.image = images[2]
     }
     
     @objc func touchUpInfoButton() {
@@ -129,9 +143,13 @@ extension ChallengeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = rankTableView.dequeueReusableCell(withIdentifier: "rankCell") as? RankTableViewCell else { return UITableViewCell() }
-        let viewModel = Challenge.RankCellViewModel(email: "asdf@naver.com", rank: 4, nickname: "띵숙이", score: 1234)
         cell.selectionStyle = .none
-        cell.configure(viewModel: viewModel)
+        guard let viewModels = self.viewModels else {
+            let viewModel = Challenge.RankCellViewModel(id: 0, email: "asdf@naver.com", rank: 4, nickname: "띵숙이", score: 1234)
+            cell.configure(viewModel: viewModel)
+            return cell
+        }
+        cell.configure(viewModel: viewModels[indexPath.row + 3])
         return cell
     }
     

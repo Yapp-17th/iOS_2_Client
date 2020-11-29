@@ -14,7 +14,7 @@ import UIKit
 
 class ChallengeWorker {
   
-    func startChallenge(completion: @escaping ([Planet]) -> Void) {
+    func startChallenge(completion: @escaping (Planet) -> Void) {
         ChallengeAPI.shared.startChallenge { (result) in
             switch result {
             case .success(let data):
@@ -22,7 +22,6 @@ class ChallengeWorker {
             case .failure(let error):
                 let error = Common.CommonError.error(error)
                 print(error)
-                completion([])
             }
         }
     }

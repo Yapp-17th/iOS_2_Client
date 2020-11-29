@@ -9,7 +9,9 @@
 import UIKit
 
 class TopRankView: UIView {
-    lazy var rankImageView = UIImageView()
+    lazy var rankImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+    }
     lazy var nameLabel = UILabel().then {
         $0.font = .roboto(ofSize: 14, weight: .bold)
         $0.textAlignment = .center

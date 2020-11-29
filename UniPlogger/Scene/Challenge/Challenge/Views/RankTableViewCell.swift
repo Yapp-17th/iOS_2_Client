@@ -20,7 +20,6 @@ class RankTableViewCell: UITableViewCell {
         $0.font = .roboto(ofSize: 14, weight: .bold)
         $0.text = "4"
         $0.textColor = UIColor(named: "rankColor")
-        $0.textAlignment = .center
     }
     lazy var userImageView = UIImageView().then {
         $0.image = UIImage(named: "rank_other")
@@ -72,11 +71,11 @@ extension RankTableViewCell {
         rankLabel.snp.makeConstraints {
             $0.leading.equalTo(background.snp.leading).offset(22)
             $0.centerY.equalToSuperview()
-            $0.width.equalTo(9)
+            $0.width.equalTo(20)
             $0.height.equalTo(16)
         }
         userImageView.snp.makeConstraints {
-            $0.leading.equalTo(rankLabel.snp.trailing).offset(20)
+            $0.leading.equalTo(rankLabel.snp.trailing).offset(11)
             $0.centerY.equalToSuperview()
             $0.width.height.equalTo(40)
         }
