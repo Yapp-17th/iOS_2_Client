@@ -22,7 +22,7 @@ struct User: Codable{
     /// 유저 상태
     var state: UserState = .normal
     /// 행성
-    
+    var planet: Planet?
     ///경험치
     var experiements: Double = 0.0
     
@@ -33,6 +33,7 @@ struct User: Codable{
         case level
         case rank
         case state
+        case planet
         case experiements
     }
     
@@ -44,6 +45,7 @@ struct User: Codable{
         level = try container.decodeIfPresent(Int.self, forKey: .level) ?? 0
         rank = try container.decodeIfPresent(Double.self, forKey: .rank) ?? 0
         state = try container.decodeIfPresent(UserState.self, forKey: .state) ?? .normal
+        planet = try container.decodeIfPresent(Planet.self, forKey: .planet) ?? nil
         experiements = try container.decodeIfPresent(Double.self, forKey: .experiements) ?? 0.0
         
     }

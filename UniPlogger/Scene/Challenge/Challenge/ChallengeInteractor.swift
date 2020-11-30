@@ -13,24 +13,26 @@
 import UIKit
 
 protocol ChallengeBusinessLogic {
-    func setRank(members: [Challenge.User]) -> [Int]
-    func setFullMembers(members: [Challenge.User]) -> [Challenge.User]
+    func setRank(members: [Player]) -> [Int]
+    func setFullMembers(members: [Player]) -> [Player]
     func setDate() -> String
+    func getPlanet()
 }
 
 protocol ChallengeDataStore {
- 
+//    var playerId: [Int]? { get set }
 }
 
 class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore {
+//    var playerData: [Challenge.RankCellViewModel]?
     var presenter: ChallengePresentationLogic?
-    var worker: ChallengeWorker?
+    var worker = ChallengeWorker()
     
     let names = [["천", "송", "이", "이", "최", "손", "고"],
                  ["승", "윤", "주", "서", "철", "병", "세"],
                  ["연", "서", "형", "영", "웅", "근", "림"]]
     
-    func setRank(members: [Challenge.User]) -> [Int] {
+    func setRank(members: [Player]) -> [Int] {
         var rankList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         var prevIndex = 9
         (0...8).reversed().forEach { (index) in
@@ -62,11 +64,11 @@ class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore {
         }
     }
     
-    func setFullMembers(members: [Challenge.User]) -> [Challenge.User] {
+    func setFullMembers(members: [Player]) -> [Player] {
         guard members.count != 10 else { return members }
         var newMembers = members
         while newMembers.count != 10 {
-            let newUser = Challenge.User(id: "", name: getRandomName(), score: 0)
+            let newUser = Player(id: -1, email: "temp@naver.com", nickname: getRandomName(), score: 0)
             newMembers.append(newUser)
         }
         return newMembers
@@ -84,4 +86,21 @@ class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore {
         for index in (0...2) { name += names[index][Int.random(in: (0...6))] }
         return name
     }
+
+    func getPlanet() {
+        if AuthManager.shared.user?.planet == nil {
+            worker.startChallenge { (result) in
+                print("result: \(result)")
+            }
+        }
+        worker.getPlanet { [weak self] (response) in
+            guard let self = self else { return }
+            print("getPlanet")
+            print(response)
+            let members = self.setFullMembers(members: response.players)
+            let ranks = self.setRank(members: members)
+            self.presenter?.presentPlayers(ranks: ranks, players: members)
+        }
+    }
+    
 }

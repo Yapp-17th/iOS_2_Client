@@ -9,20 +9,20 @@
 import Foundation
 
 enum ReportItem: Int, CaseIterable {
-    case sexualDispleasure = 0, unrelated, duplicated, disgusting, spam
+    case sexualDispleasure = 0, unrelated, duplicated, spam, disgusting
     
     var description: String {
         switch self {
         case .sexualDispleasure:
             return "성적 불쾌감"
-        case .unrelated:
-            return "관계 없는 사진"
-        case .duplicated:
-            return "같은 내용 도배"
         case .disgusting:
             return "혐오 사진"
+        case .duplicated:
+            return "같은 내용 도배"
         case .spam:
             return "스팸"
+        case .unrelated:
+            return "관계 없는 사진"
         }
     }
 }

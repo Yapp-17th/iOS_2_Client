@@ -13,5 +13,33 @@
 import UIKit
 
 class ChallengeWorker {
+  
+    func startChallenge(completion: @escaping (Planet) -> Void) {
+        ChallengeAPI.shared.startChallenge { (result) in
+            switch result {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                let error = Common.CommonError.error(error)
+                print(error)
+            }
+        }
+    }
+    
+    func getPlanet(completion: @escaping (Planet) -> Void) {
+        ChallengeAPI.shared.fetchPlanet { (response) in
+            switch response {
+            case .success(let data):
+                guard let data = data else { return }
+                var user = AuthManager.shared.user
+                user?.planet = data
+                AuthManager.shared.user = user
+                completion(data)
+            case .failure(let error):
+                let error = Common.CommonError.error(error)
+                print(error)
+            }
+        }
+    }
 
 }

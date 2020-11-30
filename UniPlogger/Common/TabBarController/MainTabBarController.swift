@@ -100,7 +100,7 @@ extension MainTabBarController {
     }
     
     private func hasPlanet() -> Bool {
-        // user의 planet이 nil이면 return false 
-        return false
+        if AuthManager.shared.user?.planet == nil { return false }
+        return true
     }
 }

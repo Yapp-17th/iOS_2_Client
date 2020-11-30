@@ -9,6 +9,9 @@
 import UIKit
 
 class RankTableViewCell: UITableViewCell {
+    
+    var viewModel: Challenge.RankCellViewModel?
+    
     lazy var background = UIView().then {
         $0.backgroundColor = UIColor(named: "rankCellColor")
         $0.layer.cornerRadius = 20
@@ -17,7 +20,6 @@ class RankTableViewCell: UITableViewCell {
         $0.font = .roboto(ofSize: 14, weight: .bold)
         $0.text = "4"
         $0.textColor = UIColor(named: "rankColor")
-        $0.textAlignment = .center
     }
     lazy var userImageView = UIImageView().then {
         $0.image = UIImage(named: "rank_other")
@@ -34,7 +36,6 @@ class RankTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configure()
         setUpView()
         setUpLayout()
     }
@@ -42,13 +43,19 @@ class RankTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+    
+    func configure(viewModel: Challenge.RankCellViewModel) {
+        self.viewModel = viewModel
+        rankLabel.text = "\(viewModel.rank)"
+        nameLabel.text = viewModel.nickname
+        scoreLabel.text = "\(viewModel.score)점"
+    }
 }
 
 extension RankTableViewCell {
-    func configure() {
-        self.backgroundColor = .clear
-    }
+
     func setUpView() {
+        self.backgroundColor = .clear
         [background, rankLabel, userImageView, nameLabel, scoreLabel].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview($0)
@@ -64,11 +71,11 @@ extension RankTableViewCell {
         rankLabel.snp.makeConstraints {
             $0.leading.equalTo(background.snp.leading).offset(22)
             $0.centerY.equalToSuperview()
-            $0.width.equalTo(9)
+            $0.width.equalTo(20)
             $0.height.equalTo(16)
         }
         userImageView.snp.makeConstraints {
-            $0.leading.equalTo(rankLabel.snp.trailing).offset(20)
+            $0.leading.equalTo(rankLabel.snp.trailing).offset(11)
             $0.centerY.equalToSuperview()
             $0.width.height.equalTo(40)
         }

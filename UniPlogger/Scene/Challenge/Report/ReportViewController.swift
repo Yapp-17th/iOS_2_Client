@@ -31,8 +31,7 @@ class ReportViewController: UIViewController, ReportDelegate {
     }
     lazy var firstItemStackView = UIStackView().then { stackView in
         stackView.axis = .horizontal
-//        stackView.spacing = self.view.frame.width * 0.06
-        stackView.spacing = 15
+        stackView.distribution = .equalSpacing
         (0..<3).forEach { index in
             let reportItemLabel = ReportItemLabel(item: ReportItem.allCases[index])
             reportItemLabel.delegate = self
@@ -41,8 +40,7 @@ class ReportViewController: UIViewController, ReportDelegate {
     }
     lazy var secondItemStackView = UIStackView().then { stackView in
         stackView.axis = .horizontal
-//        stackView.spacing = self.view.frame.width * 0.06
-        stackView.spacing = 15
+        stackView.distribution = .equalSpacing
         (3..<5).forEach { index in
             let reportItemLabel = ReportItemLabel(item: ReportItem.allCases[index])
             reportItemLabel.delegate = self 
@@ -71,7 +69,11 @@ class ReportViewController: UIViewController, ReportDelegate {
         $0.textColor = .white 
         $0.font = .notoSans(ofSize: 18, weight: .bold)
     }
-
+    lazy var buttonStackView = UIStackView(arrangedSubviews: [cancelButton, reportButton]).then {
+        $0.axis = .horizontal
+        $0.distribution = .fillEqually
+        $0.spacing = self.view.frame.width * 0.06
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
