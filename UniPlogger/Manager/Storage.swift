@@ -14,8 +14,8 @@ enum StorageError: Error{
     case update(String)
     case delete(String)
 }
-class Storage{
-    let context = CoreDataStore.shared.mainManagedObjectContext
+class Storage{  
+    let context = CoreDataStore.shared.privateManagedObjectContext
     
     //helper
     func stringToObjectId(_ objectIDString: String) -> NSManagedObjectID? {
