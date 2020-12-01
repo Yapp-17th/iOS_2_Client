@@ -184,9 +184,14 @@ class LogViewController: UIViewController {
 
 extension LogViewController: LogDisplayLogic{
     func displayGetFeed(viewModel: Log.GetFeed.ViewModel) {
+        let user = viewModel.user
         self.feedList = viewModel.feedList
         self.collectionView.reloadData()
         DispatchQueue.main.async {
+            self.levelLabel.text = "\(user.level)"
+            self.rankLabel.text = "\(user.rank)"
+//            self.weeklyContentLabel.text = user.weeklyStat
+//            self.monthlyContentLabel.text = "\(user.monthlyStat)"
             self.scrollView.refreshControl?.endRefreshing()
         }
     }

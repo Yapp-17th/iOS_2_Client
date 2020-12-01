@@ -21,11 +21,13 @@ enum Log {
     
     enum GetFeed{
         struct Response{
+            var user: User?
             var feedList: [Feed]?
             var error: Common.CommonError?
         }
         
         struct ViewModel{
+            var user: User
             var feedList: [Feed]
         }
     }
