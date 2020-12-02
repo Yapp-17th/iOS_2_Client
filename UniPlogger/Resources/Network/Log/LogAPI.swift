@@ -31,4 +31,14 @@ final class LogAPI{
             }.disposed(by: self.disposeBag)
     }
     
+    func getUserFeed(uid: Int, completionHandler: @escaping (Result<[Feed], Error>) -> Void){
+        provider.rx.request(.getUserFeed(uid: uid))
+            .filterSuccessfulStatusCodes()
+            .map([Feed].self)
+            .subscribe {
+                completionHandler(.success($0))
+            } onError: {
+                completionHandler(.failure($0))
+            }.disposed(by: self.disposeBag)
+    }
 }

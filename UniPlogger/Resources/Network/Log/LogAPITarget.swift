@@ -11,6 +11,7 @@ import Moya
 enum LogAPITarget{
     //쓰레기통 CRUD
     case getFeed(uId: Int)
+    case getUserFeed(uid: Int)
 }
 
 extension LogAPITarget: BaseTarget{
@@ -18,6 +19,8 @@ extension LogAPITarget: BaseTarget{
         switch self{
         case .getFeed:
             return "users/feed/"
+        case .getUserFeed:
+            return "users/feed/others_feed/"
         }
     }
     
@@ -25,6 +28,8 @@ extension LogAPITarget: BaseTarget{
         switch self{
         case .getFeed:
             return .get
+        case .getUserFeed:
+            return .post
         }
     }
     
@@ -32,13 +37,18 @@ extension LogAPITarget: BaseTarget{
         switch self{
         case .getFeed:
             return [:]
+        case .getUserFeed:
+            return [:]
         }
     }
-    
-    var task: Task{
+
+    var task: Task {
         switch self{
         case .getFeed:
             return .requestPlain
+        case .getUserFeed(let uid):
+            let uidData = MultipartFormData(provider: .data("\(uid)".data(using: .utf8)!), name: "id")
+            return .uploadMultipart([uidData])
         }
     }
     

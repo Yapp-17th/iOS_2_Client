@@ -26,7 +26,6 @@ class UserLogInteractor: UserLogBusinessLogic, UserLogDataStore {
         guard let playerId = playerId else { return }
         worker = UserLogWorker()
         worker?.getFeed(uid: playerId) { [weak self] response in
-            print(response)
             self?.presenter?.presentGetFeed(response: response)
         }
     }
