@@ -25,6 +25,7 @@ class DetailViewController: ChallengeBaseViewController {
     lazy var ploggingImageView = PloggingImageView().then {
         $0.backgroundColor = .lightGray
         $0.layer.cornerRadius = 10
+        $0.clipsToBounds = true 
     }
     lazy var reportButton = UIBarButtonItem(image: UIImage(named: "report"), style: .plain, target: self, action: #selector(touchUpReportButton))
 

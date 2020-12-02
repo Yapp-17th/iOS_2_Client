@@ -21,7 +21,7 @@ extension DetailViewController {
     func setUpLayout() {
 //        super.setupLayouts()
         backgroundImageView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(-30)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide).offset(-88)
             $0.bottom.leading.trailing.equalToSuperview()
         }
         ploggingImageView.snp.makeConstraints {

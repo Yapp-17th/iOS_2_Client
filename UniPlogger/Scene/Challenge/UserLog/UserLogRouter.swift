@@ -23,11 +23,20 @@ class UserLogRouter: NSObject, UserLogRoutingLogic, UserLogDataPassing {
     
     func routeToDetail() {
         let destinationVC = DetailViewController()
+        var destinationDS = destinationVC.router!.dataStore!
+        
+        passDataToDetail(source: dataStore!, destination: &destinationDS)
         navigateToDetail(source: viewController!, destination: destinationVC)
     }
     
     private func navigateToDetail(source: UserLogViewController, destination: DetailViewController) {
         source.navigationController?.pushViewController(destination, animated: false)
+    }
+    
+    func passDataToDetail(source: UserLogDataStore, destination: inout DetailDataStore){
+        if let selectedIndexPath = viewController?.collectionView.indexPathsForSelectedItems?.first {
+            destination.feed = viewController?.feedList[selectedIndexPath.item]
+        }
     }
 
 }

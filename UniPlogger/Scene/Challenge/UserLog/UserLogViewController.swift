@@ -133,4 +133,8 @@ extension UserLogViewController: UICollectionViewDataSource, UICollectionViewDel
         cell.viewModel = .init(image: feed.photo)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        router?.routeToDetail()
+    }
 }
