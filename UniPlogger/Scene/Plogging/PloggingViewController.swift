@@ -154,7 +154,6 @@ class PloggingViewController: BaseViewController {
     
     lazy var trashButton = UIButton().then{
         $0.setImage(UIImage(named: "ic_ploggingAddTrashcan")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        $0.setImage(UIImage(named: "ic_trashcanCancel")?.withRenderingMode(.alwaysOriginal), for: .selected)
         
         $0.imageView?.contentMode = .scaleAspectFit
         $0.addTarget(self, action: #selector(trashButtonTapped), for: .touchUpInside)
@@ -507,6 +506,7 @@ extension PloggingViewController: PloggingDisplayLogic{
     
     func displayAddTrashCan(viewModel: Plogging.AddTrashCan.ViewModel) {
         self.trashButton.isSelected = true
+        self.trashButton.transform = CGAffineTransform(rotationAngle: (45 * .pi) / 180.0)
         self.trashInfoContainer.isHidden = false
         self.trashInfoAddressLabel.text = viewModel.address
     }
@@ -515,6 +515,7 @@ extension PloggingViewController: PloggingDisplayLogic{
         if let tempAnnotation = self.tempAnnotation{
             self.mapView.removeAnnotation(tempAnnotation)
             self.trashButton.isSelected = false
+            self.trashButton.transform = CGAffineTransform(rotationAngle: 0)
             self.trashInfoContainer.isHidden = true
         }
         
@@ -531,6 +532,7 @@ extension PloggingViewController: PloggingDisplayLogic{
     }
     func displayAddTrashCanCancel() {
         self.trashButton.isSelected = false
+        self.trashButton.transform = CGAffineTransform(rotationAngle: 0)
         self.trashInfoContainer.isHidden = true
         if let annotation = self.tempAnnotation {
             self.mapView.removeAnnotation(annotation)
