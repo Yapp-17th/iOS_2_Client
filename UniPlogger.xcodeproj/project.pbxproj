@@ -123,6 +123,9 @@
 		AA35BC7C254FFC2B00AE32A7 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35BC7B254FFC2B00AE32A7 /* Storage.swift */; };
 		AA35BC85254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35BC83254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift */; };
 		AA35BC86254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA35BC84254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift */; };
+		AA38A6D5257A761200B26E1F /* NetworkerrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A6D4257A761200B26E1F /* NetworkerrorManager.swift */; };
+		AA38A6D9257A780700B26E1F /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A6D8257A780700B26E1F /* UIApplication+Extensions.swift */; };
+		AA38A6DD257A78F100B26E1F /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A6DC257A78F100B26E1F /* UIViewController+Extensions.swift */; };
 		AA4AD55425725C920087E060 /* LogAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD55225725C920087E060 /* LogAPI.swift */; };
 		AA4AD55525725C920087E060 /* LogAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD55325725C920087E060 /* LogAPITarget.swift */; };
 		AA4AD56925725D0D0087E060 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD56825725D0D0087E060 /* ImageDownloadManager.swift */; };
@@ -346,6 +349,9 @@
 		AA35BC7B254FFC2B00AE32A7 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		AA35BC83254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedTrashCan+CoreDataClass.swift"; sourceTree = "<group>"; };
 		AA35BC84254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedTrashCan+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		AA38A6D4257A761200B26E1F /* NetworkerrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkerrorManager.swift; sourceTree = "<group>"; };
+		AA38A6D8257A780700B26E1F /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
+		AA38A6DC257A78F100B26E1F /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		AA4AD55225725C920087E060 /* LogAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogAPI.swift; sourceTree = "<group>"; };
 		AA4AD55325725C920087E060 /* LogAPITarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogAPITarget.swift; sourceTree = "<group>"; };
 		AA4AD56825725D0D0087E060 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
@@ -896,6 +902,7 @@
 				AA35BC76254FEEFA00AE32A7 /* CoreDataStore.swift */,
 				AA35BC7B254FFC2B00AE32A7 /* Storage.swift */,
 				AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */,
+				AA38A6D4257A761200B26E1F /* NetworkerrorManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1076,6 +1083,8 @@
 				4C3F5645256A214F006D7C9F /* Date+.swift */,
 				4C3F564E256A308F006D7C9F /* Calendar+.swift */,
 				4C42363F25722E9D0068A252 /* Notification+Name.swift */,
+				AA38A6D8257A780700B26E1F /* UIApplication+Extensions.swift */,
+				AA38A6DC257A78F100B26E1F /* UIViewController+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1394,6 +1403,7 @@
 				4C3F56182568F97B006D7C9F /* PloggingData.swift in Sources */,
 				AA35BC86254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataProperties.swift in Sources */,
 				8352481C257227BA00C9F495 /* SplashRouter.swift in Sources */,
+				AA38A6D9257A780700B26E1F /* UIApplication+Extensions.swift in Sources */,
 				AAA1CBE9255D5E9100EDB18A /* SessionManager.swift in Sources */,
 				AAA1CC03255D647100EDB18A /* PloggingAPITarget.swift in Sources */,
 				4C2D059B2556459400FA787F /* QuestDetailPresenter.swift in Sources */,
@@ -1458,6 +1468,7 @@
 				8352484A2572283C00C9F495 /* MyPageViewController+UI.swift in Sources */,
 				83DE07852566AD050085AC72 /* ChallengeInteractor.swift in Sources */,
 				AAAD68FF2555A52B00895265 /* QuestDetailViewController.swift in Sources */,
+				AA38A6D5257A761200B26E1F /* NetworkerrorManager.swift in Sources */,
 				83DE07782566AD050085AC72 /* ReportViewController.swift in Sources */,
 				83DE07832566AD050085AC72 /* TopRankView.swift in Sources */,
 				835248612572285100C9F495 /* LogViewController+UI.swift in Sources */,
@@ -1473,6 +1484,7 @@
 				AA7F54F02532C1A6001C4012 /* PloggingRouter.swift in Sources */,
 				8352484C2572283C00C9F495 /* MyPageModels.swift in Sources */,
 				AAB559352549BA2D000BB903 /* MultiColorPolyline.swift in Sources */,
+				AA38A6DD257A78F100B26E1F /* UIViewController+Extensions.swift in Sources */,
 				AAB3B4F92520B5B600F0311A /* Common.swift in Sources */,
 				835248AC25743C7200C9F495 /* UserLogInteractor.swift in Sources */,
 				83DE077E2566AD050085AC72 /* ChallengeWorker.swift in Sources */,
