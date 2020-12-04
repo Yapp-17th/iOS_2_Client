@@ -23,7 +23,11 @@ class LogViewController: UIViewController {
     
     var feedList: [Feed] = []
     
-    var scrollView = ScrollStackView()
+    var scrollView = ScrollStackView().then {
+        $0.alwaysBounceVertical = true
+        $0.refreshControl = UIRefreshControl()
+        $0.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
+    }
     let ploggerContainer = UIImageView().then{
         $0.image = UIImage(named: "bg_logPloggerContainer")?.withRenderingMode(.alwaysOriginal)
         $0.contentMode = .scaleAspectFill
@@ -172,13 +176,23 @@ class LogViewController: UIViewController {
     func getFeed(){
         self.interactor?.getFeed()
     }
+    
+    @objc func handleRefreshControl(){
+        self.interactor?.getFeed()
+    }
 }
 
 extension LogViewController: LogDisplayLogic{
     func displayGetFeed(viewModel: Log.GetFeed.ViewModel) {
+        let user = viewModel.user
         self.feedList = viewModel.feedList
+        self.collectionView.reloadData()
         DispatchQueue.main.async {
-            self.collectionView.reloadData()
+            self.levelLabel.text = "\(user.level)"
+            self.rankLabel.text = "\(user.rank)"
+//            self.weeklyContentLabel.text = user.weeklyStat
+//            self.monthlyContentLabel.text = "\(user.monthlyStat)"
+            self.scrollView.refreshControl?.endRefreshing()
         }
     }
     func displayError(error: Common.CommonError, useCase: Log.UseCase){

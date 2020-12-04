@@ -54,6 +54,17 @@ extension PloggingViewController {
                 $0.tintColor = .black
             }
         }
+        
+        self.view.addSubview(coachmarkContainer)
+        coachmarkContainer.addSubview(closeCoachmarkButton)
+        coachmarkContainer.addSubview(coachmarkDeleteTrashcanLabel)
+        coachmarkContainer.addSubview(coachmarkTrashcanIcon)
+        coachmarkContainer.addSubview(coachmarkSmallHandIcon)
+        coachmarkContainer.addSubview(coachmarkAddTrashcanIcon)
+        coachmarkContainer.addSubview(coachmarkAddTrashcanLabel)
+        coachmarkContainer.addSubview(coachmarkStartButton)
+        coachmarkContainer.addSubview(coachmarkBigHandIcon)
+        coachmarkContainer.addSubview(coachmarkStartButtonLabel)
     }
     
     func setupLayout() {
@@ -69,7 +80,7 @@ extension PloggingViewController {
         trashButton.snp.makeConstraints{
             $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
             $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
-            $0.width.height.equalTo(60)
+            $0.width.height.equalTo(50)
         }
         
         startBottomContainerView.snp.makeConstraints{
@@ -195,6 +206,52 @@ extension PloggingViewController {
         stopButton.isHidden = true
         resumeButton.isHidden = true
         trashInfoContainer.isHidden = true
+        
+        self.tabBarController?.tabBar.alpha = 0
+        
+        coachmarkContainer.snp.makeConstraints{
+            $0.edges.equalToSuperview()
+        }
+        
+        closeCoachmarkButton.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(20)
+            $0.trailing.equalTo(-21)
+            $0.width.height.equalTo(30)
+        }
+        
+        coachmarkDeleteTrashcanLabel.snp.makeConstraints {
+            $0.top.equalTo(closeCoachmarkButton.snp.bottom).offset(52)
+            $0.trailing.equalTo(-24)
+        }
+        
+        coachmarkTrashcanIcon.snp.makeConstraints {
+            $0.trailing.equalTo(coachmarkDeleteTrashcanLabel.snp.leading).offset(-10)
+            $0.centerY.equalTo(coachmarkDeleteTrashcanLabel)
+        }
+        
+        coachmarkSmallHandIcon.snp.makeConstraints {
+            $0.top.equalTo(coachmarkTrashcanIcon.snp.centerY)
+            $0.leading.equalTo(coachmarkTrashcanIcon.snp.centerX).offset(-8)
+        }
+        coachmarkAddTrashcanIcon.snp.makeConstraints {
+            $0.edges.equalTo(trashButton)
+        }
+        coachmarkAddTrashcanLabel.snp.makeConstraints{
+            $0.trailing.equalTo(coachmarkAddTrashcanIcon.snp.leading).offset(-12)
+            $0.top.equalTo(coachmarkAddTrashcanIcon).offset(4)
+        }
+        coachmarkStartButton.snp.makeConstraints{
+            $0.edges.equalTo(startButton)
+        }
+        coachmarkBigHandIcon.snp.makeConstraints {
+            $0.top.equalTo(coachmarkStartButton.snp.bottom).offset(-16)
+            $0.leading.equalTo(coachmarkStartButton.snp.centerX).offset(-16)
+        }
+        
+        coachmarkStartButtonLabel.snp.makeConstraints {
+            $0.top.equalTo(coachmarkBigHandIcon.snp.bottom).offset(8)
+            $0.centerX.equalTo(coachmarkStartButton)
+        }
     }
     
     func updateView() {

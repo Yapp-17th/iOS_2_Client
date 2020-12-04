@@ -14,11 +14,12 @@ import UIKit
 
 class LogWorker {
     func getFeed(completion: @escaping(Log.GetFeed.Response) -> Void){
-        guard let uid = AuthManager.shared.user?.id else { return }
+        guard let user = AuthManager.shared.user else { return }
+        let uid = user.id
         LogAPI.shared.getFeed(uid: uid) { (response) in
             switch response{
             case let .success(feedList):
-                let response = Log.GetFeed.Response(feedList: feedList)
+                let response = Log.GetFeed.Response(user: user,feedList: feedList)
                 completion(response)
             case let .failure(error):
                 let response = Log.GetFeed.Response(error: .error(error))

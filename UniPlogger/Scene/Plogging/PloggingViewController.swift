@@ -99,7 +99,7 @@ class PloggingViewController: BaseViewController {
     }
     
     lazy var startButton = UIButton().then{
-        $0.setTitle("START PLOGGING!", for: .normal)
+        $0.setTitle("플로깅 시작하기", for: .normal)
         $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
         $0.backgroundColor = .main
         $0.layer.cornerRadius = 28
@@ -153,13 +153,9 @@ class PloggingViewController: BaseViewController {
     }
     
     lazy var trashButton = UIButton().then{
-        $0.setImage(UIImage(named: "ic_trashcan")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        $0.setImage(UIImage(named: "ic_trashcanCancel")?.withRenderingMode(.alwaysOriginal), for: .selected)
+        $0.setImage(UIImage(named: "ic_ploggingAddTrashcan")?.withRenderingMode(.alwaysOriginal), for: .normal)
         
-        $0.imageView?.contentMode = .center
-        $0.backgroundColor = .main
-        $0.layer.cornerRadius = 30
-        $0.layer.masksToBounds = true
+        $0.imageView?.contentMode = .scaleAspectFit
         $0.addTarget(self, action: #selector(trashButtonTapped), for: .touchUpInside)
     }
     
@@ -203,6 +199,64 @@ class PloggingViewController: BaseViewController {
         $0.layer.applySketchShadow(color: .main, alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
         $0.addTarget(self, action: #selector(addTrashCanConfirmButtonTapped), for: .touchUpInside)
     }
+  
+    lazy var coachmarkContainer = UIView().then {
+        $0.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+    }
+    
+    lazy var closeCoachmarkButton = UIButton().then {
+        $0.setImage(UIImage(named: "btn_ploggingCoachmarkClose"), for: .normal)
+        $0.addTarget(self, action: #selector(closeCoachmarkButtonTapped), for: .touchUpInside)
+    }
+    
+    // coachmark
+    lazy var coachmarkDeleteTrashcanLabel = UILabel().then {
+        $0.text = "꾹 눌러서 삭제 할 수 있습니다."
+        $0.font = .notoSans(ofSize: 14, weight: .regular)
+        $0.textColor = .white
+    }
+    
+    lazy var coachmarkTrashcanIcon = UIImageView().then {
+        $0.image = UIImage(named: "ic_pinTrashCan")?.withRenderingMode(.alwaysOriginal)
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    lazy var coachmarkSmallHandIcon = UIImageView().then {
+        $0.image = UIImage(named: "ic_ploggingCoachmarkHandSmall")?.withRenderingMode(.alwaysOriginal)
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    lazy var coachmarkAddTrashcanIcon = UIImageView().then {
+        $0.image = UIImage(named: "ic_ploggingAddTrashcan")?.withRenderingMode(.alwaysOriginal)
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    lazy var coachmarkAddTrashcanLabel = UILabel().then {
+        $0.text = "쓰레기통을 추가 할 수 있습니다."
+        $0.font = .notoSans(ofSize: 14, weight: .regular)
+        $0.textColor = .white
+    }
+    
+    lazy var coachmarkStartButton = UIButton().then{
+        $0.setTitle("플로깅 시작하기", for: .normal)
+        $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
+        $0.backgroundColor = .main
+        $0.layer.cornerRadius = 28
+        $0.layer.applySketchShadow(color: .main, alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
+    }
+    
+    lazy var coachmarkBigHandIcon = UIImageView().then {
+        $0.image = UIImage(named: "ic_ploggingCoachmarkHandBig")?.withRenderingMode(.alwaysOriginal)
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    lazy var coachmarkStartButtonLabel = UILabel().then {
+        $0.text = "버튼을 누르면 플로깅을 시작합니다."
+        $0.font = .notoSans(ofSize: 14, weight: .regular)
+        $0.textColor = .white
+    }
+    
+    
     
     // MARK: Object lifecycle
     
@@ -296,7 +350,7 @@ class PloggingViewController: BaseViewController {
             
             self.trashButton.snp.remakeConstraints{
                 $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
-                $0.width.height.equalTo(60)
+                $0.width.height.equalTo(50)
                 $0.bottom.equalTo(self.trashInfoContainer.snp.top).offset(-16)
             }
         }
@@ -355,7 +409,10 @@ class PloggingViewController: BaseViewController {
         alert.addAction(.init(title: "아니오", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-
+    @objc func closeCoachmarkButtonTapped() {
+        self.tabBarController?.tabBar.alpha = 1
+        self.coachmarkContainer.removeFromSuperview()
+    }
 }
 
 extension PloggingViewController: PloggingDisplayLogic{
@@ -386,7 +443,7 @@ extension PloggingViewController: PloggingDisplayLogic{
         
         self.trashButton.snp.remakeConstraints{
             $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
-            $0.width.height.equalTo(60)
+            $0.width.height.equalTo(50)
             $0.bottom.equalTo(self.doingPauseBottomContainerView.snp.top).offset(-16)
         }
         
@@ -414,7 +471,7 @@ extension PloggingViewController: PloggingDisplayLogic{
         mapView.removeOverlays(mapView.overlays)
         self.trashButton.snp.remakeConstraints{
             $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
-            $0.width.height.equalTo(60)
+            $0.width.height.equalTo(50)
             $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
         }
         self.router?.routeToPloggingRecord()
@@ -449,6 +506,7 @@ extension PloggingViewController: PloggingDisplayLogic{
     
     func displayAddTrashCan(viewModel: Plogging.AddTrashCan.ViewModel) {
         self.trashButton.isSelected = true
+        self.trashButton.transform = CGAffineTransform(rotationAngle: (45 * .pi) / 180.0)
         self.trashInfoContainer.isHidden = false
         self.trashInfoAddressLabel.text = viewModel.address
     }
@@ -457,6 +515,7 @@ extension PloggingViewController: PloggingDisplayLogic{
         if let tempAnnotation = self.tempAnnotation{
             self.mapView.removeAnnotation(tempAnnotation)
             self.trashButton.isSelected = false
+            self.trashButton.transform = CGAffineTransform(rotationAngle: 0)
             self.trashInfoContainer.isHidden = true
         }
         
@@ -467,12 +526,13 @@ extension PloggingViewController: PloggingDisplayLogic{
         
         self.trashButton.snp.remakeConstraints{
             $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
-            $0.width.height.equalTo(60)
+            $0.width.height.equalTo(50)
             $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
         }
     }
     func displayAddTrashCanCancel() {
         self.trashButton.isSelected = false
+        self.trashButton.transform = CGAffineTransform(rotationAngle: 0)
         self.trashInfoContainer.isHidden = true
         if let annotation = self.tempAnnotation {
             self.mapView.removeAnnotation(annotation)
@@ -481,7 +541,7 @@ extension PloggingViewController: PloggingDisplayLogic{
         
         self.trashButton.snp.remakeConstraints{
             $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
-            $0.width.height.equalTo(60)
+            $0.width.height.equalTo(50)
             $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
         }
     }
