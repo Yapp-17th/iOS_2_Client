@@ -13,20 +13,38 @@
 import UIKit
 
 protocol LogBusinessLogic {
+    func getUser()
     func getFeed()
 }
 
 protocol LogDataStore {
-  //var name: String { get set }
+    var uid: Int? { get set }
 }
 
 class LogInteractor: LogBusinessLogic, LogDataStore {
-  var presenter: LogPresentationLogic?
-  var worker: LogWorker?
-  //var name: String = ""
+    var uid: Int?
+    var presenter: LogPresentationLogic?
+    var worker = LogWorker()
+    //var name: String = ""
+    
+    func getUser() {
+        guard let uid = self.uid else {
+            let response = Log.GetUser.Response(error: .local("유저 정보를 확인할 수 없습니다."))
+            self.presenter?.presentGetUser(response: response)
+            return
+        }
+        worker.getUser(uid: uid) { [weak self] (response) in
+            self?.presenter?.presentGetUser(response: response)
+        }
+    }
     func getFeed() {
-        worker = LogWorker()
-        worker?.getFeed { [weak self] response in
+        guard let uid = self.uid else {
+            let response = Log.GetFeed.Response(error: .local("유저 정보를 확인할 수 없습니다."))
+            self.presenter?.presentGetFeed(response: response)
+            return
+        }
+        
+        worker.getFeed(uid: uid) { [weak self] response in
             self?.presenter?.presentGetFeed(response: response)
         }
     }

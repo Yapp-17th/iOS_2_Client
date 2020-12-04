@@ -87,7 +87,10 @@ extension MainTabBarController {
     
     private func setupLogViewController(){
         let logItem = UITabBarItem(title: "로그", image: UIImage(named: "tabbar_log"), tag: 3)
-        let logNavVC = LogNavigationController(rootViewController: LogViewController())
+        let logVC = LogViewController()
+        var destinationDS = logVC.router?.dataStore
+        destinationDS?.uid = AuthManager.shared.user?.id
+        let logNavVC = LogNavigationController(rootViewController: logVC)
         logNavVC.tabBarItem = logItem
         self.addChild(logNavVC)
     }

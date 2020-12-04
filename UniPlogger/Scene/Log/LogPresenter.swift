@@ -13,18 +13,28 @@
 import UIKit
 
 protocol LogPresentationLogic {
+    func presentGetUser(response: Log.GetUser.Response)
     func presentGetFeed(response: Log.GetFeed.Response)
 }
 
 class LogPresenter: LogPresentationLogic {
     weak var viewController: LogDisplayLogic?
+    func presentGetUser(response: Log.GetUser.Response) {
+        guard let user = response.user, response.error == nil else {
+            viewController?.displayError(error: response.error!, useCase: .GetUser)
+            return
+        }
+        
+        let viewModel = Log.GetUser.ViewModel(user: user)
+        viewController?.displayGetUser(viewModel: viewModel)
+    }
     
     func presentGetFeed(response: Log.GetFeed.Response) {
-        guard let user = response.user, let list = response.feedList, response.error == nil else {
+        guard let list = response.feedList, response.error == nil else {
             viewController?.displayError(error: response.error!, useCase: .GetFeed)
             return
         }
-        let viewModel = Log.GetFeed.ViewModel(user: user, feedList: list)
+        let viewModel = Log.GetFeed.ViewModel(feedList: list)
         self.viewController?.displayGetFeed(viewModel: viewModel)
     }
 }
