@@ -18,22 +18,25 @@ import CoreGraphics
 import Toast_Swift
 
 protocol PloggingDisplayLogic: class {
-    
-    
+    // 플로깅 관련 메소드
     func displayStartPlogging()
     func displayPausePlogging()
     func displayResumePlogging()
     func displayStopPlogging()
     
+    // 위치 권한 관련 메소드
     func displaySetting(message: String, url: URL)
     func displayLocation(location: CLLocationCoordinate2D)
     func displayUpdatePloggingLocation(viewModel: Plogging.UpdatePloggingLocation.ViewModel)
     func displayLocationToast()
     
+    // 쓰레기통 추가 관련 메소드
     func displayFetchTrashCan(viewModel: Plogging.FetchTrashCan.ViewModel)
     func displayAddTrashCan(viewModel: Plogging.AddTrashCan.ViewModel)
     func displayAddConfirmTrashCan(viewModel: Plogging.AddConfirmTrashCan.ViewModel)
     func displayAddTrashCanCancel()
+    
+    // 에러 처리
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase)
 }
 
@@ -50,13 +53,13 @@ class PloggingViewController: BaseViewController {
         "핀을 눌러 휴지통을 없애요"
     ]
     
-    var tempAnnotation: TempTrashAnnotation?
+    var tempTrashcanAnnotation: TempTrashAnnotation?
     var minutes = 0
     var seconds = 0
     
     var timer: Timer?
     
-    var annotations: [TrashAnnotation] = []
+    var annotations: [TrashcanAnnotation] = []
     
     let startBottomContainerView = UIView().then{
         $0.backgroundColor = .mainBackgroundColor
@@ -152,9 +155,14 @@ class PloggingViewController: BaseViewController {
         $0.font = .systemFont(ofSize: 14)
     }
     
-    lazy var trashButton = UIButton().then{
+    lazy var trashButton = UIButton(type: .custom).then{
         $0.setImage(UIImage(named: "ic_ploggingAddTrashcan")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        $0.setImage(UIImage(named: "ic_ploggingAddTrashcanCancel")?.withRenderingMode(.alwaysOriginal), for: .selected)
         
+        if #available(iOS 13.0, *) {
+          $0.setPreferredSymbolConfiguration(.init(scale: .default), forImageIn: .normal)
+          $0.setPreferredSymbolConfiguration(.init(scale: .default), forImageIn: .selected)
+        }
         $0.imageView?.contentMode = .scaleAspectFit
         $0.addTarget(self, action: #selector(trashButtonTapped), for: .touchUpInside)
     }
@@ -342,7 +350,7 @@ class PloggingViewController: BaseViewController {
         }else{
             let coordinate = mapView.centerCoordinate
             let annotation = TempTrashAnnotation(coordinate: coordinate, title: "title", subtitle: "content")
-            self.tempAnnotation = annotation
+            self.tempTrashcanAnnotation = annotation
             mapView.addAnnotation(annotation)
             
             let request = Plogging.AddTrashCan.Request(latitude: coordinate.latitude, longitude: coordinate.longitude)
@@ -359,7 +367,7 @@ class PloggingViewController: BaseViewController {
     }
     
     @objc func addTrashCanConfirmButtonTapped(){
-        if let tempAnnotation = self.tempAnnotation{
+        if let tempAnnotation = self.tempTrashcanAnnotation{
             let latitude = tempAnnotation.coordinate.latitude
             let longitude = tempAnnotation.coordinate.longitude
             let request = Plogging.AddConfirmTrashCan.Request(latitude: latitude, longitude: longitude)
@@ -394,7 +402,7 @@ class PloggingViewController: BaseViewController {
         }
     }
     
-    func removeTrashCan(annotation: TrashAnnotation){
+    func removeTrashCan(annotation: TrashcanAnnotation){
         let alert = UIAlertController(title: "경고", message: "해당 쓰레기통을 제거하시겠습니까?", preferredStyle: .alert)
         alert.addAction(.init(title: "네", style: .default, handler: { _ in
             let latitude = annotation.coordinate.latitude
@@ -422,7 +430,7 @@ extension PloggingViewController: PloggingDisplayLogic{
                 latitude: trash.latitude,
                 longitude: trash.longitude
             )
-            let annotation = TrashAnnotation(coordinate: coordinate, title: "title", subtitle: "content")
+            let annotation = TrashcanAnnotation(coordinate: coordinate, title: "title", subtitle: "content")
             mapView.addAnnotation(annotation)
         }
     }
@@ -506,20 +514,18 @@ extension PloggingViewController: PloggingDisplayLogic{
     
     func displayAddTrashCan(viewModel: Plogging.AddTrashCan.ViewModel) {
         self.trashButton.isSelected = true
-        self.trashButton.transform = CGAffineTransform(rotationAngle: (45 * .pi) / 180.0)
         self.trashInfoContainer.isHidden = false
         self.trashInfoAddressLabel.text = viewModel.address
     }
     
     func displayAddConfirmTrashCan(viewModel: Plogging.AddConfirmTrashCan.ViewModel) {
-        if let tempAnnotation = self.tempAnnotation{
+        if let tempAnnotation = self.tempTrashcanAnnotation{
             self.mapView.removeAnnotation(tempAnnotation)
             self.trashButton.isSelected = false
-            self.trashButton.transform = CGAffineTransform(rotationAngle: 0)
             self.trashInfoContainer.isHidden = true
         }
         
-        let annotation = TrashAnnotation(coordinate: .init(latitude: viewModel.latitude, longitude: viewModel.longitude), title: "title", subtitle: "content")
+        let annotation = TrashcanAnnotation(coordinate: .init(latitude: viewModel.latitude, longitude: viewModel.longitude), title: "title", subtitle: "content")
         
         self.annotations.append(annotation)
         self.mapView.addAnnotation(annotation)
@@ -532,11 +538,10 @@ extension PloggingViewController: PloggingDisplayLogic{
     }
     func displayAddTrashCanCancel() {
         self.trashButton.isSelected = false
-        self.trashButton.transform = CGAffineTransform(rotationAngle: 0)
         self.trashInfoContainer.isHidden = true
-        if let annotation = self.tempAnnotation {
+        if let annotation = self.tempTrashcanAnnotation {
             self.mapView.removeAnnotation(annotation)
-            tempAnnotation = nil
+            tempTrashcanAnnotation = nil
         }
         
         self.trashButton.snp.remakeConstraints{
@@ -560,10 +565,10 @@ extension PloggingViewController: MKMapViewDelegate{
             return pin
         }
         
-        if annotation is TrashAnnotation {
+        if annotation is TrashcanAnnotation {
             let pin = TrashAnnotationView(annotation: annotation, reuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
             pin.longPressClosure = { [weak self] in
-                self?.removeTrashCan(annotation: annotation as! TrashAnnotation)
+                self?.removeTrashCan(annotation: annotation as! TrashcanAnnotation)
             }
             return pin
         }else if annotation is TempTrashAnnotation {
