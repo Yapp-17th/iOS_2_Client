@@ -45,10 +45,10 @@ extension PloggingViewController {
         trashInfoContainer.addSubview(trashInfoDescriptionLabel)
         trashInfoContainer.addSubview(addTrashCanConfirmButton)
         if #available(iOS 12.0, *) {
-                // User Interface is Dark
-                [distanceImageView, timeImageView].forEach{
-                    $0.tintColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
-                }
+            // User Interface is Dark
+            [distanceImageView, timeImageView].forEach{
+                $0.tintColor = self.traitCollection.userInterfaceStyle == .dark ? .white : .black
+            }
         } else {
             [distanceImageView, timeImageView].forEach{
                 $0.tintColor = .black
@@ -68,6 +68,27 @@ extension PloggingViewController {
     }
     
     func setupLayout() {
+        setupBasicViews()
+        setupBottomViews()
+        setupDoingViews()
+        setupTrashInfoViews()
+        setupCoachmarkViews()
+        
+        doingPauseBottomContainerView.isHidden = true
+        stopButton.isHidden = true
+        resumeButton.isHidden = true
+        trashInfoContainer.isHidden = true
+        
+        self.tabBarController?.tabBar.alpha = 0
+        
+    }
+    
+    func updateView() {
+        
+    }
+    
+    func setupBasicViews() {
+        
         mapView.snp.makeConstraints{
             $0.leading.trailing.top.bottom.equalToSuperview()
         }
@@ -82,7 +103,9 @@ extension PloggingViewController {
             $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
             $0.width.height.equalTo(50)
         }
-        
+    }
+    
+    func setupBottomViews(){
         startBottomContainerView.snp.makeConstraints{
             $0.leading.trailing.bottom.equalToSuperview()
         }
@@ -109,9 +132,9 @@ extension PloggingViewController {
             $0.trailing.equalTo(-15)
             $0.bottom.equalTo(-10)
         }
-        
-        
-        //DoingContainer
+    }
+    
+    func setupDoingViews(){
         doingPauseBottomContainerView.snp.makeConstraints{
             $0.leading.trailing.bottom.equalToSuperview()
         }
@@ -169,7 +192,9 @@ extension PloggingViewController {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(timeLabel.snp.top).offset(-3)
         }
-        
+    }
+    
+    func setupTrashInfoViews(){
         trashInfoContainer.snp.makeConstraints{
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
@@ -200,15 +225,9 @@ extension PloggingViewController {
             $0.height.equalTo(56)
             $0.bottom.equalTo(-19)
         }
-        
-        doingPauseBottomContainerView.isHidden = true
-        
-        stopButton.isHidden = true
-        resumeButton.isHidden = true
-        trashInfoContainer.isHidden = true
-        
-        self.tabBarController?.tabBar.alpha = 0
-        
+    }
+    
+    func setupCoachmarkViews(){
         coachmarkContainer.snp.makeConstraints{
             $0.edges.equalToSuperview()
         }
@@ -252,9 +271,5 @@ extension PloggingViewController {
             $0.top.equalTo(coachmarkBigHandIcon.snp.bottom).offset(8)
             $0.centerX.equalTo(coachmarkStartButton)
         }
-    }
-    
-    func updateView() {
-        
     }
 }
