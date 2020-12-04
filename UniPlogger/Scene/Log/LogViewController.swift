@@ -13,6 +13,7 @@
 import UIKit
 
 protocol LogDisplayLogic: class {
+    func displayGetUser(viewModel: Log.GetUser.ViewModel)
     func displayGetFeed(viewModel: Log.GetFeed.ViewModel)
     func displayError(error: Common.CommonError, useCase: Log.UseCase)
 }
@@ -164,7 +165,7 @@ class LogViewController: UIViewController {
         configuration()
         setupView()
         setupLayout()
-        getFeed()
+        self.interactor?.getUser()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -183,36 +184,43 @@ class LogViewController: UIViewController {
 }
 
 extension LogViewController: LogDisplayLogic{
-    func displayGetFeed(viewModel: Log.GetFeed.ViewModel) {
+    func displayGetUser(viewModel: Log.GetUser.ViewModel) {
         let user = viewModel.user
+        self.levelLabel.text = "\(user.level)"
+        self.rankLabel.text = "\(user.rank)"
+        self.weeklyContentLabel.text = user.weeklyStat
+        self.monthlyContentLabel.text = "\(user.monthlyStat)"
+        
+        self.interactor?.getFeed()
+    }
+    func displayGetFeed(viewModel: Log.GetFeed.ViewModel) {
         self.feedList = viewModel.feedList
         self.collectionView.reloadData()
         DispatchQueue.main.async {
-            self.levelLabel.text = "\(user.level)"
-            self.rankLabel.text = "\(user.rank)"
-//            self.weeklyContentLabel.text = user.weeklyStat
-//            self.monthlyContentLabel.text = "\(user.monthlyStat)"
             self.scrollView.refreshControl?.endRefreshing()
         }
     }
     func displayError(error: Common.CommonError, useCase: Log.UseCase){
-      switch error {
-      case .server(let msg):
-        self.errorAlert(title: "오류", message: msg, completion: nil)
-      case .local(let msg):
-        self.errorAlert(title: "오류", message: msg, completion: nil)
-      case .error(let error):
-        guard let error = error as? URLError else { return }
-        NetworkErrorManager.alert(error) { _ in
-          DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
-            guard let self = self else { return }
-            switch useCase{
-            case .GetFeed:
-              self.interactor?.getFeed()
+        self.scrollView.refreshControl?.endRefreshing()
+        switch error {
+        case .server(let msg):
+            self.errorAlert(title: "오류", message: msg, completion: nil)
+        case .local(let msg):
+            self.errorAlert(title: "오류", message: msg, completion: nil)
+        case .error(let error):
+            guard let error = error as? URLError else { return }
+            NetworkErrorManager.alert(error) { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                    guard let self = self else { return }
+                    switch useCase{
+                    case .GetUser:
+                        self.interactor?.getUser()
+                    case .GetFeed:
+                        self.interactor?.getFeed()
+                    }
+                }
             }
-          }
         }
-      }
     }
 }
 

@@ -20,7 +20,7 @@ class UserLogPresenter: UserLogPresentationLogic {
             print(response.error)
             return
         }
-        let viewModel = Log.GetFeed.ViewModel(user: user, feedList: list)
+        let viewModel = Log.GetFeed.ViewModel(feedList: list)
         self.viewController?.displayGetFeed(viewModel: viewModel)
         
     }
