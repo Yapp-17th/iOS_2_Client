@@ -1,7 +1,6 @@
 {
   "images" : [
     {
-      "filename" : "Group 220.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,12 +11,10 @@
           "value" : "dark"
         }
       ],
-      "filename" : "Group 218.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Group 220@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -28,12 +25,10 @@
           "value" : "dark"
         }
       ],
-      "filename" : "Group 218@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Group 220@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -44,7 +39,6 @@
           "value" : "dark"
         }
       ],
-      "filename" : "Group 218@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

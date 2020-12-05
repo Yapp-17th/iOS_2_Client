@@ -65,7 +65,7 @@ class TutorialFirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UserDefaults.setValue(false, forKey: "QuestTutorial")
+        UserDefaults.standard.setValue(false, forKey: "QuestTutorial")
         
         self.view.addSubview(backgroundImageView)
         self.view.addSubview(kingImageView)
