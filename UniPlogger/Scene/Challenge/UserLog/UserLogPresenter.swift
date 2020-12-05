@@ -28,8 +28,9 @@ class UserLogPresenter: UserLogPresentationLogic {
     
     func presentUserInfo(response: Log.GetUser.Response) {
         guard let user = response.user else { return }
+        let nickname = user.nickname
         let level = user.level
         let rank = user.rank
-        self.viewController?.displayUserInfo(level: level, rank: rank)
+        self.viewController?.displayUserInfo(nickname: nickname, level: level, rank: rank)
     }
 }

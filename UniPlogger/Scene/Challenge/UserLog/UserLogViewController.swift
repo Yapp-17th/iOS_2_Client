@@ -10,7 +10,7 @@ import UIKit
 
 protocol UserLogDisplayLogic: class {
     func displayGetFeed(viewModel: Log.GetFeed.ViewModel)
-    func displayUserInfo(level: Int, rank: Double)
+    func displayUserInfo(nickname: String, level: Int, rank: Double)
 }
 
 class UserLogViewController: UIViewController, UserLogDisplayLogic {
@@ -110,8 +110,6 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
     }
     
     private func setNavigationItem() {
-        let nickname = "nickname"
-        navigationItem.title = "\(nickname) 로그"
         navigationController?.navigationBar.topItem?.title = "챌린지"
     }
   
@@ -126,7 +124,8 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
         }
     }
     
-    func displayUserInfo(level: Int, rank: Double) {
+    func displayUserInfo(nickname: String, level: Int, rank: Double) {
+        navigationItem.title = "\(nickname) 로그"
         self.levelLabel.text = "\(level)"
         self.rankLabel.text = "\(Int(rank))%"
     }

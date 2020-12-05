@@ -19,11 +19,12 @@ protocol ChallengeDisplayLogic: class {
     func displayTopImages(images: [UIImage])
 }
 
-class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
+class ChallengeViewController: UIViewController, ChallengeDisplayLogic, TopViewDelegate {
     var interactor: ChallengeBusinessLogic?
     var router: (NSObjectProtocol & ChallengeRoutingLogic & ChallengeDataPassing)?
     var viewModels: [Challenge.RankCellViewModel]?
     
+    lazy var topView = TopView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 250))
     lazy var backgroundImageView = UIImageView().then {
         let image = UIImage(named: "challengeBackground")
         $0.image = image!.resizeTopAlignedToFill(newWidth: self.view.frame.width)
@@ -39,23 +40,11 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
         $0.setImage(UIImage(named: "challenge_info"), for: .normal)
         $0.addTarget(self, action: #selector(touchUpInfoButton), for: .touchUpInside)
     }
-    lazy var firstRankView = TopRankView().then {
-        $0.isUserInteractionEnabled = true
-        $0.tag = 0
-        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(touchUpTopRankView(_:))))
-    }
-    lazy var secondRankView = TopRankView().then {
-        $0.isUserInteractionEnabled = true
-        $0.tag = 1
-        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(touchUpTopRankView(_:))))
-    }
-    lazy var thirdRankView = TopRankView().then {
-        $0.isUserInteractionEnabled = true
-        $0.tag = 2
-        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(touchUpTopRankView(_:))))
-    }
-    lazy var rankTableView = UITableView().then {
+    lazy var rankTableView = UITableView(frame: .zero, style: .grouped).then {
         $0.backgroundColor = .clear
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:  #selector(reloadTableView), for: .valueChanged)
+        $0.refreshControl = refreshControl
     }
     lazy var scoreInfoView = ScoreInfoView()
     lazy var dimView = UIView().then {
@@ -94,6 +83,7 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
         rankTableView.dataSource = self
         rankTableView.separatorStyle = .none
         rankTableView.register(RankTableViewCell.self, forCellReuseIdentifier: "rankCell")
+        topView.delegate = self
     }
     
   
@@ -125,27 +115,32 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
     func displayPlayers(viewModel: [Challenge.RankCellViewModel]) {
         self.viewModels = viewModel
         guard let viewModels = viewModels else { return }
-        firstRankView.configure(viewModel: viewModels[0])
-        secondRankView.configure(viewModel: viewModels[1])
-        thirdRankView.configure(viewModel: viewModels[2])
+        topView.firstRankView.configure(viewModel: viewModels[0])
+        topView.secondRankView.configure(viewModel: viewModels[1])
+        topView.thirdRankView.configure(viewModel: viewModels[2])
         rankTableView.reloadData()
     }
     
     func displayTopImages(images: [UIImage]) {
-        firstRankView.rankImageView.image = images[0]
-        secondRankView.rankImageView.image = images[1]
-        thirdRankView.rankImageView.image = images[2]
+        topView.firstRankView.rankImageView.image = images[0]
+        topView.secondRankView.rankImageView.image = images[1]
+        topView.thirdRankView.rankImageView.image = images[2]
     }
     
     @objc func touchUpInfoButton() {
         router?.routeToScoreInfo()
     }
     
-    @objc func touchUpTopRankView(_ recognizer: UIGestureRecognizer) {
-        guard let tag = recognizer.view?.tag else { return }
+    func touchUpTopRank(tag: Int) {
         guard let id = viewModels?[tag].id else { return }
         router?.routeToUserLog(playerId: id)
     }
+    
+    @objc func reloadTableView() {
+        rankTableView.reloadData()
+        rankTableView.refreshControl?.endRefreshing()
+    }
+    
 }
 
 extension ChallengeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -175,4 +170,13 @@ extension ChallengeViewController: UITableViewDelegate, UITableViewDataSource {
         if viewModel.id == -1 { return }
         router?.routeToUserLog(playerId: viewModel.id)
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return topView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 250
+    }
+    
 }

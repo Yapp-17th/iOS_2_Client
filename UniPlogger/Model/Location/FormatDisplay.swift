@@ -33,4 +33,11 @@ struct FormatDisplay{
         let speed = Measurement(value: speedMagnitude, unit: UnitSpeed.metersPerSecond)
         return formatter.string(from: speed.converted(to: outputUnit))
     }
+    
+    static func date(_ date: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        return dateFormatter.date(from: date)!
+    }
 }

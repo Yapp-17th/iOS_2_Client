@@ -82,7 +82,9 @@ class DetailViewController: UIViewController {
 extension DetailViewController: DetailDisplayLogic {
     func displayGetFeed(viewModel: Detail.GetFeed.ViewModel) {
         ploggingImageView.ploggingInfoView.viewModel = .init(distance: viewModel.distance, time: viewModel.time)
-        self.navigationItem.title = viewModel.title
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YY.MM.d"
+        self.navigationItem.title = dateFormatter.string(from: viewModel.date)
         ImageDownloadManager.shared.downloadImage(url: viewModel.photo) { (image) in
             self.ploggingImageView.image = image
         }

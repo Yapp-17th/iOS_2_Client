@@ -19,7 +19,7 @@ enum Detail{
         }
         
         struct ViewModel{
-            var title: String
+            var date: Date
             var time: String
             var distance: String
             var photo: String
