@@ -15,10 +15,11 @@ import Then
 import SnapKit
 
 protocol LoginDisplayLogic: class {
+    func displayValidation(viewModel: Login.ValidationViewModel)
     func displayError(error: Common.CommonError, useCase: Login.UseCase)
 }
 
-class LoginViewController: UIViewController, LoginDisplayLogic {
+class LoginViewController: UIViewController {
     var interactor: LoginBusinessLogic?
     var router: (NSObjectProtocol & LoginRoutingLogic & LoginDataPassing)?
     
@@ -48,6 +49,7 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         $0.backgroundColor = .clear
         $0.borderStyle = .none
         $0.placeholder = "아이디 (이메일)"
+        $0.addTarget(self, action: #selector(validateAccount), for: .editingChanged)
     }
     
     let passwordFieldBox = UIView().then {
@@ -62,6 +64,7 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         $0.backgroundColor = .clear
         $0.borderStyle = .none
         $0.placeholder = "비밀번호"
+        $0.addTarget(self, action: #selector(validatePassword), for: .editingChanged)
     }
     
     lazy var loginButton = UIButton().then {
@@ -201,5 +204,31 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
     
     func displayError(error: Common.CommonError, useCase: Login.UseCase){
         //handle error with its usecase
+    }
+    
+    @objc func loginButtonTapped(){
+        guard let account = accountField.text, !account.isEmpty,
+              let password = passwordField.text, !password.isEmpty
+        else { return }
+        
+    }
+    
+    @objc func validateAccount(){
+      guard let text = accountField.text else { return }
+      let request = Login.ValidateAccount.Request(account: text)
+      self.interactor?.validateAccount(request: request)
+    }
+    
+    @objc func validatePassword(){
+      guard let text = passwordField.text else { return }
+      let request = Login.ValidatePassword.Request(password: text)
+      self.interactor?.validatePassword(request: request)
+    }
+}
+
+extension LoginViewController: LoginDisplayLogic {
+    func displayValidation(viewModel: Login.ValidationViewModel) {
+        self.loginButton.isEnabled = viewModel.isValid
+        self.loginButton.backgroundColor = viewModel.isValid ? .main : UIColor(named: "color_loginButton")
     }
 }

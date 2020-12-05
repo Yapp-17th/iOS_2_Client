@@ -13,7 +13,8 @@
 import UIKit
 
 protocol LoginBusinessLogic {
-    
+    func validateAccount(request: Login.ValidateAccount.Request)
+    func validatePassword(request: Login.ValidatePassword.Request)
 }
 
 protocol LoginDataStore {
@@ -22,7 +23,17 @@ protocol LoginDataStore {
 
 class LoginInteractor: LoginBusinessLogic, LoginDataStore {
     var presenter: LoginPresentationLogic?
-    var worker: LoginWorker?
+    var worker = LoginWorker()
     //var name: String = ""
+    func validateAccount(request: Login.ValidateAccount.Request){
+        let text = request.account
+        let result = worker.validateAccount(text: text)
+        presenter?.presentValidateAccount(response: .init(isValid: result))
+    }
     
+    func validatePassword(request: Login.ValidatePassword.Request){
+        let text = request.password
+        let result = worker.validatePassword(text: text)
+        presenter?.presentValidatePassword(response: .init(isValid: result))
+    }
 }

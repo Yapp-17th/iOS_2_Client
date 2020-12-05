@@ -13,10 +13,26 @@
 import UIKit
 
 protocol LoginPresentationLogic {
-    
+    func presentValidateAccount(response: Login.ValidateAccount.Response)
+    func presentValidatePassword(response: Login.ValidatePassword.Response)
 }
 
 class LoginPresenter: LoginPresentationLogic {
     weak var viewController: LoginDisplayLogic?
     
+    var isValidAccount: Bool = false
+    var isValidPassword: Bool = false
+    
+    func presentValidateAccount(response: Login.ValidateAccount.Response){
+        self.isValidAccount = response.isValid
+        let viewModel = Login.ValidationViewModel(isValid: isValidAccount && isValidPassword)
+        viewController?.displayValidation(viewModel: viewModel)
+    }
+    
+    
+    func presentValidatePassword(response: Login.ValidatePassword.Response){
+        self.isValidPassword = response.isValid
+        let viewModel = Login.ValidationViewModel(isValid: isValidAccount && isValidPassword)
+        viewController?.displayValidation(viewModel: viewModel)
+    }
 }
