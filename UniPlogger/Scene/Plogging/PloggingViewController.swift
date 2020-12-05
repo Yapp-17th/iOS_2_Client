@@ -444,6 +444,7 @@ class PloggingViewController: BaseViewController {
     @objc func closeCoachmarkButtonTapped() {
         self.tabBarController?.tabBar.alpha = 1
         self.coachmarkContainer.removeFromSuperview()
+        UserDefaults.standard.set(true, forDefines: .ploggingCoachmark)
     }
 }
 

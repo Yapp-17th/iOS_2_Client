@@ -55,16 +55,6 @@ extension PloggingViewController {
             }
         }
         
-        self.view.addSubview(coachmarkContainer)
-        coachmarkContainer.addSubview(closeCoachmarkButton)
-        coachmarkContainer.addSubview(coachmarkDeleteTrashcanLabel)
-        coachmarkContainer.addSubview(coachmarkTrashcanIcon)
-        coachmarkContainer.addSubview(coachmarkSmallHandIcon)
-        coachmarkContainer.addSubview(coachmarkAddTrashcanIcon)
-        coachmarkContainer.addSubview(coachmarkAddTrashcanLabel)
-        coachmarkContainer.addSubview(coachmarkStartButton)
-        coachmarkContainer.addSubview(coachmarkBigHandIcon)
-        coachmarkContainer.addSubview(coachmarkStartButtonLabel)
     }
     
     func setupLayout() {
@@ -72,14 +62,15 @@ extension PloggingViewController {
         setupBottomViews()
         setupDoingViews()
         setupTrashInfoViews()
-        setupCoachmarkViews()
+        if !UserDefaults.standard.bool(forDefines: .ploggingCoachmark){
+            setupCoachmarkViews()
+        }
+        
         
         doingPauseBottomContainerView.isHidden = true
         stopButton.isHidden = true
         resumeButton.isHidden = true
         trashInfoContainer.isHidden = true
-        
-        self.tabBarController?.tabBar.alpha = 0
         
     }
     
@@ -228,6 +219,19 @@ extension PloggingViewController {
     }
     
     func setupCoachmarkViews(){
+        
+        
+        self.view.addSubview(coachmarkContainer)
+        coachmarkContainer.addSubview(closeCoachmarkButton)
+        coachmarkContainer.addSubview(coachmarkDeleteTrashcanLabel)
+        coachmarkContainer.addSubview(coachmarkTrashcanIcon)
+        coachmarkContainer.addSubview(coachmarkSmallHandIcon)
+        coachmarkContainer.addSubview(coachmarkAddTrashcanIcon)
+        coachmarkContainer.addSubview(coachmarkAddTrashcanLabel)
+        coachmarkContainer.addSubview(coachmarkStartButton)
+        coachmarkContainer.addSubview(coachmarkBigHandIcon)
+        coachmarkContainer.addSubview(coachmarkStartButtonLabel)
+        
         coachmarkContainer.snp.makeConstraints{
             $0.edges.equalToSuperview()
         }
@@ -271,5 +275,6 @@ extension PloggingViewController {
             $0.top.equalTo(coachmarkBigHandIcon.snp.bottom).offset(8)
             $0.centerX.equalTo(coachmarkStartButton)
         }
+        self.tabBarController?.tabBar.alpha = 0
     }
 }
