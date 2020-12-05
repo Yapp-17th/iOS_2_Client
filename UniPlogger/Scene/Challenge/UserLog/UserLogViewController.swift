@@ -19,7 +19,11 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
     
     var feedList = [Feed]()
     
-    lazy var scrollView = ScrollStackView()
+    lazy var scrollView = ScrollStackView().then {
+        $0.alwaysBounceVertical = true
+        $0.refreshControl = UIRefreshControl()
+        $0.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
+    }
     lazy var userInfoContainer = UIImageView().then {
         $0.image = UIImage(named: "bg_logPloggerContainer")?.withRenderingMode(.alwaysOriginal)
         $0.contentMode = .scaleAspectFill
@@ -134,6 +138,10 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
         navigationItem.title = "\(nickname) 로그"
         self.levelLabel.text = "\(level)"
         self.rankLabel.text = "\(Int(rank))%"
+    }
+    
+    @objc func handleRefreshControl(){
+        self.interactor?.getFeed()
     }
 
 }
