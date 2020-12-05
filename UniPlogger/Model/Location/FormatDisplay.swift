@@ -34,10 +34,10 @@ struct FormatDisplay{
         return formatter.string(from: speed.converted(to: outputUnit))
     }
     
-    static func date(_ date: String) -> Date {
+    static func date(_ dateString: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.locale = Locale(identifier: "ko_KR")
-        return dateFormatter.date(from: date)!
+        return dateFormatter.date(from: dateString)!
     }
 }

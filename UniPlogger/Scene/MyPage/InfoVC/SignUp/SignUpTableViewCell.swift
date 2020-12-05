@@ -35,7 +35,11 @@ class SignUpTableViewCell: UITableViewCell {
         case .email:
             valueLabel.text = AuthManager.shared.user?.email
         case .resteredDate:
-            valueLabel.text = "2020년 12월 5일"
+            guard let dateString = AuthManager.shared.user?.registeredDate else { return }
+            let date = FormatDisplay.date(dateString)
+            let formatter = DateFormatter()
+            formatter.dateFormat = "YYYY년 MM월 d일"
+            valueLabel.text = formatter.string(from: date)
         }
     }
     
