@@ -67,6 +67,7 @@ extension LogOutInfoViewController: UITableViewDelegate, UITableViewDataSource {
         guard let message = AuthManager.shared.user?.email else { return }
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "취소", style: .default, handler: { _ in
+            self.dimView.isHidden = true
             self.dismiss(animated: true, completion: nil)
         })
         let confirmAction = UIAlertAction(title: "로그아웃", style: .default, handler: { [weak self] _ in
@@ -76,6 +77,7 @@ extension LogOutInfoViewController: UITableViewDelegate, UITableViewDataSource {
         })
         alertController.addAction(cancelAction)
         alertController.addAction(confirmAction)
+        alertController.preferredAction = confirmAction
         self.present(alertController, animated: true, completion: nil)
     }
     
