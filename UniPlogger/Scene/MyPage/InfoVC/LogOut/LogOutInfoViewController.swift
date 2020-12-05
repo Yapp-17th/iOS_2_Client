@@ -58,7 +58,7 @@ extension LogOutInfoViewController: UITableViewDelegate, UITableViewDataSource {
             dimView.isHidden = false 
             showAlert()
         case .withdraw:
-            self.navigationController?.pushViewController(WIthdrawViewController(), animated: false)
+            self.navigationController?.pushViewController(WithdrawViewController(), animated: false)
         }
     }
     

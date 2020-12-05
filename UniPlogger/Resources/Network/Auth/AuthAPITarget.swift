@@ -13,6 +13,7 @@ enum AuthAPITarget{
     case login(email: String, password: String)
     case getUser(uid: Int)
     case logout
+    case withdraw(uid: Int)
 }
 
 extension AuthAPITarget: BaseTarget{
@@ -24,6 +25,8 @@ extension AuthAPITarget: BaseTarget{
             return "users/\(uid)/"
         case .logout:
             return "users/logout/"
+        case let .withdraw(uid):
+            return "users/\(uid)/"
         }
     }
     
@@ -35,6 +38,8 @@ extension AuthAPITarget: BaseTarget{
             return .get
         case .logout:
             return .post
+        case .withdraw:
+            return .delete
         }
     }
     
@@ -49,6 +54,10 @@ extension AuthAPITarget: BaseTarget{
             return [:]
         case .logout:
             return [:]
+        case let .withdraw(uid):
+            return [
+                "id":uid
+            ]
         }
     }
     
@@ -60,6 +69,8 @@ extension AuthAPITarget: BaseTarget{
             return .requestPlain
         case .logout:
             return .requestPlain
+        case .withdraw:
+            return .requestParameters(parameters: parameters, encoding: encoding)
         }
     }
     

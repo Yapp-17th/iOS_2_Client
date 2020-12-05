@@ -51,4 +51,15 @@ final class AuthAPI{
             }.disposed(by: disposeBag)
 
     }
+    
+    func withdraw(uid: Int) {
+        provider.rx.request(.withdraw(uid: uid))
+            .filterSuccessfulStatusCodes()
+            .subscribe { (data) in
+                print(data)
+            } onError: { (error) in
+                print(error.localizedDescription)
+            }.disposed(by: disposeBag)
+    }
+    
 }
