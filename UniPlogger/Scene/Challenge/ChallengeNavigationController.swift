@@ -18,16 +18,11 @@ class ChallengeNavigationController: UINavigationController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.addSubview(navView)
         setupNavigationBar()
     }
     
     func setupNavigationBar() {
-        self.view.addSubview(navView)
-        navView.snp.makeConstraints{
-            $0.leading.trailing.bottom.equalTo(navigationBar)
-            $0.top.equalToSuperview()
-        }
         self.view.bringSubviewToFront(navigationBar)
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
@@ -35,5 +30,13 @@ class ChallengeNavigationController: UINavigationController {
         navigationBar.layer.masksToBounds = true
         
         navigationBar.tintColor = Color.textBlack
+    }
+    
+    func setupLayout() {
+        navView.snp.removeConstraints()
+        navView.snp.makeConstraints{
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(navigationBar)
+        }
     }
 }

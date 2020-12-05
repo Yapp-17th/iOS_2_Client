@@ -93,7 +93,8 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+        navigationController?.isNavigationBarHidden = false
+        (navigationController as? ChallengeNavigationController)?.setupLayout()
     }
     
     private func configure() {
