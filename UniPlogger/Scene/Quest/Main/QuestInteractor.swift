@@ -36,6 +36,7 @@ class QuestInteractor: QuestDataStore {
         self.worker = worker
         self.questManager = questManager
         self.questList = questList
+        addObservers()
     }
     
     private func addObservers() {
@@ -71,6 +72,7 @@ extension QuestInteractor: QuestBusinessLogic {
         guard var quest = questList.quest(at: indexPath, in: state) else { return }
         
         if state == .todo {
+            questManager.start(quest: quest)
             worker.start(quest: quest)
             questList.remove(quest: quest)
             quest.state = .doing

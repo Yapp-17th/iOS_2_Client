@@ -96,17 +96,15 @@ class QuestViewController: QuestBaseViewController {
     
     // MARK: - Initialize
     
+    func configureLogic(interactor: QuestBusinessLogic, router: (QuestRoutingLogic & QuestDataPassing)) {
+        self.interactor = interactor
+        self.router = router
+    }
+    
     private func setup() {
         navigationTabsView.tapHandler = { [weak self] state in
             self?.currentQuestState = state
         }
-        
-        let presenter = QuestPresenter(viewController: self, questFactory: QuestFactory())
-        let worker = QuestWorker()
-        let interactor = QuestInteractor(presenter: presenter, worker: worker, questManager: QuestManager(questChecker: QuestChecker(), storage: Storage()))
-        
-        self.interactor = interactor
-        self.router = QuestRouter(viewController: self, dataStore: interactor)
     }
     
     private func setupTableView() {

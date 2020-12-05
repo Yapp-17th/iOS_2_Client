@@ -72,10 +72,17 @@ extension MainTabBarController {
     private func setupQuestViewController(){
         let questItem = UITabBarItem(title: "퀘스트", image: UIImage(named: "tabbar_quest"), tag: 1)
         let questNavVC = QuestNavigationController()
-        questNavVC.addChild(QuestViewController())
-        let vc = questNavVC
-        vc.tabBarItem = questItem
-        self.addChild(vc)
+        let questVC = QuestViewController()
+        questNavVC.addChild(questVC)
+        
+        let presenter = QuestPresenter(viewController: questVC, questFactory: QuestFactory())
+        let worker = QuestWorker()
+        let storage = Storage()
+        let interactor = QuestInteractor(presenter: presenter, worker: worker, questManager: QuestManager(questChecker: QuestChecker(storage: storage), storage: storage))
+        let router = QuestRouter(viewController: questVC, dataStore: interactor)
+        questVC.configureLogic(interactor: interactor, router: router)
+        questNavVC.tabBarItem = questItem
+        self.addChild(questNavVC)
     }
     
     private func setupPloggingViewController(){
