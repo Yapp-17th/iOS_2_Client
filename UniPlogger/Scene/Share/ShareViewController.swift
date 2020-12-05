@@ -35,7 +35,6 @@ class ShareViewController: UIViewController {
     lazy var ploggingImageView = PloggingImageView().then {
         $0.backgroundColor = .lightGray
         $0.layer.cornerRadius = 10
-        $0.clipsToBounds = true
     }
     lazy var dismissButton = UIButton().then {
         $0.setImage(UIImage(named: "share_dismiss"), for: .normal)
@@ -88,8 +87,6 @@ class ShareViewController: UIViewController {
         
         self.interactor?.fetchRecord()
     }
-    
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
