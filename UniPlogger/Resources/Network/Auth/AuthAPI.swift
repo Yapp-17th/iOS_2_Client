@@ -40,4 +40,27 @@ final class AuthAPI{
                 completionHandler(.failure($0))
             }.disposed(by: disposeBag)
     }
+    
+    func registration(email: String, password1: String, password2: String, completion: @escaping (Result<LoginResponse, Error>) -> Void) {
+        provider.rx.request(.registration(email: email, password1: password1, password2: password2))
+            .filterSuccessfulStatusCodes()
+            .map(LoginResponse.self)
+            .subscribe {
+                completion(.success($0))
+            } onError: {
+                completion(.failure($0))
+            }.disposed(by: disposeBag)
+    }
+    
+    func setNickname(uid: Int, nickname: String){
+        provider.rx.request(.nickname(uid: uid, nickname: nickname))
+            .filterSuccessfulStatusCodes()
+            .subscribe().disposed(by: disposeBag)
+    }
+    
+    func initQuest(){
+        provider.rx.request(.initQuest)
+            .filterSuccessfulStatusCodes()
+            .subscribe().disposed(by: disposeBag)
+    }
 }

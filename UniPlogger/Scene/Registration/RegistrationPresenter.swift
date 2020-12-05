@@ -16,6 +16,8 @@ protocol RegistrationPresentationLogic {
     func presentValidateAccount(response: Registration.ValidateAccount.Response)
     func presentValidatePassword(response: Registration.ValidatePassword.Response)
     func presentValidatePasswordConfirm(response: Registration.ValidatePasswordConfirm.Response)
+    
+    func presentRegistration(response: Registration.Registration.Response)
 }
 
 class RegistrationPresenter: RegistrationPresentationLogic {
@@ -42,5 +44,14 @@ class RegistrationPresenter: RegistrationPresentationLogic {
         self.isValidPasswordConfirm = response.isValid
         let viewModel = Registration.ValidationViewModel(isValid: isValidAccount && isValidPassword && isValidPasswordConfirm)
         viewController?.displayValidation(viewModel: viewModel)
+    }
+    
+    func presentRegistration(response: Registration.Registration.Response) {
+        guard let loginResponse = response.response, response.error == nil else {
+            viewController?.displayError(error: response.error!, useCase: .Registration(response.request))
+            return
+        }
+        viewController?.displayRegistration()
+        
     }
 }

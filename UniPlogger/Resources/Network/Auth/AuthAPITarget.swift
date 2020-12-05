@@ -12,6 +12,9 @@ enum AuthAPITarget{
     //쓰레기통 CRUD
     case login(email: String, password: String)
     case getUser(uid: Int)
+    case registration(email: String, password1: String, password2: String)
+    case nickname(uid: Int, nickname: String)
+    case initQuest
 }
 
 extension AuthAPITarget: BaseTarget{
@@ -21,6 +24,12 @@ extension AuthAPITarget: BaseTarget{
             return "users/login/"
         case let .getUser(uid):
             return "users/\(uid)/"
+        case .registration:
+            return "users/registration/"
+        case let .nickname(uid, _):
+            return "users/\(uid)/"
+        case .initQuest:
+            return "users/quest_to_user/"
         }
     }
     
@@ -29,6 +38,12 @@ extension AuthAPITarget: BaseTarget{
         case .login:
             return .post
         case .getUser:
+            return .get
+        case .registration:
+            return .post
+        case .nickname:
+            return .put
+        case .initQuest:
             return .get
         }
     }
@@ -42,6 +57,18 @@ extension AuthAPITarget: BaseTarget{
             ]
         case .getUser:
             return [:]
+        case let .registration(email, password1, password2):
+            return [
+                "email": email,
+                "password1": password1,
+                "password2": password2
+            ]
+        case let .nickname(_, nickname):
+            return [
+                "nickname": nickname
+            ]
+        case .initQuest:
+            return [:]
         }
     }
     
@@ -50,6 +77,12 @@ extension AuthAPITarget: BaseTarget{
         case .login:
             return .requestParameters(parameters: parameters, encoding: encoding)
         case .getUser:
+            return .requestPlain
+        case .registration:
+            return .requestParameters(parameters: parameters, encoding: encoding)
+        case .nickname:
+            return .requestParameters(parameters: parameters, encoding: encoding)
+        case .initQuest:
             return .requestPlain
         }
     }

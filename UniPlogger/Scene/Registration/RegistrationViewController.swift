@@ -14,6 +14,7 @@ import UIKit
 
 protocol RegistrationDisplayLogic: class {
     func displayValidation(viewModel: Registration.ValidationViewModel)
+    func displayRegistration()
     func displayError(error: Common.CommonError, useCase: Registration.UseCase)
 }
 
@@ -160,10 +161,12 @@ class RegistrationViewController: UIViewController {
     @objc func registrationButtonTapped() {
         guard let account = accountField.text, !account.isEmpty,
               let password = passwordField.text, !password.isEmpty,
-              let passwordConfirm = passwordConfirmField.text, !passwordConfirm.isEmpty,
-              password == passwordConfirm
+              let passwordConfirm = passwordConfirmField.text, !passwordConfirm.isEmpty
         else { return }
+        let nickname = UserDefaults.standard.string(forDefines: .nickname) ?? ""
         
+        let request = Registration.Registration.Request(nickname: nickname, email: account, password1: password, password2: passwordConfirm)
+        self.interactor?.registration(request: request)
     }
 }
 
@@ -171,6 +174,10 @@ extension RegistrationViewController: RegistrationDisplayLogic {
     func displayValidation(viewModel: Registration.ValidationViewModel) {
         self.registrationButton.isEnabled = viewModel.isValid
         self.registrationButton.backgroundColor = viewModel.isValid ? .main : UIColor(named: "color_loginButton")
+    }
+    
+    func displayRegistration() {
+        self.router?.routeToSplash()
     }
     func displayError(error: Common.CommonError, useCase: Registration.UseCase){
         //handle error with its usecase

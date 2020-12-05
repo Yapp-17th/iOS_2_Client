@@ -16,6 +16,8 @@ protocol RegistrationBusinessLogic {
     func validateAccount(request: Registration.ValidateAccount.Request)
     func validatePassword(request: Registration.ValidatePassword.Request)
     func validatePasswordConfirm(request: Registration.ValidatePasswordConfirm.Request)
+    
+    func registration(request: Registration.Registration.Request)
 }
 
 protocol RegistrationDataStore {
@@ -42,5 +44,11 @@ class RegistrationInteractor: RegistrationBusinessLogic, RegistrationDataStore {
         let text = request.password
         let result = worker.validatePassword(text: text)
         presenter?.presentValidatePasswordConfirm(response: .init(isValid: result))
+    }
+    
+    func registration(request: Registration.Registration.Request) {
+        worker.registration(request: request) { [weak self] (response) in
+            self?.presenter?.presentRegistration(response: response)
+        }
     }
 }
