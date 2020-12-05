@@ -23,4 +23,17 @@ class UserLogWorker {
         }
     }
     
+    func getOtherUser(uid: Int, completion: @escaping(Log.GetUser.Response) -> Void) {
+        LogAPI.shared.getOtherUser(uid: uid) { (response) in
+            switch response {
+            case let .success(user):
+                let response = Log.GetUser.Response(user: user)
+                completion(response)
+            case let .failure(error):
+                let response = Log.GetUser.Response(error: .error(error))
+                completion(response)
+            }
+        }
+    }
+    
 }

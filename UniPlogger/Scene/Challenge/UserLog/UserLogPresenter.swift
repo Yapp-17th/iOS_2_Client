@@ -9,7 +9,8 @@
 import Foundation
 
 protocol UserLogPresentationLogic {
-    func presentGetFeed(response: Log.GetFeed.Response) 
+    func presentGetFeed(response: Log.GetFeed.Response)
+    func presentUserInfo(response: Log.GetUser.Response)
 }
 
 class UserLogPresenter: UserLogPresentationLogic {
@@ -25,4 +26,10 @@ class UserLogPresenter: UserLogPresentationLogic {
         
     }
     
+    func presentUserInfo(response: Log.GetUser.Response) {
+        guard let user = response.user else { return }
+        let level = user.level
+        let rank = user.rank
+        self.viewController?.displayUserInfo(level: level, rank: rank)
+    }
 }

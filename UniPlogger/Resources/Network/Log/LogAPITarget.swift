@@ -12,6 +12,7 @@ enum LogAPITarget{
     //쓰레기통 CRUD
     case getFeed(uId: Int)
     case getUserFeed(uid: Int)
+    case getOtherUser(uid: Int)
 }
 
 extension LogAPITarget: BaseTarget{
@@ -21,6 +22,8 @@ extension LogAPITarget: BaseTarget{
             return "users/feed/"
         case .getUserFeed:
             return "users/feed/others_feed/"
+        case let .getOtherUser(uid):
+            return "users/\(uid)/"
         }
     }
     
@@ -30,6 +33,8 @@ extension LogAPITarget: BaseTarget{
             return .get
         case .getUserFeed:
             return .post
+        case .getOtherUser:
+            return .get
         }
     }
     
@@ -38,6 +43,8 @@ extension LogAPITarget: BaseTarget{
         case .getFeed:
             return [:]
         case .getUserFeed:
+            return [:]
+        case .getOtherUser:
             return [:]
         }
     }
@@ -49,6 +56,8 @@ extension LogAPITarget: BaseTarget{
         case .getUserFeed(let uid):
             let uidData = MultipartFormData(provider: .data("\(uid)".data(using: .utf8)!), name: "id")
             return .uploadMultipart([uidData])
+        case .getOtherUser:
+            return .requestPlain
         }
     }
     

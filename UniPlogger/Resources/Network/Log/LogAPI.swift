@@ -41,4 +41,15 @@ final class LogAPI{
                 completionHandler(.failure($0))
             }.disposed(by: self.disposeBag)
     }
+    
+    func getOtherUser(uid: Int, completionHandler: @escaping (Result<User, Error>) -> Void){
+        provider.rx.request(.getOtherUser(uid: uid))
+            .filterSuccessfulStatusCodes()
+            .map(User.self)
+            .subscribe {
+                completionHandler(.success($0))
+            } onError: {
+                completionHandler(.failure($0))
+            }.disposed(by: disposeBag)
+    }
 }

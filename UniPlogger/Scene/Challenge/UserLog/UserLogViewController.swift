@@ -10,6 +10,7 @@ import UIKit
 
 protocol UserLogDisplayLogic: class {
     func displayGetFeed(viewModel: Log.GetFeed.ViewModel)
+    func displayUserInfo(level: Int, rank: Double)
 }
 
 class UserLogViewController: UIViewController, UserLogDisplayLogic {
@@ -87,6 +88,7 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
         setUpViews()
         setUpLayout()
         interactor?.getFeed()
+        interactor?.getOtherUser()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -122,6 +124,11 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
+    }
+    
+    func displayUserInfo(level: Int, rank: Double) {
+        self.levelLabel.text = "\(level)"
+        self.rankLabel.text = "\(Int(rank))%"
     }
 
 }
