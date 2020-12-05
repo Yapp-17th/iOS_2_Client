@@ -184,6 +184,7 @@ extension PloggingRecordViewController: UIImagePickerControllerDelegate, UINavig
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true) {
             self.capturedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+            self.router?.passDataToQuest()
             self.router?.routeToShare()
         }
     }

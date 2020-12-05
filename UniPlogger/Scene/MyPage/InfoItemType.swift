@@ -31,7 +31,7 @@ enum InfoItemType: Int, CaseIterable {
         case .setting:
             return SettingViewController()
         case .logout:
-            return LogOutViewController()
+            return LogOutInfoViewController()
         case .policy:
             return PolicyViewController()
         }

@@ -15,6 +15,7 @@ import UIKit
 @objc protocol PloggingRecordRoutingLogic {
     func routeToShare()
     func routeToCamera()
+    func passDataToQuest()
 }
 
 protocol PloggingRecordDataPassing {
@@ -38,6 +39,17 @@ class PloggingRecordRouter: NSObject, PloggingRecordRoutingLogic, PloggingRecord
         navigateToCamera(source: viewController!, destination: destinationVC)
     }
     
+    func passDataToQuest() {
+        guard let tabBarVC = viewController?.presentingViewController as? MainTabBarController,
+              let questVC = tabBarVC.viewControllers?[1] as? QuestViewController,
+              let ploggingData = dataStore?.ploggingData
+        else {
+            return
+        }
+        
+        questVC.router?.dataStore.questManager.finish(plogging: ploggingData)
+    }
+    
     func navigateToShare(source: PloggingRecordViewController, destination: ShareViewController){
         source.navigationController?.pushViewController(destination, animated: true)
     }
@@ -49,7 +61,7 @@ class PloggingRecordRouter: NSObject, PloggingRecordRoutingLogic, PloggingRecord
     func passDataToShare(source: PloggingRecordDataStore, destination: inout ShareDataStore){
         let selectedItems = viewController!.collectionView.indexPathsForSelectedItems ?? []
         let selectPloggingItems = selectedItems.map { PloggingItemType.allCases[$0.item] }
-
+        
         destination.ploggingData = source.ploggingData
         destination.ploggingData?.items = selectPloggingItems
         destination.image = viewController?.capturedImage

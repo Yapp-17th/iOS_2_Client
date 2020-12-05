@@ -37,6 +37,20 @@ class QuestInteractor: QuestDataStore {
         self.questManager = questManager
         self.questList = questList
     }
+    
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidCompletedQuest(_:)), name: .QuestDidComplete, object: nil)
+    }
+    
+    @objc func onDidCompletedQuest(_ notification: Notification) {
+        guard let questId = notification.userInfo?[Quest.infoKey] as? Int else { return }
+        worker.success(questId: questId) { [weak self] quest in
+            var quest = quest
+            self?.questList.remove(quest: quest)
+            quest.state = .done
+            self?.questList.append(quest)
+        }
+    }
 }
 
 extension QuestInteractor: QuestBusinessLogic {

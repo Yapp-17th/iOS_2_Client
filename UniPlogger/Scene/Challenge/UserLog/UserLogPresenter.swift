@@ -16,7 +16,7 @@ class UserLogPresenter: UserLogPresentationLogic {
     weak var viewController: UserLogDisplayLogic?
     
     func presentGetFeed(response: Log.GetFeed.Response) {
-        guard let list = response.feedList, response.error == nil else {
+        guard let user = AuthManager.shared.user, let list = response.feedList, response.error == nil else {
             print(response.error)
             return
         }

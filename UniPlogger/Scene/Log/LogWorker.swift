@@ -13,8 +13,21 @@
 import UIKit
 
 class LogWorker {
-    func getFeed(completion: @escaping(Log.GetFeed.Response) -> Void){
-        guard let uid = AuthManager.shared.user?.id else { return }
+    
+    func getUser(uid: Int, completion: @escaping(Log.GetUser.Response) -> Void) {
+        AuthAPI.shared.getUser(uid: uid) { (response) in
+            switch response {
+            case let .success(user):
+                let response = Log.GetUser.Response(user: user)
+                completion(response)
+            case let .failure(error):
+                let response = Log.GetUser.Response(error: .error(error))
+                completion(response)
+            }
+        }
+    }
+    
+    func getFeed(uid: Int, completion: @escaping(Log.GetFeed.Response) -> Void){
         LogAPI.shared.getFeed(uid: uid) { (response) in
             switch response{
             case let .success(feedList):

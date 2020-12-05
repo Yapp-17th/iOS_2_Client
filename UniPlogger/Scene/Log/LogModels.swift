@@ -16,7 +16,19 @@ enum Log {
     // MARK: Use cases
     
     enum UseCase {
+        case GetUser
         case GetFeed
+    }
+    
+    enum GetUser{
+        struct Response{
+            var user: User?
+            var error: Common.CommonError?
+        }
+        
+        struct ViewModel {
+            var user: User
+        }
     }
     
     enum GetFeed{
