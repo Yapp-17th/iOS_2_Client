@@ -78,9 +78,18 @@ class QuestWorker {
         }
     }
     
-    func success(quest: Quest) {
-        QuestAPI.shared.success(quest: quest) { (success) in
-            debugPrint(success)
+    func success(questId: Int, completionHandler: @escaping (_ quest: Quest) -> Void) {
+        QuestAPI.shared.success(questId: questId) { [weak self] (success) in
+            guard let self = self else { return }
+            guard success == 200 else {
+                debugPrint(success)
+                return
+            }
+            
+            if let index = self.quests.firstIndex(where: { $0.id == questId }) {
+                completionHandler(self.quests[index])
+                self.quests[index].state = .done
+            }
         }
     }
 }
