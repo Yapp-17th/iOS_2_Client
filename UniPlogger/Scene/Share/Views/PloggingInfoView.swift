@@ -30,9 +30,11 @@ class PloggingInfoView: UIView {
     lazy var characterImageView = UIImageView().then {
         $0.image = UIImage(named: "share_character")
     }
+    lazy var leftView = UIView()
     lazy var ploggerImageView = UIImageView().then {
         $0.image = UIImage(named: "share_plogger")
     }
+    lazy var rightView = UIView()
     lazy var timerImageView = UIImageView().then {
         $0.image = UIImage(named: "share_timer")
     }
@@ -64,7 +66,7 @@ class PloggingInfoView: UIView {
 
 extension PloggingInfoView {
     func setUpView() {
-        [gradientView, characterImageView, ploggerImageView, timerImageView, distanceLabel, timeLabel].forEach {
+        [gradientView, characterImageView, leftView, rightView, ploggerImageView, timerImageView, distanceLabel, timeLabel].forEach {
             self.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
@@ -76,18 +78,30 @@ extension PloggingInfoView {
         }
         characterImageView.snp.makeConstraints {
             $0.bottom.equalToSuperview()
-            $0.leading.equalToSuperview().offset(28)
+            $0.centerX.equalToSuperview()
             $0.width.equalTo(80)
             $0.height.equalTo(87)
         }
-        ploggerImageView.snp.makeConstraints {
-            $0.leading.equalTo(characterImageView.snp.trailing).offset(42)
+        leftView.snp.makeConstraints {
+            $0.leading.bottom.equalToSuperview()
+            $0.trailing.equalTo(characterImageView.snp.leading)
             $0.top.equalToSuperview().offset(76)
+        }
+        rightView.snp.makeConstraints {
+            $0.trailing.bottom.equalToSuperview()
+            $0.leading.equalTo(characterImageView.snp.trailing)
+            $0.top.equalTo(leftView)
+        }
+        ploggerImageView.snp.makeConstraints {
+            $0.top.centerX.equalTo(leftView)
+//            $0.leading.equalTo(characterImageView.snp.trailing).offset(42)
+//            $0.top.equalToSuperview().offset(76)
             $0.width.height.equalTo(26)
         }
         timerImageView.snp.makeConstraints {
-            $0.trailing.equalToSuperview().offset(-55)
-            $0.top.equalToSuperview().offset(76)
+            $0.top.centerX.equalTo(rightView)
+//            $0.trailing.equalToSuperview().offset(-55)
+//            $0.top.equalToSuperview().offset(76)
             $0.width.equalTo(22)
             $0.height.equalTo(25.67)
         }
