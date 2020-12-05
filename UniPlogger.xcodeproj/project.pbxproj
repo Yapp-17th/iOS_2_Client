@@ -25,6 +25,8 @@
 		4C42365125723EF10068A252 /* QuestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C42365025723EF10068A252 /* QuestResponse.swift */; };
 		4C42366525727A3D0068A252 /* QuestDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C42366425727A3D0068A252 /* QuestDetailInteractor.swift */; };
 		4C42366925727D360068A252 /* QuestDetailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C42366825727D360068A252 /* QuestDetailWorker.swift */; };
+		4C6F0ABA257B8AEA008DF8D1 /* SuccessPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F0AB9257B8AEA008DF8D1 /* SuccessPopupView.swift */; };
+		4C6F0AC0257B9B99008DF8D1 /* QuestContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F0ABF257B9B99008DF8D1 /* QuestContents.swift */; };
 		4C7248A92541CDE300ACB32B /* QuestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248A82541CDE300ACB32B /* QuestList.swift */; };
 		4C7248AE2542F86200ACB32B /* VerticalRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248AD2542F86200ACB32B /* VerticalRoundButton.swift */; };
 		4C7248B12542FDA600ACB32B /* RecommandOtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248B02542FDA600ACB32B /* RecommandOtherView.swift */; };
@@ -41,6 +43,9 @@
 		4CC9C7D4252315F3004D873D /* QuestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7D3252315F3004D873D /* QuestModels.swift */; };
 		4CC9C7D7252315FC004D873D /* QuestWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7D6252315FC004D873D /* QuestWorker.swift */; };
 		4CC9C7DA25232128004D873D /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7D925232128004D873D /* Quest.swift */; };
+		4CF62089257B11750029FBD6 /* ProceedingQuest+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62087257B11750029FBD6 /* ProceedingQuest+CoreDataClass.swift */; };
+		4CF6208A257B11750029FBD6 /* ProceedingQuest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF62088257B11750029FBD6 /* ProceedingQuest+CoreDataProperties.swift */; };
+		4CF6208E257B5EBF0029FBD6 /* QuestStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF6208D257B5EBF0029FBD6 /* QuestStorage.swift */; };
 		8352480D2572279500C9F495 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352480A2572279500C9F495 /* Feed.swift */; };
 		8352480E2572279500C9F495 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352480B2572279500C9F495 /* User.swift */; };
 		8352480F2572279500C9F495 /* PloggingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352480C2572279500C9F495 /* PloggingData.swift */; };
@@ -255,6 +260,8 @@
 		4C42365025723EF10068A252 /* QuestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestResponse.swift; sourceTree = "<group>"; };
 		4C42366425727A3D0068A252 /* QuestDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDetailInteractor.swift; sourceTree = "<group>"; };
 		4C42366825727D360068A252 /* QuestDetailWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDetailWorker.swift; sourceTree = "<group>"; };
+		4C6F0AB9257B8AEA008DF8D1 /* SuccessPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessPopupView.swift; sourceTree = "<group>"; };
+		4C6F0ABF257B9B99008DF8D1 /* QuestContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestContents.swift; sourceTree = "<group>"; };
 		4C7248A82541CDE300ACB32B /* QuestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestList.swift; sourceTree = "<group>"; };
 		4C7248AD2542F86200ACB32B /* VerticalRoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalRoundButton.swift; sourceTree = "<group>"; };
 		4C7248B02542FDA600ACB32B /* RecommandOtherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommandOtherView.swift; sourceTree = "<group>"; };
@@ -960,6 +967,7 @@
 				AA35BC7B254FFC2B00AE32A7 /* Storage.swift */,
 				AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */,
 				AA38A6D4257A761200B26E1F /* NetworkerrorManager.swift */,
+				4CF6208D257B5EBF0029FBD6 /* QuestStorage.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1154,6 +1162,7 @@
 				AAC9584E2545BC110092BA6E /* ScrollStackView.swift */,
 				4C7248B42544297D00ACB32B /* HightlightButton.swift */,
 				AAAD690125562CB900895265 /* IntrinsicSizeCollectionView.swift */,
+				4C6F0AB9257B8AEA008DF8D1 /* SuccessPopupView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1174,6 +1183,7 @@
 				8352489A25727CE900C9F495 /* Player.swift */,
 				4C3F56172568F97B006D7C9F /* PloggingData.swift */,
 				4C3F561B2568FA2B006D7C9F /* PloggingItemType.swift */,
+				4C6F0ABF257B9B99008DF8D1 /* QuestContents.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1398,6 +1408,7 @@
 				83DE07712566AD050085AC72 /* CircleInfoView.swift in Sources */,
 				835248682572285100C9F495 /* LogWorker.swift in Sources */,
 				4CC9C7DA25232128004D873D /* Quest.swift in Sources */,
+				4CF6208A257B11750029FBD6 /* ProceedingQuest+CoreDataProperties.swift in Sources */,
 				835248632572285100C9F495 /* LogCollectionViewLayout.swift in Sources */,
 				AA38A73F257B6B5800B26E1F /* RegistrationViewController+UI.swift in Sources */,
 				835248A02572C9BF00C9F495 /* ChallengeAPI.swift in Sources */,
@@ -1433,6 +1444,7 @@
 				AA7F551E2533568D001C4012 /* ShareInteractor.swift in Sources */,
 				4C42366525727A3D0068A252 /* QuestDetailInteractor.swift in Sources */,
 				AAAD68F525556A7600895265 /* CALayer+Extensions.swift in Sources */,
+				4C6F0AC0257B9B99008DF8D1 /* QuestContents.swift in Sources */,
 				8352481A257227BA00C9F495 /* SplashPresenter.swift in Sources */,
 				AA7F54ED2532C1A6001C4012 /* PloggingInteractor.swift in Sources */,
 				AA35BC85254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift in Sources */,
@@ -1470,7 +1482,9 @@
 				AA38A6D9257A780700B26E1F /* UIApplication+Extensions.swift in Sources */,
 				AAA1CBE9255D5E9100EDB18A /* SessionManager.swift in Sources */,
 				AAA1CC03255D647100EDB18A /* PloggingAPITarget.swift in Sources */,
+				4C6F0ABA257B8AEA008DF8D1 /* SuccessPopupView.swift in Sources */,
 				4C2D059B2556459400FA787F /* QuestDetailPresenter.swift in Sources */,
+				4CF62089257B11750029FBD6 /* ProceedingQuest+CoreDataClass.swift in Sources */,
 				AAC9584F2545BC110092BA6E /* ScrollStackView.swift in Sources */,
 				AA7F55252533568D001C4012 /* ShareModels.swift in Sources */,
 				AA7F54EF2532C1A6001C4012 /* PloggingModels.swift in Sources */,
@@ -1544,6 +1558,7 @@
 				AA38A739257B692F00B26E1F /* RegistrationModels.swift in Sources */,
 				835248672572285100C9F495 /* LogRouter.swift in Sources */,
 				835248622572285100C9F495 /* LogViewController.swift in Sources */,
+				4CF6208E257B5EBF0029FBD6 /* QuestStorage.swift in Sources */,
 				835248492572283C00C9F495 /* MyPagePresenter.swift in Sources */,
 				83DE077D2566AD050085AC72 /* ChallengeModels.swift in Sources */,
 				8352481E257227BA00C9F495 /* SplashModels.swift in Sources */,
@@ -1756,7 +1771,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 97C96KP84G;
+				DEVELOPMENT_TEAM = N23K7ZS482;
 				INFOPLIST_FILE = UniPlogger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1775,7 +1790,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 97C96KP84G;
+				DEVELOPMENT_TEAM = N23K7ZS482;
 				INFOPLIST_FILE = UniPlogger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
