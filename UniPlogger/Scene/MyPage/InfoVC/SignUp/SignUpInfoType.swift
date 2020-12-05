@@ -9,10 +9,12 @@
 import Foundation
 
 enum SignUpInfoType: Int, CaseIterable {
-    case email = 0, resteredDate
+    case nickname = 0, email, resteredDate
     
     var description: String {
         switch self {
+        case .nickname:
+            return "닉네임"
         case .email:
             return "이메일"
         case .resteredDate:

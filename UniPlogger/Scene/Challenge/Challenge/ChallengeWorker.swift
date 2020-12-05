@@ -16,6 +16,7 @@ class ChallengeWorker {
   
     func startChallenge(completion: @escaping (Planet) -> Void) {
         ChallengeAPI.shared.startChallenge { (result) in
+            print("startChallenge")
             switch result {
             case .success(let data):
                 print(data)
@@ -28,6 +29,7 @@ class ChallengeWorker {
     
     func getPlanet(completion: @escaping (Planet) -> Void) {
         ChallengeAPI.shared.fetchPlanet { (response) in
+            print("fetch")
             switch response {
             case .success(let data):
                 guard let data = data else { return }

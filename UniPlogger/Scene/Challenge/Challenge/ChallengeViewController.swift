@@ -143,6 +143,7 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic, TopViewD
     }
     
     @objc func reloadTableView() {
+        interactor?.getPlanet()
         rankTableView.reloadData()
         rankTableView.refreshControl?.endRefreshing()
     }

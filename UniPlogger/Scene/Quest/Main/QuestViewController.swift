@@ -154,13 +154,12 @@ class QuestViewController: QuestBaseViewController {
     
     // MARK: Selectors
     
-    @objc func pullToRefresh() {
+    @objc private func pullToRefresh() {
         fetchData()
         questTableView.refreshControl?.endRefreshing()
     }
     
-    @objc
-    private func touchedInfoButton(_ sender: UIBarButtonItem) {
+    @objc private func touchedInfoButton(_ sender: UIBarButtonItem) {
         
     }
 }

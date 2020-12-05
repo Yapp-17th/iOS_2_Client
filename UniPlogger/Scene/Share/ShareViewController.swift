@@ -35,7 +35,6 @@ class ShareViewController: UIViewController {
     lazy var ploggingImageView = PloggingImageView().then {
         $0.backgroundColor = .lightGray
         $0.layer.cornerRadius = 10
-        $0.clipsToBounds = true
     }
     lazy var dismissButton = UIButton().then {
         $0.setImage(UIImage(named: "share_dismiss"), for: .normal)
@@ -89,8 +88,6 @@ class ShareViewController: UIViewController {
         self.interactor?.fetchRecord()
     }
     
-    
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         self.imageForShare = mergeViews()
@@ -100,6 +97,21 @@ class ShareViewController: UIViewController {
     @objc func touchUpDismissButton() {
         guard let imageForSave = self.imageForShare else { return }
         let photoManager = PhotoManager(albumName: "UniPlogger")
+        
+        guard AuthManager.shared.autoSave else {
+            showAlert(title: "사진을 저장하시겠습니까?",
+                      message: "사진을 자동으로 저장하시려면 환경설정을 확인해주세요.",
+                      confirm: (title: "YES", handler: { [weak self] action in
+                        DispatchQueue.main.async {
+                            self?.showAlert(title: "사진 저장", message: "사진이 저장되었습니다.")
+                        }
+                      }),
+                      cancel: (title: "NO", handler: { [weak self] action in
+                        self?.dismiss(animated: true, completion: nil)
+                      }))
+            return
+        }
+        
         photoManager.save(imageForSave) { (success, error) in
             if success {
                 DispatchQueue.main.async {
@@ -115,8 +127,24 @@ class ShareViewController: UIViewController {
     
     @objc func touchUpShareButton() {
         guard let imageForShare = self.imageForShare else { return }
+        
+        if !AuthManager.shared.autoSave {
+            showAlert(title: "사진을 저장하시겠습니까?",
+                      message: "사진을 저장해야만 공유가 가능합니다.",
+                      confirm: (title: "YES", handler: ({ [weak self] action in
+                        self?.shareImage(for: imageForShare)
+                      })),
+                      cancel: (title: "NO", handler: { _ in
+                        return
+                      }))
+        } else {
+            shareImage(for: imageForShare)
+        }
+    }
+    
+    func shareImage(for image: UIImage) {
         let photoManager = PhotoManager(albumName: "UniPlogger")
-        photoManager.save(imageForShare) { (success, error) in
+        photoManager.save(image) { (success, error) in
             if success {
                 let fetchOptions = PHFetchOptions()
                 fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
@@ -134,12 +162,21 @@ class ShareViewController: UIViewController {
         }
     }
     
-    func showAlert(title: String, message: String) {
+    func showAlert(title: String,
+                   message: String,
+                   confirm: (title: String, handler: ((UIAlertAction) -> Void))? = nil,
+                   cancel: (title: String, handler: ((UIAlertAction) -> Void))? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "OK", style: .default, handler: { _ in 
-            self.dismiss(animated: true, completion: nil)
+        let confirmAction = UIAlertAction(title: confirm?.title ?? "OK", style: .default, handler: { action in
+            confirm?.handler(action) ?? self.dismiss(animated: true, completion: nil)
         })
+        let cancelActon = UIAlertAction(title: cancel?.title ?? "NO", style: .cancel) { action in
+            cancel?.handler(action)
+        }
         alertController.addAction(confirmAction)
+        if cancel != nil {
+            alertController.addAction(cancelActon)
+        }
         self.present(alertController, animated: true, completion: nil)
     }
     
@@ -151,7 +188,7 @@ class ShareViewController: UIViewController {
     }
 }
 
-extension ShareViewController: ShareDisplayLogic{
+extension ShareViewController: ShareDisplayLogic {
     func displayFetchRecord(viewModel: Share.FetchRecord.ViewModel) {
         self.ploggingImageView.ploggingInfoView.viewModel = .init(distance: viewModel.distance, time: viewModel.time)
         self.ploggingImageView.image = viewModel.image

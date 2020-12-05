@@ -16,6 +16,7 @@ protocol ChallengeBusinessLogic {
     func setRank(members: [Player]) -> [Int]
     func setFullMembers(members: [Player]) -> [Player]
     func setDate() -> String
+    func startChallenge()
     func getPlanet()
 }
 
@@ -86,16 +87,18 @@ class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore {
         for index in (0...2) { name += names[index][Int.random(in: (0...6))] }
         return name
     }
-
-    func getPlanet() {
+    
+    func startChallenge() {
         if AuthManager.shared.user?.planet == nil {
             worker.startChallenge { (result) in
                 print("result: \(result)")
             }
         }
+    }
+
+    func getPlanet() {
         worker.getPlanet { [weak self] (response) in
             guard let self = self else { return }
-            print("getPlanet")
             print(response)
             let members = self.setFullMembers(members: response.players)
             let ranks = self.setRank(members: members)

@@ -54,7 +54,7 @@ extension SignUpInfoViewController {
             make.top.equalTo(98)
             make.leading.equalTo(20)
             make.trailing.equalTo(-20)
-            make.height.equalTo(104.5)
+            make.height.equalTo(156.5)
         }
     }
     
