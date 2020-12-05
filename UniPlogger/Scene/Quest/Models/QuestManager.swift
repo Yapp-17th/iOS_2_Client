@@ -15,30 +15,19 @@ protocol QuestManageable {
 }
 
 class QuestManager: QuestManageable {
-    var proceedingQuests = [ProceedingQuest]()
     var storage: QuestStorageType
     var questChecker: QuestCheckable
     
     init(questChecker: QuestCheckable, storage: QuestStorageType) {
         self.questChecker = questChecker
         self.storage = storage
-        storage.fetchProceedingQuestList { [weak self] (result) in
-            switch result {
-                case .success(let proceedingQuests):
-                    self?.proceedingQuests = proceedingQuests
-                case .failure(let error):
-                    #if DEBUG
-                    print(error)
-                    #endif
-            }
-        }
     }
     
     func start(quest: Quest) {
         storage.createProceedingQuest(for: quest) { (result) in
             switch result {
-                case .success(let proceedingQuest):
-                    self.proceedingQuests.append(proceedingQuest)
+                case .success(_):
+                    break
                 case .failure(let error):
                     #if DEBUG
                     print(error)
@@ -48,9 +37,10 @@ class QuestManager: QuestManageable {
     }
     
     func finish(plogging: PloggingData) {
-        let completed = questChecker.finish(plogging: plogging)
-        completed.forEach {
-            postCompleteIfSuccess(completed: $0)
+        questChecker.finish(plogging: plogging) { [weak self] (completed) in
+            completed.forEach {
+                self?.postCompleteIfSuccess(completed: $0)
+            }
         }
     }
     
@@ -65,9 +55,7 @@ class QuestManager: QuestManageable {
                 storage.deleteProceedingQuest(proceedingQuest) { [weak self] (result) in
                     switch result {
                         case .success():
-                            if let index = self?.proceedingQuests.firstIndex(of: proceedingQuest) {
-                                self?.proceedingQuests.remove(at: index)
-                            }
+                            break
                         case .failure(let error):
                             #if DEBUG
                             print("fail delete proceeding Quest, \(error)")
@@ -89,13 +77,12 @@ class QuestManager: QuestManageable {
             }
             return false
         }
+        
         NotificationCenter.default.post(name: .QuestDidComplete, object: nil, userInfo: [Quest.infoKey: Int(proceedingQuest.questId)])
         storage.deleteProceedingQuest(proceedingQuest) { [weak self] (result) in
             switch result {
                 case .success():
-                    if let index = self?.proceedingQuests.firstIndex(of: proceedingQuest) {
-                        self?.proceedingQuests.remove(at: index)
-                    }
+                    break
                 case .failure(let error):
                     #if DEBUG
                     print("fail delete proceeding Quest, \(error)")

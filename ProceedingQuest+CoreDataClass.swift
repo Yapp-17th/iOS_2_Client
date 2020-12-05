@@ -19,6 +19,9 @@ public class ProceedingQuest: NSManagedObject {
         finishDates?.append(Date())
         finishCount += 1
         ploggingData.items.forEach { item in
+            if pickedUpTrashs == nil {
+                pickedUpTrashs = [:]
+            }
             pickedUpTrashs?[item.rawValue, default: 0] += 1
         }
     }

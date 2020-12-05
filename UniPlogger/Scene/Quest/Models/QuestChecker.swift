@@ -33,31 +33,40 @@ import Foundation
 
 protocol QuestCheckable {
     func isComplete(proceddingQuest: ProceedingQuest) -> Bool
-    func finish(plogging: PloggingData) -> [ProceedingQuest]
+    func finish(plogging: PloggingData, completion: @escaping ([ProceedingQuest]) -> Void)
 }
 
 class QuestChecker: QuestCheckable {
-    var proceedingQuests: [ProceedingQuest]
+    var storage: QuestStorageType
     
-    init(proceedingQuests: [ProceedingQuest] = []) {
-        
-        self.proceedingQuests = proceedingQuests
+    init(storage: QuestStorageType) {
+        self.storage = storage
     }
     
     /// 플로깅을 완료하고 달성한 퀘스트들을 반환합니다.
     /// - Parameter plogging: 완료한 플로깅
     /// - Returns: 목표를 달성한 플로깅
-    func finish(plogging: PloggingData) -> [ProceedingQuest]  {
-        var completed = [ProceedingQuest]()
-        proceedingQuests.forEach { proceedingQuest in
-            proceedingQuest.append(plogging)
-            
-            if isComplete(proceddingQuest: proceedingQuest) {
-                proceedingQuest.completeCount += 1
-                completed.append(proceedingQuest)
+    func finish(plogging: PloggingData, completion: @escaping ([ProceedingQuest]) -> Void) {
+        storage.fetchProceedingQuestList { (result) in
+            var completed = [ProceedingQuest]()
+            switch result {
+                case .success(let proceedingQuests):
+                    proceedingQuests.forEach { [weak self] proceedingQuest in
+                        guard let self = self else { return }
+                        proceedingQuest.append(plogging)
+                        
+                        if self.isComplete(proceddingQuest: proceedingQuest) {
+                            proceedingQuest.completeCount += 1
+                            completed.append(proceedingQuest)
+                        }
+                    }
+                    completion(completed)
+                case .failure(let error):
+                    #if DEBUG
+                    print(error)
+                    #endif
             }
         }
-        return completed
     }
     
     func isComplete(proceddingQuest: ProceedingQuest) -> Bool {

@@ -46,6 +46,8 @@ class QuestWorker {
                 if quest.state != .done {
                     presentQuests.append(quest)
                     haveTraining = true
+                } else {
+                    presentQuests.append(quest)
                 }
                 continue
             }

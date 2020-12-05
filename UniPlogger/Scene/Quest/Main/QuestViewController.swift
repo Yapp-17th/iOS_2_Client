@@ -86,6 +86,15 @@ class QuestViewController: QuestBaseViewController {
         setupTableView()
         setupViews()
         setupLayouts()
+        
+        if  UserDefaults.standard.value(forKey: "QuestTutorial") == nil ||
+            (UserDefaults.standard.value(forKey: "QuestTutorial") as? Bool) == false {
+            let nav = UINavigationController()
+            let t1 = QuestTutorialViewController1()
+            nav.addChild(t1)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: false, completion: nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,17 +105,15 @@ class QuestViewController: QuestBaseViewController {
     
     // MARK: - Initialize
     
+    func configureLogic(interactor: QuestBusinessLogic, router: (QuestRoutingLogic & QuestDataPassing)) {
+        self.interactor = interactor
+        self.router = router
+    }
+    
     private func setup() {
         navigationTabsView.tapHandler = { [weak self] state in
             self?.currentQuestState = state
         }
-        
-        let presenter = QuestPresenter(viewController: self, questFactory: QuestFactory())
-        let worker = QuestWorker()
-        let interactor = QuestInteractor(presenter: presenter, worker: worker, questManager: QuestManager(questChecker: QuestChecker(), storage: Storage()))
-        
-        self.interactor = interactor
-        self.router = QuestRouter(viewController: self, dataStore: interactor)
     }
     
     private func setupTableView() {
