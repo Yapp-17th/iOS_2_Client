@@ -32,6 +32,8 @@
 		4CC9C7DA25232128004D873D /* Quest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC9C7D925232128004D873D /* Quest.swift */; };
 		8352488B25726F8500C9F495 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352488A25726F8500C9F495 /* SettingTableViewCell.swift */; };
 		8352488F2572703200C9F495 /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8352488E2572703200C9F495 /* SettingType.swift */; };
+		83530932257B673C00C3626D /* SignUpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83530931257B673C00C3626D /* SignUpTableViewCell.swift */; };
+		83530936257B678800C3626D /* SignUpInfoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83530935257B678800C3626D /* SignUpInfoType.swift */; };
 		8353A42F256D3F9000F9AA4F /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A42E256D3F9000F9AA4F /* MyPageViewController.swift */; };
 		8353A433256D3FA100F9AA4F /* MyPageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A432256D3FA100F9AA4F /* MyPageInteractor.swift */; };
 		8353A437256D3FAD00F9AA4F /* MyPageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A436256D3FAD00F9AA4F /* MyPageRouter.swift */; };
@@ -219,6 +221,8 @@
 		4CC9C7D925232128004D873D /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
 		8352488A25726F8500C9F495 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		8352488E2572703200C9F495 /* SettingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingType.swift; sourceTree = "<group>"; };
+		83530931257B673C00C3626D /* SignUpTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTableViewCell.swift; sourceTree = "<group>"; };
+		83530935257B678800C3626D /* SignUpInfoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpInfoType.swift; sourceTree = "<group>"; };
 		8353A42E256D3F9000F9AA4F /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		8353A432256D3FA100F9AA4F /* MyPageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageInteractor.swift; sourceTree = "<group>"; };
 		8353A436256D3FAD00F9AA4F /* MyPageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageRouter.swift; sourceTree = "<group>"; };
@@ -482,6 +486,16 @@
 			path = Quest;
 			sourceTree = "<group>";
 		};
+		83530930257B671500C3626D /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				83849192256E923500C9C0D6 /* SignUpInfoViewController.swift */,
+				83530931257B673C00C3626D /* SignUpTableViewCell.swift */,
+				83530935257B678800C3626D /* SignUpInfoType.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
 		8353A42D256D3EA700F9AA4F /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,9 +544,9 @@
 			isa = PBXGroup;
 			children = (
 				838491A7256E93EA00C9C0D6 /* InfoBaseViewController.swift */,
+				83530930257B671500C3626D /* SignUp */,
 				838491A0256E926800C9C0D6 /* LogOut */,
 				8384917C256E882700C9C0D6 /* Setting */,
-				83849192256E923500C9C0D6 /* SignUpInfoViewController.swift */,
 				8384919C256E925600C9C0D6 /* PolicyViewController.swift */,
 			);
 			path = InfoVC;
@@ -1208,6 +1222,7 @@
 				AA7F551D2533568D001C4012 /* SharePresenter.swift in Sources */,
 				83DE07792566AD050085AC72 /* ReportView.swift in Sources */,
 				83DE07752566AD050085AC72 /* DetailViewController.swift in Sources */,
+				83530932257B673C00C3626D /* SignUpTableViewCell.swift in Sources */,
 				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
 				AA7F551F2533568D001C4012 /* ShareViewController.swift in Sources */,
 				83DE07842566AD050085AC72 /* RankTableViewCell.swift in Sources */,
@@ -1297,6 +1312,7 @@
 				AAB3B4EC2520B2B400F0311A /* UIImage+Extensions.swift in Sources */,
 				4C7248B12542FDA600ACB32B /* RecommandOtherView.swift in Sources */,
 				AA2CAE082543EAD600105748 /* PloggingRecordWorker.swift in Sources */,
+				83530936257B678800C3626D /* SignUpInfoType.swift in Sources */,
 				838491A8256E93EA00C9C0D6 /* InfoBaseViewController.swift in Sources */,
 				83DE07742566AD050085AC72 /* StartRouter.swift in Sources */,
 				8352488F2572703200C9F495 /* SettingType.swift in Sources */,
