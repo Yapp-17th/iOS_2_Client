@@ -12,11 +12,13 @@ class SettingTableViewCell: UITableViewCell {
 
     static let ID = "settingCell"
     
-    var infoItem: SettingType = .push
+    var infoItem: SettingType = .getPush
 
     lazy var itemLabel = UILabel()
     lazy var switchButton = UISwitch().then {
         $0.tintColor = UIColor(named: "rankColor")
+        $0.onTintColor = UIColor(named: "rankColor")
+        $0.addTarget(self, action: #selector(onClickSwitch), for: UIControl.Event.valueChanged)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -33,6 +35,21 @@ class SettingTableViewCell: UITableViewCell {
         self.infoItem = item
         itemLabel.text = infoItem.description
         itemLabel.font = .notoSans(ofSize: 16, weight: .regular)
+        switch infoItem {
+        case .getPush:
+            switchButton.isOn = AuthManager.shared.getPush
+        case .autosave:
+            switchButton.isOn = AuthManager.shared.autoSave
+        }
+    }
+    
+    @objc func onClickSwitch() {
+        switch infoItem {
+        case .getPush:
+            AuthManager.shared.getPush = switchButton.isOn
+        case .autosave:
+            AuthManager.shared.autoSave = switchButton.isOn
+        }
     }
     
     func setupViews() {

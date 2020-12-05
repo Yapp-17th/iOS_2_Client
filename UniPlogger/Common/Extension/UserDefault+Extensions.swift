@@ -14,6 +14,8 @@ enum UPUserDefaulKey: String {
     case location = "UPUSERDEFAULT_KEY_LOCATION"
     case userToken = "USERDEFAULT_KEY_USERTOKEN"
     case user = "USERDEFAULT_KEY_USER"
+    case getPush = "USERDEFAULT_KEY_GETPUSH"
+    case autoSave = "USERDEFAULT_KEY_AUTOSAVE"
 }
 
 // MARK: - MPUserDefaultProtocol

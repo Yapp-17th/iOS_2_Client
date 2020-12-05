@@ -16,7 +16,7 @@ class SettingViewController: InfoBaseViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.ID)
         $0.isScrollEnabled = false
-        $0.allowsSelection = true
+        $0.allowsSelection = false
         $0.backgroundColor = .clear
         self.view.addSubview($0)
     }
@@ -41,6 +41,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.ID) as? SettingTableViewCell else { return UITableViewCell() }
+        cell.contentView.isHidden = true
         cell.configure(item: SettingType.allCases[indexPath.row])
         return cell
     }
