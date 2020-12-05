@@ -13,10 +13,34 @@
 import UIKit
 
 protocol RegistrationPresentationLogic {
-    
+    func presentValidateAccount(response: Registration.ValidateAccount.Response)
+    func presentValidatePassword(response: Registration.ValidatePassword.Response)
+    func presentValidatePasswordConfirm(response: Registration.ValidatePasswordConfirm.Response)
 }
 
 class RegistrationPresenter: RegistrationPresentationLogic {
     weak var viewController: RegistrationDisplayLogic?
+    var isValidAccount: Bool = false
+    var isValidPassword: Bool = false
+    var isValidPasswordConfirm: Bool = false
     
+    
+    func presentValidateAccount(response: Registration.ValidateAccount.Response){
+        self.isValidAccount = response.isValid
+        let viewModel = Registration.ValidationViewModel(isValid: isValidAccount && isValidPassword && isValidPasswordConfirm)
+        viewController?.displayValidation(viewModel: viewModel)
+    }
+    
+    
+    func presentValidatePassword(response: Registration.ValidatePassword.Response){
+        self.isValidPassword = response.isValid
+        let viewModel = Registration.ValidationViewModel(isValid: isValidAccount && isValidPassword && isValidPasswordConfirm)
+        viewController?.displayValidation(viewModel: viewModel)
+    }
+    
+    func presentValidatePasswordConfirm(response: Registration.ValidatePasswordConfirm.Response){
+        self.isValidPasswordConfirm = response.isValid
+        let viewModel = Registration.ValidationViewModel(isValid: isValidAccount && isValidPassword && isValidPasswordConfirm)
+        viewController?.displayValidation(viewModel: viewModel)
+    }
 }

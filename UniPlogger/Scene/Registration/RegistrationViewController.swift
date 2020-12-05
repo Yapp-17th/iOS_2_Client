@@ -13,10 +13,11 @@
 import UIKit
 
 protocol RegistrationDisplayLogic: class {
+    func displayValidation(viewModel: Registration.ValidationViewModel)
     func displayError(error: Common.CommonError, useCase: Registration.UseCase)
 }
 
-class RegistrationViewController: UIViewController, RegistrationDisplayLogic {
+class RegistrationViewController: UIViewController {
     var interactor: RegistrationBusinessLogic?
     var router: (NSObjectProtocol & RegistrationRoutingLogic & RegistrationDataPassing)?
     
@@ -32,7 +33,7 @@ class RegistrationViewController: UIViewController, RegistrationDisplayLogic {
         $0.backgroundColor = .clear
         $0.borderStyle = .none
         $0.placeholder = "아이디 (이메일)"
-//        $0.addTarget(self, action: #selector(validateAccount), for: .editingChanged)
+        $0.addTarget(self, action: #selector(validateAccount), for: .editingChanged)
     }
     
     let passwordFieldBox = UIView().then {
@@ -47,7 +48,7 @@ class RegistrationViewController: UIViewController, RegistrationDisplayLogic {
         $0.backgroundColor = .clear
         $0.borderStyle = .none
         $0.placeholder = "비밀번호"
-//        $0.addTarget(self, action: #selector(validatePassword), for: .editingChanged)
+        $0.addTarget(self, action: #selector(validatePassword), for: .editingChanged)
     }
     
     let passwordInfoLabel = UILabel().then {
@@ -68,7 +69,7 @@ class RegistrationViewController: UIViewController, RegistrationDisplayLogic {
         $0.backgroundColor = .clear
         $0.borderStyle = .none
         $0.placeholder = "비밀번호 재입력"
-//        $0.addTarget(self, action: #selector(validatePassword), for: .editingChanged)
+        $0.addTarget(self, action: #selector(validatePasswordConfirm), for: .editingChanged)
     }
     
     lazy var registrationButton = UIButton().then {
@@ -78,7 +79,7 @@ class RegistrationViewController: UIViewController, RegistrationDisplayLogic {
         $0.isEnabled = false
         $0.layer.cornerRadius = 26
         $0.layer.masksToBounds = true
-//        $0.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(registrationButtonTapped), for: .touchUpInside)
     }
     
     // MARK: Object lifecycle
@@ -128,6 +129,39 @@ class RegistrationViewController: UIViewController, RegistrationDisplayLogic {
         setupLayout()
     }
     
+    @objc func validateAccount(){
+      guard let text = accountField.text else { return }
+      let request = Registration.ValidateAccount.Request(account: text)
+      self.interactor?.validateAccount(request: request)
+    }
+    
+    @objc func validatePassword(){
+      guard let text = passwordField.text else { return }
+      let request = Registration.ValidatePassword.Request(password: text)
+      self.interactor?.validatePassword(request: request)
+    }
+    
+    @objc func validatePasswordConfirm(){
+      guard let text = passwordConfirmField.text else { return }
+      let request = Registration.ValidatePasswordConfirm.Request(password: text)
+      self.interactor?.validatePasswordConfirm(request: request)
+    }
+    
+    @objc func registrationButtonTapped() {
+        guard let account = accountField.text, !account.isEmpty,
+              let password = passwordField.text, !password.isEmpty,
+              let passwordConfirm = passwordConfirmField.text, !passwordConfirm.isEmpty,
+              password == passwordConfirm
+        else { return }
+        
+    }
+}
+
+extension RegistrationViewController: RegistrationDisplayLogic {
+    func displayValidation(viewModel: Registration.ValidationViewModel) {
+        self.registrationButton.isEnabled = viewModel.isValid
+        self.registrationButton.backgroundColor = viewModel.isValid ? .main : UIColor(named: "color_loginButton")
+    }
     func displayError(error: Common.CommonError, useCase: Registration.UseCase){
         //handle error with its usecase
     }

@@ -13,7 +13,9 @@
 import UIKit
 
 protocol RegistrationBusinessLogic {
-    
+    func validateAccount(request: Registration.ValidateAccount.Request)
+    func validatePassword(request: Registration.ValidatePassword.Request)
+    func validatePasswordConfirm(request: Registration.ValidatePasswordConfirm.Request)
 }
 
 protocol RegistrationDataStore {
@@ -22,7 +24,23 @@ protocol RegistrationDataStore {
 
 class RegistrationInteractor: RegistrationBusinessLogic, RegistrationDataStore {
     var presenter: RegistrationPresentationLogic?
-    var worker: RegistrationWorker?
+    var worker = RegistrationWorker()
     //var name: String = ""
+    func validateAccount(request: Registration.ValidateAccount.Request){
+        let text = request.account
+        let result = worker.validateAccount(text: text)
+        presenter?.presentValidateAccount(response: .init(isValid: result))
+    }
     
+    func validatePassword(request: Registration.ValidatePassword.Request){
+        let text = request.password
+        let result = worker.validatePassword(text: text)
+        presenter?.presentValidatePassword(response: .init(isValid: result))
+    }
+    
+    func validatePasswordConfirm(request: Registration.ValidatePasswordConfirm.Request){
+        let text = request.password
+        let result = worker.validatePassword(text: text)
+        presenter?.presentValidatePasswordConfirm(response: .init(isValid: result))
+    }
 }

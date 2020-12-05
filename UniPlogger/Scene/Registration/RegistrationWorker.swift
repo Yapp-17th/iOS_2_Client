@@ -13,5 +13,12 @@
 import UIKit
 
 class RegistrationWorker {
+    func validateAccount(text: String) -> Bool{
+        return text.count >= 1
+    }
+    
+    func validatePassword(text: String) -> Bool{
+        return text.count >= 1
+    }
     
 }
