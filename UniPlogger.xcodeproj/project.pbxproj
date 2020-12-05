@@ -90,6 +90,7 @@
 		83530985257B91E300C3626D /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83530982257B91E300C3626D /* SettingType.swift */; };
 		83530986257B91E300C3626D /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83530983257B91E300C3626D /* SettingTableViewCell.swift */; };
 		83530992257B9D3F00C3626D /* WithdrawViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83530991257B9D3F00C3626D /* WithdrawViewController+UI.swift */; };
+		83530996257BB6B600C3626D /* policy.html in Resources */ = {isa = PBXBuildFile; fileRef = 83530995257BB6B600C3626D /* policy.html */; };
 		8353A3732568FE9400F9AA4F /* ReportItemLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A3722568FE9400F9AA4F /* ReportItemLabel.swift */; };
 		8353A377256911F900F9AA4F /* ReportItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A376256911F900F9AA4F /* ReportItem.swift */; };
 		8353A37E256947D000F9AA4F /* ReportViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353A37D256947D000F9AA4F /* ReportViewController+UI.swift */; };
@@ -334,6 +335,7 @@
 		83530982257B91E300C3626D /* SettingType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingType.swift; sourceTree = "<group>"; };
 		83530983257B91E300C3626D /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		83530991257B9D3F00C3626D /* WithdrawViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WithdrawViewController+UI.swift"; sourceTree = "<group>"; };
+		83530995257BB6B600C3626D /* policy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = policy.html; sourceTree = "<group>"; };
 		8353A3722568FE9400F9AA4F /* ReportItemLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportItemLabel.swift; sourceTree = "<group>"; };
 		8353A376256911F900F9AA4F /* ReportItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportItem.swift; sourceTree = "<group>"; };
 		8353A37D256947D000F9AA4F /* ReportViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReportViewController+UI.swift"; sourceTree = "<group>"; };
@@ -659,6 +661,7 @@
 				83530980257B91E300C3626D /* Setting */,
 				83530975257B91A900C3626D /* SignUp */,
 				835248312572283B00C9F495 /* PolicyViewController.swift */,
+				83530995257BB6B600C3626D /* policy.html */,
 				83530969257B918D00C3626D /* LogOut */,
 				835248352572283B00C9F495 /* InfoBaseViewController.swift */,
 			);
@@ -1350,6 +1353,7 @@
 				AA7F550F2532C20C001C4012 /* Roboto-Bold.ttf in Resources */,
 				AA7F55102532C20C001C4012 /* Roboto-Thin.ttf in Resources */,
 				AAC9585C2545BF130092BA6E /* NotoSansCJKkr-DemiLight.otf in Resources */,
+				83530996257BB6B600C3626D /* policy.html in Resources */,
 				AAC958582545BF130092BA6E /* NotoSansCJKkr-Regular.otf in Resources */,
 				AA7F55082532C20C001C4012 /* Roboto-Regular.ttf in Resources */,
 				AA7F550A2532C20C001C4012 /* Roboto-ThinItalic.ttf in Resources */,
