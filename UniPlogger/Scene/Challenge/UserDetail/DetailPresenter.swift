@@ -9,21 +9,21 @@
 import UIKit
 
 protocol DetailPresentationLogic {
-    func presentGetFeed(response: Detail.GetFeed.Response)
+    func presentGetFeed(response: Detail.GetFeed.Response, uid: Int)
 }
 
 class DetailPresenter: DetailPresentationLogic{
     weak var viewController: DetailViewController?
     
-    func presentGetFeed(response: Detail.GetFeed.Response) {
+    func presentGetFeed(response: Detail.GetFeed.Response, uid: Int) {
         let feed = response.feed
-        
+
         let date = FormatDisplay.date(feed.date)
         let timeString = FormatDisplay.time(feed.time)
         let distanceString = FormatDisplay.distance(feed.distance)
         
-        let viewModel = Detail.GetFeed.ViewModel(date: date, time: timeString, distance: distanceString, photo: feed.photo)
-        viewController?.displayGetFeed(viewModel: viewModel)
+        let viewModel = Detail.GetFeed.ViewModel(uid: uid, date: date, time: timeString, distance: distanceString, photo: feed.photo)
+        viewController?.displayGetFeed(viewModel: viewModel, uid: uid)
     }
     
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DetailDisplayLogic: class {
-    func displayGetFeed(viewModel: Detail.GetFeed.ViewModel)
+    func displayGetFeed(viewModel: Detail.GetFeed.ViewModel, uid: Int)
 }
 
 class DetailViewController: UIViewController {
@@ -80,13 +80,17 @@ class DetailViewController: UIViewController {
 }
 
 extension DetailViewController: DetailDisplayLogic {
-    func displayGetFeed(viewModel: Detail.GetFeed.ViewModel) {
+    func displayGetFeed(viewModel: Detail.GetFeed.ViewModel, uid: Int) {
         ploggingImageView.ploggingInfoView.viewModel = .init(distance: viewModel.distance, time: viewModel.time)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YY.MM.d"
         self.navigationItem.title = dateFormatter.string(from: viewModel.date)
         ImageDownloadManager.shared.downloadImage(url: viewModel.photo) { (image) in
             self.ploggingImageView.image = image
+        }
+        print(viewModel)
+        if uid == AuthManager.shared.user?.id {
+            reportButton.isEnabled = false
         }
     }
 }

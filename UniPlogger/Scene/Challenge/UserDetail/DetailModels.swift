@@ -19,6 +19,7 @@ enum Detail{
         }
         
         struct ViewModel{
+            var uid: Int
             var date: Date
             var time: String
             var distance: String

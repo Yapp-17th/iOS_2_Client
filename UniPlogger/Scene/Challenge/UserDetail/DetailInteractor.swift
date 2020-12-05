@@ -14,6 +14,7 @@ protocol DetailBusinessLogic {
 
 protocol DetailDataStore {
     var feed: Feed? { get set }
+    var uid: Int? { get set }
 }
 
 class DetailInteractor: DetailBusinessLogic, DetailDataStore{
@@ -21,11 +22,12 @@ class DetailInteractor: DetailBusinessLogic, DetailDataStore{
     let worker = DetailWorker()
     
     var feed: Feed?
+    var uid: Int?
     
     func getFeed() {
-        guard let feed = self.feed else { return }
+        guard let feed = self.feed, let uid = self.uid else { return }
         let response = Detail.GetFeed.Response(feed: feed)
-        self.presenter?.presentGetFeed(response: response)
+        self.presenter?.presentGetFeed(response: response, uid: uid)
     }
     
     
