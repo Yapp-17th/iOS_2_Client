@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum PloggingItemType: CaseIterable {
+enum PloggingItemType: String, CaseIterable {
     case paper
     case cartons
     case plastic
