@@ -479,8 +479,11 @@ extension PloggingViewController: PloggingDisplayLogic{
             $0.width.height.equalTo(50)
             $0.bottom.equalTo(self.doingPauseBottomContainerView.snp.top).offset(-16)
         }
+        self.minutes = 0
+        self.seconds = 0
         
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
+        
     }
     
     func displayPausePlogging() {
@@ -507,6 +510,8 @@ extension PloggingViewController: PloggingDisplayLogic{
             $0.width.height.equalTo(50)
             $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
         }
+        self.timeLabel.text = "00:00"
+        self.distanceLabel.text = "0.00 km"
         self.router?.routeToPloggingRecord()
     }
     
