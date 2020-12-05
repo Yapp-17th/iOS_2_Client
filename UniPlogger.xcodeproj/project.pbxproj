@@ -132,6 +132,13 @@
 		AA38A724257A9DFA00B26E1F /* LoginModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A71E257A9DFA00B26E1F /* LoginModels.swift */; };
 		AA38A725257A9DFA00B26E1F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A71F257A9DFA00B26E1F /* LoginViewController.swift */; };
 		AA38A726257A9DFA00B26E1F /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A720257A9DFA00B26E1F /* LoginInteractor.swift */; };
+		AA38A736257B692F00B26E1F /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A730257B692F00B26E1F /* RegistrationPresenter.swift */; };
+		AA38A737257B692F00B26E1F /* RegistrationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A731257B692F00B26E1F /* RegistrationWorker.swift */; };
+		AA38A738257B692F00B26E1F /* RegistrationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A732257B692F00B26E1F /* RegistrationRouter.swift */; };
+		AA38A739257B692F00B26E1F /* RegistrationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A733257B692F00B26E1F /* RegistrationModels.swift */; };
+		AA38A73A257B692F00B26E1F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A734257B692F00B26E1F /* RegistrationViewController.swift */; };
+		AA38A73B257B692F00B26E1F /* RegistrationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A735257B692F00B26E1F /* RegistrationInteractor.swift */; };
+		AA38A73F257B6B5800B26E1F /* RegistrationViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A73E257B6B5800B26E1F /* RegistrationViewController+UI.swift */; };
 		AA4AD55425725C920087E060 /* LogAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD55225725C920087E060 /* LogAPI.swift */; };
 		AA4AD55525725C920087E060 /* LogAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD55325725C920087E060 /* LogAPITarget.swift */; };
 		AA4AD56925725D0D0087E060 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD56825725D0D0087E060 /* ImageDownloadManager.swift */; };
@@ -364,6 +371,13 @@
 		AA38A71E257A9DFA00B26E1F /* LoginModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModels.swift; sourceTree = "<group>"; };
 		AA38A71F257A9DFA00B26E1F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AA38A720257A9DFA00B26E1F /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		AA38A730257B692F00B26E1F /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
+		AA38A731257B692F00B26E1F /* RegistrationWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationWorker.swift; sourceTree = "<group>"; };
+		AA38A732257B692F00B26E1F /* RegistrationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
+		AA38A733257B692F00B26E1F /* RegistrationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModels.swift; sourceTree = "<group>"; };
+		AA38A734257B692F00B26E1F /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		AA38A735257B692F00B26E1F /* RegistrationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationInteractor.swift; sourceTree = "<group>"; };
+		AA38A73E257B6B5800B26E1F /* RegistrationViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegistrationViewController+UI.swift"; sourceTree = "<group>"; };
 		AA4AD55225725C920087E060 /* LogAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogAPI.swift; sourceTree = "<group>"; };
 		AA4AD55325725C920087E060 /* LogAPITarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogAPITarget.swift; sourceTree = "<group>"; };
 		AA4AD56825725D0D0087E060 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
@@ -562,6 +576,7 @@
 		4CC9C7C525231565004D873D /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				AA38A72F257B691800B26E1F /* Registration */,
 				AA38A71A257A9DE800B26E1F /* Login */,
 				835248542572285100C9F495 /* Log */,
 				8352482E2572283B00C9F495 /* MyPage */,
@@ -863,6 +878,20 @@
 				AA38A720257A9DFA00B26E1F /* LoginInteractor.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		AA38A72F257B691800B26E1F /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				AA38A730257B692F00B26E1F /* RegistrationPresenter.swift */,
+				AA38A731257B692F00B26E1F /* RegistrationWorker.swift */,
+				AA38A732257B692F00B26E1F /* RegistrationRouter.swift */,
+				AA38A733257B692F00B26E1F /* RegistrationModels.swift */,
+				AA38A734257B692F00B26E1F /* RegistrationViewController.swift */,
+				AA38A73E257B6B5800B26E1F /* RegistrationViewController+UI.swift */,
+				AA38A735257B692F00B26E1F /* RegistrationInteractor.swift */,
+			);
+			path = Registration;
 			sourceTree = "<group>";
 		};
 		AA4AD55125725C920087E060 /* Log */ = {
@@ -1347,6 +1376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83DE077A2566AD050085AC72 /* UserLogRouter.swift in Sources */,
+				AA38A73B257B692F00B26E1F /* RegistrationInteractor.swift in Sources */,
 				AA4AD5A12574058E0087E060 /* AuthManager.swift in Sources */,
 				4C401EAF253DE19100ABED84 /* ShareRouter.swift in Sources */,
 				8352489B25727CE900C9F495 /* Player.swift in Sources */,
@@ -1367,6 +1397,7 @@
 				835248682572285100C9F495 /* LogWorker.swift in Sources */,
 				4CC9C7DA25232128004D873D /* Quest.swift in Sources */,
 				835248632572285100C9F495 /* LogCollectionViewLayout.swift in Sources */,
+				AA38A73F257B6B5800B26E1F /* RegistrationViewController+UI.swift in Sources */,
 				835248A02572C9BF00C9F495 /* ChallengeAPI.swift in Sources */,
 				AA7F551D2533568D001C4012 /* SharePresenter.swift in Sources */,
 				AA38A724257A9DFA00B26E1F /* LoginModels.swift in Sources */,
@@ -1385,6 +1416,7 @@
 				AA2CAE052543EAD600105748 /* PloggingRecordModels.swift in Sources */,
 				4C42366925727D360068A252 /* QuestDetailWorker.swift in Sources */,
 				AA7F54EC2532C1A6001C4012 /* StartCountingViewController.swift in Sources */,
+				AA38A73A257B692F00B26E1F /* RegistrationViewController.swift in Sources */,
 				835248642572285100C9F495 /* LogCollectionViewCell.swift in Sources */,
 				AAAD690225562CB900895265 /* IntrinsicSizeCollectionView.swift in Sources */,
 				4C3F564F256A308F006D7C9F /* Calendar+.swift in Sources */,
@@ -1444,6 +1476,7 @@
 				835248A62572CA0000C9F495 /* ChallengeAPITarget.swift in Sources */,
 				4CC9C7CE252315E0004D873D /* QuestPresenter.swift in Sources */,
 				AA5EFBB82552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift in Sources */,
+				AA38A737257B692F00B26E1F /* RegistrationWorker.swift in Sources */,
 				AA38A722257A9DFA00B26E1F /* LoginWorker.swift in Sources */,
 				8352484F2572283C00C9F495 /* InfoTableViewCell.swift in Sources */,
 				4C89567D2532CB3A0099934E /* QuestNavigationController.swift in Sources */,
@@ -1483,6 +1516,7 @@
 				83DE077C2566AD050085AC72 /* UserLogViewController.swift in Sources */,
 				AA217515254CF5ED0076BAD5 /* TrashCan.swift in Sources */,
 				83DE07732566AD050085AC72 /* StartViewController.swift in Sources */,
+				AA38A738257B692F00B26E1F /* RegistrationRouter.swift in Sources */,
 				AAB3B4EC2520B2B400F0311A /* UIImage+Extensions.swift in Sources */,
 				4C7248B12542FDA600ACB32B /* RecommandOtherView.swift in Sources */,
 				AA2CAE082543EAD600105748 /* PloggingRecordWorker.swift in Sources */,
@@ -1506,6 +1540,7 @@
 				4CC9C7D4252315F3004D873D /* QuestModels.swift in Sources */,
 				AAB5592E2549B790000BB903 /* Route.swift in Sources */,
 				AA4AD55425725C920087E060 /* LogAPI.swift in Sources */,
+				AA38A739257B692F00B26E1F /* RegistrationModels.swift in Sources */,
 				835248672572285100C9F495 /* LogRouter.swift in Sources */,
 				835248622572285100C9F495 /* LogViewController.swift in Sources */,
 				835248492572283C00C9F495 /* MyPagePresenter.swift in Sources */,
@@ -1522,6 +1557,7 @@
 				83DE077E2566AD050085AC72 /* ChallengeWorker.swift in Sources */,
 				835248602572285100C9F495 /* LogNavigationController.swift in Sources */,
 				AA7F54E02532C16E001C4012 /* UIFont+Extensions.swift in Sources */,
+				AA38A736257B692F00B26E1F /* RegistrationPresenter.swift in Sources */,
 				8353A385256A638700F9AA4F /* ChallengeBaseViewController.swift in Sources */,
 				8352484D2572283C00C9F495 /* MyPageRouter.swift in Sources */,
 				AA2CAE022543EAD600105748 /* TrashcanAnnotation.swift in Sources */,

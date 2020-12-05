@@ -14,6 +14,7 @@ import UIKit
 
 @objc protocol LoginRoutingLogic {
     func routeToSplash()
+    func routeToRegistration()
 }
 
 protocol LoginDataPassing {
@@ -30,6 +31,15 @@ class LoginRouter: NSObject, LoginRoutingLogic, LoginDataPassing {
             delegate.window?.rootViewController = SplashViewController()
             delegate.window?.makeKeyAndVisible()
         }
+    }
+    
+    func routeToRegistration() {
+        let destinationVC = RegistrationViewController()
+        navigateToRegistration(source: viewController!, destination: destinationVC)
+    }
+    
+    func navigateToRegistration(source: LoginViewController, destination: RegistrationViewController){
+        source.navigationController?.pushViewController(destination, animated: true)
     }
     
 }

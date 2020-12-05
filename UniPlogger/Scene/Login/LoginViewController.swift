@@ -86,6 +86,7 @@ class LoginViewController: UIViewController {
     lazy var registrationButton = UIButton().then{
         $0.setTitle("회원가입", for: .normal)
         $0.titleLabel?.font = .notoSans(ofSize: 14, weight: .regular)
+        $0.addTarget(self, action: #selector(registrationButtonTapped), for: .touchUpInside)
     }
     
     // MARK: Object lifecycle
@@ -186,7 +187,7 @@ class LoginViewController: UIViewController {
         }
         
         loginButton.snp.makeConstraints {
-            $0.top.equalTo(passwordField.snp.bottom).offset(32)
+            $0.top.equalTo(passwordFieldBox.snp.bottom).offset(32)
             $0.leading.equalTo(18)
             $0.trailing.equalTo(-18)
             $0.height.equalTo(52)
@@ -201,7 +202,6 @@ class LoginViewController: UIViewController {
             $0.top.equalTo(loginButton.snp.bottom).offset(12)
             $0.trailing.equalTo(-20)
         }
-        
     }
     
     
@@ -224,6 +224,10 @@ class LoginViewController: UIViewController {
       guard let text = passwordField.text else { return }
       let request = Login.ValidatePassword.Request(password: text)
       self.interactor?.validatePassword(request: request)
+    }
+    
+    @objc func registrationButtonTapped() {
+        self.router?.routeToRegistration()
     }
 }
 
