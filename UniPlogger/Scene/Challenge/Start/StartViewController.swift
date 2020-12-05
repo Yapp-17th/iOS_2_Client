@@ -45,6 +45,8 @@ class StartViewController: UIViewController {
         configure()
         setUpViews()
         setUpLayout()
+        let interactor = ChallengeInteractor()
+        interactor.startChallenge()
     }
     
     private func setup() {
