@@ -14,6 +14,8 @@ enum UPUserDefaulKey: String {
     case location = "UPUSERDEFAULT_KEY_LOCATION"
     case userToken = "USERDEFAULT_KEY_USERTOKEN"
     case user = "USERDEFAULT_KEY_USER"
+    /// 회원가입시 등록을 위한 닉네임
+    case nickname = "USERDEFAULT_KEY_NICKNAME"
 }
 
 // MARK: - UPUserDefaultProtocol

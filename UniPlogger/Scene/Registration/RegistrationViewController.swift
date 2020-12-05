@@ -54,7 +54,7 @@ class RegistrationViewController: UIViewController {
     let passwordInfoLabel = UILabel().then {
         $0.text = "8~20자 이내의 영문과 숫자 조합을 입력해주세요"
         $0.textColor = UIColor(named: "color_registrationPasswordInfoLabel")
-        $0.font = .notoSans(ofSize: 14, weight: .regular)
+        $0.font = .dynamicNotosans(fontSize: 14, weight: .regular)
     }
     
     let passwordConfirmFieldBox = UIView().then {
@@ -127,6 +127,16 @@ class RegistrationViewController: UIViewController {
         configuration()
         setupView()
         setupLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+      super.viewWillAppear(animated)
+      navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+      super.viewWillDisappear(animated)
+      navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     @objc func validateAccount(){
