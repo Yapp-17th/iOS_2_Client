@@ -156,6 +156,11 @@
 		AA38A73A257B692F00B26E1F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A734257B692F00B26E1F /* RegistrationViewController.swift */; };
 		AA38A73B257B692F00B26E1F /* RegistrationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A735257B692F00B26E1F /* RegistrationInteractor.swift */; };
 		AA38A73F257B6B5800B26E1F /* RegistrationViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A73E257B6B5800B26E1F /* RegistrationViewController+UI.swift */; };
+		AA38A748257B841500B26E1F /* TutorialFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A747257B841500B26E1F /* TutorialFirstViewController.swift */; };
+		AA38A752257B849900B26E1F /* TutorialThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A751257B849900B26E1F /* TutorialThirdViewController.swift */; };
+		AA38A773257BC9F400B26E1F /* TutorialSceondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A74D257B847E00B26E1F /* TutorialSceondViewController.swift */; };
+		AA38A785257BD4B400B26E1F /* TrashDetailPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A784257BD4B400B26E1F /* TrashDetailPopupView.swift */; };
+		AA38A789257BD80700B26E1F /* NSAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA38A788257BD80700B26E1F /* NSAttributedString+Extensions.swift */; };
 		AA4AD55425725C920087E060 /* LogAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD55225725C920087E060 /* LogAPI.swift */; };
 		AA4AD55525725C920087E060 /* LogAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD55325725C920087E060 /* LogAPITarget.swift */; };
 		AA4AD56925725D0D0087E060 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4AD56825725D0D0087E060 /* ImageDownloadManager.swift */; };
@@ -412,6 +417,11 @@
 		AA38A734257B692F00B26E1F /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		AA38A735257B692F00B26E1F /* RegistrationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationInteractor.swift; sourceTree = "<group>"; };
 		AA38A73E257B6B5800B26E1F /* RegistrationViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegistrationViewController+UI.swift"; sourceTree = "<group>"; };
+		AA38A747257B841500B26E1F /* TutorialFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialFirstViewController.swift; sourceTree = "<group>"; };
+		AA38A74D257B847E00B26E1F /* TutorialSceondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialSceondViewController.swift; sourceTree = "<group>"; };
+		AA38A751257B849900B26E1F /* TutorialThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialThirdViewController.swift; sourceTree = "<group>"; };
+		AA38A784257BD4B400B26E1F /* TrashDetailPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDetailPopupView.swift; sourceTree = "<group>"; };
+		AA38A788257BD80700B26E1F /* NSAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		AA4AD55225725C920087E060 /* LogAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogAPI.swift; sourceTree = "<group>"; };
 		AA4AD55325725C920087E060 /* LogAPITarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogAPITarget.swift; sourceTree = "<group>"; };
 		AA4AD56825725D0D0087E060 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
@@ -611,6 +621,7 @@
 		4CC9C7C525231565004D873D /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				AA38A746257B840000B26E1F /* Tutorial */,
 				AA38A72F257B691800B26E1F /* Registration */,
 				AA38A71A257A9DE800B26E1F /* Login */,
 				835248542572285100C9F495 /* Log */,
@@ -927,6 +938,7 @@
 			children = (
 				AA2CADFD2543EAD500105748 /* PloggingRecordCollectionViewCell.swift */,
 				AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */,
+				AA38A784257BD4B400B26E1F /* TrashDetailPopupView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -956,6 +968,16 @@
 				AA38A735257B692F00B26E1F /* RegistrationInteractor.swift */,
 			);
 			path = Registration;
+			sourceTree = "<group>";
+		};
+		AA38A746257B840000B26E1F /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				AA38A747257B841500B26E1F /* TutorialFirstViewController.swift */,
+				AA38A74D257B847E00B26E1F /* TutorialSceondViewController.swift */,
+				AA38A751257B849900B26E1F /* TutorialThirdViewController.swift */,
+			);
+			path = Tutorial;
 			sourceTree = "<group>";
 		};
 		AA4AD55125725C920087E060 /* Log */ = {
@@ -1205,6 +1227,7 @@
 				4C42363F25722E9D0068A252 /* Notification+Name.swift */,
 				AA38A6D8257A780700B26E1F /* UIApplication+Extensions.swift */,
 				AA38A6DC257A78F100B26E1F /* UIViewController+Extensions.swift */,
+				AA38A788257BD80700B26E1F /* NSAttributedString+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1470,6 +1493,7 @@
 				4CC9C7DA25232128004D873D /* Quest.swift in Sources */,
 				4CF6208A257B11750029FBD6 /* ProceedingQuest+CoreDataProperties.swift in Sources */,
 				835248632572285100C9F495 /* LogCollectionViewLayout.swift in Sources */,
+				AA38A785257BD4B400B26E1F /* TrashDetailPopupView.swift in Sources */,
 				AA38A73F257B6B5800B26E1F /* RegistrationViewController+UI.swift in Sources */,
 				835248A02572C9BF00C9F495 /* ChallengeAPI.swift in Sources */,
 				AA7F551D2533568D001C4012 /* SharePresenter.swift in Sources */,
@@ -1569,6 +1593,7 @@
 				4C42365125723EF10068A252 /* QuestResponse.swift in Sources */,
 				AAB3B4D22520A31100F0311A /* UniPlogger.xcdatamodeld in Sources */,
 				835248692572285100C9F495 /* LogModels.swift in Sources */,
+				AA38A752257B849900B26E1F /* TutorialThirdViewController.swift in Sources */,
 				8353A37E256947D000F9AA4F /* ReportViewController+UI.swift in Sources */,
 				83DE07822566AD050085AC72 /* ChallengeViewController.swift in Sources */,
 				4C42364025722E9D0068A252 /* Notification+Name.swift in Sources */,
@@ -1576,6 +1601,7 @@
 				AA2CAE072543EAD600105748 /* PloggingRecordCollectionViewCell.swift in Sources */,
 				835249202577A70500C9F495 /* ReportPresenter.swift in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
+				AA38A773257BC9F400B26E1F /* TutorialSceondViewController.swift in Sources */,
 				8353A377256911F900F9AA4F /* ReportItem.swift in Sources */,
 				AA4AD59B2574055C0087E060 /* PolicyViewController.swift in Sources */,
 				4C3F54BC25612818006D7C9F /* QuestManager.swift in Sources */,
@@ -1588,7 +1614,9 @@
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,
 				835249122577A68800C9F495 /* ReportRouter.swift in Sources */,
 				4CC9C7C825231581004D873D /* QuestViewController.swift in Sources */,
+				AA38A748257B841500B26E1F /* TutorialFirstViewController.swift in Sources */,
 				4C7248B52544297D00ACB32B /* HightlightButton.swift in Sources */,
+				AA38A789257BD80700B26E1F /* NSAttributedString+Extensions.swift in Sources */,
 				4C3F5646256A214F006D7C9F /* Date+.swift in Sources */,
 				AA4AD598257405570087E060 /* InfoItemType.swift in Sources */,
 				AA7F5528253356BE001C4012 /* PhotoManager.swift in Sources */,

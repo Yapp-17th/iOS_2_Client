@@ -33,6 +33,8 @@ extension BaseTarget {
         switch method {
         case .post:
             return JSONEncoding.default
+        case .put:
+            return JSONEncoding.default
         default:
             return URLEncoding.default
         }

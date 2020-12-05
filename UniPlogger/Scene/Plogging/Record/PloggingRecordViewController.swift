@@ -70,16 +70,6 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         )
     }
     
-//    var itemList = [
-//        "종이",
-//        "종이팩",
-//        "플라스틱",
-//        "페트",
-//        "비닐류",
-//        "유리",
-//        "캔류",
-//        "일반쓰레기"
-//    ]
     
     var selectedItems: [Int] = []
     
@@ -142,7 +132,11 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     }
     
     @objc func skipButtonTapped(){
-        self.router?.routeToShare()
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        picker.sourceType = UIImagePickerController.SourceType.camera
+        self.present(picker, animated: true, completion: nil)
     }
     
     @objc func nextButtonTapped(){
@@ -152,6 +146,26 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         picker.sourceType = UIImagePickerController.SourceType.camera
         self.present(picker, animated: true, completion: nil)
     }
+    
+    @objc func handleLongPress(gesture : UILongPressGestureRecognizer!) {
+            if gesture.state != .ended {
+                return
+            }
+
+            let p = gesture.location(in: self.collectionView)
+
+            if let indexPath = self.collectionView.indexPathForItem(at: p) {
+                // get the cell at indexPath (the one you long pressed)
+                let item = PloggingItemType.allCases[indexPath.item]
+                let detailView = TrashDetailPopupView(type: item)
+                detailView.modalTransitionStyle = .crossDissolve
+                detailView.modalPresentationStyle = .overFullScreen
+                self.present(detailView, animated: true, completion: nil)
+                // do stuff with the cell
+            } else {
+                print("couldn't find index path")
+            }
+        }
 }
 
 extension PloggingRecordViewController: UICollectionViewDataSource{
@@ -165,6 +179,8 @@ extension PloggingRecordViewController: UICollectionViewDataSource{
         let item = PloggingItemType.allCases[indexPath.item]
         let isSelected = self.selectedItems.contains(indexPath.item)
         cell.viewModel = .init(title: item.description, isSelected: isSelected)
+        let gesture =  UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+        cell.addGestureRecognizer(gesture)
         return cell
     }
 }

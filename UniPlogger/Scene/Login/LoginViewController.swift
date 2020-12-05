@@ -24,6 +24,10 @@ class LoginViewController: UIViewController {
     var interactor: LoginBusinessLogic?
     var router: (NSObjectProtocol & LoginRoutingLogic & LoginDataPassing)?
     
+    let scrollView = ScrollStackView().then {
+        $0.contentInset = .zero
+    }
+    
     let ploggerBackgroundImageView = UIImageView().then {
         $0.image = UIImage(named: "bg_loginPlogger")
         $0.contentMode = .scaleAspectFill
@@ -81,12 +85,14 @@ class LoginViewController: UIViewController {
     lazy var findPasswordButton = UIButton().then{
         $0.setTitle("비밀번호 찾기", for: .normal)
         $0.titleLabel?.font = .notoSans(ofSize: 14, weight: .regular)
+        $0.setTitleColor(UIColor(named: "color_loginButton"), for: .normal)
     }
     
     lazy var registrationButton = UIButton().then{
         $0.setTitle("회원가입", for: .normal)
         $0.titleLabel?.font = .notoSans(ofSize: 14, weight: .regular)
         $0.addTarget(self, action: #selector(registrationButtonTapped), for: .touchUpInside)
+        $0.setTitleColor(UIColor(named: "color_loginButton"), for: .normal)
     }
     
     // MARK: Object lifecycle
@@ -132,9 +138,20 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.view.addSubview(ploggerBackgroundImageView)
+        self.view.addSubview(scrollView)
+        scrollView.containerView.snp.makeConstraints{
+            $0.width.equalTo(self.view)
+        }
+        
+        scrollView.snp.makeConstraints{
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+        
+        scrollView.addArrangedSubview(ploggerBackgroundImageView)
         ploggerBackgroundImageView.addSubview(ploggerImageView)
-        self.view.addSubview(formContainerView)
+        scrollView.addArrangedSubview(formContainerView)
         
         formContainerView.addSubview(accountFieldBox)
         accountFieldBox.addSubview(accountField)
@@ -144,18 +161,9 @@ class LoginViewController: UIViewController {
         formContainerView.addSubview(findPasswordButton)
         formContainerView.addSubview(registrationButton)
         
-        ploggerBackgroundImageView.snp.makeConstraints {
-            $0.leading.top.trailing.equalToSuperview()
-        }
-        
         ploggerImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(-24)
-        }
-        
-        formContainerView.snp.makeConstraints {
-            $0.top.equalTo(ploggerBackgroundImageView.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
         }
         
         accountFieldBox.snp.makeConstraints{
@@ -196,11 +204,13 @@ class LoginViewController: UIViewController {
         findPasswordButton.snp.makeConstraints {
             $0.top.equalTo(loginButton.snp.bottom).offset(12)
             $0.leading.equalTo(20)
+            $0.bottom.equalTo(-16)
         }
         
         registrationButton.snp.makeConstraints{
             $0.top.equalTo(loginButton.snp.bottom).offset(12)
             $0.trailing.equalTo(-20)
+            $0.bottom.equalTo(-16)
         }
     }
     
