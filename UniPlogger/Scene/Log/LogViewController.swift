@@ -179,7 +179,8 @@ class LogViewController: UIViewController {
     }
     
     @objc func handleRefreshControl(){
-        self.interactor?.getFeed()
+        self.interactor?.getUser()
+        
     }
 }
 
@@ -195,9 +196,10 @@ extension LogViewController: LogDisplayLogic{
     }
     func displayGetFeed(viewModel: Log.GetFeed.ViewModel) {
         self.feedList = viewModel.feedList
-        self.collectionView.reloadData()
+        
         DispatchQueue.main.async {
             self.scrollView.refreshControl?.endRefreshing()
+            self.collectionView.reloadSections([0])
         }
     }
     func displayError(error: Common.CommonError, useCase: Log.UseCase){
