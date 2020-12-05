@@ -191,6 +191,7 @@ extension LogViewController: LogDisplayLogic{
         self.rankLabel.text = "\(Int(user.rank))%"
         self.weeklyContentLabel.text = user.weeklyStat
         self.monthlyContentLabel.text = "\(user.monthlyStat)"
+        self.navigationItem.title = "\(user.nickname) 로그"
         
         self.interactor?.getFeed()
     }
