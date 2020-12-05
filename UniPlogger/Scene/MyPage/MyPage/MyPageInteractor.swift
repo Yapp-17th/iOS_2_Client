@@ -25,10 +25,25 @@ class MyPageInteractor: MyPageBusinessLogic, MyPageDataStore {
     var rank: Int = 0
     
     func getUserInfo() {
-        // user 정보 얻어와서 넣어주기
-        level = 2
-        rank = 7
-        print("interactor")
-        presenter?.presentUserInfo(level: level, rank: rank)
+        guard let user = AuthManager.shared.user else { return }
+        getUser(uid: user.id) { [weak self] (response) in
+            guard let self = self, let user = response.user else { return }
+            self.level = user.level
+            self.rank = Int(user.rank)
+            self.presenter?.presentUserInfo(level: self.level, rank: self.rank)
+        }
+    }
+    
+    func getUser(uid: Int, completion: @escaping(Log.GetUser.Response) -> Void) {
+        LogAPI.shared.getOtherUser(uid: uid) { (response) in
+            switch response {
+            case let .success(user):
+                let response = Log.GetUser.Response(user: user)
+                completion(response)
+            case let .failure(error):
+                let response = Log.GetUser.Response(error: .error(error))
+                completion(response)
+            }
+        }
     }
 }
