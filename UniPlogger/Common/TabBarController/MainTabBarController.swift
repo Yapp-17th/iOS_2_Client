@@ -63,7 +63,8 @@ extension MainTabBarController {
     
     private func setupChallengeViewController(){
         let challengeItem = UITabBarItem(title: "챌린지", image: UIImage(named: "tabbar_challenge"), tag: 0)
-        let vc = hasPlanet() ? UINavigationController(rootViewController: ChallengeViewController()) : StartViewController()
+        let vc = ChallengeNavigationController(rootViewController: hasPlanet() ?  ChallengeViewController() : StartViewController())
+        vc.isNavigationBarHidden = true 
         vc.tabBarItem = challengeItem
         self.addChild(vc)
     }
@@ -86,7 +87,10 @@ extension MainTabBarController {
     
     private func setupLogViewController(){
         let logItem = UITabBarItem(title: "로그", image: UIImage(named: "tabbar_log"), tag: 3)
-        let logNavVC = LogNavigationController(rootViewController: LogViewController())
+        let logVC = LogViewController()
+        var destinationDS = logVC.router?.dataStore
+        destinationDS?.uid = AuthManager.shared.user?.id
+        let logNavVC = LogNavigationController(rootViewController: logVC)
         logNavVC.tabBarItem = logItem
         self.addChild(logNavVC)
     }
@@ -99,7 +103,7 @@ extension MainTabBarController {
     }
     
     private func hasPlanet() -> Bool {
-        // user의 planet이 nil이면 return false 
-        return false
+        if AuthManager.shared.user?.planet == nil { return false }
+        return true
     }
 }

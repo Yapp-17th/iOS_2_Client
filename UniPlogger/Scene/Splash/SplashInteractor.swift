@@ -33,6 +33,8 @@ class SplashInteractor: SplashBusinessLogic, SplashDataStore {
                 switch response{
                 case .success(let user):
                     AuthManager.shared.user = user
+                    print("splash")
+                    print(user)
                     let response = Splash.CheckLogin.Response(isLogined: true)
                     self.presenter?.presentCheckLogin(response: response)
                 case .failure(let error):
@@ -44,24 +46,8 @@ class SplashInteractor: SplashBusinessLogic, SplashDataStore {
             let response = Splash.CheckLogin.Response(isLogined: true)
             self.presenter?.presentCheckLogin(response: response)
         } else {
-            AuthAPI.shared.login(email: "steve2@mergepoint.co.kr", password: "steve1234") { (response) in
-                switch response{
-                case .success(let value):
-                    if let userToken = value.token, let user = value.user{
-                        AuthManager.shared.userToken = userToken
-                        AuthManager.shared.user = user
-                        let response = Splash.CheckLogin.Response(isLogined: true)
-                        self.presenter?.presentCheckLogin(response: response)
-                    } else {
-                        let response = Splash.CheckLogin.Response(isLogined: false)
-                        self.presenter?.presentCheckLogin(response: response)
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    let response = Splash.CheckLogin.Response(isLogined: false)
-                    self.presenter?.presentCheckLogin(response: response)
-                }
-            }
+            let response = Splash.CheckLogin.Response(isLogined: false)
+            self.presenter?.presentCheckLogin(response: response)
         }
     }
 }

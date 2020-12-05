@@ -22,9 +22,11 @@ struct User: Codable{
     /// 유저 상태
     var state: UserState = .normal
     /// 행성
-    
-    ///경험치
-    var experiements: Double = 0.0
+    var planet: Planet?
+    /// 주간 상태
+    var weeklyStat: String = ""
+    /// 월간 상태
+    var monthlyStat: Double = 0.0
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -33,7 +35,9 @@ struct User: Codable{
         case level
         case rank
         case state
-        case experiements
+        case planet
+        case weeklyStat = "weekly_stats"
+        case monthlyStat = "monthly_stats"
     }
     
     public init(from decoder: Decoder) throws {
@@ -44,7 +48,9 @@ struct User: Codable{
         level = try container.decodeIfPresent(Int.self, forKey: .level) ?? 0
         rank = try container.decodeIfPresent(Double.self, forKey: .rank) ?? 0
         state = try container.decodeIfPresent(UserState.self, forKey: .state) ?? .normal
-        experiements = try container.decodeIfPresent(Double.self, forKey: .experiements) ?? 0.0
+        planet = try container.decodeIfPresent(Planet.self, forKey: .planet) ?? nil
+        weeklyStat = try container.decodeIfPresent(String.self, forKey: .weeklyStat) ?? ""
+        monthlyStat = try container.decodeIfPresent(Double.self, forKey: .monthlyStat) ?? 0.0
         
     }
     

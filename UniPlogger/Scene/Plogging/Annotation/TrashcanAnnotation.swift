@@ -8,7 +8,7 @@
 
 import MapKit
 
-class TrashAnnotation: NSObject, MKAnnotation{
+class TrashcanAnnotation: NSObject, MKAnnotation{
   var coordinate: CLLocationCoordinate2D
   var title: String?
   var subtitle: String?

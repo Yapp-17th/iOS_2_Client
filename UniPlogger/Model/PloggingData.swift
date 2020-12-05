@@ -21,11 +21,3 @@ struct PloggingData {
         return (time/60, time%60)
     }
 }
-
-protocol PloggingItemType {
-    var name: String { get set }
-}
-
-struct PloggingItem: PloggingItemType{
-    var name: String
-}

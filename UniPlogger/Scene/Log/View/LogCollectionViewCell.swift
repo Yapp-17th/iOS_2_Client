@@ -65,7 +65,9 @@ extension LogCollectionViewCell {
     
     private func updateView() {
         guard let vm = self.viewModel else { return }
-        self.imageView.image = UIImage(named: vm.image)
+        ImageDownloadManager.shared.downloadImage(url: vm.image) { (image) in
+            self.imageView.image = image
+        }
     }
 }
 

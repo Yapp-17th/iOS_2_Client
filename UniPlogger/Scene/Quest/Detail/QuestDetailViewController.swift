@@ -7,11 +7,10 @@
 //
 
 import UIKit
-//import SnapKit
-//import Then
 
 protocol QuestDetailDisplayLogic {
-    
+    func displayDetail(quest: Quest, recommands: [Quest])
+    func dismiss()
 }
 
 class QuestDetailViewController: QuestBaseViewController {
@@ -30,6 +29,9 @@ class QuestDetailViewController: QuestBaseViewController {
     // MARK: - Properties
     
     private var quest: Quest!
+    private var recommands = [Quest]()
+    var router: (QuestDataPassing & QuestRoutingLogic)?
+    var interacter: QuestDetailBusinessLogic?
     
     // MARK: - Views
     
@@ -122,14 +124,19 @@ class QuestDetailViewController: QuestBaseViewController {
         button.layer.cornerRadius = 21
     }
     
-    // MARK: Methods
+    // MARK: - Methods
     
-    @objc func didTapOtherQuestView(_ gesture: UIGestureRecognizer) {
-        // FIXME: OtherQuest 전환 로직
-        
-//        let questDetailVC = QuestDetailViewController()
-//        navigationController?.popViewController(animated: true)
-//        navigationController?.pushViewController(questDetailVC, animated: true)
+    func didTapOtherQuestView(quest: Quest?) {
+        guard let quest = quest else { return }
+        interacter?.fetchDetail(quest: quest)
+    }
+    
+    @objc func didTapStartButton(_ sender: UIButton) {
+        interacter?.start(quest: quest)
+    }
+    
+    @objc func didTapCancelButton(_ sender: UIButton) {
+        dismiss()
     }
     
     // MARK: - View Life Cycle
@@ -137,6 +144,7 @@ class QuestDetailViewController: QuestBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setup()
         setupViews()
         setupLayouts()
     }
@@ -175,16 +183,33 @@ class QuestDetailViewController: QuestBaseViewController {
     
     // MARK: - Initializer
     
-    func configure(quest: Quest) {
+    func configure(quest: Quest, recommands: [Quest], router: (QuestDataPassing & QuestRoutingLogic)) {
+        self.router = router
         self.quest = quest
         
-        // FIXME: In Presenter
+        mainTitleLabel.text = quest.title
+        mainDescriptionLabel.text = quest.content
+        self.recommands = recommands
+        
         let maker = QuestFactory()
         mainView.backgroundColor = maker.cellImageBackgroundColor(for: quest.category)
+        
+        let presenter = QuestDetailPresenter(viewController: self)
+        self.interacter = QuestDetailInteractor(presenter: presenter,worker: QuestDetailWorker())
+    }
+    
+    func configureRecommandViews(recommands: [Quest]) {
+        for recommand in recommands {
+            let otherView = RecommandOtherView()
+            otherView.recommand = recommand
+            otherView.tapHandler = { [weak self] in self?.didTapOtherQuestView(quest: $0) }
+            recommandSubStackView.addArrangedSubview(otherView)
+        }
     }
     
     private func setup() {
-        
+        startButton.addTarget(self, action: #selector(didTapStartButton(_:)), for: .touchUpInside)
+        cancelButton.addTarget(self, action: #selector(didTapCancelButton(_:)), for: .touchUpInside)
     }
     
     override func setupViews() {
@@ -213,21 +238,7 @@ class QuestDetailViewController: QuestBaseViewController {
             recommandView.addSubview($0)
         }
         
-        for _ in 0..<2 {
-            let otherView = RecommandOtherView()
-            otherView.titleLabel.text = "습관 1 Step"
-            otherView.descripionLabel.text = "1달 동안 총 10회 이상 플로깅하기"
-            otherView.setTextColor(Color.textBlack)
-            otherView.backgroundColor = Color.questBackgroundTint
-            otherView.shadow(radius: 10,
-                             color: UIColor(named: "questBackground"),
-                             offset: .init(width: 0, height: 4),
-                             opacity: 1)
-            otherView.layer.cornerRadius = 18
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapOtherQuestView(_:)))
-            otherView.addGestureRecognizer(tapGesture)
-            recommandSubStackView.addArrangedSubview(otherView)
-        }
+        configureRecommandViews(recommands: self.recommands)
         
         [buttonsStackView].forEach {
             buttonsBackgroundView.addSubview($0)
@@ -293,5 +304,19 @@ class QuestDetailViewController: QuestBaseViewController {
         cancelButton.snp.makeConstraints {
             $0.height.equalTo(Metric.buttonHeight)
         }
+    }
+}
+
+// MARK:  - QuestDetail Display Logic
+
+extension QuestDetailViewController: QuestDetailDisplayLogic {
+    func dismiss() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func displayDetail(quest: Quest, recommands: [Quest]) {
+//        navigationController?.pushViewController(questDetailVC, animated: true)
+        navigationController?.popViewController(animated: true)
+        router?.routeToDetail(quest: quest, recommands: recommands)
     }
 }

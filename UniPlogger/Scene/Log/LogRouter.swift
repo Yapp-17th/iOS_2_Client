@@ -13,45 +13,33 @@
 import UIKit
 
 @objc protocol LogRoutingLogic {
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToDetail()
 }
 
 protocol LogDataPassing {
-  var dataStore: LogDataStore? { get }
+    var dataStore: LogDataStore? { get }
 }
 
 class LogRouter: NSObject, LogRoutingLogic, LogDataPassing {
-  weak var viewController: LogViewController?
-  var dataStore: LogDataStore?
-  
-  // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
+    weak var viewController: LogViewController?
+    var dataStore: LogDataStore?
+    
+    func routeToDetail() {
+        let destinationVC = DetailViewController()
+        var destinationDS = destinationVC.router!.dataStore!
+        
+        passDataToDetail(source: dataStore!, destination: &destinationDS)
+        navigateToDetail(source: viewController!, destination: destinationVC)
+    }
+    
+    func navigateToDetail(source: LogViewController, destination: DetailViewController){
+        viewController?.navigationController?.pushViewController(destination, animated: true)
+    }
+    
+    func passDataToDetail(source: LogDataStore, destination: inout DetailDataStore){
+        if let selectedIndexPath = viewController?.collectionView.indexPathsForSelectedItems?.first {
+            destination.feed = viewController?.feedList[selectedIndexPath.item]
+        }
+    }
 
-  // MARK: Navigation
-  
-  //func navigateToSomewhere(source: LogViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
-  
-  // MARK: Passing data
-  
-  //func passDataToSomewhere(source: LogDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
 }

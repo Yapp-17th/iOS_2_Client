@@ -12,9 +12,13 @@ import Foundation
     func routeToReport()
 }
 
-class DetailRouter: NSObject, DetailRoutingLogic {
+protocol DetailDataPassing{
+    var dataStore: DetailDataStore? { get set }
+}
+
+class DetailRouter: NSObject, DetailRoutingLogic, DetailDataPassing {
     weak var viewController: DetailViewController?
-    
+    var dataStore: DetailDataStore?
     func routeToReport() {
         let destinationVC = ReportViewController()
         navigateToDetail(source: viewController!, destination: destinationVC)

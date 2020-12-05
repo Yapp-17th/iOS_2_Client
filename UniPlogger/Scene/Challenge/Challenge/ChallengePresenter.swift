@@ -13,16 +13,41 @@
 import UIKit
 
 protocol ChallengePresentationLogic {
-    func presentSomething(response: Challenge.Something.Response)
+    func presentPlayers(ranks: [Int], players: [Player])
 }
 
 class ChallengePresenter: ChallengePresentationLogic {
+    
     weak var viewController: ChallengeDisplayLogic?
   
     // MARK: Do something
   
-    func presentSomething(response: Challenge.Something.Response) {
-        let viewModel = Challenge.Something.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
+    func presentPlayers(ranks: [Int], players: [Player]) {
+        var rankCellViewModels = [Challenge.RankCellViewModel]()
+        (0..<10).forEach {
+            let viewModel = Challenge.RankCellViewModel(id: players[$0].id, email: players[$0].email, rank: ranks[$0], nickname: players[$0].nickname, score: Int(players[$0].score))
+            rankCellViewModels.append(viewModel)
+        }
+        presentTopImages(with: ranks)
+        viewController?.displayPlayers(viewModel: rankCellViewModels)
     }
+    
+    func presentTopImages(with rank: [Int]) {
+        var baseImageList = [UIImage(named: "rank_first_small")!, UIImage(named: "rank_second_small")!, UIImage(named: "rank_third_small")!]
+        let topRankList = [rank[0], rank[1], rank[2]]
+        switch topRankList {
+        case [1, 2, 3]:
+            baseImageList[0] = UIImage(named: "rank_first_large")!
+            baseImageList[1] = UIImage(named: "rank_second_medium")!
+        case [2, 2, 3]:
+            baseImageList[0] = UIImage(named: "rank_first_medium")!
+            baseImageList[1] = UIImage(named: "rank_second_medium")!
+        case [1, 3, 3]:
+            baseImageList[0] = UIImage(named: "rank_first_large")!
+        default:
+            break
+        }
+        viewController?.displayTopImages(images: baseImageList)
+    }
+    
 }

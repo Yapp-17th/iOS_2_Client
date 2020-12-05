@@ -13,13 +13,22 @@
 import UIKit
 
 protocol LogDisplayLogic: class {
+    func displayGetUser(viewModel: Log.GetUser.ViewModel)
+    func displayGetFeed(viewModel: Log.GetFeed.ViewModel)
     func displayError(error: Common.CommonError, useCase: Log.UseCase)
 }
 
-class LogViewController: UIViewController, LogDisplayLogic {
+class LogViewController: UIViewController {
     var interactor: LogBusinessLogic?
     var router: (NSObjectProtocol & LogRoutingLogic & LogDataPassing)?
-    var scrollView = ScrollStackView()
+    
+    var feedList: [Feed] = []
+    
+    var scrollView = ScrollStackView().then {
+        $0.alwaysBounceVertical = true
+        $0.refreshControl = UIRefreshControl()
+        $0.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
+    }
     let ploggerContainer = UIImageView().then{
         $0.image = UIImage(named: "bg_logPloggerContainer")?.withRenderingMode(.alwaysOriginal)
         $0.contentMode = .scaleAspectFill
@@ -153,33 +162,82 @@ class LogViewController: UIViewController, LogDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(uploadRecord))
         configuration()
         setupView()
         setupLayout()
+        self.interactor?.getUser()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
     }
     
-    func displayError(error: Common.CommonError, useCase: Log.UseCase){
-        //handle error with its usecase
+    
+    
+    func getFeed(){
+        self.interactor?.getFeed()
     }
     
-    @objc func uploadRecord(){
-        self.interactor?.uploadRecord()
+    @objc func handleRefreshControl(){
+        self.interactor?.getFeed()
+    }
+}
+
+extension LogViewController: LogDisplayLogic{
+    func displayGetUser(viewModel: Log.GetUser.ViewModel) {
+        let user = viewModel.user
+        self.levelLabel.text = "\(user.level)"
+        self.rankLabel.text = "\(user.rank)"
+        self.weeklyContentLabel.text = user.weeklyStat
+        self.monthlyContentLabel.text = "\(user.monthlyStat)"
+        
+        self.interactor?.getFeed()
+    }
+    func displayGetFeed(viewModel: Log.GetFeed.ViewModel) {
+        self.feedList = viewModel.feedList
+        self.collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.scrollView.refreshControl?.endRefreshing()
+        }
+    }
+    func displayError(error: Common.CommonError, useCase: Log.UseCase){
+        self.scrollView.refreshControl?.endRefreshing()
+        switch error {
+        case .server(let msg):
+            self.errorAlert(title: "오류", message: msg, completion: nil)
+        case .local(let msg):
+            self.errorAlert(title: "오류", message: msg, completion: nil)
+        case .error(let error):
+            guard let error = error as? URLError else { return }
+            NetworkErrorManager.alert(error) { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                    guard let self = self else { return }
+                    switch useCase{
+                    case .GetUser:
+                        self.interactor?.getUser()
+                    case .GetFeed:
+                        self.interactor?.getFeed()
+                    }
+                }
+            }
+        }
     }
 }
 
 extension LogViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 11
+        return self.feedList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LogCollectionViewCell", for: indexPath) as? LogCollectionViewCell else { fatalError() }
-        cell.viewModel = .init(image: "img_logSample\(indexPath.item + 1)")
+        let feed = feedList[indexPath.item]
+        
+        cell.viewModel = .init(image: feed.photo)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.router?.routeToDetail()
     }
 }

@@ -54,7 +54,7 @@ extension QuestModels {
             guard isInRagne(for: indexPath) else { return .zero }
             return questList[indexPath.row].category == .training ?
                     CellSize.trainingHeight :
-                    CellSize.routineHeight
+                    UITableView.automaticDimension
         }
         
         // MARK: Mutating

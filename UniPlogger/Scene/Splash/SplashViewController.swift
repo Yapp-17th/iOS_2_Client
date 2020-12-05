@@ -85,7 +85,7 @@ extension SplashViewController: SplashDisplayLogic{
     }
     
     func displayNotLogined() {
-        //Todo Login 화면으로 보내기
+        self.router?.routeToLogin()
     }
     
     func displayError(error: Common.CommonError, useCase: Splash.UseCase){

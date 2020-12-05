@@ -15,12 +15,14 @@ import SnapKit
 import Then
 
 protocol ChallengeDisplayLogic: class {
-    func displaySomething(viewModel: Challenge.Something.ViewModel)
+    func displayPlayers(viewModel: [Challenge.RankCellViewModel])
+    func displayTopImages(images: [UIImage])
 }
 
 class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
     var interactor: ChallengeBusinessLogic?
     var router: (NSObjectProtocol & ChallengeRoutingLogic & ChallengeDataPassing)?
+    var viewModels: [Challenge.RankCellViewModel]?
     
     lazy var backgroundImageView = UIImageView().then {
         let image = UIImage(named: "challengeBackground")
@@ -37,9 +39,21 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
         $0.setImage(UIImage(named: "challenge_info"), for: .normal)
         $0.addTarget(self, action: #selector(touchUpInfoButton), for: .touchUpInside)
     }
-    lazy var firstRankView = TopRankView()
-    lazy var secondRankView = TopRankView()
-    lazy var thirdRankView = TopRankView()
+    lazy var firstRankView = TopRankView().then {
+        $0.isUserInteractionEnabled = true
+        $0.tag = 0
+        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(touchUpTopRankView(_:))))
+    }
+    lazy var secondRankView = TopRankView().then {
+        $0.isUserInteractionEnabled = true
+        $0.tag = 1
+        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(touchUpTopRankView(_:))))
+    }
+    lazy var thirdRankView = TopRankView().then {
+        $0.isUserInteractionEnabled = true
+        $0.tag = 2
+        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(touchUpTopRankView(_:))))
+    }
     lazy var rankTableView = UITableView().then {
         $0.backgroundColor = .clear
     }
@@ -87,6 +101,7 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        interactor?.getPlanet()
         setUpView()
         setUpTableView()
         setUpLayout()
@@ -106,13 +121,30 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic {
         super.viewWillDisappear(animated)
         navigationController?.isNavigationBarHidden = false
     }
-  
-    func displaySomething(viewModel: Challenge.Something.ViewModel) {
     
+    func displayPlayers(viewModel: [Challenge.RankCellViewModel]) {
+        self.viewModels = viewModel
+        guard let viewModels = viewModels else { return }
+        firstRankView.configure(viewModel: viewModels[0])
+        secondRankView.configure(viewModel: viewModels[1])
+        thirdRankView.configure(viewModel: viewModels[2])
+        rankTableView.reloadData()
+    }
+    
+    func displayTopImages(images: [UIImage]) {
+        firstRankView.rankImageView.image = images[0]
+        secondRankView.rankImageView.image = images[1]
+        thirdRankView.rankImageView.image = images[2]
     }
     
     @objc func touchUpInfoButton() {
         router?.routeToScoreInfo()
+    }
+    
+    @objc func touchUpTopRankView(_ recognizer: UIGestureRecognizer) {
+        guard let tag = recognizer.view?.tag else { return }
+        guard let id = viewModels?[tag].id else { return }
+        router?.routeToUserLog(playerId: id)
     }
 }
 
@@ -122,16 +154,25 @@ extension ChallengeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = rankTableView.dequeueReusableCell(withIdentifier: "rankCell") else { return UITableViewCell() }
+        guard let cell = rankTableView.dequeueReusableCell(withIdentifier: "rankCell") as? RankTableViewCell else { return UITableViewCell() }
         cell.selectionStyle = .none
+        guard let viewModels = self.viewModels else {
+            let viewModel = Challenge.RankCellViewModel(id: 0, email: "asdf@naver.com", rank: 4, nickname: "띵숙이", score: 1234)
+            cell.configure(viewModel: viewModel)
+            return cell
+        }
+        cell.configure(viewModel: viewModels[indexPath.row + 3])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        router?.routeToUserLog()
+        guard let cell = tableView.cellForRow(at: indexPath) as? RankTableViewCell else { return }
+        guard let viewModel = cell.viewModel else { return }
+        if viewModel.id == -1 { return }
+        router?.routeToUserLog(playerId: viewModel.id)
     }
 }

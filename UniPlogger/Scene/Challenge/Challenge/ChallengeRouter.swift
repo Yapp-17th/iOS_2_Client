@@ -12,9 +12,9 @@
 
 import UIKit
 
-@objc protocol ChallengeRoutingLogic {
+protocol ChallengeRoutingLogic {
     func routeToScoreInfo()
-    func routeToUserLog()
+    func routeToUserLog(playerId: Int)
 }
 
 protocol ChallengeDataPassing {
@@ -22,6 +22,7 @@ protocol ChallengeDataPassing {
 }
 
 class ChallengeRouter: NSObject, ChallengeRoutingLogic, ChallengeDataPassing {
+
     weak var viewController: ChallengeViewController?
     var dataStore: ChallengeDataStore?
     
@@ -36,13 +37,19 @@ class ChallengeRouter: NSObject, ChallengeRoutingLogic, ChallengeDataPassing {
         source.present(destination, animated: true)
     }
     
-    func routeToUserLog() {
+    func routeToUserLog(playerId: Int) {
         let destinationVC = UserLogViewController()
+        var destinationDS = destinationVC.router!.dataStore!
+        passDataToUserLog(playerId: playerId, destination: &destinationDS)
         navigateToUserLog(source: viewController!, destination: destinationVC)
     }
     
     func navigateToUserLog(source: ChallengeViewController, destination: UserLogViewController) {
         source.navigationController?.pushViewController(destination, animated: false)
+    }
+    
+    func passDataToUserLog(playerId: Int, destination: inout UserLogDataStore) {
+        destination.playerId = playerId
     }
 
 }

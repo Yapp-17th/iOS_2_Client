@@ -13,20 +13,30 @@
 import UIKit
 
 class LogWorker {
-    //title
-    //distance xx.xx
-    //time int
-    //uid
-    //image
-    func uploadRecord(){
-        guard let uid = AuthManager.shared.user?.id else { return }
-        let title = "testFeed"
-        let distance = 10.15
-        let time = 1000
-        let image = UIImage(named: "img_logSample1")!
-        
-        PloggingAPI.shared.uploadRecord(uid: uid, title: title, distance: distance, time: time, image: image) { (result) in
-            print(result)
+    
+    func getUser(uid: Int, completion: @escaping(Log.GetUser.Response) -> Void) {
+        AuthAPI.shared.getUser(uid: uid) { (response) in
+            switch response {
+            case let .success(user):
+                let response = Log.GetUser.Response(user: user)
+                completion(response)
+            case let .failure(error):
+                let response = Log.GetUser.Response(error: .error(error))
+                completion(response)
+            }
+        }
+    }
+    
+    func getFeed(uid: Int, completion: @escaping(Log.GetFeed.Response) -> Void){
+        LogAPI.shared.getFeed(uid: uid) { (response) in
+            switch response{
+            case let .success(feedList):
+                let response = Log.GetFeed.Response(feedList: feedList)
+                completion(response)
+            case let .failure(error):
+                let response = Log.GetFeed.Response(error: .error(error))
+                completion(response)
+            }
         }
     }
 }

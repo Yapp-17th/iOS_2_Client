@@ -8,6 +8,25 @@
 
 import Foundation
 
+protocol QuestDetailPresenterLogic {
+    func presentDetail(quest: Quest, recommands: [Quest])
+    func finish()
+}
+
 class QuestDetailPresenter {
+    var viewController: QuestDetailDisplayLogic
     
+    init(viewController: QuestDetailDisplayLogic) {
+        self.viewController = viewController
+    }
+}
+
+extension QuestDetailPresenter: QuestDetailPresenterLogic {
+    func presentDetail(quest: Quest, recommands: [Quest]) {
+        viewController.displayDetail(quest: quest, recommands: recommands)
+    }
+    
+    func finish() {
+        viewController.dismiss()
+    }
 }
