@@ -39,4 +39,8 @@ class ChallengeNavigationController: UINavigationController {
             $0.bottom.equalTo(navigationBar)
         }
     }
+    
+    func removeAllConstraints() {
+        navView.snp.removeConstraints()
+    }
 }

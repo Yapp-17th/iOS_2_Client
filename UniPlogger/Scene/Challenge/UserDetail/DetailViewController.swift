@@ -67,6 +67,12 @@ class DetailViewController: UIViewController {
         self.interactor?.getFeed()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = false
+        (navigationController as? ChallengeNavigationController)?.setupLayout()
+    }
+    
     private func setNavigationItem() {
         let date = "20.10.17"
         navigationItem.title = "\(date)"

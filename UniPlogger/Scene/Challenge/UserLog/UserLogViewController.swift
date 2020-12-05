@@ -97,6 +97,11 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
         (navigationController as? ChallengeNavigationController)?.setupLayout()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     private func configure() {
         let viewController = self
         let interactor = UserLogInteractor()

@@ -100,6 +100,7 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic, TopViewD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+        (navigationController as? ChallengeNavigationController)?.removeAllConstraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {
