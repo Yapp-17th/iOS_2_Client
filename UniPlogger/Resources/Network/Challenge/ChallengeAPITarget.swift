@@ -13,6 +13,7 @@ import Moya
 enum ChallengeAPITarget {
     case startChallenge
     case fetchPlanet
+    case report(id: Int)
 }
 
 extension ChallengeAPITarget: BaseTarget {
@@ -23,6 +24,8 @@ extension ChallengeAPITarget: BaseTarget {
             return "planets/"
         case .fetchPlanet:
             return "planets/"
+        case .report(let id):
+            return "users/feed/\(id)/report_feed/"
         }
     }
     
@@ -31,6 +34,8 @@ extension ChallengeAPITarget: BaseTarget {
         case .startChallenge:
             return .post
         case .fetchPlanet:
+            return .get
+        case .report:
             return .get
         }
     }
@@ -41,6 +46,8 @@ extension ChallengeAPITarget: BaseTarget {
             return [:]
         case .fetchPlanet:
             return [:]
+        case .report:
+            return [:]
         }
     }
     
@@ -49,6 +56,8 @@ extension ChallengeAPITarget: BaseTarget {
         case .startChallenge:
             return .requestPlain
         case .fetchPlanet:
+            return .requestPlain
+        case .report:
             return .requestPlain
         }
     }

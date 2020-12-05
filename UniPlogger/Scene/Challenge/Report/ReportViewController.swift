@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol ReportDisplayLogic: class {
+
+}
+    
 class ReportViewController: UIViewController, ReportDelegate {
+    var router: (NSObjectProtocol & ReportRoutingLogic & ReportDataPassing)?
+    var interactor: ReportBusinessLogic?
     
     var selectedItems = [ReportItem]()
 
@@ -75,11 +81,34 @@ class ReportViewController: UIViewController, ReportDelegate {
         $0.spacing = self.view.frame.width * 0.06
     }
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        configure()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        configure()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(named: "reportDimColor")
         setUpViews()
         setUpLayout()
+    }
+    
+    private func configure() {
+        let viewController = self
+        let interactor = ReportInteractor()
+        let presenter = ReportPresenter()
+        let router = ReportRouter()
+        viewController.router = router
+        viewController.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
     }
     
     @objc private func touchUpCancelButton() {
@@ -88,6 +117,7 @@ class ReportViewController: UIViewController, ReportDelegate {
     
     @objc private func touchUpReportButton() {
         guard !selectedItems.isEmpty else { return }
+        interactor?.report()
         let alertController = UIAlertController(title: "신고가 완료되었습니다.", message: "3번 신고 시 사진이 삭제됩니다.", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "확인", style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)

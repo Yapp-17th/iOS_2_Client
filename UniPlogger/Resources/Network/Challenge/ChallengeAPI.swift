@@ -44,4 +44,18 @@ class ChallengeAPI {
             .disposed(by: disposeBag)
     }
     
+    func report(id: Int, completion: @escaping (Result<Feed, Error>) -> Void) {
+        provider.rx.request(.report(id: id))
+//            .filterSuccessfulStatusCodes()
+            .map(Feed.self)
+            .subscribe(onSuccess: {
+                print("success")
+                completion(.success($0))
+            }, onError: {
+                print("error")
+                completion(.failure($0))
+            })
+            .disposed(by: disposeBag)
+    }
+    
 }

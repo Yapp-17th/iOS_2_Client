@@ -36,6 +36,7 @@ class UserLogRouter: NSObject, UserLogRoutingLogic, UserLogDataPassing {
     func passDataToDetail(source: UserLogDataStore, destination: inout DetailDataStore){
         if let selectedIndexPath = viewController?.collectionView.indexPathsForSelectedItems?.first {
             destination.feed = viewController?.feedList[selectedIndexPath.item]
+            print(destination.feed)
         }
     }
 

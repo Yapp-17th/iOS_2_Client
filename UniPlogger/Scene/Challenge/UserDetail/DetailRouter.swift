@@ -12,23 +12,31 @@ import Foundation
     func routeToReport()
 }
 
-protocol DetailDataPassing{
+protocol DetailDataPassing {
     var dataStore: DetailDataStore? { get set }
 }
 
 class DetailRouter: NSObject, DetailRoutingLogic, DetailDataPassing {
     weak var viewController: DetailViewController?
     var dataStore: DetailDataStore?
+
     func routeToReport() {
         let destinationVC = ReportViewController()
-        navigateToDetail(source: viewController!, destination: destinationVC)
+        var destinationDS = destinationVC.router!.dataStore!
+        
+        passDataToReport(source: dataStore!, destination: &destinationDS)
+        navigateToReport(source: viewController!, destination: destinationVC)
     }
     
-    private func navigateToDetail(source: DetailViewController, destination: ReportViewController) {
+    private func navigateToReport(source: DetailViewController, destination: ReportViewController) {
         destination.modalTransitionStyle = .crossDissolve
         destination.modalPresentationStyle = .overFullScreen
         source.present(destination, animated: true)
     }
-
+    
+    func passDataToReport(source: DetailDataStore, destination: inout ReportDataStore) {
+        destination.feed = self.dataStore?.feed
+    }
+    
 }
 

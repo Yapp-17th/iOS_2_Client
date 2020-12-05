@@ -25,7 +25,7 @@ class DetailViewController: ChallengeBaseViewController {
     lazy var ploggingImageView = PloggingImageView().then {
         $0.backgroundColor = .lightGray
         $0.layer.cornerRadius = 10
-        $0.clipsToBounds = true 
+        $0.clipsToBounds = true
     }
     lazy var reportButton = UIBarButtonItem(image: UIImage(named: "report"), style: .plain, target: self, action: #selector(touchUpReportButton))
 
@@ -33,17 +33,17 @@ class DetailViewController: ChallengeBaseViewController {
       
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setup()
+        configure()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
+        configure()
     }
 
     // MARK: Setup
-
-    private func setup() {
+    
+    private func configure() {
         let viewController = self
         let interactor = DetailInteractor()
         let presenter = DetailPresenter()
@@ -61,18 +61,10 @@ class DetailViewController: ChallengeBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        configure()
         setNavigationItem()
         setUpViews()
         setUpLayout()
         self.interactor?.getFeed()
-    }
-
-    private func configure() {
-        let viewController = self
-        let router = DetailRouter()
-        viewController.router = router
-        router.viewController = viewController
     }
     
     private func setNavigationItem() {
