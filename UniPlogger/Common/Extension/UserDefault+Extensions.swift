@@ -16,6 +16,8 @@ enum UPUserDefaulKey: String {
     case user = "USERDEFAULT_KEY_USER"
     case getPush = "USERDEFAULT_KEY_GETPUSH"
     case autoSave = "USERDEFAULT_KEY_AUTOSAVE"
+    /// 회원가입시 등록을 위한 닉네임
+    case nickname = "USERDEFAULT_KEY_NICKNAME"
 }
 
 // MARK: - UPUserDefaultProtocol

@@ -16,7 +16,7 @@ enum Registration {
     // MARK: Use cases
     
     enum UseCase {
-        
+        case Registration(Registration.Request)
     }
     
     enum ValidateAccount{
@@ -49,5 +49,20 @@ enum Registration {
     
     struct ValidationViewModel{
       var isValid: Bool
+    }
+    
+    enum Registration {
+        struct Request {
+            var nickname: String
+            var email: String
+            var password1: String
+            var password2: String
+        }
+        
+        struct Response {
+            var request: Request
+            var response: LoginResponse?
+            var error: Common.CommonError?
+        }
     }
 }

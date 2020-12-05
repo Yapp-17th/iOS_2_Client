@@ -14,6 +14,7 @@ import UIKit
 
 protocol RegistrationDisplayLogic: class {
     func displayValidation(viewModel: Registration.ValidationViewModel)
+    func displayRegistration()
     func displayError(error: Common.CommonError, useCase: Registration.UseCase)
 }
 
@@ -54,7 +55,7 @@ class RegistrationViewController: UIViewController {
     let passwordInfoLabel = UILabel().then {
         $0.text = "8~20자 이내의 영문과 숫자 조합을 입력해주세요"
         $0.textColor = UIColor(named: "color_registrationPasswordInfoLabel")
-        $0.font = .notoSans(ofSize: 14, weight: .regular)
+        $0.font = .dynamicNotosans(fontSize: 14, weight: .regular)
     }
     
     let passwordConfirmFieldBox = UIView().then {
@@ -129,6 +130,16 @@ class RegistrationViewController: UIViewController {
         setupLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+      super.viewWillAppear(animated)
+      navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+      super.viewWillDisappear(animated)
+      navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     @objc func validateAccount(){
       guard let text = accountField.text else { return }
       let request = Registration.ValidateAccount.Request(account: text)
@@ -150,10 +161,12 @@ class RegistrationViewController: UIViewController {
     @objc func registrationButtonTapped() {
         guard let account = accountField.text, !account.isEmpty,
               let password = passwordField.text, !password.isEmpty,
-              let passwordConfirm = passwordConfirmField.text, !passwordConfirm.isEmpty,
-              password == passwordConfirm
+              let passwordConfirm = passwordConfirmField.text, !passwordConfirm.isEmpty
         else { return }
+        let nickname = UserDefaults.standard.string(forDefines: .nickname) ?? ""
         
+        let request = Registration.Registration.Request(nickname: nickname, email: account, password1: password, password2: passwordConfirm)
+        self.interactor?.registration(request: request)
     }
 }
 
@@ -161,6 +174,10 @@ extension RegistrationViewController: RegistrationDisplayLogic {
     func displayValidation(viewModel: Registration.ValidationViewModel) {
         self.registrationButton.isEnabled = viewModel.isValid
         self.registrationButton.backgroundColor = viewModel.isValid ? .main : UIColor(named: "color_loginButton")
+    }
+    
+    func displayRegistration() {
+        self.router?.routeToSplash()
     }
     func displayError(error: Common.CommonError, useCase: Registration.UseCase){
         //handle error with its usecase
