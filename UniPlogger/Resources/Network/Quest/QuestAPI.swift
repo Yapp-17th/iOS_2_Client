@@ -76,8 +76,8 @@ final class QuestAPI {
             .disposed(by: disposeBag)
     }
     
-    func success(quest: Quest, completionHandler: @escaping(Int) -> Void) {
-        provider.rx.request(.success(id: quest.id))
+    func success(questId: Int, completionHandler: @escaping(Int) -> Void) {
+        provider.rx.request(.success(id: questId))
             .filterSuccessfulStatusCodes()
             .subscribe {
                 completionHandler($0.statusCode)
