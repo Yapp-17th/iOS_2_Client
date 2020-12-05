@@ -16,8 +16,8 @@ enum UPUserDefaulKey: String {
     case user = "USERDEFAULT_KEY_USER"
 }
 
-// MARK: - MPUserDefaultProtocol
-protocol MPUserDefaultProtocol {
+// MARK: - UPUserDefaultProtocol
+protocol UPUserDefaultProtocol {
     // MARK: Set
     func set(_ value: Int, forDefines: UPUserDefaulKey)
     func set(_ value: Float, forDefines: UPUserDefaulKey)
@@ -35,7 +35,7 @@ protocol MPUserDefaultProtocol {
     func removeObject(forDefines: UPUserDefaulKey)
 }
 
-extension UserDefaults: MPUserDefaultProtocol {
+extension UserDefaults: UPUserDefaultProtocol {
     // MARK: Set
     func set(_ value: Int, forDefines: UPUserDefaulKey) {
         set(value, forKey: forDefines.rawValue)

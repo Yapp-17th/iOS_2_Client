@@ -21,4 +21,17 @@ class LoginWorker {
         return text.count >= 1
     }
     
+    func login(request: Login.Login.Request, completion: @escaping (Login.Login.Response) -> Void) {
+        AuthAPI.shared.login(email: request.account, password: request.password) { (response) in
+            switch response{
+            case .success(let value):
+                let response = Login.Login.Response(request:request, response: value)
+                completion(response)
+            case .failure(let error):
+                print(error.localizedDescription)
+                let response = Login.Login.Response(request: request, error: .error(error))
+                completion(response)
+            }
+        }
+    }
 }

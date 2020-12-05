@@ -16,8 +16,9 @@ enum Login {
     // MARK: Use cases
     
     enum UseCase {
-        
+        case Login(Login.Request)
     }
+    
     enum ValidateAccount{
       struct Request{
         var account: String
@@ -38,5 +39,19 @@ enum Login {
     
     struct ValidationViewModel{
       var isValid: Bool
+    }
+    
+    enum Login{
+        struct Request{
+            var account: String
+            var password: String
+        }
+        
+        struct Response{
+            var request: Request
+            var response: LoginResponse?
+            var error: Common.CommonError?
+        }
+        
     }
 }

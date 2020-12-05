@@ -14,6 +14,7 @@ import UIKit
 
 @objc protocol SplashRoutingLogic {
     func routeToMain()
+    func routeToLogin()
 }
 
 protocol SplashDataPassing {
@@ -29,10 +30,21 @@ class SplashRouter: NSObject, SplashRoutingLogic, SplashDataPassing {
         navigateToMain(source: viewController!, destination: destinationVC)
     }
     
+    func routeToLogin() {
+        let destinationVC = LoginViewController()
+    }
+    
     func navigateToMain(source: SplashViewController, destination: MainTabBarController){
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate, let window = appDelegate.window{
             window.rootViewController = destination
             window.makeKeyAndVisible()
         }
     }
+    
+    func navigateToLogin(source: SplashViewController, destination: LoginViewController) {
+        let nvc = UINavigationController(rootViewController: destination)
+        nvc.modalPresentationStyle = .fullScreen
+        source.present(nvc, animated: true, completion: nil)
+    }
+    
 }

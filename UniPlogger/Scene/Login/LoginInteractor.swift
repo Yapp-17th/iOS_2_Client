@@ -15,6 +15,7 @@ import UIKit
 protocol LoginBusinessLogic {
     func validateAccount(request: Login.ValidateAccount.Request)
     func validatePassword(request: Login.ValidatePassword.Request)
+    func login(request: Login.Login.Request)
 }
 
 protocol LoginDataStore {
@@ -35,5 +36,11 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
         let text = request.password
         let result = worker.validatePassword(text: text)
         presenter?.presentValidatePassword(response: .init(isValid: result))
+    }
+    
+    func login(request: Login.Login.Request) {
+        self.worker.login(request: request) { [weak self] (response) in
+            self?.presenter?.presentLogin(response: response)
+        }
     }
 }

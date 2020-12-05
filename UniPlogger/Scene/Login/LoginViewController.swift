@@ -16,6 +16,7 @@ import SnapKit
 
 protocol LoginDisplayLogic: class {
     func displayValidation(viewModel: Login.ValidationViewModel)
+    func displayLogin()
     func displayError(error: Common.CommonError, useCase: Login.UseCase)
 }
 
@@ -74,6 +75,7 @@ class LoginViewController: UIViewController {
         $0.isEnabled = false
         $0.layer.cornerRadius = 26
         $0.layer.masksToBounds = true
+        $0.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
     }
     
     lazy var findPasswordButton = UIButton().then{
@@ -202,15 +204,14 @@ class LoginViewController: UIViewController {
         
     }
     
-    func displayError(error: Common.CommonError, useCase: Login.UseCase){
-        //handle error with its usecase
-    }
+    
     
     @objc func loginButtonTapped(){
         guard let account = accountField.text, !account.isEmpty,
               let password = passwordField.text, !password.isEmpty
         else { return }
-        
+        let request = Login.Login.Request(account: account, password: password)
+        self.interactor?.login(request: request)
     }
     
     @objc func validateAccount(){
@@ -231,4 +232,14 @@ extension LoginViewController: LoginDisplayLogic {
         self.loginButton.isEnabled = viewModel.isValid
         self.loginButton.backgroundColor = viewModel.isValid ? .main : UIColor(named: "color_loginButton")
     }
+    
+    func displayLogin() {
+        self.router?.routeToSplash()
+    }
+    
+    func displayError(error: Common.CommonError, useCase: Login.UseCase){
+        //handle error with its usecase
+        
+    }
+    
 }

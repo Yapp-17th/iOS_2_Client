@@ -15,6 +15,7 @@ import UIKit
 protocol LoginPresentationLogic {
     func presentValidateAccount(response: Login.ValidateAccount.Response)
     func presentValidatePassword(response: Login.ValidatePassword.Response)
+    func presentLogin(response: Login.Login.Response)
 }
 
 class LoginPresenter: LoginPresentationLogic {
@@ -34,5 +35,18 @@ class LoginPresenter: LoginPresentationLogic {
         self.isValidPassword = response.isValid
         let viewModel = Login.ValidationViewModel(isValid: isValidAccount && isValidPassword)
         viewController?.displayValidation(viewModel: viewModel)
+    }
+    
+    func presentLogin(response: Login.Login.Response) {
+        guard let user = response.response?.user,
+              let token = response.response?.token,
+              response.error == nil else {
+            viewController?.displayError(error: response.error!, useCase: .Login(response.request))
+            return
+        }
+        AuthManager.shared.userToken = token
+        AuthManager.shared.user = user
+        
+        viewController?.displayLogin()
     }
 }
