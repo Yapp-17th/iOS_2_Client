@@ -188,7 +188,7 @@ extension LogViewController: LogDisplayLogic{
     func displayGetUser(viewModel: Log.GetUser.ViewModel) {
         let user = viewModel.user
         self.levelLabel.text = "\(user.level)"
-        self.rankLabel.text = "\(user.rank)"
+        self.rankLabel.text = "\(Int(user.rank))%"
         self.weeklyContentLabel.text = user.weeklyStat
         self.monthlyContentLabel.text = "\(user.monthlyStat)"
         
