@@ -19,7 +19,6 @@
 		4C3F5747256D5A7B006D7C9F /* QuestChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3F5746256D5A7B006D7C9F /* QuestChecker.swift */; };
 		4C401EAF253DE19100ABED84 /* ShareRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EAE253DE19100ABED84 /* ShareRouter.swift */; };
 		4C401EB2253DE1F200ABED84 /* QuestState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C401EB1253DE1F200ABED84 /* QuestState.swift */; };
-		4C4236252571FA260068A252 /* ProceedingQuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4236242571FA260068A252 /* ProceedingQuest.swift */; };
 		4C42364025722E9D0068A252 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C42363F25722E9D0068A252 /* Notification+Name.swift */; };
 		4C423647257232260068A252 /* QuestAPITarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C423646257232260068A252 /* QuestAPITarget.swift */; };
 		4C42364B257234D50068A252 /* QuestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C42364A257234D50068A252 /* QuestAPI.swift */; };
@@ -250,7 +249,6 @@
 		4C401EAE253DE19100ABED84 /* ShareRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareRouter.swift; sourceTree = "<group>"; };
 		4C401EB1253DE1F200ABED84 /* QuestState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestState.swift; sourceTree = "<group>"; };
 		4C401EC3253EE6B300ABED84 /* QuestDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDetailViewController.swift; sourceTree = "<group>"; };
-		4C4236242571FA260068A252 /* ProceedingQuest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProceedingQuest.swift; sourceTree = "<group>"; };
 		4C42363F25722E9D0068A252 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		4C423646257232260068A252 /* QuestAPITarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestAPITarget.swift; sourceTree = "<group>"; };
 		4C42364A257234D50068A252 /* QuestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestAPI.swift; sourceTree = "<group>"; };
@@ -273,6 +271,9 @@
 		4CC9C7D3252315F3004D873D /* QuestModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestModels.swift; sourceTree = "<group>"; };
 		4CC9C7D6252315FC004D873D /* QuestWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestWorker.swift; sourceTree = "<group>"; };
 		4CC9C7D925232128004D873D /* Quest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quest.swift; sourceTree = "<group>"; };
+		4CF62087257B11750029FBD6 /* ProceedingQuest+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProceedingQuest+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		4CF62088257B11750029FBD6 /* ProceedingQuest+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProceedingQuest+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		4CF6208D257B5EBF0029FBD6 /* QuestStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestStorage.swift; sourceTree = "<group>"; };
 		8352480A2572279500C9F495 /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		8352480B2572279500C9F495 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8352480C2572279500C9F495 /* PloggingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingData.swift; sourceTree = "<group>"; };
@@ -539,7 +540,6 @@
 			children = (
 				4C3F54BB25612818006D7C9F /* QuestManager.swift */,
 				4C3F5746256D5A7B006D7C9F /* QuestChecker.swift */,
-				4C4236242571FA260068A252 /* ProceedingQuest.swift */,
 				4C7248A82541CDE300ACB32B /* QuestList.swift */,
 			);
 			path = Models;
@@ -557,6 +557,8 @@
 		4C423654257241410068A252 /* Quest */ = {
 			isa = PBXGroup;
 			children = (
+				4CF62087257B11750029FBD6 /* ProceedingQuest+CoreDataClass.swift */,
+				4CF62088257B11750029FBD6 /* ProceedingQuest+CoreDataProperties.swift */,
 				4CC9C7D925232128004D873D /* Quest.swift */,
 				4C401EB1253DE1F200ABED84 /* QuestState.swift */,
 				4C42365025723EF10068A252 /* QuestResponse.swift */,
@@ -1495,7 +1497,6 @@
 				4C42364025722E9D0068A252 /* Notification+Name.swift in Sources */,
 				AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */,
 				AA2CAE072543EAD600105748 /* PloggingRecordCollectionViewCell.swift in Sources */,
-				4C4236252571FA260068A252 /* ProceedingQuest.swift in Sources */,
 				AAB3B4E92520A78300F0311A /* MainTabBarController.swift in Sources */,
 				8353A377256911F900F9AA4F /* ReportItem.swift in Sources */,
 				AA4AD59B2574055C0087E060 /* PolicyViewController.swift in Sources */,
