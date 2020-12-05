@@ -16,14 +16,35 @@ protocol QuestManageable {
 
 class QuestManager: QuestManageable {
     var proceedingQuests = [ProceedingQuest]()
+    var storage: QuestStorageType
     var questChecker: QuestCheckable
     
-    init(questChecker: QuestCheckable) {
+    init(questChecker: QuestCheckable, storage: QuestStorageType) {
         self.questChecker = questChecker
+        self.storage = storage
+        storage.fetchProceedingQuestList { [weak self] (result) in
+            switch result {
+                case .success(let proceedingQuests):
+                    self?.proceedingQuests = proceedingQuests
+                case .failure(let error):
+                    #if DEBUG
+                    print(error)
+                    #endif
+            }
+        }
     }
     
     func start(quest: Quest) {
-        proceedingQuests.append(ProceedingQuest(quest: quest))
+        storage.createProceedingQuest(for: quest) { (result) in
+            switch result {
+                case .success(let proceedingQuest):
+                    self.proceedingQuests.append(proceedingQuest)
+                case .failure(let error):
+                    #if DEBUG
+                    print(error)
+                    #endif
+            }
+        }
     }
     
     func finish(plogging: PloggingData) {
@@ -35,17 +56,52 @@ class QuestManager: QuestManageable {
     
     @discardableResult
     func postCompleteIfSuccess(completed proceedingQuest: ProceedingQuest) -> Bool {
-        guard proceedingQuest.quest.id != 6,
-              proceedingQuest.quest.id != 8,
-              proceedingQuest.quest.id != 10
+        guard proceedingQuest.questId != 6,
+              proceedingQuest.questId != 8,
+              proceedingQuest.questId != 10
         else {
             if proceedingQuest.completeCount >= 3 {
-                NotificationCenter.default.post(name: .QuestDidComplete, object: nil, userInfo: [Quest.infoKey: proceedingQuest.quest])
+                NotificationCenter.default.post(name: .QuestDidComplete, object: nil, userInfo: [Quest.infoKey: Int(proceedingQuest.questId)])
+                storage.deleteProceedingQuest(proceedingQuest) { [weak self] (result) in
+                    switch result {
+                        case .success():
+                            if let index = self?.proceedingQuests.firstIndex(of: proceedingQuest) {
+                                self?.proceedingQuests.remove(at: index)
+                            }
+                        case .failure(let error):
+                            #if DEBUG
+                            print("fail delete proceeding Quest, \(error)")
+                            #endif
+                    }
+                }
                 return true
+            }
+            
+            storage.updateProceedingQuest(proceedingQuest) { (result) in
+                switch result {
+                    case .success(_):
+                        break
+                    case .failure(let error):
+                        #if DEBUG
+                        print("fail update proceeding Quest, \(error)")
+                        #endif
+                }
             }
             return false
         }
-        NotificationCenter.default.post(name: .QuestDidComplete, object: nil, userInfo: [Quest.infoKey: proceedingQuest.quest])
+        NotificationCenter.default.post(name: .QuestDidComplete, object: nil, userInfo: [Quest.infoKey: Int(proceedingQuest.questId)])
+        storage.deleteProceedingQuest(proceedingQuest) { [weak self] (result) in
+            switch result {
+                case .success():
+                    if let index = self?.proceedingQuests.firstIndex(of: proceedingQuest) {
+                        self?.proceedingQuests.remove(at: index)
+                    }
+                case .failure(let error):
+                    #if DEBUG
+                    print("fail delete proceeding Quest, \(error)")
+                    #endif
+            }
+        }
         return true
     }
 }

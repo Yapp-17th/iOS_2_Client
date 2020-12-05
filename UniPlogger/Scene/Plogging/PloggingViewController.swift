@@ -53,6 +53,8 @@ class PloggingViewController: BaseViewController {
         "핀을 눌러 휴지통을 없애요"
     ]
     
+    var completedQuestIds = [Int]()
+    
     var tempTrashcanAnnotation: TempTrashAnnotation?
     var minutes = 0
     var seconds = 0
@@ -324,6 +326,28 @@ class PloggingViewController: BaseViewController {
         if let _ = self.presentedViewController as? StartCountingViewController{
             self.interactor?.startPlogging()
         }
+        
+        presentCompleteIfHasSuccess()
+    }
+    
+    func presentCompleteIfHasSuccess() {
+        guard !completedQuestIds.isEmpty else { return }
+        let id = completedQuestIds.removeFirst()
+        let popup = SuccessPopupView(frame: view.frame, questId: id)
+        popup.tapHandler = { [weak self] in
+            self?.presentCompleteIfHasSuccess()
+            popup.removeFromSuperview()
+        }
+        UIApplication.shared.keyWindow?.addSubview(popup)
+    }
+    
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidCompleteQuest(_:)), name: .QuestDidComplete, object: nil)
+    }
+    
+    @objc func onDidCompleteQuest(_ notification: Notification) {
+        guard let questId = notification.userInfo?[Quest.infoKey] as? Int else { return }
+        completedQuestIds.append(questId)
     }
     
     @objc func startButtonTapped(){

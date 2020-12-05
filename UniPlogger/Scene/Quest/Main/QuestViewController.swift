@@ -64,7 +64,7 @@ class QuestViewController: QuestBaseViewController {
     
     private var questViewModel: QuestModels.ViewModel?
     private var interactor: QuestBusinessLogic?
-    private var router: (QuestDataPassing & QuestRoutingLogic)?
+    private(set) var router: (QuestDataPassing & QuestRoutingLogic)?
     private var currentQuestState: QuestState = .todo {
         didSet {
             interactor?.change(state: currentQuestState)
@@ -103,7 +103,7 @@ class QuestViewController: QuestBaseViewController {
         
         let presenter = QuestPresenter(viewController: self, questFactory: QuestFactory())
         let worker = QuestWorker()
-        let interactor = QuestInteractor(presenter: presenter, worker: worker, questManager: QuestManager(questChecker: QuestChecker()))
+        let interactor = QuestInteractor(presenter: presenter, worker: worker, questManager: QuestManager(questChecker: QuestChecker(), storage: Storage()))
         
         self.interactor = interactor
         self.router = QuestRouter(viewController: self, dataStore: interactor)

@@ -40,6 +40,7 @@ class QuestChecker: QuestCheckable {
     var proceedingQuests: [ProceedingQuest]
     
     init(proceedingQuests: [ProceedingQuest] = []) {
+        
         self.proceedingQuests = proceedingQuests
     }
     
@@ -60,63 +61,67 @@ class QuestChecker: QuestCheckable {
     }
     
     func isComplete(proceddingQuest: ProceedingQuest) -> Bool {
-        switch proceddingQuest.quest.id {
+        switch proceddingQuest.questId {
             
             // 학습 퀘스트
             case 1:
                 return (proceddingQuest.distance >= 100 || proceddingQuest.time >= 60 * 15) &&
-                      proceddingQuest.pickedUpTrashs.count >= 1
+                    (proceddingQuest.pickedUpTrashs?.count ?? 0) >= 1
             case 2:
                 return (proceddingQuest.distance >= 100 || proceddingQuest.time >= 60 * 15) &&
-                      proceddingQuest.pickedUpTrashs.count >= 2
+                    (proceddingQuest.pickedUpTrashs?.count ?? 0) >= 2
             case 3:
                 return (proceddingQuest.distance >= 150 || proceddingQuest.time >= 60 * 30) &&
-                      proceddingQuest.pickedUpTrashs.count >= 2
+                    (proceddingQuest.pickedUpTrashs?.count ?? 0) >= 2
             case 4:
                 return (proceddingQuest.distance >= 150 || proceddingQuest.time >= 60 * 30) &&
-                      proceddingQuest.pickedUpTrashs.count >= 3
+                    (proceddingQuest.pickedUpTrashs?.count ?? 0) >= 3
             case 5:
                 return (proceddingQuest.distance >= 200 || proceddingQuest.time >= 60 * 45) &&
-                      proceddingQuest.pickedUpTrashs.count >= 3
+                    (proceddingQuest.pickedUpTrashs?.count ?? 0) >= 3
             case 6:
                 return (proceddingQuest.distance >= 200 || proceddingQuest.time >= 60 * 45) &&
-                      proceddingQuest.pickedUpTrashs.count >= 3
+                    (proceddingQuest.pickedUpTrashs?.count ?? 0) >= 3
             case 7:
                 return (proceddingQuest.distance >= 250 || proceddingQuest.time >= 60 * 60) &&
-                      proceddingQuest.pickedUpTrashs.count >= 4
+                    (proceddingQuest.pickedUpTrashs?.count ?? 0) >= 4
             case 8:
                 return (proceddingQuest.distance >= 250 || proceddingQuest.time >= 60 * 60) &&
-                      proceddingQuest.pickedUpTrashs.count >= 4
+                    (proceddingQuest.pickedUpTrashs?.count ?? 0) >= 4
             case 9:
                 return (proceddingQuest.distance >= 300 || proceddingQuest.time >= 60 * 90) &&
-                      proceddingQuest.pickedUpTrashs.count >= 5
+                    (proceddingQuest.pickedUpTrashs?.count ?? 0) >= 5
             case 10:
                 return (proceddingQuest.distance >= 300 || proceddingQuest.time >= 60 * 90) &&
-                      proceddingQuest.pickedUpTrashs.count >= 5
+                    (proceddingQuest.pickedUpTrashs?.count ?? 0) >= 5
                 
             // 상시 퀘스트
             case 11:
                 let intervals = Calendar.current.intervalsOfWeek(from: 4)
                 return intervals
                     .filter { interval in
-                        proceddingQuest.finishDates.contains(where: { interval.contains($0) })
+                        guard let finishDates = proceddingQuest.finishDates else { return false }
+                        return finishDates.contains(where: { interval.contains($0) })
                     }
                     .count > intervals.count
             case 12:
                 let beforeOneMonth = Date().midnight.addingTimeInterval(-60*60*24*30)
                 let range = beforeOneMonth...Date()
-                return proceddingQuest.finishDates.filter { range.contains($0) }.count > 10
+                guard let finishDates = proceddingQuest.finishDates else { return false }
+                return finishDates.filter { range.contains($0) }.count > 10
             case 13:
                 let intervals = Calendar.current.intervalsOfWeek(from: 4 * 3)
                 return intervals
                     .filter { interval in
-                        proceddingQuest.finishDates.filter({ date in interval.contains(date) }).count >= 2
+                        guard let finishDates = proceddingQuest.finishDates else { return false }
+                        return finishDates.filter({ date in interval.contains(date) }).count >= 2
                     }
                     .count > intervals.count
             case 14:
                 let beforeOneMonth = Date().midnight.addingTimeInterval(-60*60*24*30)
                 let range = beforeOneMonth...Date()
-                return proceddingQuest.finishDates.filter { range.contains($0) }.count > 30
+                guard let finishDates = proceddingQuest.finishDates else { return false }
+                return finishDates.filter { range.contains($0) }.count > 30
             case 15:
                 return proceddingQuest.finishCount >= 25
             case 16:
