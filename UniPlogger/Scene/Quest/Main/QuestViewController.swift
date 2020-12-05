@@ -86,6 +86,15 @@ class QuestViewController: QuestBaseViewController {
         setupTableView()
         setupViews()
         setupLayouts()
+        
+        if  UserDefaults.standard.value(forKey: "QuestTutorial") == nil ||
+            (UserDefaults.standard.value(forKey: "QuestTutorial") as? Bool) == false {
+            let nav = UINavigationController()
+            let t1 = QuestTutorialViewController1()
+            nav.addChild(t1)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: false, completion: nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
