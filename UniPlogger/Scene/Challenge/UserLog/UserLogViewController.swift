@@ -25,7 +25,7 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
         $0.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
     }
     lazy var userInfoContainer = UIImageView().then {
-        $0.image = UIImage(named: "bg_logPloggerContainer")?.withRenderingMode(.alwaysOriginal)
+        $0.image = UIImage(named: "mypage_background")?.withRenderingMode(.alwaysOriginal)
         $0.contentMode = .scaleAspectFill
     }
     lazy var characterImageView = UIImageView().then {

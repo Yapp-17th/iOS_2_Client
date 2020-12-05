@@ -33,12 +33,14 @@ class LogRouter: NSObject, LogRoutingLogic, LogDataPassing {
     }
     
     func navigateToDetail(source: LogViewController, destination: DetailViewController){
+        
         viewController?.navigationController?.pushViewController(destination, animated: true)
     }
     
     func passDataToDetail(source: LogDataStore, destination: inout DetailDataStore){
         if let selectedIndexPath = viewController?.collectionView.indexPathsForSelectedItems?.first {
             destination.feed = viewController?.feedList[selectedIndexPath.item]
+            destination.uid = source.uid
         }
     }
 

@@ -30,7 +30,7 @@ class LogViewController: UIViewController {
         $0.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
     }
     let ploggerContainer = UIImageView().then{
-        $0.image = UIImage(named: "bg_logPloggerContainer")?.withRenderingMode(.alwaysOriginal)
+        $0.image = UIImage(named: "mypage_background")?.withRenderingMode(.alwaysOriginal)
         $0.contentMode = .scaleAspectFill
     }
     

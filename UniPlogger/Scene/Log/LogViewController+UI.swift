@@ -72,40 +72,42 @@ extension LogViewController {
     func setupPloggerContainer(){
         ploggerContainer.snp.makeConstraints{
             $0.top.equalToSuperview().offset(-88)
-            $0.height.equalTo(320.16)
+            $0.height.equalTo(self.view.frame.height * 0.36)
         }
         ploggerImageView.snp.makeConstraints{
-            $0.bottom.equalTo(-28)
+            $0.bottom.equalTo(ploggerContainer).offset(-self.view.frame.height * 0.047)
+            $0.width.equalTo(self.view.frame.width * 0.21)
+            $0.height.equalTo(ploggerImageView.snp.width).multipliedBy(1.67)
             $0.centerX.equalToSuperview()
         }
         
         yellowStarImageView.snp.makeConstraints{
-            $0.top.equalTo(ploggerImageView)
-            $0.trailing.equalTo(ploggerImageView.snp.leading).offset(-28)
+            $0.bottom.equalTo(ploggerContainer).offset(-self.view.frame.height * 0.093)
+            $0.trailing.equalTo(ploggerImageView.snp.leading).offset(-self.view.frame.width * 0.08)
         }
         pinkStarImageView.snp.makeConstraints{
-            $0.top.equalTo(ploggerImageView)
-            $0.leading.equalTo(ploggerImageView.snp.trailing).offset(28)
+            $0.top.equalTo(yellowStarImageView.snp.top)
+            $0.leading.equalTo(ploggerImageView.snp.trailing).offset(self.view.frame.width * 0.08)
         }
         
         levelTitleLabel.snp.makeConstraints{
-            $0.top.equalTo(24)
-            $0.centerX.equalToSuperview()
+            $0.centerX.equalTo(yellowStarImageView)
+            $0.centerY.equalTo(yellowStarImageView).offset(-7)
         }
         
         levelLabel.snp.makeConstraints{
-            $0.top.equalTo(levelTitleLabel.snp.bottom).offset(-2)
+            $0.top.equalTo(levelTitleLabel.snp.bottom).offset(-7)
             $0.centerX.equalToSuperview()
         }
         
         rankTItleLabel.snp.makeConstraints{
-            $0.top.equalTo(24)
-            $0.centerX.equalToSuperview()
+            $0.centerX.equalTo(pinkStarImageView)
+            $0.centerY.equalTo(pinkStarImageView).offset(-7)
         }
         
         rankLabel.snp.makeConstraints{
-            $0.top.equalTo(rankTItleLabel.snp.bottom).offset(-2)
-            $0.centerX.equalToSuperview()
+            $0.top.equalTo(rankTItleLabel.snp.bottom).offset(-7)
+            $0.centerX.equalTo(rankTItleLabel)
         }
     }
     
