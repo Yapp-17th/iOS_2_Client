@@ -12,10 +12,10 @@
 
 import UIKit
 
-@objc protocol PloggingRecordRoutingLogic {
+protocol PloggingRecordRoutingLogic {
     func routeToShare()
     func routeToCamera()
-    func passDataToQuest()
+    func passDataToQuest(ploggingData: PloggingData?)
 }
 
 protocol PloggingRecordDataPassing {
@@ -39,15 +39,16 @@ class PloggingRecordRouter: NSObject, PloggingRecordRoutingLogic, PloggingRecord
         navigateToCamera(source: viewController!, destination: destinationVC)
     }
     
-    func passDataToQuest() {
-        guard let tabBarVC = viewController?.presentingViewController as? MainTabBarController,
-              let questVC = tabBarVC.viewControllers?[1] as? QuestViewController,
-              let ploggingData = dataStore?.ploggingData
+    func passDataToQuest(ploggingData: PloggingData?) {
+        guard let data = ploggingData,
+              let tabBarVC = viewController?.presentingViewController as? MainTabBarController,
+              let questNav = (tabBarVC.viewControllers?[1] as? QuestNavigationController),
+              let questVC = questNav.viewControllers.first as? QuestViewController
         else {
             return
         }
         
-        questVC.router?.dataStore.questManager.finish(plogging: ploggingData)
+        questVC.router?.dataStore.questManager.finish(plogging: data)
     }
     
     func navigateToShare(source: PloggingRecordViewController, destination: ShareViewController){
@@ -59,11 +60,14 @@ class PloggingRecordRouter: NSObject, PloggingRecordRoutingLogic, PloggingRecord
     }
     
     func passDataToShare(source: PloggingRecordDataStore, destination: inout ShareDataStore){
-        let selectedItems = viewController!.collectionView.indexPathsForSelectedItems ?? []
-        let selectPloggingItems = selectedItems.map { PloggingItemType.allCases[$0.item] }
+        let selectedItems = viewController?.selectedItems ?? []
+        let selectPloggingItems = selectedItems.map { PloggingItemType.allCases[$0] }
         
         destination.ploggingData = source.ploggingData
+        
         destination.ploggingData?.items = selectPloggingItems
         destination.image = viewController?.capturedImage
+        
+        passDataToQuest(ploggingData: destination.ploggingData)
     }
 }

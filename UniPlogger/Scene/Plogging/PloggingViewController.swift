@@ -319,6 +319,7 @@ class PloggingViewController: BaseViewController {
         
         self.interactor?.setupLocationService()
         self.interactor?.fetchTrashCan()
+        addObservers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
