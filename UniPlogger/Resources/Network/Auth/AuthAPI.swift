@@ -40,4 +40,15 @@ final class AuthAPI{
                 completionHandler(.failure($0))
             }.disposed(by: disposeBag)
     }
+    
+    func logout() {
+        provider.rx.request(.logout)
+            .filterSuccessfulStatusCodes()
+            .subscribe { (data) in
+                print(data)
+            } onError: { (error) in
+                print(error.localizedDescription)
+            }.disposed(by: disposeBag)
+
+    }
 }

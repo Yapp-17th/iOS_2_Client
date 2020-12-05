@@ -23,7 +23,8 @@ extension BaseTarget {
             "Content-type": "application/json",
         ]
         if let token = AuthManager.shared.userToken{
-            headers["Authorization"] = "JWT \(token)"
+            headers["Authorization"] = "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5LCJ1c2VybmFtZSI6Imd1aW5uZXNzQHRlc3QuY29tIiwiZXhwIjoxNjA3NzUwNDE3LCJlbWFpbCI6Imd1aW5uZXNzQHRlc3QuY29tIiwib3JpZ19pYXQiOjE2MDcxNDU2MTd9.7AumPJ7VfIMhWEKg-dkIbFTRIws1S6JhZeZkD7nI2c8"
+//            headers["Authorization"] = "JWT \(token)"
         }
         return headers
     }

@@ -12,6 +12,7 @@ enum AuthAPITarget{
     //쓰레기통 CRUD
     case login(email: String, password: String)
     case getUser(uid: Int)
+    case logout
 }
 
 extension AuthAPITarget: BaseTarget{
@@ -21,6 +22,8 @@ extension AuthAPITarget: BaseTarget{
             return "users/login/"
         case let .getUser(uid):
             return "users/\(uid)/"
+        case .logout:
+            return "users/logout/"
         }
     }
     
@@ -30,6 +33,8 @@ extension AuthAPITarget: BaseTarget{
             return .post
         case .getUser:
             return .get
+        case .logout:
+            return .post
         }
     }
     
@@ -42,6 +47,8 @@ extension AuthAPITarget: BaseTarget{
             ]
         case .getUser:
             return [:]
+        case .logout:
+            return [:]
         }
     }
     
@@ -50,6 +57,8 @@ extension AuthAPITarget: BaseTarget{
         case .login:
             return .requestParameters(parameters: parameters, encoding: encoding)
         case .getUser:
+            return .requestPlain
+        case .logout:
             return .requestPlain
         }
     }
