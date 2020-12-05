@@ -46,12 +46,15 @@ class QuestViewController: QuestBaseViewController {
         $0.selectedIndex = 0
     }
     
-    private var questTableView = UITableView().then {
+    private lazy var questTableView = UITableView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.separatorStyle = .none
         $0.backgroundColor = .clear
         $0.contentInset = .init(top: 0, left: 0, bottom: Metric.verticalSpacing, right: 0)
         $0.showsVerticalScrollIndicator = false
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+        $0.refreshControl = refreshControl
     }
     
     private lazy var infoBoxButton = UIBarButtonItem().then {
