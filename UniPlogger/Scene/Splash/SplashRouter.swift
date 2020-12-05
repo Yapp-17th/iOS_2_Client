@@ -46,6 +46,7 @@ class SplashRouter: NSObject, SplashRoutingLogic, SplashDataPassing {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             let nvc = UINavigationController(rootViewController: destination)
             nvc.modalPresentationStyle = .fullScreen
+            nvc.setNavigationBarHidden(true, animated: false)
             source.present(nvc, animated: true, completion: nil)
         }
         
