@@ -64,7 +64,7 @@ class QuestViewController: QuestBaseViewController {
     
     private var questViewModel: QuestModels.ViewModel?
     private var interactor: QuestBusinessLogic?
-    private var router: (QuestDataPassing & QuestRoutingLogic)?
+    private(set) var router: (QuestDataPassing & QuestRoutingLogic)?
     private var currentQuestState: QuestState = .todo {
         didSet {
             interactor?.change(state: currentQuestState)
