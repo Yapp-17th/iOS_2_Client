@@ -11,12 +11,13 @@ import Foundation
 extension UserLogViewController {
     
     func setUpViews() {
-        [userInfoContainer, characterImageView, leftStarImageView, rightStarImageView, levelTitleLabel, levelLabel, rankTitleLabel, rankLabel, collectionView].forEach {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            scrollView.addSubview($0)
-        }
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(scrollView)
+        scrollView.addArrangedSubview(userInfoContainer)
+        [characterImageView, leftStarImageView, rightStarImageView, levelTitleLabel, levelLabel, rankTitleLabel, rankLabel].forEach {
+            userInfoContainer.addSubview($0)
+        }
+        scrollView.addArrangedSubview(collectionView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func setUpLayout() {

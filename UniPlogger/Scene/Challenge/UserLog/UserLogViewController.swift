@@ -18,7 +18,7 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
     
     var feedList = [Feed]()
     
-    lazy var scrollView = UIScrollView()
+    lazy var scrollView = ScrollStackView()
     lazy var userInfoContainer = UIImageView().then {
         $0.image = UIImage(named: "bg_logPloggerContainer")?.withRenderingMode(.alwaysOriginal)
         $0.contentMode = .scaleAspectFill
@@ -82,11 +82,16 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor(named: "color_logBackground")
         setNavigationItem()
         setUpViews()
         setUpLayout()
         interactor?.getFeed()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     private func configure() {

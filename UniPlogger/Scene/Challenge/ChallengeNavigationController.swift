@@ -36,6 +36,4 @@ class ChallengeNavigationController: UINavigationController {
         
         navigationBar.tintColor = Color.textBlack
     }
-
-
 }

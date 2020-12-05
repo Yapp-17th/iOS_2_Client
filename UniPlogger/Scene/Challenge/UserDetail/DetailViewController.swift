@@ -12,7 +12,7 @@ protocol DetailDisplayLogic: class {
     func displayGetFeed(viewModel: Detail.GetFeed.ViewModel)
 }
 
-class DetailViewController: ChallengeBaseViewController {
+class DetailViewController: UIViewController {
     var router: (NSObjectProtocol & DetailRoutingLogic & DetailDataPassing)?
     var interactor: DetailBusinessLogic?
     
