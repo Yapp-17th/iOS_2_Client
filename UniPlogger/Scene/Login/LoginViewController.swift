@@ -137,7 +137,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .mainBackgroundColor
         self.view.addSubview(scrollView)
         scrollView.containerView.snp.makeConstraints{
             $0.width.equalTo(self.view)
