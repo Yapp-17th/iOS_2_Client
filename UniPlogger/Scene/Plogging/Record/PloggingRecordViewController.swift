@@ -56,13 +56,14 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     
     let nextLabel = UILabel().then{
         $0.text = "NEXT"
-        $0.textColor = .white
+        $0.textColor = UIColor(hexString: "#999999")
         $0.font = .roboto(ofSize: 15, weight: .bold)
     }
     
     let nextImageView = UIImageView().then{
         $0.contentMode = .center
-        $0.image = UIImage(named: "ic_BtnNextRight")
+        $0.image = UIImage(named: "ic_BtnNextRight")?.withRenderingMode(.alwaysTemplate)
+        $0.tintColor = UIColor(hexString: "#999999")
     }
     
     lazy var nextButton = UIButton().then{
@@ -118,7 +119,7 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         self.configuration()
         self.setupView()
         self.setupLayout()
-        
+        self.setButtonEnabled(false)
         self.interactor?.fetchRecord()
     }
     
@@ -132,6 +133,7 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     }
     
     @objc func skipButtonTapped(){
+        self.selectedItems = []
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true
@@ -166,6 +168,15 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
                 print("couldn't find index path")
             }
         }
+    
+    func setButtonEnabled(_ isEnabled: Bool) {
+        self.nextButtonView.backgroundColor = isEnabled ? .main : .clear
+        self.nextButtonView.layer.borderColor = isEnabled ? UIColor.clear.cgColor : UIColor(hexString: "#999999").cgColor
+        self.nextButtonView.layer.borderWidth = isEnabled ? 0 : 0.5
+        self.nextButton.isEnabled = isEnabled
+        self.nextLabel.textColor = isEnabled ? .white : UIColor(hexString: "#999999")
+        self.nextImageView.tintColor = isEnabled ? .white : UIColor(hexString: "#999999")
+    }
 }
 
 extension PloggingRecordViewController: UICollectionViewDataSource{
@@ -191,6 +202,12 @@ extension PloggingRecordViewController: UICollectionViewDelegate{
             selectedItems.remove(at: index)
         }else{
             selectedItems.append(indexPath.item)
+        }
+        
+        if self.selectedItems.isEmpty {
+            setButtonEnabled(false)
+        } else {
+            setButtonEnabled(true)
         }
         self.collectionView.reloadData()
     }

@@ -27,7 +27,7 @@ class TutorialThirdViewController: UIViewController {
         $0.textAlignment = .center
         $0.adjustsFontSizeToFitWidth = true
         $0.textColor = .white
-        $0.placeholder = "(여기에 닉네임을 입력)"
+        $0.text = "(여기에 닉네임 입력)"
     }
     
     let firstLabel = UILabel().then {

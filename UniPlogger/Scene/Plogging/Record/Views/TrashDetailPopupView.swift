@@ -22,7 +22,8 @@ class TrashDetailPopupView: UIViewController {
     }
     
     let infoIconImageView = UIImageView().then {
-        $0.image = UIImage(named: "")
+        $0.image = UIImage(named: "ic_infoContainer")?.withRenderingMode(.alwaysTemplate)
+        $0.tintColor = UIColor(named: "color_text")
         $0.contentMode = .scaleAspectFit
     }
     
@@ -39,7 +40,7 @@ class TrashDetailPopupView: UIViewController {
     
     
     let infoContainer = UIView().then {
-        $0.backgroundColor = UIColor(hexString: "#27325F")
+        $0.backgroundColor = UIColor(named: "color_infoContainerBackground")
         $0.layer.cornerRadius = 26
         $0.layer.masksToBounds = true
     }
@@ -77,6 +78,7 @@ class TrashDetailPopupView: UIViewController {
         infoContainer.addSubview(vStackView)
         infoContainer.addSubview(contentLabel)
         infoContainer.addSubview(titleLabel)
+        infoContainer.addSubview(infoIconImageView)
     }
     
     private func setupLayout() {
@@ -105,6 +107,11 @@ class TrashDetailPopupView: UIViewController {
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(contentLabel.snp.top).offset(-16)
             $0.top.equalTo(24)
+        }
+        
+        infoIconImageView.snp.makeConstraints {
+            $0.trailing.equalTo(titleLabel.snp.leading).offset(-10)
+            $0.centerY.equalTo(titleLabel)
         }
     }
     
