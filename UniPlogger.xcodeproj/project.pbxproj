@@ -432,6 +432,7 @@
 		AA38A751257B849900B26E1F /* TutorialThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialThirdViewController.swift; sourceTree = "<group>"; };
 		AA38A784257BD4B400B26E1F /* TrashDetailPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDetailPopupView.swift; sourceTree = "<group>"; };
 		AA38A788257BD80700B26E1F /* NSAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extensions.swift"; sourceTree = "<group>"; };
+		AA38A7AC257CB20400B26E1F /* UniPlogger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UniPlogger.entitlements; sourceTree = "<group>"; };
 		AA4AD55225725C920087E060 /* LogAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogAPI.swift; sourceTree = "<group>"; };
 		AA4AD55325725C920087E060 /* LogAPITarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogAPITarget.swift; sourceTree = "<group>"; };
 		AA4AD56825725D0D0087E060 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
@@ -1197,6 +1198,7 @@
 		AAB3B4C62520A31100F0311A /* UniPlogger */ = {
 			isa = PBXGroup;
 			children = (
+				AA38A7AC257CB20400B26E1F /* UniPlogger.entitlements */,
 				AAA1CBF4255D62A900EDB18A /* Network */,
 				AA7F54F82532C20C001C4012 /* Resources */,
 				AA7F54F42532C1CF001C4012 /* Manager */,
@@ -1894,6 +1896,7 @@
 			baseConfigurationReference = 925E132ACB7FB812EDA3D67C /* Pods-UniPlogger.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = UniPlogger/UniPlogger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 97C96KP84G;
 				INFOPLIST_FILE = UniPlogger/Info.plist;
@@ -1901,7 +1904,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.co.yapp17.iOS2.UniPlogger;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.yapp17.iOS.UniPlogger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1913,6 +1916,7 @@
 			baseConfigurationReference = 12330CE7D885C1CB00C8E874 /* Pods-UniPlogger.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = UniPlogger/UniPlogger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 97C96KP84G;
 				INFOPLIST_FILE = UniPlogger/Info.plist;
@@ -1920,7 +1924,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kr.co.yapp17.iOS2.UniPlogger;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.yapp17.iOS.UniPlogger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -49,7 +49,7 @@ class TempTrashAnnotationView: MKAnnotationView{
     }
     
     func configuration(){
-        self.image = UIImage(named: "ic_pinTrashCan")
+        self.image = UIImage(named: "ic_pinTempTrashcan")
         self.isDraggable = true
     }
     
