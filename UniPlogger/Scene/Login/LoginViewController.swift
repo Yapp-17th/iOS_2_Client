@@ -30,12 +30,7 @@ class LoginViewController: UIViewController {
     
     let ploggerBackgroundImageView = UIImageView().then {
         $0.image = UIImage(named: "bg_loginPlogger")
-        $0.contentMode = .scaleAspectFill
-    }
-    
-    let ploggerImageView = UIImageView().then {
-        $0.image = UIImage(named: "ic_loginPlogger")
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleToFill
     }
     
     let formContainerView = UIView().then {
@@ -144,13 +139,10 @@ class LoginViewController: UIViewController {
         }
         
         scrollView.snp.makeConstraints{
-            $0.leading.trailing.equalToSuperview()
-            $0.top.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.top.leading.trailing.bottom.equalToSuperview()
         }
         
         scrollView.addArrangedSubview(ploggerBackgroundImageView)
-        ploggerBackgroundImageView.addSubview(ploggerImageView)
         scrollView.addArrangedSubview(formContainerView)
         
         formContainerView.addSubview(accountFieldBox)
@@ -161,9 +153,8 @@ class LoginViewController: UIViewController {
         formContainerView.addSubview(findPasswordButton)
         formContainerView.addSubview(registrationButton)
         
-        ploggerImageView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(-24)
+        ploggerBackgroundImageView.snp.makeConstraints {
+            $0.height.equalTo(366)
         }
         
         accountFieldBox.snp.makeConstraints{

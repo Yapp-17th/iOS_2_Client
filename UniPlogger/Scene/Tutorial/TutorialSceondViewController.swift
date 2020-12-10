@@ -16,6 +16,13 @@ class TutorialSecondViewController: UIViewController {
         $0.contentMode = .top
     }
     
+    lazy var skipButton = UIButton().then {
+        $0.setTitle("SKIP", for: .normal)
+        $0.titleLabel?.font = .roboto(ofSize: 15, weight: .bold)
+        $0.setTitleColor(.init(hexString: "#999999"), for: .normal)
+        $0.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
+    }
+    
     let contentLabel = UILabel().then {
         $0.text = """
         회의에서는 다름 아닌,
@@ -59,10 +66,16 @@ class TutorialSecondViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.addSubview(backgroundImageView)
+        self.view.addSubview(skipButton)
         self.view.addSubview(nextButtonView)
         self.view.addSubview(contentLabel)
+        
         backgroundImageView.snp.makeConstraints{
             $0.leading.trailing.top.equalToSuperview()
+        }
+        skipButton.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(28)
+            $0.trailing.equalTo(-20)
         }
         
         contentLabel.snp.makeConstraints {
@@ -95,6 +108,11 @@ class TutorialSecondViewController: UIViewController {
         nextButton.snp.makeConstraints{
             $0.edges.equalToSuperview()
         }
+    }
+    
+    @objc func skipButtonTapped() {
+        UserDefaults.standard.set(true, forDefines: .hasTutorial)
+        self.navigationController?.pushViewController(LoginViewController(), animated: true)
     }
     
     @objc func nextButtonTapped() {

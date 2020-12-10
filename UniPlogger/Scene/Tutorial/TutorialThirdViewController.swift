@@ -150,6 +150,7 @@ class TutorialThirdViewController: UIViewController {
     
     @objc func nextButtonTapped() {
         guard let nickname = nicknameField.text, !nickname.isEmpty  else {
+            self.errorAlert(title: "닉네임을 입력해주세요", message: "Uniplogger 을(를) 사용하기 위해서는 닉네임이 필요합니다.", completion: nil)
             return
         }
         UserDefaults.standard.set(true, forDefines: .hasTutorial)

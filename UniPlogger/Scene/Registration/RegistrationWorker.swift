@@ -18,7 +18,7 @@ class RegistrationWorker {
     }
     
     func validatePassword(text: String) -> Bool{
-        return text.count >= 1
+        return text.count >= 8 && text.count <= 20
     }
     
     func validateNickname(text: String) -> Bool{
