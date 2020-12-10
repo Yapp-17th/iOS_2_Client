@@ -17,8 +17,10 @@ enum UPUserDefaulKey: String {
     case getPush = "USERDEFAULT_KEY_GETPUSH"
     case autoSave = "USERDEFAULT_KEY_AUTOSAVE"
     /// 회원가입시 등록을 위한 닉네임
-    case nickname = "USERDEFAULT_KEY_NICKNAME"
     case ploggingCoachmark = "USERDEFAULT_KEY_PLOGGING_COACHMARK"
+    
+    /// 튜토리얼 진행 여부
+    case hasTutorial = "USERDEFAULT_KEY_HAS_TUTORIAL"
 }
 
 // MARK: - UPUserDefaultProtocol

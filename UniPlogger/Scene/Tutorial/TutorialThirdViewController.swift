@@ -27,7 +27,7 @@ class TutorialThirdViewController: UIViewController {
         $0.textAlignment = .center
         $0.adjustsFontSizeToFitWidth = true
         $0.textColor = .white
-        $0.text = "(여기에 닉네임 입력)"
+        $0.attributedPlaceholder = NSMutableAttributedString().string("(여기를 눌러 닉네임을 입력하세요)", font: .dynamicNotosans(fontSize: 20, weight: .bold), color: .white)
     }
     
     let firstLabel = UILabel().then {
@@ -143,13 +143,25 @@ class TutorialThirdViewController: UIViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.nicknameField.becomeFirstResponder()
+    }
+    
     @objc func nextButtonTapped() {
         guard let nickname = nicknameField.text, !nickname.isEmpty  else {
             return
         }
-        UserDefaults.standard.set(nickname, forDefines: .nickname)
-        self.navigationController?.pushViewController(LoginViewController(), animated: true)
+        UserDefaults.standard.set(true, forDefines: .hasTutorial)
+        let destinationVC = RegistrationViewController()
+        var destinationDS = destinationVC.router!.dataStore!
+        
+        destinationDS.nickname = nickname
+        
+        self.navigationController?.pushViewController(destinationVC, animated: true)
     }
+    
+    
     
     
 }

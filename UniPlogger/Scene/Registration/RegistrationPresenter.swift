@@ -13,9 +13,12 @@
 import UIKit
 
 protocol RegistrationPresentationLogic {
+    func presentFetchNickname(response: Registration.FetchNickname.Response)
     func presentValidateAccount(response: Registration.ValidateAccount.Response)
     func presentValidatePassword(response: Registration.ValidatePassword.Response)
     func presentValidatePasswordConfirm(response: Registration.ValidatePasswordConfirm.Response)
+    func presentValidateNickname(response: Registration.ValidateNickname.Response)
+    
     
     func presentRegistration(response: Registration.Registration.Response)
 }
@@ -25,7 +28,12 @@ class RegistrationPresenter: RegistrationPresentationLogic {
     var isValidAccount: Bool = false
     var isValidPassword: Bool = false
     var isValidPasswordConfirm: Bool = false
+    var isValidNickname: Bool = false
     
+    func presentFetchNickname(response: Registration.FetchNickname.Response) {
+        let viewModel = Registration.FetchNickname.ViewModel(nickname: response.nickname)
+        self.viewController?.displayFetchNickname(viewModel: viewModel)
+    }
     
     func presentValidateAccount(response: Registration.ValidateAccount.Response){
         self.isValidAccount = response.isValid
@@ -42,6 +50,12 @@ class RegistrationPresenter: RegistrationPresentationLogic {
     
     func presentValidatePasswordConfirm(response: Registration.ValidatePasswordConfirm.Response){
         self.isValidPasswordConfirm = response.isValid
+        let viewModel = Registration.ValidationViewModel(isValid: isValidAccount && isValidPassword && isValidPasswordConfirm)
+        viewController?.displayValidation(viewModel: viewModel)
+    }
+    
+    func presentValidateNickname(response: Registration.ValidateNickname.Response) {
+        self.isValidNickname = response.isValid
         let viewModel = Registration.ValidationViewModel(isValid: isValidAccount && isValidPassword && isValidPasswordConfirm)
         viewController?.displayValidation(viewModel: viewModel)
     }

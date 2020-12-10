@@ -85,7 +85,12 @@ extension SplashViewController: SplashDisplayLogic{
     }
     
     func displayNotLogined() {
-        self.router?.routeToLogin()
+        if !UserDefaults.standard.bool(forDefines: .hasTutorial) {
+            self.router?.routeToTutorial()
+        } else {
+            self.router?.routeToLogin()
+        }
+        
     }
     
     func displayError(error: Common.CommonError, useCase: Splash.UseCase){

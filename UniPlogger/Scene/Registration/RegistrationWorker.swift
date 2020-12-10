@@ -21,6 +21,10 @@ class RegistrationWorker {
         return text.count >= 1
     }
     
+    func validateNickname(text: String) -> Bool{
+        return text.count >= 1
+    }
+    
     func registration(request: Registration.Registration.Request, completion: @escaping (Registration.Registration.Response) -> Void){
         AuthAPI.shared.registration(email: request.email, password1: request.password1, password2: request.password2) { (response) in
             switch response {

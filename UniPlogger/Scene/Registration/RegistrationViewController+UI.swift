@@ -12,6 +12,7 @@ extension RegistrationViewController {
     func configuration() {
         self.view.backgroundColor = .mainBackgroundColor
         self.navigationItem.title = "회원가입"
+        self.navigationItem.hidesBackButton = true
     }
     
     func setupView() {
@@ -22,6 +23,9 @@ extension RegistrationViewController {
         self.view.addSubview(passwordInfoLabel)
         self.view.addSubview(passwordConfirmFieldBox)
         passwordConfirmFieldBox.addSubview(passwordConfirmField)
+        self.view.addSubview(nicknameFieldBox)
+        nicknameFieldBox.addSubview(nicknameField)
+        
         self.view.addSubview(registrationButton)
     }
     
@@ -72,8 +76,22 @@ extension RegistrationViewController {
             $0.trailing.equalTo(-26)
         }
         
+        nicknameFieldBox.snp.makeConstraints{
+            $0.top.equalTo(passwordConfirmFieldBox.snp.bottom).offset(12)
+            $0.leading.equalTo(20)
+            $0.trailing.equalTo(-20)
+            $0.height.equalTo(48)
+        }
+        
+        nicknameField.snp.makeConstraints{
+            $0.top.equalTo(12)
+            $0.bottom.equalTo(-12)
+            $0.leading.equalTo(26)
+            $0.trailing.equalTo(-26)
+        }
+        
         registrationButton.snp.makeConstraints {
-            $0.top.equalTo(passwordConfirmFieldBox.snp.bottom).offset(60)
+            $0.top.equalTo(nicknameFieldBox.snp.bottom).offset(60)
             $0.leading.equalTo(18)
             $0.trailing.equalTo(-18)
             $0.height.equalTo(52)
