@@ -13,6 +13,7 @@ enum LogAPITarget{
     case getFeed(uId: Int)
     case getUserFeed(uid: Int)
     case getOtherUser(uid: Int)
+    case deleteFeed(fid: Int)
 }
 
 extension LogAPITarget: BaseTarget{
@@ -24,6 +25,8 @@ extension LogAPITarget: BaseTarget{
             return "users/feed/others_feed/"
         case let .getOtherUser(uid):
             return "users/\(uid)/"
+        case let .deleteFeed(fid):
+            return "users/feed/\(fid)/"
         }
     }
     
@@ -35,6 +38,8 @@ extension LogAPITarget: BaseTarget{
             return .post
         case .getOtherUser:
             return .get
+        case .deleteFeed:
+            return .delete
         }
     }
     
@@ -45,6 +50,8 @@ extension LogAPITarget: BaseTarget{
         case .getUserFeed:
             return [:]
         case .getOtherUser:
+            return [:]
+        case .deleteFeed:
             return [:]
         }
     }
@@ -57,6 +64,8 @@ extension LogAPITarget: BaseTarget{
             let uidData = MultipartFormData(provider: .data("\(uid)".data(using: .utf8)!), name: "id")
             return .uploadMultipart([uidData])
         case .getOtherUser:
+            return .requestPlain
+        case .deleteFeed:
             return .requestPlain
         }
     }

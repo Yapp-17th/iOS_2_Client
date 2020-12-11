@@ -11,6 +11,7 @@ import UIKit
 protocol DetailBusinessLogic {
     func getFeed()
     func shareToInstagram(assetIdentifier: String)
+    func deleteFeed()
 }
 
 protocol DetailDataStore {
@@ -41,5 +42,14 @@ class DetailInteractor: DetailBusinessLogic, DetailDataStore{
             }
         }
     }
+    
+    func deleteFeed() {
+        guard let feed = self.feed else { return }
+        self.worker.deleteFeed(fid: feed.id) { [weak self] in
+            self?.presenter?.presentDeleteFeed()
+        }
+    }
+    
+    
     
 }

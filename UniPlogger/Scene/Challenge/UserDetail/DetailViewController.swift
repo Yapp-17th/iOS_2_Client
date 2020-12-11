@@ -10,6 +10,7 @@ import UIKit
 import Photos
 protocol DetailDisplayLogic: class {
     func displayGetFeed(viewModel: Detail.GetFeed.ViewModel, uid: Int)
+    func displayDeleteFeed()
 }
 
 class DetailViewController: UIViewController {
@@ -94,11 +95,23 @@ class DetailViewController: UIViewController {
         router?.routeToReport()
     }
     @objc func touchUpDeleteButton(){
-        
+        self.interactor?.deleteFeed()
     }
     
     @objc func touchUpSaveButton() {
-        
+        guard let image = self.mergeViews() else { return }
+        let photoManager = PhotoManager(albumName: "UniPlogger")
+        photoManager.save(image) { (success, error) in
+            if success {
+                DispatchQueue.main.async {
+                    self.showAlert(title: "사진 저장", message: "사진이 저장되었습니다.")
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.showAlert(title: "ERROR", message: error?.localizedDescription ?? "error")
+                }
+            }
+        }
     }
     
     @objc func touchUpShareButton() {
@@ -179,6 +192,17 @@ extension DetailViewController: DetailDisplayLogic {
         } else {
             setupOtherFeed()
         }
+    }
+    
+    func displayDeleteFeed() {
+        let alert = UIAlertController(title: "알림", message: "피드 삭제가 완료되었습니다.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { (_) in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     func setupMyFeed() {
