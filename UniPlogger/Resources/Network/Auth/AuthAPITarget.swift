@@ -14,8 +14,7 @@ enum AuthAPITarget{
     case getUser(uid: Int)
     case logout
     case withdraw(uid: Int)
-    case registration(email: String, password1: String, password2: String)
-    case nickname(uid: Int, nickname: String)
+    case registration(email: String, password1: String, password2: String, nickname: String)
     case initQuest
 }
 
@@ -32,8 +31,6 @@ extension AuthAPITarget: BaseTarget{
             return "users/\(uid)/"
         case .registration:
             return "users/registration/"
-        case let .nickname(uid, _):
-            return "users/\(uid)/"
         case .initQuest:
             return "users/quest_to_user/"
         }
@@ -51,8 +48,6 @@ extension AuthAPITarget: BaseTarget{
             return .delete
         case .registration:
             return .post
-        case .nickname:
-            return .put
         case .initQuest:
             return .get
         }
@@ -73,14 +68,11 @@ extension AuthAPITarget: BaseTarget{
             return [
                 "id":uid
             ]
-        case let .registration(email, password1, password2):
+        case let .registration(email, password1, password2, nickname):
             return [
                 "email": email,
                 "password1": password1,
-                "password2": password2
-            ]
-        case let .nickname(_, nickname):
-            return [
+                "password2": password2,
                 "nickname": nickname
             ]
         case .initQuest:
@@ -99,8 +91,6 @@ extension AuthAPITarget: BaseTarget{
         case .withdraw:
             return .requestParameters(parameters: parameters, encoding: encoding)
         case .registration:
-            return .requestParameters(parameters: parameters, encoding: encoding)
-        case .nickname:
             return .requestParameters(parameters: parameters, encoding: encoding)
         case .initQuest:
             return .requestPlain

@@ -26,16 +26,13 @@ class RegistrationWorker {
     }
     
     func registration(request: Registration.Registration.Request, completion: @escaping (Registration.Registration.Response) -> Void){
-        AuthAPI.shared.registration(email: request.email, password1: request.password1, password2: request.password2) { (response) in
+        AuthAPI.shared.registration(email: request.email, password1: request.password1, password2: request.password2, nickname: request.nickname) { (response) in
             switch response {
             case let .success(value):
                 AuthManager.shared.userToken = value.token
                 AuthManager.shared.user = value.user
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    if let uid = value.user?.id{
-                        AuthAPI.shared.setNickname(uid: uid, nickname: request.nickname)
-                        AuthAPI.shared.initQuest()
-                    }
+                    AuthAPI.shared.initQuest()
                 }
                 
                 let response = Registration.Registration.Response(request: request, response: value)

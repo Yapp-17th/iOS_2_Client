@@ -12,7 +12,9 @@ extension RegistrationViewController {
     func configuration() {
         self.view.backgroundColor = .mainBackgroundColor
         self.navigationItem.title = "회원가입"
-        self.navigationItem.hidesBackButton = true
+        if let vcs = self.navigationController?.viewControllers, let _ = vcs[vcs.count - 2] as? TutorialThirdViewController {
+            self.navigationItem.hidesBackButton = true
+        }
     }
     
     func setupView() {
