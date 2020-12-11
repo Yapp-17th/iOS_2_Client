@@ -2,6 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>uniplogger</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -29,7 +40,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>주변의 쓰레기통 찾기 및 운동 경로 기록 등을 위해 위치 권한이 필요합니다.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>"앨범에 접근하겠습니다."</string>
+	<string>&quot;앨범에 접근하겠습니다.&quot;</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>NotoSansCJKkr-Black.otf</string>
