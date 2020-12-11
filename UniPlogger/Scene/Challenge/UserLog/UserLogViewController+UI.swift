@@ -25,7 +25,7 @@ extension UserLogViewController {
             make.top.bottom.leading.trailing.equalToSuperview()
         }
         userInfoContainer.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(-88)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(self.view.frame.height * 0.36)
         }

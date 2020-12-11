@@ -72,16 +72,17 @@ extension LogViewController {
     
     func setupPloggerContainer(){
         ploggerContainer.snp.makeConstraints{
-            $0.height.equalTo(290)
+          $0.height.equalTo(self.view.frame.height * 0.36)
         }
         ploggerImageView.snp.makeConstraints{
-            $0.bottom.equalTo(-38)
+            $0.bottom.equalTo(ploggerContainer).offset(-self.view.frame.height * 0.047)
             $0.width.equalTo(self.view.frame.width * 0.21)
             $0.centerX.equalToSuperview()
+            $0.height.equalTo(ploggerImageView.snp.width).multipliedBy(1.67)
         }
         
         yellowStarImageView.snp.makeConstraints{
-            $0.bottom.equalTo(-75)
+            $0.bottom.equalTo(-self.view.frame.height * 0.093)
             $0.trailing.equalTo(ploggerImageView.snp.leading).offset(-self.view.frame.width * 0.08)
         }
         pinkStarImageView.snp.makeConstraints{
