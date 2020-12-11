@@ -16,6 +16,12 @@ class TutorialFirstViewController: UIViewController {
         $0.contentMode = .top
     }
     
+    lazy var skipButton = UIButton().then {
+        $0.setTitle("SKIP", for: .normal)
+        $0.titleLabel?.font = .roboto(ofSize: 15, weight: .bold)
+        $0.setTitleColor(.init(hexString: "#999999"), for: .normal)
+        $0.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
+    }
     
     let kingImageView = UIImageView().then {
         $0.image = UIImage(named: "ic_tutorialFirstKing")
@@ -66,13 +72,17 @@ class TutorialFirstViewController: UIViewController {
         super.viewDidLoad()
         
         UserDefaults.standard.setValue(false, forKey: "QuestTutorial")
-        
         self.view.addSubview(backgroundImageView)
+        self.view.addSubview(skipButton)
         self.view.addSubview(kingImageView)
         self.view.addSubview(contentLabel)
         self.view.addSubview(nextButtonView)
         backgroundImageView.snp.makeConstraints{
             $0.top.leading.trailing.bottom.equalToSuperview()
+        }
+        skipButton.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(28)
+            $0.trailing.equalTo(-20)
         }
         kingImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -111,7 +121,13 @@ class TutorialFirstViewController: UIViewController {
         }
     }
     
+    @objc func skipButtonTapped() {
+        UserDefaults.standard.set(true, forDefines: .hasTutorial)
+        self.navigationController?.pushViewController(LoginViewController(), animated: true)
+    }
+    
     @objc func nextButtonTapped() {
         self.navigationController?.pushViewController(TutorialSecondViewController(), animated: true)
     }
+    
 }

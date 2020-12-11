@@ -180,6 +180,12 @@
 		AA4AD5A12574058E0087E060 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83524821257227DE00C9F495 /* AuthManager.swift */; };
 		AA5EFBB82552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */; };
 		AA6CE4F32551780E00C83D28 /* TrashCanStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */; };
+		AA7658EF258279A500BA0A3E /* FindPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7658E9258279A500BA0A3E /* FindPasswordPresenter.swift */; };
+		AA7658F0258279A500BA0A3E /* FindPasswordWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7658EA258279A500BA0A3E /* FindPasswordWorker.swift */; };
+		AA7658F1258279A500BA0A3E /* FindPasswordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7658EB258279A500BA0A3E /* FindPasswordRouter.swift */; };
+		AA7658F2258279A500BA0A3E /* FindPasswordModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7658EC258279A500BA0A3E /* FindPasswordModels.swift */; };
+		AA7658F3258279A500BA0A3E /* FindPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7658ED258279A500BA0A3E /* FindPasswordViewController.swift */; };
+		AA7658F4258279A500BA0A3E /* FindPasswordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7658EE258279A500BA0A3E /* FindPasswordInteractor.swift */; };
 		AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7F54DD2532C109001C4012 /* BaseViewController.swift */; };
 		AA7F54DF2532C165001C4012 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB3B5062520D16800F0311A /* UIColor+Extensions.swift */; };
 		AA7F54E02532C16E001C4012 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB887B02524603E000A9D58 /* UIFont+Extensions.swift */; };
@@ -442,6 +448,12 @@
 		AA4AD58B2573F95B0087E060 /* DetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModels.swift; sourceTree = "<group>"; };
 		AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingRecordCollectionViewLayout.swift; sourceTree = "<group>"; };
 		AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashCanStorage.swift; sourceTree = "<group>"; };
+		AA7658E9258279A500BA0A3E /* FindPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordPresenter.swift; sourceTree = "<group>"; };
+		AA7658EA258279A500BA0A3E /* FindPasswordWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordWorker.swift; sourceTree = "<group>"; };
+		AA7658EB258279A500BA0A3E /* FindPasswordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordRouter.swift; sourceTree = "<group>"; };
+		AA7658EC258279A500BA0A3E /* FindPasswordModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordModels.swift; sourceTree = "<group>"; };
+		AA7658ED258279A500BA0A3E /* FindPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordViewController.swift; sourceTree = "<group>"; };
+		AA7658EE258279A500BA0A3E /* FindPasswordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordInteractor.swift; sourceTree = "<group>"; };
 		AA7F54DD2532C109001C4012 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		AA7F54E42532C1A6001C4012 /* StartCountingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartCountingViewController.swift; sourceTree = "<group>"; };
 		AA7F54E52532C1A6001C4012 /* PloggingInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PloggingInteractor.swift; sourceTree = "<group>"; };
@@ -632,6 +644,7 @@
 		4CC9C7C525231565004D873D /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				AA7658E82582799400BA0A3E /* FindPassword */,
 				AA38A746257B840000B26E1F /* Tutorial */,
 				AA38A72F257B691800B26E1F /* Registration */,
 				AA38A71A257A9DE800B26E1F /* Login */,
@@ -1010,6 +1023,19 @@
 				AA4AD55325725C920087E060 /* LogAPITarget.swift */,
 			);
 			path = Log;
+			sourceTree = "<group>";
+		};
+		AA7658E82582799400BA0A3E /* FindPassword */ = {
+			isa = PBXGroup;
+			children = (
+				AA7658E9258279A500BA0A3E /* FindPasswordPresenter.swift */,
+				AA7658EA258279A500BA0A3E /* FindPasswordWorker.swift */,
+				AA7658EB258279A500BA0A3E /* FindPasswordRouter.swift */,
+				AA7658EC258279A500BA0A3E /* FindPasswordModels.swift */,
+				AA7658ED258279A500BA0A3E /* FindPasswordViewController.swift */,
+				AA7658EE258279A500BA0A3E /* FindPasswordInteractor.swift */,
+			);
+			path = FindPassword;
 			sourceTree = "<group>";
 		};
 		AA7F54DB2532C0E5001C4012 /* Recovered References */ = {
@@ -1519,16 +1545,19 @@
 				4CF6208A257B11750029FBD6 /* ProceedingQuest+CoreDataProperties.swift in Sources */,
 				835248632572285100C9F495 /* LogCollectionViewLayout.swift in Sources */,
 				AA38A785257BD4B400B26E1F /* TrashDetailPopupView.swift in Sources */,
+				AA7658F1258279A500BA0A3E /* FindPasswordRouter.swift in Sources */,
 				AA38A73F257B6B5800B26E1F /* RegistrationViewController+UI.swift in Sources */,
 				835248A02572C9BF00C9F495 /* ChallengeAPI.swift in Sources */,
 				AA7F551D2533568D001C4012 /* SharePresenter.swift in Sources */,
 				AA38A724257A9DFA00B26E1F /* LoginModels.swift in Sources */,
 				4CE9149A257BB33000BCF398 /* QuestTutorialViewController3.swift in Sources */,
+				AA7658F3258279A500BA0A3E /* FindPasswordViewController.swift in Sources */,
 				AA38A725257A9DFA00B26E1F /* LoginViewController.swift in Sources */,
 				83DE07752566AD050085AC72 /* DetailViewController.swift in Sources */,
 				AAB3B4F12520B37100F0311A /* UIView+Extensions.swift in Sources */,
 				83530970257B918D00C3626D /* WithdrawViewController.swift in Sources */,
 				AA7F551F2533568D001C4012 /* ShareViewController.swift in Sources */,
+				AA7658F4258279A500BA0A3E /* FindPasswordInteractor.swift in Sources */,
 				83530992257B9D3F00C3626D /* WithdrawViewController+UI.swift in Sources */,
 				AA38A726257A9DFA00B26E1F /* LoginInteractor.swift in Sources */,
 				83DE07842566AD050085AC72 /* RankTableViewCell.swift in Sources */,
@@ -1547,6 +1576,7 @@
 				AAA1CBF2255D620100EDB18A /* BaseTarget.swift in Sources */,
 				4CBA217B254EB1AF002BDCC3 /* QuestModels+ViewModel.swift in Sources */,
 				AAB559392549BB26000BB903 /* FormatDisplay.swift in Sources */,
+				AA7658EF258279A500BA0A3E /* FindPasswordPresenter.swift in Sources */,
 				835248B025743FD700C9F495 /* UserLogPresenter.swift in Sources */,
 				AA4AD579257265FF0087E060 /* DetailWorker.swift in Sources */,
 				AA38A721257A9DFA00B26E1F /* LoginPresenter.swift in Sources */,
@@ -1597,6 +1627,7 @@
 				AAA1CC03255D647100EDB18A /* PloggingAPITarget.swift in Sources */,
 				4C6F0ABA257B8AEA008DF8D1 /* SuccessPopupView.swift in Sources */,
 				4C2D059B2556459400FA787F /* QuestDetailPresenter.swift in Sources */,
+				AA7658F0258279A500BA0A3E /* FindPasswordWorker.swift in Sources */,
 				4CF62089257B11750029FBD6 /* ProceedingQuest+CoreDataClass.swift in Sources */,
 				AAC9584F2545BC110092BA6E /* ScrollStackView.swift in Sources */,
 				AA7F55252533568D001C4012 /* ShareModels.swift in Sources */,
@@ -1671,6 +1702,7 @@
 				83DE07852566AD050085AC72 /* ChallengeInteractor.swift in Sources */,
 				AAAD68FF2555A52B00895265 /* QuestDetailViewController.swift in Sources */,
 				AA38A6D5257A761200B26E1F /* NetworkerrorManager.swift in Sources */,
+				AA7658F2258279A500BA0A3E /* FindPasswordModels.swift in Sources */,
 				4CE91496257BB32400BCF398 /* QuestTutorialViewController2.swift in Sources */,
 				83DE07782566AD050085AC72 /* ReportViewController.swift in Sources */,
 				83DE07832566AD050085AC72 /* TopRankView.swift in Sources */,
@@ -1898,6 +1930,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = UniPlogger/UniPlogger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 97C96KP84G;
 				INFOPLIST_FILE = UniPlogger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1918,6 +1951,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = UniPlogger/UniPlogger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 97C96KP84G;
 				INFOPLIST_FILE = UniPlogger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

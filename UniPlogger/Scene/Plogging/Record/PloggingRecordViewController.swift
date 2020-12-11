@@ -134,19 +134,36 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     
     @objc func skipButtonTapped(){
         self.selectedItems = []
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.allowsEditing = true
-        picker.sourceType = UIImagePickerController.SourceType.camera
-        self.present(picker, animated: true, completion: nil)
+        self.collectionView.reloadData()
+        let alert = UIAlertController(title: "플로깅 인증 사진을\n촬영하시겠습니까?", message: "사진 촬영을 위해 사진앱을 실행합니다.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "실행", style: .default) { (_) in
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.allowsEditing = true
+            picker.sourceType = UIImagePickerController.SourceType.camera
+            self.present(picker, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     @objc func nextButtonTapped(){
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.allowsEditing = true
-        picker.sourceType = UIImagePickerController.SourceType.camera
-        self.present(picker, animated: true, completion: nil)
+        let alert = UIAlertController(title: "플로깅 인증 사진을\n촬영하시겠습니까?", message: "사진 촬영을 위해 사진앱을 실행합니다.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "실행", style: .default) { (_) in
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.allowsEditing = true
+            picker.sourceType = UIImagePickerController.SourceType.camera
+            self.present(picker, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     @objc func handleLongPress(gesture : UILongPressGestureRecognizer!) {

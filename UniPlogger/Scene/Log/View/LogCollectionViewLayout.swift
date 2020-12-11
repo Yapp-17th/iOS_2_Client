@@ -95,4 +95,9 @@ class LogCollectionViewLayout: UICollectionViewFlowLayout {
         
     }
     
+    func resetCache(){
+        self.cache.removeAll()
+        self.xOffset = []
+        self.yOffset = [CGFloat](repeating: 0, count: numberOfColumns)
+    }
 }

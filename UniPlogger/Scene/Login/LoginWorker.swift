@@ -18,7 +18,7 @@ class LoginWorker {
     }
     
     func validatePassword(text: String) -> Bool{
-        return text.count >= 1
+        return text.count >= 8 && text.count <= 20
     }
     
     func login(request: Login.Login.Request, completion: @escaping (Login.Login.Response) -> Void) {

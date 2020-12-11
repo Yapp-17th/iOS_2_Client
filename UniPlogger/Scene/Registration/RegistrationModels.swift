@@ -19,6 +19,16 @@ enum Registration {
         case Registration(Registration.Request)
     }
     
+    enum FetchNickname {
+        struct Response {
+            var nickname: String
+        }
+        
+        struct ViewModel {
+            var nickname: String
+        }
+    }
+    
     enum ValidateAccount{
       struct Request{
         var account: String
@@ -40,6 +50,15 @@ enum Registration {
     enum ValidatePasswordConfirm{
       struct Request{
         var password: String
+      }
+      struct Response{
+        var isValid: Bool
+      }
+    }
+    
+    enum ValidateNickname{
+      struct Request{
+        var nickname: String
       }
       struct Response{
         var isValid: Bool

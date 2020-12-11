@@ -31,7 +31,7 @@ class LogViewController: UIViewController {
     }
     let ploggerContainer = UIImageView().then{
         $0.image = UIImage(named: "mypage_background")?.withRenderingMode(.alwaysOriginal)
-        $0.contentMode = .scaleAspectFill
+        $0.contentMode = .scaleToFill
     }
     
     let ploggerImageView = UIImageView().then{
@@ -165,11 +165,10 @@ class LogViewController: UIViewController {
         configuration()
         setupView()
         setupLayout()
-        self.interactor?.getUser()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.interactor?.getUser()
     }
     
     
@@ -197,10 +196,12 @@ extension LogViewController: LogDisplayLogic{
     }
     func displayGetFeed(viewModel: Log.GetFeed.ViewModel) {
         self.feedList = viewModel.feedList
-        
+        if let layout = self.collectionView.collectionViewLayout as? LogCollectionViewLayout {
+            layout.resetCache()
+        }
         DispatchQueue.main.async {
             self.scrollView.refreshControl?.endRefreshing()
-            self.collectionView.reloadSections([0])
+            self.collectionView.reloadData()
         }
     }
     func displayError(error: Common.CommonError, useCase: Log.UseCase){

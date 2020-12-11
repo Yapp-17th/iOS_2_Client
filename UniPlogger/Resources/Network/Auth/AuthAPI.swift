@@ -41,8 +41,8 @@ final class AuthAPI{
             }.disposed(by: disposeBag)
     }
     
-    func registration(email: String, password1: String, password2: String, completion: @escaping (Result<LoginResponse, Error>) -> Void) {
-        provider.rx.request(.registration(email: email, password1: password1, password2: password2))
+    func registration(email: String, password1: String, password2: String, nickname: String, completion: @escaping (Result<LoginResponse, Error>) -> Void) {
+        provider.rx.request(.registration(email: email, password1: password1, password2: password2, nickname: nickname))
             .filterSuccessfulStatusCodes()
             .map(LoginResponse.self)
             .subscribe {
@@ -50,12 +50,6 @@ final class AuthAPI{
             } onError: {
                 completion(.failure($0))
             }.disposed(by: disposeBag)
-    }
-    
-    func setNickname(uid: Int, nickname: String){
-        provider.rx.request(.nickname(uid: uid, nickname: nickname))
-            .filterSuccessfulStatusCodes()
-            .subscribe().disposed(by: disposeBag)
     }
     
     func initQuest(){
@@ -82,6 +76,16 @@ final class AuthAPI{
                 print(data)
             } onError: { (error) in
                 print(error.localizedDescription)
+            }.disposed(by: disposeBag)
+    }
+    
+    func findPassword(email: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        provider.rx.request(.findPassword(email: email))
+            .filterSuccessfulStatusCodes()
+            .subscribe { _ in
+                completion(.success(()))
+            } onError: {
+                completion(.failure($0))
             }.disposed(by: disposeBag)
     }
     

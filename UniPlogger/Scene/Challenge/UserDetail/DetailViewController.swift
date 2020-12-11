@@ -7,9 +7,10 @@
 //
 
 import UIKit
-
+import Photos
 protocol DetailDisplayLogic: class {
     func displayGetFeed(viewModel: Detail.GetFeed.ViewModel, uid: Int)
+    func displayDeleteFeed()
 }
 
 class DetailViewController: UIViewController {
@@ -29,6 +30,16 @@ class DetailViewController: UIViewController {
     }
     lazy var reportButton = UIBarButtonItem(image: UIImage(named: "report"), style: .plain, target: self, action: #selector(touchUpReportButton))
 
+    lazy var shareButtonView = UIView()
+    lazy var shareButton = UIButton().then {
+        $0.setImage(UIImage(named: "share_instagram"), for: .normal)
+        $0.backgroundColor = UIColor(named: "shareColor")
+        $0.layer.cornerRadius = 50
+        $0.addTarget(self, action: #selector(touchUpShareButton), for: .touchUpInside)
+    }
+    
+    
+    
     // MARK: Object lifecycle
       
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -83,6 +94,87 @@ class DetailViewController: UIViewController {
     @objc func touchUpReportButton() {
         router?.routeToReport()
     }
+    @objc func touchUpDeleteButton(){
+        self.interactor?.deleteFeed()
+    }
+    
+    @objc func touchUpSaveButton() {
+        guard let image = self.mergeViews() else { return }
+        let photoManager = PhotoManager(albumName: "UniPlogger")
+        photoManager.save(image) { (success, error) in
+            if success {
+                DispatchQueue.main.async {
+                    self.showAlert(title: "사진 저장", message: "사진이 저장되었습니다.")
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.showAlert(title: "ERROR", message: error?.localizedDescription ?? "error")
+                }
+            }
+        }
+    }
+    
+    @objc func touchUpShareButton() {
+        guard let imageForShare = self.mergeViews() else { return }
+        
+        if !AuthManager.shared.autoSave {
+            showAlert(title: "사진을 저장하시겠습니까?",
+                      message: "사진을 저장해야만 공유가 가능합니다.",
+                      confirm: (title: "YES", handler: ({ [weak self] action in
+                        self?.shareImage(for: imageForShare)
+                      })),
+                      cancel: (title: "NO", handler: { _ in
+                        return
+                      }))
+        } else {
+            shareImage(for: imageForShare)
+        }
+    }
+    
+    func shareImage(for image: UIImage) {
+        let photoManager = PhotoManager(albumName: "UniPlogger")
+        photoManager.save(image) { (success, error) in
+            if success {
+                let fetchOptions = PHFetchOptions()
+                fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+                let fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+                guard let lastAssetIdentifier = fetchResult.firstObject?.localIdentifier else { return }
+                DispatchQueue.main.async {
+                    self.showAlert(title: "사진 저장", message: "사진이 저장되었습니다.")
+                }
+                self.interactor?.shareToInstagram(assetIdentifier: lastAssetIdentifier)
+            } else {
+                DispatchQueue.main.async {
+                    self.showAlert(title: "ERROR", message: error?.localizedDescription ?? "error")
+                }
+            }
+        }
+    }
+    
+    func showAlert(title: String,
+                   message: String,
+                   confirm: (title: String, handler: ((UIAlertAction) -> Void))? = nil,
+                   cancel: (title: String, handler: ((UIAlertAction) -> Void))? = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: confirm?.title ?? "OK", style: .default, handler: { action in
+            confirm?.handler(action) ?? self.dismiss(animated: true, completion: nil)
+        })
+        let cancelActon = UIAlertAction(title: cancel?.title ?? "NO", style: .cancel) { action in
+            cancel?.handler(action)
+        }
+        alertController.addAction(confirmAction)
+        if cancel != nil {
+            alertController.addAction(cancelActon)
+        }
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func mergeViews() -> UIImage? {
+        let outPutImageView = UIImageView()
+        let image = ploggingImageView.asImage()
+        outPutImageView.image = image
+        return outPutImageView.image
+    }
 }
 
 extension DetailViewController: DetailDisplayLogic {
@@ -95,8 +187,40 @@ extension DetailViewController: DetailDisplayLogic {
             self.ploggingImageView.image = image
         }
         print(viewModel)
-        if uid == AuthManager.shared.user?.id {
-            reportButton.isEnabled = false
+        if let id = AuthManager.shared.user?.id, uid == id{
+            setupMyFeed()
+        } else {
+            setupOtherFeed()
         }
     }
+    
+    func displayDeleteFeed() {
+        let alert = UIAlertController(title: "알림", message: "피드 삭제가 완료되었습니다.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { (_) in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func setupMyFeed() {
+        let barbuttonItems:[UIBarButtonItem] = [
+            .init(image: UIImage(named: "ic_detailSaveImage")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(touchUpSaveButton)),
+            .init(image: UIImage(named: "ic_detailDelete")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(touchUpDeleteButton))
+        ]
+        
+        self.navigationItem.rightBarButtonItems = barbuttonItems
+        self.shareButtonView.isHidden = false
+        
+    }
+    
+    func setupOtherFeed() {
+        
+        self.navigationItem.rightBarButtonItem = .init(image: UIImage(named: "report")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(touchUpReportButton))
+        shareButtonView.isHidden = true
+    }
+    
+    
 }

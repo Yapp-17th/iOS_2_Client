@@ -52,4 +52,14 @@ final class LogAPI{
                 completionHandler(.failure($0))
             }.disposed(by: disposeBag)
     }
+    
+    func deleteFeed(fid: Int, completionHandler: @escaping (Result<Void, Error>) -> Void) {
+        provider.rx.request(.deleteFeed(fid: fid))
+            .filterSuccessfulStatusCodes()
+            .subscribe { _ in
+                completionHandler(.success(()))
+            } onError: {
+                completionHandler(.failure($0))
+            }.disposed(by: disposeBag)
+    }
 }
