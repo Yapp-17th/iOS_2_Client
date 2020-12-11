@@ -85,6 +85,7 @@ class TrashDetailPopupView: UIViewController {
         infoContainer.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()
             $0.width.equalTo(335)
+            $0.height.equalTo(335)
         }
         
         closeButton.snp.makeConstraints {
