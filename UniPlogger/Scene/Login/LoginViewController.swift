@@ -61,6 +61,8 @@ class LoginViewController: UIViewController {
     let passwordField = UITextField().then {
         $0.font = .notoSans(ofSize: 16, weight: .regular)
         $0.isSecureTextEntry = true
+        $0.textContentType = .password
+        $0.keyboardType = .asciiCapable
         $0.backgroundColor = .clear
         $0.borderStyle = .none
         $0.placeholder = "비밀번호"
@@ -81,6 +83,7 @@ class LoginViewController: UIViewController {
         $0.setTitle("비밀번호 찾기", for: .normal)
         $0.titleLabel?.font = .notoSans(ofSize: 14, weight: .regular)
         $0.setTitleColor(UIColor(named: "color_loginButton"), for: .normal)
+        $0.addTarget(self, action: #selector(findPasswordButtonTapped), for: .touchUpInside)
     }
     
     lazy var registrationButton = UIButton().then{
@@ -227,9 +230,14 @@ class LoginViewController: UIViewController {
       self.interactor?.validatePassword(request: request)
     }
     
+    @objc func findPasswordButtonTapped() {
+        self.router?.routeToFindPassword()
+    }
+    
     @objc func registrationButtonTapped() {
         self.router?.routeToRegistration()
     }
+    
 }
 
 extension LoginViewController: LoginDisplayLogic {

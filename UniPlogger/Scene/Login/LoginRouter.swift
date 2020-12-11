@@ -15,6 +15,7 @@ import UIKit
 @objc protocol LoginRoutingLogic {
     func routeToSplash()
     func routeToRegistration()
+    func routeToFindPassword()
 }
 
 protocol LoginDataPassing {
@@ -38,8 +39,18 @@ class LoginRouter: NSObject, LoginRoutingLogic, LoginDataPassing {
         navigateToRegistration(source: viewController!, destination: destinationVC)
     }
     
+    func routeToFindPassword() {
+        let destinationVC = FindPasswordViewController()
+        navigateToFindPassword(source: viewController!, destination: destinationVC)
+    }
+    
     func navigateToRegistration(source: LoginViewController, destination: RegistrationViewController){
         source.navigationController?.pushViewController(destination, animated: true)
     }
+    
+    func navigateToFindPassword(source: LoginViewController, destination: FindPasswordViewController){
+        source.navigationController?.pushViewController(destination, animated: true)
+    }
+    
     
 }
