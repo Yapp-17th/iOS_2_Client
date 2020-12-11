@@ -11,10 +11,10 @@ import Foundation
 extension DetailViewController {
     
     func setUpViews() {
-        [backgroundImageView, ploggingImageView].forEach {
+        [backgroundImageView, ploggingImageView, shareButtonView].forEach {
             self.view.addSubview($0)
-            $0.translatesAutoresizingMaskIntoConstraints = false
         }
+        shareButtonView.addSubview(shareButton)
     }
     
     func setUpLayout() {
@@ -27,6 +27,16 @@ extension DetailViewController {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(self.view.frame.height * 0.29)
         }
+        shareButtonView.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalTo(ploggingImageView.snp.bottom)
+        }
+        shareButton.snp.makeConstraints {
+            $0.width.height.equalTo(100)
+            $0.centerX.centerY.equalTo(shareButtonView)
+        }
+        
+        shareButtonView.isHidden = true
     }
     
 }

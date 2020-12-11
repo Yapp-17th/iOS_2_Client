@@ -10,6 +10,7 @@ import UIKit
 
 protocol DetailBusinessLogic {
     func getFeed()
+    func shareToInstagram(assetIdentifier: String)
 }
 
 protocol DetailDataStore {
@@ -30,5 +31,15 @@ class DetailInteractor: DetailBusinessLogic, DetailDataStore{
         self.presenter?.presentGetFeed(response: response, uid: uid)
     }
     
+    func shareToInstagram(assetIdentifier: String) {
+        guard let url = URL(string: "instagram://library?LocalIdentifier=\(assetIdentifier)") else { return }
+        DispatchQueue.main.async {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            } else {
+                print("Instagram is not installed")
+            }
+        }
+    }
     
 }
