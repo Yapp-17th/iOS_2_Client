@@ -44,6 +44,8 @@ class PloggingViewController: BaseViewController {
     var interactor: PloggingBusinessLogic?
     var router: (NSObjectProtocol & PloggingRoutingLogic & PloggingDataPassing)?
     
+    var ploggingState: Plogging.State = .stop
+    
     var infoList: [String] = [
         "준비물을 확인해주세요",
         "퀘스트는 확인하셨나요?",
@@ -484,7 +486,7 @@ extension PloggingViewController: PloggingDisplayLogic{
         self.seconds = 0
         
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
-        
+        self.ploggingState = .doing
     }
     
     func displayPausePlogging() {
@@ -493,6 +495,7 @@ extension PloggingViewController: PloggingDisplayLogic{
         self.resumeButton.isHidden = false
         self.timer?.invalidate()
         self.timer = nil
+        self.ploggingState = .doing
     }
     
     func displayResumePlogging() {
@@ -500,6 +503,7 @@ extension PloggingViewController: PloggingDisplayLogic{
         self.stopButton.isHidden = true
         self.resumeButton.isHidden = true
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
+        self.ploggingState = .doing
     }
 
     @objc func displayStopPlogging() {
@@ -514,6 +518,7 @@ extension PloggingViewController: PloggingDisplayLogic{
         self.timeLabel.text = "00:00"
         self.distanceLabel.text = "0.00 km"
         self.router?.routeToPloggingRecord()
+        self.ploggingState = .stop
     }
     
     @objc func displayResume() {
@@ -564,7 +569,13 @@ extension PloggingViewController: PloggingDisplayLogic{
         self.trashButton.snp.remakeConstraints{
             $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
             $0.width.height.equalTo(50)
-            $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
+            switch self.ploggingState {
+            case .stop:
+                $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
+            case .doing:
+                $0.bottom.equalTo(self.doingPauseBottomContainerView.snp.top).offset(-16)
+            }
+            
         }
     }
     func displayAddTrashCanCancel() {
@@ -578,7 +589,12 @@ extension PloggingViewController: PloggingDisplayLogic{
         self.trashButton.snp.remakeConstraints{
             $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
             $0.width.height.equalTo(50)
-            $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
+            switch self.ploggingState {
+            case .stop:
+                $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
+            case .doing:
+                $0.bottom.equalTo(self.doingPauseBottomContainerView.snp.top).offset(-16)
+            }
         }
     }
     
