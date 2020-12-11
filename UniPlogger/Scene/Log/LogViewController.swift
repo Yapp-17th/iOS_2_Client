@@ -31,7 +31,7 @@ class LogViewController: UIViewController {
     }
     let ploggerContainer = UIImageView().then{
         $0.image = UIImage(named: "mypage_background")?.withRenderingMode(.alwaysOriginal)
-        $0.contentMode = .scaleAspectFill
+        $0.contentMode = .scaleToFill
     }
     
     let ploggerImageView = UIImageView().then{

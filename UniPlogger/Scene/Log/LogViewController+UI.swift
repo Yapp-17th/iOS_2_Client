@@ -65,24 +65,23 @@ extension LogViewController {
         }
         
         scrollView.snp.makeConstraints{
-            $0.edges.equalToSuperview()
+          $0.top.leading.trailing.equalToSuperview()
+          $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
     }
     
     func setupPloggerContainer(){
         ploggerContainer.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(-88)
-            $0.height.equalTo(self.view.frame.height * 0.36)
+            $0.height.equalTo(290)
         }
         ploggerImageView.snp.makeConstraints{
-            $0.bottom.equalTo(ploggerContainer).offset(-self.view.frame.height * 0.047)
+            $0.bottom.equalTo(-38)
             $0.width.equalTo(self.view.frame.width * 0.21)
-            $0.height.equalTo(ploggerImageView.snp.width).multipliedBy(1.67)
             $0.centerX.equalToSuperview()
         }
         
         yellowStarImageView.snp.makeConstraints{
-            $0.bottom.equalTo(ploggerContainer).offset(-self.view.frame.height * 0.093)
+            $0.bottom.equalTo(-75)
             $0.trailing.equalTo(ploggerImageView.snp.leading).offset(-self.view.frame.width * 0.08)
         }
         pinkStarImageView.snp.makeConstraints{
