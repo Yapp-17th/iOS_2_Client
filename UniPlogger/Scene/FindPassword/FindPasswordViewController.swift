@@ -13,6 +13,7 @@
 import UIKit
 
 protocol FindPasswordDisplayLogic: class {
+    func displayFindPassword()
     func displayError(error: Common.CommonError, useCase: FindPassword.UseCase)
 }
 
@@ -47,9 +48,8 @@ class FindPasswordViewController: UIViewController {
     
     lazy var findPasswordButton = UIButton().then {
         $0.setTitle("확인", for: .normal)
-        $0.backgroundColor = UIColor(named: "color_registrationButton")
+        $0.backgroundColor = .main
         $0.titleLabel?.font = .roboto(ofSize: 15, weight: .bold)
-        $0.isEnabled = false
         $0.layer.cornerRadius = 26
         $0.layer.masksToBounds = true
         $0.addTarget(self, action: #selector(findPasswordButtonTapped), for: .touchUpInside)
@@ -154,11 +154,29 @@ class FindPasswordViewController: UIViewController {
     }
     
     @objc func findPasswordButtonTapped() {
-        
+        guard let email = accountField.text, !email.isEmpty else {
+            self.errorAlert(title: "오류", message: "이메일을 입력해주세요") { (_) in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.accountField.becomeFirstResponder()
+                }
+            }
+            return
+        }
+        self.interactor?.findPassword(request: .init(email: email))
     }
 }
 
 extension FindPasswordViewController: FindPasswordDisplayLogic {
+    func displayFindPassword() {
+        let alert = UIAlertController(title: "알림", message: "입력하신 이메일로 패스워드 리셋 정보를 전송하였습니다.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default) { (_) in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
     func displayError(error: Common.CommonError, useCase: FindPassword.UseCase){
         //handle error with its usecase
     }

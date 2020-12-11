@@ -79,4 +79,14 @@ final class AuthAPI{
             }.disposed(by: disposeBag)
     }
     
+    func findPassword(email: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        provider.rx.request(.findPassword(email: email))
+            .filterSuccessfulStatusCodes()
+            .subscribe { _ in
+                completion(.success(()))
+            } onError: {
+                completion(.failure($0))
+            }.disposed(by: disposeBag)
+    }
+    
 }

@@ -13,7 +13,7 @@
 import UIKit
 
 protocol FindPasswordBusinessLogic {
-    
+    func findPassword(request: FindPassword.FindPassword.Request)
 }
 
 protocol FindPasswordDataStore {
@@ -22,7 +22,11 @@ protocol FindPasswordDataStore {
 
 class FindPasswordInteractor: FindPasswordBusinessLogic, FindPasswordDataStore {
     var presenter: FindPasswordPresentationLogic?
-    var worker: FindPasswordWorker?
-    //var name: String = ""
+    var worker = FindPasswordWorker()
     
+    func findPassword(request: FindPassword.FindPassword.Request) {
+        worker.findPassword(request: request) {
+            self.presenter?.presentFindPassword()
+        }
+    }
 }

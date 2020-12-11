@@ -13,5 +13,14 @@
 import UIKit
 
 class FindPasswordWorker {
-    
+    func findPassword(request: FindPassword.FindPassword.Request, completion: @escaping () -> Void) {
+        AuthAPI.shared.findPassword(email: request.email) { (response) in
+            switch response {
+            case .success():
+                completion()
+            case let .failure(error):
+                completion()
+            }
+        }
+    }
 }

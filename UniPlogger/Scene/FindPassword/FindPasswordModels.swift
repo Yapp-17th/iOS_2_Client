@@ -18,4 +18,10 @@ enum FindPassword {
     enum UseCase {
         
     }
+    
+    enum FindPassword {
+        struct Request {
+            var email: String
+        }
+    }
 }

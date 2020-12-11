@@ -13,10 +13,12 @@
 import UIKit
 
 protocol FindPasswordPresentationLogic {
-    
+    func presentFindPassword()
 }
 
 class FindPasswordPresenter: FindPasswordPresentationLogic {
     weak var viewController: FindPasswordDisplayLogic?
-    
+    func presentFindPassword() {
+        self.viewController?.displayFindPassword()
+    }
 }
