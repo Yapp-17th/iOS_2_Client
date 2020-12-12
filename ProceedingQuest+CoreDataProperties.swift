@@ -17,6 +17,7 @@ extension ProceedingQuest {
         return NSFetchRequest<ProceedingQuest>(entityName: "ProceedingQuest")
     }
     
+    @NSManaged public var email: String
     @NSManaged public var questId: Int16
     @NSManaged public var time: Int64
     @NSManaged public var distance: Double

@@ -59,6 +59,7 @@ class QuestChecker: QuestCheckable {
                             proceedingQuest.completeCount += 1
                             completed.append(proceedingQuest)
                         }
+                        self.storage.updateProceedingQuest(proceedingQuest)
                     }
                     completion(completed)
                 case .failure(let error):
