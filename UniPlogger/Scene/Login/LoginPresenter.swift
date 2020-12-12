@@ -38,14 +38,13 @@ class LoginPresenter: LoginPresentationLogic {
     }
     
     func presentLogin(response: Login.Login.Response) {
-        guard let user = response.response?.user,
-              let token = response.response?.token,
+        guard let loginResponse = response.response,
               response.error == nil else {
             viewController?.displayError(error: response.error!, useCase: .Login(response.request))
             return
         }
-        AuthManager.shared.userToken = token
-        AuthManager.shared.user = user
+        AuthManager.shared.userToken = loginResponse.token
+        AuthManager.shared.user = loginResponse.user
         
         viewController?.displayLogin()
     }

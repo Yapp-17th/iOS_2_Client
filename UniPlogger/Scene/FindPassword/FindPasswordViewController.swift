@@ -13,7 +13,7 @@
 import UIKit
 
 protocol FindPasswordDisplayLogic: class {
-    func displayFindPassword()
+    func displayFindPassword(viewModel: FindPassword.FindPassword.ViewModel)
     func displayError(error: Common.CommonError, useCase: FindPassword.UseCase)
 }
 
@@ -167,8 +167,8 @@ class FindPasswordViewController: UIViewController {
 }
 
 extension FindPasswordViewController: FindPasswordDisplayLogic {
-    func displayFindPassword() {
-        let alert = UIAlertController(title: "알림", message: "입력하신 이메일로 패스워드 리셋 정보를 전송하였습니다.", preferredStyle: .alert)
+    func displayFindPassword(viewModel: FindPassword.FindPassword.ViewModel) {
+        let alert = UIAlertController(title: "알림", message: viewModel.data, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default) { (_) in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.navigationController?.popViewController(animated: true)
@@ -179,5 +179,22 @@ extension FindPasswordViewController: FindPasswordDisplayLogic {
     }
     func displayError(error: Common.CommonError, useCase: FindPassword.UseCase){
         //handle error with its usecase
+        switch error {
+        case .server(let msg):
+            self.errorAlert(title: "오류", message: msg, completion: nil)
+        case .local(let msg):
+            self.errorAlert(title: "오류", message: msg, completion: nil)
+        case .error(let error):
+            guard let error = error as? URLError else { return }
+            NetworkErrorManager.alert(error) { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                    guard let self = self else { return }
+                    switch useCase{
+                    case .FindPassword(let request):
+                        self.interactor?.findPassword(request: request)
+                    }
+                }
+            }
+        }
     }
 }

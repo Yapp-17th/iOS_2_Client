@@ -25,8 +25,8 @@ class FindPasswordInteractor: FindPasswordBusinessLogic, FindPasswordDataStore {
     var worker = FindPasswordWorker()
     
     func findPassword(request: FindPassword.FindPassword.Request) {
-        worker.findPassword(request: request) {
-            self.presenter?.presentFindPassword()
+        worker.findPassword(request: request) { response in
+            self.presenter?.presentFindPassword(response: response)
         }
     }
 }

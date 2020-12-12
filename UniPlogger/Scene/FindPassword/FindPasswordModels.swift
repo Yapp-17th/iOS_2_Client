@@ -16,12 +16,22 @@ enum FindPassword {
     // MARK: Use cases
     
     enum UseCase {
-        
+        case FindPassword(FindPassword.Request)
     }
     
     enum FindPassword {
         struct Request {
             var email: String
+        }
+        
+        struct Response {
+            var request: Request
+            var data: FindPasswordResponse?
+            var error: Common.CommonError?
+        }
+        
+        struct ViewModel {
+            var data: String
         }
     }
 }

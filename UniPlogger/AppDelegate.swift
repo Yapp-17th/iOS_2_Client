@@ -37,5 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print(#function, "coredata save error")
         }
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        return true
+    }
 }
 

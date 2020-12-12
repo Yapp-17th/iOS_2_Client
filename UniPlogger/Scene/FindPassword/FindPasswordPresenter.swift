@@ -13,12 +13,18 @@
 import UIKit
 
 protocol FindPasswordPresentationLogic {
-    func presentFindPassword()
+    func presentFindPassword(response: FindPassword.FindPassword.Response)
 }
 
 class FindPasswordPresenter: FindPasswordPresentationLogic {
     weak var viewController: FindPasswordDisplayLogic?
-    func presentFindPassword() {
-        self.viewController?.displayFindPassword()
+    func presentFindPassword(response: FindPassword.FindPassword.Response) {
+        guard let data = response.data?.detail, response.error == nil else {
+            self.viewController?.displayError(error: response.error!, useCase: .FindPassword(response.request))
+            return
+        }
+        
+        let viewModel = FindPassword.FindPassword.ViewModel(data: data)
+        self.viewController?.displayFindPassword(viewModel: viewModel)
     }
 }

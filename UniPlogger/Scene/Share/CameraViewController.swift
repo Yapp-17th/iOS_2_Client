@@ -22,7 +22,7 @@ class CameraViewController: UIViewController {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true
-        picker.sourceType = UIImagePickerController.SourceType.camera
+        picker.sourceType = UIImagePickerController.SourceType.photoLibrary
         self.present(picker, animated: true, completion: nil)
     }
     private func configureViews() {
