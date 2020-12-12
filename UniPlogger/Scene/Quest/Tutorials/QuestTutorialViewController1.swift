@@ -10,11 +10,11 @@ import UIKit
 
 class QuestTutorialViewController1: UIViewController {
     
-    let backgroundImageView = UIImageView().then {
+    lazy var backgroundImageView = UIImageView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.contentMode = .scaleAspectFit
         $0.isUserInteractionEnabled = true
-        $0.image = UIImage(named: "quest_tutorial1")
+        $0.image = UIImage(named: "quest_tutorial1")!.resizeTopAlignedToFill(newWidth: self.view.frame.width)
+        $0.contentMode = .scaleAspectFill
         $0.backgroundColor = .questBackground
     }
     
@@ -68,7 +68,7 @@ class QuestTutorialViewController1: UIViewController {
     }
     
     @objc func didTapSkipButton(_ sender: HightlightButton) {
-        UserDefaults.standard.setValue(false, forKey: "QuestTutorial")
+        UserDefaults.standard.setValue(true, forKey: "QuestTutorial")
         dismiss(animated: true, completion: nil)
     }
     

@@ -27,9 +27,11 @@ class QuestWorker {
         QuestAPI.shared.fetchQuestList { [weak self] result in
             guard let self = self else { return }
             switch result {
-                case .success(let quests):
-                    self.quests = self.filterTraining(for: quests)
-                    completionHandler(self.quests)
+                case .success(let value):
+                    if value.success, let quests = value.data{
+                        self.quests = self.filterTraining(for: quests.map { $0.quest })
+                        completionHandler(self.quests)
+                    }
                 case .failure(let error):
                     debugPrint(error)
                     completionHandler([])
@@ -58,7 +60,15 @@ class QuestWorker {
     
     func detail(for quest: Quest, completionHandler: @escaping (_ quest: Quest, _ more: [Quest]) -> Void) {
         QuestAPI.shared.detail(quest: quest) { (response) in
-            completionHandler(response.quest, response.moreQuest ?? [])
+            switch response {
+            case let .success(value):
+                if value.success, let questResponse = value.data {
+                    completionHandler(questResponse.quest, questResponse.moreQuest ?? [])
+                }
+            case let .failure(error):
+                debugPrint(error.localizedDescription)
+            }
+            
         }
     }
     

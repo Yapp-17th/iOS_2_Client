@@ -20,6 +20,11 @@ enum Plogging {
         case StartPlogging
     }
     
+    enum State {
+        case stop
+        case doing
+    }
+    
     enum UpdatePloggingLocation{
         struct Response {
             var distance: Measurement<UnitLength>

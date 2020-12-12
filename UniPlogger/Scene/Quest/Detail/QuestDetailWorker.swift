@@ -22,7 +22,15 @@ class QuestDetailWorker {
     
     func detail(for quest: Quest, completionHandler: @escaping (_ quest: Quest, _ more: [Quest]) -> Void) {
         QuestAPI.shared.detail(quest: quest) { (response) in
-            completionHandler(response.quest, response.moreQuest ?? [])
+            switch response{
+            case let .success(value):
+                if value.success, let questResponse = value.data{
+                    completionHandler(questResponse.quest, questResponse.moreQuest ?? [])
+                }
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
+            
         }
     }
 }

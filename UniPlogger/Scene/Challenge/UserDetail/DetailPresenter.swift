@@ -10,6 +10,7 @@ import UIKit
 
 protocol DetailPresentationLogic {
     func presentGetFeed(response: Detail.GetFeed.Response, uid: Int)
+    func presentDeleteFeed()
 }
 
 class DetailPresenter: DetailPresentationLogic{
@@ -24,6 +25,10 @@ class DetailPresenter: DetailPresentationLogic{
         
         let viewModel = Detail.GetFeed.ViewModel(uid: uid, date: date, time: timeString, distance: distanceString, photo: feed.photo)
         viewController?.displayGetFeed(viewModel: viewModel, uid: uid)
+    }
+    
+    func presentDeleteFeed() {
+        self.viewController?.displayDeleteFeed()
     }
     
 }

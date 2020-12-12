@@ -21,9 +21,9 @@ struct FormatDisplay{
     }
     
     static func time(_ seconds: Int) -> String{
-        let formatter = DateFormatter()
-        formatter.dateFormat = "mm:ss"
-        return formatter.string(from: Date().addingTimeInterval(TimeInterval(seconds)))
+        let minutes = seconds / 60
+        let seconds = seconds % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
     
     static func pace(distance: Measurement<UnitLength>, seconds: Int, outputUnit: UnitSpeed) -> String{

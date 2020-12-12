@@ -18,15 +18,21 @@ class LoginWorker {
     }
     
     func validatePassword(text: String) -> Bool{
-        return text.count >= 1
+        return text.count >= 8 && text.count <= 20
     }
     
     func login(request: Login.Login.Request, completion: @escaping (Login.Login.Response) -> Void) {
         AuthAPI.shared.login(email: request.account, password: request.password) { (response) in
             switch response{
             case .success(let value):
-                let response = Login.Login.Response(request:request, response: value)
-                completion(response)
+                if value.success, let loginResponse = value.data {
+                    let response = Login.Login.Response(request:request, response: loginResponse)
+                    completion(response)
+                } else {
+                    let response = Login.Login.Response(request:request, error: .server(value.message))
+                    completion(response)
+                }
+                
             case .failure(let error):
                 print(error.localizedDescription)
                 let response = Login.Login.Response(request: request, error: .error(error))

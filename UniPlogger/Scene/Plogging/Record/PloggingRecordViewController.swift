@@ -56,13 +56,14 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     
     let nextLabel = UILabel().then{
         $0.text = "NEXT"
-        $0.textColor = .white
+        $0.textColor = UIColor(hexString: "#999999")
         $0.font = .roboto(ofSize: 15, weight: .bold)
     }
     
     let nextImageView = UIImageView().then{
         $0.contentMode = .center
-        $0.image = UIImage(named: "ic_BtnNextRight")
+        $0.image = UIImage(named: "ic_BtnNextRight")?.withRenderingMode(.alwaysTemplate)
+        $0.tintColor = UIColor(hexString: "#999999")
     }
     
     lazy var nextButton = UIButton().then{
@@ -118,7 +119,7 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         self.configuration()
         self.setupView()
         self.setupLayout()
-        
+        self.setButtonEnabled(false)
         self.interactor?.fetchRecord()
     }
     
@@ -132,19 +133,37 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     }
     
     @objc func skipButtonTapped(){
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.allowsEditing = true
-        picker.sourceType = UIImagePickerController.SourceType.camera
-        self.present(picker, animated: true, completion: nil)
+        self.selectedItems = []
+        self.collectionView.reloadData()
+        let alert = UIAlertController(title: "플로깅 인증 사진을\n촬영하시겠습니까?", message: "사진 촬영을 위해 사진앱을 실행합니다.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "실행", style: .default) { (_) in
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.allowsEditing = true
+            picker.sourceType = UIImagePickerController.SourceType.camera
+            self.present(picker, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     @objc func nextButtonTapped(){
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.allowsEditing = true
-        picker.sourceType = UIImagePickerController.SourceType.camera
-        self.present(picker, animated: true, completion: nil)
+        let alert = UIAlertController(title: "플로깅 인증 사진을\n촬영하시겠습니까?", message: "사진 촬영을 위해 사진앱을 실행합니다.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "실행", style: .default) { (_) in
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.allowsEditing = true
+            picker.sourceType = UIImagePickerController.SourceType.camera
+            self.present(picker, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     @objc func handleLongPress(gesture : UILongPressGestureRecognizer!) {
@@ -166,6 +185,15 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
                 print("couldn't find index path")
             }
         }
+    
+    func setButtonEnabled(_ isEnabled: Bool) {
+        self.nextButtonView.backgroundColor = isEnabled ? .main : .clear
+        self.nextButtonView.layer.borderColor = isEnabled ? UIColor.clear.cgColor : UIColor(hexString: "#999999").cgColor
+        self.nextButtonView.layer.borderWidth = isEnabled ? 0 : 0.5
+        self.nextButton.isEnabled = isEnabled
+        self.nextLabel.textColor = isEnabled ? .white : UIColor(hexString: "#999999")
+        self.nextImageView.tintColor = isEnabled ? .white : UIColor(hexString: "#999999")
+    }
 }
 
 extension PloggingRecordViewController: UICollectionViewDataSource{
@@ -191,6 +219,12 @@ extension PloggingRecordViewController: UICollectionViewDelegate{
             selectedItems.remove(at: index)
         }else{
             selectedItems.append(indexPath.item)
+        }
+        
+        if self.selectedItems.isEmpty {
+            setButtonEnabled(false)
+        } else {
+            setButtonEnabled(true)
         }
         self.collectionView.reloadData()
     }

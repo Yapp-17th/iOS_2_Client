@@ -21,8 +21,13 @@ class TrashDetailPopupView: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var titleContainer = UIView().then {
+        $0.backgroundColor = .clear
+    }
+    
     let infoIconImageView = UIImageView().then {
-        $0.image = UIImage(named: "")
+        $0.image = UIImage(named: "ic_infoContainer")?.withRenderingMode(.alwaysTemplate)
+        $0.tintColor = UIColor(named: "color_text")
         $0.contentMode = .scaleAspectFit
     }
     
@@ -39,7 +44,7 @@ class TrashDetailPopupView: UIViewController {
     
     
     let infoContainer = UIView().then {
-        $0.backgroundColor = UIColor(hexString: "#27325F")
+        $0.backgroundColor = UIColor(named: "color_infoContainerBackground")
         $0.layer.cornerRadius = 26
         $0.layer.masksToBounds = true
     }
@@ -76,13 +81,16 @@ class TrashDetailPopupView: UIViewController {
         infoContainer.addSubview(closeButton)
         infoContainer.addSubview(vStackView)
         infoContainer.addSubview(contentLabel)
-        infoContainer.addSubview(titleLabel)
+        infoContainer.addSubview(titleContainer)
+        titleContainer.addSubview(titleLabel)
+        titleContainer.addSubview(infoIconImageView)
     }
     
     private func setupLayout() {
         infoContainer.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()
             $0.width.equalTo(335)
+            $0.height.equalTo(335)
         }
         
         closeButton.snp.makeConstraints {
@@ -92,20 +100,33 @@ class TrashDetailPopupView: UIViewController {
         
         vStackView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(closeButton.snp.top).offset(-24)
+            $0.bottom.equalTo(closeButton.snp.top).offset(-23)
+            $0.height.equalTo(140)
         }
         
-        contentLabel.snp.makeConstraints {
-            $0.leading.equalTo(24)
-            $0.trailing.equalTo(-24)
-            $0.bottom.equalTo(vStackView.snp.top).offset(-24)
+        titleContainer.snp.makeConstraints{
+            $0.top.equalTo(20)
+            $0.height.equalTo(30)
+            $0.centerX.equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(contentLabel.snp.top).offset(-16)
-            $0.top.equalTo(24)
+            $0.trailing.equalToSuperview()
+            $0.centerY.equalToSuperview()
         }
+        infoIconImageView.snp.makeConstraints {
+            $0.trailing.equalTo(titleLabel.snp.leading).offset(-10)
+            $0.centerY.equalTo(titleLabel)
+            $0.leading.equalToSuperview()
+        }
+        
+        contentLabel.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(vStackView.snp.top)
+            $0.top.equalTo(titleLabel.snp.bottom)
+        }
+        
+        
     }
     
     private func updateView() {

@@ -26,7 +26,7 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
     }
     lazy var userInfoContainer = UIImageView().then {
         $0.image = UIImage(named: "mypage_background")?.withRenderingMode(.alwaysOriginal)
-        $0.contentMode = .scaleAspectFill
+        $0.contentMode = .scaleToFill
     }
     lazy var characterImageView = UIImageView().then {
         $0.image = UIImage(named: "character")

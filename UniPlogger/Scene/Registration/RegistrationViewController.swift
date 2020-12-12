@@ -13,6 +13,7 @@
 import UIKit
 
 protocol RegistrationDisplayLogic: class {
+    func displayFetchNickname(viewModel: Registration.FetchNickname.ViewModel)
     func displayValidation(viewModel: Registration.ValidationViewModel)
     func displayRegistration()
     func displayError(error: Common.CommonError, useCase: Registration.UseCase)
@@ -73,6 +74,20 @@ class RegistrationViewController: UIViewController {
         $0.addTarget(self, action: #selector(validatePasswordConfirm), for: .editingChanged)
     }
     
+    let nicknameFieldBox = UIView().then {
+        $0.backgroundColor = .recordCellBackgroundColor
+        $0.layer.cornerRadius = 24
+        $0.layer.masksToBounds = true
+    }
+    
+    let nicknameField = UITextField().then {
+        $0.font = .notoSans(ofSize: 16, weight: .regular)
+        $0.backgroundColor = .clear
+        $0.borderStyle = .none
+        $0.placeholder = "닉네임"
+        $0.addTarget(self, action: #selector(validateNickname), for: .editingChanged)
+    }
+    
     lazy var registrationButton = UIButton().then {
         $0.setTitle("회원가입 완료", for: .normal)
         $0.backgroundColor = UIColor(named: "color_registrationButton")
@@ -128,6 +143,12 @@ class RegistrationViewController: UIViewController {
         configuration()
         setupView()
         setupLayout()
+        self.interactor?.fetchNickname()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.accountField.becomeFirstResponder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -158,12 +179,18 @@ class RegistrationViewController: UIViewController {
       self.interactor?.validatePasswordConfirm(request: request)
     }
     
+    @objc func validateNickname(){
+      guard let text = nicknameField.text else { return }
+      let request = Registration.ValidateNickname.Request(nickname: text)
+      self.interactor?.validateNickname(request: request)
+    }
+    
     @objc func registrationButtonTapped() {
         guard let account = accountField.text, !account.isEmpty,
               let password = passwordField.text, !password.isEmpty,
-              let passwordConfirm = passwordConfirmField.text, !passwordConfirm.isEmpty
+              let passwordConfirm = passwordConfirmField.text, !passwordConfirm.isEmpty,
+              let nickname = nicknameField.text, !nickname.isEmpty
         else { return }
-        let nickname = UserDefaults.standard.string(forDefines: .nickname) ?? ""
         
         let request = Registration.Registration.Request(nickname: nickname, email: account, password1: password, password2: passwordConfirm)
         self.interactor?.registration(request: request)
@@ -171,6 +198,11 @@ class RegistrationViewController: UIViewController {
 }
 
 extension RegistrationViewController: RegistrationDisplayLogic {
+    func displayFetchNickname(viewModel: Registration.FetchNickname.ViewModel) {
+        self.nicknameField.text = viewModel.nickname
+        self.validateNickname()
+    }
+    
     func displayValidation(viewModel: Registration.ValidationViewModel) {
         self.registrationButton.isEnabled = viewModel.isValid
         self.registrationButton.backgroundColor = viewModel.isValid ? .main : UIColor(named: "color_loginButton")

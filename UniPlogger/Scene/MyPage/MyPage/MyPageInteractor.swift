@@ -20,30 +20,19 @@ protocol MyPageDataStore {
 class MyPageInteractor: MyPageBusinessLogic, MyPageDataStore {
     
     var presenter: MyPagePresentationLogic?
-    
+    var worker = LogWorker()
     var level: Int = 0
     var rank: Int = 0
     
     func getUserInfo() {
         guard let user = AuthManager.shared.user else { return }
-        getUser(uid: user.id) { [weak self] (response) in
-            guard let self = self, let user = response.user else { return }
+        self.worker.getUser(uid: user.id) { [weak self] (response) in
+            guard let self = self else { return }
+            guard let user = response.response else { return }
             self.level = user.level
             self.rank = Int(user.rank)
             self.presenter?.presentUserInfo(level: self.level, rank: self.rank)
-        }
-    }
-    
-    func getUser(uid: Int, completion: @escaping(Log.GetUser.Response) -> Void) {
-        LogAPI.shared.getOtherUser(uid: uid) { (response) in
-            switch response {
-            case let .success(user):
-                let response = Log.GetUser.Response(user: user)
-                completion(response)
-            case let .failure(error):
-                let response = Log.GetUser.Response(error: .error(error))
-                completion(response)
-            }
+        
         }
     }
 }

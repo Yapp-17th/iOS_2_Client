@@ -10,7 +10,7 @@ import Foundation
 
 enum Common{
     enum CommonError: Error{
-        case server(String)
+        case server(String?)
         case local(String)
         case error(Error)
     }

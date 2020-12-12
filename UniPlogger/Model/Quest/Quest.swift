@@ -24,6 +24,7 @@ struct Quest {
         case training = "T"
         case routine = "R"
     }
+    
 }
 
 extension Quest: Codable {

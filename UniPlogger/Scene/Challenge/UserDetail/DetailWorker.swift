@@ -9,5 +9,14 @@
 import UIKit
 
 class DetailWorker {
-    
+    func deleteFeed(fid: Int, completion: @escaping () -> Void) {
+        LogAPI.shared.deleteFeed(fid: fid) { (response) in
+            switch response {
+            case .success():
+                completion()
+            case let .failure(error):
+                completion()
+            }
+        }
+    }
 }

@@ -30,12 +30,7 @@ class LoginViewController: UIViewController {
     
     let ploggerBackgroundImageView = UIImageView().then {
         $0.image = UIImage(named: "bg_loginPlogger")
-        $0.contentMode = .scaleAspectFill
-    }
-    
-    let ploggerImageView = UIImageView().then {
-        $0.image = UIImage(named: "ic_loginPlogger")
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleToFill
     }
     
     let formContainerView = UIView().then {
@@ -66,6 +61,8 @@ class LoginViewController: UIViewController {
     let passwordField = UITextField().then {
         $0.font = .notoSans(ofSize: 16, weight: .regular)
         $0.isSecureTextEntry = true
+        $0.textContentType = .password
+        $0.keyboardType = .asciiCapable
         $0.backgroundColor = .clear
         $0.borderStyle = .none
         $0.placeholder = "비밀번호"
@@ -86,6 +83,7 @@ class LoginViewController: UIViewController {
         $0.setTitle("비밀번호 찾기", for: .normal)
         $0.titleLabel?.font = .notoSans(ofSize: 14, weight: .regular)
         $0.setTitleColor(UIColor(named: "color_loginButton"), for: .normal)
+        $0.addTarget(self, action: #selector(findPasswordButtonTapped), for: .touchUpInside)
     }
     
     lazy var registrationButton = UIButton().then{
@@ -137,20 +135,17 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .mainBackgroundColor
         self.view.addSubview(scrollView)
         scrollView.containerView.snp.makeConstraints{
             $0.width.equalTo(self.view)
         }
         
         scrollView.snp.makeConstraints{
-            $0.leading.trailing.equalToSuperview()
-            $0.top.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.top.leading.trailing.bottom.equalToSuperview()
         }
         
         scrollView.addArrangedSubview(ploggerBackgroundImageView)
-        ploggerBackgroundImageView.addSubview(ploggerImageView)
         scrollView.addArrangedSubview(formContainerView)
         
         formContainerView.addSubview(accountFieldBox)
@@ -161,9 +156,8 @@ class LoginViewController: UIViewController {
         formContainerView.addSubview(findPasswordButton)
         formContainerView.addSubview(registrationButton)
         
-        ploggerImageView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(-24)
+        ploggerBackgroundImageView.snp.makeConstraints {
+            $0.height.equalTo(366)
         }
         
         accountFieldBox.snp.makeConstraints{
@@ -236,9 +230,14 @@ class LoginViewController: UIViewController {
       self.interactor?.validatePassword(request: request)
     }
     
+    @objc func findPasswordButtonTapped() {
+        self.router?.routeToFindPassword()
+    }
+    
     @objc func registrationButtonTapped() {
         self.router?.routeToRegistration()
     }
+    
 }
 
 extension LoginViewController: LoginDisplayLogic {
@@ -253,7 +252,7 @@ extension LoginViewController: LoginDisplayLogic {
     
     func displayError(error: Common.CommonError, useCase: Login.UseCase){
         //handle error with its usecase
-        
+        errorAlert(title: "오류", message: "아이디 또는 비밀번호를 잘못 입력하셨습니다.", completion: nil)
     }
     
 }
