@@ -10,6 +10,7 @@ import Foundation
 
 protocol QuestManageable {
     func start(quest: Quest)
+    func startQuestIfNotProceeding(quests: [Quest])
     func finish(plogging: PloggingData)
     func postCompleteIfSuccess(completed proceedingQuest: ProceedingQuest) -> Bool
 }
@@ -36,6 +37,32 @@ class QuestManager: QuestManageable {
         }
     }
     
+    func startQuestIfNotProceeding(quests: [Quest]) {
+        storage.fetchProceedingQuestList { [weak self] (result) in
+            switch result {
+                case .success(let proceedingQuests):
+                    for quest in quests {
+                        guard !proceedingQuests.contains(where: { $0.questId == Int16(quest.id) &&
+                                                                $0.email == AuthManager.shared.user?.email }) else { continue }
+                        self?.storage.createProceedingQuest(for: quest) { (result) in
+                            switch result {
+                                case .success(let pq):
+                                    #if DEBUG
+                                    print("진행 중이지 않은 퀘스트 추가 \(pq)")
+                                    #endif
+                                case .failure(let error):
+                                    #if DEBUG
+                                    print("진행 중이지 않은 퀘스트 추가 실패 \(error)")
+                                    #endif
+                            }
+                        }
+                    }
+                case .failure(_):
+                    break
+            }
+        }
+    }
+    
     func finish(plogging: PloggingData) {
         questChecker.finish(plogging: plogging) { [weak self] (completed) in
             completed.forEach {
@@ -52,7 +79,7 @@ class QuestManager: QuestManageable {
         else {
             if proceedingQuest.completeCount >= 3 {
                 NotificationCenter.default.post(name: .QuestDidComplete, object: nil, userInfo: [Quest.infoKey: Int(proceedingQuest.questId)])
-                storage.deleteProceedingQuest(proceedingQuest) { [weak self] (result) in
+                storage.deleteProceedingQuest(proceedingQuest) { (result) in
                     switch result {
                         case .success():
                             break
@@ -65,21 +92,12 @@ class QuestManager: QuestManageable {
                 return true
             }
             
-            storage.updateProceedingQuest(proceedingQuest) { (result) in
-                switch result {
-                    case .success(_):
-                        break
-                    case .failure(let error):
-                        #if DEBUG
-                        print("fail update proceeding Quest, \(error)")
-                        #endif
-                }
-            }
+            storage.updateProceedingQuest(proceedingQuest)
             return false
         }
         
         NotificationCenter.default.post(name: .QuestDidComplete, object: nil, userInfo: [Quest.infoKey: Int(proceedingQuest.questId)])
-        storage.deleteProceedingQuest(proceedingQuest) { [weak self] (result) in
+        storage.deleteProceedingQuest(proceedingQuest) { (result) in
             switch result {
                 case .success():
                     break

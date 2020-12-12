@@ -97,6 +97,7 @@ extension QuestInteractor: QuestBusinessLogic {
         worker.fetchData { [weak self] (quests) in
             guard let self = self else { return }
             self.questList = QuestList(quests: quests)
+            self.questManager.startQuestIfNotProceeding(quests: self.questList.quests(for: .doing))
             let response = QuestModels.Response(questList: self.questList.quests(for: request.state))
             self.presenter.presentQuestList(response: response)
         }
