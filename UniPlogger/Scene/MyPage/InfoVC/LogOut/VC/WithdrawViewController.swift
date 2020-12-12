@@ -68,12 +68,29 @@ class WithdrawViewController: UIViewController {
     }
     
     @objc func touchUpCancelButton() {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @objc func touchUpWithdrawButton() {
-        withdraw()
-        self.dismiss(animated: true, completion: nil)
+        showCheckAlert()
+    }
+    
+    func showCheckAlert() {
+        let title = "정말 탈퇴하시겠습니까?"
+        let message = "확인 버튼을 누르면 계정이 삭제됩니다."
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "취소", style: .default, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        })
+        let confirmAction = UIAlertAction(title: "확인", style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            self.withdraw()
+            self.dismiss(animated: true, completion: nil)
+        })
+        alertController.addAction(cancelAction)
+        alertController.addAction(confirmAction)
+        alertController.preferredAction = confirmAction
+        self.present(alertController, animated: true, completion: nil)
     }
     
     private func withdraw() {
