@@ -20,6 +20,18 @@ class QuestDetailWorker {
         }
     }
     
+    func abandon(quest: Quest, completionHandler: @escaping (Bool) -> Void) {
+        QuestAPI.shared.abandon(quest: quest) { (success) in
+            guard success == 200 else {
+                #if DEBUG
+                print("abandon success, quest: \(quest)")
+                #endif
+                return
+            }
+            completionHandler(true)
+        }
+    }
+    
     func detail(for quest: Quest, completionHandler: @escaping (_ quest: Quest, _ more: [Quest]) -> Void) {
         QuestAPI.shared.detail(quest: quest) { (response) in
             switch response{
