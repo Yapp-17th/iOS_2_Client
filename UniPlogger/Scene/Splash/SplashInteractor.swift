@@ -31,20 +31,20 @@ class SplashInteractor: SplashBusinessLogic, SplashDataStore {
             //Todo Login with userToken
             AuthAPI.shared.getUser(uid: user.id) { (response) in
                 switch response{
-                case .success(let user):
-                    AuthManager.shared.user = user
-                    print("splash")
-                    print(user)
-                    let response = Splash.CheckLogin.Response(isLogined: true)
-                    self.presenter?.presentCheckLogin(response: response)
+                case .success(let value):
+                    if value.success, let user = value.data {
+                        AuthManager.shared.user = user
+                        let response = Splash.CheckLogin.Response(isLogined: true)
+                        self.presenter?.presentCheckLogin(response: response)
+                    } else {
+                        let response = Splash.CheckLogin.Response(isLogined: false)
+                        self.presenter?.presentCheckLogin(response: response)
+                    }
                 case .failure(let error):
-                    print(error.localizedDescription)
                     let response = Splash.CheckLogin.Response(isLogined: false)
                     self.presenter?.presentCheckLogin(response: response)
                 }
             }
-            let response = Splash.CheckLogin.Response(isLogined: true)
-            self.presenter?.presentCheckLogin(response: response)
         } else {
             let response = Splash.CheckLogin.Response(isLogined: false)
             self.presenter?.presentCheckLogin(response: response)

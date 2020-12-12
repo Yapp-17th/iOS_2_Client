@@ -31,12 +31,15 @@ class ChallengeWorker {
         ChallengeAPI.shared.fetchPlanet { (response) in
             print("fetch")
             switch response {
-            case .success(let data):
-                guard let data = data else { return }
-                var user = AuthManager.shared.user
-                user?.planet = data
-                AuthManager.shared.user = user
-                completion(data)
+            case .success(let value):
+                if value.success, let data = value.data {
+                    guard let data = data else { return }
+                    var user = AuthManager.shared.user
+                    user?.planet = data
+                    AuthManager.shared.user = user
+                    completion(data)
+                }
+                
             case .failure(let error):
                 let error = Common.CommonError.error(error)
                 print(error)
