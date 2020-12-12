@@ -22,7 +22,7 @@ enum Log {
     
     enum GetUser{
         struct Response{
-            var user: User?
+            var response: User?
             var error: Common.CommonError?
         }
         

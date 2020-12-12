@@ -80,14 +80,14 @@ extension PloggingWorker{
         PloggingAPI.shared.fetchTrashList { (response) in
             switch response{
             case .success(let value):
-                self.fetchTrashCan { list in
-                    if let trashCanList = value{
+                if value.success, let trashcanList = value.data{
+                    self.fetchTrashCan { list in
                         if list.isEmpty{
                             // Toto add list
-                            self.addTrashCanList(list: trashCanList, completion: completion)
+                            self.addTrashCanList(list: trashcanList, completion: completion)
                         }else{
                             var createList: [TrashCan] = []
-                            trashCanList.forEach { item in
+                            trashcanList.forEach { item in
                                 if (list.filter { $0.latitude != item.latitude && $0.longitude == item.longitude}.count == 0){
                                     createList.append(item)
                                 }
@@ -97,8 +97,12 @@ extension PloggingWorker{
                                 completion(createList)
                             }
                         }
+                        
                     }
+                } else {
+                    
                 }
+                
             case .failure(let error):
                 let error = Common.CommonError.error(error)
                 completion([])

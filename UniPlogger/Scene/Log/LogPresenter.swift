@@ -20,7 +20,7 @@ protocol LogPresentationLogic {
 class LogPresenter: LogPresentationLogic {
     weak var viewController: LogDisplayLogic?
     func presentGetUser(response: Log.GetUser.Response) {
-        guard let user = response.user, response.error == nil else {
+        guard let user = response.response, response.error == nil else {
             viewController?.displayError(error: response.error!, useCase: .GetUser)
             return
         }

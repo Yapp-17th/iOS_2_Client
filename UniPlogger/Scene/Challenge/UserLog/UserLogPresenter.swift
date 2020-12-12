@@ -27,7 +27,7 @@ class UserLogPresenter: UserLogPresentationLogic {
     }
     
     func presentUserInfo(response: Log.GetUser.Response) {
-        guard let user = response.user else { return }
+        guard let user = response.response else { return }
         let nickname = user.nickname
         let level = user.level
         let rank = user.rank

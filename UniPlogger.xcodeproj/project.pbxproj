@@ -244,6 +244,7 @@
 		AAB559312549B846000BB903 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB559302549B846000BB903 /* Location.swift */; };
 		AAB559352549BA2D000BB903 /* MultiColorPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB559342549BA2D000BB903 /* MultiColorPolyline.swift */; };
 		AAB559392549BB26000BB903 /* FormatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB559382549BB26000BB903 /* FormatDisplay.swift */; };
+		AAC552B225848D8D000DAFDF /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC552B125848D8D000DAFDF /* BaseResponse.swift */; };
 		AAC9584F2545BC110092BA6E /* ScrollStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC9584E2545BC110092BA6E /* ScrollStackView.swift */; };
 		AAC958582545BF130092BA6E /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AAC958512545BF120092BA6E /* NotoSansCJKkr-Regular.otf */; };
 		AAC958592545BF130092BA6E /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AAC958522545BF120092BA6E /* NotoSansCJKkr-Bold.otf */; };
@@ -527,6 +528,7 @@
 		AAB887A225245F65000A9D58 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		AAB887AE2524600A000A9D58 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		AAB887B02524603E000A9D58 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
+		AAC552B125848D8D000DAFDF /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		AAC9584E2545BC110092BA6E /* ScrollStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollStackView.swift; sourceTree = "<group>"; };
 		AAC958512545BF120092BA6E /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
 		AAC958522545BF120092BA6E /* NotoSansCJKkr-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Bold.otf"; sourceTree = "<group>"; };
@@ -1187,6 +1189,7 @@
 			isa = PBXGroup;
 			children = (
 				AAA1CBF7255D62FD00EDB18A /* VerbosePlugin.swift */,
+				AAC552B125848D8D000DAFDF /* BaseResponse.swift */,
 			);
 			path = Plugin;
 			sourceTree = "<group>";
@@ -1668,6 +1671,7 @@
 				8352480D2572279500C9F495 /* Feed.swift in Sources */,
 				8352489725727BFE00C9F495 /* Planet.swift in Sources */,
 				8352480E2572279500C9F495 /* User.swift in Sources */,
+				AAC552B225848D8D000DAFDF /* BaseResponse.swift in Sources */,
 				AA4AD575257265BF0087E060 /* DetailPresenter.swift in Sources */,
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,
 				835249122577A68800C9F495 /* ReportRouter.swift in Sources */,

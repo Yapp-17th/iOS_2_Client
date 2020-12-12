@@ -12,7 +12,7 @@ import Moya
 import RxSwift
 
 class ChallengeAPI {
-    typealias Response<T: Codable> = T
+    typealias Response<T: Codable> = BaseResponse<T>
     
     let disposeBag = DisposeBag()
     
@@ -23,10 +23,10 @@ class ChallengeAPI {
         plugins: [VerbosePlugin(verbose: true)]
     )
     
-    func startChallenge(completion: @escaping (Result<Bool, Error>) -> Void) {
+    func startChallenge(completion: @escaping (Result<Response<Bool>, Error>) -> Void) {
         provider.rx.request(.startChallenge)
             .filterSuccessfulStatusCodes()
-            .map(Bool.self)
+            .map(Response<Bool>.self)
             .subscribe(onSuccess: {
                 completion(.success($0))
             }, onError: { completion(.failure($0)) })
@@ -34,20 +34,20 @@ class ChallengeAPI {
 
     }
     
-    func fetchPlanet(completionHandler: @escaping (Result<Planet?, Error>)-> Void) {
+    func fetchPlanet(completionHandler: @escaping (Result<Response<Planet?>, Error>)-> Void) {
         provider.rx.request(.fetchPlanet)
             .filterSuccessfulStatusCodes()
-            .map(Planet?.self)
+            .map(Response<Planet?>.self)
             .subscribe(onSuccess: {
                 completionHandler(.success($0))
             }, onError: { completionHandler(.failure($0)) })
             .disposed(by: disposeBag)
     }
     
-    func report(id: Int, completion: @escaping (Result<Feed, Error>) -> Void) {
+    func report(id: Int, completion: @escaping (Result<Response<Feed>, Error>) -> Void) {
         provider.rx.request(.report(id: id))
 //            .filterSuccessfulStatusCodes()
-            .map(Feed.self)
+            .map(Response<Feed>.self)
             .subscribe(onSuccess: {
                 print("success")
                 completion(.success($0))
