@@ -72,10 +72,10 @@ extension QuestInteractor: QuestBusinessLogic {
         guard var quest = questList.quest(at: indexPath, in: state) else { return }
         
         if state == .todo {
-            questManager.start(quest: quest)
-            worker.start(quest: quest)
             questList.remove(quest: quest)
             quest.state = .doing
+            questManager.start(quest: quest)
+            worker.start(quest: quest)
             questList.append(quest)
         } else if state == .doing {
             worker.abandon(quest: quest)
