@@ -118,7 +118,7 @@ class ReportViewController: UIViewController, ReportDelegate {
     @objc private func touchUpReportButton() {
         guard !selectedItems.isEmpty else { return }
         interactor?.report()
-        let alertController = UIAlertController(title: "신고가 완료되었습니다.", message: "3번 신고 시 사진이 삭제됩니다.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "신고되었습니다.", message: "3번 이상 신고 누적 시 사진이 삭제됩니다.", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "확인", style: .default, handler: { _ in
             self.dismiss(animated: true, completion: nil)
         })
