@@ -16,6 +16,7 @@ protocol DetailDisplayLogic: class {
 class DetailViewController: UIViewController {
     var router: (NSObjectProtocol & DetailRoutingLogic & DetailDataPassing)?
     var interactor: DetailBusinessLogic?
+    var imageForSave: UIImage?
     
     lazy var backgroundImageView = UIImageView().then {
         let image = UIImage(named: "mainBackground")
@@ -26,7 +27,7 @@ class DetailViewController: UIViewController {
     lazy var ploggingImageView = PloggingImageView().then {
         $0.backgroundColor = .lightGray
         $0.layer.cornerRadius = 10
-        $0.clipsToBounds = true
+//        $0.clipsToBounds = true
     }
     lazy var reportButton = UIBarButtonItem(image: UIImage(named: "report"), style: .plain, target: self, action: #selector(touchUpReportButton))
 
@@ -78,6 +79,12 @@ class DetailViewController: UIViewController {
         self.interactor?.getFeed()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.imageForSave = mergeViews()
+        ploggingImageView.clipsToBounds = true
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
@@ -99,7 +106,7 @@ class DetailViewController: UIViewController {
     }
     
     @objc func touchUpSaveButton() {
-        guard let image = self.mergeViews() else { return }
+        guard let image = imageForSave else { return }
         let photoManager = PhotoManager(albumName: "UniPlogger")
         photoManager.save(image) { (success, error) in
             if success {

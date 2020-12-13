@@ -72,6 +72,8 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
         $0.dataSource = self
         $0.delegate = self
         $0.register(LogCollectionViewCell.self, forCellWithReuseIdentifier: "LogCollectionViewCell")
+    }.then {
+        $0.isScrollEnabled = false 
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
