@@ -7,41 +7,155 @@
 //
 
 import UIKit
+import AVFoundation
 
-class CameraViewController: UIViewController {
-    let nextButton = UIButton().then {
-        $0.setTitle("NEXT", for: .normal)
-        $0.setTitleColor(.blue, for: .normal)
-        $0.addTarget(self, action: #selector(touchUpNextButton), for: .touchUpInside)
+class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
+    
+    enum FlashMode: Int, CaseIterable {
+        case auto = 0, on, off
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureViews()
+
+    lazy var finderView = UIView()
+    lazy var captureImageView = UIImageView()
+    lazy var cameraButton = UIButton().then {
+        $0.setImage(UIImage(named: "share_camera"), for: .normal)
+        $0.addTarget(self, action: #selector(didTakePhoto), for: .touchUpInside)
     }
-    @objc func touchUpNextButton() {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.allowsEditing = true
-        picker.sourceType = UIImagePickerController.SourceType.camera
-        self.present(picker, animated: true, completion: nil)
+    lazy var flashButton = UIButton().then {
+        $0.setImage(UIImage(named: "flash_auto"), for: .normal)
+        $0.addTarget(self, action: #selector(touchUpFlashButton), for: .touchUpInside)
     }
-    private func configureViews() {
-        self.view.addSubview(nextButton)
-        nextButton.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
-            $0.width.height.equalTo(100)
+    lazy var descriptionLabel = UILabel().then {
+        $0.numberOfLines = 0
+        $0.text = "플로깅한 쓰레기를\n촬영해주세요."
+        $0.textColor = .white
+        $0.font = .notoSans(ofSize: 18, weight: .regular)
+    }
+    
+    var captureSession: AVCaptureSession!
+    var stillImageOutput: AVCapturePhotoOutput!
+    var videoPreviewLayer: AVCaptureVideoPreviewLayer!
+    var photoSetting: AVCapturePhotoSettings!
+    private var isFlashMode: FlashMode = .auto {
+        didSet {
+            switch isFlashMode {
+            case .auto:
+                flashButton.setImage(UIImage(named: "flash_auto"), for: .normal)
+            case .off:
+                flashButton.setImage(UIImage(named: "flash_off"), for: .normal)
+            case .on:
+                flashButton.setImage(UIImage(named: "flash_on"), for: .normal)
+            }
         }
     }
+    
+    override func viewDidLoad() {
+        setupViews()
+        setUpLayout()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        captureSession = AVCaptureSession()
+        captureSession.sessionPreset = .medium
+        guard let backCamera = AVCaptureDevice.default(for: AVMediaType.video)
+            else {
+                print("Unable to access back camera!")
+                return
+        }
+        do {
+            let input = try AVCaptureDeviceInput(device: backCamera)
+            stillImageOutput = AVCapturePhotoOutput()
+            if captureSession.canAddInput(input) && captureSession.canAddOutput(stillImageOutput) {
+                captureSession.addInput(input)
+                captureSession.addOutput(stillImageOutput)
+                photoSetting = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
+                setupLivePreview()
+            }
+        }
+        catch let error {
+            print("Error Unable to initialize back camera:  \(error.localizedDescription)")
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.captureSession.stopRunning()
+    }
+    
+    func setupLivePreview() {
+        videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        videoPreviewLayer.videoGravity = .resize
+        videoPreviewLayer.connection?.videoOrientation = .portrait
+        finderView.layer.addSublayer(videoPreviewLayer)
+        
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
+            self.captureSession.startRunning()
+            DispatchQueue.main.async {
+                self.videoPreviewLayer.frame = self.finderView.bounds
+            }
+        }
+    }
+    
+    @objc func didTakePhoto() {
+        setFlashMode()
+        stillImageOutput.capturePhoto(with: photoSetting, delegate: self)
+    }
+    
+    @objc func touchUpFlashButton() {
+        isFlashMode = FlashMode(rawValue: (isFlashMode.rawValue + 1) % 3)!
+        setFlashMode()
+    }
+    
+    private func setFlashMode() {
+        switch isFlashMode {
+        case .auto:
+            photoSetting.flashMode = .auto
+        case .off:
+            photoSetting.flashMode = .off
+        case .on:
+            photoSetting.flashMode = .on
+        }
+    }
+    
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        guard let imageData = photo.fileDataRepresentation()
+            else { return }
+        let image = UIImage(data: imageData)
+        let vc = ImagePreviewViewController()
+        vc.capturedImage = image
+        self.navigationController?.pushViewController(vc, animated: false)
+    }
+    
 }
 
-extension CameraViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        dismiss(animated: true) {
-            let vc = ShareViewController()
-            vc.modalPresentationStyle = .fullScreen
-            vc.ploggingImageView.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
-            self.present(vc, animated: true, completion: nil)
+extension CameraViewController {
+    func setupViews() {
+        self.view.backgroundColor = .black
+        [finderView, captureImageView, cameraButton, flashButton, descriptionLabel].forEach {
+            self.view.addSubview($0)
+        }
+    }
+    
+    func setUpLayout() {
+        finderView.snp.makeConstraints { (make) in
+            make.top.equalTo(view.frame.height * 0.211)
+            make.width.equalTo(view.frame.width)
+            make.height.equalTo(view.frame.width)
+        }
+        flashButton.snp.makeConstraints { (make) in
+            make.width.height.equalTo(30)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(view.frame.height * 0.117)
+        }
+        cameraButton.snp.makeConstraints { (make) in
+            make.bottom.equalToSuperview().offset(-80)
+            make.centerX.equalToSuperview()
+            make.width.height.equalTo(64)
+        }
+        descriptionLabel.snp.makeConstraints { (make) in
+            make.centerX.centerY.equalTo(finderView)
         }
     }
 }
