@@ -79,11 +79,23 @@ final class AuthAPI{
             }.disposed(by: disposeBag)
     }
     
-    func findPassword(email: String, completion: @escaping (Result<Void, Error>) -> Void) {
+    func findPassword(email: String, completion: @escaping (Result<Response<FindPasswordResponse>, Error>) -> Void) {
         provider.rx.request(.findPassword(email: email))
             .filterSuccessfulStatusCodes()
-            .subscribe { _ in
-                completion(.success(()))
+            .map (Response<FindPasswordResponse>.self)
+            .subscribe {
+                completion(.success($0))
+            } onError: {
+                completion(.failure($0))
+            }.disposed(by: disposeBag)
+    }
+    
+    func resetPassword(password1: String, password2: String, uid:String, token: String, completion: @escaping (Result<Response<ResetPasswordResponse>, Error>) -> Void) {
+        provider.rx.request(.resetPassword(password1: password1, password2: password2, uid: uid, token: token))
+            .filterSuccessfulStatusCodes()
+            .map (Response<ResetPasswordResponse>.self)
+            .subscribe {
+                completion(.success($0))
             } onError: {
                 completion(.failure($0))
             }.disposed(by: disposeBag)

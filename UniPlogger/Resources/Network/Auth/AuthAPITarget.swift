@@ -17,6 +17,7 @@ enum AuthAPITarget{
     case registration(email: String, password1: String, password2: String, nickname: String)
     case findPassword(email: String)
     case initQuest
+    case resetPassword(password1: String, password2: String, uid: String, token: String)
 }
 
 extension AuthAPITarget: BaseTarget{
@@ -36,6 +37,8 @@ extension AuthAPITarget: BaseTarget{
             return "users/password/reset/"
         case .initQuest:
             return "users/quest_to_user/"
+        case .resetPassword:
+            return "users/password/reset/confirm/"
         }
     }
     
@@ -55,6 +58,8 @@ extension AuthAPITarget: BaseTarget{
             return .post
         case .initQuest:
             return .get
+        case .resetPassword:
+            return .post
         }
     }
     
@@ -86,7 +91,15 @@ extension AuthAPITarget: BaseTarget{
             ]
         case .initQuest:
             return [:]
+        case let .resetPassword(password1, password2, uid, token):
+            return [
+                "new_password1": password1,
+                "new_password2": password2,
+                "uid": uid,
+                "token": token
+            ]
         }
+        
     }
     
     var task: Task{
@@ -105,6 +118,8 @@ extension AuthAPITarget: BaseTarget{
             return .requestParameters(parameters: parameters, encoding: encoding)
         case .initQuest:
             return .requestPlain
+        case .resetPassword:
+            return .requestParameters(parameters: parameters, encoding: encoding)
         }
     }
     

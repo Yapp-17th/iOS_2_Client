@@ -13,13 +13,20 @@
 import UIKit
 
 class FindPasswordWorker {
-    func findPassword(request: FindPassword.FindPassword.Request, completion: @escaping () -> Void) {
+    func findPassword(request: FindPassword.FindPassword.Request, completion: @escaping (FindPassword.FindPassword.Response) -> Void) {
         AuthAPI.shared.findPassword(email: request.email) { (response) in
             switch response {
-            case .success():
-                completion()
+            case let .success(value):
+                if value.success, let data = value.data {
+                    let response = FindPassword.FindPassword.Response(request: request, data: data)
+                    completion(response)
+                } else {
+                    let response = FindPassword.FindPassword.Response(request: request, error: .server(value.message))
+                    completion(response)
+                }
             case let .failure(error):
-                completion()
+                let response = FindPassword.FindPassword.Response(request: request, error: .error(error))
+                completion(response)
             }
         }
     }
