@@ -44,18 +44,6 @@ class ImagePreviewViewController: UIViewController, CameraDataStore {
         setupLayout()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
-        navigationController?.navigationBar.backgroundColor = .clear
-        navigationController?.navigationBar.backItem?.title = "촬영"
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
-    }
-    
     private func setup() {
         let viewController = self
         let router = ImagePreviewRouter()
