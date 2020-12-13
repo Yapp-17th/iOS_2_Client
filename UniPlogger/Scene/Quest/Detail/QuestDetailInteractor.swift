@@ -10,6 +10,7 @@ import Foundation
 
 protocol QuestDetailBusinessLogic {
     func start(quest: Quest)
+    func abandon(quest: Quest)
     func fetchDetail(quest: Quest)
 }
 
@@ -28,7 +29,12 @@ extension QuestDetailInteractor: QuestDetailBusinessLogic {
         worker.start(quest: quest) { [weak self] (success) in
             self?.presenter.finish()
         }
-        
+    }
+    
+    func abandon(quest: Quest) {
+        worker.abandon(quest: quest) { [weak self] (success) in
+            self?.presenter.finish()
+        }
     }
     
     func fetchDetail(quest: Quest) {

@@ -72,10 +72,10 @@ extension QuestInteractor: QuestBusinessLogic {
         guard var quest = questList.quest(at: indexPath, in: state) else { return }
         
         if state == .todo {
-            questManager.start(quest: quest)
-            worker.start(quest: quest)
             questList.remove(quest: quest)
             quest.state = .doing
+            questManager.start(quest: quest)
+            worker.start(quest: quest)
             questList.append(quest)
         } else if state == .doing {
             worker.abandon(quest: quest)
@@ -97,6 +97,7 @@ extension QuestInteractor: QuestBusinessLogic {
         worker.fetchData { [weak self] (quests) in
             guard let self = self else { return }
             self.questList = QuestList(quests: quests)
+            self.questManager.startQuestIfNotProceeding(quests: self.questList.quests(for: .doing))
             let response = QuestModels.Response(questList: self.questList.quests(for: request.state))
             self.presenter.presentQuestList(response: response)
         }

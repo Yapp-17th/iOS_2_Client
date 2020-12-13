@@ -12,7 +12,7 @@ import CoreData
 protocol QuestStorageType {
     func createProceedingQuest(for quest: Quest, completion: @escaping (Result<ProceedingQuest, Error>) -> Void)
     func fetchProceedingQuestList(completion: @escaping (Result<[ProceedingQuest], Error>) -> Void)
-    func updateProceedingQuest(_ proceedingQuest: ProceedingQuest, completion: @escaping (Result<ProceedingQuest, Error>) -> Void)
+    func updateProceedingQuest(_ proceedingQuest: ProceedingQuest)
     func deleteProceedingQuest(_ proceedingQuest: ProceedingQuest, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
@@ -21,6 +21,7 @@ extension Storage: QuestStorageType {
         context.perform {
             let proceedingQuest = ProceedingQuest(context: self.context)
             proceedingQuest.questId = Int16(quest.id)
+            proceedingQuest.email = AuthManager.shared.user?.email ?? ""
             do {
                 try self.context.save()
                 completion(.success(proceedingQuest))
@@ -33,6 +34,7 @@ extension Storage: QuestStorageType {
     func fetchProceedingQuestList(completion: @escaping (Result<[ProceedingQuest], Error>) -> Void) {
         context.perform {
             let fetchRequest = NSFetchRequest<ProceedingQuest>(entityName: "ProceedingQuest")
+            fetchRequest.predicate = NSPredicate(format: "(email == %@)", AuthManager.shared.user?.email ?? "")
             do {
                 let proceedingQuestList = try self.context.fetch(fetchRequest)
                 completion(.success(proceedingQuestList))
@@ -42,14 +44,13 @@ extension Storage: QuestStorageType {
         }
     }
     
-    func updateProceedingQuest(_ proceedingQuest: ProceedingQuest, completion: @escaping (Result<ProceedingQuest, Error>) -> Void) {
-        context.perform {
-            do {
-                try self.context.save()
-                completion(.success(proceedingQuest))
-            } catch let error {
-                completion(.failure(error))
-            }
+    func updateProceedingQuest(_ proceedingQuest: ProceedingQuest) {
+        do {
+            try self.context.save()
+        } catch let error {
+            #if DEBUG
+            print(error)
+            #endif
         }
     }
     

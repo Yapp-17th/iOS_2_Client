@@ -57,7 +57,8 @@ class PloggingInteractor: NSObject, PloggingBusinessLogic, PloggingDataStore {
     func stopPlogging(request: Plogging.StopPlogging.Request) {
         worker.delegate = nil
         worker.stopRun { [weak self] distance in
-            let ploggingData = PloggingData(distance: distance, time: request.minutes * 60 + request.seconds, items: [])
+            
+            let ploggingData = PloggingData(distance: distance.converted(to: .kilometers), time: request.minutes * 60 + request.seconds, items: [])
             self?.ploggingData = ploggingData
             self?.presenter?.presentStopPlogging()
         }

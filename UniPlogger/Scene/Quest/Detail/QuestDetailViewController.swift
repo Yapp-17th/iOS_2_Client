@@ -136,7 +136,7 @@ class QuestDetailViewController: QuestBaseViewController {
     }
     
     @objc func didTapCancelButton(_ sender: UIButton) {
-        dismiss()
+        interacter?.abandon(quest: quest)
     }
     
     // MARK: - View Life Cycle

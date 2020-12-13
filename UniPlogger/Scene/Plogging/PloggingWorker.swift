@@ -28,7 +28,7 @@ class PloggingWorker: NSObject {
     ]
     
     private let locationManager = CLLocationManager()
-    private var distance = Measurement(value: 0, unit: UnitLength.meters)
+    private var distance = Measurement(value: 0, unit: UnitLength.kilometers)
     var locationList: [CLLocation] = []
     var delegate: PloggingWorkerDelegate?
     var updateAuthorization: ((CLAuthorizationStatus) -> Void)?
