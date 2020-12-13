@@ -20,3 +20,7 @@ struct GetUserResponse: Codable{
 struct FindPasswordResponse: Codable {
     var detail: String?
 }
+
+struct ResetPasswordResponse: Codable {
+    var detail: String?
+}

@@ -46,7 +46,9 @@ class RegistrationViewController: UIViewController {
     
     let passwordField = UITextField().then {
         $0.font = .notoSans(ofSize: 16, weight: .regular)
+        $0.keyboardType = .asciiCapable
         $0.isSecureTextEntry = true
+        $0.textContentType = .password
         $0.backgroundColor = .clear
         $0.borderStyle = .none
         $0.placeholder = "비밀번호"
@@ -67,7 +69,9 @@ class RegistrationViewController: UIViewController {
     
     let passwordConfirmField = UITextField().then {
         $0.font = .notoSans(ofSize: 16, weight: .regular)
+        $0.keyboardType = .asciiCapable
         $0.isSecureTextEntry = true
+        $0.textContentType = .password
         $0.backgroundColor = .clear
         $0.borderStyle = .none
         $0.placeholder = "비밀번호 재입력"
