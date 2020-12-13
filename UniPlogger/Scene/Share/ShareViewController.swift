@@ -86,7 +86,7 @@ class ShareViewController: UIViewController, PhotoManagerDelegate {
         configuration()
         setUpView()
         setUpLayout()
-        photoManager.delegate = self 
+        photoManager.delegate = self
         self.interactor?.fetchRecord()
     }
     

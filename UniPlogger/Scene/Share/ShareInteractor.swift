@@ -15,6 +15,7 @@ import UIKit
 protocol ShareBusinessLogic {
     func fetchRecord()
     func shareToInstagram(assetIdentifier: String)
+    var image: UIImage? { get set }
 }
 
 protocol ShareDataStore {

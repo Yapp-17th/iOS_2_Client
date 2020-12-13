@@ -27,8 +27,7 @@ class ImagePreviewRouter {
         destination.ploggingData = source.ploggingData
         destination.ploggingData?.items = source.ploggingData!.items
         
-        destination.image = viewController?.imageView.image
-        
+        destination.image = viewController?.imageView.asImage()
         passDataToQuest(ploggingData: destination.ploggingData)
     }
     
