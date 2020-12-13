@@ -66,8 +66,10 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, Cam
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         captureSession = AVCaptureSession()
-        captureSession.sessionPreset = .medium
-        guard let backCamera = AVCaptureDevice.default(for: AVMediaType.video)
+        captureSession.beginConfiguration()
+        captureSession.automaticallyConfiguresCaptureDeviceForWideColor = true
+        captureSession.sessionPreset = .photo
+        guard let backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
             else {
                 print("Unable to access back camera!")
                 return
@@ -94,12 +96,13 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, Cam
     
     func setupLivePreview() {
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        videoPreviewLayer.videoGravity = .resize
+        videoPreviewLayer.videoGravity = .resizeAspectFill
         videoPreviewLayer.connection?.videoOrientation = .portrait
         finderView.layer.addSublayer(videoPreviewLayer)
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
+            self.captureSession.commitConfiguration()
             self.captureSession.startRunning()
             DispatchQueue.main.async {
                 self.videoPreviewLayer.frame = self.finderView.bounds
@@ -134,6 +137,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, Cam
         let image = UIImage(data: imageData)
         let vc = ImagePreviewViewController()
         vc.capturedImage = image
+        vc.ploggingData = self.ploggingData
         self.navigationController?.pushViewController(vc, animated: false)
     }
     
