@@ -26,17 +26,27 @@ class UserLogInteractor: UserLogBusinessLogic, UserLogDataStore {
     func getFeed() {
         guard let playerId = playerId else { return }
         worker = UserLogWorker()
-        worker?.getFeed(uid: playerId) { [weak self] response in
-            self?.presenter?.presentGetFeed(response: response)
+        worker?.updateLevel {
+            self.worker?.updateRank {
+                self.worker?.getFeed(uid: playerId) { [weak self] response in
+                    self?.presenter?.presentGetFeed(response: response)
+                }
+            }
         }
+        
     }
     
     func getOtherUser() {
         guard let playerId = playerId else { return }
         worker = UserLogWorker()
-        worker?.getOtherUser(uid: playerId, completion: { (response) in
-            self.presenter?.presentUserInfo(response: response)
-        })
+        worker?.updateLevel {
+            self.worker?.updateRank {
+                self.worker?.getOtherUser(uid: playerId, completion: { (response) in
+                    self.presenter?.presentUserInfo(response: response)
+                })
+            }
+        }
+        
     }
     
 }

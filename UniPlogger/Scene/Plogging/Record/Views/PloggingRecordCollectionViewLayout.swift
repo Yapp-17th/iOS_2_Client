@@ -48,7 +48,7 @@ class PloggingRecordCollectionViewLayout: UICollectionViewFlowLayout {
         
         for item in 0..<collectionView.numberOfItems(inSection: 0) {
             let indexPath = IndexPath(item: item, section: 0)
-            let height = columnWidth
+            let height:CGFloat = 110
             
             let frame = CGRect(x: xOffset[column], y: yOffset[column], width: columnWidth, height: height)
             let insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)

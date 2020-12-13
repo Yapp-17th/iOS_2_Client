@@ -52,9 +52,14 @@ extension PloggingRecordViewController {
     func setupTitleLabel(){
         let v = UIView()
         v.addSubview(titleLabel)
+        v.addSubview(subtitleLabel)
         scrollView.addArrangedSubview(v)
         titleLabel.snp.makeConstraints{
-            $0.top.equalTo(4)
+            $0.top.equalTo(8)
+            $0.centerX.equalToSuperview()
+        }
+        subtitleLabel.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(-28)
         }

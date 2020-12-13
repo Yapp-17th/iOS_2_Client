@@ -71,6 +71,7 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
         $0.backgroundColor = UIColor(named: "color_logBackground")
         $0.dataSource = self
         $0.delegate = self
+        $0.isScrollEnabled = false
         $0.register(LogCollectionViewCell.self, forCellWithReuseIdentifier: "LogCollectionViewCell")
     }.then {
         $0.isScrollEnabled = false 

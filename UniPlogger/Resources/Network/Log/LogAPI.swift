@@ -62,4 +62,24 @@ final class LogAPI{
                 completionHandler(.failure($0))
             }.disposed(by: disposeBag)
     }
+    
+    func updateLevel(completionHandler: @escaping (Result<Void, Error>) -> Void) {
+        provider.rx.request(.updateLevel)
+            .filterSuccessfulStatusCodes()
+            .subscribe { _ in
+                completionHandler(.success(()))
+            } onError: {
+                completionHandler(.failure($0))
+            }.disposed(by: disposeBag)
+    }
+    
+    func updateRank(completionHandler: @escaping (Result<Void, Error>) -> Void) {
+        provider.rx.request(.updateRank)
+            .filterSuccessfulStatusCodes()
+            .subscribe { _ in
+                completionHandler(.success(()))
+            } onError: {
+                completionHandler(.failure($0))
+            }.disposed(by: disposeBag)
+    }
 }

@@ -9,7 +9,17 @@
 import Foundation
 
 class UserLogWorker {
+    func updateRank(completion: @escaping () -> Void) {
+        LogAPI.shared.updateRank { _ in
+            completion()
+        }
+    }
     
+    func updateLevel(completion: @escaping () -> Void) {
+        LogAPI.shared.updateLevel { _ in
+            completion()
+        }
+    }
     func getFeed(uid: Int, completion: @escaping(Log.GetFeed.Response) -> Void){
         LogAPI.shared.getUserFeed(uid: uid) { (response) in
             switch response{

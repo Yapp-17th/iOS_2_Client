@@ -33,9 +33,14 @@ class LogInteractor: LogBusinessLogic, LogDataStore {
             self.presenter?.presentGetUser(response: response)
             return
         }
-        worker.getUser(uid: uid) { [weak self] (response) in
-            self?.presenter?.presentGetUser(response: response)
+        worker.updateLevel {
+            self.worker.updateRank {
+                self.worker.getUser(uid: uid) { [weak self] (response) in
+                    self?.presenter?.presentGetUser(response: response)
+                }
+            }
         }
+        
     }
     func getFeed() {
         guard let uid = self.uid else {
@@ -44,8 +49,12 @@ class LogInteractor: LogBusinessLogic, LogDataStore {
             return
         }
         
-        worker.getFeed(uid: uid) { [weak self] response in
-            self?.presenter?.presentGetFeed(response: response)
+        worker.updateLevel {
+            self.worker.updateRank {
+                self.worker.getFeed(uid: uid) { [weak self] response in
+                    self?.presenter?.presentGetFeed(response: response)
+                }
+            }
         }
     }
 }

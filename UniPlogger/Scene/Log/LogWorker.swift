@@ -13,7 +13,17 @@
 import UIKit
 
 class LogWorker {
+    func updateRank(completion: @escaping () -> Void) {
+        LogAPI.shared.updateRank { _ in
+            completion()
+        }
+    }
     
+    func updateLevel(completion: @escaping () -> Void) {
+        LogAPI.shared.updateLevel { _ in
+            completion()
+        }
+    }
     func getUser(uid: Int, completion: @escaping(Log.GetUser.Response) -> Void) {
         AuthAPI.shared.getUser(uid: uid) { (response) in
             switch response {

@@ -115,6 +115,7 @@ class LogViewController: UIViewController {
     
     lazy var collectionView = IntrinsicSizeCollectionView(frame: .zero, collectionViewLayout: LogCollectionViewLayout()).then {
         $0.backgroundColor = UIColor(named: "color_logBackground")
+        $0.isScrollEnabled = false
         $0.dataSource = self
         $0.delegate = self
         $0.register(LogCollectionViewCell.self, forCellWithReuseIdentifier: "LogCollectionViewCell")

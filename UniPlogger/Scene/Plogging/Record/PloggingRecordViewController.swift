@@ -34,9 +34,14 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         $0.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
     }
     let titleLabel = UILabel().then{
-        $0.text = "오늘 어떤 쓰레기를\n주우셨나요?"
-        $0.numberOfLines = 2
-        $0.font = .notoSans(ofSize: 14, weight: .regular)
+        $0.text = "오늘 어떤 쓰레기를 주우셨나요?"
+        $0.font = .notoSans(ofSize: 16, weight: .bold)
+        $0.textAlignment = .center
+    }
+    
+    let subtitleLabel = UILabel().then{
+        $0.text = "버튼을 길게 눌러 세부 리스트를 확인할 수 있습니다."
+        $0.font = .notoSans(ofSize: 12, weight: .regular)
         $0.textAlignment = .center
     }
     

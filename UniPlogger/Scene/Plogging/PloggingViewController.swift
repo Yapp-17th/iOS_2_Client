@@ -199,7 +199,7 @@ class PloggingViewController: BaseViewController {
     }
     
     var trashInfoDescriptionLabel = UILabel().then{
-        $0.text = "핀을 움직여서 위치 수정을 할 수 있습니다."
+        $0.text = "핀을 길게 누르면 위치 수정을 할 수 있습니다."
         $0.font = .notoSans(ofSize: 12, weight: .regular)
     }
     

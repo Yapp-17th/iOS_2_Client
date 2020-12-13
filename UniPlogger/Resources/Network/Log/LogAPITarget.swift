@@ -14,6 +14,8 @@ enum LogAPITarget{
     case getUserFeed(uid: Int)
     case getOtherUser(uid: Int)
     case deleteFeed(fid: Int)
+    case updateLevel
+    case updateRank
 }
 
 extension LogAPITarget: BaseTarget{
@@ -27,6 +29,10 @@ extension LogAPITarget: BaseTarget{
             return "users/\(uid)/"
         case let .deleteFeed(fid):
             return "users/feed/\(fid)/"
+        case .updateLevel:
+            return "users/level_update/"
+        case .updateRank:
+            return "users/rank_update/"
         }
     }
     
@@ -40,6 +46,8 @@ extension LogAPITarget: BaseTarget{
             return .get
         case .deleteFeed:
             return .delete
+        case .updateRank, .updateLevel:
+            return .get
         }
     }
     
@@ -52,6 +60,8 @@ extension LogAPITarget: BaseTarget{
         case .getOtherUser:
             return [:]
         case .deleteFeed:
+            return [:]
+        case .updateRank, .updateLevel:
             return [:]
         }
     }
@@ -66,6 +76,8 @@ extension LogAPITarget: BaseTarget{
         case .getOtherUser:
             return .requestPlain
         case .deleteFeed:
+            return .requestPlain
+        case .updateLevel, .updateRank:
             return .requestPlain
         }
     }
