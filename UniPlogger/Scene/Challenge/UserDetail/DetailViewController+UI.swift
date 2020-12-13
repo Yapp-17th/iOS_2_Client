@@ -25,7 +25,7 @@ extension DetailViewController {
         ploggingImageView.snp.makeConstraints {
             $0.width.height.equalTo(340)
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(self.view.frame.height * 0.29)
+            $0.top.equalToSuperview().offset(179)
         }
         shareButtonView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
@@ -35,7 +35,6 @@ extension DetailViewController {
             $0.width.height.equalTo(100)
             $0.centerX.centerY.equalTo(shareButtonView)
         }
-        
         shareButtonView.isHidden = true
     }
     
