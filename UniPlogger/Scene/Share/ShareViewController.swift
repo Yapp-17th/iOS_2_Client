@@ -20,11 +20,13 @@ protocol ShareDisplayLogic: class {
     func displayUpload()
 }
 
-class ShareViewController: UIViewController {
+class ShareViewController: UIViewController, PhotoManagerDelegate {
     var interactor: ShareBusinessLogic?
     var router: (NSObjectProtocol & ShareRoutingLogic & ShareDataPassing)?
     
     var imageForShare: UIImage?
+    
+    let photoManager = PhotoManager(albumName: "UniPlogger")
     
     lazy var backgroundImageView = UIImageView().then {
         let image = UIImage(named: "mainBackground")
@@ -84,7 +86,7 @@ class ShareViewController: UIViewController {
         configuration()
         setUpView()
         setUpLayout()
-        
+        photoManager.delegate = self 
         self.interactor?.fetchRecord()
     }
     
@@ -111,7 +113,6 @@ class ShareViewController: UIViewController {
                       }))
             return
         }
-        
         photoManager.save(imageForSave) { (success, error) in
             if success {
                 DispatchQueue.main.async {
@@ -143,7 +144,7 @@ class ShareViewController: UIViewController {
     }
     
     func shareImage(for image: UIImage) {
-        let photoManager = PhotoManager(albumName: "UniPlogger")
+        
         photoManager.save(image) { (success, error) in
             if success {
                 let fetchOptions = PHFetchOptions()
@@ -186,6 +187,16 @@ class ShareViewController: UIViewController {
         outPutImageView.image = image
         return outPutImageView.image
     }
+    
+    func showAuthAlert(completion: @escaping () -> ()) {
+        let alertController = UIAlertController(title: "알림", message: "사진 저장을 위해서는 사진 접근 권한을 허용해야합니다.", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "확인", style: .default, handler: { _ in
+            completion()
+        })
+        alertController.addAction(confirmAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
 }
 
 extension ShareViewController: ShareDisplayLogic {

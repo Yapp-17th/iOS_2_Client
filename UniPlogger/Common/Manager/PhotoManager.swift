@@ -9,10 +9,15 @@
 import UIKit
 import Photos
 
+protocol PhotoManagerDelegate {
+    func showAuthAlert(completion: @escaping () -> ())
+}
+
 class PhotoManager {
 
     private var albumName: String
     private var album: PHAssetCollection?
+    var delegate: PhotoManagerDelegate?
 
     init(albumName: String) {
         self.albumName = albumName
@@ -59,10 +64,10 @@ class PhotoManager {
     func save(_ image: UIImage, completion: @escaping (Bool, Error?) -> ()) {
         PHPhotoLibrary.requestAuthorization { status in
             guard status == .authorized else {
-                // fail and redirect to app settings
+                self.setAuth()
                 return
             }
-
+            print(status)
             if let _ = self.album {
                 self.add(image: image) { (result, error) in
                     completion(result, error)
@@ -77,4 +82,13 @@ class PhotoManager {
             })
         }
     }
+    
+    private func setAuth() {
+        if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+            DispatchQueue.main.async {
+                UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
 }
