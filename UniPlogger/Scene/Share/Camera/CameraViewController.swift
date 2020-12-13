@@ -9,7 +9,11 @@
 import UIKit
 import AVFoundation
 
-class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
+protocol CameraDataStore {
+    var ploggingData: PloggingData? { get set }
+}
+
+class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, CameraDataStore {
     
     enum FlashMode: Int, CaseIterable {
         case auto = 0, on, off
@@ -28,6 +32,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     lazy var descriptionLabel = UILabel().then {
         $0.numberOfLines = 0
         $0.text = "플로깅한 쓰레기를\n촬영해주세요."
+        $0.textAlignment = .center
         $0.textColor = .white
         $0.font = .notoSans(ofSize: 18, weight: .regular)
     }
@@ -36,6 +41,10 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     var stillImageOutput: AVCapturePhotoOutput!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     var photoSetting: AVCapturePhotoSettings!
+    
+    // dataStore
+    var ploggingData: PloggingData? 
+    
     private var isFlashMode: FlashMode = .auto {
         didSet {
             switch isFlashMode {
@@ -150,9 +159,9 @@ extension CameraViewController {
             make.top.equalTo(view.frame.height * 0.117)
         }
         cameraButton.snp.makeConstraints { (make) in
-            make.bottom.equalToSuperview().offset(-80)
+            make.bottom.equalToSuperview().offset(-view.frame.height * 0.098)
             make.centerX.equalToSuperview()
-            make.width.height.equalTo(64)
+            make.width.height.equalTo(view.frame.width * 0.17)
         }
         descriptionLabel.snp.makeConstraints { (make) in
             make.centerX.centerY.equalTo(finderView)

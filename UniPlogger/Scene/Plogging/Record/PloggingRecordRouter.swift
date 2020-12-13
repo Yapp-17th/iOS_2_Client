@@ -36,6 +36,7 @@ class PloggingRecordRouter: NSObject, PloggingRecordRoutingLogic, PloggingRecord
     
     func routeToCamera() {
         let destinationVC = CameraViewController()
+        passDataToCamera(source: dataStore!, destination: destinationVC)
         navigateToCamera(source: viewController!, destination: destinationVC)
     }
     
@@ -69,5 +70,13 @@ class PloggingRecordRouter: NSObject, PloggingRecordRoutingLogic, PloggingRecord
         destination.image = viewController?.capturedImage
         
         passDataToQuest(ploggingData: destination.ploggingData)
+    }
+    
+    func passDataToCamera(source: PloggingRecordDataStore, destination: CameraViewController) {
+        let selectedItems = viewController?.selectedItems ?? []
+        let selectPloggingItems = selectedItems.map { PloggingItemType.allCases[$0] }
+        
+        destination.ploggingData = source.ploggingData
+        destination.ploggingData?.items = selectPloggingItems
     }
 }
