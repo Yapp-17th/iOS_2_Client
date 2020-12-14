@@ -35,6 +35,7 @@ protocol PloggingDisplayLogic: class {
     func displayAddTrashCan(viewModel: Plogging.AddTrashCan.ViewModel)
     func displayAddConfirmTrashCan(viewModel: Plogging.AddConfirmTrashCan.ViewModel)
     func displayAddTrashCanCancel()
+    func displayRemoveTrashCan(viewModel: Plogging.RemoveTrashCan.ViewModel)
     
     // 에러 처리
     func displayError(error: Common.CommonError, useCase: Plogging.UseCase)
@@ -397,7 +398,8 @@ class PloggingViewController: BaseViewController {
         if let tempAnnotation = self.tempTrashcanAnnotation{
             let latitude = tempAnnotation.coordinate.latitude
             let longitude = tempAnnotation.coordinate.longitude
-            let request = Plogging.AddConfirmTrashCan.Request(latitude: latitude, longitude: longitude)
+            let address = trashInfoAddressLabel.text ?? ""
+            let request = Plogging.AddConfirmTrashCan.Request(latitude: latitude, longitude: longitude, address: address)
             self.interactor?.addConfirmTrashCan(request: request)
         }
     }
@@ -432,13 +434,14 @@ class PloggingViewController: BaseViewController {
     func removeTrashCan(annotation: TrashcanAnnotation){
         let alert = UIAlertController(title: "경고", message: "해당 쓰레기통을 제거하시겠습니까?", preferredStyle: .alert)
         alert.addAction(.init(title: "네", style: .default, handler: { _ in
+            let id = annotation.id
             let latitude = annotation.coordinate.latitude
             let longitude = annotation.coordinate.longitude
             
-            let request = Plogging.RemoveTrashCan.Request(latitude: latitude, longitude: longitude)
+            let request = Plogging.RemoveTrashCan.Request(id: id, latitude: latitude, longitude: longitude)
             self.interactor?.removeTrashCan(request: request)
             
-            self.mapView.removeAnnotation(annotation)
+            
             
         }))
         alert.addAction(.init(title: "아니오", style: .cancel, handler: nil))
@@ -458,7 +461,7 @@ extension PloggingViewController: PloggingDisplayLogic{
                 latitude: trash.latitude,
                 longitude: trash.longitude
             )
-            let annotation = TrashcanAnnotation(coordinate: coordinate, title: "title", subtitle: "content")
+            let annotation = TrashcanAnnotation(id: trash.id, coordinate: coordinate, title: "title", subtitle: "content")
             mapView.addAnnotation(annotation)
         }
     }
@@ -561,7 +564,9 @@ extension PloggingViewController: PloggingDisplayLogic{
             self.trashInfoContainer.isHidden = true
         }
         
-        let annotation = TrashcanAnnotation(coordinate: .init(latitude: viewModel.latitude, longitude: viewModel.longitude), title: "title", subtitle: "content")
+        let trashcan = viewModel.trashcan
+        
+        let annotation = TrashcanAnnotation(id: trashcan.id, coordinate: .init(latitude: trashcan.latitude, longitude: trashcan.longitude), title: trashcan.address, subtitle: "")
         
         self.annotations.append(annotation)
         self.mapView.addAnnotation(annotation)
@@ -595,6 +600,12 @@ extension PloggingViewController: PloggingDisplayLogic{
             case .doing:
                 $0.bottom.equalTo(self.doingPauseBottomContainerView.snp.top).offset(-16)
             }
+        }
+    }
+    
+    func displayRemoveTrashCan(viewModel: Plogging.RemoveTrashCan.ViewModel) {
+        if let annotation: TrashcanAnnotation = self.mapView.annotations.first(where: { (($0 as? TrashcanAnnotation)?.id ?? -1) == viewModel.trashcan.id }) as? TrashcanAnnotation{
+            self.mapView.removeAnnotation(annotation)
         }
     }
     

@@ -135,17 +135,34 @@ extension PloggingWorker{
             }
         }
     }
-    func addTrashCan(request: Plogging.AddConfirmTrashCan.Request){
-        let trashCan = TrashCan(latitude: request.latitude, longitude: request.longitude)
-        
-        storage.createTrashCan(trashCan) { (result) in
-            switch result{
-            case .success(let trashCan):
-                print("add Success: \(trashCan)")
-            case .failure(let error):
-                print(error.localizedDescription)
+    func addTrashCan(request: Plogging.AddConfirmTrashCan.Request, completion: @escaping (Plogging.AddConfirmTrashCan.Response) -> Void){
+        PloggingAPI.shared.createTrashCan(
+            latitude: request.latitude,
+            longitude: request.longitude,
+            address: request.address) { (response) in
+            switch response{
+            case let .success(value):
+                if value.success, let trashcan = value.data{
+                    self.storage.createTrashCan(trashcan) { (result) in
+                        switch result{
+                        case .success(let trashcan):
+                            let response = Plogging.AddConfirmTrashCan.Response(request: request, response: trashcan)
+                            completion(response)
+                        case .failure(let error):
+                            let response = Plogging.AddConfirmTrashCan.Response(request: request, error: .error(error))
+                            completion(response)
+                        }
+                    }
+                } else {
+                    let response = Plogging.AddConfirmTrashCan.Response(request: request, error: .server(value.message))
+                    completion(response)
+                }
+            case let .failure(error):
+                let response = Plogging.AddConfirmTrashCan.Response(request: request, error: .error(error))
+                completion(response)
             }
         }
+        
     }
     
     func addTrashCan(trashCan: TrashCan, completion: @escaping (TrashCan) -> Void){
@@ -159,15 +176,31 @@ extension PloggingWorker{
         }
     }
     
-    func deleteTrashCan(request: Plogging.RemoveTrashCan.Request){
-        storage.deleteTrashCan(latitude: request.latitude, longitude: request.longitude) { (result) in
-            switch result{
-            case .success():
-                print("지우기 성공")
-            case .failure(let error):
-                print("지우기 실패: \(error.localizedDescription)")
+    func deleteTrashCan(request: Plogging.RemoveTrashCan.Request, completion: @escaping (Plogging.RemoveTrashCan.Response) -> Void){
+        PloggingAPI.shared.deleteTrashCan(id: request.id) { (response) in
+            switch response {
+            case let .success(value):
+                if value.success, let trashcan = value.data {
+                    self.storage.deleteTrashCan(latitude: trashcan.latitude, longitude: trashcan.longitude) { (result) in
+                        switch result{
+                        case .success():
+                            let response = Plogging.RemoveTrashCan.Response(request: request, trashcan: trashcan)
+                            completion(response)
+                        case .failure(let error):
+                            let response = Plogging.RemoveTrashCan.Response(request: request, error: .error(error))
+                            completion(response)
+                        }
+                    }
+                } else {
+                    let response = Plogging.RemoveTrashCan.Response(request: request, error: .server(value.message))
+                    completion(response)
+                }
+            case let .failure(error):
+                let response = Plogging.RemoveTrashCan.Response(request: request, error: .error(error))
+                completion(response)
             }
         }
+        
     }
 }
 

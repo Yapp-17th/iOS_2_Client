@@ -9,33 +9,36 @@
 import MapKit
 
 class TrashcanAnnotation: NSObject, MKAnnotation{
-  var coordinate: CLLocationCoordinate2D
-  var title: String?
-  var subtitle: String?
-  init(
-    coordinate: CLLocationCoordinate2D,
-    title: String,
-    subtitle: String
+    var id: Int64
+    var coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subtitle: String?
+    init(
+        id: Int64,
+        coordinate: CLLocationCoordinate2D,
+        title: String,
+        subtitle: String
     ){
-    self.coordinate = coordinate
-    self.title = title
-    self.subtitle = subtitle
-    super.init()
-  }
+        self.id = id
+        self.coordinate = coordinate
+        self.title = title
+        self.subtitle = subtitle
+        super.init()
+    }
 }
 
 class TempTrashAnnotation: NSObject, MKAnnotation{
-  var coordinate: CLLocationCoordinate2D
-  var title: String?
-  var subtitle: String?
-  init(
-    coordinate: CLLocationCoordinate2D,
-    title: String,
-    subtitle: String
+    var coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subtitle: String?
+    init(
+        coordinate: CLLocationCoordinate2D,
+        title: String,
+        subtitle: String
     ){
-    self.coordinate = coordinate
-    self.title = title
-    self.subtitle = subtitle
-    super.init()
-  }
+        self.coordinate = coordinate
+        self.title = title
+        self.subtitle = subtitle
+        super.init()
+    }
 }

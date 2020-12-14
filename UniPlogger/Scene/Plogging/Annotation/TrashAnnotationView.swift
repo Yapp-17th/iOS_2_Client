@@ -28,7 +28,7 @@ class TrashAnnotationView: MKAnnotationView{
         self.isEnabled = false
         self.isUserInteractionEnabled = true
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
-        gesture.minimumPressDuration = 1.0
+        gesture.minimumPressDuration = 0.5
         self.addGestureRecognizer(gesture)
     }
     

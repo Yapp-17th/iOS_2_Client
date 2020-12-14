@@ -18,6 +18,8 @@ enum Plogging {
     
     enum UseCase {
         case StartPlogging
+        case AddConfirmTrashCan(AddConfirmTrashCan.Request)
+        case RemoveTrashCan(RemoveTrashCan.Request)
     }
     
     enum State {
@@ -70,16 +72,17 @@ enum Plogging {
         struct Request {
             var latitude: Double
             var longitude: Double
+            var address: String
         }
         
         struct Response {
-            var latitude: Double
-            var longitude: Double
+            var request: Request
+            var response: TrashCan?
+            var error: Common.CommonError?
         }
         
         struct ViewModel {
-            var latitude: Double
-            var longitude: Double
+            var trashcan: TrashCan
         }
     }
     
@@ -95,8 +98,19 @@ enum Plogging {
     
     enum RemoveTrashCan{
         struct Request{
+            var id: Int64
             var latitude: Double
             var longitude: Double
+        }
+        
+        struct Response {
+            var request: Request
+            var trashcan: TrashCan?
+            var error: Common.CommonError?
+        }
+        
+        struct ViewModel {
+            var trashcan: TrashCan
         }
     }
     

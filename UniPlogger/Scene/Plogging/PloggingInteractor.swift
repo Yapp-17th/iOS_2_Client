@@ -84,13 +84,16 @@ class PloggingInteractor: NSObject, PloggingBusinessLogic, PloggingDataStore {
     }
     
     func removeTrashCan(request: Plogging.RemoveTrashCan.Request) {
-        self.worker.deleteTrashCan(request: request)
+        self.worker.deleteTrashCan(request: request) { [weak self] response in
+            self?.presenter?.presentRemoveTrashCan(response: response)
+        }
     }
     
     func addConfirmTrashCan(request: Plogging.AddConfirmTrashCan.Request) {
-        self.worker.addTrashCan(request: request)
-        let response = Plogging.AddConfirmTrashCan.Response(latitude: request.latitude, longitude: request.longitude)
-        self.presenter?.presentAddConfirmTrashCan(response: response)
+        self.worker.addTrashCan(request: request) { [weak self] response in
+            self?.presenter?.presentAddConfirmTrashCan(response: response)
+        }
+        
     }
 }
 

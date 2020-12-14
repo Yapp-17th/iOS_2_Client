@@ -20,14 +20,15 @@ final class PloggingAPI{
         plugins: [VerbosePlugin(verbose: true)]
     )
     
-    func createTrashCan(latitude: Double, longitude: Double, address: String, completionHandler: @escaping (Result<Bool, Error>) -> Void){
+    func createTrashCan(latitude: Double, longitude: Double, address: String, completionHandler: @escaping (Result<Response<TrashCan>, Error>) -> Void){
         provider.rx.request(.createTrash(latitude: latitude, longitude: longitude, address: address))
             .filterSuccessfulStatusCodes()
-            .map(Bool.self)
-            .subscribe(onSuccess: {
+            .map(Response<TrashCan>.self)
+            .subscribe {
                 completionHandler(.success($0))
-            }, onError: { completionHandler(.failure($0)) })
-            .disposed(by: disposeBag)
+            } onError: {
+              completionHandler(.failure($0))
+            }.disposed(by: disposeBag)
     }
     
     func fetchTrashList(completionHandler: @escaping (Result<Response<[TrashCan]>, Error>)-> Void){
@@ -38,6 +39,17 @@ final class PloggingAPI{
                 completionHandler(.success($0))
             }, onError: { completionHandler(.failure($0)) })
             .disposed(by: disposeBag)
+    }
+    
+    func deleteTrashCan(id: Int64, completionHandler: @escaping (Result<Response<TrashCan>, Error>) -> Void) {
+        provider.rx.request(.deleteTrashCan(id: id))
+            .filterSuccessfulStatusCodes()
+            .map(Response<TrashCan>.self)
+            .subscribe {
+                completionHandler(.success($0))
+            } onError: {
+                completionHandler(.failure($0))
+            }.disposed(by: self.disposeBag)
     }
     
     func uploadRecord(uid: Int, title: String, distance: Double, time: Int, image: UIImage, completionHandler: @escaping(Result<Response<Feed>, Error>) -> Void) {
@@ -51,4 +63,6 @@ final class PloggingAPI{
                 completionHandler(.failure($0))
             }.disposed(by: self.disposeBag)
     }
+    
+    
 }

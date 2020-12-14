@@ -13,6 +13,7 @@ enum PloggingAPITarget{
     case createTrash(latitude: Double, longitude: Double, address: String)
     case fetchTrashList
     case uploadRecord(uid: Int, title: String, distance: Double, time: Int, image: UIImage)
+    case deleteTrashCan(id: Int64)
 }
 
 extension PloggingAPITarget: BaseTarget{
@@ -24,6 +25,8 @@ extension PloggingAPITarget: BaseTarget{
             return "trashcans/"
         case .uploadRecord:
             return "users/feed/"
+        case let .deleteTrashCan(id):
+            return "trashcans/\(id)/"
         }
     }
     
@@ -35,6 +38,8 @@ extension PloggingAPITarget: BaseTarget{
             return .get
         case .uploadRecord:
             return .post
+        case .deleteTrashCan:
+            return .delete
         }
     }
     
@@ -50,6 +55,8 @@ extension PloggingAPITarget: BaseTarget{
         case .fetchTrashList:
             return [:]
         case .uploadRecord:
+            return [:]
+        case .deleteTrashCan:
             return [:]
         }
     }
@@ -70,7 +77,10 @@ extension PloggingAPITarget: BaseTarget{
             //uidMultipartformData, titleMultipartformData, distnceMultipartformData, timeMultipartformData,
             return .uploadMultipart([uidData, titleData, distanceData, timeData, imageData])
                 
+        case .deleteTrashCan:
+            return .requestParameters(parameters: parameters, encoding: encoding)
         }
+        
     }
     
     public var sampleData: Data{
