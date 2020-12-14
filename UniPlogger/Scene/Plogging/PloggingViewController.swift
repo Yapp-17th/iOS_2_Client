@@ -397,7 +397,8 @@ class PloggingViewController: BaseViewController {
         if let tempAnnotation = self.tempTrashcanAnnotation{
             let latitude = tempAnnotation.coordinate.latitude
             let longitude = tempAnnotation.coordinate.longitude
-            let request = Plogging.AddConfirmTrashCan.Request(latitude: latitude, longitude: longitude)
+            let address = trashInfoAddressLabel.text ?? ""
+            let request = Plogging.AddConfirmTrashCan.Request(latitude: latitude, longitude: longitude, address: address)
             self.interactor?.addConfirmTrashCan(request: request)
         }
     }
@@ -561,7 +562,9 @@ extension PloggingViewController: PloggingDisplayLogic{
             self.trashInfoContainer.isHidden = true
         }
         
-        let annotation = TrashcanAnnotation(coordinate: .init(latitude: viewModel.latitude, longitude: viewModel.longitude), title: "title", subtitle: "content")
+        let trashcan = viewModel.trashcan
+        
+        let annotation = TrashcanAnnotation(coordinate: .init(latitude: trashcan.latitude, longitude: trashcan.longitude), title: trashcan.address, subtitle: "")
         
         self.annotations.append(annotation)
         self.mapView.addAnnotation(annotation)

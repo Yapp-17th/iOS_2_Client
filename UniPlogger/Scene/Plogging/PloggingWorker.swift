@@ -135,17 +135,34 @@ extension PloggingWorker{
             }
         }
     }
-    func addTrashCan(request: Plogging.AddConfirmTrashCan.Request){
-        let trashCan = TrashCan(latitude: request.latitude, longitude: request.longitude)
-        
-        storage.createTrashCan(trashCan) { (result) in
-            switch result{
-            case .success(let trashCan):
-                print("add Success: \(trashCan)")
-            case .failure(let error):
-                print(error.localizedDescription)
+    func addTrashCan(request: Plogging.AddConfirmTrashCan.Request, completion: @escaping (Plogging.AddConfirmTrashCan.Response) -> Void){
+        PloggingAPI.shared.createTrashCan(
+            latitude: request.latitude,
+            longitude: request.longitude,
+            address: request.address) { (response) in
+            switch response{
+            case let .success(value):
+                if value.success, let trashcan = value.data{
+                    self.storage.createTrashCan(trashcan) { (result) in
+                        switch result{
+                        case .success(let trashcan):
+                            let response = Plogging.AddConfirmTrashCan.Response(request: request, response: trashcan)
+                            completion(response)
+                        case .failure(let error):
+                            let response = Plogging.AddConfirmTrashCan.Response(request: request, error: .error(error))
+                            completion(response)
+                        }
+                    }
+                } else {
+                    let response = Plogging.AddConfirmTrashCan.Response(request: request, error: .server(value.message))
+                    completion(response)
+                }
+            case let .failure(error):
+                let response = Plogging.AddConfirmTrashCan.Response(request: request, error: .error(error))
+                completion(response)
             }
         }
+        
     }
     
     func addTrashCan(trashCan: TrashCan, completion: @escaping (TrashCan) -> Void){

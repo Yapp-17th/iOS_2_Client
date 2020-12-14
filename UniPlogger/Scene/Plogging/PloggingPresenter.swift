@@ -109,7 +109,11 @@ class PloggingPresenter: NSObject, PloggingPresentationLogic {
     }
     
     func presentAddConfirmTrashCan(response: Plogging.AddConfirmTrashCan.Response) {
-        let viewModel = Plogging.AddConfirmTrashCan.ViewModel(latitude: response.latitude, longitude: response.longitude)
+        guard let trashcan = response.response, response.error == nil else {
+            viewController?.displayError(error: response.error!, useCase: .AddConfirmTrashCan(response.request))
+            return
+        }
+        let viewModel = Plogging.AddConfirmTrashCan.ViewModel(trashcan: trashcan)
         self.viewController?.displayAddConfirmTrashCan(viewModel: viewModel)
     }
     func presentFetchTrashCan(response: Plogging.FetchTrashCan.Response) {
