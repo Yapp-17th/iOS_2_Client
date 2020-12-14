@@ -41,6 +41,17 @@ final class PloggingAPI{
             .disposed(by: disposeBag)
     }
     
+    func deleteTrashCan(id: Int64, completionHandler: @escaping (Result<Response<TrashCan>, Error>) -> Void) {
+        provider.rx.request(.deleteTrashCan(id: id))
+            .filterSuccessfulStatusCodes()
+            .map(Response<TrashCan>.self)
+            .subscribe {
+                completionHandler(.success($0))
+            } onError: {
+                completionHandler(.failure($0))
+            }.disposed(by: self.disposeBag)
+    }
+    
     func uploadRecord(uid: Int, title: String, distance: Double, time: Int, image: UIImage, completionHandler: @escaping(Result<Response<Feed>, Error>) -> Void) {
         provider.rx.request(.uploadRecord(uid: uid, title: title, distance: distance, time: time, image: image))
             .filterSuccessfulStatusCodes()
@@ -52,4 +63,6 @@ final class PloggingAPI{
                 completionHandler(.failure($0))
             }.disposed(by: self.disposeBag)
     }
+    
+    
 }

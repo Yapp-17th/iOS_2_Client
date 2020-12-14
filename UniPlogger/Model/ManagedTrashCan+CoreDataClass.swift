@@ -14,10 +14,11 @@ import CoreData
 public class ManagedTrashCan: NSManagedObject {
     func toTrashCan() -> TrashCan {
         let objectIdString = objectID.uriRepresentation().absoluteString
-        return TrashCan(latitude: latitude, longitude: longitude, isRemoved: isRemoved, address: address, objectIDString: objectIdString)
+        return TrashCan(id: id, latitude: latitude, longitude: longitude, isRemoved: isRemoved, address: address, objectIDString: objectIdString)
     }
     
     func fromTrashCan(_ trashCan: TrashCan) {
+        id = trashCan.id
         latitude = trashCan.latitude
         longitude = trashCan.longitude
         isRemoved = trashCan.state == .disalbed

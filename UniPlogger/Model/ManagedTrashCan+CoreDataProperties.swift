@@ -16,7 +16,7 @@ extension ManagedTrashCan {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<ManagedTrashCan> {
         return NSFetchRequest<ManagedTrashCan>(entityName: "ManagedTrashCan")
     }
-
+    @NSManaged public var id: Int64
     @NSManaged public var isRemoved: Bool
     @NSManaged public var latitude: Double
     @NSManaged public var longitude: Double

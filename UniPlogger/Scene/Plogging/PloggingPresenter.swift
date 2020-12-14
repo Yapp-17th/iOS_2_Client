@@ -27,6 +27,7 @@ protocol PloggingPresentationLogic {
     func presentAddTrashCan(response: Plogging.AddTrashCan.Response)
     func presentAddConfirmTrashCan(response: Plogging.AddConfirmTrashCan.Response)
     func presentFetchTrashCan(response: Plogging.FetchTrashCan.Response)
+    func presentRemoveTrashCan(response: Plogging.RemoveTrashCan.Response)
 }
 
 class PloggingPresenter: NSObject, PloggingPresentationLogic {
@@ -122,6 +123,19 @@ class PloggingPresenter: NSObject, PloggingPresentationLogic {
     func presentFetchTrashCan(response: Plogging.FetchTrashCan.Response) {
         let viewModel = Plogging.FetchTrashCan.ViewModel(list: response.list)
         viewController?.displayFetchTrashCan(viewModel: viewModel)
+    }
+    
+    func presentRemoveTrashCan(response: Plogging.RemoveTrashCan.Response) {
+        guard let trashcan = response.trashcan, response.error == nil else {
+            viewController?.displayError(error: response.error!, useCase: .RemoveTrashCan(response.request))
+            return
+        }
+        
+        let viewModel = Plogging.RemoveTrashCan.ViewModel(trashcan: trashcan)
+        DispatchQueue.main.async {
+            self.viewController?.displayRemoveTrashCan(viewModel: viewModel)
+        }
+        
     }
     
     //MARK: - Helper
