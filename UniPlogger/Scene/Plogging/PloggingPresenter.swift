@@ -114,7 +114,10 @@ class PloggingPresenter: NSObject, PloggingPresentationLogic {
             return
         }
         let viewModel = Plogging.AddConfirmTrashCan.ViewModel(trashcan: trashcan)
-        self.viewController?.displayAddConfirmTrashCan(viewModel: viewModel)
+        DispatchQueue.main.async {
+            self.viewController?.displayAddConfirmTrashCan(viewModel: viewModel)
+        }
+        
     }
     func presentFetchTrashCan(response: Plogging.FetchTrashCan.Response) {
         let viewModel = Plogging.FetchTrashCan.ViewModel(list: response.list)
