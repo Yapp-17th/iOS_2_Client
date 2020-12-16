@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "tabbar_challenge_unselected.png",
+      "filename" : "white_nav_icon group.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "tabbar_challenge_unselected@2x.png",
+      "filename" : "white_nav_icon group@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "tabbar_challenge_unselected@3x.png",
+      "filename" : "white_nav_icon group@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
