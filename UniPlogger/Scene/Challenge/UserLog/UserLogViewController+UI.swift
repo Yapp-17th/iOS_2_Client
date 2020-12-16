@@ -22,7 +22,8 @@ extension UserLogViewController {
     
     func setUpLayout() {
         scrollView.snp.makeConstraints { (make) in
-            make.top.bottom.leading.trailing.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
         userInfoContainer.snp.makeConstraints { (make) in
             make.top.equalToSuperview()
