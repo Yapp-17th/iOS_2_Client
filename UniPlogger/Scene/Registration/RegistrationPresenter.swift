@@ -31,6 +31,7 @@ class RegistrationPresenter: RegistrationPresentationLogic {
     var isValidNickname: Bool = false
     
     func presentFetchNickname(response: Registration.FetchNickname.Response) {
+        self.isValidNickname = true
         let viewModel = Registration.FetchNickname.ViewModel(nickname: response.nickname)
         self.viewController?.displayFetchNickname(viewModel: viewModel)
     }
