@@ -67,10 +67,16 @@ class PloggingViewController: BaseViewController {
     var annotations: [TrashcanAnnotation] = []
     
     let startBottomContainerView = UIView().then{
+        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        $0.layer.cornerRadius = 22
+        $0.layer.masksToBounds = true
         $0.backgroundColor = .mainBackgroundColor
     }
     
     let doingPauseBottomContainerView = UIView().then{
+        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        $0.layer.cornerRadius = 22
+        $0.layer.masksToBounds = true
         $0.backgroundColor = .mainBackgroundColor
     }
     
@@ -127,9 +133,9 @@ class PloggingViewController: BaseViewController {
     lazy var stopButton = UIButton().then{
         $0.setTitle("종료", for: .normal)
         $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
-        $0.backgroundColor = .init(red: 244, green: 95, blue: 95)
+        $0.backgroundColor = UIColor(hexString: "#FF4D35")
         $0.layer.cornerRadius = 28
-        $0.layer.applySketchShadow(color: .init(red: 244, green: 95, blue: 95), alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
+        $0.layer.applySketchShadow(color: UIColor(hexString: "#FF4D35"), alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
         $0.addTarget(self, action: #selector(stopButtonTapped), for: .touchUpInside)
     }
     
@@ -191,6 +197,9 @@ class PloggingViewController: BaseViewController {
     }
     
     var trashInfoContainer = UIView().then{
+        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        $0.layer.cornerRadius = 22
+        $0.layer.masksToBounds = true
         $0.backgroundColor = .mainBackgroundColor
     }
     
@@ -390,7 +399,6 @@ class PloggingViewController: BaseViewController {
             
             self.trashButton.snp.remakeConstraints{
                 $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
-                $0.width.height.equalTo(50)
                 $0.bottom.equalTo(self.trashInfoContainer.snp.top).offset(-16)
             }
         }
@@ -486,7 +494,6 @@ extension PloggingViewController: PloggingDisplayLogic{
         
         self.trashButton.snp.remakeConstraints{
             $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
-            $0.width.height.equalTo(50)
             $0.bottom.equalTo(self.doingPauseBottomContainerView.snp.top).offset(-16)
         }
         self.minutes = 0
@@ -519,7 +526,6 @@ extension PloggingViewController: PloggingDisplayLogic{
         mapView.removeOverlays(mapView.overlays)
         self.trashButton.snp.remakeConstraints{
             $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
-            $0.width.height.equalTo(50)
             $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
         }
         self.timeLabel.text = "00:00"
@@ -577,7 +583,6 @@ extension PloggingViewController: PloggingDisplayLogic{
         
         self.trashButton.snp.remakeConstraints{
             $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
-            $0.width.height.equalTo(50)
             switch self.ploggingState {
             case .stop:
                 $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)
@@ -597,7 +602,6 @@ extension PloggingViewController: PloggingDisplayLogic{
         
         self.trashButton.snp.remakeConstraints{
             $0.trailing.equalTo(self.view.snp.trailing).offset(-16)
-            $0.width.height.equalTo(50)
             switch self.ploggingState {
             case .stop:
                 $0.bottom.equalTo(self.startBottomContainerView.snp.top).offset(-16)

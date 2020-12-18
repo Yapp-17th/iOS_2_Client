@@ -109,7 +109,7 @@ extension PloggingViewController {
         ploggerImageView.snp.makeConstraints{
             $0.leading.equalTo(startButton).offset(36)
             $0.bottom.equalTo(startButton).offset(-25.51)
-            $0.top.equalTo(29)
+            $0.top.equalTo(32)
         }
         bubbleView.snp.makeConstraints{
             $0.leading.equalTo(ploggerImageView.snp.trailing).offset(14)
@@ -190,7 +190,7 @@ extension PloggingViewController {
         }
         
         trashInfoTitleLabel.snp.makeConstraints{
-            $0.top.equalTo(16)
+            $0.top.equalTo(30)
             $0.leading.equalTo(12)
             $0.trailing.equalTo(-12)
         }
