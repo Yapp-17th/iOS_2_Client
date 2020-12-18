@@ -13,16 +13,22 @@
 import UIKit
 
 class ShareWorker {
-    func uploadPloggingRecord(data: PloggingData, image: UIImage) {
+    func uploadPloggingRecord(data: PloggingData, image: UIImage, completion: @escaping (Share.FetchRecord.Response) -> Void) {
         guard let uid = AuthManager.shared.user?.id else { return }
         let title = dateFormatter.string(from: Date())
         
         PloggingAPI.shared.uploadRecord(uid: uid, title: title, distance: data.distance.value, time: data.time, image: image) { (result) in
             switch result{
-            case let .success(feed):
-                print(feed)
+            case let .success(value):
+                if value.success, let feed = value.data {
+                    let response = Share.FetchRecord.Response(feed: feed, ploggingData: data, image: image)
+                    completion(response)
+                } else {
+                    let response = Share.FetchRecord.Response(error: .server(value.message), ploggingData: data, image: image)
+                    completion(response)
+                }
             case let .failure(error):
-                print(error.localizedDescription)
+                let response = Share.FetchRecord.Response(error: .error(error), ploggingData: data, image: image)
             }
         }
     }

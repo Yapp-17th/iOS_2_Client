@@ -17,7 +17,7 @@ import Then
 
 protocol ShareDisplayLogic: class {
     func displayFetchRecord(viewModel: Share.FetchRecord.ViewModel)
-    func displayUpload()
+    func displayError(error: Common.CommonError, useCase: Share.UseCase)
 }
 
 class ShareViewController: UIViewController, PhotoManagerDelegate {
@@ -201,12 +201,29 @@ class ShareViewController: UIViewController, PhotoManagerDelegate {
 
 extension ShareViewController: ShareDisplayLogic {
     func displayFetchRecord(viewModel: Share.FetchRecord.ViewModel) {
+        UPLoader.shared.hidden()
         self.ploggingImageView.ploggingInfoView.viewModel = .init(distance: viewModel.distance, time: viewModel.time)
         self.ploggingImageView.image = viewModel.image
     }
-    func displayUpload() {
-        guard let image = self.ploggingImageView.image else { return }
-        
+    func displayError(error: Common.CommonError, useCase: Share.UseCase) {
+        UPLoader.shared.hidden()
+        switch error {
+        case .server(let msg):
+            self.errorAlert(title: "오류", message: msg, completion: nil)
+        case .local(let msg):
+            self.errorAlert(title: "오류", message: msg, completion: nil)
+        case .error(let error):
+            guard let error = error as? URLError else { return }
+            NetworkErrorManager.alert(error) { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                    guard let self = self else { return }
+                    switch useCase{
+                    case .FetchRecord:
+                        self.interactor?.fetchRecord()
+                    }
+                }
+            }
+        }
     }
 }
 

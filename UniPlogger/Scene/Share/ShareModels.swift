@@ -15,9 +15,13 @@ import UIKit
 enum Share
 {
   // MARK: Use cases
-  
+    enum UseCase {
+        case FetchRecord
+    }
     enum FetchRecord{
         struct Response{
+            var feed: Feed?
+            var error: Common.CommonError?
             var ploggingData: PloggingData
             var image: UIImage
         }

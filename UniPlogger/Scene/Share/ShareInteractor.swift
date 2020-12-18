@@ -34,11 +34,10 @@ class ShareInteractor: ShareBusinessLogic, ShareDataStore {
         guard let ploggingData = self.ploggingData,
               let image = self.image
         else { return }
-        
-        worker.uploadPloggingRecord(data: ploggingData, image: image)
-        
-        let response = Share.FetchRecord.Response(ploggingData: ploggingData, image: image)
-        presenter?.presentFetchRecord(response: response)
+        UPLoader.shared.show()
+        worker.uploadPloggingRecord(data: ploggingData, image: image) { [weak self] response in
+            self?.presenter?.presentFetchRecord(response: response)
+        }
     }
     
     func shareToInstagram(assetIdentifier: String) {
