@@ -62,6 +62,7 @@ class RegistrationInteractor: RegistrationBusinessLogic, RegistrationDataStore {
     }
     
     func registration(request: Registration.Registration.Request) {
+        UPLoader.shared.show()
         worker.registration(request: request) { [weak self] (response) in
             self?.presenter?.presentRegistration(response: response)
         }

@@ -37,26 +37,26 @@ class RegistrationPresenter: RegistrationPresentationLogic {
     
     func presentValidateAccount(response: Registration.ValidateAccount.Response){
         self.isValidAccount = response.isValid
-        let viewModel = Registration.ValidationViewModel(isValid: isValidAccount && isValidPassword && isValidPasswordConfirm)
+        let viewModel = Registration.ValidationViewModel(isValid: isValidAccount && isValidPassword && isValidPasswordConfirm && isValidNickname)
         viewController?.displayValidation(viewModel: viewModel)
     }
     
     
     func presentValidatePassword(response: Registration.ValidatePassword.Response){
         self.isValidPassword = response.isValid
-        let viewModel = Registration.ValidationViewModel(isValid: isValidAccount && isValidPassword && isValidPasswordConfirm)
+        let viewModel = Registration.ValidationViewModel(isValid: isValidAccount && isValidPassword && isValidPasswordConfirm && isValidNickname)
         viewController?.displayValidation(viewModel: viewModel)
     }
     
     func presentValidatePasswordConfirm(response: Registration.ValidatePasswordConfirm.Response){
         self.isValidPasswordConfirm = response.isValid
-        let viewModel = Registration.ValidationViewModel(isValid: isValidAccount && isValidPassword && isValidPasswordConfirm)
+        let viewModel = Registration.ValidationViewModel(isValid: isValidAccount && isValidPassword && isValidPasswordConfirm && isValidNickname)
         viewController?.displayValidation(viewModel: viewModel)
     }
     
     func presentValidateNickname(response: Registration.ValidateNickname.Response) {
         self.isValidNickname = response.isValid
-        let viewModel = Registration.ValidationViewModel(isValid: isValidAccount && isValidPassword && isValidPasswordConfirm)
+        let viewModel = Registration.ValidationViewModel(isValid: isValidAccount && isValidPassword && isValidPasswordConfirm && isValidNickname)
         viewController?.displayValidation(viewModel: viewModel)
     }
     

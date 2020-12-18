@@ -213,9 +213,27 @@ extension RegistrationViewController: RegistrationDisplayLogic {
     }
     
     func displayRegistration() {
+        UPLoader.shared.hidden()
         self.router?.routeToSplash()
     }
     func displayError(error: Common.CommonError, useCase: Registration.UseCase){
         //handle error with its usecase
+        switch error {
+        case .server(let msg):
+            self.errorAlert(title: "오류", message: msg, completion: nil)
+        case .local(let msg):
+            self.errorAlert(title: "오류", message: msg, completion: nil)
+        case .error(let error):
+            guard let error = error as? URLError else { return }
+            NetworkErrorManager.alert(error) { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                    guard let self = self else { return }
+                    switch useCase{
+                    case .Registration(let request):
+                        self.interactor?.registration(request: request)
+                    }
+                }
+            }
+        }
     }
 }
