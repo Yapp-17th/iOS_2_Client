@@ -18,14 +18,26 @@ class LogWorker {
             completion()
         }
     }
-    
-    func updateLevel(completion: @escaping () -> Void) {
-        LogAPI.shared.updateLevel { _ in
-            completion()
-        }
-    }
     func getUser(uid: Int, completion: @escaping(Log.GetUser.Response) -> Void) {
         AuthAPI.shared.getUser(uid: uid) { (response) in
+            switch response {
+            case let .success(value):
+                if value.success, let user = value.data {
+                    let response = Log.GetUser.Response(response: user)
+                    completion(response)
+                } else {
+                    let res = Log.GetUser.Response(error: .server(value.message))
+                    completion(res)
+                }
+            case let .failure(error):
+                let response = Log.GetUser.Response(error: .error(error))
+                completion(response)
+            }
+        }
+    }
+    
+    func updateLevel(completion: @escaping (Log.GetUser.Response) -> Void) {
+        LogAPI.shared.updateLevel { response in
             switch response {
             case let .success(value):
                 if value.success, let user = value.data {

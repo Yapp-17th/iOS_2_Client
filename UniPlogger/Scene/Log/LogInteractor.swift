@@ -28,19 +28,12 @@ class LogInteractor: LogBusinessLogic, LogDataStore {
     //var name: String = ""
     
     func getUser() {
-        guard let uid = self.uid else {
-            let response = Log.GetUser.Response(error: .local("유저 정보를 확인할 수 없습니다."))
-            self.presenter?.presentGetUser(response: response)
-            return
-        }
-        worker.updateLevel {
-            self.worker.updateRank {
-                self.worker.getUser(uid: uid) { [weak self] (response) in
-                    self?.presenter?.presentGetUser(response: response)
-                }
+        UPLoader.shared.show()
+        self.worker.updateRank {
+            self.worker.updateLevel { [weak self] (response) in
+                self?.presenter?.presentGetUser(response: response)
             }
         }
-        
     }
     func getFeed() {
         guard let uid = self.uid else {
@@ -48,13 +41,8 @@ class LogInteractor: LogBusinessLogic, LogDataStore {
             self.presenter?.presentGetFeed(response: response)
             return
         }
-        
-        worker.updateLevel {
-            self.worker.updateRank {
-                self.worker.getFeed(uid: uid) { [weak self] response in
-                    self?.presenter?.presentGetFeed(response: response)
-                }
-            }
+        self.worker.getFeed(uid: uid) { [weak self] response in
+            self?.presenter?.presentGetFeed(response: response)
         }
     }
 }

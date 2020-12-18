@@ -14,7 +14,10 @@ import UIKit
 
 class LoginWorker {
     func validateAccount(text: String) -> Bool{
-        return text.count >= 1
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: text)
     }
     
     func validatePassword(text: String) -> Bool{

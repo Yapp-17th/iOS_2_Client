@@ -63,11 +63,12 @@ final class LogAPI{
             }.disposed(by: disposeBag)
     }
     
-    func updateLevel(completionHandler: @escaping (Result<Void, Error>) -> Void) {
+    func updateLevel(completionHandler: @escaping (Result<Response<User>, Error>) -> Void) {
         provider.rx.request(.updateLevel)
             .filterSuccessfulStatusCodes()
-            .subscribe { _ in
-                completionHandler(.success(()))
+            .map(Response<User>.self)
+            .subscribe {
+                completionHandler(.success($0))
             } onError: {
                 completionHandler(.failure($0))
             }.disposed(by: disposeBag)

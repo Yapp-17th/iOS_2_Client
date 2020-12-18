@@ -159,7 +159,11 @@ class QuestViewController: QuestBaseViewController {
     }
     
     @objc private func touchedInfoButton(_ sender: UIBarButtonItem) {
-        
+        let nav = UINavigationController()
+        let t1 = QuestTutorialViewController1()
+        nav.addChild(t1)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: false, completion: nil)
     }
 }
 

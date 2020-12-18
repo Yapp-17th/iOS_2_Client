@@ -79,7 +79,7 @@ extension PloggingInfoView {
         characterImageView.snp.makeConstraints {
             $0.bottom.equalToSuperview()
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(80)
+            $0.width.equalTo(71)
             $0.height.equalTo(87)
         }
         leftView.snp.makeConstraints {

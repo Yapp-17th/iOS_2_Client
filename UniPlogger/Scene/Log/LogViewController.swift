@@ -30,7 +30,7 @@ class LogViewController: UIViewController {
         $0.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
     }
     let ploggerContainer = UIImageView().then{
-        $0.image = UIImage(named: "mypage_background")?.withRenderingMode(.alwaysOriginal)
+        $0.image = UIImage(named: "mypage_background")
         $0.contentMode = .scaleToFill
     }
     
@@ -196,6 +196,7 @@ extension LogViewController: LogDisplayLogic{
         self.interactor?.getFeed()
     }
     func displayGetFeed(viewModel: Log.GetFeed.ViewModel) {
+        UPLoader.shared.hidden()
         self.feedList = viewModel.feedList
         if let layout = self.collectionView.collectionViewLayout as? LogCollectionViewLayout {
             layout.resetCache()
@@ -206,6 +207,7 @@ extension LogViewController: LogDisplayLogic{
         }
     }
     func displayError(error: Common.CommonError, useCase: Log.UseCase){
+        UPLoader.shared.hidden()
         self.scrollView.refreshControl?.endRefreshing()
         switch error {
         case .server(let msg):
