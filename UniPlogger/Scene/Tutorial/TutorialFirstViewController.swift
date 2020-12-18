@@ -16,6 +16,9 @@ class TutorialFirstViewController: UIViewController {
         $0.contentMode = .top
     }
     
+    let scrollView = ScrollStackView()
+    
+    let skipButtonContainer = UIView()
     lazy var skipButton = UIButton().then {
         $0.setTitle("SKIP", for: .normal)
         $0.titleLabel?.font = .roboto(ofSize: 15, weight: .bold)
@@ -23,10 +26,14 @@ class TutorialFirstViewController: UIViewController {
         $0.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
     }
     
+    let kingImageViewContainer = UIView()
+    
     let kingImageView = UIImageView().then {
         $0.image = UIImage(named: "ic_tutorialFirstKing")
         $0.contentMode = .scaleAspectFit
     }
+    
+    let contentLabelContainer = UIView()
     
     let contentLabel = UILabel().then {
         $0.text = """
@@ -45,6 +52,8 @@ class TutorialFirstViewController: UIViewController {
         $0.textColor = .white
         $0.font = .dynamicNotosans(fontSize: 24, weight: .bold)
     }
+    
+    let nextButtonContainer = UIView()
     
     let nextButtonView = UIView().then{
         $0.backgroundColor = .clear
@@ -73,25 +82,43 @@ class TutorialFirstViewController: UIViewController {
         
         UserDefaults.standard.setValue(false, forKey: "QuestTutorial")
         self.view.addSubview(backgroundImageView)
-        self.view.addSubview(skipButton)
-        self.view.addSubview(kingImageView)
-        self.view.addSubview(contentLabel)
-        self.view.addSubview(nextButtonView)
+        self.view.addSubview(scrollView)
+        scrollView.containerView.snp.makeConstraints{
+            $0.width.equalTo(self.view)
+        }
+        
+        scrollView.snp.makeConstraints{
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+        }
+        
+        scrollView.addArrangedSubview(skipButtonContainer)
+        skipButtonContainer.addSubview(skipButton)
+        scrollView.addArrangedSubview(contentLabelContainer)
+        contentLabelContainer.addSubview(contentLabel)
+        scrollView.addArrangedSubview(kingImageViewContainer)
+        kingImageViewContainer.addSubview(kingImageView)
+        scrollView.addArrangedSubview(nextButtonContainer)
+        nextButtonContainer.addSubview(nextButtonView)
         backgroundImageView.snp.makeConstraints{
             $0.top.leading.trailing.bottom.equalToSuperview()
         }
         skipButton.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(28)
+            $0.top.equalTo(28)
             $0.trailing.equalTo(-20)
-        }
-        kingImageView.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalTo(-53)
         }
         
         contentLabel.snp.makeConstraints {
-            $0.bottom.equalTo(kingImageView.snp.top).offset(-16)
+            $0.top.centerX.equalToSuperview()
+            $0.bottom.equalTo(-42)
+        }
+        
+        kingImageView.snp.makeConstraints {
+            $0.top.equalToSuperview()
             $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(-16)
         }
         
         nextButtonView.addSubview(nextLabel)
@@ -99,8 +126,9 @@ class TutorialFirstViewController: UIViewController {
         nextButtonView.addSubview(nextButton)
         
         nextButtonView.snp.makeConstraints{
-            $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-60)
-            $0.trailing.equalTo(-32)
+            $0.top.equalToSuperview()
+            $0.bottom.equalTo(-60)
+            $0.trailing.equalTo(-20)
             $0.width.equalTo(134)
             $0.height.equalTo(52)
         }
@@ -119,6 +147,11 @@ class TutorialFirstViewController: UIViewController {
         nextButton.snp.makeConstraints{
             $0.edges.equalToSuperview()
         }
+        
+        
+        
+        
+        
     }
     
     @objc func skipButtonTapped() {

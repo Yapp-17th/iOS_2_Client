@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "ic_tutorialThirdPlogger.png",
+      "filename" : "Union.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "ic_tutorialThirdPlogger@2x.png",
+      "filename" : "Union@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "ic_tutorialThirdPlogger@3x.png",
+      "filename" : "Union@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

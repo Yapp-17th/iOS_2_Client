@@ -21,6 +21,11 @@ class TutorialThirdViewController: UIViewController {
         $0.contentMode = .scaleAspectFit
     }
     
+    let ploggerBubbleImageView = UIImageView().then {
+        $0.image = UIImage(named: "ic_tutorialThirdPloggerBubble")
+        $0.contentMode = .scaleAspectFit
+    }
+    
     let nicknameContainer = UIView()
     lazy var nicknameField = NicknameField().then {
         $0.borderStyle = .none
@@ -29,6 +34,13 @@ class TutorialThirdViewController: UIViewController {
         $0.textColor = .white
         $0.addTarget(self, action: #selector(textChanged), for: .editingChanged)
         $0.attributedPlaceholder = NSMutableAttributedString().string("(여기를 눌러 닉네임을 입력하세요)", font: .dynamicNotosans(fontSize: 20, weight: .bold), color: .white)
+    }
+    
+    let nicknameLabel = UILabel().then{
+        $0.textColor = .black
+        $0.font = .notoSans(ofSize: 14, weight: .regular)
+        $0.text = "나에게 이름을\n만들어 주세요"
+        $0.numberOfLines = 2
     }
     
     let firstLabel = UILabel().then {
@@ -82,6 +94,8 @@ class TutorialThirdViewController: UIViewController {
         self.view.addSubview(backgroundImageView)
         self.view.addSubview(nextButtonView)
         self.view.addSubview(ploggerImageView)
+        self.view.addSubview(ploggerBubbleImageView)
+        ploggerBubbleImageView.addSubview(nicknameLabel)
         self.view.addSubview(secondLabel)
         self.view.addSubview(nicknameContainer)
         nicknameContainer.addSubview(nicknameField)
@@ -123,10 +137,20 @@ class TutorialThirdViewController: UIViewController {
             $0.centerX.equalToSuperview()
         }
         
+        ploggerBubbleImageView.snp.makeConstraints{
+            $0.bottom.equalTo(ploggerImageView.snp.top).offset(-11)
+            $0.centerX.equalToSuperview()
+        }
+        
+        nicknameLabel.snp.makeConstraints{
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(-6)
+        }
+        
         secondLabel.snp.makeConstraints {
             $0.leading.equalTo(32)
             $0.trailing.equalTo(-32)
-            $0.bottom.equalTo(ploggerImageView.snp.top).offset(-40)
+            $0.bottom.equalTo(ploggerBubbleImageView.snp.top).offset(-40)
         }
         
         nicknameContainer.snp.makeConstraints {
@@ -172,6 +196,11 @@ class TutorialThirdViewController: UIViewController {
     
     @objc func textChanged(){
         self.nicknameField.invalidateIntrinsicContentSize()
+        if let text = self.nicknameField.text, !text.isEmpty {
+            nicknameLabel.text = text
+        } else {
+            nicknameLabel.text = "나에게 이름을\n만들어 주세요"
+        }
     }
     
     

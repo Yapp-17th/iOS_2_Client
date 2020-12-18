@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "king.png",
+      "filename" : "ic_tutorialFirstKing.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "king@2x.png",
+      "filename" : "ic_tutorialFirstKing@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "king@3x.png",
+      "filename" : "ic_tutorialFirstKing@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
