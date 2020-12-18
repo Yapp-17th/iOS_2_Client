@@ -173,7 +173,10 @@ class PloggingViewController: BaseViewController {
     }
     
     lazy var myLocationButton = UIButton().then{
-        $0.backgroundColor = .white
+        $0.backgroundColor = .mainBackgroundColor
+        $0.setImage(UIImage(named: "ic_ploggingMyLocation")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        $0.imageView?.contentMode = .center
+        $0.tintColor = UIColor(named: "iconColor")
         $0.layer.cornerRadius = 20
         $0.layer.masksToBounds = true
         $0.addTarget(self, action: #selector(myLocationButtonTapped), for: .touchUpInside)
@@ -184,6 +187,7 @@ class PloggingViewController: BaseViewController {
     lazy var mapView = MKMapView().then{
         $0.showsUserLocation = true
         $0.delegate = self
+        $0.showsCompass = false
     }
     
     var trashInfoContainer = UIView().then{

@@ -22,8 +22,8 @@ extension PloggingViewController {
         self.view.addSubview(startBottomContainerView)
         self.view.addSubview(doingPauseBottomContainerView)
         self.view.addSubview(trashInfoContainer)
-        startBottomContainerView.addSubview(startButton)
         startBottomContainerView.addSubview(ploggerImageView)
+        startBottomContainerView.addSubview(startButton)
         startBottomContainerView.addSubview(bubbleView)
         bubbleView.addSubview(bubbleLabel)
         
@@ -107,10 +107,8 @@ extension PloggingViewController {
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-19)
         }
         ploggerImageView.snp.makeConstraints{
-            $0.leading.equalTo(startButton).offset(30)
-            $0.width.equalTo(48)
-            $0.height.equalTo(53)
-            $0.bottom.equalTo(startButton.snp.top)
+            $0.leading.equalTo(startButton).offset(36)
+            $0.bottom.equalTo(startButton).offset(-25.51)
             $0.top.equalTo(29)
         }
         bubbleView.snp.makeConstraints{

@@ -20,13 +20,6 @@ protocol PloggingWorkerDelegate{
 class PloggingWorker: NSObject {
     let storage = Storage()
     
-    static var trashCanList: [TrashCan] = [
-        .init(latitude: 37.4972632, longitude: 126.8450178),
-        .init(latitude: 37.5015682, longitude: 126.844351),
-        .init(latitude: 37.4944, longitude: 126.8423623),
-        .init(latitude: 37.4961687, longitude: 126.8426605)
-    ]
-    
     private let locationManager = CLLocationManager()
     private var distance = Measurement(value: 0, unit: UnitLength.kilometers)
     var locationList: [CLLocation] = []
