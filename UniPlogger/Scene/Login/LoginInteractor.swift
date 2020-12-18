@@ -39,6 +39,7 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
     }
     
     func login(request: Login.Login.Request) {
+        UPLoader.shared.show()
         self.worker.login(request: request) { [weak self] (response) in
             self?.presenter?.presentLogin(response: response)
         }

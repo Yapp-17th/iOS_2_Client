@@ -247,11 +247,13 @@ extension LoginViewController: LoginDisplayLogic {
     }
     
     func displayLogin() {
+        UPLoader.shared.hidden()
         self.router?.routeToSplash()
     }
     
     func displayError(error: Common.CommonError, useCase: Login.UseCase){
         //handle error with its usecase
+        UPLoader.shared.hidden()
         errorAlert(title: "오류", message: "아이디 또는 비밀번호를 잘못 입력하셨습니다.", completion: nil)
     }
     
