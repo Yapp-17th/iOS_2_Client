@@ -21,12 +21,13 @@ class TutorialThirdViewController: UIViewController {
         $0.contentMode = .scaleAspectFit
     }
     
-    var nicknameField = UITextField().then {
+    let nicknameContainer = UIView()
+    lazy var nicknameField = NicknameField().then {
         $0.borderStyle = .none
         $0.font = .dynamicNotosans(fontSize: 24, weight: .bold)
         $0.textAlignment = .center
-        $0.adjustsFontSizeToFitWidth = true
         $0.textColor = .white
+        $0.addTarget(self, action: #selector(textChanged), for: .editingChanged)
         $0.attributedPlaceholder = NSMutableAttributedString().string("(여기를 눌러 닉네임을 입력하세요)", font: .dynamicNotosans(fontSize: 20, weight: .bold), color: .white)
     }
     
@@ -82,8 +83,9 @@ class TutorialThirdViewController: UIViewController {
         self.view.addSubview(nextButtonView)
         self.view.addSubview(ploggerImageView)
         self.view.addSubview(secondLabel)
-        self.view.addSubview(nicknameField)
-        self.view.addSubview(은)
+        self.view.addSubview(nicknameContainer)
+        nicknameContainer.addSubview(nicknameField)
+        nicknameContainer.addSubview(은)
         self.view.addSubview(firstLabel)
         
         backgroundImageView.snp.makeConstraints{
@@ -126,17 +128,22 @@ class TutorialThirdViewController: UIViewController {
             $0.trailing.equalTo(-32)
             $0.bottom.equalTo(ploggerImageView.snp.top).offset(-40)
         }
-        nicknameField.snp.makeConstraints {
+        
+        nicknameContainer.snp.makeConstraints {
             $0.bottom.equalTo(secondLabel.snp.top)
-            $0.leading.equalTo(32)
+            $0.centerX.equalToSuperview()
+            $0.height.equalTo(30)
+        }
+        nicknameField.snp.makeConstraints {
+            $0.leading.centerY.equalToSuperview()
         }
         
         은.snp.makeConstraints{
             $0.leading.equalTo(nicknameField.snp.trailing)
-            $0.centerY.equalTo(nicknameField)
-            $0.trailing.equalTo(-32)
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview()
         }
-        은.setContentHuggingPriority(.required, for: .horizontal)
+        
         firstLabel.snp.makeConstraints {
             $0.bottom.equalTo(은.snp.top)
             $0.centerX.equalToSuperview()
@@ -163,8 +170,29 @@ class TutorialThirdViewController: UIViewController {
     }
     
     
+    @objc func textChanged(){
+        self.nicknameField.invalidateIntrinsicContentSize()
+    }
+    
     
     
 }
 
-
+class NicknameField: UITextField{
+    override var intrinsicContentSize: CGSize{
+        if let text = self.text, !text.isEmpty {
+            let label = UILabel()
+            label.font = self.font
+            label.numberOfLines = 0
+            label.textAlignment = .center
+            label.text = self.text
+            var originSize = super.intrinsicContentSize
+            originSize.width = 0
+            let newSize = label.sizeThatFits(originSize)
+            print(newSize)
+            return newSize
+        } else {
+            return super.intrinsicContentSize
+        }
+    }
+}
