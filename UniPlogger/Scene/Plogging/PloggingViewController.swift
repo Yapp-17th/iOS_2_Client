@@ -114,7 +114,7 @@ class PloggingViewController: BaseViewController {
     
     lazy var startButton = UIButton().then{
         $0.setTitle("플로깅 시작하기", for: .normal)
-        $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
+        $0.titleLabel?.font = .roboto(ofSize: 18, weight: .bold)
         $0.backgroundColor = .main
         $0.layer.cornerRadius = 28
         $0.layer.applySketchShadow(color: .main, alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
@@ -123,7 +123,7 @@ class PloggingViewController: BaseViewController {
     
     lazy var pauseButton = UIButton().then{
         $0.setTitle("잠시 멈춤", for: .normal)
-        $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
+        $0.titleLabel?.font = .roboto(ofSize: 18, weight: .bold)
         $0.backgroundColor = .main
         $0.layer.cornerRadius = 28
         $0.layer.applySketchShadow(color: .main, alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
@@ -132,7 +132,7 @@ class PloggingViewController: BaseViewController {
     
     lazy var stopButton = UIButton().then{
         $0.setTitle("종료", for: .normal)
-        $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
+        $0.titleLabel?.font = .roboto(ofSize: 18, weight: .bold)
         $0.backgroundColor = UIColor(hexString: "#FF4D35")
         $0.layer.cornerRadius = 28
         $0.layer.applySketchShadow(color: UIColor(hexString: "#FF4D35"), alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
@@ -141,7 +141,7 @@ class PloggingViewController: BaseViewController {
     
     lazy var resumeButton = UIButton().then{
         $0.setTitle("이어달리기", for: .normal)
-        $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
+        $0.titleLabel?.font = .roboto(ofSize: 18, weight: .bold)
         $0.backgroundColor = .main
         $0.layer.cornerRadius = 28
         $0.layer.applySketchShadow(color: .main, alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
@@ -219,7 +219,7 @@ class PloggingViewController: BaseViewController {
     
     lazy var addTrashCanConfirmButton = UIButton().then{
         $0.setTitle("확인", for: .normal)
-        $0.titleLabel?.font = .roboto(ofSize: 16, weight: .bold)
+        $0.titleLabel?.font = .roboto(ofSize: 18, weight: .bold)
         $0.backgroundColor = .main
         $0.layer.cornerRadius = 28
         $0.layer.applySketchShadow(color: .main, alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
