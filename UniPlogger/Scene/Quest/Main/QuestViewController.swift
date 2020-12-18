@@ -90,8 +90,7 @@ class QuestViewController: QuestBaseViewController {
         setupViews()
         setupLayouts()
         
-        if  UserDefaults.standard.value(forKey: "QuestTutorial") == nil ||
-            (UserDefaults.standard.value(forKey: "QuestTutorial") as? Bool) == false {
+        if  UserDefaults.standard.bool(forDefines: .hasQuestTutorial) == false {
             let nav = UINavigationController()
             let t1 = QuestTutorialViewController1()
             nav.addChild(t1)

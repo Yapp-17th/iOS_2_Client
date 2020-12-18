@@ -21,6 +21,7 @@ enum UPUserDefaulKey: String {
     
     /// 튜토리얼 진행 여부
     case hasTutorial = "USERDEFAULT_KEY_HAS_TUTORIAL"
+    case hasQuestTutorial = "USERDEFAULT_KEY_HAS_QUEST_TUTORIAL"
 }
 
 // MARK: - UPUserDefaultProtocol

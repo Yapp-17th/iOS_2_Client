@@ -48,4 +48,10 @@ class AuthManager{
             UserDefaults.standard.set(newValue, forDefines: .autoSave)
         }
     }
+    
+    func logout() {
+        UserDefaults.standard.removeObject(forDefines: .hasQuestTutorial)
+        UserDefaults.standard.removeObject(forDefines: .ploggingCoachmark)
+        UserDefaults.standard.synchronize()
+    }
 }

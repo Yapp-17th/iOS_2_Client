@@ -92,6 +92,7 @@ extension LogOutInfoViewController: UITableViewDelegate, UITableViewDataSource {
     
     func routeToSplash() {
         if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            AuthManager.shared.logout()
             delegate.window?.rootViewController = SplashViewController()
             delegate.window?.makeKeyAndVisible()
         }

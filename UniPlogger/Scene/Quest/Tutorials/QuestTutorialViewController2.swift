@@ -69,7 +69,7 @@ class QuestTutorialViewController2: UIViewController {
     }
     
     @objc func didTapSkipButton(_ sender: HightlightButton) {
-        UserDefaults.standard.setValue(true, forKey: "QuestTutorial")
+        UserDefaults.standard.set(true, forDefines: .hasQuestTutorial)
         dismiss(animated: true, completion: nil)
     }
     
