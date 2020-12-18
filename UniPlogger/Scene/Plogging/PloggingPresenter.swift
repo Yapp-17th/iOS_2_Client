@@ -121,8 +121,15 @@ class PloggingPresenter: NSObject, PloggingPresentationLogic {
         
     }
     func presentFetchTrashCan(response: Plogging.FetchTrashCan.Response) {
-        let viewModel = Plogging.FetchTrashCan.ViewModel(list: response.list)
-        viewController?.displayFetchTrashCan(viewModel: viewModel)
+        guard let list = response.list, response.error == nil else {
+            viewController?.displayError(error: response.error!, useCase: .FetchTrashCan)
+            return
+        }
+        let viewModel = Plogging.FetchTrashCan.ViewModel(list: list)
+        DispatchQueue.main.async {
+            self.viewController?.displayFetchTrashCan(viewModel: viewModel)
+        }
+        
     }
     
     func presentRemoveTrashCan(response: Plogging.RemoveTrashCan.Response) {

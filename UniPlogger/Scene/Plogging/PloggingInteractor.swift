@@ -73,8 +73,8 @@ class PloggingInteractor: NSObject, PloggingBusinessLogic, PloggingDataStore {
         }
     }
     func fetchTrashCan() {
-        self.worker.getTrashCanList { [weak self] (list) in
-            let response = Plogging.FetchTrashCan.Response(list: list)
+        UPLoader.shared.show()
+        self.worker.getTrashCanList { [weak self] response in
             self?.presenter?.presentFetchTrashCan(response: response)
         }
     }
@@ -84,12 +84,14 @@ class PloggingInteractor: NSObject, PloggingBusinessLogic, PloggingDataStore {
     }
     
     func removeTrashCan(request: Plogging.RemoveTrashCan.Request) {
+        UPLoader.shared.show()
         self.worker.deleteTrashCan(request: request) { [weak self] response in
             self?.presenter?.presentRemoveTrashCan(response: response)
         }
     }
     
     func addConfirmTrashCan(request: Plogging.AddConfirmTrashCan.Request) {
+        UPLoader.shared.show()
         self.worker.addTrashCan(request: request) { [weak self] response in
             self?.presenter?.presentAddConfirmTrashCan(response: response)
         }

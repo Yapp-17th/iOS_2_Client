@@ -17,7 +17,7 @@ enum Plogging {
     // MARK: Use cases
     
     enum UseCase {
-        case StartPlogging
+        case FetchTrashCan
         case AddConfirmTrashCan(AddConfirmTrashCan.Request)
         case RemoveTrashCan(RemoveTrashCan.Request)
     }
@@ -88,7 +88,8 @@ enum Plogging {
     
     enum FetchTrashCan{
         struct Response {
-            var list: [TrashCan]
+            var list: [TrashCan]?
+            var error: Common.CommonError?
         }
         
         struct ViewModel {

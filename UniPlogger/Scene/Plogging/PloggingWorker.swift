@@ -69,7 +69,7 @@ class PloggingWorker: NSObject {
 
 //MARK: - API
 extension PloggingWorker{
-    func getTrashCanList(completion: @escaping ([TrashCan]) -> Void){
+    func getTrashCanList(completion: @escaping (Plogging.FetchTrashCan.Response) -> Void){
         PloggingAPI.shared.fetchTrashList { (response) in
             switch response{
             case .success(let value):
@@ -77,7 +77,10 @@ extension PloggingWorker{
                     self.fetchTrashCan { list in
                         if list.isEmpty{
                             // Toto add list
-                            self.addTrashCanList(list: trashcanList, completion: completion)
+                            self.addTrashCanList(list: trashcanList){ list in
+                                let response = Plogging.FetchTrashCan.Response(list: list)
+                                completion(response)
+                            }
                         }else{
                             var createList: [TrashCan] = []
                             trashcanList.forEach { item in
@@ -87,18 +90,20 @@ extension PloggingWorker{
                             }
                             self.addTrashCanList(list: createList){ _ in
                                 createList.append(contentsOf: createList)
-                                completion(createList)
+                                let response = Plogging.FetchTrashCan.Response(list: createList)
+                                completion(response)
                             }
                         }
                         
                     }
                 } else {
-                    
+                    let response = Plogging.FetchTrashCan.Response(error: .server(value.message))
+                    completion(response)
                 }
                 
             case .failure(let error):
-                let error = Common.CommonError.error(error)
-                completion([])
+                let response = Plogging.FetchTrashCan.Response(error: .error(error))
+                completion(response)
             }
         }
     }
