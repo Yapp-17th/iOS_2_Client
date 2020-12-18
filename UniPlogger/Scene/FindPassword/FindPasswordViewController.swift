@@ -13,6 +13,7 @@
 import UIKit
 
 protocol FindPasswordDisplayLogic: class {
+    func displayValidation(viewModel: FindPassword.ValidationViewModel)
     func displayFindPassword(viewModel: FindPassword.FindPassword.ViewModel)
     func displayError(error: Common.CommonError, useCase: FindPassword.UseCase)
 }
@@ -43,14 +44,15 @@ class FindPasswordViewController: UIViewController {
         $0.backgroundColor = .clear
         $0.borderStyle = .none
         $0.placeholder = "아이디 (이메일)"
-//        $0.addTarget(self, action: #selector(validateAccount), for: .editingChanged)
+        $0.addTarget(self, action: #selector(validateAccount), for: .editingChanged)
     }
     
     lazy var findPasswordButton = UIButton().then {
         $0.setTitle("확인", for: .normal)
-        $0.backgroundColor = .main
         $0.titleLabel?.font = .roboto(ofSize: 15, weight: .bold)
         $0.layer.cornerRadius = 26
+        $0.backgroundColor = UIColor(named: "color_findPasswordButton")
+        $0.isEnabled = false
         $0.layer.masksToBounds = true
         $0.addTarget(self, action: #selector(findPasswordButtonTapped), for: .touchUpInside)
     }
@@ -153,6 +155,12 @@ class FindPasswordViewController: UIViewController {
       navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
+    @objc func validateAccount(){
+      guard let text = accountField.text else { return }
+      let request = FindPassword.ValidateAccount.Request(account: text)
+      self.interactor?.validateAccount(request: request)
+    }
+    
     @objc func findPasswordButtonTapped() {
         guard let email = accountField.text, !email.isEmpty else {
             self.errorAlert(title: "오류", message: "이메일을 입력해주세요") { (_) in
@@ -167,7 +175,12 @@ class FindPasswordViewController: UIViewController {
 }
 
 extension FindPasswordViewController: FindPasswordDisplayLogic {
+    func displayValidation(viewModel: FindPassword.ValidationViewModel) {
+        self.findPasswordButton.isEnabled = viewModel.isValid
+        self.findPasswordButton.backgroundColor = viewModel.isValid ? .main : UIColor(named: "color_findPasswordButton")
+    }
     func displayFindPassword(viewModel: FindPassword.FindPassword.ViewModel) {
+        UPLoader.shared.hidden()
         let alert = UIAlertController(title: "알림", message: viewModel.data, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default) { (_) in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -179,6 +192,7 @@ extension FindPasswordViewController: FindPasswordDisplayLogic {
     }
     func displayError(error: Common.CommonError, useCase: FindPassword.UseCase){
         //handle error with its usecase
+        UPLoader.shared.hidden()
         switch error {
         case .server(let msg):
             self.errorAlert(title: "오류", message: msg, completion: nil)

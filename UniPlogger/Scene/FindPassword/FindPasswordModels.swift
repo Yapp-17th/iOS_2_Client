@@ -19,6 +19,14 @@ enum FindPassword {
         case FindPassword(FindPassword.Request)
     }
     
+    enum ValidateAccount{
+      struct Request{
+        var account: String
+      }
+      struct Response{
+        var isValid: Bool
+      }
+    }
     enum FindPassword {
         struct Request {
             var email: String
@@ -34,4 +42,9 @@ enum FindPassword {
             var data: String
         }
     }
+    
+    struct ValidationViewModel{
+      var isValid: Bool
+    }
+    
 }

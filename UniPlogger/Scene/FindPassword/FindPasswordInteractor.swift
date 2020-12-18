@@ -14,10 +14,12 @@ import UIKit
 
 protocol FindPasswordBusinessLogic {
     func findPassword(request: FindPassword.FindPassword.Request)
+    func validateAccount(request: FindPassword.ValidateAccount.Request)
 }
 
 protocol FindPasswordDataStore {
-    //var name: String { get set }
+    
+    
 }
 
 class FindPasswordInteractor: FindPasswordBusinessLogic, FindPasswordDataStore {
@@ -25,8 +27,15 @@ class FindPasswordInteractor: FindPasswordBusinessLogic, FindPasswordDataStore {
     var worker = FindPasswordWorker()
     
     func findPassword(request: FindPassword.FindPassword.Request) {
+        UPLoader.shared.show()
         worker.findPassword(request: request) { response in
             self.presenter?.presentFindPassword(response: response)
         }
+    }
+    
+    func validateAccount(request: FindPassword.ValidateAccount.Request){
+        let text = request.account
+        let result = worker.validateAccount(text: text)
+        presenter?.presentValidateAccount(response: .init(isValid: result))
     }
 }

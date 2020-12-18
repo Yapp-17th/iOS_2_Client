@@ -13,6 +13,13 @@
 import UIKit
 
 class FindPasswordWorker {
+    func validateAccount(text: String) -> Bool{
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: text)
+    }
+    
     func findPassword(request: FindPassword.FindPassword.Request, completion: @escaping (FindPassword.FindPassword.Response) -> Void) {
         AuthAPI.shared.findPassword(email: request.email) { (response) in
             switch response {
