@@ -62,6 +62,8 @@ class MyPageViewController: UIViewController, MyPageDisplayLogic {
         $0.dataSource = self
         $0.delegate = self
         $0.register(InfoTableViewCell.self, forCellReuseIdentifier: InfoTableViewCell.ID)
+        $0.cellLayoutMarginsFollowReadableWidth = false
+        $0.separatorInset.left = 0
     }
     
     override func viewDidLoad() {
