@@ -567,20 +567,24 @@ extension PloggingViewController: PloggingDisplayLogic{
         case .local(let msg):
             self.errorAlert(title: "오류", message: msg, completion: nil)
         case .error(let error):
-            guard let error = error as? URLError else { return }
-            NetworkErrorManager.alert(error) { _ in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
-                    guard let self = self else { return }
-                    switch useCase{
-                    case .AddConfirmTrashCan(let request):
-                        self.interactor?.addConfirmTrashCan(request: request)
-                    case .FetchTrashCan:
-                        self.interactor?.fetchTrashCan()
-                    case .RemoveTrashCan(let request):
-                        self.interactor?.removeTrashCan(request: request)
+            if let error = error as? URLError {
+                NetworkErrorManager.alert(error) { _ in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                        guard let self = self else { return }
+                        switch useCase{
+                        case .AddConfirmTrashCan(let request):
+                            self.interactor?.addConfirmTrashCan(request: request)
+                        case .FetchTrashCan:
+                            self.interactor?.fetchTrashCan()
+                        case .RemoveTrashCan(let request):
+                            self.interactor?.removeTrashCan(request: request)
+                        }
                     }
                 }
+            } else if let error = error as? MoyaError {
+                NetworkErrorManager.alert(error)
             }
+            
         }
     }
     func displayAddTrashCan(viewModel: Plogging.AddTrashCan.ViewModel) {

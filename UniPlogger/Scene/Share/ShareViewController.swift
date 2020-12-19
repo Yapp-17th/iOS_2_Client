@@ -217,16 +217,20 @@ extension ShareViewController: ShareDisplayLogic {
         case .local(let msg):
             self.errorAlert(title: "오류", message: msg, completion: nil)
         case .error(let error):
-            guard let error = error as? URLError else { return }
-            NetworkErrorManager.alert(error) { _ in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
-                    guard let self = self else { return }
-                    switch useCase{
-                    case .FetchRecord:
-                        self.interactor?.fetchRecord()
+            if let error = error as? URLError {
+                NetworkErrorManager.alert(error) { _ in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                        guard let self = self else { return }
+                        switch useCase{
+                        case .FetchRecord:
+                            self.interactor?.fetchRecord()
+                        }
                     }
                 }
+            } else if let error = error as? MoyaError{
+                NetworkErrorManager.alert(error)
             }
+            
         }
     }
 }

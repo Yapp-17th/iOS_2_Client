@@ -252,7 +252,27 @@ extension LoginViewController: LoginDisplayLogic {
     func displayError(error: Common.CommonError, useCase: Login.UseCase){
         //handle error with its usecase
         UPLoader.shared.hidden()
-        errorAlert(title: "오류", message: "아이디 또는 비밀번호를 잘못 입력하셨습니다.", completion: nil)
+        switch error {
+        case .server(let msg):
+            self.errorAlert(title: "오류", message: msg, completion: nil)
+        case .local(let msg):
+            self.errorAlert(title: "오류", message: msg, completion: nil)
+        case .error(let error):
+            if let error = error as? URLError {
+                NetworkErrorManager.alert(error) { _ in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                        guard let self = self else { return }
+                        switch useCase{
+                        case .Login(let request):
+                            self.interactor?.login(request: request)
+                        }
+                    }
+                }
+            } else if let error = error as? MoyaError {
+                NetworkErrorManager.alert(error)
+            }
+            
+        }
     }
     
 }

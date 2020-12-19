@@ -11,7 +11,7 @@
 //
 
 import UIKit
-
+import Moya
 protocol RegistrationDisplayLogic: class {
     func displayFetchNickname(viewModel: Registration.FetchNickname.ViewModel)
     func displayValidation(viewModel: Registration.ValidationViewModel)
@@ -219,21 +219,25 @@ extension RegistrationViewController: RegistrationDisplayLogic {
     }
     func displayError(error: Common.CommonError, useCase: Registration.UseCase){
         //handle error with its usecase
+        UPLoader.shared.hidden()
         switch error {
         case .server(let msg):
             self.errorAlert(title: "오류", message: msg, completion: nil)
         case .local(let msg):
             self.errorAlert(title: "오류", message: msg, completion: nil)
         case .error(let error):
-            guard let error = error as? URLError else { return }
-            NetworkErrorManager.alert(error) { _ in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
-                    guard let self = self else { return }
-                    switch useCase{
-                    case .Registration(let request):
-                        self.interactor?.registration(request: request)
+            if let error = error as? (URLError) {
+                NetworkErrorManager.alert(error) { _ in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                        guard let self = self else { return }
+                        switch useCase{
+                        case .Registration(let request):
+                            self.interactor?.registration(request: request)
+                        }
                     }
                 }
+            } else if let error = error as? MoyaError{
+                NetworkErrorManager.alert(error)
             }
         }
     }
