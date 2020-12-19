@@ -23,10 +23,7 @@ class TutorialNavigationController: UINavigationController {
     
     func setupNavigationBar() {
         self.view.addSubview(navView)
-        navView.snp.makeConstraints{
-            $0.leading.trailing.bottom.equalTo(navigationBar)
-            $0.top.equalToSuperview()
-        }
+        setupLayout()
         self.view.bringSubviewToFront(navigationBar)
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
@@ -34,5 +31,13 @@ class TutorialNavigationController: UINavigationController {
         navigationBar.layer.masksToBounds = true
         
         navigationBar.tintColor = .text
+    }
+    
+    func setupLayout() {
+        navView.snp.removeConstraints()
+        navView.snp.makeConstraints{
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(navigationBar)
+        }
     }
 }

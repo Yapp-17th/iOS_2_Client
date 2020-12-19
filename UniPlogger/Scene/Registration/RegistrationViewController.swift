@@ -156,37 +156,38 @@ class RegistrationViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-      super.viewWillAppear(animated)
-      navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+        (navigationController as? TutorialNavigationController)?.setupLayout()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-      super.viewWillDisappear(animated)
-      navigationController?.setNavigationBarHidden(true, animated: animated)
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     @objc func validateAccount(){
-      guard let text = accountField.text else { return }
-      let request = Registration.ValidateAccount.Request(account: text)
-      self.interactor?.validateAccount(request: request)
+        guard let text = accountField.text else { return }
+        let request = Registration.ValidateAccount.Request(account: text)
+        self.interactor?.validateAccount(request: request)
     }
     
     @objc func validatePassword(){
-      guard let text = passwordField.text else { return }
-      let request = Registration.ValidatePassword.Request(password: text)
-      self.interactor?.validatePassword(request: request)
+        guard let text = passwordField.text else { return }
+        let request = Registration.ValidatePassword.Request(password: text)
+        self.interactor?.validatePassword(request: request)
     }
     
     @objc func validatePasswordConfirm(){
-      guard let text = passwordConfirmField.text else { return }
-      let request = Registration.ValidatePasswordConfirm.Request(password: text)
-      self.interactor?.validatePasswordConfirm(request: request)
+        guard let text = passwordConfirmField.text else { return }
+        let request = Registration.ValidatePasswordConfirm.Request(password: text)
+        self.interactor?.validatePasswordConfirm(request: request)
     }
     
     @objc func validateNickname(){
-      guard let text = nicknameField.text else { return }
-      let request = Registration.ValidateNickname.Request(nickname: text)
-      self.interactor?.validateNickname(request: request)
+        guard let text = nicknameField.text else { return }
+        let request = Registration.ValidateNickname.Request(nickname: text)
+        self.interactor?.validateNickname(request: request)
     }
     
     @objc func registrationButtonTapped() {

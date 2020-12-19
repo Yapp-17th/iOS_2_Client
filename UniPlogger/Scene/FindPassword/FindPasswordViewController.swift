@@ -149,19 +149,20 @@ class FindPasswordViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-      super.viewWillAppear(animated)
-      navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+        (navigationController as? TutorialNavigationController)?.setupLayout()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-      super.viewWillDisappear(animated)
-      navigationController?.setNavigationBarHidden(true, animated: animated)
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     @objc func validateAccount(){
-      guard let text = accountField.text else { return }
-      let request = FindPassword.ValidateAccount.Request(account: text)
-      self.interactor?.validateAccount(request: request)
+        guard let text = accountField.text else { return }
+        let request = FindPassword.ValidateAccount.Request(account: text)
+        self.interactor?.validateAccount(request: request)
     }
     
     @objc func findPasswordButtonTapped() {
