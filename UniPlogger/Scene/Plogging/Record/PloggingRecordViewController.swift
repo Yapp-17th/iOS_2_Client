@@ -193,8 +193,9 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         self.nextButtonView.layer.borderColor = isEnabled ? UIColor.clear.cgColor : UIColor(hexString: "#999999").cgColor
         self.nextButtonView.layer.borderWidth = isEnabled ? 0 : 0.5
         self.nextButton.isEnabled = isEnabled
-        self.nextLabel.textColor = isEnabled ? .white : UIColor(hexString: "#999999")
-        self.nextImageView.tintColor = isEnabled ? .white : UIColor(hexString: "#999999")
+        self.nextLabel.textColor = .text
+        self.nextImageView.tintColor = .text
+        
     }
 }
 

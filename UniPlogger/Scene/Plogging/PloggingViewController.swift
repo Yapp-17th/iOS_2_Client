@@ -117,7 +117,7 @@ class PloggingViewController: BaseViewController {
         $0.titleLabel?.font = .roboto(ofSize: 18, weight: .bold)
         $0.backgroundColor = .buttonEnabled
         $0.layer.cornerRadius = 28
-        $0.layer.applySketchShadow(color: .buttonEnabled, alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
+        $0.layer.applySketchShadow(color: .buttonEnabled, alpha: 0.2, x: 0, y: 10, blur: 30, spread: 0)
         $0.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
     }
     
@@ -126,7 +126,7 @@ class PloggingViewController: BaseViewController {
         $0.titleLabel?.font = .roboto(ofSize: 18, weight: .bold)
         $0.backgroundColor = .buttonEnabled
         $0.layer.cornerRadius = 28
-        $0.layer.applySketchShadow(color: .buttonEnabled, alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
+        $0.layer.applySketchShadow(color: .buttonEnabled, alpha: 0.2, x: 0, y: 10, blur: 30, spread: 0)
         $0.addTarget(self, action: #selector(pauseButtonTapped), for: .touchUpInside)
     }
     
@@ -135,7 +135,7 @@ class PloggingViewController: BaseViewController {
         $0.titleLabel?.font = .roboto(ofSize: 18, weight: .bold)
         $0.backgroundColor = UIColor(hexString: "#FF4D35")
         $0.layer.cornerRadius = 28
-        $0.layer.applySketchShadow(color: UIColor(hexString: "#FF4D35"), alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
+        $0.layer.applySketchShadow(color: UIColor(hexString: "#FF4D35"), alpha: 0.2, x: 0, y: 10, blur: 30, spread: 0)
         $0.addTarget(self, action: #selector(stopButtonTapped), for: .touchUpInside)
     }
     
@@ -144,7 +144,7 @@ class PloggingViewController: BaseViewController {
         $0.titleLabel?.font = .roboto(ofSize: 18, weight: .bold)
         $0.backgroundColor = .buttonEnabled
         $0.layer.cornerRadius = 28
-        $0.layer.applySketchShadow(color: .buttonEnabled, alpha: 0.3, x: 0, y: 2, blur: 10, spread: 0)
+        $0.layer.applySketchShadow(color: .buttonEnabled, alpha: 0.2, x: 0, y: 10, blur: 30, spread: 0)
         $0.addTarget(self, action: #selector(resumeButtonTapped), for: .touchUpInside)
     }
   

@@ -23,7 +23,7 @@ extension Color {
     open class var formBoxBackground: Color { return Color(named: "color_formBoxBackground")! }
     open class var tabbarNavbar: Color { return  Color(named: "color_tabbarNavbar")!}
     open class var bubbleBackgroudColor: Color { return Color(named: "bubbleBackgroudColor")! }
-    open class var mainBackgroundColor: Color { return Color(named: "mainBackgroundColor")! }
+    open class var mainBackgroundColor: Color { return Color(named: "color_mainBackground")! }
     open class var tabBarTint: Color { return Color(named: "TabBarTint")! }
     open class var tabBarUnselectedTint: Color { return Color(named: "TabBarUnselectedTint")! }
     
