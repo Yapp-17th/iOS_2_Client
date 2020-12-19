@@ -64,7 +64,7 @@ extension MyPageViewController {
             make.top.equalTo(infoView.snp.top).offset(30)
             make.leading.equalTo(20)
             make.trailing.equalTo(-20)
-            make.height.equalTo(207.5)
+            make.height.equalTo(208)
         }
     }
     
