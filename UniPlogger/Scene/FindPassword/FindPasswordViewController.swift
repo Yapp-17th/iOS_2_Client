@@ -18,7 +18,7 @@ protocol FindPasswordDisplayLogic: class {
     func displayError(error: Common.CommonError, useCase: FindPassword.UseCase)
 }
 
-class FindPasswordViewController: UIViewController {
+class FindPasswordViewController: UIViewController, UIGestureRecognizerDelegate {
     var interactor: FindPasswordBusinessLogic?
     var router: (NSObjectProtocol & FindPasswordRoutingLogic & FindPasswordDataPassing)?
     
@@ -51,7 +51,7 @@ class FindPasswordViewController: UIViewController {
         $0.setTitle("확인", for: .normal)
         $0.titleLabel?.font = .roboto(ofSize: 15, weight: .bold)
         $0.layer.cornerRadius = 26
-        $0.backgroundColor = UIColor(named: "color_findPasswordButton")
+        $0.backgroundColor = .buttonDisabled
         $0.isEnabled = false
         $0.layer.masksToBounds = true
         $0.addTarget(self, action: #selector(findPasswordButtonTapped), for: .touchUpInside)
@@ -101,6 +101,7 @@ class FindPasswordViewController: UIViewController {
         super.viewDidLoad()
         let backButton = UIBarButtonItem(image: UIImage(named: "btn_back"), style: .plain, target: self, action: #selector(back(_:)))
         navigationItem.leftBarButtonItem = backButton
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         navigationController?.navigationBar.tintColor = .text
         self.view.backgroundColor = .mainBackgroundColor
         self.navigationItem.title = "비밀번호 찾기"

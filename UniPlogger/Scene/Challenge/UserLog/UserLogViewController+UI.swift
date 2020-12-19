@@ -8,11 +8,12 @@
 
 import UIKit
 
-extension UserLogViewController {
+extension UserLogViewController: UIGestureRecognizerDelegate {
     
     func setUpViews() {
         let backButton = UIBarButtonItem(image: UIImage(named: "btn_back"), style: .plain, target: self, action: #selector(back(_:)))
         navigationItem.leftBarButtonItem = backButton
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         
         self.view.addSubview(scrollView)
         scrollView.addArrangedSubview(userInfoContainer)
