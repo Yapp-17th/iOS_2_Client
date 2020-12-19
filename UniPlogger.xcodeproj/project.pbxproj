@@ -181,6 +181,8 @@
 		AA4AD59E2574057D0087E060 /* AuthAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835248272572280000C9F495 /* AuthAPIResponse.swift */; };
 		AA4AD5A12574058E0087E060 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83524821257227DE00C9F495 /* AuthManager.swift */; };
 		AA59BF0E258CD489003319D4 /* UPLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA59BF0D258CD489003319D4 /* UPLoader.swift */; };
+		AA59BF16258DF26E003319D4 /* TutorialNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA59BF15258DF26E003319D4 /* TutorialNavigationController.swift */; };
+		AA59BF1A258E0A7B003319D4 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA59BF19258E0A7B003319D4 /* Color.xcassets */; };
 		AA5EFBB82552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */; };
 		AA6CE4F32551780E00C83D28 /* TrashCanStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */; };
 		AA7658EF258279A500BA0A3E /* FindPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7658E9258279A500BA0A3E /* FindPasswordPresenter.swift */; };
@@ -459,6 +461,8 @@
 		AA4AD578257265FF0087E060 /* DetailWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWorker.swift; sourceTree = "<group>"; };
 		AA4AD58B2573F95B0087E060 /* DetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModels.swift; sourceTree = "<group>"; };
 		AA59BF0D258CD489003319D4 /* UPLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPLoader.swift; sourceTree = "<group>"; };
+		AA59BF15258DF26E003319D4 /* TutorialNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialNavigationController.swift; sourceTree = "<group>"; };
+		AA59BF19258E0A7B003319D4 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingRecordCollectionViewLayout.swift; sourceTree = "<group>"; };
 		AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashCanStorage.swift; sourceTree = "<group>"; };
 		AA7658E9258279A500BA0A3E /* FindPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordPresenter.swift; sourceTree = "<group>"; };
@@ -1043,6 +1047,7 @@
 				AA38A747257B841500B26E1F /* TutorialFirstViewController.swift */,
 				AA38A74D257B847E00B26E1F /* TutorialSceondViewController.swift */,
 				AA38A751257B849900B26E1F /* TutorialThirdViewController.swift */,
+				AA59BF15258DF26E003319D4 /* TutorialNavigationController.swift */,
 			);
 			path = Tutorial;
 			sourceTree = "<group>";
@@ -1265,6 +1270,7 @@
 				4CC9C7C525231565004D873D /* Scene */,
 				AAB3B4C72520A31100F0311A /* AppDelegate.swift */,
 				AAB3B4D32520A31200F0311A /* Assets.xcassets */,
+				AA59BF19258E0A7B003319D4 /* Color.xcassets */,
 				AAB3B4D52520A31200F0311A /* LaunchScreen.storyboard */,
 				AAB3B4D82520A31200F0311A /* Info.plist */,
 				AAB3B4D02520A31100F0311A /* UniPlogger.xcdatamodeld */,
@@ -1500,6 +1506,7 @@
 				83530996257BB6B600C3626D /* policy.html in Resources */,
 				AAC958582545BF130092BA6E /* NotoSansCJKkr-Regular.otf in Resources */,
 				AA7F55082532C20C001C4012 /* Roboto-Regular.ttf in Resources */,
+				AA59BF1A258E0A7B003319D4 /* Color.xcassets in Resources */,
 				AA7F550A2532C20C001C4012 /* Roboto-ThinItalic.ttf in Resources */,
 				AA7F55092532C20C001C4012 /* Roboto-MediumItalic.ttf in Resources */,
 				AA7F550B2532C20C001C4012 /* Roboto-BoldItalic.ttf in Resources */,
@@ -1638,6 +1645,7 @@
 				8352481A257227BA00C9F495 /* SplashPresenter.swift in Sources */,
 				AA7F54ED2532C1A6001C4012 /* PloggingInteractor.swift in Sources */,
 				AA35BC85254FFEFA00AE32A7 /* ManagedTrashCan+CoreDataClass.swift in Sources */,
+				AA59BF16258DF26E003319D4 /* TutorialNavigationController.swift in Sources */,
 				4C42364B257234D50068A252 /* QuestAPI.swift in Sources */,
 				AAA1CBEC255D5F9C00EDB18A /* APIConfiguration.swift in Sources */,
 				AA2CAE062543EAD600105748 /* PloggingRecordViewController+UI.swift in Sources */,

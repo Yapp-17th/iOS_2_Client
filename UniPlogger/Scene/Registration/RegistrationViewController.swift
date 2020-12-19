@@ -24,7 +24,7 @@ class RegistrationViewController: UIViewController {
     var router: (NSObjectProtocol & RegistrationRoutingLogic & RegistrationDataPassing)?
     
     let accountFieldBox = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 24
         $0.layer.masksToBounds = true
     }
@@ -39,7 +39,7 @@ class RegistrationViewController: UIViewController {
     }
     
     let passwordFieldBox = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 24
         $0.layer.masksToBounds = true
     }
@@ -62,7 +62,7 @@ class RegistrationViewController: UIViewController {
     }
     
     let passwordConfirmFieldBox = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 24
         $0.layer.masksToBounds = true
     }
@@ -79,7 +79,7 @@ class RegistrationViewController: UIViewController {
     }
     
     let nicknameFieldBox = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 24
         $0.layer.masksToBounds = true
     }
@@ -94,7 +94,7 @@ class RegistrationViewController: UIViewController {
     
     lazy var registrationButton = UIButton().then {
         $0.setTitle("회원가입 완료", for: .normal)
-        $0.backgroundColor = UIColor(named: "color_registrationButton")
+        $0.backgroundColor = .buttonDisabled
         $0.titleLabel?.font = .roboto(ofSize: 15, weight: .bold)
         $0.isEnabled = false
         $0.layer.cornerRadius = 26
@@ -209,7 +209,7 @@ extension RegistrationViewController: RegistrationDisplayLogic {
     
     func displayValidation(viewModel: Registration.ValidationViewModel) {
         self.registrationButton.isEnabled = viewModel.isValid
-        self.registrationButton.backgroundColor = viewModel.isValid ? .main : UIColor(named: "color_loginButton")
+        self.registrationButton.backgroundColor = viewModel.isValid ? .buttonEnabled : .buttonDisabled
     }
     
     func displayRegistration() {

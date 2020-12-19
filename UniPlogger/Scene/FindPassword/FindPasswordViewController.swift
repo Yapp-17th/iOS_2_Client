@@ -33,7 +33,7 @@ class FindPasswordViewController: UIViewController {
     }
     
     let accountFieldBox = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 24
         $0.layer.masksToBounds = true
     }
@@ -101,7 +101,7 @@ class FindPasswordViewController: UIViewController {
         super.viewDidLoad()
         let backButton = UIBarButtonItem(image: UIImage(named: "btn_back"), style: .plain, target: self, action: #selector(back(_:)))
         navigationItem.leftBarButtonItem = backButton
-        navigationController?.navigationBar.tintColor = Color.textBlack
+        navigationController?.navigationBar.tintColor = .text
         self.view.backgroundColor = .mainBackgroundColor
         self.navigationItem.title = "비밀번호 찾기"
         
@@ -180,7 +180,7 @@ class FindPasswordViewController: UIViewController {
 extension FindPasswordViewController: FindPasswordDisplayLogic {
     func displayValidation(viewModel: FindPassword.ValidationViewModel) {
         self.findPasswordButton.isEnabled = viewModel.isValid
-        self.findPasswordButton.backgroundColor = viewModel.isValid ? .main : UIColor(named: "color_findPasswordButton")
+        self.findPasswordButton.backgroundColor = viewModel.isValid ? .buttonEnabled : .buttonDisabled
     }
     func displayFindPassword(viewModel: FindPassword.FindPassword.ViewModel) {
         UPLoader.shared.hidden()

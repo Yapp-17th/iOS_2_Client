@@ -33,12 +33,10 @@ class LoginViewController: UIViewController {
         $0.contentMode = .scaleToFill
     }
     
-    let formContainerView = UIView().then {
-        $0.backgroundColor = .mainBackgroundColor
-    }
+    let formContainerView = UIView()
     
     let accountFieldBox = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 24
         $0.layer.masksToBounds = true
     }
@@ -53,7 +51,7 @@ class LoginViewController: UIViewController {
     }
     
     let passwordFieldBox = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 24
         $0.layer.masksToBounds = true
     }
@@ -71,7 +69,7 @@ class LoginViewController: UIViewController {
     
     lazy var loginButton = UIButton().then {
         $0.setTitle("로그인", for: .normal)
-        $0.backgroundColor = UIColor(named: "color_loginButton")
+        $0.backgroundColor = .buttonDisabled
         $0.titleLabel?.font = .roboto(ofSize: 15, weight: .bold)
         $0.isEnabled = false
         $0.layer.cornerRadius = 26
@@ -82,7 +80,7 @@ class LoginViewController: UIViewController {
     lazy var findPasswordButton = UIButton().then{
         $0.setTitle("비밀번호 찾기", for: .normal)
         $0.titleLabel?.font = .notoSans(ofSize: 14, weight: .regular)
-        $0.setTitleColor(UIColor(named: "color_loginButton"), for: .normal)
+        $0.setTitleColor(.text, for: .normal)
         $0.addTarget(self, action: #selector(findPasswordButtonTapped), for: .touchUpInside)
     }
     
@@ -90,7 +88,7 @@ class LoginViewController: UIViewController {
         $0.setTitle("회원가입", for: .normal)
         $0.titleLabel?.font = .notoSans(ofSize: 14, weight: .regular)
         $0.addTarget(self, action: #selector(registrationButtonTapped), for: .touchUpInside)
-        $0.setTitleColor(UIColor(named: "color_loginButton"), for: .normal)
+        $0.setTitleColor(.text, for: .normal)
     }
     
     // MARK: Object lifecycle
@@ -135,7 +133,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .mainBackgroundColor
+        self.view.backgroundColor = .loginRegistrationBackground
         self.view.addSubview(scrollView)
         scrollView.containerView.snp.makeConstraints{
             $0.width.equalTo(self.view)
@@ -243,7 +241,7 @@ class LoginViewController: UIViewController {
 extension LoginViewController: LoginDisplayLogic {
     func displayValidation(viewModel: Login.ValidationViewModel) {
         self.loginButton.isEnabled = viewModel.isValid
-        self.loginButton.backgroundColor = viewModel.isValid ? .main : UIColor(named: "color_loginButton")
+        self.loginButton.backgroundColor = viewModel.isValid ? .buttonEnabled : .buttonDisabled
     }
     
     func displayLogin() {

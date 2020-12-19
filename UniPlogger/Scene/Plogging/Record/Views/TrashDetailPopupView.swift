@@ -56,7 +56,7 @@ class TrashDetailPopupView: UIViewController {
     }
     
     let closeButton = UIButton().then {
-        $0.backgroundColor = .main
+        $0.backgroundColor = .buttonEnabled
         $0.setTitle("닫기", for: .normal)
         $0.titleLabel?.font = .roboto(ofSize: 15, weight: .bold)
         $0.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
@@ -229,7 +229,7 @@ class TrashDetailPopupCircleView: UIView {
 
 extension TrashDetailPopupCircleView {
     private func configuration() {
-        self.backgroundColor = .recordCellBackgroundColor
+        self.backgroundColor = .formBoxBackground
     }
     
     private func setupView() {

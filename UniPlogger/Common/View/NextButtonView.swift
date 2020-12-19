@@ -14,14 +14,14 @@ class NextButtonView: UIView {
 
     let nextLabel = UILabel().then{
         $0.text = "NEXT"
-        $0.textColor = .textBlack
+        $0.textColor = .text
         $0.font = .roboto(ofSize: 15, weight: .bold)
     }
     
     let nextImageView = UIImageView().then{
         $0.contentMode = .center
         $0.image = UIImage(named: "ic_BtnNextRight")?.withRenderingMode(.alwaysTemplate)
-        $0.tintColor = .textBlack
+        $0.tintColor = .text
     }
     
     lazy var nextButton = UIButton().then {

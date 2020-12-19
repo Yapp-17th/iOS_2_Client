@@ -14,7 +14,7 @@ class RecommandOtherView: UIView {
         didSet {
             titleLabel.text = recommand?.title
             descripionLabel.text = recommand?.content
-            setTextColor(Color.textBlack)
+            setTextColor(.text)
             backgroundColor = Color.questBackgroundTint
             shadow(radius: 10,
                              color: UIColor(named: "questBackground"),

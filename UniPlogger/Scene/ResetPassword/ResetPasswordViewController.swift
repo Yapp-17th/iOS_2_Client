@@ -33,7 +33,7 @@ class ResetPasswordViewController: UIViewController {
     }
     
     let password1FieldBox = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 24
         $0.layer.masksToBounds = true
     }
@@ -49,7 +49,7 @@ class ResetPasswordViewController: UIViewController {
     }
     
     let password2FieldBox = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 24
         $0.layer.masksToBounds = true
     }
@@ -66,7 +66,7 @@ class ResetPasswordViewController: UIViewController {
     
     lazy var resetPasswordButton = UIButton().then {
         $0.setTitle("확인", for: .normal)
-        $0.backgroundColor = .main
+        $0.backgroundColor = .buttonEnabled
         $0.titleLabel?.font = .roboto(ofSize: 15, weight: .bold)
         $0.layer.cornerRadius = 26
         $0.layer.masksToBounds = true

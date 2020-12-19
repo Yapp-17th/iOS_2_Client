@@ -54,7 +54,7 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     }
     
     let nextButtonView = UIView().then{
-        $0.backgroundColor = .main
+        $0.backgroundColor = .buttonEnabled
         $0.layer.cornerRadius = 26
         $0.layer.masksToBounds = true
     }
@@ -189,7 +189,7 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         }
     
     func setButtonEnabled(_ isEnabled: Bool) {
-        self.nextButtonView.backgroundColor = isEnabled ? .main : .clear
+        self.nextButtonView.backgroundColor = isEnabled ? .buttonEnabled : .clear
         self.nextButtonView.layer.borderColor = isEnabled ? UIColor.clear.cgColor : UIColor(hexString: "#999999").cgColor
         self.nextButtonView.layer.borderWidth = isEnabled ? 0 : 0.5
         self.nextButton.isEnabled = isEnabled

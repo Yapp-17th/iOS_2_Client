@@ -49,7 +49,7 @@ class SplashRouter: NSObject, SplashRoutingLogic, SplashDataPassing {
     
     func navigateToTutorial(source: SplashViewController, destination: TutorialFirstViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            let nvc = UINavigationController(rootViewController: destination)
+            let nvc = TutorialNavigationController(rootViewController: destination)
             nvc.modalPresentationStyle = .fullScreen
             nvc.setNavigationBarHidden(true, animated: false)
             source.present(nvc, animated: true, completion: nil)
@@ -59,7 +59,7 @@ class SplashRouter: NSObject, SplashRoutingLogic, SplashDataPassing {
     
     func navigateToLogin(source: SplashViewController, destination: LoginViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            let nvc = UINavigationController(rootViewController: destination)
+            let nvc = TutorialNavigationController(rootViewController: destination)
             nvc.modalPresentationStyle = .fullScreen
             nvc.setNavigationBarHidden(true, animated: false)
             source.present(nvc, animated: true, completion: nil)

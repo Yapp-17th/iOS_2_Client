@@ -12,16 +12,20 @@ public typealias Color = UIColor
 
 extension Color {
     
-    class var textBlack: Color { return Color(named: "text")! }
+    class var text: Color { return Color(named: "text")! }
     
-    // MARK: Red
+    // MARK: Login, Registration
+    open class var loginRegistrationBackground: Color { return Color(named: "color_loginRegistrationBackground")! }
+    
+    // MARK: Common
+    open class var buttonEnabled: Color { return Color(named: "color_buttonEnabled")! }
+    open class var buttonDisabled: Color { return Color(named: "color_buttonDisabled")! }
+    open class var formBoxBackground: Color { return Color(named: "color_formBoxBackground")! }
+    open class var tabbarNavbar: Color { return  Color(named: "color_tabbarNavbar")!}
     open class var bubbleBackgroudColor: Color { return Color(named: "bubbleBackgroudColor")! }
     open class var mainBackgroundColor: Color { return Color(named: "mainBackgroundColor")! }
-    open class var main: Color { return Color(named: "main")! }
-    open class var tabBarBackground: Color { return Color(named: "TabBarBackground")! }
     open class var tabBarTint: Color { return Color(named: "TabBarTint")! }
     open class var tabBarUnselectedTint: Color { return Color(named: "TabBarUnselectedTint")! }
-    open class var recordCellBackgroundColor: Color { return Color(named: "recordCellBackgroundColor")! }
     
     // MARK: Quest
     class var questBackground: Color { return Color(named: "questBackground")! }

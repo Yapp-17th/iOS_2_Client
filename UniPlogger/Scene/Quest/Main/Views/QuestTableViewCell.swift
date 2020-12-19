@@ -38,14 +38,14 @@ class QuestTableViewCell: UITableViewCell {
     private var questTitleLabel = UILabel().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.notoSans(ofSize: 14, weight: .regular)
-        $0.textColor = Color.textBlack
+        $0.textColor = .text
         $0.setContentCompressionResistancePriority(.init(rawValue: 900), for: .vertical)
     }
     
     private var questContentLabel = UILabel().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = UIFont.notoSans(ofSize: 16, weight: .bold)
-        $0.textColor = Color.textBlack
+        $0.textColor = .text
         $0.numberOfLines = 0
     }
     

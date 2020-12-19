@@ -89,7 +89,7 @@ class LogViewController: UIViewController {
         $0.font = .notoSans(ofSize: 14, weight: .regular)
     }
     let weeklyCircleView = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 41
     }
     let weeklyContentLabel = UILabel().then{
@@ -103,7 +103,7 @@ class LogViewController: UIViewController {
         $0.font = .notoSans(ofSize: 14, weight: .regular)
     }
     let monthlyCircleView = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 41
     }
     let monthlyContentLabel = UILabel().then{
