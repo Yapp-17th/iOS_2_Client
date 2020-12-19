@@ -17,8 +17,7 @@ class TutorialSecondViewController: UIViewController {
     }
     
     lazy var skipButton = UIButton().then {
-        $0.setTitle("SKIP", for: .normal)
-        $0.titleLabel?.font = .roboto(ofSize: 15, weight: .bold)
+        $0.setAttributedTitle(UPStyle().font(.roboto(ofSize: 15, weight: .bold)).color(UIColor(hexString: "#999999")).kern(1.25).apply(to: "SKIP"), for: .normal)
         $0.setTitleColor(.init(hexString: "#999999"), for: .normal)
         $0.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
     }
