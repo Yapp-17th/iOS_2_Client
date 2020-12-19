@@ -72,6 +72,7 @@ class DetailViewController: UIViewController {
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
+        self.hidesBottomBarWhenPushed = true
     }
 
     // MARK: View lifecycle
@@ -182,7 +183,7 @@ class DetailViewController: UIViewController {
     }
     
     func mergeViews() -> UIImage? {
-        let image = UIImage(from: ploggingImageView)
+        let image = ploggingImageView.asImage()
         return image
     }
 }

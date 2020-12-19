@@ -47,6 +47,7 @@ class SignUpTableViewCell: UITableViewCell {
     
     func setupViews() {
         self.backgroundColor = .clear
+        self.selectionStyle = .none
         [itemLabel, valueLabel].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview($0)

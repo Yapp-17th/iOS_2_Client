@@ -9,9 +9,14 @@
 import UIKit
 
 extension UIViewController{
-  func errorAlert(title: String, message: String?, completion: ((UIAlertAction) -> Void)?){
-    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "확인", style: .default, handler: completion))
-    self.present(alert, animated: true, completion: nil)
-  }
+    func errorAlert(title: String, message: String?, completion: ((UIAlertAction) -> Void)?){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: completion))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func back(_ button: UIBarButtonItem) {
+      self.navigationController?.popViewController(animated: true)
+    }
+    
 }

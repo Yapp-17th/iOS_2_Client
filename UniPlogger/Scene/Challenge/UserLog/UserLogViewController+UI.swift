@@ -6,11 +6,14 @@
 //  Copyright © 2020 손병근. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension UserLogViewController {
     
     func setUpViews() {
+        let backButton = UIBarButtonItem(image: UIImage(named: "btn_back"), style: .plain, target: self, action: #selector(back(_:)))
+        navigationItem.leftBarButtonItem = backButton
+        
         self.view.addSubview(scrollView)
         scrollView.addArrangedSubview(userInfoContainer)
         [characterImageView, leftStarImageView, rightStarImageView, levelTitleLabel, levelLabel, rankTitleLabel, rankLabel].forEach {

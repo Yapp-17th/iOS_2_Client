@@ -6,11 +6,13 @@
 //  Copyright © 2020 손병근. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension DetailViewController {
     
     func setUpViews() {
+        let backButton = UIBarButtonItem(image: UIImage(named: "btn_back"), style: .plain, target: self, action: #selector(back(_:)))
+        navigationItem.leftBarButtonItem = backButton
         [backgroundImageView, ploggingImageViewContainer, shareButtonView].forEach {
             self.view.addSubview($0)
         }
