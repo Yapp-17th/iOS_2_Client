@@ -18,9 +18,10 @@ extension UIView {
     
     func asImage() -> UIImage? {
         let renderer = UIGraphicsImageRenderer(bounds: bounds)
-        return renderer.image { rendererContext in
-            layer.render(in: rendererContext.cgContext)
+        let image = renderer.image { ctx in
+            layer.render(in: ctx.cgContext)
         }
+        return image
     }
     
     func shadow(radius: CGFloat, color: UIColor?, offset: CGSize, opacity: Float) {
@@ -30,4 +31,32 @@ extension UIView {
         self.layer.shadowOffset = offset
         self.layer.shadowOpacity = opacity
     }
+}
+
+extension UIImage {
+    func round(_ radius: CGFloat) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        let renderer = UIGraphicsImageRenderer(size: rect.size)
+        UIColor.clear.setFill()
+        let result = renderer.image { c in
+            let rounded = UIBezierPath(roundedRect: rect, cornerRadius: radius)
+            rounded.addClip()
+            if let cgImage = self.cgImage {
+                UIImage(cgImage: cgImage, scale: self.scale, orientation: self.imageOrientation).draw(in: rect)
+            }
+        }
+        return result
+    }
+}
+extension UIImage {
+
+    /// Creates a UIImage 'snapshot' of a UIView.
+    convenience init(from view: UIView) {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0.0)
+        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        self.init(cgImage: (image?.cgImage)!)
+    }
+
 }

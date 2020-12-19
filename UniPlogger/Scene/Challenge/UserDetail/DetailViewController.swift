@@ -24,10 +24,16 @@ class DetailViewController: UIViewController {
         $0.contentMode = .top
         $0.clipsToBounds = true
     }
+    
+    let ploggingImageViewContainer = UIView().then{
+        $0.backgroundColor = .clear
+        $0.layer.cornerRadius = 10
+        $0.clipsToBounds = true
+    }
+    
     lazy var ploggingImageView = PloggingImageView().then {
         $0.backgroundColor = .lightGray
-        $0.layer.cornerRadius = 10
-//        $0.clipsToBounds = true
+        
     }
     lazy var reportButton = UIBarButtonItem(image: UIImage(named: "report"), style: .plain, target: self, action: #selector(touchUpReportButton))
 
@@ -82,7 +88,6 @@ class DetailViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         self.imageForSave = mergeViews()
-        ploggingImageView.clipsToBounds = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -177,10 +182,8 @@ class DetailViewController: UIViewController {
     }
     
     func mergeViews() -> UIImage? {
-        let outPutImageView = UIImageView()
-        let image = ploggingImageView.asImage()
-        outPutImageView.image = image
-        return outPutImageView.image
+        let image = UIImage(from: ploggingImageView)
+        return image
     }
 }
 
