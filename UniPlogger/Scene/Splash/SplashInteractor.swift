@@ -14,6 +14,7 @@ import UIKit
 
 protocol SplashBusinessLogic {
     func checkLogin()
+    func setData()
 }
 
 protocol SplashDataStore {
@@ -49,5 +50,9 @@ class SplashInteractor: SplashBusinessLogic, SplashDataStore {
             let response = Splash.CheckLogin.Response(isLogined: false)
             self.presenter?.presentCheckLogin(response: response)
         }
+    }
+    
+    func setData() {
+        AuthManager.shared.autoSave = true
     }
 }

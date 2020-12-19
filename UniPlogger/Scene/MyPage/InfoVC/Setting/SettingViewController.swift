@@ -18,6 +18,8 @@ class SettingViewController: InfoBaseViewController {
         $0.isScrollEnabled = false
         $0.allowsSelection = false
         $0.backgroundColor = .clear
+        $0.cellLayoutMarginsFollowReadableWidth = false
+        $0.separatorInset.left = 0
         self.view.addSubview($0)
     }
     

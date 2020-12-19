@@ -75,6 +75,7 @@ class SplashViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
         
+        self.interactor?.setData()
         self.interactor?.checkLogin()
     }
 }
