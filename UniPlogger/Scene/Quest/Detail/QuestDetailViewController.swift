@@ -94,10 +94,7 @@ class QuestDetailViewController: QuestBaseViewController {
     private var buttonsBackgroundView = UIView().then { view in
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = Color.questBackgroundTint
-        view.shadow(radius: 10,
-                    color: UIColor(named: "questBackground"),
-                    offset: .zero,
-                    opacity: 1)
+        view.layer.applySketchShadow(color: Color.questBackgroundTint, alpha: 0.3, x: 0, y: -5, blur: 30, spread: 0)
         view.layer.cornerRadius = 22
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
