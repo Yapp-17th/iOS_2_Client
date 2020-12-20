@@ -37,8 +37,6 @@ class LogCollectionViewCell: UICollectionViewCell{
     override func prepareForReuse() {
         super.prepareForReuse()
         self.imageView.image = nil
-        self.contentView.backgroundColor = .black
-        
     }
     
     override func layoutSubviews() {
