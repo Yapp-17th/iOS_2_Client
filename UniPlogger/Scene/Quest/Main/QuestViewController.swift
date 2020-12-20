@@ -95,7 +95,9 @@ class QuestViewController: QuestBaseViewController {
             let t1 = QuestTutorialViewController1()
             nav.addChild(t1)
             nav.modalPresentationStyle = .fullScreen
-            present(nav, animated: false, completion: nil)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.present(nav, animated: false, completion: nil)
+            }
         }
     }
     
