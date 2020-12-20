@@ -28,7 +28,7 @@ class UPLoader: UIView {
     
     lazy var container: UIView = {
         let container = UIView(frame: UIScreen.main.bounds)
-        container.backgroundColor = .clear
+        container.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
         container.isUserInteractionEnabled = true
         return container
     }()
