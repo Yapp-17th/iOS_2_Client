@@ -12,6 +12,8 @@ import RxCocoa
 import RxSwift
 
 class StartViewController: UIViewController {
+    let interactor = ChallengeInteractor()
+    
     var router: (NSObjectProtocol & StartRoutingLogic)?
     
     var disposeBag = DisposeBag()
@@ -45,8 +47,7 @@ class StartViewController: UIViewController {
         configure()
         setUpViews()
         setUpLayout()
-        let interactor = ChallengeInteractor()
-        interactor.startChallenge()
+        
     }
     
     private func setup() {
@@ -57,6 +58,7 @@ class StartViewController: UIViewController {
     }
     
     func touchUpStartButton() {
+        interactor.startChallenge()
         router?.routeToChallenge()
     }
 
