@@ -14,10 +14,15 @@ import UIKit
 
 protocol ResetPasswordPresentationLogic {
     func presentResetPassword(response: ResetPassword.ResetPassword.Response)
+    func presentValidatePassword(response: ResetPassword.ValidatePassword.Response)
+    func presentValidatePasswordConfirm(response: ResetPassword.ValidatePasswordConfirm.Response)
 }
 
 class ResetPasswordPresenter: ResetPasswordPresentationLogic {
     weak var viewController: ResetPasswordDisplayLogic?
+    
+    var isValidPassword: Bool = false
+    var isValidPasswordConfirm: Bool = false
     
     func presentResetPassword(response: ResetPassword.ResetPassword.Response) {
         guard let result = response.response, response.error == nil else {
@@ -27,5 +32,17 @@ class ResetPasswordPresenter: ResetPasswordPresentationLogic {
         
         let viewModel = ResetPassword.ResetPassword.ViewModel(detail: result.detail)
         self.viewController?.displayResetPassword(viewModel: viewModel)
+    }
+    
+    func presentValidatePassword(response: ResetPassword.ValidatePassword.Response){
+        self.isValidPassword = response.isValid
+        let viewModel = ResetPassword.ValidationViewModel(isValid: isValidPassword && isValidPasswordConfirm)
+        viewController?.displayValidation(viewModel: viewModel)
+    }
+    
+    func presentValidatePasswordConfirm(response: ResetPassword.ValidatePasswordConfirm.Response){
+        self.isValidPasswordConfirm = response.isValid
+        let viewModel = ResetPassword.ValidationViewModel(isValid: isValidPassword && isValidPasswordConfirm)
+        viewController?.displayValidation(viewModel: viewModel)
     }
 }

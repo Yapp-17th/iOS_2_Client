@@ -49,7 +49,7 @@ class TutorialFirstViewController: UIViewController {
         $0.textAlignment = .center
         $0.numberOfLines = 0
         $0.textColor = .white
-        $0.font = .dynamicNotosans(fontSize: 24, weight: .bold)
+        $0.font = .dynamicNotosans(fontSize: 22, weight: .bold)
     }
     
     let nextButtonContainer = UIView()

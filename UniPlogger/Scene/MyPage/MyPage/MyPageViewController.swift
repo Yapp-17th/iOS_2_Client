@@ -73,7 +73,10 @@ class MyPageViewController: UIViewController, MyPageDisplayLogic {
         setUpViews()
         setUpLayout()
         configure()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.interactor?.getUserInfo()
     }
     

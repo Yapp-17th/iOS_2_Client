@@ -11,9 +11,7 @@ import UIKit
 extension DetailViewController: UIGestureRecognizerDelegate {
     
     func setUpViews() {
-        let backButton = UIBarButtonItem(image: UIImage(named: "btn_back"), style: .plain, target: self, action: #selector(back(_:)))
-        navigationItem.leftBarButtonItem = backButton
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        navigationController?.navigationBar.tintColor = .text
         [backgroundImageView, ploggingImageViewContainer, shareButtonView].forEach {
             self.view.addSubview($0)
         }

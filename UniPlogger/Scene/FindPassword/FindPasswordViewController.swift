@@ -99,9 +99,6 @@ class FindPasswordViewController: UIViewController, UIGestureRecognizerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let backButton = UIBarButtonItem(image: UIImage(named: "btn_back"), style: .plain, target: self, action: #selector(back(_:)))
-        navigationItem.leftBarButtonItem = backButton
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         navigationController?.navigationBar.tintColor = .text
         self.view.backgroundColor = .mainBackgroundColor
         self.navigationItem.title = "비밀번호 찾기"

@@ -171,11 +171,12 @@ class QuestViewController: QuestBaseViewController {
 
 extension QuestViewController: QuestDisplayLogic {
     func displayDetail(quest: Quest, recommads: [Quest]) {
+        UPLoader.shared.hidden()
         router?.routeToDetail(quest: quest, recommands: recommads)
     }
     
     func updateQuest(viewModel: QuestModels.ViewModel, at indexPath: IndexPath) {
-        
+        UPLoader.shared.hidden()
         questViewModel = viewModel
         
         questTableView.beginUpdates()
@@ -184,6 +185,7 @@ extension QuestViewController: QuestDisplayLogic {
     }
     
     func displayQuests(viewModel: QuestModels.ViewModel) {
+        UPLoader.shared.hidden()
         questViewModel = viewModel
         questTableView.reloadData()
     }
