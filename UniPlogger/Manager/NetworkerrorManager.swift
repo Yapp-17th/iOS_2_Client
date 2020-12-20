@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Moya
 class NetworkErrorManager{
     class func alert(_ error: URLError, completion: ((UIAlertAction) -> Void)?) {
         let viewController = UIApplication.topViewController()
@@ -24,6 +24,23 @@ class NetworkErrorManager{
             viewController?.present(alert, animated: true, completion: nil)
         default:
             let alert = UIAlertController(title: "네트워크 오류", message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+            viewController?.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    class func alert(_ error: MoyaError) {
+        let viewController = UIApplication.topViewController()
+        switch error {
+        case .statusCode(let response):
+            if let baseResponse = try? response.map(BaseResponse<String>.self){
+                let message = baseResponse.message
+                let alert = UIAlertController(title: "오류", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+                viewController?.present(alert, animated: true, completion: nil)
+            }
+        default:
+            let alert = UIAlertController(title: "오류", message: error.localizedDescription, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
             viewController?.present(alert, animated: true, completion: nil)
         }

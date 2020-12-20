@@ -69,7 +69,12 @@ extension QuestInteractor: QuestBusinessLogic {
     }
     
     func touchedQuestAccessory(at indexPath: IndexPath, state: QuestState) {
-        guard var quest = questList.quest(at: indexPath, in: state) else { return }
+        UPLoader.shared.show()
+        guard var quest = questList.quest(at: indexPath, in: state) else {
+            UPLoader.shared.hidden()
+            return
+            
+        }
         
         if state == .todo {
             questList.remove(quest: quest)
@@ -86,6 +91,7 @@ extension QuestInteractor: QuestBusinessLogic {
             worker.delete(quest: quest)
             questList.remove(quest: quest)
         } else {
+            UPLoader.shared.hidden()
             return
         }
         
@@ -94,6 +100,7 @@ extension QuestInteractor: QuestBusinessLogic {
     
     
     func fetchQuest(request: QuestModels.Reqeust) {
+        UPLoader.shared.show()
         worker.fetchData { [weak self] (quests) in
             guard let self = self else { return }
             self.questList = QuestList(quests: quests)

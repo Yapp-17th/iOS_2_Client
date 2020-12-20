@@ -13,6 +13,11 @@
 import UIKit
 
 class ResetPasswordWorker {
+    func validatePassword(text: String) -> Bool{
+        return text.count >= 8 && text.count <= 20
+    }
+    
+    
     func findPassword(
         request: ResetPassword.ResetPassword.Request,
         uid: String,

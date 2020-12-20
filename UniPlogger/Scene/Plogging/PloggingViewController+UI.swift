@@ -12,7 +12,7 @@ import Then
 
 extension PloggingViewController {
     func configuration() {
-        // backgroundColor = .whit
+        self.view.backgroundColor = .mainBackgroundColor
     }
     
     func setupView() {
@@ -81,7 +81,8 @@ extension PloggingViewController {
     func setupBasicViews() {
         
         mapView.snp.makeConstraints{
-            $0.leading.trailing.top.bottom.equalToSuperview()
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
         myLocationButton.snp.makeConstraints{
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(15)

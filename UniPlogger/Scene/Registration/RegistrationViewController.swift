@@ -11,7 +11,7 @@
 //
 
 import UIKit
-
+import Moya
 protocol RegistrationDisplayLogic: class {
     func displayFetchNickname(viewModel: Registration.FetchNickname.ViewModel)
     func displayValidation(viewModel: Registration.ValidationViewModel)
@@ -24,7 +24,7 @@ class RegistrationViewController: UIViewController {
     var router: (NSObjectProtocol & RegistrationRoutingLogic & RegistrationDataPassing)?
     
     let accountFieldBox = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 24
         $0.layer.masksToBounds = true
     }
@@ -39,7 +39,7 @@ class RegistrationViewController: UIViewController {
     }
     
     let passwordFieldBox = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 24
         $0.layer.masksToBounds = true
     }
@@ -62,7 +62,7 @@ class RegistrationViewController: UIViewController {
     }
     
     let passwordConfirmFieldBox = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 24
         $0.layer.masksToBounds = true
     }
@@ -79,7 +79,7 @@ class RegistrationViewController: UIViewController {
     }
     
     let nicknameFieldBox = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 24
         $0.layer.masksToBounds = true
     }
@@ -94,7 +94,7 @@ class RegistrationViewController: UIViewController {
     
     lazy var registrationButton = UIButton().then {
         $0.setTitle("회원가입 완료", for: .normal)
-        $0.backgroundColor = UIColor(named: "color_registrationButton")
+        $0.backgroundColor = .buttonDisabled
         $0.titleLabel?.font = .roboto(ofSize: 15, weight: .bold)
         $0.isEnabled = false
         $0.layer.cornerRadius = 26
@@ -156,37 +156,38 @@ class RegistrationViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-      super.viewWillAppear(animated)
-      navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+        (navigationController as? TutorialNavigationController)?.setupLayout()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-      super.viewWillDisappear(animated)
-      navigationController?.setNavigationBarHidden(true, animated: animated)
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     @objc func validateAccount(){
-      guard let text = accountField.text else { return }
-      let request = Registration.ValidateAccount.Request(account: text)
-      self.interactor?.validateAccount(request: request)
+        guard let text = accountField.text else { return }
+        let request = Registration.ValidateAccount.Request(account: text)
+        self.interactor?.validateAccount(request: request)
     }
     
     @objc func validatePassword(){
-      guard let text = passwordField.text else { return }
-      let request = Registration.ValidatePassword.Request(password: text)
-      self.interactor?.validatePassword(request: request)
+        guard let text = passwordField.text else { return }
+        let request = Registration.ValidatePassword.Request(password: text)
+        self.interactor?.validatePassword(request: request)
     }
     
     @objc func validatePasswordConfirm(){
-      guard let text = passwordConfirmField.text else { return }
-      let request = Registration.ValidatePasswordConfirm.Request(password: text)
-      self.interactor?.validatePasswordConfirm(request: request)
+        guard let text = passwordConfirmField.text else { return }
+        let request = Registration.ValidatePasswordConfirm.Request(password: text)
+        self.interactor?.validatePasswordConfirm(request: request)
     }
     
     @objc func validateNickname(){
-      guard let text = nicknameField.text else { return }
-      let request = Registration.ValidateNickname.Request(nickname: text)
-      self.interactor?.validateNickname(request: request)
+        guard let text = nicknameField.text else { return }
+        let request = Registration.ValidateNickname.Request(nickname: text)
+        self.interactor?.validateNickname(request: request)
     }
     
     @objc func registrationButtonTapped() {
@@ -209,7 +210,7 @@ extension RegistrationViewController: RegistrationDisplayLogic {
     
     func displayValidation(viewModel: Registration.ValidationViewModel) {
         self.registrationButton.isEnabled = viewModel.isValid
-        self.registrationButton.backgroundColor = viewModel.isValid ? .main : UIColor(named: "color_loginButton")
+        self.registrationButton.backgroundColor = viewModel.isValid ? .buttonEnabled : .buttonDisabled
     }
     
     func displayRegistration() {
@@ -218,21 +219,25 @@ extension RegistrationViewController: RegistrationDisplayLogic {
     }
     func displayError(error: Common.CommonError, useCase: Registration.UseCase){
         //handle error with its usecase
+        UPLoader.shared.hidden()
         switch error {
         case .server(let msg):
             self.errorAlert(title: "오류", message: msg, completion: nil)
         case .local(let msg):
             self.errorAlert(title: "오류", message: msg, completion: nil)
         case .error(let error):
-            guard let error = error as? URLError else { return }
-            NetworkErrorManager.alert(error) { _ in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
-                    guard let self = self else { return }
-                    switch useCase{
-                    case .Registration(let request):
-                        self.interactor?.registration(request: request)
+            if let error = error as? (URLError) {
+                NetworkErrorManager.alert(error) { _ in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                        guard let self = self else { return }
+                        switch useCase{
+                        case .Registration(let request):
+                            self.interactor?.registration(request: request)
+                        }
                     }
                 }
+            } else if let error = error as? MoyaError{
+                NetworkErrorManager.alert(error)
             }
         }
     }

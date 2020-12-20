@@ -26,7 +26,7 @@ class MainTabBarController: UITabBarController {
 extension MainTabBarController {
     private func configuration() {
         self.view.backgroundColor = .white
-        self.tabBar.barTintColor = .tabBarBackground
+        self.tabBar.barTintColor = .tabbarNavbar
         self.tabBar.tintColor = .tabBarTint
         self.tabBar.unselectedItemTintColor = .tabBarUnselectedTint
     }
@@ -44,12 +44,12 @@ extension MainTabBarController {
     private func setupLayout() {
         tabBar.backgroundImage = UIImage.from(color: .clear)
         tabBar.shadowImage = UIImage()
-        tabBar.backgroundColor = .tabBarBackground
+        tabBar.backgroundColor = .tabbarNavbar
         tabBar.layer.cornerRadius = 22
         
         let tabbarBackgroundView = RoundShadowView()
         tabbarBackgroundView.layer.cornerRadius = 22
-        tabbarBackgroundView.backgroundColor = .tabBarBackground
+        tabbarBackgroundView.backgroundColor = .tabbarNavbar
         tabbarBackgroundView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         tabBar.insertSubview(tabbarBackgroundView, at: 0)
         tabbarBackgroundView.snp.makeConstraints{

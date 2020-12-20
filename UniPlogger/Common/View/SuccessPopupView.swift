@@ -28,7 +28,7 @@ class SuccessPopupView: UIView {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.text = "축하드려요!"
         $0.font = .notoSans(ofSize: 30, weight: .bold)
-        $0.textColor = .textBlack
+        $0.textColor = .text
     }
     
     let questContentsLabel = UILabel().then {
@@ -36,14 +36,14 @@ class SuccessPopupView: UIView {
         $0.text = ""
         $0.numberOfLines = 0
         $0.font = .notoSans(ofSize: 14, weight: .bold)
-        $0.textColor = .textBlack
+        $0.textColor = .text
     }
     
     let endLabel = UILabel().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.text = "퀘스트를 달성했어요."
         $0.font = .notoSans(ofSize: 14, weight: .regular)
-        $0.textColor = .textBlack
+        $0.textColor = .text
     }
     
     let contentsImageView = UIImageView().then {

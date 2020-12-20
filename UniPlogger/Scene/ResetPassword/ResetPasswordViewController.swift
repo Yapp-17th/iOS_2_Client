@@ -14,6 +14,7 @@ import UIKit
 
 protocol ResetPasswordDisplayLogic: class {
     func displayResetPassword(viewModel: ResetPassword.ResetPassword.ViewModel)
+    func displayValidation(viewModel: ResetPassword.ValidationViewModel)
     func displayError(error: Common.CommonError, useCase: ResetPassword.UseCase)
 }
 
@@ -33,7 +34,7 @@ class ResetPasswordViewController: UIViewController {
     }
     
     let password1FieldBox = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 24
         $0.layer.masksToBounds = true
     }
@@ -46,10 +47,11 @@ class ResetPasswordViewController: UIViewController {
         $0.backgroundColor = .clear
         $0.borderStyle = .none
         $0.attributedPlaceholder = NSMutableAttributedString().string("비밀번호", font: .notoSans(ofSize: 16, weight: .regular), color: .white)
+        $0.addTarget(self, action: #selector(validatePassword), for: .editingChanged)
     }
     
     let password2FieldBox = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 24
         $0.layer.masksToBounds = true
     }
@@ -62,11 +64,13 @@ class ResetPasswordViewController: UIViewController {
         $0.backgroundColor = .clear
         $0.borderStyle = .none
         $0.attributedPlaceholder = NSMutableAttributedString().string("비밀번호 재입력", font: .notoSans(ofSize: 16, weight: .regular), color: .white)
+        $0.addTarget(self, action: #selector(validatePasswordConfirm), for: .editingChanged)
     }
     
     lazy var resetPasswordButton = UIButton().then {
         $0.setTitle("확인", for: .normal)
-        $0.backgroundColor = .main
+        $0.backgroundColor = .buttonDisabled
+        $0.isEnabled = false
         $0.titleLabel?.font = .roboto(ofSize: 15, weight: .bold)
         $0.layer.cornerRadius = 26
         $0.layer.masksToBounds = true
@@ -188,6 +192,18 @@ class ResetPasswordViewController: UIViewController {
       navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
+    @objc func validatePassword(){
+        guard let text = password1Field.text else { return }
+        let request = ResetPassword.ValidatePassword.Request(password: text)
+        self.interactor?.validatePassword(request: request)
+    }
+    
+    @objc func validatePasswordConfirm(){
+        guard let text = password2Field.text else { return }
+        let request = ResetPassword.ValidatePasswordConfirm.Request(password: text)
+        self.interactor?.validatePasswordConfirm(request: request)
+    }
+    
     @objc func resetPasswordButtonTapped() {
         guard let password1 = password1Field.text, !password1.isEmpty,
               let password2 = password2Field.text, !password2.isEmpty
@@ -202,6 +218,7 @@ class ResetPasswordViewController: UIViewController {
 
 extension ResetPasswordViewController: ResetPasswordDisplayLogic {
     func displayResetPassword(viewModel: ResetPassword.ResetPassword.ViewModel) {
+        UPLoader.shared.hidden()
         let alert = UIAlertController(title: "알림", message: viewModel.detail, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default) { (_) in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -212,24 +229,35 @@ extension ResetPasswordViewController: ResetPasswordDisplayLogic {
         self.present(alert, animated: true, completion: nil)
     }
     
+    func displayValidation(viewModel: ResetPassword.ValidationViewModel) {
+        self.resetPasswordButton.isEnabled = viewModel.isValid
+        self.resetPasswordButton.backgroundColor = viewModel.isValid ? .buttonEnabled : .buttonDisabled
+    }
+    
+    
     func displayError(error: Common.CommonError, useCase: ResetPassword.UseCase){
         //handle error with its usecase
+        UPLoader.shared.hidden()
         switch error {
         case .server(let msg):
             self.errorAlert(title: "오류", message: msg, completion: nil)
         case .local(let msg):
             self.errorAlert(title: "오류", message: msg, completion: nil)
         case .error(let error):
-            guard let error = error as? URLError else { return }
-            NetworkErrorManager.alert(error) { _ in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
-                    guard let self = self else { return }
-                    switch useCase{
-                    case .ResetPassword(let request):
-                        self.interactor?.resetPassword(request: request)
+            if let error = error as? URLError {
+                NetworkErrorManager.alert(error) { _ in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                        guard let self = self else { return }
+                        switch useCase{
+                        case .ResetPassword(let request):
+                            self.interactor?.resetPassword(request: request)
+                        }
                     }
                 }
+            } else if let error = error as? MoyaError {
+                NetworkErrorManager.alert(error)
             }
+            
         }
     }
 }

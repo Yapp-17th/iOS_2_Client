@@ -34,7 +34,7 @@ class MyPageNavigationController: UINavigationController {
         navigationBar.layer.masksToBounds = true
         navigationBar.layer.cornerRadius = 30
         navigationBar.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        navigationBar.tintColor = Color.textBlack
+        navigationBar.tintColor = .text
         
     }
 

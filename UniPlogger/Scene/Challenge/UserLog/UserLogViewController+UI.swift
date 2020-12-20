@@ -8,11 +8,10 @@
 
 import UIKit
 
-extension UserLogViewController {
+extension UserLogViewController: UIGestureRecognizerDelegate {
     
     func setUpViews() {
-        let backButton = UIBarButtonItem(image: UIImage(named: "btn_back"), style: .plain, target: self, action: #selector(back(_:)))
-        navigationItem.leftBarButtonItem = backButton
+        navigationController?.navigationBar.tintColor = .text
         
         self.view.addSubview(scrollView)
         scrollView.addArrangedSubview(userInfoContainer)

@@ -9,7 +9,7 @@
 import UIKit
 class LogNavigationController: UINavigationController {
     let navView = UIView().then{
-        $0.backgroundColor = Color(named: "color_logNaviBar")
+        $0.backgroundColor = .tabbarNavbar
         $0.layer.cornerRadius = 30
         $0.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         $0.layer.masksToBounds = true
@@ -32,6 +32,6 @@ class LogNavigationController: UINavigationController {
         navigationBar.isTranslucent = true
         navigationBar.layer.masksToBounds = true
         
-        navigationBar.tintColor = Color.textBlack
+        navigationBar.tintColor = .text
     }
 }

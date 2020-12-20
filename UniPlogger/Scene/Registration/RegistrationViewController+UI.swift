@@ -8,12 +8,10 @@
 
 import UIKit
 
-extension RegistrationViewController {
+extension RegistrationViewController: UIGestureRecognizerDelegate {
     func configuration() {
-        let backButton = UIBarButtonItem(image: UIImage(named: "btn_back"), style: .plain, target: self, action: #selector(back(_:)))
-        navigationItem.leftBarButtonItem = backButton
-        navigationController?.navigationBar.tintColor = Color.textBlack
-        self.view.backgroundColor = .mainBackgroundColor
+        self.view.backgroundColor = .loginRegistrationBackground
+        navigationController?.navigationBar.tintColor = .text
         self.navigationItem.title = "회원가입"
         if let vcs = self.navigationController?.viewControllers, let _ = vcs[vcs.count - 2] as? TutorialThirdViewController {
             self.navigationItem.hidesBackButton = true

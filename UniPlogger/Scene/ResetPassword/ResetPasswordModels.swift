@@ -35,4 +35,26 @@ enum ResetPassword {
             var detail: String?
         }
     }
+    
+    enum ValidatePassword{
+      struct Request{
+        var password: String
+      }
+      struct Response{
+        var isValid: Bool
+      }
+    }
+    
+    enum ValidatePasswordConfirm{
+      struct Request{
+        var password: String
+      }
+      struct Response{
+        var isValid: Bool
+      }
+    }
+    
+    struct ValidationViewModel{
+      var isValid: Bool
+    }
 }

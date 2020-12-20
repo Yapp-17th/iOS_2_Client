@@ -21,7 +21,7 @@ class QuestTutorialViewController1: UIViewController {
     let skipButton = HightlightButton().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setTitle("Skip", for: .normal)
-        $0.setTitleColor(.textBlack, for: .normal)
+        $0.setTitleColor(.text, for: .normal)
         $0.contentEdgeInsets = .init(top: 10, left: 10, bottom: 10, right: 10)
         $0.addTarget(self, action: #selector(didTapSkipButton(_:)), for: .touchUpInside)
     }
@@ -29,7 +29,7 @@ class QuestTutorialViewController1: UIViewController {
     lazy var nextButton = NextButtonView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.borderWidth = 0.5
-        $0.layer.borderColor = UIColor.textBlack.cgColor
+        $0.layer.borderColor = UIColor.text.cgColor
         $0.clipsToBounds = true
         $0.tapHandler = { [weak self] in
             self?.didTapNextButton()

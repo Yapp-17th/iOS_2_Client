@@ -18,7 +18,7 @@ protocol FindPasswordDisplayLogic: class {
     func displayError(error: Common.CommonError, useCase: FindPassword.UseCase)
 }
 
-class FindPasswordViewController: UIViewController {
+class FindPasswordViewController: UIViewController, UIGestureRecognizerDelegate {
     var interactor: FindPasswordBusinessLogic?
     var router: (NSObjectProtocol & FindPasswordRoutingLogic & FindPasswordDataPassing)?
     
@@ -33,7 +33,7 @@ class FindPasswordViewController: UIViewController {
     }
     
     let accountFieldBox = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 24
         $0.layer.masksToBounds = true
     }
@@ -51,7 +51,7 @@ class FindPasswordViewController: UIViewController {
         $0.setTitle("확인", for: .normal)
         $0.titleLabel?.font = .roboto(ofSize: 15, weight: .bold)
         $0.layer.cornerRadius = 26
-        $0.backgroundColor = UIColor(named: "color_findPasswordButton")
+        $0.backgroundColor = .buttonDisabled
         $0.isEnabled = false
         $0.layer.masksToBounds = true
         $0.addTarget(self, action: #selector(findPasswordButtonTapped), for: .touchUpInside)
@@ -99,9 +99,7 @@ class FindPasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let backButton = UIBarButtonItem(image: UIImage(named: "btn_back"), style: .plain, target: self, action: #selector(back(_:)))
-        navigationItem.leftBarButtonItem = backButton
-        navigationController?.navigationBar.tintColor = Color.textBlack
+        navigationController?.navigationBar.tintColor = .text
         self.view.backgroundColor = .mainBackgroundColor
         self.navigationItem.title = "비밀번호 찾기"
         
@@ -149,19 +147,20 @@ class FindPasswordViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-      super.viewWillAppear(animated)
-      navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+        (navigationController as? TutorialNavigationController)?.setupLayout()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-      super.viewWillDisappear(animated)
-      navigationController?.setNavigationBarHidden(true, animated: animated)
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     @objc func validateAccount(){
-      guard let text = accountField.text else { return }
-      let request = FindPassword.ValidateAccount.Request(account: text)
-      self.interactor?.validateAccount(request: request)
+        guard let text = accountField.text else { return }
+        let request = FindPassword.ValidateAccount.Request(account: text)
+        self.interactor?.validateAccount(request: request)
     }
     
     @objc func findPasswordButtonTapped() {
@@ -180,7 +179,7 @@ class FindPasswordViewController: UIViewController {
 extension FindPasswordViewController: FindPasswordDisplayLogic {
     func displayValidation(viewModel: FindPassword.ValidationViewModel) {
         self.findPasswordButton.isEnabled = viewModel.isValid
-        self.findPasswordButton.backgroundColor = viewModel.isValid ? .main : UIColor(named: "color_findPasswordButton")
+        self.findPasswordButton.backgroundColor = viewModel.isValid ? .buttonEnabled : .buttonDisabled
     }
     func displayFindPassword(viewModel: FindPassword.FindPassword.ViewModel) {
         UPLoader.shared.hidden()
@@ -202,16 +201,20 @@ extension FindPasswordViewController: FindPasswordDisplayLogic {
         case .local(let msg):
             self.errorAlert(title: "오류", message: msg, completion: nil)
         case .error(let error):
-            guard let error = error as? URLError else { return }
-            NetworkErrorManager.alert(error) { _ in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
-                    guard let self = self else { return }
-                    switch useCase{
-                    case .FindPassword(let request):
-                        self.interactor?.findPassword(request: request)
+            if let error = error as? URLError {
+                NetworkErrorManager.alert(error) { _ in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                        guard let self = self else { return }
+                        switch useCase{
+                        case .FindPassword(let request):
+                            self.interactor?.findPassword(request: request)
+                        }
                     }
                 }
+            } else if let error = error as? MoyaError {
+                NetworkErrorManager.alert(error)
             }
+            
         }
     }
 }

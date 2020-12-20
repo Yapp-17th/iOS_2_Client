@@ -9,14 +9,22 @@
 import Foundation
 
 struct BaseResponse<T: Codable>: Codable {
-  // MARK: Properties
-  var success: Bool = false
-  var message: String?
-  var data: T?
-  
-  enum CodingKeys: String, CodingKey {
-    case success
-    case message
-    case data
-  }
+    // MARK: Properties
+    var success: Bool = false
+    var message: String?
+    var data: T?
+    
+    enum CodingKeys: String, CodingKey {
+        case success
+        case message
+        case data
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: BaseResponse.CodingKeys.self)
+        success = try container.decodeIfPresent(Bool.self, forKey: .success) ?? false
+        message = try container.decodeIfPresent(String.self, forKey: .message)
+        data = try container.decodeIfPresent(T.self, forKey: .data)
+    }
+    
 }

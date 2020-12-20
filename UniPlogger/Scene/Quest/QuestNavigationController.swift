@@ -21,7 +21,7 @@ class QuestNavigationController: UINavigationController {
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.layer.cornerRadius = 30
         navigationBar.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        navigationBar.tintColor = Color.textBlack
+        navigationBar.tintColor = .text
         navigationBar.backgroundColor = Color.questBackgroundTint
         navigationBar.barTintColor = Color.questBackgroundTint
     }

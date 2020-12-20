@@ -89,7 +89,7 @@ class LogViewController: UIViewController {
         $0.font = .notoSans(ofSize: 14, weight: .regular)
     }
     let weeklyCircleView = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 41
     }
     let weeklyContentLabel = UILabel().then{
@@ -103,7 +103,7 @@ class LogViewController: UIViewController {
         $0.font = .notoSans(ofSize: 14, weight: .regular)
     }
     let monthlyCircleView = UIView().then {
-        $0.backgroundColor = .recordCellBackgroundColor
+        $0.backgroundColor = .formBoxBackground
         $0.layer.cornerRadius = 41
     }
     let monthlyContentLabel = UILabel().then{
@@ -215,18 +215,22 @@ extension LogViewController: LogDisplayLogic{
         case .local(let msg):
             self.errorAlert(title: "오류", message: msg, completion: nil)
         case .error(let error):
-            guard let error = error as? URLError else { return }
-            NetworkErrorManager.alert(error) { _ in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
-                    guard let self = self else { return }
-                    switch useCase{
-                    case .GetUser:
-                        self.interactor?.getUser()
-                    case .GetFeed:
-                        self.interactor?.getFeed()
+            if let error = error as? URLError {
+                NetworkErrorManager.alert(error) { _ in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                        guard let self = self else { return }
+                        switch useCase{
+                        case .GetUser:
+                            self.interactor?.getUser()
+                        case .GetFeed:
+                            self.interactor?.getFeed()
+                        }
                     }
                 }
+            } else if let error = error as? MoyaError {
+                NetworkErrorManager.alert(error)
             }
+            
         }
     }
 }

@@ -28,7 +28,7 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     var scrollView = ScrollStackView()
     
     lazy var skipButton = UIButton().then{
-        $0.setTitle("SKIP", for: .normal)
+        $0.setAttributedTitle(UPStyle().font(.roboto(ofSize: 15, weight: .bold)).color(UIColor(hexString: "#999999")).kern(1.25).apply(to: "SKIP"), for: .normal)
         $0.titleLabel?.font = .roboto(ofSize: 15, weight: .bold)
         $0.setTitleColor(.init(red: 196, green: 196, blue: 196), for: .normal)
         $0.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
@@ -54,7 +54,7 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
     }
     
     let nextButtonView = UIView().then{
-        $0.backgroundColor = .main
+        $0.backgroundColor = .buttonEnabled
         $0.layer.cornerRadius = 26
         $0.layer.masksToBounds = true
     }
@@ -189,12 +189,13 @@ class PloggingRecordViewController: UIViewController, PloggingRecordDisplayLogic
         }
     
     func setButtonEnabled(_ isEnabled: Bool) {
-        self.nextButtonView.backgroundColor = isEnabled ? .main : .clear
+        self.nextButtonView.backgroundColor = isEnabled ? .buttonEnabled : .clear
         self.nextButtonView.layer.borderColor = isEnabled ? UIColor.clear.cgColor : UIColor(hexString: "#999999").cgColor
         self.nextButtonView.layer.borderWidth = isEnabled ? 0 : 0.5
         self.nextButton.isEnabled = isEnabled
-        self.nextLabel.textColor = isEnabled ? .white : UIColor(hexString: "#999999")
-        self.nextImageView.tintColor = isEnabled ? .white : UIColor(hexString: "#999999")
+        self.nextLabel.textColor = .text
+        self.nextImageView.tintColor = .text
+        
     }
 }
 

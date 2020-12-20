@@ -8,11 +8,10 @@
 
 import UIKit
 
-extension DetailViewController {
+extension DetailViewController: UIGestureRecognizerDelegate {
     
     func setUpViews() {
-        let backButton = UIBarButtonItem(image: UIImage(named: "btn_back"), style: .plain, target: self, action: #selector(back(_:)))
-        navigationItem.leftBarButtonItem = backButton
+        navigationController?.navigationBar.tintColor = .text
         [backgroundImageView, ploggingImageViewContainer, shareButtonView].forEach {
             self.view.addSubview($0)
         }

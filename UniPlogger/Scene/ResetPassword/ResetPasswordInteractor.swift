@@ -14,6 +14,8 @@ import UIKit
 
 protocol ResetPasswordBusinessLogic {
     func resetPassword(request: ResetPassword.ResetPassword.Request)
+    func validatePassword(request: ResetPassword.ValidatePassword.Request)
+    func validatePasswordConfirm(request: ResetPassword.ValidatePasswordConfirm.Request)
 }
 
 protocol ResetPasswordDataStore {
@@ -28,8 +30,21 @@ class ResetPasswordInteractor: ResetPasswordBusinessLogic, ResetPasswordDataStor
     var token: String!
     
     func resetPassword(request: ResetPassword.ResetPassword.Request) {
+        UPLoader.shared.show()
         self.worker.findPassword(request: request, uid: uid, token: token) { [weak self] (response) in
             self?.presenter?.presentResetPassword(response: response)
         }
+    }
+    
+    func validatePassword(request: ResetPassword.ValidatePassword.Request){
+        let text = request.password
+        let result = worker.validatePassword(text: text)
+        presenter?.presentValidatePassword(response: .init(isValid: result))
+    }
+    
+    func validatePasswordConfirm(request: ResetPassword.ValidatePasswordConfirm.Request){
+        let text = request.password
+        let result = worker.validatePassword(text: text)
+        presenter?.presentValidatePasswordConfirm(response: .init(isValid: result))
     }
 }
