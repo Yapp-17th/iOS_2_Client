@@ -35,7 +35,7 @@ class LogViewController: UIViewController {
     }
     
     let ploggerImageView = UIImageView().then{
-        $0.image = UIImage(named: "ic_logPlogger")?.withRenderingMode(.alwaysOriginal)
+        $0.image = UIImage(named: "character")?.withRenderingMode(.alwaysOriginal)
         $0.contentMode = .scaleAspectFit
     }
     

@@ -29,7 +29,7 @@ extension DetailViewController: UIGestureRecognizerDelegate {
         ploggingImageViewContainer.snp.makeConstraints {
             $0.width.height.equalTo(340)
             $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().offset(179)
+            $0.top.equalToSuperview().offset(view.frame.height * 0.25)
         }
         
         ploggingImageView.snp.makeConstraints {
