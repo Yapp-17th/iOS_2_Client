@@ -16,6 +16,11 @@ class TutorialThirdViewController: UIViewController {
         $0.image = UIImage(named: "bg_tutorialThird")!.resizeTopAlignedToFill(newWidth: self.view.frame.width)
         $0.contentMode = .top
     }
+    lazy var skipButton = UIButton().then {
+        $0.setAttributedTitle(UPStyle().font(.roboto(ofSize: 15, weight: .bold)).color(UIColor(hexString: "#999999")).kern(-0.41).apply(to: "로그인하러가기"), for: .normal)
+        $0.setTitleColor(.init(hexString: "#999999"), for: .normal)
+        $0.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
+    }
     let ploggerImageView = UIImageView().then {
         $0.image = UIImage(named: "ic_tutorialThirdPlogger")
         $0.contentMode = .scaleAspectFit
@@ -92,6 +97,7 @@ class TutorialThirdViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.addSubview(backgroundImageView)
+        self.view.addSubview(skipButton)
         self.view.addSubview(nextButtonView)
         self.view.addSubview(ploggerImageView)
         self.view.addSubview(ploggerBubbleImageView)
@@ -105,6 +111,12 @@ class TutorialThirdViewController: UIViewController {
         backgroundImageView.snp.makeConstraints{
             $0.leading.trailing.top.equalToSuperview()
         }
+        
+        skipButton.snp.makeConstraints {
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(28)
+            $0.trailing.equalTo(-20)
+        }
+        
         
         nextButtonView.addSubview(nextLabel)
         nextButtonView.addSubview(nextImageView)
@@ -204,7 +216,10 @@ class TutorialThirdViewController: UIViewController {
     }
     
     
-    
+    @objc func skipButtonTapped() {
+        UserDefaults.standard.set(true, forDefines: .hasTutorial)
+        self.navigationController?.pushViewController(LoginViewController(), animated: true)
+    }
 }
 
 class NicknameField: UITextField{
