@@ -179,8 +179,12 @@ class RegistrationViewController: UIViewController {
     }
     
     @objc func validatePasswordConfirm(){
-        guard let text = passwordConfirmField.text else { return }
-        let request = Registration.ValidatePasswordConfirm.Request(password: text)
+        guard let password = passwordField.text else { return }
+        guard let passwordConfirm = passwordConfirmField.text else { return }
+        let request = Registration.ValidatePasswordConfirm.Request(
+            password: password,
+            passwordConfirm: passwordConfirm
+        )
         self.interactor?.validatePasswordConfirm(request: request)
     }
     
