@@ -50,6 +50,7 @@ enum Registration {
     enum ValidatePasswordConfirm{
       struct Request{
         var password: String
+        var passwordConfirm: String
       }
       struct Response{
         var isValid: Bool
