@@ -138,7 +138,7 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic, TopViewD
     }
     
     func touchUpTopRank(tag: Int) {
-        guard let id = viewModels?[tag].id else { return }
+        guard let id = viewModels?[tag].id, id != -1 else { return }
         router?.routeToUserLog(playerId: id)
     }
     
