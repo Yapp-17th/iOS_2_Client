@@ -48,6 +48,7 @@ class ResetPasswordViewController: UIViewController {
         $0.borderStyle = .none
         $0.attributedPlaceholder = NSMutableAttributedString().string("비밀번호", font: .notoSans(ofSize: 16, weight: .regular), color: .white)
         $0.addTarget(self, action: #selector(validatePassword), for: .editingChanged)
+        $0.addTarget(self, action: #selector(validatePasswordConfirm), for: .editingChanged)
     }
     
     let password2FieldBox = UIView().then {
@@ -64,6 +65,7 @@ class ResetPasswordViewController: UIViewController {
         $0.backgroundColor = .clear
         $0.borderStyle = .none
         $0.attributedPlaceholder = NSMutableAttributedString().string("비밀번호 재입력", font: .notoSans(ofSize: 16, weight: .regular), color: .white)
+        $0.addTarget(self, action: #selector(validatePassword), for: .editingChanged)
         $0.addTarget(self, action: #selector(validatePasswordConfirm), for: .editingChanged)
     }
     
