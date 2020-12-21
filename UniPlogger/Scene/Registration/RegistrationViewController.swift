@@ -53,6 +53,7 @@ class RegistrationViewController: UIViewController {
         $0.borderStyle = .none
         $0.placeholder = "비밀번호"
         $0.addTarget(self, action: #selector(validatePassword), for: .editingChanged)
+        $0.addTarget(self, action: #selector(validatePasswordConfirm), for: .editingChanged)
     }
     
     let passwordInfoLabel = UILabel().then {
@@ -75,6 +76,7 @@ class RegistrationViewController: UIViewController {
         $0.backgroundColor = .clear
         $0.borderStyle = .none
         $0.placeholder = "비밀번호 재입력"
+        $0.addTarget(self, action: #selector(validatePassword), for: .editingChanged)
         $0.addTarget(self, action: #selector(validatePasswordConfirm), for: .editingChanged)
     }
     
