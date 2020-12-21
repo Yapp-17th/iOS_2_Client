@@ -117,8 +117,8 @@ extension PloggingViewController {
             $0.bottom.equalTo(startButton.snp.top).offset(-17)
         }
         bubbleLabel.snp.makeConstraints{
-            $0.top.equalTo(11)
-            $0.leading.equalTo(10)
+            $0.top.equalTo(10)
+            $0.leading.equalTo(20)
             $0.trailing.equalTo(-15)
             $0.bottom.equalTo(-10)
         }
