@@ -199,8 +199,12 @@ class ResetPasswordViewController: UIViewController {
     }
     
     @objc func validatePasswordConfirm(){
-        guard let text = password2Field.text else { return }
-        let request = ResetPassword.ValidatePasswordConfirm.Request(password: text)
+        guard let password = password1Field.text else { return }
+        guard let passwordConfirm = password2Field.text else { return }
+        let request = ResetPassword.ValidatePasswordConfirm.Request(
+            password: password,
+            passwordConfirm: passwordConfirm
+        )
         self.interactor?.validatePasswordConfirm(request: request)
     }
     
