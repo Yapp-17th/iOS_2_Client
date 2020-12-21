@@ -94,7 +94,6 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
         setNavigationItem()
         setUpViews()
         setUpLayout()
-        interactor?.getFeed()
         interactor?.getOtherUser()
     }
     
@@ -131,7 +130,7 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
     }
     
     func displayGetFeed(viewModel: Log.GetFeed.ViewModel) {
-        self.feedList = viewModel.feedList
+        self.feedList = viewModel.feedList.reversed()
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
@@ -141,10 +140,11 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
         navigationItem.title = "\(nickname) 로그"
         self.levelLabel.text = "\(level)"
         self.rankLabel.text = "\(Int(rank))%"
+        self.interactor?.getFeed()
     }
     
     @objc func handleRefreshControl(){
-        self.interactor?.getFeed()
+        self.interactor?.getOtherUser()
     }
 
 }

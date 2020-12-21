@@ -26,12 +26,8 @@ class UserLogInteractor: UserLogBusinessLogic, UserLogDataStore {
     func getFeed() {
         guard let playerId = playerId else { return }
         worker = UserLogWorker()
-        worker?.updateLevel {
-            self.worker?.updateRank {
-                self.worker?.getFeed(uid: playerId) { [weak self] response in
-                    self?.presenter?.presentGetFeed(response: response)
-                }
-            }
+        self.worker?.getFeed(uid: playerId) { [weak self] response in
+            self?.presenter?.presentGetFeed(response: response)
         }
         
     }

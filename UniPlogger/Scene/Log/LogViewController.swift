@@ -197,7 +197,7 @@ extension LogViewController: LogDisplayLogic{
     }
     func displayGetFeed(viewModel: Log.GetFeed.ViewModel) {
         UPLoader.shared.hidden()
-        self.feedList = viewModel.feedList
+        self.feedList = viewModel.feedList.reversed()
         if let layout = self.collectionView.collectionViewLayout as? LogCollectionViewLayout {
             layout.resetCache()
         }
