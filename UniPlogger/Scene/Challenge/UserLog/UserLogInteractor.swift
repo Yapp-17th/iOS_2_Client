@@ -33,7 +33,11 @@ class UserLogInteractor: UserLogBusinessLogic, UserLogDataStore {
     }
     
     func getOtherUser() {
-        guard let playerId = playerId else { return }
+        UPLoader.shared.show()
+        guard let playerId = playerId else {
+            UPLoader.shared.hidden()
+            return
+        }
         worker = UserLogWorker()
         worker?.updateLevel {
             self.worker?.updateRank {

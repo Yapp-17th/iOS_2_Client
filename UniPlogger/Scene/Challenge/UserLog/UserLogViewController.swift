@@ -130,6 +130,7 @@ class UserLogViewController: UIViewController, UserLogDisplayLogic {
     }
     
     func displayGetFeed(viewModel: Log.GetFeed.ViewModel) {
+        UPLoader.shared.hidden()
         self.feedList = viewModel.feedList.reversed()
         DispatchQueue.main.async {
             self.collectionView.reloadData()

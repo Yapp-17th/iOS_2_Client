@@ -9,8 +9,10 @@
 import UIKit
 import SnapKit
 import Then
+import AVFoundation
 
 class TutorialSecondViewController: UIViewController {
+    var stopFlag = false
     lazy var backgroundImageView = UIImageView().then {
         $0.image = UIImage(named: "bg_tutorialSecond")!.resizeTopAlignedToFill(newWidth: self.view.frame.width)
         $0.contentMode = .top
@@ -22,7 +24,7 @@ class TutorialSecondViewController: UIViewController {
         $0.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
     }
     
-    let contentLabel = UILabel().then {
+    let hideLabel = UILabel().then {
         $0.text = """
         회의에서는 다름 아닌,
         MVP 우주 청소부,
@@ -33,6 +35,13 @@ class TutorialSecondViewController: UIViewController {
         소행성 ‘zmffls’을
         부상으로 준다고 한다!
         """
+        $0.textAlignment = .center
+        $0.numberOfLines = 0
+        $0.textColor = .white
+        $0.font = .dynamicNotosans(fontSize: 20, weight: .bold)
+    }
+    let contentLabel = UILabel().then {
+        $0.text = ""
         $0.textAlignment = .center
         $0.numberOfLines = 0
         $0.textColor = .white
@@ -109,12 +118,34 @@ class TutorialSecondViewController: UIViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        var cnt = 0
+        DispatchQueue.main.async {
+            for t in self.hideLabel.text! {
+                if self.stopFlag {
+                    break
+                }
+                cnt += 1
+                if cnt % 4 == 0 {
+                    AudioServicesPlaySystemSound(1257)
+                }
+                self.contentLabel.text! += "\(t)"
+                
+                RunLoop.main.run(until: Date() + 0.075)
+                
+            }
+        }
+    }
+    
     @objc func skipButtonTapped() {
+        self.stopFlag = true
         UserDefaults.standard.set(true, forDefines: .hasTutorial)
         self.navigationController?.pushViewController(LoginViewController(), animated: true)
     }
     
     @objc func nextButtonTapped() {
+        self.stopFlag = true
         self.navigationController?.pushViewController(TutorialThirdViewController(), animated: true)
     }
 }

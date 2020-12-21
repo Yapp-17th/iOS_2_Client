@@ -9,8 +9,22 @@
 import UIKit
 import SnapKit
 import Then
+import AVFoundation
 
 class TutorialFirstViewController: UIViewController {
+    var stopFlag = false
+    let text = """
+    셀 수 없는 시간들이 지나,
+    나날이 더러워지는 우주.
+
+    그리고 이걸 두고 볼 수만은
+    없다고 생각한 우주의 황제,
+    우주황!
+
+    긴급히 우주 청소부,
+    플로거들을 소집했다!
+    """
+    
     lazy var backgroundImageView = UIImageView().then {
         $0.image = UIImage(named: "bg_tutorialFirst")!.resizeTopAlignedToFill(newWidth: self.view.frame.width)
         $0.contentMode = .top
@@ -34,7 +48,7 @@ class TutorialFirstViewController: UIViewController {
     
     let contentLabelContainer = UIView()
     
-    let contentLabel = UILabel().then {
+    let hideLabel = UILabel().then {
         $0.text = """
         셀 수 없는 시간들이 지나,
         나날이 더러워지는 우주.
@@ -49,7 +63,16 @@ class TutorialFirstViewController: UIViewController {
         $0.textAlignment = .center
         $0.numberOfLines = 0
         $0.textColor = .white
-        $0.font = .dynamicNotosans(fontSize: 22, weight: .bold)
+        $0.font = .dynamicNotosans(fontSize: 20, weight: .bold)
+        $0.alpha = 0
+    }
+    
+    let contentLabel = UILabel().then {
+        $0.text = ""
+        $0.textAlignment = .center
+        $0.numberOfLines = 0
+        $0.textColor = .white
+        $0.font = .dynamicNotosans(fontSize: 20, weight: .bold)
     }
     
     let nextButtonContainer = UIView()
@@ -95,6 +118,7 @@ class TutorialFirstViewController: UIViewController {
         scrollView.addArrangedSubview(skipButtonContainer)
         skipButtonContainer.addSubview(skipButton)
         scrollView.addArrangedSubview(contentLabelContainer)
+        contentLabelContainer.addSubview(hideLabel)
         contentLabelContainer.addSubview(contentLabel)
         scrollView.addArrangedSubview(kingImageViewContainer)
         kingImageViewContainer.addSubview(kingImageView)
@@ -109,9 +133,12 @@ class TutorialFirstViewController: UIViewController {
             $0.bottom.equalTo(-53)
         }
         
-        contentLabel.snp.makeConstraints {
+        hideLabel.snp.makeConstraints {
             $0.top.centerX.equalToSuperview()
             $0.bottom.equalTo(-42)
+        }
+        contentLabel.snp.makeConstraints {
+            $0.top.centerX.equalToSuperview()
         }
         
         kingImageView.snp.makeConstraints {
@@ -148,17 +175,42 @@ class TutorialFirstViewController: UIViewController {
         }
         
         
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        var cnt = 0
+        DispatchQueue.main.async {
+            for t in self.hideLabel.text! {
+                if self.stopFlag{
+                    break
+                }
+                cnt += 1
+                if cnt % 4 == 0 {
+                    AudioServicesPlaySystemSound(1257)
+                }
+                self.contentLabel.text! += "\(t)"
+                
+                RunLoop.main.run(until: Date() + 0.075)
+                
+            }
+            let bottomOffset = CGPoint(x: 0, y: self.scrollView.contentSize.height - self.scrollView.bounds.height + self.scrollView.contentInset.bottom)
+            UIView.animate(withDuration: 0.3) {
+                self.scrollView.setContentOffset(bottomOffset, animated: true)
+            }
+        }
         
         
     }
     
     @objc func skipButtonTapped() {
+        self.stopFlag = true
         UserDefaults.standard.set(true, forDefines: .hasTutorial)
         self.navigationController?.pushViewController(LoginViewController(), animated: true)
     }
     
     @objc func nextButtonTapped() {
+        self.stopFlag = true
         self.navigationController?.pushViewController(TutorialSecondViewController(), animated: true)
     }
     

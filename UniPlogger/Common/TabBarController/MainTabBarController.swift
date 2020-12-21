@@ -27,7 +27,7 @@ extension MainTabBarController {
     private func configuration() {
         self.view.backgroundColor = .white
         self.tabBar.barTintColor = .tabbarNavbar
-        self.tabBar.tintColor = .tabBarTint
+        self.tabBar.tintColor = .buttonEnabled
         self.tabBar.unselectedItemTintColor = .tabBarUnselectedTint
     }
     
