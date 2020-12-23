@@ -32,8 +32,8 @@ extension MainTabBarController {
     }
     
     private func setupView() {
-        setupChallengeViewController()
         setupQuestViewController()
+        setupChallengeViewController()
         setupPloggingViewController()
         setupLogViewController()
         setupMyViewController()
