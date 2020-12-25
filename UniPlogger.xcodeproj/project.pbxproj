@@ -25,6 +25,9 @@
 		4C42365125723EF10068A252 /* QuestResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C42365025723EF10068A252 /* QuestResponse.swift */; };
 		4C42366525727A3D0068A252 /* QuestDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C42366425727A3D0068A252 /* QuestDetailInteractor.swift */; };
 		4C42366925727D360068A252 /* QuestDetailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C42366825727D360068A252 /* QuestDetailWorker.swift */; };
+		4C5606B3259608AC0011974D /* QuestCoachMarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5606B2259608AC0011974D /* QuestCoachMarkView.swift */; };
+		4C5606B72596530A0011974D /* QuestCoachMarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5606B62596530A0011974D /* QuestCoachMarkCell.swift */; };
+		4C5606BB2596531B0011974D /* QuestCoachDragCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5606BA2596531B0011974D /* QuestCoachDragCell.swift */; };
 		4C6F0ABA257B8AEA008DF8D1 /* SuccessPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F0AB9257B8AEA008DF8D1 /* SuccessPopupView.swift */; };
 		4C6F0AC0257B9B99008DF8D1 /* QuestContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F0ABF257B9B99008DF8D1 /* QuestContents.swift */; };
 		4C7248A92541CDE300ACB32B /* QuestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7248A82541CDE300ACB32B /* QuestList.swift */; };
@@ -301,6 +304,9 @@
 		4C42365025723EF10068A252 /* QuestResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestResponse.swift; sourceTree = "<group>"; };
 		4C42366425727A3D0068A252 /* QuestDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDetailInteractor.swift; sourceTree = "<group>"; };
 		4C42366825727D360068A252 /* QuestDetailWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDetailWorker.swift; sourceTree = "<group>"; };
+		4C5606B2259608AC0011974D /* QuestCoachMarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestCoachMarkView.swift; sourceTree = "<group>"; };
+		4C5606B62596530A0011974D /* QuestCoachMarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestCoachMarkCell.swift; sourceTree = "<group>"; };
+		4C5606BA2596531B0011974D /* QuestCoachDragCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestCoachDragCell.swift; sourceTree = "<group>"; };
 		4C6F0AB9257B8AEA008DF8D1 /* SuccessPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessPopupView.swift; sourceTree = "<group>"; };
 		4C6F0ABF257B9B99008DF8D1 /* QuestContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestContents.swift; sourceTree = "<group>"; };
 		4C7248A82541CDE300ACB32B /* QuestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestList.swift; sourceTree = "<group>"; };
@@ -586,6 +592,8 @@
 			children = (
 				4CB979C32524E5BC00498E81 /* NavigationTabsView.swift */,
 				4C8956852532E3230099934E /* QuestTableViewCell.swift */,
+				4C5606B62596530A0011974D /* QuestCoachMarkCell.swift */,
+				4C5606BA2596531B0011974D /* QuestCoachDragCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -609,6 +617,7 @@
 				4CC9C7D6252315FC004D873D /* QuestWorker.swift */,
 				4CC9C7D3252315F3004D873D /* QuestModels.swift */,
 				4CBA217A254EB1AF002BDCC3 /* QuestModels+ViewModel.swift */,
+				4C5606B2259608AC0011974D /* QuestCoachMarkView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1571,6 +1580,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83DE077A2566AD050085AC72 /* UserLogRouter.swift in Sources */,
+				4C5606BB2596531B0011974D /* QuestCoachDragCell.swift in Sources */,
 				835249162577A6C500C9F495 /* ReportInteractor.swift in Sources */,
 				AA38A73B257B692F00B26E1F /* RegistrationInteractor.swift in Sources */,
 				AA4AD5A12574058E0087E060 /* AuthManager.swift in Sources */,
@@ -1668,6 +1678,7 @@
 				AA35BC77254FEEFA00AE32A7 /* CoreDataStore.swift in Sources */,
 				AA7F54DE2532C10A001C4012 /* BaseViewController.swift in Sources */,
 				835248B42574417000C9F495 /* UserLogWorker.swift in Sources */,
+				4C5606B3259608AC0011974D /* QuestCoachMarkView.swift in Sources */,
 				AAB3B4C82520A31100F0311A /* AppDelegate.swift in Sources */,
 				83DE07772566AD050085AC72 /* DetailViewController+UI.swift in Sources */,
 				83530971257B918D00C3626D /* LogOutInfoViewController.swift in Sources */,
@@ -1751,6 +1762,7 @@
 				83DE07742566AD050085AC72 /* StartRouter.swift in Sources */,
 				83DE07702566AD050085AC72 /* ScoreInfoViewController.swift in Sources */,
 				4CC9C7CB252315D7004D873D /* QuestInteractor.swift in Sources */,
+				4C5606B72596530A0011974D /* QuestCoachMarkCell.swift in Sources */,
 				AA2CAE032543EAD600105748 /* PloggingRecordViewController.swift in Sources */,
 				83DE07722566AD050085AC72 /* ScoreInfoView.swift in Sources */,
 				83DE07802566AD050085AC72 /* ChallengeRouter.swift in Sources */,
@@ -1995,7 +2007,7 @@
 				CODE_SIGN_ENTITLEMENTS = UniPlogger/UniPlogger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 12;
-				DEVELOPMENT_TEAM = 97C96KP84G;
+				DEVELOPMENT_TEAM = N23K7ZS482;
 				INFOPLIST_FILE = UniPlogger/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
