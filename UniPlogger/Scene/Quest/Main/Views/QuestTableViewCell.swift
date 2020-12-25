@@ -122,7 +122,6 @@ class QuestTableViewCell: UITableViewCell {
             $0.centerY.equalTo(sproutBackgroundView.snp.centerY)
             $0.leading.equalTo(sproutBackgroundView.snp.trailing).offset(18)
             $0.trailing.equalTo(cellBackgroundView.snp.trailing).offset(-18)
-            $0.top.greaterThanOrEqualToSuperview().offset(10)
         }
         
         questTitleLabel.snp.makeConstraints {
@@ -130,7 +129,7 @@ class QuestTableViewCell: UITableViewCell {
         }
         
         questContentLabel.snp.makeConstraints {
-            $0.top.equalTo(questTitleLabel.snp.bottom).inset(-5)
+            $0.top.equalTo(questTitleLabel.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
