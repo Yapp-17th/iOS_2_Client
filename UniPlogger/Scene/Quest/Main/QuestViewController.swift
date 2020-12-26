@@ -48,6 +48,9 @@ class QuestViewController: QuestBaseViewController {
     
     private lazy var questTableView = UITableView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.register(QuestTableViewCell.self, forCellReuseIdentifier: QuestTableViewCell.identifire)
+        $0.dataSource = self
+        $0.delegate = self
         $0.separatorStyle = .none
         $0.backgroundColor = .clear
         $0.contentInset = .init(top: 0, left: 0, bottom: Metric.verticalSpacing, right: 0)
@@ -57,10 +60,15 @@ class QuestViewController: QuestBaseViewController {
         $0.refreshControl = refreshControl
     }
     
-    private lazy var infoBoxButton = UIBarButtonItem().then {
-        $0.image = UIImage(named: Images.info)
-        $0.target = self
-        $0.action = #selector(touchedInfoButton(_:))
+    private lazy var infoBoxButton = UIButton().then {
+        $0.setImage(UIImage(named: Images.info), for: .normal)
+        $0.addTarget(self, action: #selector(touchedInfoButton(_:)), for: .touchUpInside)
+    }
+    
+    lazy var coachMarkView = QuestCoachMarkView().then {
+        $0.frame = view.frame
+        $0.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        $0.isHidden = true
     }
     
     // MARK: - Properties
@@ -86,11 +94,11 @@ class QuestViewController: QuestBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        setupTableView()
         setupViews()
         setupLayouts()
         
-        if  UserDefaults.standard.bool(forDefines: .hasQuestTutorial) == false {
+        if UserDefaults.standard.bool(forDefines: .hasQuestTutorial) == false {
+            coachMarkView.isHidden = false
             let nav = UINavigationController()
             let t1 = QuestTutorialViewController1()
             nav.addChild(t1)
@@ -107,6 +115,18 @@ class QuestViewController: QuestBaseViewController {
         fetchData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupCoachLayout()
+    }
+    
+    func setupCoachLayout() {
+        let infoFrame = infoBoxButton.convert(infoBoxButton.frame, to: UIApplication.shared.windows.first(where: { $0.isKeyWindow }))
+        coachMarkView.cancelButton.frame = infoFrame
+        let frame = backgroundView.convert(questTableView.frame, to: coachMarkView)
+        coachMarkView.coachMarkTableView.frame = .init(x: 0, y: frame.origin.y, width: backgroundView.frame.width, height: frame.height)
+    }
+    
     // MARK: - Initialize
     
     func configureLogic(interactor: QuestBusinessLogic, router: (QuestRoutingLogic & QuestDataPassing)) {
@@ -120,24 +140,19 @@ class QuestViewController: QuestBaseViewController {
         }
     }
     
-    private func setupTableView() {
-        questTableView.register(QuestTableViewCell.self, forCellReuseIdentifier: QuestTableViewCell.identifire)
-        questTableView.dataSource = self
-        questTableView.delegate = self
-    }
-    
     override func setupViews() {
         super.setupViews()
         title = "퀘스트"
         
-        navigationItem.rightBarButtonItem = infoBoxButton
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoBoxButton)
         backgroundView.addSubview(navigationTabsView)
         backgroundView.addSubview(questTableView)
+        UIApplication.shared.windows.first(where: { $0.isKeyWindow })?.addSubview(coachMarkView)
     }
     
     override func setupLayouts() {
         super.setupLayouts()
-        
+
         navigationTabsView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Metric.verticalSpacing)
             $0.leading.equalTo(backgroundView.snp.leading).offset(Metric.viewLeading)
@@ -161,11 +176,7 @@ class QuestViewController: QuestBaseViewController {
     }
     
     @objc private func touchedInfoButton(_ sender: UIBarButtonItem) {
-        let nav = UINavigationController()
-        let t1 = QuestTutorialViewController1()
-        nav.addChild(t1)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: false, completion: nil)
+        coachMarkView.isHidden = false
     }
 }
 

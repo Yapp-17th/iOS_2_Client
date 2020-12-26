@@ -149,15 +149,8 @@ class PloggingViewController: BaseViewController {
     }
   
     let bubbleView = UIImageView().then{
-        $0.backgroundColor = .bubbleBackgroudColor
-        $0.layer.cornerRadius = 10
-        let cock = UIImageView(image: UIImage(named: "bubbleCock")?.withRenderingMode(.alwaysTemplate))
-        cock.tintColor = .bubbleBackgroudColor
-        $0.addSubview(cock)
-        cock.snp.makeConstraints{
-            $0.leading.equalToSuperview().offset(-10)
-            $0.centerY.equalToSuperview()
-        }
+        $0.image = UIImage(named: "bubble")
+        $0.contentMode = .scaleAspectFit
     }
     
     let bubbleLabel = UILabel().then{
