@@ -36,8 +36,8 @@ class SettingTableViewCell: UITableViewCell {
         itemLabel.text = infoItem.description
         itemLabel.font = .notoSans(ofSize: 16, weight: .regular)
         switch infoItem {
-//        case .getPush:
-//            switchButton.isOn = AuthManager.shared.getPush
+        case .getPush:
+            switchButton.isOn = AuthManager.shared.getPush
         case .autosave:
             switchButton.isOn = AuthManager.shared.autoSave
         }
@@ -45,8 +45,8 @@ class SettingTableViewCell: UITableViewCell {
     
     @objc func onClickSwitch() {
         switch infoItem {
-//        case .getPush:
-//            AuthManager.shared.getPush = switchButton.isOn
+        case .getPush:
+            AuthManager.shared.getPush = switchButton.isOn
         case .autosave:
             AuthManager.shared.autoSave = switchButton.isOn
         }
