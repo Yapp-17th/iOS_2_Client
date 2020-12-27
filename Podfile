@@ -14,4 +14,6 @@ target 'UniPlogger' do
   pod 'IQKeyboardManagerSwift'
   pod 'RxSwift', '~> 5.0'
   pod 'RxCocoa', '~> 5.0'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Messaging'
 end

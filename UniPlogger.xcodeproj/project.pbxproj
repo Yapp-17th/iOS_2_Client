@@ -252,6 +252,7 @@
 		AAB559312549B846000BB903 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB559302549B846000BB903 /* Location.swift */; };
 		AAB559352549BA2D000BB903 /* MultiColorPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB559342549BA2D000BB903 /* MultiColorPolyline.swift */; };
 		AAB559392549BB26000BB903 /* FormatDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB559382549BB26000BB903 /* FormatDisplay.swift */; };
+		AAC3FCBC2597379700696F7E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAC3FCBB2597379700696F7E /* GoogleService-Info.plist */; };
 		AAC552B225848D8D000DAFDF /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC552B125848D8D000DAFDF /* BaseResponse.swift */; };
 		AAC552C42585C4C6000DAFDF /* ResetPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC552BE2585C4C6000DAFDF /* ResetPasswordPresenter.swift */; };
 		AAC552C52585C4C6000DAFDF /* ResetPasswordWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC552BF2585C4C6000DAFDF /* ResetPasswordWorker.swift */; };
@@ -550,6 +551,7 @@
 		AAB887A225245F65000A9D58 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		AAB887AE2524600A000A9D58 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		AAB887B02524603E000A9D58 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
+		AAC3FCBB2597379700696F7E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AAC552B125848D8D000DAFDF /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		AAC552BE2585C4C6000DAFDF /* ResetPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordPresenter.swift; sourceTree = "<group>"; };
 		AAC552BF2585C4C6000DAFDF /* ResetPasswordWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordWorker.swift; sourceTree = "<group>"; };
@@ -1283,6 +1285,7 @@
 				AAB3B4D52520A31200F0311A /* LaunchScreen.storyboard */,
 				AAB3B4D82520A31200F0311A /* Info.plist */,
 				AAB3B4D02520A31100F0311A /* UniPlogger.xcdatamodeld */,
+				AAC3FCBB2597379700696F7E /* GoogleService-Info.plist */,
 			);
 			path = UniPlogger;
 			sourceTree = "<group>";
@@ -1513,6 +1516,7 @@
 				AA7F55102532C20C001C4012 /* Roboto-Thin.ttf in Resources */,
 				AAC9585C2545BF130092BA6E /* NotoSansCJKkr-DemiLight.otf in Resources */,
 				83530996257BB6B600C3626D /* policy.html in Resources */,
+				AAC3FCBC2597379700696F7E /* GoogleService-Info.plist in Resources */,
 				AAC958582545BF130092BA6E /* NotoSansCJKkr-Regular.otf in Resources */,
 				AA7F55082532C20C001C4012 /* Roboto-Regular.ttf in Resources */,
 				AA59BF1A258E0A7B003319D4 /* Color.xcassets in Resources */,
