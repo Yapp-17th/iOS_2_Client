@@ -14,6 +14,8 @@ class SettingTableViewCell: UITableViewCell {
     
     var infoItem: SettingType = .autosave
 
+    var switchClosure: (_ type: SettingType, _ isOn: Bool) -> Void = { _, _  in }
+    
     lazy var itemLabel = UILabel()
     lazy var switchButton = UISwitch().then {
         $0.tintColor = UIColor(named: "rankColor")
@@ -37,19 +39,18 @@ class SettingTableViewCell: UITableViewCell {
         itemLabel.font = .notoSans(ofSize: 16, weight: .regular)
         switch infoItem {
         case .getPush:
-            switchButton.isOn = AuthManager.shared.getPush
+            PushManager.shard.getPushStatus { status in
+                DispatchQueue.main.async {
+                    self.switchButton.isOn = status == .authorized && AuthManager.shared.getPush
+                }
+            }
         case .autosave:
             switchButton.isOn = AuthManager.shared.autoSave
         }
     }
     
     @objc func onClickSwitch() {
-        switch infoItem {
-        case .getPush:
-            AuthManager.shared.getPush = switchButton.isOn
-        case .autosave:
-            AuthManager.shared.autoSave = switchButton.isOn
-        }
+        self.switchClosure(infoItem, switchButton.isOn)
     }
     
     func setupViews() {

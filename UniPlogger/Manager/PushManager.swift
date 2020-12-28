@@ -10,23 +10,24 @@ import UIKit
 import UserNotifications
 
 class PushManager: NSObject, UNUserNotificationCenterDelegate{
-  func registPushNotification(completion: @escaping ((Bool) -> Void)){
-    let center = UNUserNotificationCenter.current()
-    center.delegate = self
-    let options: UNAuthorizationOptions = [.alert, .badge, .sound]
-    center.requestAuthorization(options: options) { (granted, error) in
-      if let error = error{
-        print(error.localizedDescription)
-        completion(false)
-        return
-      }
-      completion(granted)
+    static let shard = PushManager()
+    func registPushNotification(completion: @escaping ((Bool) -> Void)){
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+        let options: UNAuthorizationOptions = [.alert, .badge, .sound]
+        center.requestAuthorization(options: options) { (granted, error) in
+            if let error = error{
+                print(error.localizedDescription)
+                completion(false)
+                return
+            }
+            completion(granted)
+        }
     }
-  }
-  
-  func getPushStatus(completion:@escaping((UNAuthorizationStatus) -> Void)) {
-      UNUserNotificationCenter.current().getNotificationSettings(){ (settings) in
-          completion(settings.authorizationStatus)
-      }
-  }
+    
+    func getPushStatus(completion:@escaping((UNAuthorizationStatus) -> Void)) {
+        UNUserNotificationCenter.current().getNotificationSettings(){ (settings) in
+            completion(settings.authorizationStatus)
+        }
+    }
 }

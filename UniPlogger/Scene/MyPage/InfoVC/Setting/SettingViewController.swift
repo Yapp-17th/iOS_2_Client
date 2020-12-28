@@ -28,7 +28,6 @@ class SettingViewController: InfoBaseViewController {
         view.backgroundColor = UIColor.questBackground
         setupLayout()
     }
-    
 }
 
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
@@ -45,6 +44,34 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.ID) as? SettingTableViewCell else { return UITableViewCell() }
         cell.contentView.isHidden = true
         cell.configure(item: SettingType.allCases[indexPath.row])
+        
+        cell.switchClosure = { type, isOn in
+            switch type {
+            case .getPush:
+                if isOn {
+                    PushManager.shard.getPushStatus { status in
+                        if status == .authorized {
+                            AuthManager.shared.getPush = isOn
+                        } else {
+                            DispatchQueue.main.async {
+                                let alert = UIAlertController(title: "알림", message: "기기 설정에서 푸시 알림을 허용 후 다시시도해주세요.", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { (_) in
+                                    guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+                                    cell.switchButton.isOn = false
+                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                    
+                                }))
+                                self.present(alert, animated: true, completion: nil)
+                            }
+                            
+                        }
+                    }
+                }
+                
+            case .autosave:
+                AuthManager.shared.autoSave = isOn
+            }
+        }
         return cell
     }
 
@@ -58,7 +85,7 @@ extension SettingViewController {
             make.leading.equalTo(20)
             make.trailing.equalTo(-20)
 //            make.height.equalTo(104.5)
-            make.height.equalTo(52)
+            make.height.equalTo(52 * SettingType.allCases.count)
         }
     }
     
