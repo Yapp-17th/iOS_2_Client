@@ -108,7 +108,12 @@ class DetailViewController: UIViewController {
         router?.routeToReport()
     }
     @objc func touchUpDeleteButton(){
+      let alert = UIAlertController(title: "경고", message: "피드를 삭제하시겠습니까?", preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
         self.interactor?.deleteFeed()
+      }))
+      alert.addAction(UIAlertAction(title: "취소", style: .cancel))
+      self.present(alert, animated: true, completion: nil)
     }
     
     @objc func touchUpSaveButton() {
