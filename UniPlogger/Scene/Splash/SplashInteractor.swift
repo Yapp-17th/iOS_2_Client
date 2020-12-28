@@ -13,6 +13,7 @@
 import UIKit
 
 protocol SplashBusinessLogic {
+    func setPushNotification()
     func checkLogin()
     func setData()
 }
@@ -23,10 +24,17 @@ protocol SplashDataStore {
 
 class SplashInteractor: SplashBusinessLogic, SplashDataStore {
     var presenter: SplashPresentationLogic?
-    var worker: SplashWorker?
+    var worker = SplashWorker()
     //var name: String = ""
     
+    func setPushNotification() {
+        worker.setPushNotification {
+            self.checkLogin()
+        }
+    }
+    
     func checkLogin(){
+        
         if AuthManager.shared.userToken != nil,
            let user = AuthManager.shared.user{
             //Todo Login with userToken

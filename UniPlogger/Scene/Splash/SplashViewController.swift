@@ -76,7 +76,7 @@ class SplashViewController: UIViewController {
         }
         
         self.interactor?.setData()
-        self.interactor?.checkLogin()
+        self.interactor?.setPushNotification()
     }
 }
 

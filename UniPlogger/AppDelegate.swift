@@ -89,14 +89,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // FCM
         Messaging.messaging().delegate = self
         Messaging.messaging().isAutoInitEnabled = true
-        UNUserNotificationCenter.current().delegate = self
-        UNUserNotificationCenter.current().delegate = self
-
-          let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-          UNUserNotificationCenter.current().requestAuthorization(
-            options: authOptions,
-            completionHandler: {_, _ in })
-        UIApplication.shared.registerForRemoteNotifications()
     }
 }
 

@@ -13,5 +13,30 @@
 import UIKit
 
 class SplashWorker {
+  private let pushManager = PushManager()
+  
+    func setPushNotification(completion: @escaping () -> Void){
+    pushManager.getPushStatus { status in
+      switch status{
+      case .authorized:
+        completion()
+      case .denied:
+        completion()
+      case .notDetermined:
+        self.pushManager.registPushNotification { granted in
+          if granted {
+            DispatchQueue.main.async {
+              UIApplication.shared.registerForRemoteNotifications()
+                completion()
+            }
+          } else {
+            completion()
+          }
+        }
+      default:
+        completion()
+      }
+    }
     
+  }
 }
