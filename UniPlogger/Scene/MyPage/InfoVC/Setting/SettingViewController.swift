@@ -8,8 +8,32 @@
 
 import UIKit
 
+protocol SettingDisplayLogic: class {
+    func displayGetUser(viewModel: Setting.GetUser.ViewModel)
+    func displayError(error: Common.CommonError)
+}
+
 class SettingViewController: InfoBaseViewController {
 
+    var pushAgree = false
+    var interactor: SettingBusinessLogic?
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
+    func setup() {
+        let viewController = self
+        let interactor = SettingInteractor()
+        let presenter = SettingPresenter()
+        viewController.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+    }
     lazy var tableView = UITableView().then {
         $0.delegate = self
         $0.dataSource = self
@@ -27,6 +51,21 @@ class SettingViewController: InfoBaseViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.questBackground
         setupLayout()
+        self.interactor?.getUser()
+    }
+}
+
+extension SettingViewController: SettingDisplayLogic {
+    func displayGetUser(viewModel: Setting.GetUser.ViewModel) {
+        self.pushAgree = viewModel.pushAgree
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+    func displayError(error: Common.CommonError) {
+        
     }
 }
 
@@ -44,7 +83,9 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.ID) as? SettingTableViewCell else { return UITableViewCell() }
         cell.contentView.isHidden = true
         cell.configure(item: SettingType.allCases[indexPath.row])
-        
+        if SettingType.allCases[indexPath.row] == .getPush{
+            cell.switchButton.isOn = cell.switchButton.isOn && self.pushAgree
+        }
         cell.switchClosure = { type, isOn in
             switch type {
             case .getPush:
@@ -52,6 +93,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                     PushManager.shard.getPushStatus { status in
                         if status == .authorized {
                             AuthManager.shared.getPush = isOn
+                            self.updateServerPushState(isOn: isOn)
                         } else {
                             DispatchQueue.main.async {
                                 let alert = UIAlertController(title: "알림", message: "기기 설정에서 푸시 알림을 허용 후 다시시도해주세요.", preferredStyle: .alert)
@@ -66,6 +108,9 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                             
                         }
                     }
+                } else {
+                    AuthManager.shared.getPush = isOn
+                    self.updateServerPushState(isOn: isOn)
                 }
                 
             case .autosave:
@@ -75,6 +120,11 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
+    func updateServerPushState(isOn: Bool){
+        if self.pushAgree != isOn{
+            self.interactor?.updatePush()
+        }
+    }
 }
 
 extension SettingViewController {

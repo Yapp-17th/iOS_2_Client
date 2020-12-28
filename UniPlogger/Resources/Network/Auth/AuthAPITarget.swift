@@ -18,6 +18,7 @@ enum AuthAPITarget{
     case findPassword(email: String)
     case initQuest
     case resetPassword(password1: String, password2: String, uid: String, token: String)
+    case updatePush(uid: Int)
 }
 
 extension AuthAPITarget: BaseTarget{
@@ -39,6 +40,8 @@ extension AuthAPITarget: BaseTarget{
             return "users/quest_to_user/"
         case .resetPassword:
             return "users/password/reset/confirm/"
+        case let .updatePush(uid):
+            return "users/\(uid)/"
         }
     }
     
@@ -60,6 +63,8 @@ extension AuthAPITarget: BaseTarget{
             return .get
         case .resetPassword:
             return .post
+        case .updatePush:
+            return .put
         }
     }
     
@@ -98,6 +103,8 @@ extension AuthAPITarget: BaseTarget{
                 "uid": uid,
                 "token": token
             ]
+        case .updatePush:
+            return [:]
         }
         
     }
@@ -119,6 +126,8 @@ extension AuthAPITarget: BaseTarget{
         case .initQuest:
             return .requestPlain
         case .resetPassword:
+            return .requestParameters(parameters: parameters, encoding: encoding)
+        case .updatePush:
             return .requestParameters(parameters: parameters, encoding: encoding)
         }
     }

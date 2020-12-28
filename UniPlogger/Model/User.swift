@@ -29,6 +29,10 @@ struct User: Codable{
     var weeklyStat: String = ""
     /// 월간 상태
     var monthlyStat: Double = 0.0
+    /// 푸시 동의 여부
+    var agreePush: Bool = false
+    /// 푸시 토큰
+    var registrationToken: String = ""
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -41,6 +45,8 @@ struct User: Codable{
         case planet
         case weeklyStat = "weekly_stats"
         case monthlyStat = "monthly_stats"
+        case agreePush = "agree_push"
+        case registrationToken = "registration_token"
     }
     
     public init(from decoder: Decoder) throws {
@@ -55,6 +61,8 @@ struct User: Codable{
         planet = try container.decodeIfPresent(Planet.self, forKey: .planet) ?? nil
         weeklyStat = try container.decodeIfPresent(String.self, forKey: .weeklyStat) ?? ""
         monthlyStat = try container.decodeIfPresent(Double.self, forKey: .monthlyStat) ?? 0.0
+        agreePush = try container.decodeIfPresent(Bool.self, forKey: .agreePush) ?? false
+        registrationToken = try container.decodeIfPresent(String.self, forKey: .registrationToken) ?? ""
         
     }
     

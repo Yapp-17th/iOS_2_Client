@@ -188,6 +188,10 @@
 		AA59BF1A258E0A7B003319D4 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA59BF19258E0A7B003319D4 /* Color.xcassets */; };
 		AA5EFBB82552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */; };
 		AA68B54A259A16AF00BCBF9F /* PushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68B549259A16AF00BCBF9F /* PushManager.swift */; };
+		AA68B54E259A2CD100BCBF9F /* SettingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68B54D259A2CD100BCBF9F /* SettingWorker.swift */; };
+		AA68B552259A2D5300BCBF9F /* SettingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68B551259A2D5300BCBF9F /* SettingModels.swift */; };
+		AA68B556259A2EC000BCBF9F /* SettingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68B555259A2EC000BCBF9F /* SettingInteractor.swift */; };
+		AA68B55A259A2F0800BCBF9F /* SettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68B559259A2F0800BCBF9F /* SettingPresenter.swift */; };
 		AA6CE4F32551780E00C83D28 /* TrashCanStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */; };
 		AA7658EF258279A500BA0A3E /* FindPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7658E9258279A500BA0A3E /* FindPasswordPresenter.swift */; };
 		AA7658F0258279A500BA0A3E /* FindPasswordWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7658EA258279A500BA0A3E /* FindPasswordWorker.swift */; };
@@ -473,6 +477,10 @@
 		AA59BF19258E0A7B003319D4 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		AA5EFBB72552AE3D00B5BD5B /* PloggingRecordCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PloggingRecordCollectionViewLayout.swift; sourceTree = "<group>"; };
 		AA68B549259A16AF00BCBF9F /* PushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushManager.swift; sourceTree = "<group>"; };
+		AA68B54D259A2CD100BCBF9F /* SettingWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWorker.swift; sourceTree = "<group>"; };
+		AA68B551259A2D5300BCBF9F /* SettingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModels.swift; sourceTree = "<group>"; };
+		AA68B555259A2EC000BCBF9F /* SettingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInteractor.swift; sourceTree = "<group>"; };
+		AA68B559259A2F0800BCBF9F /* SettingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPresenter.swift; sourceTree = "<group>"; };
 		AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashCanStorage.swift; sourceTree = "<group>"; };
 		AA7658E9258279A500BA0A3E /* FindPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordPresenter.swift; sourceTree = "<group>"; };
 		AA7658EA258279A500BA0A3E /* FindPasswordWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordWorker.swift; sourceTree = "<group>"; };
@@ -863,6 +871,10 @@
 				83530981257B91E300C3626D /* SettingViewController.swift */,
 				83530982257B91E300C3626D /* SettingType.swift */,
 				83530983257B91E300C3626D /* SettingTableViewCell.swift */,
+				AA68B54D259A2CD100BCBF9F /* SettingWorker.swift */,
+				AA68B551259A2D5300BCBF9F /* SettingModels.swift */,
+				AA68B555259A2EC000BCBF9F /* SettingInteractor.swift */,
+				AA68B559259A2F0800BCBF9F /* SettingPresenter.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1654,6 +1666,7 @@
 				AA38A721257A9DFA00B26E1F /* LoginPresenter.swift in Sources */,
 				AAB559312549B846000BB903 /* Location.swift in Sources */,
 				8352481B257227BA00C9F495 /* SplashWorker.swift in Sources */,
+				AA68B556259A2EC000BCBF9F /* SettingInteractor.swift in Sources */,
 				AA7F551E2533568D001C4012 /* ShareInteractor.swift in Sources */,
 				4C42366525727A3D0068A252 /* QuestDetailInteractor.swift in Sources */,
 				AAAD68F525556A7600895265 /* CALayer+Extensions.swift in Sources */,
@@ -1744,6 +1757,7 @@
 				8352489725727BFE00C9F495 /* Planet.swift in Sources */,
 				8352480E2572279500C9F495 /* User.swift in Sources */,
 				AAC552B225848D8D000DAFDF /* BaseResponse.swift in Sources */,
+				AA68B54E259A2CD100BCBF9F /* SettingWorker.swift in Sources */,
 				AA4AD575257265BF0087E060 /* DetailPresenter.swift in Sources */,
 				AA7F54F72532C1E3001C4012 /* GradientView.swift in Sources */,
 				835249122577A68800C9F495 /* ReportRouter.swift in Sources */,
@@ -1777,6 +1791,7 @@
 				AAAD68F82555738300895265 /* CLLocation+Extensions.swift in Sources */,
 				AA68B54A259A16AF00BCBF9F /* PushManager.swift in Sources */,
 				8353A3732568FE9400F9AA4F /* ReportItemLabel.swift in Sources */,
+				AA68B55A259A2F0800BCBF9F /* SettingPresenter.swift in Sources */,
 				8352484A2572283C00C9F495 /* MyPageViewController+UI.swift in Sources */,
 				83DE07852566AD050085AC72 /* ChallengeInteractor.swift in Sources */,
 				AAAD68FF2555A52B00895265 /* QuestDetailViewController.swift in Sources */,
@@ -1809,6 +1824,7 @@
 				AAB3B4F92520B5B600F0311A /* Common.swift in Sources */,
 				835248AC25743C7200C9F495 /* UserLogInteractor.swift in Sources */,
 				83DE077E2566AD050085AC72 /* ChallengeWorker.swift in Sources */,
+				AA68B552259A2D5300BCBF9F /* SettingModels.swift in Sources */,
 				AAC552C62585C4C6000DAFDF /* ResetPasswordRouter.swift in Sources */,
 				835248602572285100C9F495 /* LogNavigationController.swift in Sources */,
 				4CE914AF257C01FD00BCF398 /* NextButtonView.swift in Sources */,

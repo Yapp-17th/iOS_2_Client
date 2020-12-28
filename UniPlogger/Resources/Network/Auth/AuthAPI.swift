@@ -100,5 +100,14 @@ final class AuthAPI{
                 completion(.failure($0))
             }.disposed(by: disposeBag)
     }
-    
+    func updatePush(uid: Int, completionHandler: @escaping (Result<Response<User>, Error>) -> Void){
+        provider.rx.request(.updatePush(uid: uid))
+            .filterSuccessfulStatusCodes()
+            .map(Response<User>.self)
+            .subscribe {
+                completionHandler(.success($0))
+            } onError: {
+                completionHandler(.failure($0))
+            }.disposed(by: disposeBag)
+    }
 }
