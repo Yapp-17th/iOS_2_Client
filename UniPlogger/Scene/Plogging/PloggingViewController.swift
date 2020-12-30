@@ -473,8 +473,6 @@ extension PloggingViewController: PloggingDisplayLogic{
     }
     
     func displayUpdatePloggingLocation(viewModel: Plogging.UpdatePloggingLocation.ViewModel) {
-        
-        mapView.setRegion(viewModel.region, animated: true)
         mapView.addOverlay(viewModel.polyLine)
         
         self.distanceLabel.text = viewModel.distance
