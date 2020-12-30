@@ -13,6 +13,7 @@ enum UPUserDefaulKey: String {
     case appID = "kr.co.yapp17.iOS2.UniPlogger"
     case location = "UPUSERDEFAULT_KEY_LOCATION"
     case userToken = "USERDEFAULT_KEY_USERTOKEN"
+    case pushToken = "USERDEFAULT_KEY_PUSHTOKEN"
     case user = "USERDEFAULT_KEY_USER"
     case getPush = "USERDEFAULT_KEY_GETPUSH"
     case autoSave = "USERDEFAULT_KEY_AUTOSAVE"

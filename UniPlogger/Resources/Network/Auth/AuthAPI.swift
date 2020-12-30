@@ -110,4 +110,15 @@ final class AuthAPI{
                 completionHandler(.failure($0))
             }.disposed(by: disposeBag)
     }
+    
+    func updateToken(uid: Int, token: String){
+        provider.rx.request(.updateToken(uid: uid, token: token))
+            .filterSuccessfulStatusCodes()
+            .map(Response<User>.self)
+            .subscribe {
+                print($0)
+            } onError: {
+                print($0.localizedDescription)
+            }.disposed(by: disposeBag)
+    }
 }

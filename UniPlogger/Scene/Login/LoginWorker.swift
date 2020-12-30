@@ -29,6 +29,11 @@ class LoginWorker {
             switch response{
             case .success(let value):
                 if value.success, let loginResponse = value.data {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        if let id = loginResponse.user?.id, let pushToken = UserDefaults.standard.string(forDefines: .pushToken) {
+                            AuthAPI.shared.updateToken(uid: id, token: pushToken)
+                        }
+                    }
                     let response = Login.Login.Response(request:request, response: loginResponse)
                     completion(response)
                 } else {
