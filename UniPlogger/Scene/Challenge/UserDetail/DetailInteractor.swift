@@ -28,6 +28,7 @@ class DetailInteractor: DetailBusinessLogic, DetailDataStore{
     
     func getFeed() {
         guard let feed = self.feed, let uid = self.uid else { return }
+        UPLoader.shared.show()
         let response = Detail.GetFeed.Response(feed: feed)
         self.presenter?.presentGetFeed(response: response, uid: uid)
     }
@@ -45,6 +46,7 @@ class DetailInteractor: DetailBusinessLogic, DetailDataStore{
     
     func deleteFeed() {
         guard let feed = self.feed else { return }
+        UPLoader.shared.show()
         self.worker.deleteFeed(fid: feed.id) { [weak self] in
             self?.presenter?.presentDeleteFeed()
         }

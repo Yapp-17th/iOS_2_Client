@@ -32,12 +32,17 @@ class SplashRouter: NSObject, SplashRoutingLogic, SplashDataPassing {
     }
     
     func routeToTutorial() {
-        let destinationVC = TutorialFirstViewController()
-        navigateToTutorial(source: viewController!, destination: destinationVC)
+        DispatchQueue.main.async {
+            let destinationVC = TutorialFirstViewController()
+            self.navigateToTutorial(source: self.viewController!, destination: destinationVC)
+        }
     }
     func routeToLogin() {
-        let destinationVC = LoginViewController()
-        navigateToLogin(source: viewController!, destination: destinationVC)
+        DispatchQueue.main.async {
+            let destinationVC = LoginViewController()
+            self.navigateToLogin(source: self.viewController!, destination: destinationVC)
+        }
+      
     }
     
     func navigateToMain(source: SplashViewController, destination: MainTabBarController){

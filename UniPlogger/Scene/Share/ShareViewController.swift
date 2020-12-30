@@ -94,12 +94,6 @@ class ShareViewController: UIViewController, PhotoManagerDelegate {
         self.interactor?.fetchRecord()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        self.imageForShare = mergeViews()
-        ploggingImageView.clipsToBounds = true
-    }
-    
     @objc func touchUpDismissButton() {
         guard let imageForSave = self.imageForShare else { return }
         let photoManager = PhotoManager(albumName: "UniPlogger")
@@ -208,6 +202,8 @@ extension ShareViewController: ShareDisplayLogic {
         UPLoader.shared.hidden()
         self.ploggingImageView.ploggingInfoView.viewModel = .init(distance: viewModel.distance, time: viewModel.time)
         self.ploggingImageView.image = viewModel.image
+        self.imageForShare = mergeViews()
+        ploggingImageView.clipsToBounds = true
     }
     func displayError(error: Common.CommonError, useCase: Share.UseCase) {
         UPLoader.shared.hidden()

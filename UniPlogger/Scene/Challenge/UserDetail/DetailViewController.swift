@@ -201,6 +201,8 @@ extension DetailViewController: DetailDisplayLogic {
         self.navigationItem.title = dateFormatter.string(from: viewModel.date)
         ImageDownloadManager.shared.downloadImage(url: viewModel.photo) { (image) in
             self.ploggingImageView.image = image
+            self.imageForSave = self.mergeViews()
+            UPLoader.shared.hidden()
         }
         print(viewModel)
         if let id = AuthManager.shared.user?.id, uid == id{
@@ -211,6 +213,7 @@ extension DetailViewController: DetailDisplayLogic {
     }
     
     func displayDeleteFeed() {
+        UPLoader.shared.hidden()
         let alert = UIAlertController(title: "알림", message: "피드 삭제가 완료되었습니다.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { (_) in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
