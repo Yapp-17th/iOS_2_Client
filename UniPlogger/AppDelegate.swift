@@ -103,7 +103,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
         let token:String = fcmToken ?? ""
         print("Firebase registration token: \(token)")
         UserDefaults.standard.set(token, forDefines: .pushToken)
-//      UserDefaults.standard.setFCMToken(fcmToken)
+        if let id = AuthManager.shared.user?.id {
+            AuthAPI.shared.updateToken(uid: id, token: token)
+        }
         let dataDict:[String: String] = ["token": fcmToken ?? ""]
           NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
     }

@@ -15,8 +15,9 @@ protocol CameraDataStore {
 
 class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, CameraDataStore {
     
+    var isSimulator: Bool = false
     enum FlashMode: Int, CaseIterable {
-        case auto = 0, on, off
+        case auto = 0, on, off, simulator
     }
 
     lazy var finderView = UIView()
@@ -54,6 +55,8 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, Cam
                 flashButton.setImage(UIImage(named: "flash_off"), for: .normal)
             case .on:
                 flashButton.setImage(UIImage(named: "flash_on"), for: .normal)
+            case .simulator:
+                flashButton.setImage(UIImage(named: "flash_off"), for: .normal)
             }
         }
     }
@@ -71,6 +74,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, Cam
         captureSession.sessionPreset = .photo
         guard let backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
             else {
+            self.isSimulator = true
                 print("Unable to access back camera!")
                 return
         }
@@ -85,13 +89,17 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, Cam
             }
         }
         catch let error {
+            self.isSimulator = true
             print("Error Unable to initialize back camera:  \(error.localizedDescription)")
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.captureSession.stopRunning()
+        if !isSimulator {
+            self.captureSession.stopRunning()
+        }
+        
     }
     
     func setupLivePreview() {
@@ -111,13 +119,22 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, Cam
     }
     
     @objc func didTakePhoto() {
-        setFlashMode()
-        stillImageOutput.capturePhoto(with: photoSetting, delegate: self)
+        if isSimulator {
+            
+            setupSimulatorImage()
+        } else {
+            setFlashMode()
+            stillImageOutput.capturePhoto(with: photoSetting, delegate: self)
+        }
+        
     }
     
     @objc func touchUpFlashButton() {
         isFlashMode = FlashMode(rawValue: (isFlashMode.rawValue + 1) % 3)!
-        setFlashMode()
+        if !self.isSimulator {
+            setFlashMode()
+        }
+        
     }
     
     private func setFlashMode() {
@@ -128,6 +145,8 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, Cam
             photoSetting.flashMode = .off
         case .on:
             photoSetting.flashMode = .on
+        case .simulator:
+            photoSetting.flashMode = .off
         }
     }
     
@@ -141,6 +160,13 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate, Cam
         self.navigationController?.pushViewController(vc, animated: false)
     }
     
+    func setupSimulatorImage(){
+        guard let image = UIImage(named: "sampleImage") else { return }
+        let vc = ImagePreviewViewController()
+        vc.capturedImage = image
+        vc.ploggingData = self.ploggingData
+        self.navigationController?.pushViewController(vc, animated: false)
+    }
 }
 
 extension CameraViewController {
