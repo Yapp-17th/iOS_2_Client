@@ -87,6 +87,7 @@ extension SplashViewController: SplashDisplayLogic{
     
     func displayNotLogined() {
         if !UserDefaults.standard.bool(forDefines: .hasTutorial) {
+          AuthManager.shared.getPush = true
             self.router?.routeToTutorial()
         } else {
             self.router?.routeToLogin()
