@@ -16,15 +16,16 @@ protocol ChallengeBusinessLogic {
     func setRank(members: [Player]) -> [Int]
     func setFullMembers(members: [Player]) -> [Player]
     func setDate() -> String
-    func startChallenge()
-    func getPlanet()
+    func setPlanet()
 }
 
 protocol ChallengeDataStore {
-//    var playerId: [Int]? { get set }
+    var planet: Planet? { get set }
 }
 
 class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore {
+    var planet: Planet?
+    
 //    var playerData: [Challenge.RankCellViewModel]?
     var presenter: ChallengePresentationLogic?
     var worker = ChallengeWorker()
@@ -87,23 +88,20 @@ class ChallengeInteractor: ChallengeBusinessLogic, ChallengeDataStore {
         for index in (0...2) { name += names[index][Int.random(in: (0...6))] }
         return name
     }
-    
-    func startChallenge() {
-        if AuthManager.shared.user?.planet == nil {
-            worker.startChallenge { (result) in
-                print("result: \(result)")
-            }
-        }
-    }
 
-    func getPlanet() {
-        worker.getPlanet { [weak self] (response) in
-            guard let self = self else { return }
-            print(response)
-            let members = self.setFullMembers(members: response.players)
-            let ranks = self.setRank(members: members)
-            self.presenter?.presentPlayers(ranks: ranks, players: members)
+    func setPlanet() {
+        guard let planet = planet else {
+            worker.getPlanet { [weak self] (response) in
+                guard let self = self else { return }
+                let members = self.setFullMembers(members: response.players)
+                let ranks = self.setRank(members: members)
+                self.presenter?.presentPlayers(ranks: ranks, players: members)
+            }
+            return
         }
+        let members = self.setFullMembers(members: planet.players)
+        let ranks = self.setRank(members: members)
+        self.presenter?.presentPlayers(ranks: ranks, players: members)
     }
     
 }

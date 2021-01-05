@@ -91,7 +91,7 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic, TopViewD
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        interactor?.getPlanet()
+        interactor?.setPlanet()
         setUpView()
         setUpTableView()
         setUpLayout()
@@ -143,7 +143,7 @@ class ChallengeViewController: UIViewController, ChallengeDisplayLogic, TopViewD
     }
     
     @objc func reloadTableView() {
-        interactor?.getPlanet()
+        interactor?.setPlanet()
         rankTableView.reloadData()
         rankTableView.refreshControl?.endRefreshing()
     }

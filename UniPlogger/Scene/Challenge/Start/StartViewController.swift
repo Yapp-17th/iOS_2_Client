@@ -12,10 +12,8 @@ import RxCocoa
 import RxSwift
 
 class StartViewController: UIViewController {
-    let interactor = ChallengeInteractor()
-    
+    var interactor: StartBusinessLogic?
     var router: (NSObjectProtocol & StartRoutingLogic)?
-    
     var disposeBag = DisposeBag()
     
     lazy var backgroundView = UIImageView().then {
@@ -47,19 +45,26 @@ class StartViewController: UIViewController {
         configure()
         setUpViews()
         setUpLayout()
-        
     }
     
     private func setup() {
         let viewController = self
+        let interactor = StartInteractor()
         let router = StartRouter()
+        viewController.interactor = interactor
         viewController.router = router
         router.viewController = viewController
+        router.dataStore = interactor
     }
     
     func touchUpStartButton() {
-        interactor.startChallenge()
-        router?.routeToChallenge()
+        interactor?.startChallenge(completion: { [weak self] result in
+            guard let interactor = self?.interactor else { return }
+            interactor.getPlanet(completion: { [weak self] (planet) in
+                guard let router = self?.router else { return }
+                router.routeToChallenge(planet: planet)
+            })
+        })
     }
 
 }
