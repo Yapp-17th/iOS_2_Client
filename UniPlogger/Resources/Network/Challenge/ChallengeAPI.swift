@@ -31,7 +31,6 @@ class ChallengeAPI {
                 completion(.success($0))
             }, onError: { completion(.failure($0)) })
             .disposed(by: disposeBag)
-
     }
     
     func fetchPlanet(completionHandler: @escaping (Result<Response<Planet?>, Error>)-> Void) {

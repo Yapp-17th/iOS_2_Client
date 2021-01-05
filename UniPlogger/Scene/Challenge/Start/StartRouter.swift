@@ -8,15 +8,22 @@
 
 import UIKit
 
-@objc protocol StartRoutingLogic {
-    func routeToChallenge()
+protocol StartRoutingLogic {
+    func routeToChallenge(planet: Planet)
 }
 
-class StartRouter: NSObject, StartRoutingLogic {
+protocol StartDataPassing {
+    var dataStore: StartDataStore? { get }
+}
+
+class StartRouter: NSObject, StartRoutingLogic, StartDataPassing {
     weak var viewController: StartViewController?
+    var dataStore: StartDataStore?
     
-    func routeToChallenge() {
+    func routeToChallenge(planet: Planet) {
         let destinationVC = ChallengeViewController()
+        var destinationDS = destinationVC.router!.dataStore!
+        passDataToChallange(planet: planet, destination: &destinationDS)
         navigateToChallenge(source: viewController!, destination: destinationVC)
     }
     
@@ -27,4 +34,7 @@ class StartRouter: NSObject, StartRoutingLogic {
 //        source.present(destination, animated: true)
     }
 
+    private func passDataToChallange(planet: Planet, destination: inout ChallengeDataStore) {
+        destination.planet = planet
+    }
 }
