@@ -410,7 +410,14 @@ class PloggingViewController: BaseViewController {
     }
     
     @objc func myLocationButtonTapped(){
-        mapView.setCenter(mapView.userLocation.coordinate, animated: true)
+        if mapView.userLocation.coordinate.latitude == 0.0 &&
+            mapView.userLocation.coordinate.longitude == 0.0 {
+            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+            displaySetting(message: "현재 위치 정보를 사용하기 위해서 위치 권한을 허용해주세요", url: url)
+        } else {
+            mapView.setCenter(mapView.userLocation.coordinate, animated: true)
+        }
+        
     }
     
     @objc func UpdateTimer() {
