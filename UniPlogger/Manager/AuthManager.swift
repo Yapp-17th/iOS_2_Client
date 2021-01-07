@@ -50,6 +50,8 @@ class AuthManager{
     }
     
     func logout() {
+        UserDefaults.standard.removeObject(forDefines: .user)
+        UserDefaults.standard.removeObject(forDefines: .userToken)
         UserDefaults.standard.removeObject(forDefines: .hasQuestTutorial)
         UserDefaults.standard.removeObject(forDefines: .ploggingCoachmark)
         UserDefaults.standard.synchronize()

@@ -133,6 +133,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserDefaults.standard.removeObject(forDefines: .user)
+        UserDefaults.standard.removeObject(forDefines: .userToken)
         self.view.backgroundColor = .loginRegistrationBackground
         self.view.addSubview(scrollView)
         scrollView.containerView.snp.makeConstraints{
