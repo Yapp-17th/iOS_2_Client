@@ -40,6 +40,7 @@ class FindPasswordViewController: UIViewController, UIGestureRecognizerDelegate 
     
     let accountField = UITextField().then {
         $0.font = .notoSans(ofSize: 16, weight: .regular)
+        $0.autocapitalizationType = .none
         $0.keyboardType = .emailAddress
         $0.backgroundColor = .clear
         $0.borderStyle = .none
