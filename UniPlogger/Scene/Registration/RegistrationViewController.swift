@@ -48,7 +48,7 @@ class RegistrationViewController: UIViewController {
         $0.font = .notoSans(ofSize: 16, weight: .regular)
         $0.keyboardType = .asciiCapable
         $0.isSecureTextEntry = true
-        $0.textContentType = .password
+        $0.textContentType = .newPassword
         $0.backgroundColor = .clear
         $0.borderStyle = .none
         $0.placeholder = "비밀번호"
@@ -72,7 +72,7 @@ class RegistrationViewController: UIViewController {
         $0.font = .notoSans(ofSize: 16, weight: .regular)
         $0.keyboardType = .asciiCapable
         $0.isSecureTextEntry = true
-        $0.textContentType = .password
+        $0.textContentType = .newPassword
         $0.backgroundColor = .clear
         $0.borderStyle = .none
         $0.placeholder = "비밀번호 재입력"

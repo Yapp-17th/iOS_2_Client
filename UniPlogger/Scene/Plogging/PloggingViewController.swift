@@ -419,7 +419,14 @@ class PloggingViewController: BaseViewController {
             minutes += 1
             seconds = 0
         }
-        timeLabel.text = "\(String(format: "%02d", minutes)):\(String(format: "%02d", seconds))"
+        
+        if minutes >= 60 {
+            let hours = minutes / 60
+            timeLabel.text = String(format: "%02d:%02d:%02d", hours, minutes % 60, seconds)
+        } else {
+            timeLabel.text = String(format: "%02d:%02d", minutes, seconds)
+        }
+        
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

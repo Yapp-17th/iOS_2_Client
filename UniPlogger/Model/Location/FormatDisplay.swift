@@ -21,9 +21,15 @@ struct FormatDisplay{
     }
     
     static func time(_ seconds: Int) -> String{
-        let minutes = seconds / 60
+        var minutes = seconds / 60
         let seconds = seconds % 60
-        return String(format: "%02d:%02d", minutes, seconds)
+        if minutes >= 60 {
+            let hours = minutes / 60
+            minutes = minutes % 60
+            return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+        } else {
+            return String(format: "%02d:%02d", minutes, seconds)
+        }
     }
     
     static func pace(distance: Measurement<UnitLength>, seconds: Int, outputUnit: UnitSpeed) -> String{

@@ -29,7 +29,16 @@ class SharePresenter: SharePresentationLogic {
         let data = response.ploggingData
         let timeSet = data.timeSet()
         let distance = FormatDisplay.distance(data.distance)
-        let time = "\(String(format: "%02d", timeSet.minutes)):\(String(format: "%02d", timeSet.seconds))"
+        var minutes = timeSet.minutes
+        let seconds = timeSet.seconds
+        var time = ""
+        if minutes >= 60 {
+            let hours = minutes / 60
+            minutes = minutes % 60
+            time = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+        } else {
+            time = String(format: "%02d:%02d", minutes, seconds)
+        }
         
         let viewModel = Share.FetchRecord.ViewModel(distance: distance, time: time, image: response.image)
         

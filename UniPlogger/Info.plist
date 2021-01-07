@@ -49,7 +49,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>주변의 쓰레기통 찾기 및 운동 경로 기록 등을 위해 위치 권한이 필요합니다.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>&quot;플로깅 사진 저장을 위하여 앨범 접근 권한이 필요합니다.&quot;</string>
+	<string>"플로깅 사진 저장을 위하여 앨범 접근 권한이 필요합니다."</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>NotoSansCJKkr-Black.otf</string>
