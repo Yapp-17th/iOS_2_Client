@@ -16,7 +16,7 @@ protocol SettingDataPassing {
   var dataStore: SettingDataStore? { get set }
 }
 
-class SettingRouter: SettingRoutingLogic, SettingDataPassing {
+class SettingRouter: NSObject, SettingRoutingLogic, SettingDataPassing {
   weak var viewController: SettingViewController?
   var dataStore: SettingDataStore?
 }

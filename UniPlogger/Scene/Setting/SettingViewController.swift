@@ -17,6 +17,7 @@ class SettingViewController: InfoBaseViewController {
   
   var pushAgree = false
   var interactor: SettingBusinessLogic?
+  var router: (NSObjectProtocol & SettingRoutingLogic & SettingDataPassing)?
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()
@@ -30,24 +31,31 @@ class SettingViewController: InfoBaseViewController {
     let viewController = self
     let interactor = SettingInteractor()
     let presenter = SettingPresenter()
+    let router = SettingRouter()
+    viewController.interactor = interactor
+    viewController.router = router
     viewController.interactor = interactor
     interactor.presenter = presenter
     presenter.viewController = viewController
+    router.viewController = viewController
   }
+  
   lazy var tableView = UITableView().then {
     $0.delegate = self
     $0.dataSource = self
-    $0.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.ID)
     $0.isScrollEnabled = false
     $0.allowsSelection = false
     $0.backgroundColor = .clear
     $0.cellLayoutMarginsFollowReadableWidth = false
     $0.separatorInset.left = 0
+    
+    $0.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.identifier)
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = UIColor.questBackground
+    configuration()
+    setupView()
     setupLayout()
     self.interactor?.getUser()
   }
@@ -59,7 +67,6 @@ extension SettingViewController: SettingDisplayLogic {
     DispatchQueue.main.async {
       self.tableView.reloadData()
     }
-    
   }
   
   func displayError(error: Common.CommonError) {
@@ -130,15 +137,24 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension SettingViewController {
+  private func configuration() {
+    self.view.backgroundColor = UIColor.questBackground
+  }
+  
+  private func setupView() {
+    self.view.addSubview(tableView)
+  }
   
   func setupLayout() {
-    tableView.snp.makeConstraints { (make) in
-      make.top.equalTo(98)
-      make.leading.equalTo(20)
-      make.trailing.equalTo(-20)
-      //            make.height.equalTo(104.5)
-      make.height.equalTo(52 * Setting.SettingType.allCases.count)
+    tableView.snp.makeConstraints {
+      $0.top.equalTo(98)
+      $0.leading.equalTo(20)
+      $0.trailing.equalTo(-20)
+      $0.height.equalTo(52 * Setting.SettingType.allCases.count)
     }
   }
   
+  private func updateView() {
+    
+  }
 }
