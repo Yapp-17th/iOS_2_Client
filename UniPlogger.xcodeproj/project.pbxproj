@@ -105,7 +105,6 @@
 		8353097A257B91A900C3626D /* SignUpInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83530977257B91A900C3626D /* SignUpInfoViewController.swift */; };
 		8353097B257B91A900C3626D /* SignUpInfoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83530978257B91A900C3626D /* SignUpInfoType.swift */; };
 		83530984257B91E300C3626D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83530981257B91E300C3626D /* SettingViewController.swift */; };
-		83530985257B91E300C3626D /* SettingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83530982257B91E300C3626D /* SettingType.swift */; };
 		83530986257B91E300C3626D /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83530983257B91E300C3626D /* SettingTableViewCell.swift */; };
 		83530992257B9D3F00C3626D /* WithdrawViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83530991257B9D3F00C3626D /* WithdrawViewController+UI.swift */; };
 		83530996257BB6B600C3626D /* policy.html in Resources */ = {isa = PBXBuildFile; fileRef = 83530995257BB6B600C3626D /* policy.html */; };
@@ -195,6 +194,7 @@
 		AA68B556259A2EC000BCBF9F /* SettingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68B555259A2EC000BCBF9F /* SettingInteractor.swift */; };
 		AA68B55A259A2F0800BCBF9F /* SettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68B559259A2F0800BCBF9F /* SettingPresenter.swift */; };
 		AA6977AB25D19406001AF2D3 /* SettingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6977AA25D19406001AF2D3 /* SettingRouter.swift */; };
+		AA6977B125D196CA001AF2D3 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6977B025D196CA001AF2D3 /* UITableViewCell+Extensions.swift */; };
 		AA6CE4F32551780E00C83D28 /* TrashCanStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */; };
 		AA7658EF258279A500BA0A3E /* FindPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7658E9258279A500BA0A3E /* FindPasswordPresenter.swift */; };
 		AA7658F0258279A500BA0A3E /* FindPasswordWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7658EA258279A500BA0A3E /* FindPasswordWorker.swift */; };
@@ -398,7 +398,6 @@
 		83530977257B91A900C3626D /* SignUpInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpInfoViewController.swift; sourceTree = "<group>"; };
 		83530978257B91A900C3626D /* SignUpInfoType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpInfoType.swift; sourceTree = "<group>"; };
 		83530981257B91E300C3626D /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		83530982257B91E300C3626D /* SettingType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingType.swift; sourceTree = "<group>"; };
 		83530983257B91E300C3626D /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		83530991257B9D3F00C3626D /* WithdrawViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WithdrawViewController+UI.swift"; sourceTree = "<group>"; };
 		83530995257BB6B600C3626D /* policy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = policy.html; sourceTree = "<group>"; };
@@ -487,6 +486,7 @@
 		AA68B555259A2EC000BCBF9F /* SettingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInteractor.swift; sourceTree = "<group>"; };
 		AA68B559259A2F0800BCBF9F /* SettingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPresenter.swift; sourceTree = "<group>"; };
 		AA6977AA25D19406001AF2D3 /* SettingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRouter.swift; sourceTree = "<group>"; };
+		AA6977B025D196CA001AF2D3 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashCanStorage.swift; sourceTree = "<group>"; };
 		AA7658E9258279A500BA0A3E /* FindPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordPresenter.swift; sourceTree = "<group>"; };
 		AA7658EA258279A500BA0A3E /* FindPasswordWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordWorker.swift; sourceTree = "<group>"; };
@@ -875,7 +875,6 @@
 			isa = PBXGroup;
 			children = (
 				83530981257B91E300C3626D /* SettingViewController.swift */,
-				83530982257B91E300C3626D /* SettingType.swift */,
 				83530983257B91E300C3626D /* SettingTableViewCell.swift */,
 				AA68B54D259A2CD100BCBF9F /* SettingWorker.swift */,
 				AA68B551259A2D5300BCBF9F /* SettingModels.swift */,
@@ -1352,6 +1351,7 @@
 				AA38A6D8257A780700B26E1F /* UIApplication+Extensions.swift */,
 				AA38A6DC257A78F100B26E1F /* UIViewController+Extensions.swift */,
 				AA38A788257BD80700B26E1F /* NSAttributedString+Extensions.swift */,
+				AA6977B025D196CA001AF2D3 /* UITableViewCell+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1765,6 +1765,7 @@
 				4C3F54BC25612818006D7C9F /* QuestManager.swift in Sources */,
 				AA35BC7C254FFC2B00AE32A7 /* Storage.swift in Sources */,
 				83524819257227BA00C9F495 /* SplashViewController.swift in Sources */,
+				AA6977B125D196CA001AF2D3 /* UITableViewCell+Extensions.swift in Sources */,
 				8352480D2572279500C9F495 /* Feed.swift in Sources */,
 				8352489725727BFE00C9F495 /* Planet.swift in Sources */,
 				8352480E2572279500C9F495 /* User.swift in Sources */,
@@ -1788,7 +1789,6 @@
 				83530986257B91E300C3626D /* SettingTableViewCell.swift in Sources */,
 				AAB3B4EC2520B2B400F0311A /* UIImage+Extensions.swift in Sources */,
 				4C7248B12542FDA600ACB32B /* RecommandOtherView.swift in Sources */,
-				83530985257B91E300C3626D /* SettingType.swift in Sources */,
 				AA2CAE082543EAD600105748 /* PloggingRecordWorker.swift in Sources */,
 				8353A381256A617100F9AA4F /* ChallengeNavigationController.swift in Sources */,
 				AAC552C42585C4C6000DAFDF /* ResetPasswordPresenter.swift in Sources */,

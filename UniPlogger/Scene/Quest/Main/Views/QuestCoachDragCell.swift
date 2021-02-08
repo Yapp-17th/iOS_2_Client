@@ -9,7 +9,6 @@
 import UIKit
 
 class QuestCoachDragCell: UITableViewCell {
-    static let identifier = "QuestCoachDragCell"
     
     private var shadowView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false

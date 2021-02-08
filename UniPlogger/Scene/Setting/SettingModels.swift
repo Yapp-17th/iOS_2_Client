@@ -9,7 +9,20 @@
 import UIKit
 
 enum Setting{
-    
+  enum SettingType: Int, CaseIterable {
+      case getPush
+      case autosave
+      
+      var title: String {
+          switch self {
+          case .getPush:
+              return "알림"
+          case .autosave:
+              return "사진자동저장"
+          }
+      }
+      
+  }
     enum GetUser {
         struct Response{
             var user: User?

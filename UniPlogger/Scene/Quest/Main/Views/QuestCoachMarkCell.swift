@@ -9,7 +9,6 @@
 import UIKit
 
 class QuestCoachMarkCell: UITableViewCell {
-    static let identifier = "QuestCoachMarkCell"
     
     private var shadowView = UIView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
