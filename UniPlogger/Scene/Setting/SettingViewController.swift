@@ -37,14 +37,12 @@ class SettingViewController: InfoBaseViewController {
     lazy var tableView = UITableView().then {
         $0.delegate = self
         $0.dataSource = self
-        $0.translatesAutoresizingMaskIntoConstraints = false
         $0.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.ID)
         $0.isScrollEnabled = false
         $0.allowsSelection = false
         $0.backgroundColor = .clear
         $0.cellLayoutMarginsFollowReadableWidth = false
         $0.separatorInset.left = 0
-        self.view.addSubview($0)
     }
     
     override func viewDidLoad() {

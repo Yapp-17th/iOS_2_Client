@@ -13,6 +13,10 @@ protocol SettingBusinessLogic {
     func updatePush()
 }
 
+protocol SettingDataStore {
+  
+}
+
 class SettingInteractor: SettingBusinessLogic {
     var presenter: SettingPresentationLogic?
     let worker = SettingWorker()

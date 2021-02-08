@@ -194,6 +194,7 @@
 		AA68B552259A2D5300BCBF9F /* SettingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68B551259A2D5300BCBF9F /* SettingModels.swift */; };
 		AA68B556259A2EC000BCBF9F /* SettingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68B555259A2EC000BCBF9F /* SettingInteractor.swift */; };
 		AA68B55A259A2F0800BCBF9F /* SettingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA68B559259A2F0800BCBF9F /* SettingPresenter.swift */; };
+		AA6977AB25D19406001AF2D3 /* SettingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6977AA25D19406001AF2D3 /* SettingRouter.swift */; };
 		AA6CE4F32551780E00C83D28 /* TrashCanStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */; };
 		AA7658EF258279A500BA0A3E /* FindPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7658E9258279A500BA0A3E /* FindPasswordPresenter.swift */; };
 		AA7658F0258279A500BA0A3E /* FindPasswordWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7658EA258279A500BA0A3E /* FindPasswordWorker.swift */; };
@@ -485,6 +486,7 @@
 		AA68B551259A2D5300BCBF9F /* SettingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModels.swift; sourceTree = "<group>"; };
 		AA68B555259A2EC000BCBF9F /* SettingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingInteractor.swift; sourceTree = "<group>"; };
 		AA68B559259A2F0800BCBF9F /* SettingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPresenter.swift; sourceTree = "<group>"; };
+		AA6977AA25D19406001AF2D3 /* SettingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRouter.swift; sourceTree = "<group>"; };
 		AA6CE4F22551780E00C83D28 /* TrashCanStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashCanStorage.swift; sourceTree = "<group>"; };
 		AA7658E9258279A500BA0A3E /* FindPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordPresenter.swift; sourceTree = "<group>"; };
 		AA7658EA258279A500BA0A3E /* FindPasswordWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordWorker.swift; sourceTree = "<group>"; };
@@ -699,6 +701,7 @@
 				AA38A72F257B691800B26E1F /* Registration */,
 				AA38A71A257A9DE800B26E1F /* Login */,
 				835248542572285100C9F495 /* Log */,
+				83530980257B91E300C3626D /* Setting */,
 				8352482E2572283B00C9F495 /* MyPage */,
 				83524812257227BA00C9F495 /* Splash */,
 				83DE07502566AD050085AC72 /* Challenge */,
@@ -772,7 +775,6 @@
 		835248302572283B00C9F495 /* InfoVC */ = {
 			isa = PBXGroup;
 			children = (
-				83530980257B91E300C3626D /* Setting */,
 				83530975257B91A900C3626D /* SignUp */,
 				835248312572283B00C9F495 /* PolicyViewController.swift */,
 				83530995257BB6B600C3626D /* policy.html */,
@@ -879,6 +881,7 @@
 				AA68B551259A2D5300BCBF9F /* SettingModels.swift */,
 				AA68B555259A2EC000BCBF9F /* SettingInteractor.swift */,
 				AA68B559259A2F0800BCBF9F /* SettingPresenter.swift */,
+				AA6977AA25D19406001AF2D3 /* SettingRouter.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1670,6 +1673,7 @@
 				835248B025743FD700C9F495 /* UserLogPresenter.swift in Sources */,
 				AA4AD579257265FF0087E060 /* DetailWorker.swift in Sources */,
 				AA38A721257A9DFA00B26E1F /* LoginPresenter.swift in Sources */,
+				AA6977AB25D19406001AF2D3 /* SettingRouter.swift in Sources */,
 				AAB559312549B846000BB903 /* Location.swift in Sources */,
 				8352481B257227BA00C9F495 /* SplashWorker.swift in Sources */,
 				AA68B556259A2EC000BCBF9F /* SettingInteractor.swift in Sources */,
