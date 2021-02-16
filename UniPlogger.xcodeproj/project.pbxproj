@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		101A5C8A5DA8441CFEF982F0 /* Pods_UniPlogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4E470A391887A23D6AF25DD /* Pods_UniPlogger.framework */; };
+		42C1F77225DC205700FBBDF3 /* LoginViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C1F77125DC205700FBBDF3 /* LoginViewController+UI.swift */; };
 		4C2D058C25562E4F00FA787F /* QuestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D058B25562E4F00FA787F /* QuestRouter.swift */; };
 		4C2D059B2556459400FA787F /* QuestDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D059A2556459400FA787F /* QuestDetailPresenter.swift */; };
 		4C3F54A4256123CE006D7C9F /* QuestListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3F54A3256123CE006D7C9F /* QuestListTests.swift */; };
@@ -293,6 +294,7 @@
 /* Begin PBXFileReference section */
 		1215DCB5253C626800C5D9BE /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		12330CE7D885C1CB00C8E874 /* Pods-UniPlogger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPlogger.release.xcconfig"; path = "Target Support Files/Pods-UniPlogger/Pods-UniPlogger.release.xcconfig"; sourceTree = "<group>"; };
+		42C1F77125DC205700FBBDF3 /* LoginViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+UI.swift"; sourceTree = "<group>"; };
 		4C2D058B25562E4F00FA787F /* QuestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestRouter.swift; sourceTree = "<group>"; };
 		4C2D059A2556459400FA787F /* QuestDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestDetailPresenter.swift; sourceTree = "<group>"; };
 		4C3F54A1256123CE006D7C9F /* QuestListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuestListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1056,6 +1058,7 @@
 				AA38A71E257A9DFA00B26E1F /* LoginModels.swift */,
 				AA38A71F257A9DFA00B26E1F /* LoginViewController.swift */,
 				AA38A720257A9DFA00B26E1F /* LoginInteractor.swift */,
+				42C1F77125DC205700FBBDF3 /* LoginViewController+UI.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1723,6 +1726,7 @@
 				AAA1CBE9255D5E9100EDB18A /* SessionManager.swift in Sources */,
 				AAA1CC03255D647100EDB18A /* PloggingAPITarget.swift in Sources */,
 				4C6F0ABA257B8AEA008DF8D1 /* SuccessPopupView.swift in Sources */,
+				42C1F77225DC205700FBBDF3 /* LoginViewController+UI.swift in Sources */,
 				4C2D059B2556459400FA787F /* QuestDetailPresenter.swift in Sources */,
 				AA7658F0258279A500BA0A3E /* FindPasswordWorker.swift in Sources */,
 				4CF62089257B11750029FBD6 /* ProceedingQuest+CoreDataClass.swift in Sources */,
