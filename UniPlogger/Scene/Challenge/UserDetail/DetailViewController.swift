@@ -8,6 +8,8 @@
 
 import UIKit
 import Photos
+import Then
+
 protocol DetailDisplayLogic: class {
     func displayGetFeed(viewModel: Detail.GetFeed.ViewModel, uid: Int)
     func displayDeleteFeed()
@@ -17,6 +19,8 @@ class DetailViewController: UIViewController {
     var router: (NSObjectProtocol & DetailRoutingLogic & DetailDataPassing)?
     var interactor: DetailBusinessLogic?
     var imageForSave: UIImage?
+    
+    let photoManager = PhotoManager(albumName: "UniPlogger")
     
     lazy var backgroundImageView = UIImageView().then {
         let image = UIImage(named: "mainBackground")
@@ -44,8 +48,6 @@ class DetailViewController: UIViewController {
         $0.layer.cornerRadius = 50
         $0.addTarget(self, action: #selector(touchUpShareButton), for: .touchUpInside)
     }
-    
-    
     
     // MARK: Object lifecycle
       
@@ -80,6 +82,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.photoManager.delegate = self
         setNavigationItem()
         setUpViews()
         setUpLayout()
@@ -118,7 +121,6 @@ class DetailViewController: UIViewController {
     
     @objc func touchUpSaveButton() {
         guard let image = imageForSave else { return }
-        let photoManager = PhotoManager(albumName: "UniPlogger")
         photoManager.save(image) { (success, error) in
             if success {
                 DispatchQueue.main.async {
@@ -134,23 +136,11 @@ class DetailViewController: UIViewController {
     
     @objc func touchUpShareButton() {
         guard let imageForShare = self.mergeViews() else { return }
+        shareImage(for: imageForShare)
         
-        if !AuthManager.shared.autoSave {
-            showAlert(title: "사진을 저장하시겠습니까?",
-                      message: "사진을 저장해야만 공유가 가능합니다.",
-                      confirm: (title: "YES", handler: ({ [weak self] action in
-                        self?.shareImage(for: imageForShare)
-                      })),
-                      cancel: (title: "NO", handler: { _ in
-                        return
-                      }))
-        } else {
-            shareImage(for: imageForShare)
-        }
     }
     
     func shareImage(for image: UIImage) {
-        let photoManager = PhotoManager(albumName: "UniPlogger")
         photoManager.save(image) { (success, error) in
             if success {
                 let fetchOptions = PHFetchOptions()
@@ -242,4 +232,19 @@ extension DetailViewController: DetailDisplayLogic {
     }
     
     
+}
+
+extension DetailViewController: PhotoManagerDelegate {
+    func showAuthAlert() {
+        let alertController = UIAlertController(title: "알림", message: "사진 저장을 위해서는 사진 접근 권한을 허용해야합니다.\n권한 변경 이후 저장 및 공유가 가능합니다.", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "확인", style: .default, handler: { _ in
+            if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+            }
+        })
+        alertController.addAction(confirmAction)
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
 }

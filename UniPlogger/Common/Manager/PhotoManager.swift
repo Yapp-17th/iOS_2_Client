@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-protocol PhotoManagerDelegate {
+protocol PhotoManagerDelegate: class {
     func showAuthAlert()
 }
 
@@ -17,7 +17,7 @@ class PhotoManager {
 
     private var albumName: String
     private var album: PHAssetCollection?
-    var delegate: PhotoManagerDelegate?
+    weak var delegate: PhotoManagerDelegate?
 
     init(albumName: String) {
         self.albumName = albumName
