@@ -19,13 +19,13 @@ protocol LoginBusinessLogic {
 }
 
 protocol LoginDataStore {
-    //var name: String { get set }
+    
 }
 
 class LoginInteractor: LoginBusinessLogic, LoginDataStore {
     var presenter: LoginPresentationLogic?
     var worker = LoginWorker()
-    //var name: String = ""
+    
     func validateAccount(request: Login.ValidateAccount.Request){
         let text = request.account
         let result = worker.validateAccount(text: text)
