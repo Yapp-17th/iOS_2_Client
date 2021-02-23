@@ -10,7 +10,7 @@ import UIKit
 import Photos
 
 protocol PhotoManagerDelegate {
-    func showAuthAlert(completion: @escaping () -> ())
+    func showAuthAlert()
 }
 
 class PhotoManager {
@@ -84,11 +84,7 @@ class PhotoManager {
     }
     
     private func setAuth() {
-        if let appSettings = URL(string: UIApplication.openSettingsURLString) {
-            DispatchQueue.main.async {
-                UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
-            }
-        }
+        self.delegate?.showAuthAlert()
     }
     
 }

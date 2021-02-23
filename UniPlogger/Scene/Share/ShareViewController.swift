@@ -96,29 +96,41 @@ class ShareViewController: UIViewController, PhotoManagerDelegate {
     
     @objc func touchUpDismissButton() {
         guard let imageForSave = self.imageForShare else { return }
-        let photoManager = PhotoManager(albumName: "UniPlogger")
         
-        guard AuthManager.shared.autoSave else {
-            showAlert(title: "사진을 저장하시겠습니까?",
-                      message: "사진을 자동으로 저장하시려면 환경설정을 확인해주세요.",
-                      confirm: (title: "YES", handler: { [weak self] action in
-                        DispatchQueue.main.async {
-                            self?.showAlert(title: "사진 저장", message: "사진이 저장되었습니다.")
-                        }
-                      }),
-                      cancel: (title: "NO", handler: { [weak self] action in
-                        self?.dismiss(animated: true, completion: nil)
-                      }))
-            return
+        if AuthManager.shared.autoSave {
+            self.saveImageAndDismiss(imageForSave)
+        } else {
+            let alert = UIAlertController(title: "사진을 저장하시겠습니까?", message: "사진을 자동으로 저장하시려면 환경설정을 확인해주세요.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "YES", style: .default) { [weak self] _ in
+                self?.saveImageAndDismiss(imageForSave)
+            }
+            let noAction = UIAlertAction(title: "NO", style: .cancel) { [weak self] _ in
+                self?.dismiss(animated: true, completion: nil)
+            }
+            [okAction, noAction].forEach { alert.addAction($0) }
+            self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+    func saveImageAndDismiss(_ imageForSave: UIImage) {
         photoManager.save(imageForSave) { (success, error) in
             if success {
-                DispatchQueue.main.async {
-                    self.showAlert(title: "사진 저장", message: "사진이 저장되었습니다.")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    let alert = UIAlertController(title: "사진 저장", message: "사진이 저장되었습니다.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+                        self?.dismiss(animated: true, completion: nil)
+                    }
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
                 }
             } else {
-                DispatchQueue.main.async {
-                    self.showAlert(title: "ERROR", message: error?.localizedDescription ?? "error")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    let alert = UIAlertController(title: "ERROR", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+                        self?.dismiss(animated: true, completion: nil)
+                    }
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
         }
@@ -128,14 +140,17 @@ class ShareViewController: UIViewController, PhotoManagerDelegate {
         guard let imageForShare = self.imageForShare else { return }
         
         if !AuthManager.shared.autoSave {
-            showAlert(title: "사진을 저장하시겠습니까?",
-                      message: "사진을 저장해야만 공유가 가능합니다.",
-                      confirm: (title: "YES", handler: ({ [weak self] action in
-                        self?.shareImage(for: imageForShare)
-                      })),
-                      cancel: (title: "NO", handler: { _ in
-                        return
-                      }))
+            let alert = UIAlertController(
+                title: "사진을 저장하시겠습니까?",
+                message: "사진을 저장해야만 공유가 가능합니다.",
+                preferredStyle: .alert
+            )
+            let okACtion = UIAlertAction(title: "YES", style: .default) { [weak self] _ in
+                self?.shareImage(for: imageForShare)
+            }
+            let noAction = UIAlertAction(title: "NO", style: .cancel)
+            [okACtion, noAction].forEach { alert.addAction($0) }
+            self.present(alert, animated: true, completion: nil)
         } else {
             shareImage(for: imageForShare)
         }
@@ -186,13 +201,18 @@ class ShareViewController: UIViewController, PhotoManagerDelegate {
         return outPutImageView.image
     }
     
-    func showAuthAlert(completion: @escaping () -> ()) {
-        let alertController = UIAlertController(title: "알림", message: "사진 저장을 위해서는 사진 접근 권한을 허용해야합니다.", preferredStyle: .alert)
+    func showAuthAlert() {
+        let alertController = UIAlertController(title: "알림", message: "사진 저장을 위해서는 사진 접근 권한을 허용해야합니다.\n권한 변경 이후 로그탭에서 저장 및 공유가 가능합니다.", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "확인", style: .default, handler: { _ in
-            completion()
+            if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+            }
         })
         alertController.addAction(confirmAction)
-        self.present(alertController, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
+        
     }
     
 }
